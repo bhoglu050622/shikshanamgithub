@@ -33,7 +33,7 @@ const recognitions = [
     organization: 'Indian Education Awards 2024',
     year: '2024',
     description: 'Recognized for excellence in traditional language education',
-    color: 'from-saffron-500 to-saffron-600'
+    color: 'from-golden-olive to-golden-olive/90'
   },
   {
     icon: Trophy,
@@ -41,7 +41,7 @@ const recognitions = [
     organization: 'Global EdTech Summit',
     year: '2024',
     description: 'Awarded for bridging ancient wisdom with modern technology',
-    color: 'from-deep-teal-500 to-deep-teal-600'
+    color: 'from-deep-maroon to-deep-maroon/90'
   },
   {
     icon: Star,
@@ -49,7 +49,7 @@ const recognitions = [
     organization: 'Student Choice Awards',
     year: '2024',
     description: 'Highest student satisfaction rating of 4.9/5',
-    color: 'from-indigo-500 to-indigo-600'
+    color: 'from-copper-orange to-copper-orange/90'
   },
   {
     icon: Medal,
@@ -57,7 +57,7 @@ const recognitions = [
     organization: 'UNESCO Heritage Foundation',
     year: '2023',
     description: 'Recognized for preserving and promoting Sanskrit literature',
-    color: 'from-accent-gold-500 to-accent-gold-600'
+    color: 'from-temple-gold to-temple-gold/90'
   }
 ]
 
@@ -172,12 +172,12 @@ export default function RecognitionTestimonials() {
   }
 
   return (
-    <section id="recognition-testimonials" className="section-padding bg-gradient-to-br from-wisdom-50 via-sand-100 to-wisdom-50 dark:from-wisdom-800 dark:via-wisdom-700 dark:to-wisdom-800 transition-colors duration-300">
+    <section id="recognition-testimonials" className="section-padding bg-parchment-ivory transition-colors duration-300">
       <div className="container-custom">
         <StaggerContainer className="text-center mb-16">
           <StaggerItem>
             <div className="flex justify-center mb-6">
-              <div className="flex items-center space-x-2 text-saffron-600 dark:text-saffron-400">
+              <div className="flex items-center space-x-2 text-golden-olive">
                 <Award className="w-6 h-6" />
                 <span className="text-sm font-semibold tracking-wide uppercase">Trust & Recognition</span>
                 <Award className="w-6 h-6" />
@@ -186,16 +186,16 @@ export default function RecognitionTestimonials() {
           </StaggerItem>
 
           <StaggerItem>
-            <h2 className="text-display text-high-contrast mb-6">
+            <h2 className="text-display text-dark-olive mb-6">
               Why Learners{' '}
-              <span className="bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 dark:from-saffron-500 dark:via-deep-teal-500 dark:to-indigo-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent">
                 Trust Shikshanam
               </span>
             </h2>
           </StaggerItem>
 
           <StaggerItem>
-            <p className="text-subheading text-medium-contrast max-w-4xl mx-auto">
+            <p className="text-subheading text-deep-maroon max-w-4xl mx-auto">
               Recognized globally for excellence in preserving and teaching ancient Indian wisdom. 
               See what our award-winning platform and satisfied students have to say.
             </p>
@@ -210,7 +210,7 @@ export default function RecognitionTestimonials() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold text-high-contrast mb-8 text-center lg:text-left">
+            <h3 className="text-2xl font-bold text-dark-olive mb-8 text-center lg:text-left">
               Awards & Recognition
             </h3>
             
@@ -231,19 +231,19 @@ export default function RecognitionTestimonials() {
                     
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-xs font-semibold text-saffron-600 dark:text-saffron-400 bg-saffron-100 dark:bg-saffron-900/30 px-2 py-1 rounded-full">
+                        <span className="text-xs font-semibold text-golden-olive bg-golden-olive/10 px-2 py-1 rounded-full">
                           {recognition.year}
                         </span>
-                        <h4 className="font-bold text-high-contrast group-hover:text-saffron-600 dark:group-hover:text-saffron-400 transition-colors duration-300">
+                        <h4 className="font-bold text-dark-olive group-hover:text-golden-olive transition-colors duration-300">
                           {recognition.title}
                         </h4>
                       </div>
                       
-                      <p className="text-saffron-600 dark:text-saffron-400 font-semibold text-sm mb-2">
+                      <p className="text-golden-olive font-semibold text-sm mb-2">
                         {recognition.organization}
                       </p>
                       
-                      <p className="text-medium-contrast text-sm leading-relaxed">
+                      <p className="text-deep-maroon text-sm leading-relaxed">
                         {recognition.description}
                       </p>
                     </div>
@@ -276,7 +276,7 @@ export default function RecognitionTestimonials() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="relative"
           >
-            <h3 className="text-2xl font-bold text-high-contrast mb-8 text-center lg:text-left">
+            <h3 className="text-2xl font-bold text-dark-olive mb-8 text-center lg:text-left">
               Student Stories
             </h3>
             
@@ -293,7 +293,7 @@ export default function RecognitionTestimonials() {
                   {/* Instagram Reel Style Card */}
                   <div className="card-premium overflow-hidden relative">
                     {/* Video Section */}
-                    <div className="relative h-80 bg-gradient-to-br from-saffron-500 to-deep-teal-500">
+                    <div className="relative h-80 bg-gradient-to-br from-golden-olive to-deep-maroon">
                       {/* Placeholder for video */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center text-white">
@@ -365,56 +365,56 @@ export default function RecognitionTestimonials() {
                     <div className="p-6">
                       {/* User Info */}
                       <div className="flex items-center space-x-3 mb-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-saffron-500 to-saffron-600 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-golden-olive to-golden-olive/90 rounded-full flex items-center justify-center">
                           <span className="text-white font-bold text-sm">
                             {currentTestimonial.avatar}
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-high-contrast text-sm">
+                          <h4 className="font-bold text-dark-olive text-sm">
                             {currentTestimonial.name}
                           </h4>
-                          <p className="text-medium-contrast text-xs">
+                          <p className="text-sand-beige text-xs">
                             {currentTestimonial.role} • {currentTestimonial.location}
                           </p>
                           <div className="flex items-center space-x-1 mt-1">
                             {[...Array(currentTestimonial.rating)].map((_, i) => (
-                              <Star key={i} className="w-3 h-3 text-saffron-500 fill-current" />
+                              <Star key={i} className="w-3 h-3 text-temple-gold fill-current" />
                             ))}
                           </div>
                         </div>
                       </div>
 
                       {/* Testimonial Content */}
-                      <blockquote className="text-sm text-medium-contrast leading-relaxed mb-4 italic">
+                      <blockquote className="text-sm text-deep-maroon leading-relaxed mb-4 italic">
                         "{currentTestimonial.content}"
                       </blockquote>
 
                       {/* Course Info */}
-                      <div className="flex items-center justify-between p-3 bg-saffron-50 dark:bg-saffron-900/20 rounded-lg mb-4">
+                      <div className="flex items-center justify-between p-3 bg-sand-beige/30 rounded-lg mb-4">
                         <div>
-                          <p className="text-xs text-wisdom-500 dark:text-wisdom-400">Learning</p>
-                          <p className="font-semibold text-high-contrast text-sm">{currentTestimonial.course}</p>
+                          <p className="text-xs text-sand-beige">Learning</p>
+                          <p className="font-semibold text-dark-olive text-sm">{currentTestimonial.course}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-xs text-wisdom-500 dark:text-wisdom-400">Progress</p>
-                          <p className="font-semibold text-saffron-600 dark:text-saffron-400 text-sm">{currentTestimonial.progress}</p>
+                          <p className="text-xs text-sand-beige">Progress</p>
+                          <p className="font-semibold text-golden-olive text-sm">{currentTestimonial.progress}</p>
                         </div>
                       </div>
 
                       {/* Social Stats */}
-                      <div className="flex items-center justify-center space-x-6 pt-3 border-t border-saffron-200/30 dark:border-saffron-400/20">
+                      <div className="flex items-center justify-center space-x-6 pt-3 border-t border-golden-olive/20">
                         <div className="flex items-center space-x-1">
                           <Heart className="w-4 h-4 text-rose-500" />
-                          <span className="text-medium-contrast text-sm">{currentTestimonial.likes}</span>
+                          <span className="text-deep-maroon text-sm">{currentTestimonial.likes}</span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <MessageCircle className="w-4 h-4 text-blue-500" />
-                          <span className="text-medium-contrast text-sm">{currentTestimonial.comments}</span>
+                          <span className="text-deep-maroon text-sm">{currentTestimonial.comments}</span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Share2 className="w-4 h-4 text-green-500" />
-                          <span className="text-medium-contrast text-sm">{currentTestimonial.shares}</span>
+                          <span className="text-deep-maroon text-sm">{currentTestimonial.shares}</span>
                         </div>
                       </div>
                     </div>
@@ -426,9 +426,9 @@ export default function RecognitionTestimonials() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={prevTestimonial}
-                      className="w-10 h-10 bg-white dark:bg-wisdom-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus-ring"
+                      className="w-10 h-10 bg-parchment-ivory rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus-ring"
                     >
-                      <ChevronLeft className="w-5 h-5 text-high-contrast" />
+                      <ChevronLeft className="w-5 h-5 text-dark-olive" />
                     </motion.button>
 
                     {/* Dots Indicator */}
@@ -441,8 +441,8 @@ export default function RecognitionTestimonials() {
                           onClick={() => setCurrentTestimonialIndex(index)}
                           className={`w-2 h-2 rounded-full transition-all duration-300 ${
                             index === currentTestimonialIndex
-                              ? 'bg-saffron-500 w-6'
-                              : 'bg-saffron-200 dark:bg-saffron-800'
+                              ? 'bg-golden-olive w-6'
+                              : 'bg-golden-olive/30'
                           }`}
                         />
                       ))}
@@ -452,9 +452,9 @@ export default function RecognitionTestimonials() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={nextTestimonial}
-                      className="w-10 h-10 bg-white dark:bg-wisdom-800 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus-ring"
+                      className="w-10 h-10 bg-parchment-ivory rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus-ring"
                     >
-                      <ChevronRight className="w-5 h-5 text-high-contrast" />
+                      <ChevronRight className="w-5 h-5 text-dark-olive" />
                     </motion.button>
                   </div>
                 </motion.div>
@@ -473,16 +473,16 @@ export default function RecognitionTestimonials() {
           >
             <div className="card-premium p-8 max-w-4xl mx-auto">
               <div className="flex items-center justify-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-saffron-500 to-saffron-600 rounded-2xl flex items-center justify-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-golden-olive to-golden-olive/90 rounded-2xl flex items-center justify-center">
                   <Trophy className="w-8 h-8 text-white" />
                 </div>
               </div>
               
-              <h3 className="text-2xl font-bold text-high-contrast mb-4">
+              <h3 className="text-2xl font-bold text-dark-olive mb-4">
                 Join Our Award-Winning Community
               </h3>
               
-              <p className="text-medium-contrast mb-8 max-w-2xl mx-auto">
+              <p className="text-deep-maroon mb-8 max-w-2xl mx-auto">
                 Experience the same quality education that has earned us recognition from prestigious organizations worldwide. 
                 Start your journey with confidence and become our next success story.
               </p>
@@ -491,7 +491,7 @@ export default function RecognitionTestimonials() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-primary flex items-center space-x-3 px-8 py-4"
+                  className="btn-shikshanam-primary flex items-center space-x-3 px-8 py-4"
                 >
                   <Award className="w-5 h-5" />
                   <span>Start Learning</span>
@@ -500,7 +500,7 @@ export default function RecognitionTestimonials() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-outline flex items-center space-x-3 px-8 py-4"
+                  className="btn-shikshanam-outline flex items-center space-x-3 px-8 py-4"
                 >
                   <Star className="w-5 h-5" />
                   <span>View All Testimonials</span>

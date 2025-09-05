@@ -32,6 +32,7 @@ import {
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
+import DarshanaCircularVisualization from '@/components/sections/DarshanaCircularVisualization'
 
 // Enhanced Darshana data with richer content
 const darshanas = [
@@ -534,269 +535,8 @@ export default function SchoolOfDarshanaPage() {
             </p>
           </motion.div>
 
-                        {/* Flowing Network Animation */}
-          <div className="flex justify-center mb-4 overflow-visible">
-            <motion.div
-              className="relative w-[min(90vw,700px)] h-[min(90vw,700px)] perspective-1000"
-              style={{ 
-                transformStyle: 'preserve-3d',
-                willChange: 'transform'
-              }}
-            >
-              {/* Animated Background Connections */}
-              <svg 
-                className="absolute inset-0 w-full h-full pointer-events-none z-0"
-                viewBox="0 0 600 600"
-                preserveAspectRatio="xMidYMid meet"
-              >
-                {/* Floating particles */}
-                {[...Array(12)].map((_, i) => (
-                  <motion.circle
-                    key={`particle-${i}`}
-                    cx={Math.random() * 600}
-                    cy={Math.random() * 600}
-                    r="2"
-                    fill="url(#particleGradient)"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ 
-                      opacity: [0, 0.6, 0],
-                      scale: [0, 1, 0],
-                      x: [0, (Math.random() - 0.5) * 80],
-                      y: [0, (Math.random() - 0.5) * 80]
-                    }}
-                    transition={{
-                      duration: 4 + Math.random() * 2,
-                      repeat: Infinity,
-                      delay: Math.random() * 2,
-                      ease: "easeInOut"
-                    }}
-                  />
-                ))}
-                {/* Flowing connection lines between schools - Hexagonal layout */}
-                {[
-                  // Primary hexagon connections
-                  { from: { x: 300, y: 100 }, to: { x: 450, y: 200 }, delay: 0 }, // Nyaya to Vaisheshika
-                  { from: { x: 450, y: 200 }, to: { x: 450, y: 400 }, delay: 0.5 }, // Vaisheshika to Samkhya
-                  { from: { x: 450, y: 400 }, to: { x: 300, y: 500 }, delay: 1 }, // Samkhya to Yoga
-                  { from: { x: 300, y: 500 }, to: { x: 150, y: 400 }, delay: 1.5 }, // Yoga to Mimamsa
-                  { from: { x: 150, y: 400 }, to: { x: 150, y: 200 }, delay: 2 }, // Mimamsa to Vedanta
-                  { from: { x: 150, y: 200 }, to: { x: 300, y: 100 }, delay: 2.5 }, // Vedanta to Nyaya
-                  // Cross connections for deeper relationships
-                  { from: { x: 300, y: 100 }, to: { x: 300, y: 500 }, delay: 3 }, // Nyaya to Yoga
-                  { from: { x: 450, y: 200 }, to: { x: 150, y: 400 }, delay: 3.5 }, // Vaisheshika to Mimamsa
-                  { from: { x: 450, y: 400 }, to: { x: 150, y: 200 }, delay: 4 } // Samkhya to Vedanta
-                ].map((connection, index) => (
-                  <motion.path
-                    key={index}
-                    d={`M ${connection.from.x} ${connection.from.y} Q ${(connection.from.x + connection.to.x) / 2} ${(connection.from.y + connection.to.y) / 2 + (index % 2 === 0 ? -30 : 30)} ${connection.to.x} ${connection.to.y}`}
-                    stroke="url(#flowGradient)"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ 
-                      pathLength: [0, 1, 0],
-                      opacity: [0, 0.7, 0]
-                    }}
-                    transition={{
-                      duration: 3,
-                      delay: connection.delay,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                ))}
-                
-                {/* Gradient definitions */}
-                <defs>
-                  <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
-                    <stop offset="50%" stopColor="#0891b2" stopOpacity="0.6" />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0.8" />
-                  </linearGradient>
-                  <radialGradient id="particleGradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0.4" />
-                  </radialGradient>
-                </defs>
-              </svg>
-
-              {/* Central Wisdom Hub */}
-              <motion.div
-                animate={{ 
-                  rotate: [0, 360],
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{ 
-                  rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                }}
-                whileHover={{ 
-                  scale: 1.15,
-                  transition: { duration: 0.3 }
-                }}
-                className="absolute top-1/2 left-1/2 w-20 h-20 bg-gradient-to-r from-saffron-400 via-deep-teal-400 to-indigo-400 rounded-full shadow-2xl flex items-center justify-center z-20 cursor-pointer group"
-                style={{
-                  transform: 'translate(-50%, -50%)'
-                }}
-                onClick={() => setHoveredDarshana(null)}
-                role="button"
-                tabIndex={0}
-                aria-label="Center of wisdom - click to reset view"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    setHoveredDarshana(null)
-                  }
-                }}
-              >
-                <div className="w-14 h-14 bg-white/90 dark:bg-wisdom-800/90 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-300">
-                  <div className="w-8 h-8 bg-gradient-to-r from-saffron-400 to-deep-teal-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Star className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                
-                {/* Pulsing energy rings */}
-                {[1, 2, 3].map((ring) => (
-                  <motion.div
-                    key={ring}
-                    animate={{ 
-                      scale: [1, 1.5 + ring * 0.3, 1],
-                      opacity: [0.3, 0, 0.3]
-                    }}
-                    transition={{ 
-                      duration: 2 + ring * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: ring * 0.3
-                    }}
-                    className="absolute inset-0 border-2 border-saffron-300/50 dark:border-saffron-400/50 rounded-full"
-                    style={{ scale: 1 + ring * 0.2 }}
-                  />
-                ))}
-              </motion.div>
-
-              {/* Flowing Darshana Nodes */}
-              {darshanas.map((darshana, index) => {
-                // Hexagonal positioning for proper alignment
-                const basePositions = [
-                  { x: 300, y: 100 }, // Nyaya - Top
-                  { x: 450, y: 200 }, // Vaisheshika - Top Right
-                  { x: 450, y: 400 }, // Samkhya - Bottom Right
-                  { x: 300, y: 500 }, // Yoga - Bottom
-                  { x: 150, y: 400 }, // Mimamsa - Bottom Left
-                  { x: 150, y: 200 }  // Vedanta - Top Left
-                ]
-                
-                return (
-                  <motion.button
-                    key={darshana.id}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      x: [0, Math.sin(Date.now() * 0.001 + index) * 4, 0],
-                      y: [0, Math.cos(Date.now() * 0.001 + index) * 3, 0]
-                    }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: index * 0.2,
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 15,
-                      x: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" },
-                      y: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                    whileHover={{ 
-                      scale: 1.3, 
-                      rotateZ: 10,
-                      transition: { duration: 0.3, ease: "easeOut" }
-                    }}
-                    whileTap={{ 
-                      scale: 0.9,
-                      transition: { duration: 0.1 }
-                    }}
-                    onMouseEnter={() => setHoveredDarshana(darshana.id)}
-                    onMouseLeave={() => setHoveredDarshana(null)}
-                    onClick={() => scrollToDarshana(darshana.id)}
-                    className="absolute group focus-ring z-10"
-                    style={{
-                      left: `${(basePositions[index].x / 600) * 100}%`,
-                      top: `${(basePositions[index].y / 600) * 100}%`,
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                    aria-label={`Learn about ${darshana.name} - ${darshana.tooltip}`}
-                    aria-pressed={hoveredDarshana === darshana.id}
-                    aria-expanded={hoveredDarshana === darshana.id}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        scrollToDarshana(darshana.id)
-                      }
-                    }}
-                  >
-                    <div className={`
-                      w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r ${darshana.color} hover:${darshana.hoverColor} rounded-full shadow-lg
-                      flex items-center justify-center text-white
-                      group-hover:shadow-2xl transition-all duration-300
-                      border-2 border-white/20 group-hover:border-white/40
-                      relative overflow-hidden
-                    `}>
-                      <darshana.icon className="w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300" />
-                      
-                      {/* Flowing shine effect */}
-                      <motion.div 
-                        animate={{ 
-                          x: ['-100%', '100%'],
-                          opacity: [0, 1, 0]
-                        }}
-                        transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: index * 0.3
-                        }}
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12"
-                      />
-                      
-                      {/* Energy pulse */}
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.4, 1],
-                          opacity: [0.6, 0, 0.6]
-                        }}
-                        transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: index * 0.4
-                        }}
-                        className="absolute inset-0 border-2 border-white/40 rounded-full"
-                      />
-                    </div>
-                    
-                    {/* Enhanced Tooltip */}
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                      animate={{ 
-                        opacity: hoveredDarshana === darshana.id ? 1 : 0, 
-                        y: hoveredDarshana === darshana.id ? 0 : 10, 
-                        scale: hoveredDarshana === darshana.id ? 1 : 0.9,
-                        transition: { duration: 0.3, ease: "easeOut" }
-                      }}
-                      className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 pointer-events-none z-30"
-                    >
-                      <div className="bg-wisdom-800 dark:bg-wisdom-200 text-white dark:text-wisdom-800 px-4 py-3 rounded-xl text-sm whitespace-nowrap shadow-2xl border border-white/10 backdrop-blur-sm">
-                        <div className="font-bold text-base">{darshana.name}</div>
-                        <div className="text-xs opacity-90 mb-1">{darshana.sanskrit}</div>
-                        <div className="text-xs opacity-80">{darshana.tooltip}</div>
-                      </div>
-                      {/* Tooltip arrow */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-wisdom-800 dark:border-t-wisdom-200"></div>
-                    </motion.div>
-                  </motion.button>
-                )
-              })}
-            </motion.div>
-          </div>
+          {/* Interactive Circular Visualization */}
+          <DarshanaCircularVisualization />
 
           {/* Network Description */}
           <motion.div
@@ -807,9 +547,29 @@ export default function SchoolOfDarshanaPage() {
             className="text-center max-w-4xl mx-auto"
           >
             <p className="text-body text-wisdom-600 dark:text-wisdom-400 mb-6 max-w-4xl mx-auto leading-relaxed">
-              Watch the flowing connections between schools - each darshana influences and is influenced by others. 
-              Hover over each school to discover its essence. Click to explore in detail.
+              Experience the interconnected wisdom of the six schools. Hover over each darshana to see its essence, 
+              click to activate the flame path to the center. When all six are unlocked, the central lock transforms 
+              into the sacred ॐ symbol, representing the unity of all wisdom.
             </p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="flex justify-center mb-8"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToDarshana('nyaya')}
+                className="btn-outline flex items-center space-x-3 px-6 py-3 text-lg"
+              >
+                <BookOpen className="w-5 h-5" />
+                <span>Explore Detailed Information</span>
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+            </motion.div>
             <div className="flex flex-wrap justify-center gap-4">
               {[
                 { concept: 'Logic', darshana: 'nyaya' },

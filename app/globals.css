@@ -28,7 +28,25 @@
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
     
-    /* Indian Aesthetic Variables - Light Mode */
+    /* Shikshanam Final Color System - Light Mode */
+    /* 1. Background Base - Parchment Ivory */
+    --parchment-ivory: 45 33% 98%;
+    /* 2. Primary Accent - Golden Olive */
+    --golden-olive: 55 85% 35%;
+    /* 3. Secondary Accent - Deep Manuscript Maroon */
+    --deep-maroon: 12 85% 25%;
+    /* 4. Highlight CTA - Copper Orange */
+    --copper-orange: 20 75% 45%;
+    /* 5. Support Neutral - Sand Beige */
+    --sand-beige: 40 35% 75%;
+    /* 6. Extra Depth - Dark Olive */
+    --dark-olive: 55 85% 20%;
+    /* 7. Premium Elevation - Temple Gold */
+    --temple-gold: 40 65% 50%;
+    /* 8. Calming Contrast - Deep Indigo */
+    --deep-indigo: 220 45% 30%;
+    
+    /* Legacy Indian Aesthetic Variables - Light Mode */
     --saffron-primary: 32 100% 50%;
     --peacock-green-primary: 175 85% 25%;
     --lotus-pink-primary: 330 70% 60%;
@@ -65,7 +83,25 @@
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
     
-    /* Indian Aesthetic Variables - Dark Mode */
+    /* Shikshanam Final Color System - Dark Mode */
+    /* 1. Background Base - Parchment Ivory (darker) */
+    --parchment-ivory: 45 20% 8%;
+    /* 2. Primary Accent - Golden Olive (brighter) */
+    --golden-olive: 55 85% 45%;
+    /* 3. Secondary Accent - Deep Manuscript Maroon (lighter) */
+    --deep-maroon: 12 85% 35%;
+    /* 4. Highlight CTA - Copper Orange (brighter) */
+    --copper-orange: 20 75% 55%;
+    /* 5. Support Neutral - Sand Beige (darker) */
+    --sand-beige: 40 25% 25%;
+    /* 6. Extra Depth - Dark Olive (lighter) */
+    --dark-olive: 55 85% 30%;
+    /* 7. Premium Elevation - Temple Gold (brighter) */
+    --temple-gold: 40 65% 60%;
+    /* 8. Calming Contrast - Deep Indigo (lighter) */
+    --deep-indigo: 220 45% 40%;
+    
+    /* Legacy Indian Aesthetic Variables - Dark Mode */
     --saffron-primary: 32 100% 60%;
     --peacock-green-primary: 175 85% 35%;
     --lotus-pink-primary: 330 70% 70%;
@@ -94,7 +130,9 @@
   }
   
   body {
-    @apply bg-off-white-500 dark:bg-wisdom-900 text-indigo-700 dark:text-wisdom-100 transition-colors duration-300;
+    background-color: hsl(var(--parchment-ivory));
+    color: hsl(var(--dark-olive));
+    transition: colors 0.3s ease;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Inter', 'Manrope', system-ui, sans-serif;
     overflow-x: hidden;
@@ -562,6 +600,199 @@
     mask: radial-gradient(circle at center, black 0%, transparent 70%);
     -webkit-mask: radial-gradient(circle at center, black 0%, transparent 70%);
     filter: blur(1px);
+  }
+
+  /* Shikshanam Color System Utility Classes */
+  .bg-parchment-ivory {
+    background-color: hsl(var(--parchment-ivory));
+  }
+  
+  .bg-golden-olive {
+    background-color: hsl(var(--golden-olive));
+  }
+  
+  .bg-deep-maroon {
+    background-color: hsl(var(--deep-maroon));
+  }
+  
+  .bg-copper-orange {
+    background-color: hsl(var(--copper-orange));
+  }
+  
+  .bg-sand-beige {
+    background-color: hsl(var(--sand-beige));
+  }
+  
+  .bg-dark-olive {
+    background-color: hsl(var(--dark-olive));
+  }
+  
+  .bg-temple-gold {
+    background-color: hsl(var(--temple-gold));
+  }
+  
+  .bg-deep-indigo {
+    background-color: hsl(var(--deep-indigo));
+  }
+  
+  .text-parchment-ivory {
+    color: hsl(var(--parchment-ivory));
+  }
+  
+  .text-golden-olive {
+    color: hsl(var(--golden-olive));
+  }
+  
+  .text-deep-maroon {
+    color: hsl(var(--deep-maroon));
+  }
+  
+  .text-copper-orange {
+    color: hsl(var(--copper-orange));
+  }
+  
+  .text-sand-beige {
+    color: hsl(var(--sand-beige));
+  }
+  
+  .text-dark-olive {
+    color: hsl(var(--dark-olive));
+  }
+  
+  .text-temple-gold {
+    color: hsl(var(--temple-gold));
+  }
+  
+  .text-deep-indigo {
+    color: hsl(var(--deep-indigo));
+  }
+  
+  .border-parchment-ivory {
+    border-color: hsl(var(--parchment-ivory));
+  }
+  
+  .border-golden-olive {
+    border-color: hsl(var(--golden-olive));
+  }
+  
+  .border-deep-maroon {
+    border-color: hsl(var(--deep-maroon));
+  }
+  
+  .border-copper-orange {
+    border-color: hsl(var(--copper-orange));
+  }
+  
+  .border-sand-beige {
+    border-color: hsl(var(--sand-beige));
+  }
+  
+  .border-dark-olive {
+    border-color: hsl(var(--dark-olive));
+  }
+  
+  .border-temple-gold {
+    border-color: hsl(var(--temple-gold));
+  }
+  
+  .border-deep-indigo {
+    border-color: hsl(var(--deep-indigo));
+  }
+  
+  /* New Button System with Shikshanam Colors */
+  .btn-shikshanam-primary {
+    background-color: hsl(var(--copper-orange));
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 2px solid hsl(var(--temple-gold));
+    outline: none;
+  }
+  
+  .btn-shikshanam-primary:hover {
+    background-color: hsl(var(--copper-orange) / 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .btn-shikshanam-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--copper-orange)), 0 0 0 4px hsl(var(--copper-orange) / 0.2);
+  }
+  
+  .btn-shikshanam-secondary {
+    background-color: hsl(var(--deep-indigo));
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    outline: none;
+  }
+  
+  .btn-shikshanam-secondary:hover {
+    background-color: hsl(var(--deep-indigo) / 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .btn-shikshanam-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--deep-indigo)), 0 0 0 4px hsl(var(--deep-indigo) / 0.2);
+  }
+  
+  .btn-shikshanam-outline {
+    border: 2px solid hsl(var(--golden-olive));
+    color: hsl(var(--golden-olive));
+    background-color: transparent;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    outline: none;
+  }
+  
+  .btn-shikshanam-outline:hover {
+    background-color: hsl(var(--golden-olive));
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .btn-shikshanam-outline:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--golden-olive)), 0 0 0 4px hsl(var(--golden-olive) / 0.2);
+  }
+  
+  /* Card System with Shikshanam Colors */
+  .card-shikshanam {
+    background-color: hsl(var(--sand-beige));
+    border: 1px solid hsl(var(--golden-olive) / 0.2);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .card-shikshanam:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .card-shikshanam-premium {
+    background-color: hsl(var(--parchment-ivory));
+    border: 2px solid hsl(var(--temple-gold));
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .card-shikshanam-premium:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 }
 

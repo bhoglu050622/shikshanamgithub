@@ -235,7 +235,16 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+  			// Shikshanam Final Color System
+  			'parchment-ivory': 'hsl(var(--parchment-ivory))',
+  			'golden-olive': 'hsl(var(--golden-olive))',
+  			'deep-maroon': 'hsl(var(--deep-maroon))',
+  			'copper-orange': 'hsl(var(--copper-orange))',
+  			'sand-beige': 'hsl(var(--sand-beige))',
+  			'dark-olive': 'hsl(var(--dark-olive))',
+  			'temple-gold': 'hsl(var(--temple-gold))',
+  			'deep-indigo': 'hsl(var(--deep-indigo))'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

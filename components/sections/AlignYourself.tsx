@@ -448,13 +448,13 @@ export default function AlignYourself() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-wisdom-600 mb-6">
+          <p className="text-deep-maroon mb-6">
             Not sure which option is right for you?
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-wisdom-600 to-wisdom-700 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+            className="btn-shikshanam-secondary px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
           >
             Get Personalized Guidance
           </motion.button>

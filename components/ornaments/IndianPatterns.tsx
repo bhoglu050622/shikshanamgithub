@@ -22,7 +22,7 @@ export function LotusPattern({ className = '', opacity = 0.1, size = 100 }: Indi
         ease: "linear"
       }}
     >
-      <svg width={size} height={size} viewBox="0 0 100 100" className="text-saffron-500">
+      <svg width={size} height={size} viewBox="0 0 100 100" className="text-golden-olive">
         <g fill="currentColor">
           {/* Outer petals */}
           <path d="M50 10 L60 30 L80 30 L65 45 L70 65 L50 55 L30 65 L35 45 L20 30 L40 30 Z" />
@@ -50,7 +50,7 @@ export function MandalaPattern({ className = '', opacity = 0.1, size = 120 }: In
         ease: "linear"
       }}
     >
-      <svg width={size} height={size} viewBox="0 0 120 120" className="text-deep-teal-500">
+      <svg width={size} height={size} viewBox="0 0 120 120" className="text-deep-maroon">
         <g fill="currentColor">
           {/* Outer ring */}
           <circle cx="60" cy="60" r="55" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -90,7 +90,7 @@ export function PeacockPattern({ className = '', opacity = 0.1, size = 80 }: Ind
         ease: "easeInOut"
       }}
     >
-      <svg width={size} height={size} viewBox="0 0 80 80" className="text-indigo-500">
+      <svg width={size} height={size} viewBox="0 0 80 80" className="text-copper-orange">
         <g fill="currentColor">
           {/* Peacock feather */}
           <path d="M40 10 Q30 20 40 30 Q50 20 40 10" />
@@ -122,7 +122,7 @@ export function OmSymbol({ className = '', opacity = 0.1, size = 60 }: IndianPat
         ease: "easeInOut"
       }}
     >
-      <svg width={size} height={size} viewBox="0 0 60 60" className="text-saffron-500">
+      <svg width={size} height={size} viewBox="0 0 60 60" className="text-golden-olive">
         <g fill="currentColor">
           {/* Om symbol simplified */}
           <path d="M30 10 Q20 15 30 20 Q40 15 30 10" />
@@ -149,7 +149,7 @@ export function SwastikaPattern({ className = '', opacity = 0.1, size = 40 }: In
         ease: "easeInOut"
       }}
     >
-      <svg width={size} height={size} viewBox="0 0 40 40" className="text-accent-gold-500">
+      <svg width={size} height={size} viewBox="0 0 40 40" className="text-temple-gold">
         <g fill="currentColor">
           {/* Swastika pattern */}
           <rect x="15" y="5" width="10" height="5" />
@@ -176,7 +176,7 @@ export function ChakraPattern({ className = '', opacity = 0.1, size = 100 }: Ind
         ease: "linear"
       }}
     >
-      <svg width={size} height={size} viewBox="0 0 100 100" className="text-saffron-500">
+      <svg width={size} height={size} viewBox="0 0 100 100" className="text-golden-olive">
         <g fill="currentColor">
           {/* Ashoka Chakra simplified */}
           <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2" />

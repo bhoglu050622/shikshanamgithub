@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+fix the meamenuimport type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Schools - Shikshanam | Ancient Knowledge Learning',

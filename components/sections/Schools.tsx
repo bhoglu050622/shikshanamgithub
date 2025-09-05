@@ -11,8 +11,8 @@ const schools = [
     description: 'Master the ancient language that holds the key to Vedic wisdom, classical literature, and spiritual texts.',
     icon: BookOpen,
     emoji: '📜',
-    color: 'from-saffron-500 to-saffron-600',
-    hoverColor: 'from-saffron-600 to-saffron-700',
+    color: 'from-golden-olive to-golden-olive/90',
+    hoverColor: 'from-golden-olive/90 to-golden-olive/80',
     href: '/schools/sanskrit',
     features: [
       'Grammar & Literature',
@@ -33,8 +33,8 @@ const schools = [
     description: 'Explore the six classical schools of Indian philosophy and discover the nature of reality, consciousness, and existence.',
     icon: Lightbulb,
     emoji: '🕉',
-    color: 'from-deep-teal-500 to-deep-teal-600',
-    hoverColor: 'from-deep-teal-600 to-deep-teal-700',
+    color: 'from-deep-maroon to-deep-maroon/90',
+    hoverColor: 'from-deep-maroon/90 to-deep-maroon/80',
     href: '/schools/darshana',
     features: [
       'Vedanta',
@@ -55,8 +55,8 @@ const schools = [
     description: 'Discover practical wisdom from ancient texts to transform your life, relationships, and personal growth.',
     icon: Heart,
     emoji: '🌱',
-    color: 'from-indigo-500 to-indigo-600',
-    hoverColor: 'from-indigo-600 to-indigo-700',
+    color: 'from-copper-orange to-copper-orange/90',
+    hoverColor: 'from-copper-orange/90 to-copper-orange/80',
     href: '/schools/self-help',
     features: [
       'Life Management',
@@ -75,7 +75,7 @@ const schools = [
 
 export default function Schools() {
   return (
-    <section id="schools" className="section-padding bg-gradient-to-br from-sand-50 to-sand-100">
+    <section id="schools" className="section-padding bg-sand-beige">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -85,13 +85,13 @@ export default function Schools() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-indigo-700 mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-olive mb-6">
             Choose Your{' '}
-            <span className="bg-gradient-to-r from-saffron-600 to-deep-teal-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-golden-olive to-deep-maroon bg-clip-text text-transparent">
               Path of Knowledge
             </span>
           </h2>
-          <p className="text-xl text-indigo-600 max-w-3xl mx-auto">
+          <p className="text-xl text-deep-maroon max-w-3xl mx-auto">
             Each school offers a unique path to knowledge and self-realization. Find the one that resonates with your soul.
           </p>
         </motion.div>
@@ -186,18 +186,18 @@ export default function Schools() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="bg-white rounded-3xl p-8 shadow-xl max-w-2xl mx-auto">
-            <h3 className="font-display text-2xl font-bold text-indigo-700 mb-4">
+          <div className="bg-parchment-ivory rounded-3xl p-8 shadow-xl max-w-2xl mx-auto border border-temple-gold/20">
+            <h3 className="font-display text-2xl font-bold text-dark-olive mb-4">
               Want to explore all schools?
             </h3>
-            <p className="text-indigo-600 mb-6">
+            <p className="text-deep-maroon mb-6">
               Get a comprehensive overview of all three schools and find your perfect learning path.
             </p>
             <Link href="/schools">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-saffron-600 to-deep-teal-600 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+                className="btn-shikshanam-primary px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
               >
                 Explore All Schools
               </motion.button>

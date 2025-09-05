@@ -13,7 +13,7 @@ import IndianPatterns from '@/components/ornaments/IndianPatterns'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-off-white-500 via-sand-500 to-sand-400 dark:from-wisdom-900 dark:via-wisdom-800 dark:to-wisdom-900 transition-colors duration-300">
+    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
       <IndianPatterns />
       <Header />
       <main className="main-container" role="main">

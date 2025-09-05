@@ -36,7 +36,7 @@ const achievements = [
 
 export default function FoundersMission() {
   return (
-    <section id="founders-mission" className="section-padding bg-gradient-to-br from-accent-gold-50 via-saffron-50 to-accent-gold-100 relative overflow-hidden">
+    <section id="founders-mission" className="section-padding bg-parchment-ivory relative overflow-hidden">
       {/* Background Animation - Golden Gradient & Sanskrit Shloka */}
       <div className="absolute inset-0 -z-10">
         {/* Animated Sanskrit Shloka Text */}
@@ -51,7 +51,7 @@ export default function FoundersMission() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="text-6xl font-display text-accent-gold-600 dark:text-accent-gold-400"
+            className="text-6xl font-display text-temple-gold"
           >
             सत्यमेव जयते
           </motion.div>
@@ -69,7 +69,7 @@ export default function FoundersMission() {
               ease: "easeInOut",
               delay: 2
             }}
-            className="text-4xl font-display text-accent-gold-500 dark:text-accent-gold-300"
+            className="text-4xl font-display text-temple-gold/80"
           >
             वसुधैव कुटुम्बकम
           </motion.div>
@@ -87,15 +87,15 @@ export default function FoundersMission() {
               ease: "easeInOut",
               delay: 4
             }}
-            className="text-5xl font-display text-accent-gold-400 dark:text-accent-gold-200"
+            className="text-5xl font-display text-temple-gold/60"
           >
             सर्वे भवन्तु सुखिनः
           </motion.div>
         </div>
         
         {/* Golden gradient overlays */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-accent-gold-200/30 to-saffron-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-saffron-200/30 to-accent-gold-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-temple-gold/10 to-golden-olive/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-golden-olive/10 to-temple-gold/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-2000"></div>
       </div>
       
       <div className="container-custom relative z-10">
@@ -107,22 +107,22 @@ export default function FoundersMission() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-wisdom-900 mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-dark-olive mb-6">
               A Vision Rooted in{' '}
-              <span className="bg-gradient-to-r from-accent-gold-600 to-saffron-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-temple-gold to-golden-olive bg-clip-text text-transparent">
                 Tradition
               </span>
               , Blossoming in the{' '}
-              <span className="bg-gradient-to-r from-saffron-600 to-accent-gold-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-golden-olive to-temple-gold bg-clip-text text-transparent">
                 Future
               </span>
             </h2>
             
-            <p className="text-lg text-wisdom-700 mb-6 leading-relaxed">
+            <p className="text-lg text-deep-maroon mb-6 leading-relaxed">
               At Shikshanam, we believe learning is not just about knowledge — it is a spiritual journey of self-discovery. Our mission is to bridge eternal Indian wisdom with the modern world.
             </p>
             
-            <p className="text-lg text-wisdom-700 mb-8 leading-relaxed">
+            <p className="text-lg text-deep-maroon mb-8 leading-relaxed">
               We envision a world where ancient wisdom guides modern living, where spiritual growth complements material progress, and where every individual can access the transformative power of India's spiritual heritage.
             </p>
 
@@ -137,12 +137,12 @@ export default function FoundersMission() {
                   viewport={{ once: true }}
                   className="flex items-start space-x-4"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-saffron-500 to-saffron-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-golden-olive to-golden-olive/90 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <value.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-wisdom-900 mb-1">{value.title}</h4>
-                    <p className="text-wisdom-600 text-sm leading-relaxed">{value.description}</p>
+                    <h4 className="font-semibold text-dark-olive mb-1">{value.title}</h4>
+                    <p className="text-sand-beige text-sm leading-relaxed">{value.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -152,7 +152,7 @@ export default function FoundersMission() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-saffron-500 to-saffron-600 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center space-x-2"
+              className="btn-shikshanam-primary px-8 py-4 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center space-x-2"
             >
               <span>Learn More About Us</span>
               <ArrowRight className="w-5 h-5" />
@@ -168,10 +168,10 @@ export default function FoundersMission() {
             className="relative"
           >
             {/* Main Video/Image Container */}
-            <div className="relative bg-gradient-to-br from-saffron-100 to-turquoise-100 rounded-3xl p-8 shadow-2xl">
-              <div className="aspect-video bg-gradient-to-br from-saffron-200 to-turquoise-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
+            <div className="relative bg-gradient-to-br from-sand-beige/30 to-parchment-ivory/50 rounded-3xl p-8 shadow-2xl border border-temple-gold/20">
+              <div className="aspect-video bg-gradient-to-br from-golden-olive/20 to-deep-maroon/20 rounded-2xl flex items-center justify-center relative overflow-hidden">
                 {/* Placeholder for video/image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-saffron-300 to-turquoise-300 opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-golden-olive/30 to-deep-maroon/30 opacity-20"></div>
                 
                 {/* Play Button */}
                 <motion.div
@@ -179,28 +179,28 @@ export default function FoundersMission() {
                   whileTap={{ scale: 0.9 }}
                   className="relative z-10 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer"
                 >
-                  <Play className="w-8 h-8 text-saffron-600 ml-1" />
+                  <Play className="w-8 h-8 text-golden-olive ml-1" />
                 </motion.div>
 
                 {/* Floating Elements */}
                 <div className="absolute top-4 left-4 w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center shadow-lg">
-                  <BookOpen className="w-8 h-8 text-saffron-600" />
+                  <BookOpen className="w-8 h-8 text-golden-olive" />
                 </div>
                 <div className="absolute top-4 right-4 w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Award className="w-8 h-8 text-turquoise-600" />
+                  <Award className="w-8 h-8 text-deep-maroon" />
                 </div>
                 <div className="absolute bottom-4 left-4 w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Users className="w-8 h-8 text-wisdom-600" />
+                  <Users className="w-8 h-8 text-copper-orange" />
                 </div>
                 <div className="absolute bottom-4 right-4 w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Globe className="w-8 h-8 text-saffron-600" />
+                  <Globe className="w-8 h-8 text-golden-olive" />
                 </div>
               </div>
 
               {/* Video Description */}
               <div className="mt-6 text-center">
-                <h3 className="font-semibold text-wisdom-900 mb-2">Our Story</h3>
-                <p className="text-wisdom-600 text-sm">
+                <h3 className="font-semibold text-dark-olive mb-2">Our Story</h3>
+                <p className="text-deep-maroon text-sm">
                   Watch how Shikshanam began and learn about our journey in preserving ancient wisdom.
                 </p>
               </div>
@@ -209,14 +209,14 @@ export default function FoundersMission() {
             {/* Achievement Badges */}
             <div className="absolute -top-4 -left-4 bg-white rounded-2xl p-4 shadow-lg">
               <div className="text-center">
-                <div className="text-2xl font-bold text-saffron-600">15+</div>
-                <div className="text-xs text-wisdom-600">Years</div>
+                <div className="text-2xl font-bold text-golden-olive">15+</div>
+                <div className="text-xs text-sand-beige">Years</div>
               </div>
             </div>
             <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-lg">
               <div className="text-center">
-                <div className="text-2xl font-bold text-turquoise-600">50+</div>
-                <div className="text-xs text-wisdom-600">Papers</div>
+                <div className="text-2xl font-bold text-deep-maroon">50+</div>
+                <div className="text-xs text-sand-beige">Papers</div>
               </div>
             </div>
           </motion.div>
@@ -230,8 +230,8 @@ export default function FoundersMission() {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <div className="bg-gradient-to-r from-saffron-50 to-turquoise-50 rounded-3xl p-8">
-            <h3 className="font-serif text-2xl font-bold text-wisdom-900 text-center mb-8">
+          <div className="bg-gradient-to-r from-sand-beige/30 to-parchment-ivory/50 rounded-3xl p-8 border border-temple-gold/20">
+            <h3 className="font-serif text-2xl font-bold text-dark-olive text-center mb-8">
               Our Achievements & Recognition
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -244,8 +244,8 @@ export default function FoundersMission() {
                   viewport={{ once: true }}
                   className="flex items-start space-x-3"
                 >
-                  <div className="w-2 h-2 bg-saffron-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-wisdom-700 leading-relaxed">{achievement}</span>
+                  <div className="w-2 h-2 bg-golden-olive rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-deep-maroon leading-relaxed">{achievement}</span>
                 </motion.div>
               ))}
             </div>
@@ -260,7 +260,7 @@ export default function FoundersMission() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-saffron-500 to-turquoise-500 rounded-3xl p-8 text-white max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-deep-maroon to-copper-orange rounded-3xl p-8 text-white max-w-3xl mx-auto">
             <h3 className="font-serif text-2xl font-bold mb-4">
               Join Us in This Noble Mission
             </h3>
@@ -271,14 +271,14 @@ export default function FoundersMission() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-saffron-600 px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+                className="bg-parchment-ivory text-deep-maroon px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
               >
                 Become a Student
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-3 rounded-2xl font-semibold hover:bg-white hover:text-saffron-600 transition-all duration-300"
+                className="border-2 border-parchment-ivory text-parchment-ivory px-8 py-3 rounded-2xl font-semibold hover:bg-parchment-ivory hover:text-deep-maroon transition-all duration-300"
               >
                 Support Our Mission
               </motion.button>

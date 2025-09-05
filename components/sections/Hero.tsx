@@ -16,8 +16,8 @@ const ctaButtons = [
     title: 'Sanskrit',
     description: 'Discover Language',
     icon: BookOpen,
-    color: 'from-saffron-500 to-saffron-600',
-    hoverColor: 'from-saffron-600 to-saffron-700',
+    color: 'from-golden-olive to-golden-olive/90',
+    hoverColor: 'from-golden-olive/90 to-golden-olive/80',
     href: '#sanskrit',
     stats: '500+ Students',
     emoji: '📖',
@@ -26,8 +26,8 @@ const ctaButtons = [
     title: 'Darshan',
     description: 'Explore Philosophy',
     icon: Lightbulb,
-    color: 'from-deep-teal-500 to-deep-teal-600',
-    hoverColor: 'from-deep-teal-600 to-deep-teal-700',
+    color: 'from-deep-maroon to-deep-maroon/90',
+    hoverColor: 'from-deep-maroon/90 to-deep-maroon/80',
     href: '#schools',
     stats: '12 Schools',
     emoji: '🕉',
@@ -36,8 +36,8 @@ const ctaButtons = [
     title: 'Self-help',
     description: 'Transform Yourself',
     icon: Heart,
-    color: 'from-indigo-500 to-indigo-600',
-    hoverColor: 'from-indigo-600 to-indigo-700',
+    color: 'from-copper-orange to-copper-orange/90',
+    hoverColor: 'from-copper-orange/90 to-copper-orange/80',
     href: '#gurus',
     stats: '50+ Gurus',
     emoji: '🌱',
@@ -58,7 +58,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="home" className="section-padding relative min-h-screen flex items-center bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
+    <section id="home" className="section-padding relative min-h-screen flex items-center bg-parchment-ivory transition-colors duration-300">
       {/* Background Ornaments */}
       <div className="absolute inset-0 -z-10">
         {/* 3D Elements - Only render on client */}
@@ -71,15 +71,15 @@ export default function Hero() {
               <DynamicYantra3D />
             </div>
             
-            {/* Slow-rotating mandala */}
+            {/* Slow-rotating mandala with golden olive color */}
             <Mandala 
               size={300} 
-              className="top-20 left-10 opacity-20 dark:opacity-10" 
+              className="top-20 left-10 opacity-20 dark:opacity-10 text-golden-olive" 
               speed={60}
             />
             <Mandala 
               size={200} 
-              className="bottom-20 right-10 opacity-15 dark:opacity-8" 
+              className="bottom-20 right-10 opacity-15 dark:opacity-8 text-golden-olive" 
               speed={80}
             />
             
@@ -100,10 +100,10 @@ export default function Hero() {
           </>
         )}
         
-        {/* Enhanced background gradients */}
-        <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-saffron-200/20 via-deep-teal-200/15 to-indigo-200/20 dark:from-saffron-400/10 dark:via-deep-teal-400/8 dark:to-indigo-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-deep-teal-200/20 via-indigo-200/15 to-saffron-200/20 dark:from-deep-teal-400/10 dark:via-indigo-400/8 dark:to-saffron-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-indigo-200/20 via-saffron-200/15 to-deep-teal-200/20 dark:from-indigo-400/10 dark:via-saffron-400/8 dark:to-deep-teal-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-4000"></div>
+        {/* Enhanced background gradients with Shikshanam colors */}
+        <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-golden-olive/10 via-deep-maroon/8 to-copper-orange/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-deep-maroon/10 via-copper-orange/8 to-golden-olive/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-copper-orange/10 via-golden-olive/8 to-deep-maroon/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-4000"></div>
         
         {/* Indian pattern overlay */}
         <div className="absolute inset-0 indian-pattern opacity-30 dark:opacity-20"></div>
@@ -113,7 +113,7 @@ export default function Hero() {
         <StaggerContainer className="space-y-8">
           <StaggerItem>
             <div className="flex justify-center mb-8">
-              <div className="flex items-center space-x-4 text-saffron-500">
+              <div className="flex items-center space-x-4 text-golden-olive">
                 <Sparkles className="w-6 h-6 animate-pulse" />
                 <Flower className="w-8 h-8 animate-bounce" />
                 <Sparkles className="w-6 h-6 animate-pulse" />
@@ -122,16 +122,16 @@ export default function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <h1 className="text-hero text-high-contrast mb-8">
+            <h1 className="text-hero text-dark-olive mb-8">
               Welcome to{' '}
-              <span className="bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 dark:from-saffron-500 dark:via-deep-teal-500 dark:to-indigo-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent">
                 Eternal India
               </span>
             </h1>
           </StaggerItem>
 
           <StaggerItem>
-            <p className="text-subheading text-medium-contrast mb-16 max-w-5xl mx-auto devanagari-separator">
+            <p className="text-subheading text-deep-maroon mb-16 max-w-5xl mx-auto devanagari-separator">
               Discover Wisdom, Language & Self-Transformation
             </p>
           </StaggerItem>
@@ -146,14 +146,14 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
-                    className="flex items-center space-x-3 text-medium-contrast"
+                    className="flex items-center space-x-3 text-dark-olive"
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-saffron-500 to-saffron-600 dark:from-saffron-400 dark:to-saffron-500 rounded-xl flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-golden-olive to-golden-olive/90 rounded-xl flex items-center justify-center">
                       <stat.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-high-contrast">{stat.value}</div>
-                      <div className="text-sm text-wisdom-500 dark:text-wisdom-400">{stat.label}</div>
+                      <div className="text-lg font-bold text-dark-olive">{stat.value}</div>
+                      <div className="text-sm text-sand-beige">{stat.label}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -208,7 +208,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg"
+                className="btn-shikshanam-primary flex items-center space-x-3 px-8 py-4 text-lg"
               >
                 <Play className="w-6 h-6" />
                 <span>Watch Demo</span>
@@ -217,7 +217,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg"
+                className="btn-shikshanam-outline flex items-center space-x-3 px-8 py-4 text-lg"
               >
                 <Users className="w-6 h-6" />
                 <span>Join Community</span>
@@ -227,19 +227,19 @@ export default function Hero() {
 
           <StaggerItem>
             <div className="flex flex-col items-center space-y-4">
-              <span className="text-medium-contrast text-small font-medium tracking-wide uppercase">
+              <span className="text-dark-olive text-small font-medium tracking-wide uppercase">
                 Scroll to explore
               </span>
               
               <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className="w-7 h-12 border-2 border-saffron-500 dark:border-saffron-400 rounded-full flex justify-center relative group cursor-pointer tap-target"
+                className="w-7 h-12 border-2 border-golden-olive rounded-full flex justify-center relative group cursor-pointer tap-target"
               >
                 <motion.div
                   animate={{ y: [0, 18, 0] }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-1.5 h-4 bg-gradient-to-b from-saffron-500 to-deep-teal-500 dark:from-saffron-400 dark:to-deep-teal-400 rounded-full mt-2"
+                  className="w-1.5 h-4 bg-gradient-to-b from-golden-olive to-deep-maroon rounded-full mt-2"
                 />
               </motion.div>
             </div>

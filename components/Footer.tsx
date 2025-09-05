@@ -49,7 +49,7 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-wisdom-900 to-wisdom-800 dark:from-wisdom-950 dark:to-wisdom-900 text-white transition-colors duration-300 relative">
+    <footer className="bg-deep-maroon text-white transition-colors duration-300 relative">
       {/* Animated Mandala Border Pattern */}
       <div className="absolute inset-0 -z-10">
         {/* Top Mandala Border */}
@@ -67,8 +67,8 @@ export default function Footer() {
             className="flex space-x-8"
           >
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="w-16 h-16 border-2 border-saffron-400/20 rounded-full flex items-center justify-center">
-                <div className="w-8 h-8 border border-saffron-300/30 rounded-full"></div>
+              <div key={i} className="w-16 h-16 border-2 border-temple-gold/20 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 border border-temple-gold/30 rounded-full"></div>
               </div>
             ))}
           </motion.div>
@@ -89,8 +89,8 @@ export default function Footer() {
             className="flex space-x-8"
           >
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="w-16 h-16 border-2 border-turquoise-400/20 rounded-full flex items-center justify-center">
-                <div className="w-8 h-8 border border-turquoise-300/30 rounded-full"></div>
+              <div key={i} className="w-16 h-16 border-2 border-copper-orange/20 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 border border-copper-orange/30 rounded-full"></div>
               </div>
             ))}
           </motion.div>
@@ -111,8 +111,8 @@ export default function Footer() {
             className="flex flex-col space-y-8"
           >
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="w-12 h-12 border-2 border-saffron-400/15 rounded-full flex items-center justify-center">
-                <div className="w-6 h-6 border border-saffron-300/25 rounded-full"></div>
+              <div key={i} className="w-12 h-12 border-2 border-temple-gold/15 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 border border-temple-gold/25 rounded-full"></div>
               </div>
             ))}
           </motion.div>
@@ -132,8 +132,8 @@ export default function Footer() {
             className="flex flex-col space-y-8"
           >
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="w-12 h-12 border-2 border-turquoise-400/15 rounded-full flex items-center justify-center">
-                <div className="w-6 h-6 border border-turquoise-300/25 rounded-full"></div>
+              <div key={i} className="w-12 h-12 border-2 border-copper-orange/15 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 border border-copper-orange/25 rounded-full"></div>
               </div>
             ))}
           </motion.div>
@@ -151,10 +151,10 @@ export default function Footer() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="w-24 h-24 border-2 border-saffron-400/20 rounded-full flex items-center justify-center"
+            className="w-24 h-24 border-2 border-temple-gold/20 rounded-full flex items-center justify-center"
           >
-            <div className="w-16 h-16 border border-saffron-300/30 rounded-full flex items-center justify-center">
-              <div className="w-8 h-8 border border-saffron-200/40 rounded-full"></div>
+            <div className="w-16 h-16 border border-temple-gold/30 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 border border-temple-gold/40 rounded-full"></div>
             </div>
           </motion.div>
         </div>
@@ -170,10 +170,10 @@ export default function Footer() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="w-20 h-20 border-2 border-turquoise-400/20 rounded-full flex items-center justify-center"
+            className="w-20 h-20 border-2 border-copper-orange/20 rounded-full flex items-center justify-center"
           >
-            <div className="w-12 h-12 border border-turquoise-300/30 rounded-full flex items-center justify-center">
-              <div className="w-6 h-6 border border-turquoise-200/40 rounded-full"></div>
+            <div className="w-12 h-12 border border-copper-orange/30 rounded-full flex items-center justify-center">
+              <div className="w-6 h-6 border border-copper-orange/40 rounded-full"></div>
             </div>
           </motion.div>
         </div>
@@ -185,14 +185,14 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-saffron-500 to-turquoise-500 rounded-2xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-golden-olive to-copper-orange rounded-2xl flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
-              <span className="font-serif text-2xl font-bold bg-gradient-to-r from-saffron-400 to-turquoise-400 bg-clip-text text-transparent">
+              <span className="font-serif text-2xl font-bold bg-gradient-to-r from-temple-gold to-copper-orange bg-clip-text text-transparent">
                 Shikshanam
               </span>
             </div>
-            <p className="text-wisdom-300 mb-6 leading-relaxed">
+            <p className="text-sand-beige mb-6 leading-relaxed">
               Preserving and sharing ancient Indian wisdom with the modern world. Join us in this noble mission of cultural preservation and spiritual growth.
             </p>
             
@@ -206,9 +206,9 @@ export default function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-center space-x-3 text-wisdom-300 hover:text-white transition-colors duration-200"
+                  className="flex items-center space-x-3 text-sand-beige hover:text-parchment-ivory transition-colors duration-200"
                 >
-                  <contact.icon className="w-4 h-4 text-saffron-400" />
+                  <contact.icon className="w-4 h-4 text-temple-gold" />
                   <span className="text-sm">{contact.text}</span>
                 </motion.a>
               ))}
@@ -236,7 +236,7 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      className="text-wisdom-300 hover:text-white transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
+                      className="text-sand-beige hover:text-parchment-ivory transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
                     >
                       {link.name}
                     </a>
@@ -253,25 +253,25 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="bg-white/10 dark:bg-wisdom-800/20 rounded-3xl p-8 mb-12 backdrop-blur-sm border border-white/10 dark:border-wisdom-700/30"
+          className="bg-sand-beige/10 rounded-3xl p-8 mb-12 backdrop-blur-sm border border-temple-gold/20"
         >
           <div className="text-center max-w-2xl mx-auto">
             <h3 className="font-serif text-2xl font-bold text-white mb-4">
               Stay Updated with Ancient Wisdom
             </h3>
-            <p className="text-wisdom-300 dark:text-wisdom-200 mb-6">
+            <p className="text-sand-beige mb-6">
               Get weekly insights, course updates, and spiritual wisdom delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-2xl border-0 text-wisdom-900 dark:text-wisdom-100 bg-white/90 dark:bg-wisdom-800/90 placeholder-wisdom-500 dark:placeholder-wisdom-400 focus:ring-2 focus:ring-saffron-500 focus:outline-none"
+                className="flex-1 px-4 py-3 rounded-2xl border-0 text-dark-olive bg-parchment-ivory/90 placeholder-sand-beige focus:ring-2 focus:ring-temple-gold focus:outline-none"
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-saffron-500 to-saffron-600 dark:from-saffron-400 dark:to-saffron-500 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                className="btn-shikshanam-primary px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <span>Subscribe</span>
                 <ArrowRight className="w-4 h-4" />
@@ -281,7 +281,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom Section */}
-        <div className="border-t border-wisdom-700 dark:border-wisdom-800 pt-8">
+        <div className="border-t border-temple-gold/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <motion.div
@@ -289,10 +289,10 @@ export default function Footer() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
-              className="text-wisdom-400 dark:text-wisdom-300 text-sm"
+              className="text-sand-beige text-sm"
             >
               © 2024 Shikshanam. All rights reserved. Made with{' '}
-              <Heart className="w-4 h-4 text-saffron-400 inline" /> in India.
+              <Heart className="w-4 h-4 text-temple-gold inline" /> in India.
             </motion.div>
 
             {/* Social Links */}
@@ -312,7 +312,7 @@ export default function Footer() {
                   transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className={`w-10 h-10 bg-white/10 dark:bg-wisdom-800/20 rounded-2xl flex items-center justify-center text-wisdom-300 dark:text-wisdom-200 ${social.color} transition-all duration-200 hover:bg-white/20 dark:hover:bg-wisdom-700/30`}
+                  className={`w-10 h-10 bg-sand-beige/10 rounded-2xl flex items-center justify-center text-sand-beige hover:text-temple-gold transition-all duration-200 hover:bg-sand-beige/20`}
                   title={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -327,12 +327,12 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
             viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-6 mt-6 text-wisdom-400 dark:text-wisdom-300 text-sm"
+            className="flex flex-wrap justify-center gap-6 mt-6 text-sand-beige text-sm"
           >
-            <a href="#privacy" className="hover:text-white transition-colors duration-200">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white transition-colors duration-200">Terms of Service</a>
-            <a href="#cookies" className="hover:text-white transition-colors duration-200">Cookie Policy</a>
-            <a href="#accessibility" className="hover:text-white transition-colors duration-200">Accessibility</a>
+            <a href="#privacy" className="hover:text-parchment-ivory transition-colors duration-200">Privacy Policy</a>
+            <a href="#terms" className="hover:text-parchment-ivory transition-colors duration-200">Terms of Service</a>
+            <a href="#cookies" className="hover:text-parchment-ivory transition-colors duration-200">Cookie Policy</a>
+            <a href="#accessibility" className="hover:text-parchment-ivory transition-colors duration-200">Accessibility</a>
           </motion.div>
         </div>
       </div>
