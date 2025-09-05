@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Marcellus:wght@400&family=Suranna:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -28,23 +27,21 @@
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
     
-    /* Shikshanam Final Color System - Light Mode */
-    /* 1. Background Base - Parchment Ivory */
-    --parchment-ivory: 45 33% 98%;
-    /* 2. Primary Accent - Golden Olive */
-    --golden-olive: 55 85% 35%;
-    /* 3. Secondary Accent - Deep Manuscript Maroon */
-    --deep-maroon: 12 85% 25%;
-    /* 4. Highlight CTA - Copper Orange */
-    --copper-orange: 20 75% 45%;
-    /* 5. Support Neutral - Sand Beige */
-    --sand-beige: 40 35% 75%;
-    /* 6. Extra Depth - Dark Olive */
-    --dark-olive: 55 85% 20%;
-    /* 7. Premium Elevation - Temple Gold */
-    --temple-gold: 40 65% 50%;
-    /* 8. Calming Contrast - Deep Indigo */
-    --deep-indigo: 220 45% 30%;
+    /* School of Sanskrit Color System - Light Mode */
+    /* 1. Teal (primary card color) */
+    --teal-primary: 180 100% 33%;
+    /* 2. Purple (hero capsule) */
+    --purple-primary: 270 65% 40%;
+    /* 3. Coral / CTA accent */
+    --coral-primary: 12 100% 65%;
+    /* 4. Light Cyan band */
+    --light-cyan: 180 100% 95%;
+    /* 5. Lavender band */
+    --lavender-primary: 270 100% 95%;
+    /* 6. Dark text */
+    --dark-text: 0 0% 4%;
+    /* 7. Muted gray */
+    --muted-gray: 0 0% 48%;
     
     /* Legacy Indian Aesthetic Variables - Light Mode */
     --saffron-primary: 32 100% 50%;
@@ -60,6 +57,23 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    
+    /* Shikshanam Final Color System - Light Mode (Enhanced Contrast) */
+    --parchment-ivory: 45 33% 98%;
+    --golden-olive: 45 67% 50%;
+    --deep-maroon: 0 30% 20%;
+    --copper-orange: 20 80% 50%;
+    --sand-beige: 45 67% 80%;
+    --dark-olive: 45 67% 20%;
+    --temple-gold: 45 100% 45%;
+    --deep-indigo: 240 100% 6%;
+    
+    /* Enhanced Text Colors for Better Contrast */
+    --text-primary: 0 0% 8%;
+    --text-secondary: 0 0% 25%;
+    --text-tertiary: 0 0% 45%;
+    --text-accent: 45 67% 40%;
+    --text-muted: 0 0% 60%;
   }
 
   .dark {
@@ -83,23 +97,21 @@
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
     
-    /* Shikshanam Final Color System - Dark Mode */
-    /* 1. Background Base - Parchment Ivory (darker) */
-    --parchment-ivory: 45 20% 8%;
-    /* 2. Primary Accent - Golden Olive (brighter) */
-    --golden-olive: 55 85% 45%;
-    /* 3. Secondary Accent - Deep Manuscript Maroon (lighter) */
-    --deep-maroon: 12 85% 35%;
-    /* 4. Highlight CTA - Copper Orange (brighter) */
-    --copper-orange: 20 75% 55%;
-    /* 5. Support Neutral - Sand Beige (darker) */
-    --sand-beige: 40 25% 25%;
-    /* 6. Extra Depth - Dark Olive (lighter) */
-    --dark-olive: 55 85% 30%;
-    /* 7. Premium Elevation - Temple Gold (brighter) */
-    --temple-gold: 40 65% 60%;
-    /* 8. Calming Contrast - Deep Indigo (lighter) */
-    --deep-indigo: 220 45% 40%;
+    /* School of Sanskrit Color System - Dark Mode */
+    /* 1. Teal (primary card color) - brighter */
+    --teal-primary: 180 100% 45%;
+    /* 2. Purple (hero capsule) - lighter */
+    --purple-primary: 270 65% 55%;
+    /* 3. Coral / CTA accent - brighter */
+    --coral-primary: 12 100% 70%;
+    /* 4. Light Cyan band - darker */
+    --light-cyan: 180 100% 15%;
+    /* 5. Lavender band - darker */
+    --lavender-primary: 270 100% 15%;
+    /* 6. Dark text - lighter */
+    --dark-text: 0 0% 90%;
+    /* 7. Muted gray - lighter */
+    --muted-gray: 0 0% 65%;
     
     /* Legacy Indian Aesthetic Variables - Dark Mode */
     --saffron-primary: 32 100% 60%;
@@ -117,6 +129,23 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
+    /* Shikshanam Final Color System - Dark Mode (Enhanced Contrast) */
+    --parchment-ivory: 45 33% 8%;
+    --golden-olive: 45 67% 75%;
+    --deep-maroon: 0 30% 40%;
+    --copper-orange: 20 80% 70%;
+    --sand-beige: 45 67% 20%;
+    --dark-olive: 45 67% 80%;
+    --temple-gold: 45 100% 65%;
+    --deep-indigo: 240 100% 25%;
+    
+    /* Enhanced Text Colors for Dark Mode */
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 80%;
+    --text-tertiary: 0 0% 65%;
+    --text-accent: 45 67% 75%;
+    --text-muted: 0 0% 50%;
   }
 }
 
@@ -130,11 +159,11 @@
   }
   
   body {
-    background-color: hsl(var(--parchment-ivory));
-    color: hsl(var(--dark-olive));
+    background-color: hsl(var(--light-cyan));
+    color: hsl(var(--dark-text));
     transition: colors 0.3s ease;
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: 'Inter', 'Manrope', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
   }
   
@@ -142,6 +171,29 @@
   html, body {
     max-width: 100%;
     overflow-x: hidden;
+  }
+  
+  /* Ensure root container doesn't overflow */
+  #__next {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Prevent any element from causing horizontal scroll */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure footer sits flush at bottom */
+  footer {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* Remove any extra spacing after footer */
+  footer:after {
+    display: none;
   }
   
   /* Ensure all images, videos, and SVGs are responsive */
@@ -158,10 +210,70 @@
   
   /* Typography hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Suranna', 'Marcellus', Georgia, serif;
+    font-family: 'Poppins', system-ui, sans-serif;
     font-weight: 600;
-    line-height: 1.2;
-    @apply text-indigo-800 dark:text-wisdom-50;
+    line-height: 1.25;
+    color: hsl(var(--text-primary));
+    letter-spacing: -0.025em;
+  }
+  
+  /* Enhanced typography for better readability */
+  .text-readable {
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+  
+  .text-readable-lg {
+    line-height: 1.8;
+    letter-spacing: 0.005em;
+  }
+  
+  .text-readable-sm {
+    line-height: 1.6;
+    letter-spacing: 0.015em;
+  }
+  
+  /* Text shadow utilities for better readability on complex backgrounds */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Enhanced text visibility on complex backgrounds */
+  .text-visible {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-visible-dark {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Better contrast for small text */
+  .text-small-enhanced {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+    font-weight: 500;
+  }
+  
+  /* Enhanced spacing utilities */
+  .space-y-readable > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-readable-lg > * + * {
+    margin-top: 2rem;
+  }
+  
+  .space-y-readable-sm > * + * {
+    margin-top: 1rem;
   }
   
   /* Enhanced contrast for accessibility */
@@ -393,9 +505,28 @@
     @apply border-2 border-saffron-600 dark:border-saffron-500 text-saffron-700 dark:text-saffron-400 hover:bg-saffron-600 hover:text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-saffron-600 focus:ring-offset-2 dark:focus:ring-offset-wisdom-800;
   }
   
+  /* Shikshanam Button System */
+  .btn-shikshanam-primary {
+    @apply bg-gradient-to-r from-golden-olive to-golden-olive/90 hover:from-golden-olive/90 hover:to-golden-olive/80 dark:from-golden-olive dark:to-golden-olive/90 dark:hover:from-golden-olive/90 dark:hover:to-golden-olive/80 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-golden-olive focus:ring-offset-2 dark:focus:ring-offset-wisdom-800;
+  }
+  
+  .btn-shikshanam-outline {
+    @apply border-2 border-golden-olive dark:border-golden-olive text-golden-olive dark:text-golden-olive hover:bg-golden-olive hover:text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-golden-olive focus:ring-offset-2 dark:focus:ring-offset-wisdom-800;
+  }
+  
   /* Enhanced Focus Ring */
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-saffron-600 focus:ring-offset-2 dark:focus:ring-saffron-500 dark:focus:ring-offset-wisdom-800;
+    @apply focus:outline-none focus:ring-2 focus:ring-golden-olive focus:ring-offset-2 dark:focus:ring-golden-olive dark:focus:ring-offset-wisdom-800;
+  }
+  
+  /* Enhanced focus states for better accessibility */
+  .focus-visible-enhanced {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-golden-olive focus-visible:ring-offset-2 dark:focus-visible:ring-golden-olive dark:focus-visible:ring-offset-wisdom-800;
+  }
+  
+  /* High contrast focus for better visibility */
+  .focus-high-contrast {
+    @apply focus:outline-none focus:ring-2 focus:ring-deep-maroon focus:ring-offset-2 dark:focus:ring-temple-gold dark:focus:ring-offset-wisdom-800;
   }
   
   /* Indian Motif Backgrounds */
@@ -409,14 +540,35 @@
   
   /* Enhanced Text Contrast */
   .text-high-contrast {
-    @apply text-indigo-800 dark:text-wisdom-50;
+    @apply text-text-primary;
   }
   
   .text-medium-contrast {
-    @apply text-indigo-700 dark:text-wisdom-200;
+    @apply text-text-secondary;
+  }
+  
+  .text-low-contrast {
+    @apply text-text-tertiary;
   }
   
   .text-accent-contrast {
+    @apply text-text-accent;
+  }
+  
+  .text-muted-contrast {
+    @apply text-text-muted;
+  }
+  
+  /* Legacy contrast utilities for backward compatibility */
+  .text-high-contrast-legacy {
+    @apply text-indigo-800 dark:text-wisdom-50;
+  }
+  
+  .text-medium-contrast-legacy {
+    @apply text-indigo-700 dark:text-wisdom-200;
+  }
+  
+  .text-accent-contrast-legacy {
     @apply text-saffron-600 dark:text-saffron-400;
   }
   
@@ -602,197 +754,375 @@
     filter: blur(1px);
   }
 
-  /* Shikshanam Color System Utility Classes */
-  .bg-parchment-ivory {
-    background-color: hsl(var(--parchment-ivory));
+  /* School of Sanskrit Color System Utility Classes */
+  .bg-teal-primary {
+    background-color: hsl(var(--teal-primary));
   }
   
-  .bg-golden-olive {
-    background-color: hsl(var(--golden-olive));
+  .bg-purple-primary {
+    background-color: hsl(var(--purple-primary));
   }
   
-  .bg-deep-maroon {
-    background-color: hsl(var(--deep-maroon));
+  .bg-coral-primary {
+    background-color: hsl(var(--coral-primary));
   }
   
-  .bg-copper-orange {
-    background-color: hsl(var(--copper-orange));
+  .bg-light-cyan {
+    background-color: hsl(var(--light-cyan));
   }
   
-  .bg-sand-beige {
-    background-color: hsl(var(--sand-beige));
+  .bg-lavender-primary {
+    background-color: hsl(var(--lavender-primary));
   }
   
-  .bg-dark-olive {
-    background-color: hsl(var(--dark-olive));
+  .bg-dark-text {
+    background-color: hsl(var(--dark-text));
   }
   
-  .bg-temple-gold {
-    background-color: hsl(var(--temple-gold));
+  .bg-muted-gray {
+    background-color: hsl(var(--muted-gray));
   }
   
-  .bg-deep-indigo {
-    background-color: hsl(var(--deep-indigo));
+  .text-teal-primary {
+    color: hsl(var(--teal-primary));
   }
   
-  .text-parchment-ivory {
-    color: hsl(var(--parchment-ivory));
+  .text-purple-primary {
+    color: hsl(var(--purple-primary));
   }
   
-  .text-golden-olive {
-    color: hsl(var(--golden-olive));
+  .text-coral-primary {
+    color: hsl(var(--coral-primary));
   }
   
-  .text-deep-maroon {
-    color: hsl(var(--deep-maroon));
+  .text-light-cyan {
+    color: hsl(var(--light-cyan));
   }
   
-  .text-copper-orange {
-    color: hsl(var(--copper-orange));
+  .text-lavender-primary {
+    color: hsl(var(--lavender-primary));
   }
   
-  .text-sand-beige {
-    color: hsl(var(--sand-beige));
+  .text-dark-text {
+    color: hsl(var(--dark-text));
   }
   
-  .text-dark-olive {
-    color: hsl(var(--dark-olive));
+  .text-muted-gray {
+    color: hsl(var(--muted-gray));
   }
   
-  .text-temple-gold {
-    color: hsl(var(--temple-gold));
+  .border-teal-primary {
+    border-color: hsl(var(--teal-primary));
   }
   
-  .text-deep-indigo {
-    color: hsl(var(--deep-indigo));
+  .border-purple-primary {
+    border-color: hsl(var(--purple-primary));
   }
   
-  .border-parchment-ivory {
-    border-color: hsl(var(--parchment-ivory));
+  .border-coral-primary {
+    border-color: hsl(var(--coral-primary));
   }
   
-  .border-golden-olive {
-    border-color: hsl(var(--golden-olive));
+  .border-light-cyan {
+    border-color: hsl(var(--light-cyan));
   }
   
-  .border-deep-maroon {
-    border-color: hsl(var(--deep-maroon));
+  .border-lavender-primary {
+    border-color: hsl(var(--lavender-primary));
   }
   
-  .border-copper-orange {
-    border-color: hsl(var(--copper-orange));
+  .border-dark-text {
+    border-color: hsl(var(--dark-text));
   }
   
-  .border-sand-beige {
-    border-color: hsl(var(--sand-beige));
+  .border-muted-gray {
+    border-color: hsl(var(--muted-gray));
   }
   
-  .border-dark-olive {
-    border-color: hsl(var(--dark-olive));
-  }
-  
-  .border-temple-gold {
-    border-color: hsl(var(--temple-gold));
-  }
-  
-  .border-deep-indigo {
-    border-color: hsl(var(--deep-indigo));
-  }
-  
-  /* New Button System with Shikshanam Colors */
-  .btn-shikshanam-primary {
-    background-color: hsl(var(--copper-orange));
+  /* School of Sanskrit Button System */
+  .btn-sanskrit-primary {
+    background-color: hsl(var(--teal-primary));
     color: white;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
-    border-radius: 1rem;
-    transition: all 0.3s ease;
+    border-radius: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
     transform: scale(1);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border: 2px solid hsl(var(--temple-gold));
     outline: none;
+    border: none;
   }
   
-  .btn-shikshanam-primary:hover {
-    background-color: hsl(var(--copper-orange) / 0.9);
+  .btn-sanskrit-primary:hover {
+    background-color: hsl(var(--teal-primary) / 0.9);
     transform: scale(1.05);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
   
-  .btn-shikshanam-primary:focus {
+  .btn-sanskrit-primary:focus {
     outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--copper-orange)), 0 0 0 4px hsl(var(--copper-orange) / 0.2);
+    box-shadow: 0 0 0 3px hsl(var(--teal-primary) / 0.25);
   }
   
-  .btn-shikshanam-secondary {
-    background-color: hsl(var(--deep-indigo));
+  .btn-sanskrit-coral {
+    background-color: hsl(var(--coral-primary));
     color: white;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
-    border-radius: 1rem;
-    transition: all 0.3s ease;
+    border-radius: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
     transform: scale(1);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     outline: none;
+    border: none;
   }
   
-  .btn-shikshanam-secondary:hover {
-    background-color: hsl(var(--deep-indigo) / 0.9);
+  .btn-sanskrit-coral:hover {
+    background-color: hsl(var(--coral-primary) / 0.9);
     transform: scale(1.05);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
   
-  .btn-shikshanam-secondary:focus {
+  .btn-sanskrit-coral:focus {
     outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--deep-indigo)), 0 0 0 4px hsl(var(--deep-indigo) / 0.2);
+    box-shadow: 0 0 0 3px hsl(var(--coral-primary) / 0.25);
   }
   
-  .btn-shikshanam-outline {
-    border: 2px solid hsl(var(--golden-olive));
-    color: hsl(var(--golden-olive));
+  .btn-sanskrit-outline {
+    border: 2px solid hsl(var(--teal-primary));
+    color: hsl(var(--teal-primary));
     background-color: transparent;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
-    border-radius: 1rem;
-    transition: all 0.3s ease;
+    border-radius: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
     transform: scale(1);
     outline: none;
   }
   
-  .btn-shikshanam-outline:hover {
-    background-color: hsl(var(--golden-olive));
+  .btn-sanskrit-outline:hover {
+    background-color: hsl(var(--teal-primary));
     color: white;
     transform: scale(1.05);
   }
   
-  .btn-shikshanam-outline:focus {
+  .btn-sanskrit-outline:focus {
     outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--golden-olive)), 0 0 0 4px hsl(var(--golden-olive) / 0.2);
+    box-shadow: 0 0 0 3px hsl(var(--teal-primary) / 0.25);
   }
   
-  /* Card System with Shikshanam Colors */
-  .card-shikshanam {
-    background-color: hsl(var(--sand-beige));
-    border: 1px solid hsl(var(--golden-olive) / 0.2);
-    border-radius: 1.5rem;
+  /* Card System with School of Sanskrit Colors */
+  .card-sanskrit {
+    background-color: hsl(var(--teal-primary));
+    border-radius: 1.25rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+    color: white;
   }
   
-  .card-shikshanam:hover {
+  .card-sanskrit:hover {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
   }
   
-  .card-shikshanam-premium {
-    background-color: hsl(var(--parchment-ivory));
-    border: 2px solid hsl(var(--temple-gold));
-    border-radius: 1.5rem;
+  .card-sanskrit-back {
+    background-color: white;
+    border: 2px solid hsl(var(--teal-primary));
+    border-radius: 1.25rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+    color: hsl(var(--dark-text));
   }
   
-  .card-shikshanam-premium:hover {
+  .card-sanskrit-back:hover {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+  }
+  
+  /* Flashcard specific styles */
+  .flashcard-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  
+  .flashcard {
+    transform-style: preserve-3d;
+    transition: transform 0.36s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  
+  .flashcard.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .flashcard-face {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .flashcard-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Enhanced micro-interactions */
+  .micro-bounce {
+    animation: microBounce 0.6s ease-in-out;
+  }
+  
+  @keyframes microBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+    }
+  }
+  
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  /* Enhanced scroll animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Indian art-inspired decorative elements */
+  .mandala-pattern {
+    background-image: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    background-size: 100px 100px;
+  }
+  
+  .lotus-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.1) 0%, transparent 25%),
+      radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 25%);
+    background-size: 150px 150px;
+  }
+  
+  /* Enhanced button interactions */
+  .btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  
+  .btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+  
+  .btn-enhanced:hover::before {
+    left: 100%;
+  }
+  
+  /* Glassmorphism effects */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-effect-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Enhanced typography animations */
+  .text-glow {
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  }
+  
+  .text-reveal {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(139, 92, 246, 0.8),
+      transparent
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textReveal 3s ease-in-out infinite;
+  }
+  
+  @keyframes textReveal {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  /* Particle effects */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(139, 92, 246, 0.6);
+    border-radius: 50%;
+    animation: particleFloat 4s ease-in-out infinite;
+  }
+  
+  @keyframes particleFloat {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(-100px) rotate(180deg);
+      opacity: 1;
+    }
   }
 }
 

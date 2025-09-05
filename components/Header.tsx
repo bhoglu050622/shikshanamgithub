@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, LogIn, Search, ChevronDown, BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -15,10 +15,15 @@ export default function Header() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   return (
     <motion.header 
-      initial={{ y: -100, opacity: 0 }}
+      initial={isClient ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
       className="sticky top-0 z-50 bg-parchment-ivory/90 backdrop-blur-md border-b border-golden-olive/20 shadow-sm"
@@ -59,7 +64,7 @@ export default function Header() {
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-dark-olive hover:text-golden-olive font-medium transition-colors duration-200 flex items-center space-x-1 focus-ring tap-target whitespace-nowrap"
+                  className="text-high-contrast hover:text-golden-olive font-medium transition-colors duration-200 flex items-center space-x-1 focus-ring tap-target whitespace-nowrap"
                 >
                   <item.icon className="w-4 h-4" />
                   <span>{item.name}</span>
@@ -84,7 +89,7 @@ export default function Header() {
               className="p-2 rounded-xl hover:bg-sand-beige/50 transition-colors duration-200 focus-ring tap-target"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-dark-olive" />
+              <Search className="w-5 h-5 text-high-contrast" />
             </motion.button>
 
             {/* Theme Toggle */}
@@ -114,9 +119,9 @@ export default function Header() {
               aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6 text-dark-olive" />
+                <X className="w-6 h-6 text-high-contrast" />
               ) : (
-                <Menu className="w-6 h-6 text-dark-olive" />
+                <Menu className="w-6 h-6 text-high-contrast" />
               )}
             </button>
           </div>
@@ -154,7 +159,7 @@ export default function Header() {
                     href={item.href}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center space-x-3 px-4 py-3 text-dark-olive hover:text-golden-olive hover:bg-sand-beige/50 rounded-xl transition-all duration-200 focus-ring tap-target"
+                    className="flex items-center space-x-3 px-4 py-3 text-high-contrast hover:text-golden-olive hover:bg-sand-beige/50 rounded-xl transition-all duration-200 focus-ring tap-target"
                   >
                     <item.icon className="w-5 h-5" />
                     <span className="font-medium">{item.name}</span>

@@ -23,6 +23,9 @@ const nextConfig = {
     config.optimization.moduleIds = 'deterministic';
     config.optimization.chunkIds = 'deterministic';
     
+    // Note: React reconciler error should be fixed by clean install
+    // All React packages are using version 18.3.1 consistently
+    
     // Handle Chrome extension messaging issues
     if (!isServer) {
       config.resolve.fallback = {
@@ -66,7 +69,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' chrome-extension:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' chrome-extension:;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' chrome-extension:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' chrome-extension:;",
           },
         ],
       },

@@ -96,86 +96,165 @@ export default function Schools() {
           </p>
         </motion.div>
 
-        {/* Schools Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {schools.map((school, index) => (
-            <motion.div
-              key={school.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.03, y: -8, rotateX: 5, rotateY: 5 }}
-              className="group cursor-pointer perspective-1000"
-            >
-              <Link href={school.href}>
-                <div className={`bg-gradient-to-br ${school.color} hover:${school.hoverColor} rounded-3xl p-8 text-white transition-all duration-500 shadow-xl hover:shadow-2xl h-full flex flex-col transform-gpu group-hover:rotate-x-2 group-hover:rotate-y-2`}>
-                {/* Header */}
-                <div className="text-center mb-6">
-                  <div className="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 relative overflow-hidden">
-                    <div className="text-4xl group-hover:scale-110 transition-transform duration-300">
+        {/* Schools Horizontal Timeline Layout */}
+        <div className="max-w-6xl mx-auto">
+          {/* Desktop Timeline */}
+          <div className="hidden lg:block">
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-golden-olive to-deep-maroon rounded-full" />
+              
+              {schools.map((school, index) => (
+                <motion.div
+                  key={school.title}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative flex items-start mb-16 last:mb-0"
+                >
+                  {/* Timeline Dot */}
+                  <motion.div 
+                    className="absolute left-6 w-6 h-6 bg-gradient-to-r from-golden-olive to-deep-maroon rounded-full border-4 border-sand-beige z-10 shadow-lg"
+                    whileInView={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  />
+                  
+                  {/* School Card */}
+                  <div className="ml-20 flex-1">
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      className="group cursor-pointer relative overflow-hidden"
+                    >
+                      <Link href={school.href}>
+                        <div className={`bg-gradient-to-br ${school.color} hover:${school.hoverColor} rounded-3xl p-8 text-white transition-all duration-500 shadow-xl hover:shadow-2xl relative overflow-hidden`}>
+                          {/* Background Pattern */}
+                          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-110 transition-transform duration-500"></div>
+                          
+                          <div className="relative z-10">
+                            <div className="flex items-start space-x-6">
+                              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                                  {school.emoji}
+                                </div>
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center space-x-3 mb-3">
+                                  <h3 className="text-2xl font-bold text-white">
+                                    {school.title}
+                                  </h3>
+                                  <span className="bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium">
+                                    {school.subtitle}
+                                  </span>
+                                </div>
+                                <p className="text-white/90 mb-4 leading-relaxed">
+                                  {school.description}
+                                </p>
+                                
+                                {/* Features */}
+                                <div className="mb-4">
+                                  <h4 className="text-sm font-semibold text-white mb-2">
+                                    What you'll learn:
+                                  </h4>
+                                  <div className="flex flex-wrap gap-2">
+                                    {school.features.map((feature, featureIndex) => (
+                                      <span key={featureIndex} className="bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium">
+                                        {feature}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                                
+                                {/* Stats */}
+                                <div className="grid grid-cols-3 gap-3 mb-4 p-3 bg-white/10 rounded-2xl">
+                                  <div className="text-center">
+                                    <div className="text-lg font-bold text-white">{school.stats.students}</div>
+                                    <div className="text-xs text-white/80">Students</div>
+                                  </div>
+                                  <div className="text-center">
+                                    <div className="text-lg font-bold text-white">{school.stats.courses}</div>
+                                    <div className="text-xs text-white/80">Courses</div>
+                                  </div>
+                                  <div className="text-center">
+                                    <div className="text-lg font-bold text-white">{school.stats.teachers}</div>
+                                    <div className="text-xs text-white/80">Teachers</div>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex items-center space-x-2 text-white font-medium group-hover:text-white/90 transition-colors">
+                                  <span>{school.cta}</span>
+                                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Shine Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Timeline */}
+          <div className="lg:hidden space-y-8">
+            {schools.map((school, index) => (
+              <motion.div
+                key={school.title}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-start space-x-4"
+              >
+                <div className="flex flex-col items-center">
+                  <div className={`w-12 h-12 bg-gradient-to-r ${school.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <div className="text-2xl">
                       {school.emoji}
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">{school.title}</h3>
-                  <p className="text-white/90 font-medium">{school.subtitle}</p>
+                  {index < schools.length - 1 && (
+                    <div className="w-0.5 h-16 bg-gradient-to-b from-golden-olive to-deep-maroon mt-4"></div>
+                  )}
                 </div>
-
-                {/* Description */}
-                <p className="text-white mb-6 text-center leading-relaxed">
-                  {school.description}
-                </p>
-
-                {/* Features */}
-                <div className="mb-6 flex-1">
-                  <h4 className="font-semibold mb-3 text-white">What you'll learn:</h4>
-                  <ul className="space-y-2">
-                    {school.features.map((feature, featureIndex) => (
-                      <motion.li
-                        key={featureIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 + featureIndex * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-center space-x-2 text-white"
-                      >
-                        <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                        <span className="text-sm">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                <div className="flex-1">
+                  <Link href={school.href}>
+                    <div className={`bg-gradient-to-br ${school.color} hover:${school.hoverColor} rounded-3xl p-6 text-white transition-all duration-500 shadow-xl hover:shadow-2xl`}>
+                      <div className="flex items-center space-x-2 mb-2">
+                        <h3 className="text-xl font-bold text-white">
+                          {school.title}
+                        </h3>
+                        <span className="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          {school.subtitle}
+                        </span>
+                      </div>
+                      <p className="text-white/90 mb-4 text-sm leading-relaxed">
+                        {school.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {school.features.slice(0, 2).map((feature, featureIndex) => (
+                          <span key={featureIndex} className="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-medium">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center space-x-2 text-white text-sm font-medium">
+                        <span>{school.cta}</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-3 mb-6 p-3 bg-white/10 rounded-2xl">
-                  <div className="text-center">
-                    <div className="text-lg font-bold">{school.stats.students}</div>
-                    <div className="text-xs text-white">Students</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-bold">{school.stats.courses}</div>
-                    <div className="text-xs text-white">Courses</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-bold">{school.stats.teachers}</div>
-                    <div className="text-xs text-white">Teachers</div>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full bg-white/20 hover:bg-white/30 text-white py-4 px-6 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 group-hover:bg-white/25"
-                >
-                  <span>{school.cta}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom CTA */}

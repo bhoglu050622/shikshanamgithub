@@ -8,12 +8,13 @@ import Numbers from '@/components/sections/Numbers'
 import FoundersMission from '@/components/sections/FoundersMission'
 import Contribute from '@/components/sections/Contribute'
 import Community from '@/components/sections/Community'
+import DownloadAppNew from '@/components/sections/DownloadAppNew'
 import Footer from '@/components/Footer'
 import IndianPatterns from '@/components/ornaments/IndianPatterns'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
+    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden">
       <IndianPatterns />
       <Header />
       <main className="main-container" role="main">
@@ -26,6 +27,7 @@ export default function Home() {
         <FoundersMission />
         <Contribute />
         <Community />
+        <DownloadAppNew />
       </main>
       <Footer />
     </div>

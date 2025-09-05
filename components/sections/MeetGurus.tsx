@@ -1,237 +1,278 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Star, Users, BookOpen, Award, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { User, ExternalLink, X, BookOpen, Award, Clock, MessageCircle } from 'lucide-react'
 
 const gurus = [
   {
-    name: 'Dr. Rajesh Kumar',
-    title: 'Sanskrit Scholar',
-    specialization: 'Vedic Literature & Grammar',
-    avatar: '/gurus/guru1.jpg',
-    rating: 4.9,
-    students: '450+',
-    courses: '12',
-    experience: '15+ years',
-    achievements: ['PhD in Sanskrit', 'Published 20+ papers', 'Award-winning teacher'],
-    description: 'Expert in classical Sanskrit texts with deep understanding of Vedic wisdom and traditional grammar.',
-    color: 'from-golden-olive to-golden-olive/90'
+    id: 1,
+    name: "Dr. Ananya Sharma",
+    title: "Vyakarana, Spoken Sanskrit",
+    tags: ["Grammar Expert", "15+ years", "Vedic Studies"],
+    image: "/images/gurus/ananya-sharma.jpg",
+    profile: "/gurus/ananya-sharma",
+    bio: "Dr. Ananya Sharma is a renowned Sanskrit scholar with over 15 years of experience in teaching Vyakarana (grammar) and spoken Sanskrit. She holds a PhD in Sanskrit Literature from Banaras Hindu University and has published numerous papers on classical Sanskrit grammar.",
+    areas: ["Sanskrit Grammar", "Vedic Studies", "Classical Literature", "Spoken Sanskrit"],
+    experience: "15+ years",
+    students: "500+",
+    rating: "4.9/5",
+    specialties: [
+      "Advanced Grammar (Ashtadhyayi)",
+      "Vedic Sanskrit",
+      "Classical Poetry",
+      "Conversational Sanskrit"
+    ]
   },
   {
-    name: 'Prof. Meera Patel',
-    title: 'Philosophy Expert',
-    specialization: 'Vedanta & Yoga Philosophy',
-    avatar: '/gurus/guru2.jpg',
-    rating: 4.8,
-    students: '320+',
-    courses: '8',
-    experience: '12+ years',
-    achievements: ['Masters in Philosophy', 'Certified Yoga Teacher', 'International Speaker'],
-    description: 'Specializes in making complex philosophical concepts accessible through practical examples and meditation.',
-    color: 'from-deep-maroon to-deep-maroon/90'
+    id: 2,
+    name: "Sri Raghav Ji",
+    title: "Chanting, Pronunciation",
+    tags: ["Pronunciation", "12+ years", "Chanting"],
+    image: "/images/gurus/raghav-ji.jpg",
+    profile: "/gurus/raghav-ji",
+    bio: "Sri Raghav Ji is a traditional Sanskrit teacher specializing in pronunciation and chanting. He learned Sanskrit in the traditional gurukula system and has been teaching for over 12 years. His expertise lies in perfect pronunciation and the musical aspects of Sanskrit.",
+    areas: ["Pronunciation", "Chanting", "Traditional Teaching", "Vedic Chants"],
+    experience: "12+ years",
+    students: "300+",
+    rating: "4.8/5",
+    specialties: [
+      "Vedic Chanting",
+      "Pronunciation Mastery",
+      "Traditional Teaching Methods",
+      "Sanskrit Music"
+    ]
   },
   {
-    name: 'Acharya Amit Singh',
-    title: 'Life Coach',
-    specialization: 'Ancient Wisdom & Modern Life',
-    avatar: '/gurus/guru3.jpg',
-    rating: 4.9,
-    students: '680+',
-    courses: '15',
-    experience: '18+ years',
-    achievements: ['Life Coach Certification', 'Best-selling Author', 'Corporate Trainer'],
-    description: 'Bridges ancient Indian wisdom with contemporary challenges to help students find purpose and peace.',
-    color: 'from-copper-orange to-copper-orange/90'
-  },
-  {
-    name: 'Dr. Priya Sharma',
-    title: 'Classical Literature',
-    specialization: 'Sanskrit Poetry & Drama',
-    avatar: '/gurus/guru4.jpg',
-    rating: 4.7,
-    students: '280+',
-    courses: '10',
-    experience: '10+ years',
-    achievements: ['PhD in Classical Literature', 'Poetry Award Winner', 'Cultural Ambassador'],
-    description: 'Passionate about bringing classical Sanskrit literature to life through storytelling and performance.',
-    color: 'from-temple-gold to-temple-gold/90'
-  },
-  {
-    name: 'Swami Vivek',
-    title: 'Spiritual Guide',
-    specialization: 'Meditation & Self-Realization',
-    avatar: '/gurus/guru5.jpg',
-    rating: 4.9,
-    students: '520+',
-    courses: '6',
-    experience: '25+ years',
-    achievements: ['Monastic Training', 'Meditation Master', 'Spiritual Retreat Leader'],
-    description: 'Guides students on the path of self-discovery through meditation and spiritual practices.',
-    color: 'from-deep-indigo to-deep-indigo/90'
-  },
-  {
-    name: 'Dr. Arjun Reddy',
-    title: 'Wellness Expert',
-    specialization: 'Ayurveda & Holistic Health',
-    avatar: '/gurus/guru6.jpg',
-    rating: 4.8,
-    students: '420+',
-    courses: '9',
-    experience: '14+ years',
-    achievements: ['MD in Ayurveda', 'Wellness Coach', 'Health Columnist'],
-    description: 'Combines traditional Ayurvedic wisdom with modern wellness practices for holistic health.',
-    color: 'from-sand-beige to-sand-beige/90'
+    id: 3,
+    name: "Meera Iyer",
+    title: "Beginner facilitation, Games",
+    tags: ["Beginner", "Games", "8+ years"],
+    image: "/images/gurus/meera-iyer.jpg",
+    profile: "/gurus/meera-iyer",
+    bio: "Meera Iyer specializes in making Sanskrit accessible to beginners through innovative teaching methods and gamification. With 8 years of experience, she has developed unique approaches to help students overcome the initial challenges of learning Sanskrit.",
+    areas: ["Beginner Sanskrit", "Gamification", "Modern Teaching", "Student Engagement"],
+    experience: "8+ years",
+    students: "400+",
+    rating: "4.9/5",
+    specialties: [
+      "Beginner-Friendly Methods",
+      "Interactive Learning",
+      "Sanskrit Games",
+      "Student Motivation"
+    ]
   }
 ]
 
-export default function MeetGurus() {
+interface GuruCardProps {
+  guru: typeof gurus[0]
+  index: number
+  onOpenModal: (guru: typeof gurus[0]) => void
+}
+
+function GuruCard({ guru, index, onOpenModal }: GuruCardProps) {
   return (
-    <section id="meet-gurus" className="section-padding bg-sand-beige">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      viewport={{ once: true }}
+      className="group cursor-pointer"
+      whileHover={{ scale: 1.05 }}
+      onClick={() => onOpenModal(guru)}
+    >
+      <div className="bg-white rounded-2xl p-6 shadow-lg border border-teal-primary/20 group-hover:shadow-xl transition-all duration-300">
+        <div className="relative w-24 h-24 mx-auto mb-4">
+          <div className="w-24 h-24 bg-gradient-to-br from-teal-primary to-teal-primary/80 rounded-full flex items-center justify-center relative overflow-hidden">
+            <User className="w-12 h-12 text-white" />
+            {/* Halo glow effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-primary/30 to-teal-primary/20 blur-sm group-hover:blur-md transition-all duration-300"></div>
+          </div>
+        </div>
+        <h3 className="text-lg font-bold text-dark-text mb-1 text-center">
+          {guru.name}
+        </h3>
+        <p className="text-teal-primary text-sm mb-4 text-center">
+          {guru.title}
+        </p>
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
+          {guru.tags.map((tag, tagIndex) => (
+            <span key={tagIndex} className="bg-teal-primary/10 text-teal-primary px-2 py-1 rounded-full text-xs">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <button className="text-teal-primary hover:text-teal-primary/80 text-sm font-medium flex items-center space-x-1 mx-auto group-hover:scale-105 transition-all duration-300">
+          <span>View Profile</span>
+          <ExternalLink className="w-3 h-3" />
+        </button>
+      </div>
+    </motion.div>
+  )
+}
+
+interface GuruModalProps {
+  guru: typeof gurus[0] | null
+  isOpen: boolean
+  onClose: () => void
+}
+
+function GuruModal({ guru, isOpen, onClose }: GuruModalProps) {
+  if (!guru) return null
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-start mb-6">
+              <div className="flex items-center space-x-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-primary to-teal-primary/80 rounded-full flex items-center justify-center">
+                  <User className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-dark-text">{guru.name}</h2>
+                  <p className="text-teal-primary">{guru.title}</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="text-muted-gray hover:text-dark-text transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {/* Bio */}
+              <div>
+                <h3 className="text-lg font-semibold text-dark-text mb-2">About</h3>
+                <p className="text-muted-gray leading-relaxed">{guru.bio}</p>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-light-cyan rounded-xl">
+                  <div className="text-2xl font-bold text-teal-primary">{guru.experience}</div>
+                  <div className="text-sm text-muted-gray">Experience</div>
+                </div>
+                <div className="text-center p-4 bg-light-cyan rounded-xl">
+                  <div className="text-2xl font-bold text-teal-primary">{guru.students}</div>
+                  <div className="text-sm text-muted-gray">Students</div>
+                </div>
+                <div className="text-center p-4 bg-light-cyan rounded-xl">
+                  <div className="text-2xl font-bold text-teal-primary">{guru.rating}</div>
+                  <div className="text-sm text-muted-gray">Rating</div>
+                </div>
+              </div>
+
+              {/* Areas of Expertise */}
+              <div>
+                <h3 className="text-lg font-semibold text-dark-text mb-3">Areas of Expertise</h3>
+                <div className="flex flex-wrap gap-2">
+                  {guru.areas.map((area, index) => (
+                    <span key={index} className="bg-teal-primary/10 text-teal-primary px-3 py-1 rounded-full text-sm">
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Specialties */}
+              <div>
+                <h3 className="text-lg font-semibold text-dark-text mb-3">Specialties</h3>
+                <ul className="space-y-2">
+                  {guru.specialties.map((specialty, index) => (
+                    <li key={index} className="flex items-center space-x-2 text-muted-gray">
+                      <Award className="w-4 h-4 text-teal-primary" />
+                      <span>{specialty}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <button className="btn-sanskrit-primary flex-1 flex items-center justify-center space-x-2">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Book a Class</span>
+                </button>
+                <button className="btn-sanskrit-outline flex-1 flex items-center justify-center space-x-2">
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Send Message</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+export default function MeetGurus() {
+  const [selectedGuru, setSelectedGuru] = useState<typeof gurus[0] | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleOpenModal = (guru: typeof gurus[0]) => {
+    setSelectedGuru(guru)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedGuru(null)
+  }
+
+  return (
+    <section className="section-padding bg-lavender-primary">
       <div className="container-custom">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-dark-olive mb-6">
-            Learn From{' '}
-            <span className="bg-gradient-to-r from-golden-olive to-deep-maroon bg-clip-text text-transparent">
-              Enlightened Minds
-            </span>
+          <h2 className="text-display text-dark-text mb-4">
+            Meet Your Gurus
           </h2>
-          <p className="text-xl text-deep-maroon max-w-3xl mx-auto">
-            Learn from authentic masters who have dedicated their lives to preserving and sharing ancient Indian wisdom.
+          <p className="text-body text-muted-gray max-w-2xl mx-auto">
+            Learn from experienced Sanskrit scholars and native speakers who 
+            bring ancient wisdom to modern learning with gentle guidance.
           </p>
         </motion.div>
 
-        {/* Gurus Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {gurus.map((guru, index) => (
-            <motion.div
-              key={guru.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className="group cursor-pointer"
-            >
-              <div className="bg-parchment-ivory rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-golden-olive/20 overflow-hidden relative">
-                {/* Temple Bell Sound Animation */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-golden-olive/30 rounded-full animate-ping"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-deep-maroon/30 rounded-full animate-ping animation-delay-1000"></div>
-                </div>
-                
-                {/* Avatar Section */}
-                <div className="relative p-8 text-center">
-                  <div className="relative mx-auto mb-4">
-                    <div className={`w-28 h-28 bg-gradient-to-br ${guru.color} rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-500 relative overflow-hidden`}>
-                      {guru.name.split(' ').map(n => n[0]).join('')}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                    </div>
-                    <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md group-hover:scale-110 transition-transform duration-300">
-                      <Star className="w-4 h-4 text-temple-gold fill-current" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-dark-olive mb-1 group-hover:text-golden-olive transition-colors duration-300">{guru.name}</h3>
-                  <p className="text-golden-olive font-medium mb-2">{guru.title}</p>
-                  <p className="text-sand-beige text-sm">{guru.specialization}</p>
-                </div>
-
-                {/* Stats */}
-                <div className="px-8 pb-4">
-                  <div className="grid grid-cols-3 gap-4 mb-4">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-dark-olive">{guru.rating}</div>
-                      <div className="text-xs text-sand-beige">Rating</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-dark-olive">{guru.students}</div>
-                      <div className="text-xs text-sand-beige">Students</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-dark-olive">{guru.courses}</div>
-                      <div className="text-xs text-sand-beige">Courses</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover Reveal Content */}
-                <div className="px-8 pb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                                      <div className="border-t border-golden-olive/20 pt-4">
-                    <p className="text-deep-maroon text-sm mb-4 leading-relaxed">
-                      {guru.description}
-                    </p>
-                    
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-dark-olive mb-2 text-sm">Experience & Achievements:</h4>
-                      <ul className="space-y-1">
-                        {guru.achievements.map((achievement, idx) => (
-                          <li key={idx} className="flex items-center space-x-2 text-xs text-sand-beige">
-                            <Award className="w-3 h-3 text-temple-gold" />
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-sand-beige">{guru.experience} experience</span>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-1 text-golden-olive hover:text-golden-olive/80 text-sm font-medium"
-                      >
-                        <span>View Profile</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </motion.button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <div className="px-8 pb-6">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-full bg-gradient-to-r ${guru.color} text-white py-3 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300`}
-                  >
-                    Learn with {guru.name.split(' ')[0]}
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
+            <GuruCard
+              key={guru.id}
+              guru={guru}
+              index={index}
+              onOpenModal={handleOpenModal}
+            />
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-golden-olive/5 to-deep-maroon/5 rounded-3xl p-8 max-w-2xl mx-auto border border-temple-gold/20">
-            <h3 className="font-serif text-2xl font-bold text-dark-olive mb-4">
-              Want to meet more Gurus?
-            </h3>
-            <p className="text-deep-maroon mb-6">
-              Discover our complete roster of authentic teachers and find the perfect guide for your journey.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-shikshanam-primary px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
-            >
-              Meet All Gurus
-            </motion.button>
-          </div>
-        </motion.div>
+        <GuruModal
+          guru={selectedGuru}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </div>
     </section>
   )

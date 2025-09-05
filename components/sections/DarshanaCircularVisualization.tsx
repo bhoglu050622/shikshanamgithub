@@ -1,9 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { gsap } from 'gsap'
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { 
   Brain, 
   Atom, 
@@ -12,85 +10,90 @@ import {
   Scale, 
   Lightbulb,
   Lock,
-  Star
+  Star,
+  ArrowRight,
+  Sparkles
 } from 'lucide-react'
 
-// Register GSAP plugins
-gsap.registerPlugin(MotionPathPlugin)
-
-// Darshana data with circular positioning
+// Darshana data with enhanced information
 const darshanas = [
   {
     id: 'nyaya',
     name: 'Nyāya',
     sanskrit: 'न्याय',
     description: 'The Science of Logic & Reasoning',
-    tooltip: 'Think clearly; infer soundly.',
+    detailedDescription: 'Master the art of clear thinking, valid inference, and systematic debate. Learn to distinguish truth from falsehood through rigorous logical analysis.',
     icon: Brain,
     color: 'from-blue-500 to-blue-600',
     hoverColor: 'from-blue-600 to-blue-700',
-    angle: 0, // Top position
-    position: { x: 0, y: -1 }
+    keyConcepts: ['Pramāṇa (Means of Knowledge)', 'Tarka (Logic)', 'Vāda (Debate)', 'Hetvābhāsa (Fallacies)'],
+    founder: 'Akshapada Gautama',
+    text: 'Nyāya Sūtra'
   },
   {
     id: 'vaisheshika',
     name: 'Vaiśeṣika',
     sanskrit: 'वैशेषिक',
     description: 'The Atomic Theory of Reality',
-    tooltip: 'What reality is made of.',
+    detailedDescription: 'Explore the fundamental building blocks of existence. Understand how reality is structured through categories, atoms, and their interactions.',
     icon: Atom,
     color: 'from-green-500 to-green-600',
     hoverColor: 'from-green-600 to-green-700',
-    angle: 60, // Top-right position
-    position: { x: 0.866, y: -0.5 }
+    keyConcepts: ['Dravya (Substance)', 'Guṇa (Quality)', 'Karma (Action)', 'Padārtha (Categories)'],
+    founder: 'Kaṇāda',
+    text: 'Vaiśeṣika Sūtra'
   },
   {
     id: 'samkhya',
     name: 'Sāṅkhya',
     sanskrit: 'साङ्ख्य',
     description: 'The Map of Consciousness',
-    tooltip: 'Puruṣa & Prakṛti—two principles.',
+    detailedDescription: 'Discover the profound understanding of consciousness and matter. Learn about the 24 principles (tattvas) that make up reality.',
     icon: Eye,
     color: 'from-purple-500 to-purple-600',
     hoverColor: 'from-purple-600 to-purple-700',
-    angle: 120, // Bottom-right position
-    position: { x: 0.866, y: 0.5 }
+    keyConcepts: ['Puruṣa (Consciousness)', 'Prakṛti (Matter)', 'Tattva (Principles)', 'Kaivalya (Liberation)'],
+    founder: 'Kapila',
+    text: 'Sāṅkhya Kārikā'
   },
   {
     id: 'yoga',
     name: 'Yoga',
     sanskrit: 'योग',
     description: 'The Path of Self-Realization',
-    tooltip: 'Still the mind; transform life.',
+    detailedDescription: 'Transform your life through the eight limbs of yoga. From ethical living to meditation, discover the complete path to inner peace.',
     icon: Heart,
     color: 'from-red-500 to-red-600',
     hoverColor: 'from-red-600 to-red-700',
-    angle: 180, // Bottom position
-    position: { x: 0, y: 1 }
+    keyConcepts: ['Aṣṭāṅga (Eight Limbs)', 'Citta-vṛtti-nirodhaḥ', 'Samādhi (Meditation)', 'Kaivalya (Liberation)'],
+    founder: 'Patañjali',
+    text: 'Yoga Sūtra'
   },
   {
     id: 'mimamsa',
     name: 'Mīmāṁsā',
     sanskrit: 'मीमांसा',
     description: 'The Science of Dharma',
-    tooltip: 'Duty, ethics, ritual praxis.',
+    detailedDescription: 'Understand the principles of right action, duty, and ethical living. Learn how to interpret sacred texts and apply their wisdom.',
     icon: Scale,
     color: 'from-orange-500 to-orange-600',
     hoverColor: 'from-orange-600 to-orange-700',
-    angle: 240, // Bottom-left position
-    position: { x: -0.866, y: 0.5 }
+    keyConcepts: ['Dharma (Duty)', 'Karma (Action)', 'Vidhi (Injunction)', 'Nishēdha (Prohibition)'],
+    founder: 'Jaimini',
+    text: 'Mīmāṁsā Sūtra'
   },
   {
     id: 'vedanta',
     name: 'Vedānta',
     sanskrit: 'वेदान्त',
     description: 'The Ultimate Reality',
-    tooltip: 'Self = Brahman (non-dual insight).',
+    detailedDescription: 'Discover the non-dual nature of existence. Understand that the Self and the Absolute are one, leading to profound spiritual realization.',
     icon: Lightbulb,
     color: 'from-yellow-500 to-yellow-600',
     hoverColor: 'from-yellow-600 to-yellow-700',
-    angle: 300, // Top-left position
-    position: { x: -0.866, y: -0.5 }
+    keyConcepts: ['Brahman (Absolute)', 'Ātman (Self)', 'Māyā (Illusion)', 'Mokṣa (Liberation)'],
+    founder: 'Bādarāyaṇa',
+    text: 'Brahma Sūtra'
   }
 ]
 
@@ -101,614 +104,288 @@ interface DarshanaCircularVisualizationProps {
 export default function DarshanaCircularVisualization({ 
   onDarshanaClick 
 }: DarshanaCircularVisualizationProps) {
-  const [hoveredDarshana, setHoveredDarshana] = useState<string | null>(null)
-  const [clickedDarshanas, setClickedDarshanas] = useState<Set<string>>(new Set())
-  const [isUnlocked, setIsUnlocked] = useState(false)
-  const [flameAnimations, setFlameAnimations] = useState<Set<string>>(new Set())
-  const [layout, setLayout] = useState<ReturnType<typeof getDynamicLayout> | null>(null)
-  const svgRef = useRef<SVGSVGElement>(null)
-  const omRef = useRef<HTMLDivElement>(null)
-  const flameRefs = useRef<Map<string, HTMLDivElement>>(new Map())
+  const [selectedDarshana, setSelectedDarshana] = useState<string | null>(null)
+  const [unlockedCount, setUnlockedCount] = useState(0)
+  const [error, setError] = useState<string | null>(null)
 
-  // Calculate layout on mount and resize
-  useEffect(() => {
-    const calculateLayout = () => {
-      // Wait for DOM to be ready
-      setTimeout(() => {
-        const layout = getDynamicLayout()
-        setLayout(layout)
-        
-        // Debug: Check if all nodes exist in DOM
-        const darshanNodes = document.querySelectorAll('[data-id]')
-        console.log('Darshan nodes found:', darshanNodes.length, 'Expected: 6')
-        
-        // Debug: Log each node's data-id
-        darshanNodes.forEach((node, idx) => {
-          console.log(`Node ${idx}:`, node.getAttribute('data-id'))
-        })
-        
-        // Debug: Check SVG dimensions
-        const svg = svgRef.current
-        if (svg) {
-          const bbox = svg.getBBox()
-          console.log('SVG bbox:', bbox)
-          console.log('Layout:', layout)
-        }
-      }, 100)
+  // Memoize unlocked state to prevent unnecessary re-renders
+  const isUnlocked = useMemo(() => unlockedCount === 6, [unlockedCount])
+
+  // Handle darshana click with useCallback for performance
+  const handleDarshanaClick = useCallback((darshanaId: string) => {
+    try {
+      setError(null)
+      setSelectedDarshana(darshanaId)
+      setUnlockedCount(prev => Math.min(prev + 1, 6))
+      
+      // Call the optional callback
+      onDarshanaClick?.(darshanaId)
+    } catch (err) {
+      setError('Failed to select darshana. Please try again.')
+      console.error('Error in handleDarshanaClick:', err)
     }
-    
-    calculateLayout()
-    
-    // Debounced resize handler
-    let timeoutId: NodeJS.Timeout
-    const debouncedResize = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(calculateLayout, 100)
-    }
-    
-    window.addEventListener('resize', debouncedResize)
-    return () => {
-      window.removeEventListener('resize', debouncedResize)
-      clearTimeout(timeoutId)
+  }, [onDarshanaClick])
+
+  // Reset all darshanas with useCallback
+  const handleReset = useCallback(() => {
+    try {
+      setError(null)
+      setSelectedDarshana(null)
+      setUnlockedCount(0)
+    } catch (err) {
+      setError('Failed to reset. Please try again.')
+      console.error('Error in handleReset:', err)
     }
   }, [])
 
-  // Check if all darshanas are clicked
-  useEffect(() => {
-    if (clickedDarshanas.size === 6) {
-      setIsUnlocked(true)
-      // Start OM rotation when unlocked
-      if (omRef.current) {
-        gsap.to(omRef.current, {
-          rotation: 360,
-          repeat: -1,
-          duration: 3,
-          ease: "none",
-          transformOrigin: "50% 50%"
-        })
-      }
-    } else {
-      // Stop OM rotation when locked
-      if (omRef.current) {
-        gsap.killTweensOf(omRef.current)
-      }
-    }
-  }, [clickedDarshanas])
-
-  // Start flame travel animation
-  const startFlameFromNode = (darshanaId: string) => {
-    if (!layout) return
-    
-    const flameElement = flameRefs.current.get(darshanaId)
-    const pathId = `#connection-path-${darshanaId}`
-    
-    if (flameElement) {
-      // Reset flame position
-      gsap.set(flameElement, { opacity: 1, scale: 1 })
-      
-      // Animate flame along path
-      gsap.to(flameElement, {
-        duration: 1.6,
-        ease: "power1.inOut",
-        motionPath: {
-          path: pathId,
-          align: pathId,
-          autoRotate: true,
-          alignOrigin: [0.5, 0.5]
-        },
-        onComplete: () => {
-          // Fade out flame
-          gsap.to(flameElement, {
-            opacity: 0,
-            scale: 0.5,
-            duration: 0.3
-          })
-        }
-      })
-    }
-  }
-
-  // Handle darshana click
-  const handleDarshanaClick = (darshanaId: string, event?: React.MouseEvent) => {
-    // Prevent default behavior and event propagation
-    if (event) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    
-    const wasClicked = clickedDarshanas.has(darshanaId)
-    
-    setClickedDarshanas(prev => {
-      const newSet = new Set(prev)
-      if (wasClicked) {
-        newSet.delete(darshanaId)
-      } else {
-        newSet.add(darshanaId)
-        // Start flame travel animation
-        startFlameFromNode(darshanaId)
-      }
-      return newSet
-    })
-  }
-
-  // Dynamic layout calculation based on container size and node dimensions
-  const getDynamicLayout = () => {
-    if (typeof window === 'undefined') {
-      // Fallback for SSR
-      return {
-        svgSize: 600,
-        center: 300,
-        radius: 200,
-        nodeSize: 80,
-        nodeRadius: 40
-      }
-    }
-    
-    const containerSize = Math.min(window.innerWidth * 0.9, 700)
-    const svgSize = containerSize
-    const center = svgSize / 2
-    
-    // Calculate node size (including padding for hover effects)
-    const nodeSize = Math.max(80, containerSize * 0.12) // Responsive node size
-    const nodeRadius = nodeSize / 2
-    
-    // Calculate minimum radius to prevent overlap
-    // Each node needs space for its size + padding + some margin
-    const minRadius = (nodeSize + 40) / (2 * Math.sin(Math.PI / 6)) // 30 degrees between nodes
-    
-    // Use a radius that's at least 35% of the container but not less than minRadius
-    const radius = Math.max(minRadius, svgSize * 0.35)
-    
-    const layout = {
-      svgSize,
-      center,
-      radius,
-      nodeSize,
-      nodeRadius
-    }
-    
-    // Debug: Log layout calculation
-    console.log('Layout calculated:', layout)
-    
-    return layout
-  }
-
-  // Calculate node positions for circular layout
-  const getNodePosition = (angle: number, layout: ReturnType<typeof getDynamicLayout>) => {
-    const radians = (angle * Math.PI) / 180
-    const position = {
-      x: Math.sin(radians) * layout.radius + layout.center,
-      y: -Math.cos(radians) * layout.radius + layout.center
-    }
-    
-    // Debug: Log position calculation
-    console.log(`Position for angle ${angle}:`, {
-      radians,
-      radius: layout.radius,
-      center: layout.center,
-      position
-    })
-    
-    return position
-  }
-
-  // Generate path for flame animation
-  const getFlamePath = (angle: number, layout: ReturnType<typeof getDynamicLayout>) => {
-    const nodePos = getNodePosition(angle, layout)
-    const centerPos = { x: layout.center, y: layout.center }
-    
-    // Create a curved path from node to center
-    const controlPoint = {
-      x: (nodePos.x + centerPos.x) / 2 + (Math.random() - 0.5) * (layout.radius * 0.2),
-      y: (nodePos.y + centerPos.y) / 2 + (Math.random() - 0.5) * (layout.radius * 0.2)
-    }
-    
-    return `M ${nodePos.x} ${nodePos.y} Q ${controlPoint.x} ${controlPoint.y} ${centerPos.x} ${centerPos.y}`
-  }
-
-  // Debug: Log darshanas array
-  console.log('Darshanas array length:', darshanas.length)
-  console.log('Darshanas IDs:', darshanas.map(d => d.id))
-
-  // Don't render until layout is calculated
-  if (!layout) {
-    return (
-      <div className="flex justify-center mb-4 overflow-visible">
-        <div className="w-[min(90vw,700px)] h-[min(90vw,700px)] flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-saffron-500"></div>
-        </div>
-      </div>
-    )
-  }
-
+  console.log('DarshanaCircularVisualization rendering with', darshanas.length, 'darshanas')
+  
   return (
-    <div className="flex justify-center mb-4 overflow-visible">
-                {/* Debug indicator */}
-          <div className="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 text-xs z-50 max-w-xs">
-            <div>Debug: {darshanas.length} darshanas</div>
-            <div>Layout: {layout ? 'Ready' : 'Loading'}</div>
-            {layout && (
-              <div className="mt-1">
-                <div>Size: {layout.svgSize}x{layout.svgSize}</div>
-                <div>Center: ({layout.center}, {layout.center})</div>
-                <div>Radius: {layout.radius}</div>
-                <div>Nodes: {darshanas.map(d => d.id).join(', ')}</div>
-              </div>
-            )}
-          </div>
-      
-      <motion.div
-        className="relative w-[min(90vw,700px)] h-[min(90vw,700px)] perspective-1000"
-        style={{ 
-          transformStyle: 'preserve-3d',
-          willChange: 'transform'
-        }}
-      >
-        {/* SVG for connections and flame animations */}
-        <svg 
-          ref={svgRef}
-          className="absolute inset-0 w-full h-full pointer-events-none z-0"
-          viewBox={`0 0 ${layout.svgSize} ${layout.svgSize}`}
-          preserveAspectRatio="xMidYMid meet"
-        >
-          {/* Gradient definitions */}
-          <defs>
-            {/* Flame gradient */}
-            <linearGradient id="flameGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#dc2626" stopOpacity="0.7" />
-              <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.5" />
-            </linearGradient>
-            
-            {/* Connection gradient */}
-            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#0891b2" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#6366f1" stopOpacity="0.3" />
-            </linearGradient>
-            
-            {/* Particle gradient */}
-            <radialGradient id="particleGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#6366f1" stopOpacity="0.4" />
-            </radialGradient>
-          </defs>
-
-          {/* Floating particles */}
-          {[...Array(15)].map((_, i) => (
-            <motion.circle
-              key={`particle-${i}`}
-              cx={Math.random() * layout.svgSize}
-              cy={Math.random() * layout.svgSize}
-              r="2"
-              fill="url(#particleGradient)"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ 
-                opacity: [0, 0.6, 0],
-                scale: [0, 1, 0],
-                x: [0, (Math.random() - 0.5) * (layout.svgSize * 0.2)],
-                y: [0, (Math.random() - 0.5) * (layout.svgSize * 0.2)]
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-
-          {/* Connection lines from each node to center */}
-          {darshanas.map((darshana) => {
-            const nodePos = getNodePosition(darshana.angle, layout)
-            const centerPos = { x: layout.center, y: layout.center }
-            const isActive = hoveredDarshana === darshana.id || clickedDarshanas.has(darshana.id)
-            
-            // Debug: Log connection path coordinates
-            console.log(`Connection ${darshana.id}:`, {
-              nodePos,
-              centerPos,
-              path: `M ${nodePos.x} ${nodePos.y} L ${centerPos.x} ${centerPos.y}`
-            })
-            
-            return (
-              <motion.path
-                key={`connection-${darshana.id}`}
-                id={`connection-path-${darshana.id}`}
-                d={`M ${nodePos.x} ${nodePos.y} L ${centerPos.x} ${centerPos.y}`}
-                stroke={isActive ? "url(#flameGradient)" : "url(#connectionGradient)"}
-                strokeWidth={isActive ? "3" : "2"}
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ 
-                  pathLength: 1,
-                  opacity: isActive ? 0.8 : 0.3
-                }}
-                transition={{
-                  pathLength: { duration: 1, delay: 0.5 },
-                  opacity: { duration: 0.3 }
-                }}
-              />
-            )
-          })}
-
-          {/* Flame elements for GSAP animation */}
-          {darshanas.map((darshana) => {
-            const nodePos = getNodePosition(darshana.angle, layout)
-            return (
-              <div
-                key={`flame-${darshana.id}`}
-                ref={(el) => {
-                  if (el) flameRefs.current.set(darshana.id, el)
-                }}
-                className="absolute w-4 h-4 bg-gradient-to-r from-orange-400 to-red-500 rounded-full opacity-0 pointer-events-none"
-                style={{
-                  left: `${(nodePos.x / layout.svgSize) * 100}%`,
-                  top: `${(nodePos.y / layout.svgSize) * 100}%`,
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 15
-                }}
-              />
-            )
-          })}
-        </svg>
-
-        {/* Central Core */}
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Error Display */}
+      {error && (
         <motion.div
-          id="center"
-          animate={{ 
-            scale: [1, 1.05, 1],
-          }}
-          transition={{ 
-            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-          }}
-          whileHover={{ 
-            scale: 1.15,
-            transition: { duration: 0.3 }
-          }}
-          className={`absolute w-24 h-24 bg-gradient-to-r from-saffron-400 via-deep-teal-400 to-indigo-400 rounded-full shadow-2xl flex items-center justify-center z-20 cursor-pointer group ${isUnlocked ? '' : 'locked'}`}
-          style={{
-            left: `${(layout.center / layout.svgSize) * 100}%`,
-            top: `${(layout.center / layout.svgSize) * 100}%`,
-            transform: 'translate(-50%, -50%)'
-          }}
-          onClick={() => {
-            if (isUnlocked) {
-              setClickedDarshanas(new Set())
-              setIsUnlocked(false)
-            }
-          }}
-          role="button"
-          tabIndex={0}
-          aria-label={isUnlocked ? "Unlocked wisdom center - click to reset" : "Locked wisdom center - click all darshanas to unlock"}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              if (isUnlocked) {
-                setClickedDarshanas(new Set())
-                setIsUnlocked(false)
-              }
-            }
-          }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
         >
-          <div className="w-20 h-20 bg-white/90 dark:bg-wisdom-800/90 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-all duration-300">
-            {isUnlocked ? (
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-12 h-12 bg-gradient-to-r from-saffron-400 to-deep-teal-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
-              >
-                <div 
-                  ref={omRef}
-                  id="om-symbol"
-                  className="text-white text-2xl font-devanagari"
-                  style={{
-                    transformBox: 'fill-box',
-                    transformOrigin: 'center center',
-                    willChange: 'transform'
-                  }}
+          <p className="text-red-600 dark:text-red-400 text-sm text-center">
+            {error}
+          </p>
+        </motion.div>
+      )}
+      
+      {/* Central OM Section */}
+      <div className="flex justify-center mb-12">
+        <motion.div
+          className="relative"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {/* Central OM */}
+          <motion.button
+            onClick={handleReset}
+            className={`relative w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-saffron-400 via-deep-teal-400 to-indigo-400 rounded-full shadow-2xl flex items-center justify-center cursor-pointer group transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-saffron-300/50 touch-manipulation ${
+              isUnlocked ? 'ring-4 ring-saffron-300/50 shadow-saffron-500/25' : ''
+            }`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            animate={isUnlocked ? {
+              boxShadow: [
+                "0 25px 50px -12px rgba(245, 158, 11, 0.25)",
+                "0 25px 50px -12px rgba(245, 158, 11, 0.5)",
+                "0 25px 50px -12px rgba(245, 158, 11, 0.25)"
+              ]
+            } : {}}
+            transition={{ 
+              boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            }}
+            aria-label={isUnlocked ? "Reset all darshanas - All wisdom unlocked" : "Central wisdom hub - Click to reset"}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white/90 dark:bg-wisdom-800/90 rounded-full flex items-center justify-center shadow-lg">
+              {isUnlocked ? (
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="text-white text-2xl sm:text-4xl font-devanagari"
                 >
                   ॐ
-                </div>
-              </motion.div>
-            ) : (
+                </motion.div>
+              ) : (
+                <motion.div
+                  animate={{ 
+                    scale: unlockedCount > 0 ? [1, 1.1, 1] : 1,
+                    rotate: unlockedCount > 0 ? [0, 5, -5, 0] : 0
+                  }}
+                  transition={{ 
+                    duration: 0.5,
+                    repeat: unlockedCount > 0 ? Infinity : 0,
+                    ease: "easeInOut"
+                  }}
+                  className="text-white text-lg sm:text-2xl"
+                >
+                  <Lock className="w-6 h-6 sm:w-8 sm:h-8" />
+                </motion.div>
+              )}
+            </div>
+            
+            {/* Progress rings */}
+            {[1, 2, 3].map((ring) => (
               <motion.div
+                key={ring}
+                className="absolute inset-0 border-2 border-saffron-300/50 dark:border-saffron-400/50 rounded-full"
                 animate={{ 
-                  scale: clickedDarshanas.size > 0 ? [1, 1.1, 1] : 1,
-                  rotate: clickedDarshanas.size > 0 ? [0, 5, -5, 0] : 0
+                  scale: [1, 1.5 + ring * 0.3, 1],
+                  opacity: [0.3, 0, 0.3]
                 }}
                 transition={{ 
-                  duration: 0.5,
-                  repeat: clickedDarshanas.size > 0 ? Infinity : 0,
-                  ease: "easeInOut"
+                  duration: 2 + ring * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: ring * 0.3
                 }}
-                className="w-12 h-12 bg-gradient-to-r from-saffron-400 to-deep-teal-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
-              >
-                <Lock className="w-6 h-6 text-white" />
-              </motion.div>
-            )}
+                style={{ scale: 1 + ring * 0.2 }}
+              />
+            ))}
+          </motion.button>
+          
+          {/* Progress indicator */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+            <div className="bg-white/90 dark:bg-wisdom-800/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg min-w-fit">
+              <span className="text-xs sm:text-sm font-medium text-saffron-600 dark:text-saffron-400 whitespace-nowrap">
+                {unlockedCount}/6 Unlocked
+              </span>
+            </div>
           </div>
-          
-          {/* Pulsing energy rings */}
-          {[1, 2, 3].map((ring) => (
-            <motion.div
-              key={ring}
-              animate={{ 
-                scale: [1, 1.5 + ring * 0.3, 1],
-                opacity: [0.3, 0, 0.3]
-              }}
-              transition={{ 
-                duration: 2 + ring * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: ring * 0.3
-              }}
-              className="absolute inset-0 border-2 border-saffron-300/50 dark:border-saffron-400/50 rounded-full"
-              style={{ scale: 1 + ring * 0.2 }}
-            />
-          ))}
         </motion.div>
+      </div>
 
-        {/* Darshana Nodes */}
+      {/* Darshana Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
+        {/* Debug info */}
+        <div className="col-span-full bg-yellow-100 p-4 rounded-lg mb-4">
+          <h3 className="text-lg font-bold">Debug Info</h3>
+          <p>Total darshanas: {darshanas.length}</p>
+          <p>Unlocked count: {unlockedCount}</p>
+          <p>Selected: {selectedDarshana || 'None'}</p>
+        </div>
+        
         {darshanas.map((darshana, index) => {
-          // Ensure we have valid data
-          if (!darshana || !darshana.id) {
-            console.error('Invalid darshana data at index:', index, darshana)
-            return null
-          }
-          const nodePos = getNodePosition(darshana.angle, layout)
-          const isHovered = hoveredDarshana === darshana.id
-          const isClicked = clickedDarshanas.has(darshana.id)
-          
-          // Debug: Log node positioning
-          console.log(`Node ${index} (${darshana.id}):`, {
-            angle: darshana.angle,
-            nodePos,
-            percentage: {
-              left: `${(nodePos.x / layout.svgSize) * 100}%`,
-              top: `${(nodePos.y / layout.svgSize) * 100}%`
-            }
-          })
+          console.log('Rendering darshana:', darshana.name, 'at index:', index)
+          const isSelected = selectedDarshana === darshana.id
+          const isUnlocked = unlockedCount > index
           
           return (
-            <motion.button
+            <motion.div
               key={darshana.id}
-              data-id={darshana.id}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                x: [0, Math.sin(Date.now() * 0.001 + index) * 3, 0],
-                y: [0, Math.cos(Date.now() * 0.001 + index) * 2, 0]
-              }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                x: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" },
-                y: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" }
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ 
-                scale: 1.3, 
-                rotateZ: 10,
-                transition: { duration: 0.3, ease: "easeOut" }
+                y: -8,
+                transition: { duration: 0.3 }
               }}
-              whileTap={{ 
-                scale: 0.9,
-                transition: { duration: 0.1 }
-              }}
-              onMouseEnter={() => setHoveredDarshana(darshana.id)}
-              onMouseLeave={() => setHoveredDarshana(null)}
-              onClick={(e) => handleDarshanaClick(darshana.id, e)}
-              className={`absolute group focus-ring z-10 ${isClicked ? 'activated' : ''}`}
-              style={{
-                left: `${(nodePos.x / layout.svgSize) * 100}%`,
-                top: `${(nodePos.y / layout.svgSize) * 100}%`,
-                transform: 'translate(-50%, -50%)',
-                visibility: 'visible',
-                display: 'block',
-                pointerEvents: 'auto',
-                zIndex: 20 + index // Ensure proper stacking order
-              }}
-              aria-label={`Learn about ${darshana.name} - ${darshana.tooltip}`}
-              aria-pressed={isClicked}
-              aria-expanded={isHovered}
+              className="group cursor-pointer focus-within:ring-4 focus-within:ring-saffron-300/50 focus-within:outline-none rounded-2xl"
+              onClick={() => handleDarshanaClick(darshana.id)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
                   handleDarshanaClick(darshana.id)
                 }
               }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Explore ${darshana.name} - ${darshana.description}`}
             >
-              <div 
-                className={`
-                  bg-gradient-to-r ${darshana.color} hover:${darshana.hoverColor} rounded-full shadow-lg
-                  flex items-center justify-center text-white
-                  group-hover:shadow-2xl transition-all duration-300
-                  border-2 ${isClicked ? 'border-white/60' : 'border-white/20'} group-hover:border-white/40
-                  relative overflow-hidden
-                  ${isClicked ? 'ring-4 ring-saffron-300/50' : ''}
-                `}
-                style={{
-                  width: `${layout.nodeSize}px`,
-                  height: `${layout.nodeSize}px`
-                }}
-              >
-                <darshana.icon 
-                  className="group-hover:scale-110 transition-transform duration-300"
-                  style={{
-                    width: `${layout.nodeSize * 0.5}px`,
-                    height: `${layout.nodeSize * 0.5}px`
-                  }}
-                />
+              <div className={`
+                relative bg-white dark:bg-wisdom-800 rounded-2xl p-4 sm:p-6 shadow-lg border-2 transition-all duration-300
+                ${isSelected 
+                  ? 'border-saffron-500 shadow-saffron-500/25 scale-105' 
+                  : 'border-transparent hover:border-saffron-300/50'
+                }
+                ${isUnlocked ? 'ring-2 ring-saffron-300/30' : ''}
+              `}>
+                {/* Background gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${darshana.color} opacity-5 rounded-2xl`} />
                 
-                {/* Flowing shine effect */}
-                <motion.div 
-                  animate={{ 
-                    x: ['-100%', '100%'],
-                    opacity: [0, 1, 0]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.3
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12"
-                />
-                
-                {/* Energy pulse */}
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.4, 1],
-                    opacity: [0.6, 0, 0.6]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.4
-                  }}
-                  className="absolute inset-0 border-2 border-white/40 rounded-full"
-                />
-
-                {/* Clicked indicator */}
-                {isClicked && (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 w-6 h-6 bg-saffron-500 rounded-full flex items-center justify-center"
-                  >
-                    <Star className="w-3 h-3 text-white" />
-                  </motion.div>
-                )}
-              </div>
-              
-              {/* Enhanced Tooltip */}
-              <motion.div 
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ 
-                  opacity: isHovered ? 1 : 0, 
-                  y: isHovered ? 0 : 10, 
-                  scale: isHovered ? 1 : 0.9,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-                className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 pointer-events-none z-30"
-              >
-                <div className="bg-wisdom-800 dark:bg-wisdom-200 text-white dark:text-wisdom-800 px-4 py-3 rounded-xl text-sm whitespace-nowrap shadow-2xl border border-white/10 backdrop-blur-sm">
-                  <div className="font-bold text-base">{darshana.name}</div>
-                  <div className="text-xs opacity-90 mb-1">{darshana.sanskrit}</div>
-                  <div className="text-xs opacity-80">{darshana.tooltip}</div>
+                {/* Header */}
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${darshana.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <darshana.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                    </div>
+                    
+                    {isUnlocked && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="w-6 h-6 sm:w-8 sm:h-8 bg-saffron-500 rounded-full flex items-center justify-center"
+                      >
+                        <Star className="w-4 h-4 text-white" />
+                      </motion.div>
+                    )}
+                  </div>
+                  
+                  <h3 className="text-lg sm:text-xl font-display text-indigo-700 dark:text-soft-gold-500 mb-2 group-hover:text-saffron-600 dark:group-hover:text-saffron-400 transition-colors">
+                    {darshana.name}
+                  </h3>
+                  
+                  <p className="text-base sm:text-lg font-devanagari text-saffron-600 dark:text-saffron-400 mb-3">
+                    {darshana.sanskrit}
+                  </p>
+                  
+                  <p className="text-wisdom-600 dark:text-wisdom-400 mb-3 sm:mb-4 font-semibold text-sm sm:text-base">
+                    {darshana.description}
+                  </p>
+                  
+                  <p className="text-wisdom-600 dark:text-wisdom-400 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                    {darshana.detailedDescription}
+                  </p>
                 </div>
-                {/* Tooltip arrow */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-wisdom-800 dark:border-t-wisdom-200"></div>
-              </motion.div>
-            </motion.button>
+
+                {/* Key Concepts */}
+                <div className="relative z-10 mb-3 sm:mb-4">
+                  <h4 className="text-xs sm:text-sm font-semibold text-indigo-700 dark:text-soft-gold-500 mb-2">
+                    Key Concepts
+                  </h4>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                    {darshana.keyConcepts.slice(0, 2).map((concept, conceptIndex) => (
+                      <span key={conceptIndex} className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
+                        {concept}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Founder & Text */}
+                <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-wisdom-500 dark:text-wisdom-400 mb-3 sm:mb-4 gap-1 sm:gap-0">
+                  <div>
+                    <span className="font-medium">Founder:</span> {darshana.founder}
+                  </div>
+                  <div>
+                    <span className="font-medium">Text:</span> {darshana.text}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="relative z-10 flex items-center justify-center space-x-2 text-saffron-600 dark:text-saffron-400 font-medium group-hover:text-saffron-700 dark:group-hover:text-saffron-300 transition-colors text-sm sm:text-base">
+                  <span>{isSelected ? 'Selected' : 'Explore'}</span>
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl" />
+              </div>
+            </motion.div>
           )
         })}
+      </div>
+
+      {/* Instructions */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="text-center mt-12"
+      >
+        <div className="bg-white/80 dark:bg-wisdom-800/80 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-saffron-200/30 dark:border-soft-gold-500/20 max-w-2xl mx-auto">
+          <div className="flex items-center justify-center space-x-2 mb-3">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-saffron-500" />
+            <h3 className="text-base sm:text-lg font-semibold text-indigo-700 dark:text-soft-gold-500">
+              How to Unlock Wisdom
+            </h3>
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-saffron-500" />
+          </div>
+          <p className="text-wisdom-600 dark:text-wisdom-400 text-xs sm:text-sm leading-relaxed">
+            Click on each Darshana card to unlock it. When all six schools are unlocked, 
+            the central OM symbol will appear, representing the unity of all wisdom traditions.
+          </p>
+        </div>
       </motion.div>
     </div>
   )

@@ -49,9 +49,9 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer className="bg-deep-maroon text-white transition-colors duration-300 relative">
-      {/* Animated Mandala Border Pattern */}
-      <div className="absolute inset-0 -z-10">
+    <footer className="bg-deep-maroon text-white transition-colors duration-300 relative overflow-hidden">
+      {/* Animated Mandala Border Pattern - Contained within viewport */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         {/* Top Mandala Border */}
         <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
           <motion.div
@@ -67,7 +67,7 @@ export default function Footer() {
             className="flex space-x-8"
           >
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="w-16 h-16 border-2 border-temple-gold/20 rounded-full flex items-center justify-center">
+              <div key={i} className="w-16 h-16 border-2 border-temple-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
                 <div className="w-8 h-8 border border-temple-gold/30 rounded-full"></div>
               </div>
             ))}
@@ -89,15 +89,15 @@ export default function Footer() {
             className="flex space-x-8"
           >
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="w-16 h-16 border-2 border-copper-orange/20 rounded-full flex items-center justify-center">
+              <div key={i} className="w-16 h-16 border-2 border-copper-orange/20 rounded-full flex items-center justify-center flex-shrink-0">
                 <div className="w-8 h-8 border border-copper-orange/30 rounded-full"></div>
               </div>
             ))}
           </motion.div>
         </div>
         
-        {/* Side Mandala Patterns */}
-        <div className="absolute top-1/2 left-0 w-20 h-full overflow-hidden">
+        {/* Side Mandala Patterns - Hidden on mobile to prevent overflow */}
+        <div className="hidden lg:block absolute top-1/2 left-0 w-20 h-full overflow-hidden">
           <motion.div
             animate={{ 
               y: [0, -50, 0],
@@ -118,7 +118,7 @@ export default function Footer() {
           </motion.div>
         </div>
         
-        <div className="absolute top-1/2 right-0 w-20 h-full overflow-hidden">
+        <div className="hidden lg:block absolute top-1/2 right-0 w-20 h-full overflow-hidden">
           <motion.div
             animate={{ 
               y: [0, 50, 0],
@@ -139,8 +139,8 @@ export default function Footer() {
           </motion.div>
         </div>
         
-        {/* Floating Mandala Elements */}
-        <div className="absolute top-20 left-1/4 opacity-10">
+        {/* Floating Mandala Elements - Contained within safe areas */}
+        <div className="absolute top-20 left-1/4 opacity-10 max-w-24 max-h-24">
           <motion.div
             animate={{ 
               rotate: [0, 360],
@@ -159,7 +159,7 @@ export default function Footer() {
           </motion.div>
         </div>
         
-        <div className="absolute bottom-20 right-1/4 opacity-10">
+        <div className="absolute bottom-20 right-1/4 opacity-10 max-w-20 max-h-20">
           <motion.div
             animate={{ 
               rotate: [0, -360],
@@ -179,7 +179,7 @@ export default function Footer() {
         </div>
       </div>
       
-      <div className="container-custom py-16 relative z-10">
+      <div className="container-custom py-16 relative z-10 mb-0">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           {/* Brand Section */}
@@ -192,7 +192,7 @@ export default function Footer() {
                 Shikshanam
               </span>
             </div>
-            <p className="text-sand-beige mb-6 leading-relaxed">
+            <p className="text-white/90 mb-6 leading-relaxed">
               Preserving and sharing ancient Indian wisdom with the modern world. Join us in this noble mission of cultural preservation and spiritual growth.
             </p>
             
@@ -206,7 +206,7 @@ export default function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-center space-x-3 text-sand-beige hover:text-parchment-ivory transition-colors duration-200"
+                  className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors duration-200"
                 >
                   <contact.icon className="w-4 h-4 text-temple-gold" />
                   <span className="text-sm">{contact.text}</span>
@@ -236,7 +236,7 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      className="text-sand-beige hover:text-parchment-ivory transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
+                      className="text-white/80 hover:text-white transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
                     >
                       {link.name}
                     </a>

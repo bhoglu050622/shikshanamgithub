@@ -244,7 +244,14 @@ module.exports = {
   			'sand-beige': 'hsl(var(--sand-beige))',
   			'dark-olive': 'hsl(var(--dark-olive))',
   			'temple-gold': 'hsl(var(--temple-gold))',
-  			'deep-indigo': 'hsl(var(--deep-indigo))'
+  			'deep-indigo': 'hsl(var(--deep-indigo))',
+  			
+  			// Enhanced Text Colors
+  			'text-primary': 'hsl(var(--text-primary))',
+  			'text-secondary': 'hsl(var(--text-secondary))',
+  			'text-tertiary': 'hsl(var(--text-tertiary))',
+  			'text-accent': 'hsl(var(--text-accent))',
+  			'text-muted': 'hsl(var(--text-muted))'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

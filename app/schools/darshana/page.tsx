@@ -517,7 +517,7 @@ export default function SchoolOfDarshanaPage() {
       </section>
 
       {/* Enhanced 6 Darshana Flowing Network */}
-      <section className="py-12 md:py-16 lg:py-20 bg-white/50 dark:bg-deep-indigo-500/50">
+      <section className="py-12 md:py-16 lg:py-20 bg-white/50 dark:bg-deep-indigo-500/50 min-h-screen">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

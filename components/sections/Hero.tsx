@@ -110,7 +110,7 @@ export default function Hero() {
       </div>
 
       <div className="container-custom text-center relative z-10">
-        <StaggerContainer className="space-y-8">
+        <StaggerContainer className="space-y-readable">
           <StaggerItem>
             <div className="flex justify-center mb-8">
               <div className="flex items-center space-x-4 text-golden-olive">
@@ -122,7 +122,7 @@ export default function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <h1 className="text-hero text-dark-olive mb-8">
+            <h1 className="text-hero text-high-contrast mb-8 text-shadow-sm">
               Welcome to{' '}
               <span className="bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent">
                 Eternal India
@@ -131,7 +131,7 @@ export default function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <p className="text-subheading text-deep-maroon mb-16 max-w-5xl mx-auto devanagari-separator">
+            <p className="text-subheading text-medium-contrast mb-16 max-w-5xl mx-auto devanagari-separator text-readable">
               Discover Wisdom, Language & Self-Transformation
             </p>
           </StaggerItem>
@@ -146,14 +146,14 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
-                    className="flex items-center space-x-3 text-dark-olive"
+                    className="flex items-center space-x-3 text-high-contrast"
                   >
                     <div className="w-10 h-10 bg-gradient-to-br from-golden-olive to-golden-olive/90 rounded-xl flex items-center justify-center">
                       <stat.icon className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-dark-olive">{stat.value}</div>
-                      <div className="text-sm text-sand-beige">{stat.label}</div>
+                      <div className="text-lg font-bold text-high-contrast">{stat.value}</div>
+                      <div className="text-sm text-medium-contrast">{stat.label}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -170,8 +170,8 @@ export default function Hero() {
                   delay={0.4 + index * 0.1}
                   className="group cursor-pointer relative tap-target"
                 >
-                  <a href={button.href} className="block">
-                    <div className={`bg-gradient-to-br ${button.color} hover:${button.hoverColor} p-10 rounded-3xl text-white transition-all duration-500 shadow-2xl hover:shadow-3xl border border-white/10 card-premium group-hover:scale-105 group-hover:-translate-y-2`}>
+                  <a href={button.href} className="block focus-visible-enhanced">
+                    <div className={`bg-gradient-to-br ${button.color} hover:${button.hoverColor} p-10 rounded-3xl text-white transition-all duration-500 shadow-2xl hover:shadow-3xl border border-white/10 card-premium group-hover:scale-105 group-hover:-translate-y-2 focus-visible-enhanced`}>
                       <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-500 relative overflow-hidden">
                         <div className="text-4xl group-hover:scale-110 transition-transform duration-300">
                           {button.emoji}
@@ -179,15 +179,15 @@ export default function Hero() {
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                       </div>
                       
-                      <h3 className="text-display mb-3 group-hover:text-white transition-colors duration-300">
+                      <h3 className="text-display mb-3 group-hover:text-white transition-colors duration-300 text-shadow-sm">
                         {button.title}
                       </h3>
                       
-                      <p className="text-white mb-4 text-body group-hover:text-white transition-colors duration-300">
+                      <p className="text-white mb-4 text-body group-hover:text-white transition-colors duration-300 text-readable">
                         {button.description}
                       </p>
                       
-                      <div className="text-white/80 text-sm mb-6 group-hover:text-white/90 transition-colors duration-300">
+                      <div className="text-white/90 text-sm mb-6 group-hover:text-white transition-colors duration-300">
                         {button.stats}
                       </div>
                       
@@ -227,7 +227,7 @@ export default function Hero() {
 
           <StaggerItem>
             <div className="flex flex-col items-center space-y-4">
-              <span className="text-dark-olive text-small font-medium tracking-wide uppercase">
+              <span className="text-medium-contrast text-small-enhanced tracking-wide uppercase">
                 Scroll to explore
               </span>
               
