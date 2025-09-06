@@ -1,0 +1,94 @@
+{
+  "steps": [
+    {
+      "id": "basics",
+      "title": "Darshana Basics",
+      "description": "Meet Maya, a curious student who discovers that Indian philosophy isn't just ancient texts—it's a living map of reality itself.",
+      "comic": "/assets/comics/basics.svg",
+      "icon": "BookOpen",
+      "isUnlocked": true
+    },
+    {
+      "id": "nyaya",
+      "title": "Nyaya",
+      "description": "Maya learns to think clearly through Nyaya's logical framework, discovering how to distinguish truth from illusion in everyday life.",
+      "comic": "/assets/comics/nyaya.svg",
+      "icon": "Brain",
+      "isUnlocked": false
+    },
+    {
+      "id": "vaisheshika",
+      "title": "Vaisheshika",
+      "description": "Exploring the atomic theory of reality, Maya understands how everything in existence is built from fundamental building blocks.",
+      "comic": "/assets/comics/vaisheshika.svg",
+      "icon": "Atom",
+      "isUnlocked": false
+    },
+    {
+      "id": "samkhya",
+      "title": "Samkhya",
+      "description": "Maya discovers the profound distinction between consciousness and matter, learning the 24 principles that make up reality.",
+      "comic": "/assets/comics/samkhya.svg",
+      "icon": "Eye",
+      "isUnlocked": false
+    },
+    {
+      "id": "yoga",
+      "title": "Yoga",
+      "description": "Through the eight limbs of yoga, Maya transforms her understanding into practice, finding peace in the midst of life's chaos.",
+      "comic": "/assets/comics/yoga.svg",
+      "icon": "Heart",
+      "isUnlocked": false
+    },
+    {
+      "id": "mimamsa",
+      "title": "Mimamsa",
+      "description": "Maya learns the science of right action, understanding how duty and ethics form the foundation of a meaningful life.",
+      "comic": "/assets/comics/mimamsa.svg",
+      "icon": "Scale",
+      "isUnlocked": false
+    },
+    {
+      "id": "vedanta",
+      "title": "Vedanta",
+      "description": "In her final realization, Maya discovers that the Self and the Absolute are one—the ultimate truth that liberates the soul.",
+      "comic": "/assets/comics/vedanta.svg",
+      "icon": "Lightbulb",
+      "isUnlocked": false
+    }
+  ],
+  "settings": {
+    "autoPlayInterval": 1800,
+    "speedMultipliers": {
+      "slow": 1.5,
+      "normal": 1,
+      "fast": 0.6
+    },
+    "animationDurations": {
+      "panelEntrance": 450,
+      "arrowMovement": 600,
+      "buttonUnlock": 420,
+      "lockOpen": 360
+    },
+    "easing": {
+      "panelEntrance": "cubic-bezier(.22,.8,.1,1)",
+      "arrowMovement": "easeInOut",
+      "buttonUnlock": "easeInOut",
+      "lockOpen": "easeOut"
+    }
+  },
+  "accessibility": {
+    "reducedMotionDuration": 150,
+    "keyboardShortcuts": {
+      "previous": "ArrowLeft",
+      "next": "ArrowRight",
+      "playPause": "Space"
+    },
+    "ariaLabels": {
+      "region": "Unsure Path Journey",
+      "navigation": "Darshana learning steps",
+      "progress": "Progress through Darshana steps",
+      "comic": "Comic illustration for current step"
+    }
+  }
+}

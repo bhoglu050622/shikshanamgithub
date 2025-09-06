@@ -1,392 +1,830 @@
 'use client'
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import { 
+  Play, 
+  Pause, 
+  ChevronLeft, 
+  ChevronRight, 
+  ArrowDown,
+  Target,
+  BookOpen,
   Brain, 
   Atom, 
   Eye, 
   Heart, 
   Scale, 
-  Lightbulb,
-  Lock,
-  Star,
-  ArrowRight,
-  Sparkles
+  Lightbulb
 } from 'lucide-react'
 
-// Darshana data with enhanced information
-const darshanas = [
-  {
-    id: 'nyaya',
-    name: 'Nyāya',
-    sanskrit: 'न्याय',
-    description: 'The Science of Logic & Reasoning',
-    detailedDescription: 'Master the art of clear thinking, valid inference, and systematic debate. Learn to distinguish truth from falsehood through rigorous logical analysis.',
-    icon: Brain,
-    color: 'from-blue-500 to-blue-600',
-    hoverColor: 'from-blue-600 to-blue-700',
-    keyConcepts: ['Pramāṇa (Means of Knowledge)', 'Tarka (Logic)', 'Vāda (Debate)', 'Hetvābhāsa (Fallacies)'],
-    founder: 'Akshapada Gautama',
-    text: 'Nyāya Sūtra'
-  },
-  {
-    id: 'vaisheshika',
-    name: 'Vaiśeṣika',
-    sanskrit: 'वैशेषिक',
-    description: 'The Atomic Theory of Reality',
-    detailedDescription: 'Explore the fundamental building blocks of existence. Understand how reality is structured through categories, atoms, and their interactions.',
-    icon: Atom,
-    color: 'from-green-500 to-green-600',
-    hoverColor: 'from-green-600 to-green-700',
-    keyConcepts: ['Dravya (Substance)', 'Guṇa (Quality)', 'Karma (Action)', 'Padārtha (Categories)'],
-    founder: 'Kaṇāda',
-    text: 'Vaiśeṣika Sūtra'
-  },
-  {
-    id: 'samkhya',
-    name: 'Sāṅkhya',
-    sanskrit: 'साङ्ख्य',
-    description: 'The Map of Consciousness',
-    detailedDescription: 'Discover the profound understanding of consciousness and matter. Learn about the 24 principles (tattvas) that make up reality.',
-    icon: Eye,
-    color: 'from-purple-500 to-purple-600',
-    hoverColor: 'from-purple-600 to-purple-700',
-    keyConcepts: ['Puruṣa (Consciousness)', 'Prakṛti (Matter)', 'Tattva (Principles)', 'Kaivalya (Liberation)'],
-    founder: 'Kapila',
-    text: 'Sāṅkhya Kārikā'
-  },
-  {
-    id: 'yoga',
-    name: 'Yoga',
-    sanskrit: 'योग',
-    description: 'The Path of Self-Realization',
-    detailedDescription: 'Transform your life through the eight limbs of yoga. From ethical living to meditation, discover the complete path to inner peace.',
-    icon: Heart,
-    color: 'from-red-500 to-red-600',
-    hoverColor: 'from-red-600 to-red-700',
-    keyConcepts: ['Aṣṭāṅga (Eight Limbs)', 'Citta-vṛtti-nirodhaḥ', 'Samādhi (Meditation)', 'Kaivalya (Liberation)'],
-    founder: 'Patañjali',
-    text: 'Yoga Sūtra'
-  },
-  {
-    id: 'mimamsa',
-    name: 'Mīmāṁsā',
-    sanskrit: 'मीमांसा',
-    description: 'The Science of Dharma',
-    detailedDescription: 'Understand the principles of right action, duty, and ethical living. Learn how to interpret sacred texts and apply their wisdom.',
-    icon: Scale,
-    color: 'from-orange-500 to-orange-600',
-    hoverColor: 'from-orange-600 to-orange-700',
-    keyConcepts: ['Dharma (Duty)', 'Karma (Action)', 'Vidhi (Injunction)', 'Nishēdha (Prohibition)'],
-    founder: 'Jaimini',
-    text: 'Mīmāṁsā Sūtra'
-  },
-  {
-    id: 'vedanta',
-    name: 'Vedānta',
-    sanskrit: 'वेदान्त',
-    description: 'The Ultimate Reality',
-    detailedDescription: 'Discover the non-dual nature of existence. Understand that the Self and the Absolute are one, leading to profound spiritual realization.',
-    icon: Lightbulb,
-    color: 'from-yellow-500 to-yellow-600',
-    hoverColor: 'from-yellow-600 to-yellow-700',
-    keyConcepts: ['Brahman (Absolute)', 'Ātman (Self)', 'Māyā (Illusion)', 'Mokṣa (Liberation)'],
-    founder: 'Bādarāyaṇa',
-    text: 'Brahma Sūtra'
-  }
-]
+// Types
+interface Step {
+  id: string
+  title: string
+  description: string
+  comic: string
+  icon: any
+}
 
 interface DarshanaCircularVisualizationProps {
   onDarshanaClick?: (darshanaId: string) => void
 }
 
+// Step data - all unlocked by default for open storytelling
+const steps: Step[] = [
+  {
+    id: 'basics',
+    title: 'Darshana Basics',
+    description: 'Meet Maya, a curious student who discovers that Indian philosophy isn\'t just ancient texts—it\'s a living map of reality itself.',
+    comic: '/assets/comics/basics.svg',
+    icon: BookOpen
+  },
+  {
+    id: 'nyaya',
+    title: 'Nyaya',
+    description: 'Maya learns to think clearly through Nyaya\'s logical framework, discovering how to distinguish truth from illusion in everyday life.',
+    comic: '/assets/comics/nyaya.svg',
+    icon: Brain
+  },
+  {
+    id: 'vaisheshika',
+    title: 'Vaisheshika',
+    description: 'Exploring the atomic theory of reality, Maya understands how everything in existence is built from fundamental building blocks.',
+    comic: '/assets/comics/vaisheshika.svg',
+    icon: Atom
+  },
+  {
+    id: 'samkhya',
+    title: 'Samkhya',
+    description: 'Maya discovers the profound distinction between consciousness and matter, learning the 24 principles that make up reality.',
+    comic: '/assets/comics/samkhya.svg',
+    icon: Eye
+  },
+  {
+    id: 'yoga',
+    title: 'Yoga',
+    description: 'Through the eight limbs of yoga, Maya transforms her understanding into practice, finding peace in the midst of life\'s chaos.',
+    comic: '/assets/comics/yoga.svg',
+    icon: Heart
+  },
+  {
+    id: 'mimamsa',
+    title: 'Mimamsa',
+    description: 'Maya learns the science of right action, understanding how duty and ethics form the foundation of a meaningful life.',
+    comic: '/assets/comics/mimamsa.svg',
+    icon: Scale
+  },
+  {
+    id: 'vedanta',
+    title: 'Vedanta',
+    description: 'In her final realization, Maya discovers that the Self and the Absolute are one—the ultimate truth that liberates the soul.',
+    comic: '/assets/comics/vedanta.svg',
+    icon: Lightbulb
+  }
+]
+
+// Main component
 export default function DarshanaCircularVisualization({ 
   onDarshanaClick 
 }: DarshanaCircularVisualizationProps) {
-  const [selectedDarshana, setSelectedDarshana] = useState<string | null>(null)
-  const [unlockedCount, setUnlockedCount] = useState(0)
-  const [error, setError] = useState<string | null>(null)
+  const [currentStep, setCurrentStep] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isReducedMotion, setIsReducedMotion] = useState(false)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [playSpeed, setPlaySpeed] = useState<'slow' | 'normal' | 'fast'>('normal')
+  
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
+  const controls = useAnimation()
 
-  // Memoize unlocked state to prevent unnecessary re-renders
-  const isUnlocked = useMemo(() => unlockedCount === 6, [unlockedCount])
-
-  // Handle darshana click with useCallback for performance
-  const handleDarshanaClick = useCallback((darshanaId: string) => {
-    try {
-      setError(null)
-      setSelectedDarshana(darshanaId)
-      setUnlockedCount(prev => Math.min(prev + 1, 6))
-      
-      // Call the optional callback
-      onDarshanaClick?.(darshanaId)
-    } catch (err) {
-      setError('Failed to select darshana. Please try again.')
-      console.error('Error in handleDarshanaClick:', err)
-    }
-  }, [onDarshanaClick])
-
-  // Reset all darshanas with useCallback
-  const handleReset = useCallback(() => {
-    try {
-      setError(null)
-      setSelectedDarshana(null)
-      setUnlockedCount(0)
-    } catch (err) {
-      setError('Failed to reset. Please try again.')
-      console.error('Error in handleReset:', err)
-    }
+  // Check for reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setIsReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
-  console.log('DarshanaCircularVisualization rendering with', darshanas.length, 'darshanas')
+  // Auto-play functionality with speed control
+  useEffect(() => {
+    if (isPlaying && !isReducedMotion) {
+      const speedMultipliers = { slow: 1.5, normal: 1, fast: 0.6 }
+      const baseInterval = 1800
+      const interval = baseInterval * speedMultipliers[playSpeed]
+      
+      autoPlayRef.current = setInterval(() => {
+        setCurrentStep(prev => {
+          const nextStep = prev + 1
+          if (nextStep < steps.length) {
+            // Animate timeline
+            controls.start({
+              pathLength: (nextStep + 1) / steps.length,
+              transition: { duration: 0.6, ease: "easeInOut" }
+            })
+            
+            return nextStep
+          } else {
+            setIsPlaying(false)
+            return prev
+          }
+        })
+      }, interval)
+    } else {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current)
+        autoPlayRef.current = null
+      }
+    }
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current)
+      }
+    }
+  }, [isPlaying, isReducedMotion, controls, playSpeed])
+
+  // Touch handlers for swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe && currentStep < steps.length - 1) {
+      handleNext()
+    }
+    if (isRightSwipe && currentStep > 0) {
+      handlePrevious()
+    }
+  }
+
+  // Navigation handlers
+  const handleNext = useCallback(() => {
+    if (currentStep < steps.length - 1) {
+      const nextStep = currentStep + 1
+      setCurrentStep(nextStep)
+      
+      // Animate timeline
+      if (!isReducedMotion) {
+        controls.start({
+          pathLength: (nextStep + 1) / steps.length,
+          transition: { duration: 0.6, ease: "easeInOut" }
+        })
+      }
+    }
+  }, [currentStep, controls, isReducedMotion])
+
+  const handlePrevious = useCallback(() => {
+    if (currentStep > 0) {
+      const prevStep = currentStep - 1
+      setCurrentStep(prevStep)
+      
+      // Animate timeline
+      if (!isReducedMotion) {
+        controls.start({
+          pathLength: (prevStep + 1) / steps.length,
+          transition: { duration: 0.6, ease: "easeInOut" }
+        })
+      }
+    }
+  }, [currentStep, controls, isReducedMotion])
+
+  const togglePlayPause = useCallback(() => {
+    setIsPlaying(!isPlaying)
+  }, [isPlaying])
+
+  const handleStepClick = useCallback((stepIndex: number) => {
+    setCurrentStep(stepIndex)
+    
+    // Animate timeline
+    if (!isReducedMotion) {
+      controls.start({
+        pathLength: (stepIndex + 1) / steps.length,
+        transition: { duration: 0.6, ease: "easeInOut" }
+      })
+    }
+  }, [controls, isReducedMotion])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft' && currentStep > 0) {
+        handlePrevious()
+      } else if (e.key === 'ArrowRight' && currentStep < steps.length - 1) {
+        handleNext()
+      } else if (e.key === ' ') {
+        e.preventDefault()
+        togglePlayPause()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [currentStep, handleNext, handlePrevious, togglePlayPause])
+
+  const handleQuizOpen = () => {
+    if (onDarshanaClick) {
+      onDarshanaClick('quiz')
+    }
+  }
+
+  const currentStepData = useMemo(() => steps[currentStep], [currentStep])
+  const progress = useMemo(() => ((currentStep + 1) / steps.length) * 100, [currentStep])
   
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Error Display */}
-      {error && (
+    <section 
+      className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30 dark:from-saffron-900/10 dark:via-transparent dark:to-deep-teal-900/10"
+      role="region"
+      aria-labelledby="unsure-path-title"
+    >
+      <div className="container-custom">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <p className="text-red-600 dark:text-red-400 text-sm text-center">
-            {error}
+          <h2 id="unsure-path-title" className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
+            Unsure Where to Begin?
+          </h2>
+          <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-3xl mx-auto">
+            Follow Maya's journey as she discovers the six Darshanas in order. 
+            Each step builds upon the previous one, creating a complete understanding of Indian philosophy.
           </p>
         </motion.div>
-      )}
-      
-      {/* Central OM Section */}
-      <div className="flex justify-center mb-12">
-        <motion.div
-          className="relative"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+
+        {/* Text-only fallback for no-JS users */}
+        <noscript>
+          <div className="max-w-4xl mx-auto bg-white dark:bg-wisdom-800 rounded-2xl p-8 shadow-lg border border-saffron-200/30 dark:border-saffron-400/20">
+            <h3 className="text-xl font-semibold text-wisdom-800 dark:text-wisdom-200 mb-6">
+              Darshana Learning Path
+            </h3>
+            <ol className="space-y-4">
+              {steps.map((step, index) => (
+                <li key={step.id} className="flex items-start space-x-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 rounded-full flex items-center justify-center text-sm font-medium">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h4 className="font-semibold text-wisdom-800 dark:text-wisdom-200">
+                      {step.title}
+                    </h4>
+                    <p className="text-wisdom-600 dark:text-wisdom-400 text-sm">
+                      {step.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </noscript>
+
+        {/* Main Content */}
+        <div 
+          className="max-w-7xl mx-auto"
+          data-cy="main-content"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
-          {/* Central OM */}
-          <motion.button
-            onClick={handleReset}
-            className={`relative w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-saffron-400 via-deep-teal-400 to-indigo-400 rounded-full shadow-2xl flex items-center justify-center cursor-pointer group transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-saffron-300/50 touch-manipulation ${
-              isUnlocked ? 'ring-4 ring-saffron-300/50 shadow-saffron-500/25' : ''
-            }`}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            animate={isUnlocked ? {
-              boxShadow: [
-                "0 25px 50px -12px rgba(245, 158, 11, 0.25)",
-                "0 25px 50px -12px rgba(245, 158, 11, 0.5)",
-                "0 25px 50px -12px rgba(245, 158, 11, 0.25)"
-              ]
-            } : {}}
-            transition={{ 
-              boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-            }}
-            aria-label={isUnlocked ? "Reset all darshanas - All wisdom unlocked" : "Central wisdom hub - Click to reset"}
-            role="button"
-            tabIndex={0}
-          >
-            <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white/90 dark:bg-wisdom-800/90 rounded-full flex items-center justify-center shadow-lg">
-              {isUnlocked ? (
-                <motion.div
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="text-white text-2xl sm:text-4xl font-devanagari"
+          {/* Desktop Layout */}
+          <div className="hidden lg:block">
+            <div className="grid grid-cols-12 gap-8 items-start">
+              {/* Left Column - Steps */}
+              <div className="col-span-5">
+                <nav 
+                  className="space-y-6" 
+                  role="navigation" 
+                  aria-label="Darshana learning steps"
                 >
-                  ॐ
-                </motion.div>
-              ) : (
-                <motion.div
-                  animate={{ 
-                    scale: unlockedCount > 0 ? [1, 1.1, 1] : 1,
-                    rotate: unlockedCount > 0 ? [0, 5, -5, 0] : 0
-                  }}
-                  transition={{ 
-                    duration: 0.5,
-                    repeat: unlockedCount > 0 ? Infinity : 0,
-                    ease: "easeInOut"
-                  }}
-                  className="text-white text-lg sm:text-2xl"
-                >
-                  <Lock className="w-6 h-6 sm:w-8 sm:h-8" />
-                </motion.div>
-              )}
-            </div>
-            
-            {/* Progress rings */}
-            {[1, 2, 3].map((ring) => (
-              <motion.div
-                key={ring}
-                className="absolute inset-0 border-2 border-saffron-300/50 dark:border-saffron-400/50 rounded-full"
-                animate={{ 
-                  scale: [1, 1.5 + ring * 0.3, 1],
-                  opacity: [0.3, 0, 0.3]
-                }}
-                transition={{ 
-                  duration: 2 + ring * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: ring * 0.3
-                }}
-                style={{ scale: 1 + ring * 0.2 }}
-              />
-            ))}
-          </motion.button>
-          
-          {/* Progress indicator */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-            <div className="bg-white/90 dark:bg-wisdom-800/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg min-w-fit">
-              <span className="text-xs sm:text-sm font-medium text-saffron-600 dark:text-saffron-400 whitespace-nowrap">
-                {unlockedCount}/6 Unlocked
-              </span>
+                  {steps.map((step, index) => (
+                    <StepNode
+                      key={step.id}
+                      step={step}
+                      index={index}
+                      isActive={index === currentStep}
+                      onClick={() => handleStepClick(index)}
+                    />
+                  ))}
+                </nav>
+              </div>
+
+              {/* Center Column - Timeline */}
+              <div className="col-span-2 flex justify-center">
+                <Timeline
+                  currentStep={currentStep}
+                  totalSteps={steps.length}
+                  controls={controls}
+                  isReducedMotion={isReducedMotion}
+                />
+              </div>
+
+              {/* Right Column - Comic Panel */}
+              <div className="col-span-5">
+                <ComicPanel
+                  step={currentStepData}
+                  isActive={true}
+                />
+              </div>
             </div>
           </div>
-        </motion.div>
-      </div>
 
-      {/* Darshana Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
-        {/* Debug info */}
-        <div className="col-span-full bg-yellow-100 p-4 rounded-lg mb-4">
-          <h3 className="text-lg font-bold">Debug Info</h3>
-          <p>Total darshanas: {darshanas.length}</p>
-          <p>Unlocked count: {unlockedCount}</p>
-          <p>Selected: {selectedDarshana || 'None'}</p>
+          {/* Mobile Layout */}
+          <div className="lg:hidden space-y-8">
+            {/* Progress Indicator */}
+            <div className="text-center">
+              <div className="text-sm text-wisdom-600 dark:text-wisdom-400 mb-2">
+                Step {currentStep + 1} of {steps.length}
+              </div>
+              <div className="w-full bg-wisdom-200 dark:bg-wisdom-700 rounded-full h-2">
+                <motion.div
+                  className="bg-gradient-to-r from-saffron-500 to-deep-teal-500 h-2 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                />
+              </div>
+            </div>
+            
+            {/* Comic Panel */}
+            <ComicPanel
+              step={currentStepData}
+              isActive={true}
+              isMobile={true}
+            />
+
+            {/* Current Step */}
+            <StepNode
+              step={currentStepData}
+              index={currentStep}
+              isActive={true}
+              onClick={() => handleStepClick(currentStep)}
+              isMobile={true}
+            />
+
+            {/* Step Navigation Dots */}
+            <div className="flex justify-center space-x-2">
+              {steps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleStepClick(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentStep
+                      ? 'bg-saffron-500 scale-125'
+                      : 'bg-saffron-300 dark:bg-saffron-600'
+                  }`}
+                  aria-label={`Go to step ${index + 1}`}
+              />
+            ))}
+            </div>
+          </div>
+
+          {/* Controls */}
+          <Controls
+            isPlaying={isPlaying}
+            onPlayPause={togglePlayPause}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+            canGoPrevious={currentStep > 0}
+            canGoNext={currentStep < steps.length - 1}
+            isReducedMotion={isReducedMotion}
+            playSpeed={playSpeed}
+            onSpeedChange={setPlaySpeed}
+          />
+
+          {/* Quiz CTA */}
+          <QuizCTA onQuizOpen={handleQuizOpen} />
+
+          {/* Progress Indicator */}
+          <div className="text-center mt-8" aria-live="polite" aria-atomic="true">
+            <div className="text-sm text-wisdom-600 dark:text-wisdom-400">
+              Step {currentStep + 1} of {steps.length} - {Math.round(progress)}% Complete
+            </div>
+            <div className="text-xs text-wisdom-500 dark:text-wisdom-400 mt-1">
+              Currently viewing: {currentStepData.title}
+            </div>
+      </div>
         </div>
-        
-        {darshanas.map((darshana, index) => {
-          console.log('Rendering darshana:', darshana.name, 'at index:', index)
-          const isSelected = selectedDarshana === darshana.id
-          const isUnlocked = unlockedCount > index
+      </div>
+    </section>
+  )
+}
+
+// Step Node Component
+interface StepNodeProps {
+  step: Step
+  index: number
+  isActive: boolean
+  onClick: () => void
+  isMobile?: boolean
+}
+
+function StepNode({ step, index, isActive, onClick, isMobile = false }: StepNodeProps) {
+  const [isHovered, setIsHovered] = useState(false)
           
           return (
             <motion.div
-              key={darshana.id}
-              initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ 
-                y: -8,
-                transition: { duration: 0.3 }
-              }}
-              className="group cursor-pointer focus-within:ring-4 focus-within:ring-saffron-300/50 focus-within:outline-none rounded-2xl"
-              onClick={() => handleDarshanaClick(darshana.id)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+      onTouchStart={(e) => {
+        if (isMobile) {
+          e.preventDefault()
+        }
+      }}
+      onTouchEnd={(e) => {
+        if (isMobile) {
                   e.preventDefault()
-                  handleDarshanaClick(darshana.id)
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`Explore ${darshana.name} - ${darshana.description}`}
-            >
-              <div className={`
-                relative bg-white dark:bg-wisdom-800 rounded-2xl p-4 sm:p-6 shadow-lg border-2 transition-all duration-300
-                ${isSelected 
-                  ? 'border-saffron-500 shadow-saffron-500/25 scale-105' 
-                  : 'border-transparent hover:border-saffron-300/50'
-                }
-                ${isUnlocked ? 'ring-2 ring-saffron-300/30' : ''}
-              `}>
-                {/* Background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${darshana.color} opacity-5 rounded-2xl`} />
-                
-                {/* Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${darshana.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <darshana.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+          onClick()
+        }
+      }}
+    >
+      <motion.button
+        onClick={onClick}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`group relative w-full p-6 rounded-2xl transition-all duration-300 focus-ring ${
+          isActive
+            ? 'bg-gradient-to-r from-saffron-500 to-saffron-600 text-white shadow-lg scale-105'
+            : 'bg-white dark:bg-wisdom-800 text-wisdom-700 dark:text-wisdom-300 hover:bg-saffron-50 dark:hover:bg-wisdom-700 border-2 border-saffron-200 dark:border-saffron-800'
+        }`}
+        whileHover={{ y: -3, scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        aria-label={`${step.title} - Click to explore`}
+        aria-pressed={isActive}
+      >
+        <div className="flex items-start space-x-4">
+          {/* Icon */}
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+            isActive
+              ? 'bg-white/20'
+              : 'bg-saffron-100 dark:bg-saffron-900/30'
+          }`}>
+            <step.icon className={`w-6 h-6 ${
+              isActive
+                ? 'text-white'
+                : 'text-saffron-600 dark:text-saffron-400'
+            }`} />
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 text-left">
+            <h3 className={`font-semibold mb-2 ${
+              isActive
+                ? 'text-white'
+                : 'text-wisdom-800 dark:text-wisdom-200'
+            }`}>
+              {step.title}
+            </h3>
+            <p className={`text-sm leading-relaxed ${
+              isActive
+                ? 'text-white/90'
+                : 'text-wisdom-600 dark:text-wisdom-400'
+            }`}>
+              {step.description}
+            </p>
+          </div>
                     </div>
                     
-                    {isUnlocked && (
+        {/* Hover Effect */}
                       <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="w-6 h-6 sm:w-8 sm:h-8 bg-saffron-500 rounded-full flex items-center justify-center"
-                      >
-                        <Star className="w-4 h-4 text-white" />
-                      </motion.div>
-                    )}
+          className="absolute inset-0 bg-gradient-to-r from-saffron-500/10 to-deep-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          initial={false}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+        />
+      </motion.button>
+    </motion.div>
+  )
+}
+
+// Timeline Component
+interface TimelineProps {
+  currentStep: number
+  totalSteps: number
+  controls: any
+  isReducedMotion: boolean
+}
+
+function Timeline({ currentStep, totalSteps, controls, isReducedMotion }: TimelineProps) {
+  const pathLength = ((currentStep + 1) / totalSteps) * 100
+
+  return (
+    <div 
+      className="relative h-full flex flex-col items-center"
+      role="progressbar"
+      aria-valuenow={currentStep + 1}
+      aria-valuemin={1}
+      aria-valuemax={totalSteps}
+      aria-label={`Progress: step ${currentStep + 1} of ${totalSteps}`}
+    >
+      {/* SVG Timeline */}
+      <svg className="absolute inset-0 w-8 h-full" viewBox="0 0 32 400" aria-hidden="true">
+        {/* Timeline Line Background */}
+        <line
+          x1="16"
+          y1="20"
+          x2="16"
+          y2="380"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-wisdom-200 dark:text-wisdom-700"
+        />
+        
+        {/* Animated Timeline Line */}
+        <motion.line
+          x1="16"
+          y1="20"
+          x2="16"
+          y2="380"
+          stroke="url(#timelineGradient)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: pathLength / 100 }}
+          transition={{ duration: isReducedMotion ? 0.1 : 0.6, ease: "easeInOut" }}
+          style={{ pathLength: pathLength / 100 }}
+        />
+        
+        {/* Gradient Definition */}
+        <defs>
+          <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#f59e0b" />
+            <stop offset="100%" stopColor="#0d9488" />
+          </linearGradient>
+        </defs>
+        
+        {/* Timeline Nodes */}
+        {Array.from({ length: totalSteps }).map((_, index) => {
+          const y = 20 + (index * (360 / (totalSteps - 1)))
+          const isActive = index === currentStep
+          const isCompleted = index < currentStep
+          
+          return (
+            <motion.circle
+              key={index}
+              cx="16"
+              cy={y}
+              r={isActive ? "6" : "4"}
+              fill={isCompleted || isActive ? "#f59e0b" : "currentColor"}
+              stroke={isCompleted || isActive ? "#f59e0b" : "currentColor"}
+              strokeWidth="2"
+              className={isCompleted || isActive ? "" : "text-wisdom-300 dark:text-wisdom-600"}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              whileHover={{ scale: 1.3 }}
+            />
+          )
+        })}
+        
+        {/* Animated Arrow */}
+        <motion.polygon
+          points="16,10 12,18 20,18"
+          fill="#f59e0b"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </svg>
                   </div>
-                  
-                  <h3 className="text-lg sm:text-xl font-display text-indigo-700 dark:text-soft-gold-500 mb-2 group-hover:text-saffron-600 dark:group-hover:text-saffron-400 transition-colors">
-                    {darshana.name}
-                  </h3>
-                  
-                  <p className="text-base sm:text-lg font-devanagari text-saffron-600 dark:text-saffron-400 mb-3">
-                    {darshana.sanskrit}
-                  </p>
-                  
-                  <p className="text-wisdom-600 dark:text-wisdom-400 mb-3 sm:mb-4 font-semibold text-sm sm:text-base">
-                    {darshana.description}
-                  </p>
-                  
-                  <p className="text-wisdom-600 dark:text-wisdom-400 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
-                    {darshana.detailedDescription}
-                  </p>
+  )
+}
+
+// Comic Panel Component
+interface ComicPanelProps {
+  step: Step
+  isActive: boolean
+  isMobile?: boolean
+}
+
+function ComicPanel({ step, isActive, isMobile = false }: ComicPanelProps) {
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageError, setImageError] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <motion.div
+      key={step.id}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: [0.22, 0.8, 0.1, 1] }}
+      className={`${isMobile ? 'w-full' : 'w-full max-w-md mx-auto'}`}
+    >
+      <div 
+        className="relative bg-white dark:bg-wisdom-800 rounded-2xl p-6 shadow-lg border border-saffron-200/30 dark:border-saffron-400/20"
+        role="img"
+        aria-label={`Comic illustration for ${step.title}`}
+      >
+        {/* Comic Image */}
+        <div className="relative aspect-square mb-4 bg-wisdom-100 dark:bg-wisdom-700 rounded-xl overflow-hidden">
+          {!imageError && isInView ? (
+            <img
+              ref={imgRef}
+              src={step.comic}
+              alt={`Comic illustration for ${step.title}`}
+              className={`w-full h-full object-cover transition-opacity duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-wisdom-200 dark:bg-wisdom-600">
+              <div className="text-center text-wisdom-500 dark:text-wisdom-400">
+                <step.icon className="w-12 h-12 mx-auto mb-2" />
+                <p className="text-sm">Comic Coming Soon</p>
+                  </div>
+                </div>
+          )}
+          
+          {/* Loading State */}
+          {!imageLoaded && !imageError && isInView && (
+            <div className="absolute inset-0 flex items-center justify-center bg-wisdom-100 dark:bg-wisdom-700">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-saffron-500"></div>
+                  </div>
+          )}
                 </div>
 
-                {/* Key Concepts */}
-                <div className="relative z-10 mb-3 sm:mb-4">
-                  <h4 className="text-xs sm:text-sm font-semibold text-indigo-700 dark:text-soft-gold-500 mb-2">
-                    Key Concepts
-                  </h4>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {darshana.keyConcepts.slice(0, 2).map((concept, conceptIndex) => (
-                      <span key={conceptIndex} className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
-                        {concept}
-                      </span>
-                    ))}
-                  </div>
+        {/* Caption */}
+        <div className="text-center">
+          <h4 className="font-semibold text-wisdom-800 dark:text-wisdom-200 mb-2">
+            {step.title}
+          </h4>
+          <p className="text-sm text-wisdom-600 dark:text-wisdom-400 leading-relaxed">
+            {step.description}
+          </p>
                 </div>
-
-                {/* Founder & Text */}
-                <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-wisdom-500 dark:text-wisdom-400 mb-3 sm:mb-4 gap-1 sm:gap-0">
-                  <div>
-                    <span className="font-medium">Founder:</span> {darshana.founder}
-                  </div>
-                  <div>
-                    <span className="font-medium">Text:</span> {darshana.text}
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <div className="relative z-10 flex items-center justify-center space-x-2 text-saffron-600 dark:text-saffron-400 font-medium group-hover:text-saffron-700 dark:group-hover:text-saffron-300 transition-colors text-sm sm:text-base">
-                  <span>{isSelected ? 'Selected' : 'Explore'}</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-
-                {/* Shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl" />
               </div>
             </motion.div>
           )
-        })}
+}
+
+// Controls Component
+interface ControlsProps {
+  isPlaying: boolean
+  onPlayPause: () => void
+  onPrevious: () => void
+  onNext: () => void
+  canGoPrevious: boolean
+  canGoNext: boolean
+  isReducedMotion: boolean
+  playSpeed: 'slow' | 'normal' | 'fast'
+  onSpeedChange: (speed: 'slow' | 'normal' | 'fast') => void
+}
+
+function Controls({ 
+  isPlaying, 
+  onPlayPause, 
+  onPrevious, 
+  onNext, 
+  canGoPrevious, 
+  canGoNext,
+  isReducedMotion,
+  playSpeed,
+  onSpeedChange
+}: ControlsProps) {
+  return (
+    <div className="flex flex-col items-center space-y-4 mt-8">
+      {/* Main Controls */}
+      <div className="flex items-center justify-center space-x-4">
+        <motion.button
+          onClick={onPrevious}
+          disabled={!canGoPrevious}
+          className={`p-3 rounded-full transition-all duration-300 focus-ring ${
+            canGoPrevious
+              ? 'bg-saffron-100 dark:bg-saffron-900/30 text-saffron-600 dark:text-saffron-400 hover:bg-saffron-200 dark:hover:bg-saffron-800/50'
+              : 'bg-wisdom-100 dark:bg-wisdom-800 text-wisdom-400 dark:text-wisdom-500 cursor-not-allowed'
+          }`}
+          whileHover={canGoPrevious ? { scale: 1.1 } : {}}
+          whileTap={canGoPrevious ? { scale: 0.9 } : {}}
+          aria-label="Previous step"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </motion.button>
+
+        <motion.button
+          onClick={onPlayPause}
+          className="p-4 bg-gradient-to-r from-saffron-500 to-saffron-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus-ring"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          aria-label={isPlaying ? 'Pause auto-play' : 'Start auto-play'}
+        >
+          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+        </motion.button>
+
+        <motion.button
+          onClick={onNext}
+          disabled={!canGoNext}
+          className={`p-3 rounded-full transition-all duration-300 focus-ring ${
+            canGoNext
+              ? 'bg-saffron-100 dark:bg-saffron-900/30 text-saffron-600 dark:text-saffron-400 hover:bg-saffron-200 dark:hover:bg-saffron-800/50'
+              : 'bg-wisdom-100 dark:bg-wisdom-800 text-wisdom-400 dark:text-wisdom-500 cursor-not-allowed'
+          }`}
+          whileHover={canGoNext ? { scale: 1.1 } : {}}
+          whileTap={canGoNext ? { scale: 0.9 } : {}}
+          aria-label="Next step"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </motion.button>
       </div>
 
-      {/* Instructions */}
+      {/* Speed Controls */}
+      {!isReducedMotion && (
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-wisdom-600 dark:text-wisdom-400">Speed:</span>
+          {(['slow', 'normal', 'fast'] as const).map((speed) => (
+            <motion.button
+              key={speed}
+              onClick={() => onSpeedChange(speed)}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 focus-ring ${
+                playSpeed === speed
+                  ? 'bg-saffron-500 text-white'
+                  : 'bg-wisdom-100 dark:bg-wisdom-800 text-wisdom-600 dark:text-wisdom-400 hover:bg-saffron-100 dark:hover:bg-saffron-900/30'
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label={`Set speed to ${speed}`}
+              aria-pressed={playSpeed === speed}
+            >
+              {speed}
+            </motion.button>
+          ))}
+        </div>
+      )}
+
+      {/* Keyboard Instructions */}
+      <div className="text-xs text-wisdom-500 dark:text-wisdom-400 text-center">
+        Use arrow keys to navigate • Spacebar to play/pause
+      </div>
+    </div>
+  )
+}
+
+// Quiz CTA Component
+interface QuizCTAProps {
+  onQuizOpen: () => void
+}
+
+function QuizCTA({ onQuizOpen }: QuizCTAProps) {
+  return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
         className="text-center mt-12"
       >
-        <div className="bg-white/80 dark:bg-wisdom-800/80 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-saffron-200/30 dark:border-soft-gold-500/20 max-w-2xl mx-auto">
-          <div className="flex items-center justify-center space-x-2 mb-3">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-saffron-500" />
-            <h3 className="text-base sm:text-lg font-semibold text-indigo-700 dark:text-soft-gold-500">
-              How to Unlock Wisdom
+      <div className="bg-white dark:bg-wisdom-800 rounded-2xl p-8 shadow-lg border border-saffron-200/30 dark:border-saffron-400/20 max-w-2xl mx-auto">
+        <h3 className="text-xl font-semibold text-wisdom-800 dark:text-wisdom-200 mb-4">
+          Still Unsure?
             </h3>
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-saffron-500" />
-          </div>
-          <p className="text-wisdom-600 dark:text-wisdom-400 text-xs sm:text-sm leading-relaxed">
-            Click on each Darshana card to unlock it. When all six schools are unlocked, 
-            the central OM symbol will appear, representing the unity of all wisdom traditions.
-          </p>
+        <p className="text-wisdom-600 dark:text-wisdom-400 mb-6">
+          Take our personalized quiz to discover which Darshana aligns with your interests and learning style.
+        </p>
+        <motion.button
+          onClick={onQuizOpen}
+          className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg mx-auto"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Target className="w-6 h-6" />
+          <span>See which Darshana you should Start with!</span>
+        </motion.button>
         </div>
       </motion.div>
-    </div>
   )
 }

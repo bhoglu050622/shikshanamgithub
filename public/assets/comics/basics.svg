@@ -1,0 +1,31 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fde68a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Character -->
+  <circle cx="200" cy="150" r="30" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="185" y="180" width="30" height="60" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+  <rect x="175" y="240" width="50" height="20" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  
+  <!-- Book -->
+  <rect x="120" y="200" width="40" height="50" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+  <rect x="125" y="205" width="30" height="40" fill="#fef2f2"/>
+  <line x1="130" y1="215" x2="150" y2="215" stroke="#374151" stroke-width="1"/>
+  <line x1="130" y1="225" x2="145" y2="225" stroke="#374151" stroke-width="1"/>
+  <line x1="130" y1="235" x2="150" y2="235" stroke="#374151" stroke-width="1"/>
+  
+  <!-- Question marks -->
+  <text x="100" y="100" font-family="Arial" font-size="24" fill="#374151">?</text>
+  <text x="300" y="120" font-family="Arial" font-size="20" fill="#374151">?</text>
+  <text x="80" y="300" font-family="Arial" font-size="18" fill="#374151">?</text>
+  
+  <!-- Title -->
+  <text x="200" y="350" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#374151">Darshana Basics</text>
+</svg>

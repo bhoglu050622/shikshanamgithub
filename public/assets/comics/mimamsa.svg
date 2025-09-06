@@ -1,0 +1,42 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed7aa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Character -->
+  <circle cx="200" cy="150" r="30" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="185" y="180" width="30" height="60" fill="#ea580c" stroke="#c2410c" stroke-width="2"/>
+  <rect x="175" y="240" width="50" height="20" fill="#9a3412" stroke="#7c2d12" stroke-width="2"/>
+  
+  <!-- Scale of justice -->
+  <line x1="120" y="200" x2="120" y="280" stroke="#374151" stroke-width="4"/>
+  <line x1="80" y="200" x2="160" y="200" stroke="#374151" stroke-width="4"/>
+  <circle cx="120" cy="200" r="8" fill="#374151"/>
+  <circle cx="100" y="180" r="12" fill="#dc2626"/>
+  <circle cx="140" y="180" r="12" fill="#16a34a"/>
+  
+  <!-- Dharma symbols -->
+  <rect x="80" y="300" width="80" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="120" y="320" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#374151">Dharma</text>
+  <text x="120" y="335" font-family="Arial" font-size="10" text-anchor="middle" fill="#374151">(Duty)</text>
+  <text x="120" y="350" font-family="Arial" font-size="10" text-anchor="middle" fill="#374151">Right Action</text>
+  
+  <rect x="240" y="300" width="80" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="280" y="320" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#374151">Karma</text>
+  <text x="280" y="335" font-family="Arial" font-size="10" text-anchor="middle" fill="#374151">(Action)</text>
+  <text x="280" y="350" font-family="Arial" font-size="10" text-anchor="middle" fill="#374151">Consequences</text>
+  
+  <!-- Sacred texts -->
+  <rect x="160" y="100" width="80" height="40" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+  <text x="200" y="120" font-family="Arial" font-size="10" text-anchor="middle" fill="white">Vedas</text>
+  <text x="200" y="135" font-family="Arial" font-size="10" text-anchor="middle" fill="white">Scriptures</text>
+  
+  <!-- Title -->
+  <text x="200" y="380" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#374151">Mimamsa - Dharma</text>
+</svg>

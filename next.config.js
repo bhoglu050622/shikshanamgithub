@@ -36,6 +36,12 @@ const nextConfig = {
       };
     }
     
+    // Exclude Cypress test files from build
+    config.module.rules.push({
+      test: /cypress\/.*\.(ts|tsx|js|jsx)$/,
+      use: 'ignore-loader',
+    });
+    
     // Ignore Chrome extension warnings
     config.ignoreWarnings = [
       /Failed to parse source map/,
