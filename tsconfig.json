@@ -33,6 +33,11 @@
     "node_modules",
     ".next",
     "out",
-    "dist"
+    "dist",
+    "cypress/**/*",
+    "__tests__/**/*",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "stories/**/*"
   ]
 }

@@ -33,6 +33,16 @@ import {
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
+import SelfHelpHero from './SelfHelpHero'
+import SkillTracks from './SkillTracks'
+import CourseJourneyCarousel from './CourseJourneyCarousel'
+import MeetGurus from './MeetGurus'
+import FeaturedCoursesSlider from './FeaturedCoursesSlider'
+import ActivityShowcase from './ActivityShowcase'
+import FoundersMission from './FoundersMission'
+import CommunityCTA from './CommunityCTA'
+import EnhancedFooter from './EnhancedFooter'
+import { useAnalytics } from '@/lib/analytics'
 
 // Data for the page
 const sanskritQuotes = [
@@ -197,6 +207,9 @@ export default function SchoolOfSelfHelpPage() {
   const [currentQuote, setCurrentQuote] = useState(0)
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   const [currentCourse, setCurrentCourse] = useState(0)
+  
+  // Initialize analytics
+  const analytics = useAnalytics()
 
   // Rotate Sanskrit quotes every 8 seconds
   useEffect(() => {
@@ -206,545 +219,138 @@ export default function SchoolOfSelfHelpPage() {
     return () => clearInterval(interval)
   }, [])
 
+  // Track page view on mount
+  useEffect(() => {
+    analytics.page('School of Self-Help')
+  }, [analytics])
+
+  // Analytics handlers
+  const handleExploreTracks = () => {
+    analytics.trackHeroExploreTracks()
+  }
+
+  const handleTakeTest = () => {
+    analytics.trackHeroTakeTest()
+  }
+
+  const handleCourseClick = (course: any) => {
+    analytics.trackCourseClick({
+      id: course.id || course.title.toLowerCase().replace(/\s+/g, '-'),
+      title: course.title,
+      category: course.category || 'Self-Help',
+      level: course.level,
+      price: course.price,
+      duration: course.duration
+    })
+  }
+
+  const handleStepChange = (step: number) => {
+    const stepTitles = [
+      'Personality Test',
+      'Theory Class', 
+      'Practical Class',
+      'Activities',
+      'Transformation Report'
+    ]
+    
+    analytics.trackJourneyStep({
+      number: step + 1,
+      title: stepTitles[step] || `Step ${step + 1}`,
+      totalSteps: 5
+    })
+  }
+
+  const handleJourneyComplete = () => {
+    analytics.trackJourneyCompletion(5)
+  }
+
   return (
     <div className="min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative overflow-hidden section-padding" aria-labelledby="hero-title">
-        <div className="container-custom">
-          <StaggerContainer className="text-center">
-            <StaggerItem>
-              <h1 id="hero-title" className="text-hero text-high-contrast mb-8">
-                School of{' '}
-                <span className="bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 dark:from-saffron-500 dark:via-deep-teal-500 dark:to-indigo-500 bg-clip-text text-transparent">
-                  Self-Help
-                </span>
-              </h1>
-            </StaggerItem>
+      {/* Enhanced Hero Section */}
+      <SelfHelpHero 
+        onExploreTracks={handleExploreTracks}
+        onTakeTest={handleTakeTest}
+      />
 
-            <StaggerItem>
-              <p className="text-subheading text-medium-contrast mb-8 max-w-4xl mx-auto devanagari-separator">
-                "Grow in clarity, character, and competence."
-              </p>
-            </StaggerItem>
+      {/* Enhanced Skill Tracks Section */}
+      <SkillTracks 
+        onCourseClick={handleCourseClick}
+      />
 
-            <StaggerItem>
-              <div className="flex justify-center mb-8">
-                <div className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-6 py-3 rounded-full text-lg font-medium">
-                  "In the age of AI, why study something so ancient?"
-                </div>
-              </div>
-            </StaggerItem>
+      {/* Enhanced Course Journey Section */}
+      <CourseJourneyCarousel 
+        onStepChange={handleStepChange}
+        onComplete={handleJourneyComplete}
+        initialUnlockedSteps={1}
+      />
 
-            <StaggerItem>
-              <div className="bg-gradient-to-r from-saffron-500 to-deep-teal-500 text-white px-8 py-4 rounded-2xl text-xl font-semibold mb-8 inline-block">
-                Indian wisdom isn't ancient—it's eternal.
-              </div>
-            </StaggerItem>
+      {/* Enhanced Meet Gurus Section */}
+      <MeetGurus 
+        onGuruClick={(guru) => analytics.trackGuruView({
+          id: guru.name.toLowerCase().replace(/\s+/g, '-'),
+          name: guru.name,
+          specialty: guru.specialty
+        })}
+        onViewProfile={(guru) => analytics.trackGuruView({
+          id: guru.name.toLowerCase().replace(/\s+/g, '-'),
+          name: guru.name,
+          specialty: guru.specialty
+        })}
+      />
 
-            <StaggerItem>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg focus-ring"
-                  aria-label="Explore skill tracks to find your learning path"
-                >
-                  <Target className="w-6 h-6" />
-                  <span>Explore Skill Tracks</span>
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg focus-ring"
-                  aria-label="Take personality test to discover your strengths and growth areas"
-                >
-                  <Brain className="w-6 h-6" />
-                  <span>Take Personality Test</span>
-                </motion.button>
-              </div>
-            </StaggerItem>
-          </StaggerContainer>
-        </div>
-      </section>
+      {/* Enhanced Featured Courses Section */}
+      <FeaturedCoursesSlider 
+        onCourseClick={(course) => analytics.trackCourseClick({
+          id: course.id,
+          title: course.title,
+          category: course.category,
+          level: course.level,
+          price: course.price,
+          duration: course.duration
+        })}
+        onEnrollClick={(course) => analytics.trackCourseEnrollment({
+          id: course.id,
+          title: course.title,
+          category: course.category,
+          level: course.level,
+          price: course.price
+        })}
+      />
 
-      {/* Intro Section */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 leading-relaxed">
-              In the Purusharthas, Artha and Kama guide us toward worldly success and fulfillment. 
-              The Self-Help School turns timeless insights into practical growth.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Enhanced Activity Showcase Section */}
+      <ActivityShowcase 
+        onTestimonialClick={(testimonial) => analytics.trackTestimonialClick({
+          id: testimonial.id,
+          author: testimonial.name
+        })}
+        onVideoPlay={(testimonial) => analytics.trackTestimonialPlay({
+          id: testimonial.id,
+          author: testimonial.name,
+          duration: parseInt(testimonial.duration.replace(':', '')) * 1000 // Convert to milliseconds
+        })}
+      />
 
-      {/* Skill Tracks Section */}
-      <section className="section-padding" aria-labelledby="skill-tracks-title">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 id="skill-tracks-title" className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              Skill Tracks
-            </h2>
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-2xl mx-auto mb-8">
-              Choose a track. Each course blends wisdom with hands-on practice.
-            </p>
-          </motion.div>
+      {/* Enhanced Founders Mission Section */}
+      <FoundersMission 
+        onFounderClick={(founder) => analytics.trackFounderView({
+          name: founder.name,
+          role: founder.role
+        })}
+        onMissionLearnMore={() => analytics.trackMissionLearnMore()}
+      />
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {skillTracks.map((track, trackIndex) => (
-              <motion.div
-                key={trackIndex}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: trackIndex * 0.2 }}
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
-                <div className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-6 py-3 rounded-full text-lg font-medium text-center">
-                  {track.title}
-                </div>
-                
-                <div className="space-y-4">
-                  {track.courses.map((course, courseIndex) => (
-                    <motion.div
-                      key={courseIndex}
-                      whileHover={{ scale: 1.02, y: -5 }}
-                      className="card-premium p-6 group cursor-pointer relative overflow-hidden"
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div className={`w-12 h-12 bg-gradient-to-r ${course.color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                          <course.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-2 group-hover:text-saffron-600 dark:group-hover:text-saffron-400 transition-colors">
-                            {course.title}
-                          </h3>
-                          <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed">
-                            {course.description}
-                          </p>
-                          {course.comingSoon && (
-                            <div className="mt-3">
-                              <span className="bg-wisdom-200 dark:bg-wisdom-700 text-wisdom-600 dark:text-wisdom-300 px-3 py-1 rounded-full text-xs font-medium">
-                                Coming Soon
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How These Courses Work Section */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              How These Courses Work — Step by Step
-            </h2>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            {/* Desktop Timeline */}
-            <div className="hidden lg:block">
-              <div className="relative">
-                {/* Timeline Line */}
-                <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-saffron-200 via-deep-teal-200 to-indigo-200 dark:from-saffron-800 dark:via-deep-teal-800 dark:to-indigo-800 rounded-full" />
-                
-                {howItWorksSteps.map((step, index) => (
-                  <motion.div
-                    key={step.step}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="relative flex items-start mb-16 last:mb-0"
-                  >
-                    {/* Timeline Dot */}
-                    <motion.div 
-                      className="absolute left-6 w-6 h-6 bg-gradient-to-r from-saffron-500 to-deep-teal-500 rounded-full border-4 border-off-white-500 dark:border-wisdom-900 z-10 shadow-lg"
-                      whileInView={{ 
-                        scale: [1, 1.3, 1],
-                        opacity: [0.7, 1, 0.7]
-                      }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                    />
-                    
-                    {/* Step Card */}
-                    <div className="ml-20 flex-1">
-                      <motion.div
-                        whileHover={{ scale: 1.02, y: -5 }}
-                        className="card-premium p-8 group cursor-pointer relative overflow-hidden"
-                      >
-                        <div className="flex items-start space-x-6">
-                          <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                            <step.icon className="w-8 h-8 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-3 mb-3">
-                              <h3 className="text-xl font-display text-indigo-700 dark:text-soft-gold-500">
-                                Step {step.step}: {step.title}
-                              </h3>
-                            </div>
-                            <p className="text-wisdom-600 dark:text-wisdom-400 leading-relaxed">
-                              {step.description}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile Timeline */}
-            <div className="lg:hidden space-y-8">
-              {howItWorksSteps.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-start space-x-4"
-                >
-                  <div className="flex flex-col items-center">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                      <step.icon className="w-6 h-6 text-white" />
-                    </div>
-                    {index < howItWorksSteps.length - 1 && (
-                      <div className="w-0.5 h-16 bg-saffron-200 dark:bg-saffron-800 mt-4"></div>
-                    )}
-                  </div>
-                  <div className="flex-1 card-premium p-6">
-                    <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-2">
-                      Step {step.step}: {step.title}
-                    </h3>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Meet Your Gurus Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              Meet Your Gurus
-            </h2>
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-2xl mx-auto">
-              Scholars, practitioners, and mentors dedicated to your growth.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {gurus.map((guru, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="card-premium p-6 text-center group-hover:shadow-2xl transition-all duration-300">
-                  <div className="relative w-24 h-24 mx-auto mb-4">
-                    <div className="w-24 h-24 bg-gradient-to-br from-saffron-400 to-saffron-600 rounded-full flex items-center justify-center relative overflow-hidden">
-                      <User className="w-12 h-12 text-white" />
-                      {/* Halo glow effect */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-soft-gold-400/30 to-saffron-400/30 blur-sm group-hover:blur-md transition-all duration-300"></div>
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-1">
-                    {guru.name}
-                  </h3>
-                  <p className="text-saffron-600 dark:text-saffron-400 text-sm mb-4 font-medium">
-                    {guru.specialty}
-                  </p>
-                  <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed mb-4">
-                    {guru.credibility}
-                  </p>
-                  <button className="text-saffron-600 dark:text-saffron-400 hover:text-saffron-700 dark:hover:text-saffron-300 text-sm font-medium flex items-center space-x-1 mx-auto group-hover:scale-105 transition-all duration-300">
-                    <span>View Profile</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Courses Section */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              Featured Courses
-            </h2>
-          </motion.div>
-
-          <div className="max-w-6xl mx-auto">
-            {/* Desktop Carousel */}
-            <div className="hidden lg:block">
-              <div className="relative">
-                <div className="flex space-x-8 overflow-hidden">
-                  {featuredCourses.map((course, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: 50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.2 }}
-                      viewport={{ once: true }}
-                      className="flex-shrink-0 w-1/3"
-                    >
-                      <div className="card-premium p-8 h-full">
-                        <h3 className="text-xl font-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-                          {course.title}
-                        </h3>
-                        <p className="text-wisdom-600 dark:text-wisdom-400 mb-6 leading-relaxed">
-                          {course.value}
-                        </p>
-                        <div className="flex justify-between items-center mb-6">
-                          <div className="flex space-x-4 text-sm text-wisdom-500 dark:text-wisdom-400">
-                            <span>{course.duration}</span>
-                            <span>•</span>
-                            <span>{course.level}</span>
-                          </div>
-                          <div className="text-lg font-bold text-saffron-600 dark:text-saffron-400">
-                            {course.price}
-                          </div>
-                        </div>
-                        <button 
-                          className="btn-primary w-full focus-ring"
-                          aria-label={`View details for ${course.title} - ${course.duration} course for ${course.level} level`}
-                        >
-                          {course.cta}
-                        </button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Grid */}
-            <div className="lg:hidden space-y-6">
-              {featuredCourses.map((course, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="card-premium p-6">
-                    <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-3">
-                      {course.title}
-                    </h3>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 mb-4 text-sm leading-relaxed">
-                      {course.value}
-                    </p>
-                    <div className="flex justify-between items-center mb-4">
-                      <div className="flex space-x-3 text-xs text-wisdom-500 dark:text-wisdom-400">
-                        <span>{course.duration}</span>
-                        <span>•</span>
-                        <span>{course.level}</span>
-                      </div>
-                      <div className="text-lg font-bold text-saffron-600 dark:text-saffron-400">
-                        {course.price}
-                      </div>
-                    </div>
-                    <button 
-                      className="btn-primary w-full text-sm focus-ring"
-                      aria-label={`View details for ${course.title} - ${course.duration} course for ${course.level} level`}
-                    >
-                      {course.cta}
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto"
-              >
-                <span>See All Courses</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Student Stories Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              Student Stories
-            </h2>
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-2xl mx-auto">
-              Short reels and quotes from our learners.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[1, 2, 3, 4, 5, 6].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="card-premium p-6 h-full group-hover:shadow-2xl transition-all duration-300">
-                  <div className="w-full h-32 bg-gradient-to-br from-saffron-100 to-deep-teal-100 dark:from-saffron-900/30 dark:to-deep-teal-900/30 rounded-xl mb-4 flex items-center justify-center">
-                    <Play className="w-8 h-8 text-saffron-600 dark:text-saffron-400" />
-                  </div>
-                  <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed italic">
-                    "The Chanakya principles transformed my leadership approach completely. I now lead with wisdom, not just authority."
-                  </p>
-                  <div className="mt-4 text-xs text-wisdom-500 dark:text-wisdom-400">
-                    — Sarah, Entrepreneur
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founder's Mission Section */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
-          >
-            <div className="card-premium p-12 text-center relative overflow-hidden">
-              <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-8">
-                Why We Built This
-              </h2>
-              
-              <blockquote className="text-xl md:text-2xl text-wisdom-600 dark:text-wisdom-400 mb-8 leading-relaxed italic">
-                "Self-help shouldn't be pop-advice. It should be practice-ready, principle-driven, and compassionate. 
-                We're building a place where Indian wisdom meets everyday life."
-              </blockquote>
-              
-              <div className="flex justify-center space-x-4">
-                {[1, 2, 3, 4].map((item, index) => (
-                  <div key={index} className="w-16 h-16 bg-gradient-to-br from-saffron-200 to-deep-teal-200 dark:from-saffron-800 dark:to-deep-teal-800 rounded-xl"></div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Join Our Community Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-8">
-              Join Our Community
-            </h2>
-            
-            <div className="flex flex-wrap justify-center gap-6 mb-8">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 focus-ring"
-                aria-label="Join our Telegram community for daily discussions and Q&A"
-              >
-                <MessageCircle className="w-6 h-6" />
-                <span>Telegram</span>
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 focus-ring"
-                aria-label="Follow us on Instagram for visual wisdom and stories"
-              >
-                <Instagram className="w-6 h-6" />
-                <span>Instagram</span>
-              </motion.button>
-            </div>
-            
-            <p className="text-wisdom-600 dark:text-wisdom-400">
-              Events, tips, and practice prompts—free.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Enhanced Community CTA Section */}
+      <CommunityCTA 
+        onJoinCommunity={(platform) => analytics.trackCommunityJoin(platform as any)}
+        onSubscribeNewsletter={() => analytics.trackNewsletterSubscription('user@example.com')}
+        onViewEvents={() => analytics.trackEventView({
+          title: 'All Events',
+          date: new Date().toISOString(),
+          type: 'view_all'
+        })}
+      />
 
       {/* FAQs Section */}
       <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
@@ -869,7 +475,11 @@ export default function SchoolOfSelfHelpPage() {
         </div>
       </section>
 
-      <Footer />
+      {/* Enhanced Footer */}
+      <EnhancedFooter 
+        onNewsletterSubscribe={(email) => analytics.trackNewsletterSubscription(email)}
+        onSocialClick={(platform) => analytics.trackSocialClick(platform as any)}
+      />
     </div>
   )
 }

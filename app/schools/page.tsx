@@ -50,7 +50,7 @@ export default function SchoolsPage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {schools.map((school, index) => (
             <motion.div
               key={index}

@@ -23,6 +23,24 @@ const nextConfig = {
     config.optimization.moduleIds = 'deterministic';
     config.optimization.chunkIds = 'deterministic';
     
+    // Exclude test files from compilation
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    };
+    
+    // Add ignore patterns for test files
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: [
+        '**/node_modules/**',
+        '**/cypress/**',
+        '**/__tests__/**',
+        '**/*.test.*',
+        '**/*.spec.*',
+        '**/stories/**',
+      ],
+    };
+    
     // Note: React reconciler error should be fixed by clean install
     // All React packages are using version 18.3.1 consistently
     
@@ -36,9 +54,27 @@ const nextConfig = {
       };
     }
     
+    // Exclude test files from build
+    config.module.rules.push({
+      test: /\.(test|spec)\.(ts|tsx|js|jsx)$/,
+      use: 'ignore-loader',
+    });
+    
     // Exclude Cypress test files from build
     config.module.rules.push({
       test: /cypress\/.*\.(ts|tsx|js|jsx)$/,
+      use: 'ignore-loader',
+    });
+    
+    // Exclude __tests__ directory
+    config.module.rules.push({
+      test: /__tests__\/.*\.(ts|tsx|js|jsx)$/,
+      use: 'ignore-loader',
+    });
+    
+    // Exclude stories directory
+    config.module.rules.push({
+      test: /stories\/.*\.(ts|tsx|js|jsx)$/,
       use: 'ignore-loader',
     });
     
@@ -75,7 +111,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' chrome-extension:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' chrome-extension:;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' chrome-extension:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:; img-src 'self' data: https:; connect-src 'self' chrome-extension:;",
           },
         ],
       },

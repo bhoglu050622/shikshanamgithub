@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import { 
   Brain, 
   Atom, 
@@ -624,24 +625,25 @@ export default function SchoolOfDarshanaPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {darshanas.map((darshana, index) => (
-              <motion.div
-                key={darshana.id}
-                id={`darshana-${darshana.id}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  y: -12,
-                  rotateX: 5,
-                  rotateY: 5,
-                  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)'
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="group perspective-1000 cursor-pointer"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
+            {darshanas.map((darshana, index) => {
+              const CardContent = (
+                <motion.div
+                  key={darshana.id}
+                  id={`darshana-${darshana.id}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    y: -12,
+                    rotateX: 5,
+                    rotateY: 5,
+                    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)'
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group perspective-1000 cursor-pointer"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
                 <div className="card-premium p-8 h-full group-hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
                   {/* Background Pattern */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-saffron-100/20 to-deep-teal-100/20 rounded-full -translate-y-16 translate-x-16 group-hover:scale-110 transition-transform duration-500"></div>
@@ -705,7 +707,29 @@ export default function SchoolOfDarshanaPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
               </motion.div>
-            ))}
+              )
+
+              // Wrap darshana cards with Links to their respective school pages
+              const schoolRoutes = {
+                'nyaya': '/schools/nyaya',
+                'vaisheshika': '/schools/vaisheshika',
+                'samkhya': '/schools/samkhya',
+                'yoga': '/schools/yoga',
+                'mimamsa': '/schools/mimamsa',
+                'vedanta': '/schools/vedanta'
+              }
+
+              if (schoolRoutes[darshana.id as keyof typeof schoolRoutes]) {
+                return (
+                  <Link key={darshana.id} href={schoolRoutes[darshana.id as keyof typeof schoolRoutes]}>
+                    {CardContent}
+                  </Link>
+                )
+              }
+
+              // Return other cards without link
+              return CardContent
+            })}
           </div>
         </div>
       </section>

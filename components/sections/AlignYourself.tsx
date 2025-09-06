@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Video, BookOpen, Clock, Users, Star, ArrowRight, ChevronLeft, ChevronRight, Play, Calendar } from 'lucide-react'
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 
 // Sample course data - in a real app, this would come from an API
 const liveClasses = [
@@ -147,10 +148,11 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
     >
       {/* Thumbnail */}
       <div className="relative h-48 bg-gradient-to-br from-saffron-100 to-turquoise-100">
-        <img
+        <Image
           src={course.thumbnail}
           alt={course.title}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement
             target.style.display = 'none'

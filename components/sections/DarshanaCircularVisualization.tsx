@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Play, 
   Pause, 
@@ -651,15 +652,14 @@ function ComicPanel({ step, isActive, isMobile = false }: ComicPanelProps) {
         {/* Comic Image */}
         <div className="relative aspect-square mb-4 bg-wisdom-100 dark:bg-wisdom-700 rounded-xl overflow-hidden">
           {!imageError && isInView ? (
-            <img
+            <Image
               ref={imgRef}
               src={step.comic}
               alt={`Comic illustration for ${step.title}`}
-              className={`w-full h-full object-cover transition-opacity duration-300 ${
+              fill
+              className={`object-cover transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              loading="lazy"
-              decoding="async"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
             />
