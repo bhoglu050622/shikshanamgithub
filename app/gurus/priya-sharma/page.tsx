@@ -21,12 +21,6 @@ import {
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Dr. Priya Sharma - Sanskrit Grammar Expert | Shikshanam',
-  description: 'Learn Sanskrit grammar with Dr. Priya Sharma, renowned Sanskrit grammar expert and scholar.',
-}
 
 const guruProfile = {
   name: 'Dr. Priya Sharma',
