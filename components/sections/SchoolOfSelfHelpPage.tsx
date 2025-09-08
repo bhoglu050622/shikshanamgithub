@@ -321,11 +321,11 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Activity Showcase Section */}
       <ActivityShowcase 
-        onTestimonialClick={(testimonial) => analytics.trackTestimonialClick({
+        onTestimonialClick={(testimonial) => analytics.track('testimonial_click', {
           id: testimonial.id,
           author: testimonial.name
         })}
-        onVideoPlay={(testimonial) => analytics.trackTestimonialPlay({
+        onVideoPlay={(testimonial) => analytics.track('video_play', {
           id: testimonial.id,
           author: testimonial.name,
           duration: parseInt(testimonial.duration.replace(':', '')) * 1000 // Convert to milliseconds
@@ -334,18 +334,18 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Founders Mission Section */}
       <FoundersMission 
-        onFounderClick={(founder) => analytics.trackFounderView({
+        onFounderClick={(founder) => analytics.track('founder_view', {
           name: founder.name,
           role: founder.role
         })}
-        onMissionLearnMore={() => analytics.trackMissionLearnMore()}
+        onMissionLearnMore={() => analytics.track('mission_learn_more')}
       />
 
       {/* Enhanced Community CTA Section */}
       <CommunityCTA 
-        onJoinCommunity={(platform) => analytics.trackCommunityJoin(platform as any)}
-        onSubscribeNewsletter={() => analytics.trackNewsletterSubscription('user@example.com')}
-        onViewEvents={() => analytics.trackEventView({
+        onJoinCommunity={(platform) => analytics.track('community_join', { platform })}
+        onSubscribeNewsletter={() => analytics.track('newsletter_subscription', { email: 'user@example.com' })}
+        onViewEvents={() => analytics.track('event_view', {
           title: 'All Events',
           date: new Date().toISOString(),
           type: 'view_all'
@@ -477,8 +477,8 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Footer */}
       <EnhancedFooter 
-        onNewsletterSubscribe={(email) => analytics.trackNewsletterSubscription(email)}
-        onSocialClick={(platform) => analytics.trackSocialClick(platform as any)}
+        onNewsletterSubscribe={(email) => analytics.track('newsletter_subscription', { email })}
+        onSocialClick={(platform) => analytics.track('social_click', { platform })}
       />
     </div>
   )
