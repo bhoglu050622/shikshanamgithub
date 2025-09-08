@@ -747,7 +747,7 @@ export default function CoursesPage() {
                               Get Notified
                             </Button>
                           ) : (
-                            <CTAButton.Enroll
+                            <CTAButton.ViewCourse
                               courseId={course.link?.split('/').pop() || ''}
                               fullWidth
                               size="md"
