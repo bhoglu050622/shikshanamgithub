@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Nunito_Sans, DM_Serif_Display } from 'next/font/google'
+import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import FontPreloader from '@/components/optimization/FontPreloader'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import AnalyticsInitializer from '@/components/AnalyticsInitializer'
 import { ThemeProvider } from '@/lib/theme'
-import { organizationSchema, faqSchema } from '@/lib/seo'
+import { AuthProvider } from '@/lib/auth-context'
+import { initAnalytics } from '@/lib/analytics'
 import '@/lib/console-filter'
 
 const inter = Inter({ 
@@ -27,6 +29,22 @@ const dmSerif = DM_Serif_Display({
   variable: '--font-dm-serif',
   display: 'swap',
   weight: ['400'],
+  preload: true,
+})
+
+const tiroDevanagari = Tiro_Devanagari_Hindi({ 
+  subsets: ['latin'],
+  variable: '--font-tiro-devanagari',
+  display: 'swap',
+  weight: ['400'],
+  preload: true,
+})
+
+const playfairDisplay = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+  weight: ['400', '700'],
   preload: true,
 })
 
@@ -82,51 +100,48 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${nunito.variable} ${dmSerif.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${nunito.variable} ${dmSerif.variable} ${tiroDevanagari.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
       <head>
         <FontPreloader />
         <link rel="canonical" href="https://shikshanam.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              "name": "Shikshanam",
-              "description": "Ancient Indian Knowledge Platform for Sanskrit, Darshanas, and Self-help",
-              "url": "https://shikshanam.com",
-              "logo": "https://shikshanam.com/logo.png",
-              "sameAs": [
-                "https://twitter.com/shikshanam",
-                "https://facebook.com/shikshanam",
-                "https://instagram.com/shikshanam"
-              ],
-              "offers": {
-                "@type": "Course",
-                "name": "Sanskrit Learning",
-                "description": "Learn Sanskrit through structured courses and live classes"
-              }
-            })
+            __html: `{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Shikshanam","description":"Ancient Indian Knowledge Platform for Sanskrit, Darshanas, and Self-help","url":"https://shikshanam.com","logo":"https://shikshanam.com/logo.png","sameAs":["https://twitter.com/shikshanam","https://facebook.com/shikshanam","https://instagram.com/shikshanam"],"offers":{"@type":"Course","name":"Sanskrit Learning","description":"Learn Sanskrit through structured courses and live classes"}}`
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema)
+            __html: `{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Shikshanam","description":"Ancient Indian Knowledge Platform","url":"https://shikshanam.com"}`
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema)
+            __html: `{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}`
           }}
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        {/* Skip Links for Accessibility */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <a href="#navigation" className="skip-link">
+          Skip to navigation
+        </a>
+        <a href="#footer" className="skip-link">
+          Skip to footer
+        </a>
+        
         <ErrorBoundary>
           <ThemeProvider>
-            <PerformanceMonitor />
-            {children}
+            <AuthProvider>
+              <PerformanceMonitor />
+              <AnalyticsInitializer />
+              {children}
+            </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>
       </body>

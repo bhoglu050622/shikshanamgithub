@@ -109,26 +109,23 @@ export default function FAQ({ faqs }: FAQProps) {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button 
-                variant="outline"
-                className="btn-outline"
-                asChild
+              <a 
+                href="https://wa.me/919876543210" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 border border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white font-semibold rounded-2xl transition-all duration-300"
               >
-                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Ask on WhatsApp
-                </a>
-              </Button>
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Ask on WhatsApp
+              </a>
               
-              <Button 
-                className="btn-primary"
-                asChild
+              <a 
+                href="mailto:support@shikshanam.com"
+                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                <a href="mailto:support@shikshanam.com">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Send Email
-                </a>
-              </Button>
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Send Email
+              </a>
             </div>
 
             <div className="pt-4 border-t border-saffron-200 dark:border-saffron-800">

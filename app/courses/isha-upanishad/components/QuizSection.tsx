@@ -1,0 +1,78 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
+export default function QuizSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const animatedElements = sectionRef.current?.querySelectorAll('.fade-in-up-on-scroll');
+    
+    if (!animatedElements) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animatedElements.forEach(el => observer.observe(el));
+      
+      return () => {
+        animatedElements.forEach(el => observer.unobserve(el));
+      };
+    } else {
+      // Fallback for older browsers
+      animatedElements.forEach(el => el.classList.add('is-visible'));
+    }
+  }, []);
+
+  return (
+    <div id="isha-quiz-section" ref={sectionRef}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight fade-in-up-on-scroll">
+            क्या आप भी इन प्रश्नों का उत्तर ढूंढ रहे हैं ?
+          </h2>
+        </div>
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Item 1 */}
+          <div className="quiz-card fade-in-up-on-scroll" style={{ transitionDelay: '100ms' }}>
+            <div className="question-icon">?</div>
+            <p className="statement-text">कर्म, ज्ञान और भक्ति में कौन सर्वोत्तम?</p>
+          </div>
+          
+          {/* Item 2 */}
+          <div className="quiz-card fade-in-up-on-scroll" style={{ transitionDelay: '200ms' }}>
+            <div className="question-icon">?</div>
+            <p className="statement-text">सगुण भक्ति करें या निर्गुण ?</p>
+          </div>
+          
+          {/* Item 3 */}
+          <div className="quiz-card fade-in-up-on-scroll" style={{ transitionDelay: '300ms' }}>
+            <div className="question-icon">?</div>
+            <p className="statement-text">आत्मा कैसी है और कहाँ रहती है ?</p>
+          </div>
+          
+          {/* Item 4 */}
+          <div className="quiz-card fade-in-up-on-scroll" style={{ transitionDelay: '400ms' }}>
+            <div className="question-icon">?</div>
+            <p className="statement-text">मृत्यु के उपरांत क्या होगा ?</p>
+          </div>
+          
+          {/* Item 5 */}
+          <div className="md:col-span-2 flex justify-center fade-in-up-on-scroll" style={{ transitionDelay: '500ms' }}>
+            <div className="quiz-card w-full md:max-w-lg">
+              <div className="question-icon">?</div>
+              <p className="statement-text">जीवन का वास्तविक उद्देश्य क्या है?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

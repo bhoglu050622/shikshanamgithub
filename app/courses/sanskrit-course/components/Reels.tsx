@@ -216,11 +216,9 @@ export default function Reels() {
         <Button 
           size="lg" 
           className="btn-primary"
-          asChild
+          href="#pricing"
         >
-          <a href="#pricing">
-            पूरा कोर्स देखने के लिए एनरोल करें
-          </a>
+          पूरा कोर्स देखने के लिए एनरोल करें
         </Button>
       </motion.div>
     </div>

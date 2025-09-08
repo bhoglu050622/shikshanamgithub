@@ -89,9 +89,9 @@ const nextConfig = {
     return config;
   },
   // make sure we're not silently falling back to Turbopack
-  experimental: { 
-    webpackBuildWorker: false 
-  },
+  // experimental: { 
+  //   webpackBuildWorker: false 
+  // },
   async headers() {
     return [
       {

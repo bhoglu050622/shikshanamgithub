@@ -27,7 +27,12 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     /react-reconciler\.development\.js/,
     /Cannot read properties of undefined \(reading 'ReactCurrentOwner'\)/,
     /events-.*\.esm\.js/,
-    /webpack\.js/
+    /webpack\.js/,
+    /Failed to refresh token/,
+    /token.*refresh/,
+    /refresh.*token/,
+    /was preloaded using link preload but not used/,
+    /preload.*not used/
   ];
 
   console.error = (...args: any[]) => {

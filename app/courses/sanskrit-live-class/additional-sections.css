@@ -1,0 +1,625 @@
+/* Additional Sections Styles for Sanskrit Live Class */
+
+/* Interactive Flashcards Section */
+#interactive-flashcards-section {
+    width: 100%;
+    padding: 4rem 1rem;
+    background-color: #fdfaf6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.flashcards-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+}
+
+.flashcards-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: #2c2620;
+    margin-bottom: 0.5rem;
+}
+
+.flashcards-header p {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: #575049;
+    line-height: 1.7;
+}
+
+.flashcards-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+    .flashcards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .flashcards-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.flashcard {
+    background-color: transparent;
+    width: 100%;
+    height: 140px;
+    perspective: 1200px;
+    cursor: pointer;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.is-flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.flashcard-front {
+    background-color: #ffffff;
+    border: 1px solid #f3eee8;
+    justify-content: flex-start;
+    padding: 1.5rem;
+}
+
+.flashcard-back {
+    background: #2c2620;
+    color: white;
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.flashcard-icon-container {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f97316;
+    margin-right: 1rem;
+}
+
+.flashcard-icon-container span {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: serif;
+}
+
+.flashcard-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.flashcard-sanskrit-text {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 1.5rem;
+    color: #2c2620;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.flip-indicator-text {
+    font-size: 0.8rem;
+    color: #a8a29e;
+    margin-top: 0.25rem;
+}
+
+.flashcard-back .translation-group {
+    margin: 0.25rem 0;
+}
+
+.flashcard-back .lang-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.6;
+}
+
+.flashcard-back .translation-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.flashcard-back .hindi-text {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 1.1rem;
+}
+
+.flip-back-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.flashcard:hover .flip-back-indicator {
+    transform: rotate(180deg);
+}
+
+/* Course Info Section */
+#sanskrit-course-widget-container {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    background-color: #fcf9f4 !important;
+    color: #2c3e50 !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 2rem 1rem;
+}
+
+#sanskrit-course-widget-container * {
+    box-sizing: border-box;
+}
+
+#sanskrit-course-widget-container .course-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sanskrit-course-widget-container .info-card {
+    background-color: #ffffff !important;
+    border-radius: 24px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: sanskrit-widget-fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes sanskrit-widget-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#sanskrit-course-widget-container .course-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    color: #1e293b !important;
+    margin: 0 0 1.5rem 0;
+}
+
+#sanskrit-course-widget-container .pills-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+#sanskrit-course-widget-container .pill {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+#sanskrit-course-widget-container .pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#sanskrit-course-widget-container .pill.classes { background-color: #ffedd5 !important; color: #f97316 !important; }
+#sanskrit-course-widget-container .pill.tricks { background-color: #dcfce7 !important; color: #22c55e !important; }
+#sanskrit-course-widget-container .pill.duration { background-color: #dbeafe !important; color: #3b82f6 !important; }
+#sanskrit-course-widget-container .pill.group { background-color: #ede9fe !important; color: #8b5cf6 !important; }
+
+#sanskrit-course-widget-container .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+#sanskrit-course-widget-container .feature-card {
+    background-color: #ffffff !important;
+    border-radius: 24px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: sanskrit-widget-fadeInUp 0.8s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#sanskrit-course-widget-container .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+}
+
+#sanskrit-course-widget-container .feature-card:nth-child(1) { animation-delay: 0.2s; }
+#sanskrit-course-widget-container .feature-card:nth-child(2) { animation-delay: 0.4s; }
+#sanskrit-course-widget-container .feature-card:nth-child(3) { animation-delay: 0.6s; }
+
+#sanskrit-course-widget-container .feature-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+#sanskrit-course-widget-container .feature-title.red { color: #ef4444 !important; }
+#sanskrit-course-widget-container .feature-title.blue { color: #3b82f6 !important; }
+#sanskrit-course-widget-container .feature-title.green { color: #22c55e !important; }
+
+#sanskrit-course-widget-container .feature-description {
+    font-size: 1.1rem;
+    color: #64748b !important;
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    #sanskrit-course-widget-container {
+        padding: 1.5rem 1rem;
+    }
+    #sanskrit-course-widget-container .info-card {
+        padding: 2rem;
+    }
+    #sanskrit-course-widget-container .course-title {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+    #sanskrit-course-widget-container .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Master Teachers Section */
+#master-teachers-component {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1d24;
+    color: #ffffff;
+    padding: 5rem 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes master-teacher-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseEffect {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 20px rgba(243, 156, 18, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(243, 156, 18, 0.4);
+    }
+}
+
+#master-teachers-component .teachers-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1400px;
+    width: 100%;
+    text-align: center;
+}
+
+#master-teachers-component .main-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #f39c12 !important;
+    animation: master-teacher-fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+#master-teachers-component .sub-heading {
+    font-size: 1.1rem;
+    color: #bdc3c7 !important;
+    max-width: 600px;
+    margin-top: -2rem;
+    animation: master-teacher-fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+    opacity: 0;
+}
+
+#master-teachers-component .cards-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 550px;
+}
+
+#master-teachers-component .teacher-card {
+    background-color: #2c323b;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #3d4450;
+    opacity: 0;
+    animation: master-teacher-fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#master-teachers-component .teacher-card:hover {
+    transform: translateY(-12px) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#master-teachers-component .video-placeholder {
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+}
+
+#master-teachers-component .teacher-card:hover .video-placeholder {
+    transform: scale(1.03);
+}
+
+#master-teachers-component .video-placeholder.orange {
+    background-image: url('https://shikshanam.in/wp-content/uploads/2025/08/Untitled-design-scaled.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#master-teachers-component .video-placeholder.orange::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+}
+
+#master-teachers-component .teacher-card:hover .video-placeholder.orange::before {
+    left: -200%;
+    transition: left 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+#master-teachers-component .card-content {
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#master-teachers-component .teacher-name { 
+    font-weight: 700; 
+    font-size: 1.25rem; 
+    color: #ffffff !important; 
+    margin-bottom: 0; 
+}
+
+#master-teachers-component .teacher-university {
+    font-size: 0.85rem;
+    color: #bdc3c7 !important;
+    font-style: italic;
+    margin-top: 0.25rem;
+}
+
+#master-teachers-component .teacher-title { 
+    color: #f39c12 !important; 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    margin-top: 1rem; 
+}
+
+#master-teachers-component .teacher-desc { 
+    color: #bdc3c7 !important; 
+    font-size: 0.95rem; 
+    margin: 1rem 0; 
+    line-height: 1.6; 
+}
+
+#master-teachers-component .stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #3d4450;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+#master-teachers-component .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#master-teachers-component .stat-item svg {
+    width: 24px;
+    height: 24px;
+    color: #f39c12 !important;
+    fill: currentColor;
+}
+
+#master-teachers-component .stat-text { 
+    font-size: 0.9rem; 
+    color: #bdc3c7 !important; 
+}
+
+#master-teachers-component .stat-text strong { 
+    font-weight: 700; 
+    color: #fff !important; 
+}
+
+#master-teachers-component .special-guests-section {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #3d4450;
+    opacity: 0;
+    animation: master-teacher-fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+}
+
+#master-teachers-component .guests-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f39c12 !important;
+    margin-bottom: 0.5rem;
+}
+
+#master-teachers-component .guests-subheading {
+    font-size: 1rem;
+    color: #bdc3c7 !important;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+#master-teachers-component .guest-creators-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+#master-teachers-component .creator-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #2c323b;
+    padding: 1rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
+}
+
+#master-teachers-component .creator-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+#master-teachers-component .creator-avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #3d4450;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#master-teachers-component .creator-avatar-placeholder svg {
+    width: 30px;
+    height: 30px;
+    fill: #bdc3c7;
+}
+
+#master-teachers-component .creator-name {
+    font-weight: 700;
+    color: #fff !important;
+    margin: 0 0 0.25rem 0;
+}
+
+#master-teachers-component .creator-desc {
+    font-size: 0.9rem;
+    color: #bdc3c7 !important;
+    margin: 0;
+}
+
+#master-teachers-component .start-journey-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff !important;
+    background: linear-gradient(90deg, #f39c12, #e67e22);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: master-teacher-fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards, 
+                 pulseEffect 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1) 2s;
+}
+
+#master-teachers-component .start-journey-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    filter: brightness(1.15);
+    animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+    #master-teachers-component {
+        padding: 4rem 1rem;
+    }
+    #master-teachers-component .main-heading { 
+        font-size: 2rem; 
+    }
+    #master-teachers-component .sub-heading { 
+        font-size: 1rem; 
+    }
+    #master-teachers-component .stats {
+        justify-content: center;
+    }
+}
+
+/* Additional styles for other sections would continue here... */

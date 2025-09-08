@@ -221,20 +221,20 @@ export default function SchoolOfSelfHelpPage() {
 
   // Track page view on mount
   useEffect(() => {
-    analytics.page('School of Self-Help')
+    analytics.pageView('/schools/self-help', 'School of Self-Help')
   }, [analytics])
 
   // Analytics handlers
   const handleExploreTracks = () => {
-    analytics.trackHeroExploreTracks()
+    analytics.track('hero_explore_tracks', { page: 'self-help' })
   }
 
   const handleTakeTest = () => {
-    analytics.trackHeroTakeTest()
+    analytics.track('hero_take_test', { page: 'self-help' })
   }
 
   const handleCourseClick = (course: any) => {
-    analytics.trackCourseClick({
+    analytics.track('course_click', {
       id: course.id || course.title.toLowerCase().replace(/\s+/g, '-'),
       title: course.title,
       category: course.category || 'Self-Help',
@@ -253,7 +253,7 @@ export default function SchoolOfSelfHelpPage() {
       'Transformation Report'
     ]
     
-    analytics.trackJourneyStep({
+    analytics.journey(`step_${step + 1}`, {
       number: step + 1,
       title: stepTitles[step] || `Step ${step + 1}`,
       totalSteps: 5
@@ -261,7 +261,7 @@ export default function SchoolOfSelfHelpPage() {
   }
 
   const handleJourneyComplete = () => {
-    analytics.trackJourneyCompletion(5)
+    analytics.track('journey_completion', { totalSteps: 5 })
   }
 
   return (
@@ -288,12 +288,12 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Meet Gurus Section */}
       <MeetGurus 
-        onGuruClick={(guru) => analytics.trackGuruView({
+        onGuruClick={(guru) => analytics.track('guru_view', {
           id: guru.name.toLowerCase().replace(/\s+/g, '-'),
           name: guru.name,
           specialty: guru.specialty
         })}
-        onViewProfile={(guru) => analytics.trackGuruView({
+        onViewProfile={(guru) => analytics.track('guru_view', {
           id: guru.name.toLowerCase().replace(/\s+/g, '-'),
           name: guru.name,
           specialty: guru.specialty
@@ -302,7 +302,7 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Featured Courses Section */}
       <FeaturedCoursesSlider 
-        onCourseClick={(course) => analytics.trackCourseClick({
+        onCourseClick={(course) => analytics.track('course_click', {
           id: course.id,
           title: course.title,
           category: course.category,
@@ -310,7 +310,7 @@ export default function SchoolOfSelfHelpPage() {
           price: course.price,
           duration: course.duration
         })}
-        onEnrollClick={(course) => analytics.trackCourseEnrollment({
+        onEnrollClick={(course) => analytics.track('course_enrollment', {
           id: course.id,
           title: course.title,
           category: course.category,

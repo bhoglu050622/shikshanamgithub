@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Sun, Moon } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
+import { trackEvent } from '@/lib/analytics'
 
 export default function ThemeToggle() {
   const { theme, setTheme, actualTheme } = useTheme()
@@ -13,16 +14,23 @@ export default function ThemeToggle() {
   ]
 
   return (
-    <div className="flex items-center space-x-1 bg-sand-200/50 dark:bg-wisdom-800/50 rounded-2xl p-1 backdrop-blur-sm">
+    <div className="flex items-center space-x-1 bg-secondary/50 rounded-2xl p-1 backdrop-blur-sm border border-primary/20">
       {themes.map(({ value, icon: Icon, label }) => (
         <motion.button
           key={value}
-          onClick={() => setTheme(value)}
+          onClick={() => {
+            setTheme(value)
+            trackEvent('theme_toggle', { 
+              from_theme: theme, 
+              to_theme: value,
+              actual_theme: actualTheme
+            })
+          }}
           className={`
             relative flex items-center space-x-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
             ${theme === value 
-              ? 'text-saffron-600 dark:text-saffron-400' 
-              : 'text-wisdom-600 dark:text-wisdom-400 hover:text-saffron-600 dark:hover:text-saffron-400'
+              ? 'text-brand-primary' 
+              : 'text-medium-contrast hover:text-brand-primary'
             }
             focus-ring tap-target
           `}
@@ -33,7 +41,7 @@ export default function ThemeToggle() {
           {theme === value && (
             <motion.div
               layoutId="theme-indicator"
-              className="absolute inset-0 bg-white/80 dark:bg-wisdom-700/80 rounded-xl shadow-sm"
+              className="absolute inset-0 bg-card/80 rounded-xl shadow-sm"
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
             />
           )}

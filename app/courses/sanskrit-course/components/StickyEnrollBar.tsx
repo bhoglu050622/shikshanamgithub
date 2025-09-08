@@ -84,13 +84,12 @@ export default function StickyEnrollBar() {
                 <Button 
                   size="sm" 
                   className="btn-primary whitespace-nowrap"
-                  asChild
+                  href="#pricing"
+                  icon={<ShoppingCart className="w-4 h-4" />}
+                  iconPosition="left"
                 >
-                  <a href="#pricing" className="flex items-center gap-2">
-                    <ShoppingCart className="w-4 h-4" />
-                    <span className="hidden sm:inline">Enroll Now</span>
-                    <span className="sm:hidden">Join</span>
-                  </a>
+                  <span className="hidden sm:inline">Enroll Now</span>
+                  <span className="sm:hidden">Join</span>
                 </Button>
                 
                 <Button

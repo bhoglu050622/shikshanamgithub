@@ -112,26 +112,19 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button 
-                size="lg" 
-                className="btn-primary text-lg px-8 py-4 h-auto"
-                asChild
+              <a 
+                href="#pricing"
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                <a href="#pricing">
-                  Enroll Now - ₹2,999
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="btn-outline text-lg px-8 py-4 h-auto"
-                asChild
+                Enroll Now - ₹2,999
+              </a>
+              <a 
+                href="#demo" 
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white font-semibold text-lg rounded-2xl transition-all duration-300 gap-2"
               >
-                <a href="#demo" className="flex items-center gap-2">
-                  <Play className="w-5 h-5" />
-                  Watch Free Demo
-                </a>
-              </Button>
+                <Play className="w-5 h-5" />
+                Watch Free Demo
+              </a>
             </motion.div>
 
             {/* Trust Line */}

@@ -1,0 +1,357 @@
+/* Yoga Darshan Landing Page Styles - Saffron & Teal Theme */
+
+/* --- Global Theme Variables --- */
+:root {
+    /* Primary Colors - Saffron Theme */
+    --saffron-50: #fef7ed;
+    --saffron-100: #fed7aa;
+    --saffron-200: #fdba74;
+    --saffron-300: #fb923c;
+    --saffron-400: #f97316;
+    --saffron-500: #ea580c;
+    --saffron-600: #dc2626;
+    --saffron-700: #b91c1c;
+    --saffron-800: #991b1b;
+    --saffron-900: #7c2d12;
+    
+    /* Secondary Colors - Teal Theme */
+    --teal-50: #f0fdfa;
+    --teal-100: #ccfbf1;
+    --teal-200: #99f6e4;
+    --teal-300: #5eead4;
+    --teal-400: #2dd4bf;
+    --teal-500: #14b8a6;
+    --teal-600: #0d9488;
+    --teal-700: #0f766e;
+    --teal-800: #115e59;
+    --teal-900: #134e4a;
+    
+    /* Background Colors */
+    --parchment-ivory: #faf8f3;
+    --sand-beige: #d2b48c;
+    --ivory-cream: #fbf7f0;
+    
+    /* Text Colors */
+    --text-primary: #111319;
+    --text-secondary: #404040;
+    --text-tertiary: #737373;
+    --text-accent: #8b7355;
+    --text-muted: #999999;
+    --text-light: #f3f4f6;
+    
+    /* Wisdom Colors (for compatibility) */
+    --wisdom-50: #f9fafb;
+    --wisdom-100: #f3f4f6;
+    --wisdom-200: #e5e7eb;
+    --wisdom-300: #d1d5db;
+    --wisdom-400: #9ca3af;
+    --wisdom-500: #6b7280;
+    --wisdom-600: #4b5563;
+    --wisdom-700: #374151;
+    --wisdom-800: #1f2937;
+    --wisdom-900: #111827;
+    
+    /* High Contrast Text */
+    --high-contrast: #111319;
+}
+
+/* --- Hero Section Styles --- */
+#yoga-darshan-hero-scoped {
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-light) !important;
+    position: relative !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+        var(--saffron-50) 0%, 
+        var(--orange-50) 25%, 
+        var(--amber-50) 50%, 
+        var(--teal-50) 75%, 
+        var(--saffron-50) 100%);
+    overflow: hidden;
+}
+
+#yoga-darshan-hero-scoped::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(251, 146, 60, 0.05) 0%, transparent 50%);
+    z-index: 1;
+}
+
+#yoga-darshan-hero-scoped .container-custom {
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Typography Styles --- */
+.text-hero {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+    font-family: 'Noto Serif', serif;
+}
+
+.text-display {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+    font-family: 'Noto Serif', serif;
+}
+
+.text-body {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+}
+
+.text-high-contrast {
+    color: var(--high-contrast) !important;
+}
+
+/* --- Button Styles --- */
+.btn-primary {
+    background: linear-gradient(135deg, var(--saffron-500) 0%, var(--saffron-600) 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--saffron-600) 0%, var(--saffron-700) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--saffron-600);
+    padding: 1rem 2rem;
+    border: 2px solid var(--saffron-600);
+    border-radius: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: var(--saffron-600);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.3);
+    text-decoration: none;
+}
+
+/* --- Card Styles --- */
+.card-premium {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card-premium:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Container Styles --- */
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.section-padding {
+    padding: 5rem 0;
+}
+
+/* --- Animation Styles --- */
+@keyframes pulse-gentle {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-gentle {
+    animation: pulse-gentle 4s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* --- Gradient Backgrounds --- */
+.bg-gradient-saffron {
+    background: linear-gradient(135deg, var(--saffron-500) 0%, var(--saffron-600) 100%);
+}
+
+.bg-gradient-teal {
+    background: linear-gradient(135deg, var(--teal-500) 0%, var(--teal-600) 100%);
+}
+
+.bg-gradient-saffron-teal {
+    background: linear-gradient(135deg, var(--saffron-500) 0%, var(--teal-500) 100%);
+}
+
+/* --- Text Color Utilities --- */
+.text-saffron-600 {
+    color: var(--saffron-600) !important;
+}
+
+.text-teal-600 {
+    color: var(--teal-600) !important;
+}
+
+.text-wisdom-600 {
+    color: var(--wisdom-600) !important;
+}
+
+.text-wisdom-500 {
+    color: var(--wisdom-500) !important;
+}
+
+.text-wisdom-400 {
+    color: var(--wisdom-400) !important;
+}
+
+/* --- Background Color Utilities --- */
+.bg-saffron-50 {
+    background-color: var(--saffron-50) !important;
+}
+
+.bg-teal-50 {
+    background-color: var(--teal-50) !important;
+}
+
+.bg-parchment-ivory {
+    background-color: var(--parchment-ivory) !important;
+}
+
+.bg-sand-beige {
+    background-color: var(--sand-beige) !important;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .text-hero {
+        font-size: 2.5rem;
+    }
+    
+    .text-display {
+        font-size: 2rem;
+    }
+    
+    .section-padding {
+        padding: 3rem 0;
+    }
+    
+    .container-custom {
+        padding: 0 1rem;
+    }
+    
+    .btn-primary,
+    .btn-outline {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-hero {
+        font-size: 2rem;
+    }
+    
+    .text-display {
+        font-size: 1.75rem;
+    }
+    
+    .card-premium {
+        padding: 1.5rem;
+    }
+}
+
+/* --- Accessibility Improvements --- */
+@media (prefers-reduced-motion: reduce) {
+    .animate-pulse-gentle {
+        animation: none;
+    }
+    
+    .card-premium {
+        transition: none;
+    }
+    
+    .btn-primary,
+    .btn-outline {
+        transition: none;
+    }
+}
+
+/* --- Focus Styles for Accessibility --- */
+.btn-primary:focus,
+.btn-outline:focus {
+    outline: 2px solid var(--saffron-500);
+    outline-offset: 2px;
+}
+
+/* --- High Contrast Mode Support --- */
+@media (prefers-contrast: high) {
+    .card-premium {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .btn-outline {
+        border-width: 3px;
+    }
+}
+
+/* --- Print Styles --- */
+@media print {
+    .btn-primary,
+    .btn-outline {
+        background: none !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--text-primary) !important;
+    }
+    
+    .card-premium {
+        box-shadow: none !important;
+        border: 1px solid var(--text-primary) !important;
+    }
+}

@@ -240,15 +240,12 @@ export default function Instructor() {
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
             >
-              <Button 
-                size="lg" 
-                className="btn-primary w-full"
-                asChild
+              <a 
+                href="#pricing"
+                className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                <a href="#pricing">
-                  Learn from Dr. Rajesh Kumar
-                </a>
-              </Button>
+                Learn from Dr. Rajesh Kumar
+              </a>
             </motion.div>
           </motion.div>
         </div>

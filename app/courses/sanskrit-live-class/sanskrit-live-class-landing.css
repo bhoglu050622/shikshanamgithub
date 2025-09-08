@@ -1,0 +1,608 @@
+/* Sanskrit Live Class Landing Page Styles */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;700&family=Roboto+Mono:wght@700&family=Tiro+Devanagari+Hindi&display=swap');
+
+/* Countdown Header Styles */
+.font-mono-timer {
+    font-family: 'Roboto Mono', monospace;
+}
+
+#countdown-header {
+    font-family: 'Manrope', sans-serif;
+}
+
+/* Hero Section Styles */
+#sankhya-hero-component {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fcf8f3 !important; /* A warmer, more premium off-white */
+    padding: 5rem 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Canvas Background */
+#sankhya-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Hybrid Color Palette */
+#sankhya-hero-component {
+    /* Original colors for text content as requested */
+    --heading-dark: #2c2620;
+    --heading-light-default: #c55a11;
+    --text-color: #575049;
+
+    /* Newer theme colors for other elements */
+    --shine-color-1: #F57C00; /* Deep Orange */
+    --shine-color-2: #FFB74D; /* Lighter Orange */
+    --pill-bg: #ffffff;
+    --pill-border: #e6dcd1;
+    --pill-shadow: rgba(0, 0, 0, 0.05);
+    --btn-primary-start: #F57C00; /* Deep Orange */
+    --btn-primary-end: #FFB74D; /* Lighter Orange */
+    --btn-primary-shadow: rgba(245, 124, 0, 0.25); /* Orange Shadow */
+    --btn-secondary-border: #dcd1c8;
+    --dot-gradient-start: #F57C00; /* Deep Orange */
+    --dot-gradient-end: #FFB74D; /* Lighter Orange */
+    --dot-glow-color: rgba(255, 153, 51, 0.5);
+    --dot-glow-color-light: rgba(255, 153, 51, 0.2);
+    --particle-color: #F57C00; /* Deep Orange particles */
+}
+
+/* Keyframe Animations */
+@keyframes hero-fadeInUp { 
+    from { opacity: 0; transform: translateY(35px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+@keyframes textShine { 
+    from { background-position: -200% center; } 
+    to { background-position: 200% center; } 
+}
+
+@keyframes hero-buttonBob { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-5px); } 
+}
+
+@keyframes modal-fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+@keyframes modal-zoomIn { 
+    from { opacity: 0; transform: scale(0.9); } 
+    to { opacity: 1; transform: scale(1); } 
+}
+
+@keyframes softGlowPulseText {
+    0%, 100% { text-shadow: 0 0 15px var(--dot-glow-color-light), 0 0 5px var(--dot-glow-color-light); }
+    50% { text-shadow: 0 0 30px var(--dot-glow-color), 0 0 10px var(--dot-glow-color); }
+}
+
+@keyframes star-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(245, 124, 0, 0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(245, 124, 0, 0.4); }
+}
+
+@keyframes play-button-pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Main Wrapper */
+#sankhya-hero-component .hero-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; 
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+#sankhya-hero-component .animate-item {
+    opacity: 0;
+    animation: hero-fadeInUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Stats Pills */
+#sankhya-hero-component .stats-pills {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+#sankhya-hero-component .stats-pills::-webkit-scrollbar { 
+    display: none; 
+}
+
+#sankhya-hero-component .stats-pills::before,
+#sankhya-hero-component .stats-pills::after { 
+    content: ''; 
+    flex: 0 0 0.5rem; 
+}
+
+@media (min-width: 820px) {
+    #sankhya-hero-component .stats-pills { 
+        justify-content: center; 
+    }
+    #sankhya-hero-component .stats-pills::before,
+    #sankhya-hero-component .stats-pills::after { 
+        display: none; 
+    }
+}
+
+#sankhya-hero-component .stat-pill {
+    background-color: var(--pill-bg) !important;
+    border: 1px solid var(--pill-border) !important;
+    border-radius: 50px !important;
+    padding: 0.6rem 1.2rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 10px var(--pill-shadow) !important;
+    font-size: 0.9rem !important;
+    color: var(--text-color) !important;
+    font-weight: 500 !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+#sankhya-hero-component .stat-pill .pill-icon { 
+    font-size: 1.2em; 
+    line-height: 1; 
+}
+
+/* Decorative Center Icon */
+#sankhya-hero-component .center-icon {
+    width: 80px;
+    padding: 1rem 0; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none !important;
+}
+
+#sankhya-hero-component #hindi-char-cycle {
+    font-family: 'Tiro Devanagari Hindi', serif; 
+    font-size: 3.5rem; 
+    font-weight: 700;
+    line-height: 1.2; 
+    background: linear-gradient(45deg, var(--dot-gradient-end), var(--dot-gradient-start));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: softGlowPulseText 3s ease-in-out infinite;
+}
+
+/* Headings & Text */
+#sankhya-hero-component .hero-heading {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 4rem !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    color: var(--heading-dark) !important;
+    margin: 0 !important;
+}
+
+#sankhya-hero-component .hero-heading .light-text {
+    color: var(--heading-light-default) !important;
+    cursor: pointer;
+}
+
+#sankhya-hero-component .hero-heading .light-text:hover {
+    background: linear-gradient(110deg, var(--shine-color-1), var(--shine-color-2), var(--shine-color-1)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-size: 200% auto !important;
+    animation: textShine 2s linear infinite !important;
+}
+
+#sankhya-hero-component .hero-subheading {
+    font-size: 1.1rem !important;
+    color: var(--text-color) !important;
+    max-width: 650px;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+}
+
+#sankhya-hero-component .hero-subheading strong {
+    color: #f07218 !important; 
+    font-weight: 600 !important;
+}
+
+/* Buttons */
+#sankhya-hero-component .button-wrapper { 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    gap: 0.75rem;
+    width: 100%; 
+}
+
+#sankhya-hero-component .main-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#sankhya-hero-component .hero-button {
+    padding: 0.9rem 2rem !important;
+    border-radius: 50px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    border: 2px solid transparent !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+#sankhya-hero-component .btn-primary {
+    background: linear-gradient(90deg, var(--btn-primary-start), var(--btn-primary-end)) !important;
+    color: #fff !important;
+    box-shadow: 0 10px 25px -10px var(--btn-primary-shadow) !important;
+    animation: hero-buttonBob 2s ease-in-out infinite !important;
+}
+
+#sankhya-hero-component .btn-primary:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 25px -8px var(--btn-primary-shadow) !important;
+    animation-play-state: paused !important;
+}
+
+/* Video Preview Section Styles */
+.video-preview-wrapper {
+    width: 100%;
+    max-width: 640px; /* Control the max size */
+    margin-top: 2.5rem; /* Space from the button above */
+    animation-delay: 0.7s;
+}
+
+.video-preview-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-preview-container:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.video-preview-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    color: #fff;
+    text-align: left;
+}
+
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--btn-primary-start);
+    font-size: 28px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: play-button-pulse 2s infinite;
+}
+
+.video-preview-container:hover .video-play-button {
+    background-color: #fff;
+    transform: translate(-50%, -50%) scale(1.15);
+    animation: none;
+}
+
+.video-preview-text-top h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0 0.1rem 0; /* Reduced margin-bottom */
+    letter-spacing: 0.5px;
+    color: #fff !important; /* FIX: Added !important to override Elementor styles */
+}
+
+.video-preview-text-top h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    color: #fff !important; /* FIX: Added !important to override Elementor styles */
+}
+
+.video-preview-text-bottom {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.video-preview-text-bottom p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.video-preview-text-bottom span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* Video Modal Styles */
+#sankhya-hero-component .video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    animation: modal-fadeIn 0.3s ease forwards;
+}
+
+#sankhya-hero-component .video-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#sankhya-hero-component .video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: modal-zoomIn 0.3s ease forwards;
+}
+
+#sankhya-hero-component .video-modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#sankhya-hero-component .video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#sankhya-hero-component .video-modal-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* Pop-up Widget Styles */
+#guna-profiler-popup-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    z-index: 9999 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.4s ease, visibility 0.4s !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+#guna-profiler-popup-overlay.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#guna-profiler-popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 400px !important;
+    max-width: 90% !important;
+    background-color: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+    z-index: 10000 !important;
+    overflow: hidden !important;
+    font-family: 'Inter', sans-serif !important;
+    transform: translate(-50%, -50%) scale(0.9) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, visibility 0.4s !important;
+}
+
+#guna-profiler-popup.show {
+    transform: translate(-50%, -50%) scale(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#guna-profiler-popup .popup-header {
+    padding: 20px !important;
+    background: linear-gradient(135deg, #fef6e4, #faeade) !important; /* Warmer Orange/Brown background */
+    position: relative !important;
+    text-align: center !important;
+}
+
+/* Star color is now white for better contrast */
+#guna-profiler-popup .popup-icon {
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 auto 16px auto !important;
+    background: linear-gradient(to right, var(--btn-primary-start), var(--btn-primary-end)) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 28px !important;
+    animation: star-pulse 2.5s ease-in-out infinite !important;
+}
+
+#guna-profiler-popup .popup-header h3 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #5D4037 !important; /* Darker Vedic Brown text */
+    margin: 0 !important;
+}
+
+#guna-profiler-popup #popup-close-btn {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: 36px !important;
+    height: 36px !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    color: #6D4C41 !important; /* Vedic Brown */
+    font-size: 22px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s, transform 0.2s !important;
+}
+
+#guna-profiler-popup #popup-close-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    transform: scale(1.1) !important;
+}
+
+#guna-profiler-popup .popup-body {
+    padding: 24px !important;
+    text-align: center !important;
+}
+
+#guna-profiler-popup .popup-body p {
+    font-size: 1.1rem !important;
+    color: #4b5563 !important;
+    line-height: 1.6 !important;
+    margin: 0 0 24px 0 !important;
+}
+
+#guna-profiler-popup #popup-play-btn {
+    width: 100% !important;
+    background: linear-gradient(to right, #F57C00, #FFB74D) !important; /* Orange gradient */
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    padding: 14px 24px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.2) !important; /* Orange shadow */
+}
+
+#guna-profiler-popup #popup-play-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 7px 20px rgba(245, 124, 0, 0.3) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sankhya-hero-component { 
+        padding: 4rem 1rem !important; 
+    }
+    #sankhya-hero-component .hero-heading { 
+        font-size: 3rem !important; 
+    }
+    #sankhya-hero-component .hero-subheading { 
+        font-size: 1rem !important; 
+    }
+    .video-preview-text-top h3 { 
+        font-size: 1.5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    #sankhya-hero-component .hero-heading { 
+        font-size: 2.5rem !important; 
+    }
+    #sankhya-hero-component .main-buttons { 
+        flex-direction: column; 
+        width: 100%; 
+        align-items: stretch; 
+    }
+    .video-preview-overlay { 
+        padding: 1rem; 
+    }
+    .video-preview-text-top h3 { 
+        font-size: 1.2rem; 
+    }
+    .video-play-button { 
+        width: 60px; 
+        height: 60px; 
+        font-size: 24px; 
+    }
+}

@@ -11,13 +11,15 @@ import Community from '@/components/sections/Community'
 import DownloadAppNew from '@/components/sections/DownloadAppNew'
 import Footer from '@/components/Footer'
 import IndianPatterns from '@/components/ornaments/IndianPatterns'
+import OAuthHandler from '@/components/OAuthHandler'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden">
+      <OAuthHandler />
       <IndianPatterns />
       <Header />
-      <main className="main-container" role="main">
+      <main id="main-content" className="main-container" role="main">
         <Hero />
         <AlignYourself />
         <Schools />

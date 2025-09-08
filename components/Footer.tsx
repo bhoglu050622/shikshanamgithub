@@ -2,35 +2,37 @@
 
 import { motion } from 'framer-motion'
 import { BookOpen, Mail, Phone, MapPin, MessageCircle, Instagram, Twitter, Youtube, Heart, ArrowRight } from 'lucide-react'
+import { ROUTES, NAVIGATION_GROUPS } from '@/lib/routes'
+import { trackEvent } from '@/lib/analytics'
 
 const footerLinks = {
   'Learning': [
-    { name: 'Sanskrit School', href: '#sanskrit' },
-    { name: 'Darshan School', href: '#darshan' },
-    { name: 'Self-help School', href: '#self-help' },
-    { name: 'Live Classes', href: '#live-classes' },
-    { name: 'Self-Paced Courses', href: '#courses' }
+    { name: 'Sanskrit School', href: ROUTES.SCHOOL_SANSKRIT },
+    { name: 'Darshan School', href: ROUTES.SCHOOL_DARSHANA },
+    { name: 'Self-help School', href: ROUTES.SCHOOL_SELF_HELP },
+    { name: 'All Schools', href: ROUTES.SCHOOLS },
+    { name: 'Courses', href: ROUTES.COURSES }
   ],
-  'Resources': [
-    { name: 'Study Materials', href: '#materials' },
-    { name: 'Practice Tests', href: '#tests' },
-    { name: 'Video Library', href: '#videos' },
-    { name: 'E-books', href: '#ebooks' },
-    { name: 'Research Papers', href: '#papers' }
+  'Practice': [
+    { name: 'Sanskrit Practice', href: ROUTES.PRACTICE_SANSKRIT },
+    { name: 'Sandhi Tool', href: ROUTES.TOOLS_SANDHI },
+    { name: 'Keyboard Helper', href: ROUTES.TOOLS_KEYBOARD },
+    { name: 'Sanskrit Glossary', href: ROUTES.GLOSSARIES_SANSKRIT },
+    { name: 'Learning Packages', href: ROUTES.PACKAGES }
   ],
   'Community': [
-    { name: 'Student Forum', href: '#forum' },
-    { name: 'Teacher Network', href: '#teachers' },
-    { name: 'Events & Workshops', href: '#events' },
-    { name: 'Success Stories', href: '#stories' },
-    { name: 'Volunteer Program', href: '#volunteer' }
+    { name: 'Meet Gurus', href: ROUTES.GURUS },
+    { name: 'Sanskrit Blog', href: ROUTES.BLOGS_SANSKRIT },
+    { name: 'Student Stories', href: '/about' },
+    { name: 'Events & Workshops', href: '/courses' },
+    { name: 'Success Stories', href: '/about' }
   ],
   'Support': [
-    { name: 'Help Center', href: '#help' },
-    { name: 'Contact Us', href: '#contact' },
-    { name: 'FAQs', href: '#faqs' },
-    { name: 'Technical Support', href: '#tech-support' },
-    { name: 'Feedback', href: '#feedback' }
+    { name: 'Help Center', href: ROUTES.HELP },
+    { name: 'Contact Us', href: ROUTES.CONTACT },
+    { name: 'About Us', href: ROUTES.ABOUT },
+    { name: 'Technical Support', href: '/help' },
+    { name: 'Feedback', href: '/contact' }
   ]
 }
 
@@ -49,7 +51,7 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer className="bg-deep-maroon text-white transition-colors duration-300 relative overflow-hidden">
+    <footer id="footer" className="bg-deep-maroon text-white transition-colors duration-300 relative overflow-hidden">
       {/* Animated Mandala Border Pattern - Contained within viewport */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {/* Top Mandala Border */}
@@ -236,6 +238,11 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
+                      onClick={() => trackEvent('footer_link_click', { 
+                        link_name: link.name, 
+                        link_href: link.href,
+                        section: category
+                      })}
                       className="text-white/80 hover:text-white transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
                     >
                       {link.name}
@@ -329,10 +336,34 @@ export default function Footer() {
             viewport={{ once: true }}
             className="flex flex-wrap justify-center gap-6 mt-6 text-sand-beige text-sm"
           >
-            <a href="#privacy" className="hover:text-parchment-ivory transition-colors duration-200">Privacy Policy</a>
-            <a href="#terms" className="hover:text-parchment-ivory transition-colors duration-200">Terms of Service</a>
-            <a href="#cookies" className="hover:text-parchment-ivory transition-colors duration-200">Cookie Policy</a>
-            <a href="#accessibility" className="hover:text-parchment-ivory transition-colors duration-200">Accessibility</a>
+            <a 
+              href={ROUTES.PRIVACY} 
+              onClick={() => trackEvent('footer_legal_click', { link: 'privacy' })}
+              className="hover:text-parchment-ivory transition-colors duration-200"
+            >
+              Privacy Policy
+            </a>
+            <a 
+              href={ROUTES.TERMS} 
+              onClick={() => trackEvent('footer_legal_click', { link: 'terms' })}
+              className="hover:text-parchment-ivory transition-colors duration-200"
+            >
+              Terms of Service
+            </a>
+            <a 
+              href="#cookies" 
+              onClick={() => trackEvent('footer_legal_click', { link: 'cookies' })}
+              className="hover:text-parchment-ivory transition-colors duration-200"
+            >
+              Cookie Policy
+            </a>
+            <a 
+              href={ROUTES.ACCESSIBILITY} 
+              onClick={() => trackEvent('footer_legal_click', { link: 'accessibility' })}
+              className="hover:text-parchment-ivory transition-colors duration-200"
+            >
+              Accessibility
+            </a>
           </motion.div>
         </div>
       </div>

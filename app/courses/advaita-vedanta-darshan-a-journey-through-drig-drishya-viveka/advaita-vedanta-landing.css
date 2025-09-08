@@ -1,0 +1,426 @@
+/* Advaita Vedanta Darshan Course Landing Page Styles */
+
+/* CSS Variables for Advaita Vedanta Theme */
+:root {
+  --advaita-primary: #8B0000; /* Deep maroon */
+  --advaita-secondary: #D98E3A; /* Saffron */
+  --advaita-background: #FBF7F0; /* Soft beige/ivory */
+  --advaita-text: #111319; /* Charcoal */
+  --advaita-accent: #A52A2A; /* Lighter maroon */
+  --advaita-light: #F5F1E8; /* Light beige */
+}
+
+/* Global Styles */
+.advaita-hero {
+  background: linear-gradient(135deg, var(--advaita-background) 0%, var(--advaita-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.advaita-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mandala-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23D98E3A" opacity="0.1"/><circle cx="10" cy="10" r="4" fill="none" stroke="%238B0000" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23mandala-pattern)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.advaita-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Padding */
+.section-padding {
+  padding: 4rem 0;
+}
+
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+.advaita-heading {
+  font-family: 'Noto Serif', serif;
+  color: var(--advaita-text);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.advaita-subheading {
+  font-family: 'Inter', sans-serif;
+  color: var(--advaita-text);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--advaita-primary) 0%, var(--advaita-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--advaita-text);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+/* Buttons */
+.advaita-btn-primary {
+  background: linear-gradient(135deg, var(--advaita-secondary) 0%, #E6A85C 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(217, 142, 58, 0.3);
+}
+
+.advaita-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(217, 142, 58, 0.4);
+}
+
+.advaita-btn-secondary {
+  background: transparent;
+  color: var(--advaita-primary);
+  padding: 1rem 2rem;
+  border: 2px solid var(--advaita-primary);
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.advaita-btn-secondary:hover {
+  background: var(--advaita-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.advaita-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(139, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 0, 0, 0.1);
+}
+
+.advaita-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(139, 0, 0, 0.15);
+}
+
+/* Icon Styles */
+.advaita-icon {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--advaita-primary) 0%, var(--advaita-accent) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Grid Layouts */
+.advaita-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.advaita-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.advaita-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.advaita-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Timeline Styles */
+.advaita-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.advaita-timeline::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--advaita-primary), var(--advaita-accent));
+}
+
+.advaita-timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.advaita-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--advaita-secondary);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px var(--advaita-primary);
+}
+
+/* Accordion Styles */
+.advaita-accordion {
+  background: white;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(139, 0, 0, 0.1);
+}
+
+.advaita-accordion-header {
+  background: var(--advaita-light);
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.advaita-accordion-header:hover {
+  background: var(--advaita-accent);
+  color: white;
+}
+
+.advaita-accordion-content {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.advaita-accordion-content.active {
+  padding: 1.5rem;
+  max-height: 500px;
+}
+
+/* Price Display */
+.advaita-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--advaita-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.advaita-price-original {
+  font-size: 1.25rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 1rem;
+}
+
+/* Certificate Styles */
+.advaita-certificate {
+  background: linear-gradient(135deg, var(--advaita-light) 0%, white 100%);
+  border: 2px solid var(--advaita-secondary);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.advaita-certificate::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="cert-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="%23D98E3A" opacity="0.1"/><circle cx="10" cy="10" r="2" fill="none" stroke="%238B0000" stroke-width="0.3" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23cert-pattern)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.advaita-certificate-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Testimonial Styles */
+.advaita-testimonial {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(139, 0, 0, 0.1);
+  border-left: 4px solid var(--advaita-secondary);
+  position: relative;
+}
+
+.advaita-testimonial::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 4rem;
+  color: var(--advaita-secondary);
+  opacity: 0.3;
+  font-family: serif;
+}
+
+/* Non-Duality Background */
+.advaita-nonduality {
+  position: relative;
+  overflow: hidden;
+}
+
+.advaita-nonduality::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(217, 142, 58, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.advaita-nonduality-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .advaita-grid-2,
+  .advaita-grid-3,
+  .advaita-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-padding {
+    padding: 2rem 0;
+  }
+  
+  .container-custom {
+    padding: 0 1rem;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.6s ease;
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease;
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Special Effects */
+.advaita-glow {
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.advaita-text-glow {
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+/* Mandala Background */
+.advaita-mandala-bg {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="mandala-bg" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="%23D98E3A" opacity="0.1"/><circle cx="20" cy="20" r="8" fill="none" stroke="%238B0000" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="200" height="200" fill="url(%23mandala-bg)"/></svg>');
+  background-size: 200px 200px;
+}
+
+/* Unity Visualization */
+.advaita-unity {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.advaita-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background: var(--advaita-secondary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid var(--advaita-primary);
+}
+
+.advaita-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid var(--advaita-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+}
+
+.advaita-ring:nth-child(2) { width: 80px; height: 80px; }
+.advaita-ring:nth-child(3) { width: 120px; height: 120px; }
+.advaita-ring:nth-child(4) { width: 160px; height: 160px; }

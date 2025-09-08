@@ -79,27 +79,22 @@ export default function FinalCTA() {
                 transition={{ delay: 0.3 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <Button 
-                  size="lg" 
-                  className="btn-primary text-xl px-8 py-4 h-auto"
-                  asChild
+                <a 
+                  href="https://shikshanam.com/checkout?pid=p2" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold text-xl rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
-                  <a href="https://shikshanam.com/checkout?pid=p2" target="_blank" rel="noopener noreferrer">
-                    Enroll Now
-                    <ArrowRight className="w-6 h-6 ml-2" />
-                  </a>
-                </Button>
+                  Enroll Now
+                  <ArrowRight className="w-6 h-6 ml-2" />
+                </a>
                 
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="btn-outline text-xl px-8 py-4 h-auto"
-                  asChild
+                <a 
+                  href="#demo"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white font-semibold text-xl rounded-2xl transition-all duration-300"
                 >
-                  <a href="#demo">
-                    Watch Demo First
-                  </a>
-                </Button>
+                  Watch Demo First
+                </a>
               </motion.div>
 
               {/* Trust Indicators */}

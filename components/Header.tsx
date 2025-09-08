@@ -7,7 +7,13 @@ import { cn } from '@/lib/utils'
 import ThemeToggle from './ThemeToggle'
 import MegaMenu from './navigation/MegaMenu'
 import MobileDrawer from './navigation/MobileDrawer'
+import LoginModal from './auth/LoginModal'
+import UserDropdown from './auth/UserDropdown'
+import { useAuth } from '@/lib/auth-context'
 import { topLevelNavItems } from '@/lib/navigation-data'
+import Button, { CTAButton } from './ui/button'
+import { ROUTES } from '@/lib/routes'
+import { trackEvent } from '@/lib/analytics'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,6 +22,9 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  
+  const { isLoggedIn, user, isInitialized, logout } = useAuth()
 
   useEffect(() => {
     setIsClient(true)
@@ -32,9 +41,11 @@ export default function Header() {
       <div className="container-custom">
         <div className="flex items-center h-16">
           {/* Logo */}
-          <motion.div 
+          <motion.a 
+            href={ROUTES.HOME}
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3 flex-shrink-0"
+            onClick={() => trackEvent('home_click', { from: 'header_logo' })}
           >
             <div className="w-12 h-12 bg-gradient-to-br from-golden-olive via-deep-maroon to-copper-orange rounded-2xl flex items-center justify-center shadow-lg">
               <BookOpen className="w-7 h-7 text-white" />
@@ -47,10 +58,10 @@ export default function Header() {
                 Shikshanam
               </span>
             </div>
-          </motion.div>
+          </motion.a>
 
           {/* Desktop Navigation - Centered with proper spacing */}
-          <nav className="hidden lg:flex items-center gap-8 mx-auto" role="navigation" aria-label="Main navigation">
+          <nav id="navigation" className="hidden lg:flex items-center gap-8 mx-auto" role="navigation" aria-label="Main navigation">
             {topLevelNavItems.map((item) => (
               <div key={item.name} className="relative">
                 <motion.button
@@ -58,8 +69,14 @@ export default function Header() {
                     if (item.hasDropdown) {
                       const newActiveDropdown = activeDropdown === item.name ? null : item.name
                       setActiveDropdown(newActiveDropdown)
-                      setActiveGroupId(newActiveDropdown ? item.groupId : null)
+                      setActiveGroupId(newActiveDropdown && item.groupId ? item.groupId : null)
                       setIsMegaMenuOpen(newActiveDropdown !== null)
+                    } else {
+                      trackEvent('nav_click', { 
+                        nav_item: item.name, 
+                        nav_href: item.href,
+                        from: 'header_desktop'
+                      })
                     }
                   }}
                   whileHover={{ scale: 1.05 }}
@@ -85,7 +102,10 @@ export default function Header() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              onClick={() => {
+                setIsSearchOpen(!isSearchOpen)
+                trackEvent('search_click', { from: 'header_desktop' })
+              }}
               className="p-2 rounded-xl hover:bg-sand-beige/50 transition-colors duration-200 focus-ring tap-target"
               aria-label="Search"
             >
@@ -95,15 +115,17 @@ export default function Header() {
             {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* Login Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-shikshanam-primary flex items-center space-x-2 px-6 py-2 rounded-2xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl focus-ring tap-target"
-            >
-              <LogIn className="w-4 h-4" />
-              <span>Login</span>
-            </motion.button>
+            {/* Login Button or User Dropdown */}
+            {isInitialized && isLoggedIn && user ? (
+              <UserDropdown user={user} onLogout={logout} />
+            ) : isInitialized ? (
+              <CTAButton.Login
+                onClick={() => setIsLoginModalOpen(true)}
+                size="md"
+              />
+            ) : (
+              <div className="w-20 h-10 bg-sand-beige/20 rounded-xl animate-pulse" />
+            )}
           </div>
 
           {/* Mobile Controls */}
@@ -158,7 +180,14 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => {
+                      setIsMenuOpen(false)
+                      trackEvent('nav_click', { 
+                        nav_item: item.name, 
+                        nav_href: item.href,
+                        from: 'header_mobile'
+                      })
+                    }}
                     className="flex items-center space-x-3 px-4 py-3 text-high-contrast hover:text-golden-olive hover:bg-sand-beige/50 rounded-xl transition-all duration-200 focus-ring tap-target"
                   >
                     <item.icon className="w-5 h-5" />
@@ -193,15 +222,41 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* Login Button */}
+                {/* Login Button or User Info */}
                 <div className="pt-3 border-t border-golden-olive/20">
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-shikshanam-primary w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200 focus-ring tap-target"
-                  >
-                    <LogIn className="w-5 h-5" />
-                    <span>Login</span>
-                  </motion.button>
+                  {isInitialized && isLoggedIn && user ? (
+                    <div className="px-4 py-3">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-golden-olive to-copper-orange flex items-center justify-center">
+                          <span className="text-white font-medium text-sm">
+                            {user.name.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-medium text-deep-maroon">{user.name}</p>
+                          <p className="text-sm text-sand-beige">{user.email}</p>
+                        </div>
+                      </div>
+                      <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        onClick={logout}
+                        className="w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-2xl font-medium transition-all duration-200 focus-ring tap-target bg-red-50 text-red-600 hover:bg-red-100"
+                      >
+                        <LogIn className="w-5 h-5" />
+                        <span>Logout</span>
+                      </motion.button>
+                    </div>
+                  ) : isInitialized ? (
+                    <CTAButton.Login
+                      onClick={() => setIsLoginModalOpen(true)}
+                      size="lg"
+                      fullWidth
+                    />
+                  ) : (
+                    <div className="px-4 py-3">
+                      <div className="w-full h-12 bg-sand-beige/20 rounded-2xl animate-pulse" />
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -223,6 +278,12 @@ export default function Header() {
         <MobileDrawer 
           isOpen={isMenuOpen} 
           onClose={() => setIsMenuOpen(false)} 
+        />
+
+        {/* Login Modal */}
+        <LoginModal 
+          isOpen={isLoginModalOpen} 
+          onClose={() => setIsLoginModalOpen(false)} 
         />
       </div>
     </motion.header>

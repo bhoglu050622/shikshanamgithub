@@ -190,18 +190,18 @@ export default function PricingCards() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.6 }}
                 >
-                  <Button 
-                    className={`w-full text-lg py-4 h-auto ${
+                  <a 
+                    href={plan.ctaLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={`w-full inline-flex items-center justify-center px-6 py-4 text-lg font-semibold rounded-2xl transition-all duration-300 ${
                       plan.popular 
-                        ? 'btn-primary' 
-                        : 'btn-outline'
+                        ? 'bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white transform hover:scale-105 shadow-lg hover:shadow-xl' 
+                        : 'border-2 border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white'
                     }`}
-                    asChild
                   >
-                    <a href={plan.ctaLink} target="_blank" rel="noopener noreferrer">
-                      {plan.cta}
-                    </a>
-                  </Button>
+                    {plan.cta}
+                  </a>
                 </motion.div>
               </CardContent>
             </Card>

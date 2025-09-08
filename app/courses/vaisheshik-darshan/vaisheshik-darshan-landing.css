@@ -1,0 +1,439 @@
+/* Vaisheshik Darshan Course Landing Page Styles */
+
+/* CSS Variables for Vaisheshik Theme */
+:root {
+  --vaisheshik-primary: #0E4C6B; /* Deep teal */
+  --vaisheshik-secondary: #D98E3A; /* Warm saffron */
+  --vaisheshik-background: #FBF7F0; /* Ivory/parchment */
+  --vaisheshik-text: #111319; /* Charcoal */
+  --vaisheshik-accent: #1A6B8A; /* Lighter teal */
+  --vaisheshik-light: #F5F1E8; /* Light parchment */
+}
+
+/* Global Styles */
+.vaisheshik-hero {
+  background: linear-gradient(135deg, var(--vaisheshik-background) 0%, var(--vaisheshik-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.vaisheshik-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="atomic-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%230E4C6B" opacity="0.1"/><line x1="0" y1="10" x2="20" y2="10" stroke="%23D98E3A" stroke-width="0.5" opacity="0.1"/><line x1="10" y1="0" x2="10" y2="20" stroke="%23D98E3A" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23atomic-pattern)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.vaisheshik-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Padding */
+.section-padding {
+  padding: 4rem 0;
+}
+
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+.vaisheshik-heading {
+  font-family: 'Noto Serif', serif;
+  color: var(--vaisheshik-text);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.vaisheshik-subheading {
+  font-family: 'Inter', sans-serif;
+  color: var(--vaisheshik-text);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--vaisheshik-primary) 0%, var(--vaisheshik-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--vaisheshik-text);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+/* Buttons */
+.vaisheshik-btn-primary {
+  background: linear-gradient(135deg, var(--vaisheshik-secondary) 0%, #E6A85C 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(217, 142, 58, 0.3);
+}
+
+.vaisheshik-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(217, 142, 58, 0.4);
+}
+
+.vaisheshik-btn-secondary {
+  background: transparent;
+  color: var(--vaisheshik-primary);
+  padding: 1rem 2rem;
+  border: 2px solid var(--vaisheshik-primary);
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.vaisheshik-btn-secondary:hover {
+  background: var(--vaisheshik-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.vaisheshik-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(14, 76, 107, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(14, 76, 107, 0.1);
+}
+
+.vaisheshik-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(14, 76, 107, 0.15);
+}
+
+/* Icon Styles */
+.vaisheshik-icon {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--vaisheshik-primary) 0%, var(--vaisheshik-accent) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Grid Layouts */
+.vaisheshik-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.vaisheshik-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.vaisheshik-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.vaisheshik-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Timeline Styles */
+.vaisheshik-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.vaisheshik-timeline::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--vaisheshik-primary), var(--vaisheshik-accent));
+}
+
+.vaisheshik-timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.vaisheshik-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--vaisheshik-secondary);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px var(--vaisheshik-primary);
+}
+
+/* Accordion Styles */
+.vaisheshik-accordion {
+  background: white;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(14, 76, 107, 0.1);
+}
+
+.vaisheshik-accordion-header {
+  background: var(--vaisheshik-light);
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-accordion-header:hover {
+  background: var(--vaisheshik-accent);
+  color: white;
+}
+
+.vaisheshik-accordion-content {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-accordion-content.active {
+  padding: 1.5rem;
+  max-height: 500px;
+}
+
+/* Price Display */
+.vaisheshik-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--vaisheshik-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.vaisheshik-price-original {
+  font-size: 1.25rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 1rem;
+}
+
+/* Certificate Styles */
+.vaisheshik-certificate {
+  background: linear-gradient(135deg, var(--vaisheshik-light) 0%, white 100%);
+  border: 2px solid var(--vaisheshik-secondary);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.vaisheshik-certificate::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="cert-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="%23D98E3A" opacity="0.1"/><line x1="0" y1="10" x2="20" y2="10" stroke="%230E4C6B" stroke-width="0.3" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23cert-pattern)"/></svg>');
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.vaisheshik-certificate-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Testimonial Styles */
+.vaisheshik-testimonial {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(14, 76, 107, 0.1);
+  border-left: 4px solid var(--vaisheshik-secondary);
+  position: relative;
+}
+
+.vaisheshik-testimonial::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 4rem;
+  color: var(--vaisheshik-secondary);
+  opacity: 0.3;
+  font-family: serif;
+}
+
+/* Atomic Pattern Background */
+.vaisheshik-atomic-bg {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="atomic-bg" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="%230E4C6B" opacity="0.1"/><line x1="0" y1="20" x2="40" y2="20" stroke="%23D98E3A" stroke-width="0.5" opacity="0.1"/><line x1="20" y1="0" x2="20" y2="40" stroke="%23D98E3A" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="200" height="200" fill="url(%23atomic-bg)"/></svg>');
+  background-size: 200px 200px;
+}
+
+/* Logical Structure */
+.vaisheshik-logical {
+  position: relative;
+  overflow: hidden;
+}
+
+.vaisheshik-logical::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(14, 76, 107, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(217, 142, 58, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.vaisheshik-logical-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .vaisheshik-grid-2,
+  .vaisheshik-grid-3,
+  .vaisheshik-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-padding {
+    padding: 2rem 0;
+  }
+  
+  .container-custom {
+    padding: 0 1rem;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.6s ease;
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease;
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Special Effects */
+.vaisheshik-glow {
+  box-shadow: 0 0 20px rgba(14, 76, 107, 0.3);
+}
+
+.vaisheshik-text-glow {
+  text-shadow: 0 0 10px rgba(14, 76, 107, 0.3);
+}
+
+/* Category Grid */
+.vaisheshik-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.vaisheshik-category-item {
+  background: var(--vaisheshik-light);
+  border: 2px solid var(--vaisheshik-primary);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-category-item:hover {
+  background: var(--vaisheshik-primary);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Atomic Structure Visualization */
+.vaisheshik-atomic-structure {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.vaisheshik-atom {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--vaisheshik-secondary);
+  border-radius: 50%;
+  border: 3px solid var(--vaisheshik-primary);
+}
+
+.vaisheshik-bond {
+  position: absolute;
+  height: 2px;
+  background: var(--vaisheshik-primary);
+  transform-origin: left center;
+}
