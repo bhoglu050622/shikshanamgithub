@@ -4,6 +4,7 @@
  */
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -100,9 +101,11 @@ export function CourseCards({ products, onCourseAction }: CourseCardsProps) {
             {/* Course Thumbnail */}
             <div className="relative h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
               {product.thumbnail ? (
-                <img 
+                <Image 
                   src={product.thumbnail} 
                   alt={product.title}
+                  width={400}
+                  height={192}
                   className="w-full h-full object-cover"
                 />
               ) : (

@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { trackEvent } from '@/lib/analytics'
+import { trackEvent, type AnalyticsEvent } from '@/lib/analytics'
 
 // Button variant types
 export type ButtonVariant = 
@@ -28,7 +28,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   iconPosition?: 'left' | 'right'
   fullWidth?: boolean
   analytics?: {
-    event: string
+    event: AnalyticsEvent
     properties?: Record<string, any>
   }
   children: React.ReactNode
@@ -148,6 +148,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Regular button
+    const { 
+      onAnimationStart, 
+      onAnimationEnd, 
+      onAnimationIteration,
+      onTransitionEnd,
+      onTransitionStart,
+      onTransitionRun,
+      onTransitionCancel,
+      onDragStart,
+      onDrag,
+      onDragEnd,
+      ...safeProps 
+    } = props;
+    
     return (
       <motion.button
         ref={ref}
@@ -157,7 +171,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={{ scale: disabled ? 1 : 1.02 }}
         whileTap={{ scale: disabled ? 1 : 0.98 }}
         transition={{ duration: 0.2 }}
-        {...props}
+        {...safeProps}
       >
         {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
         {children}

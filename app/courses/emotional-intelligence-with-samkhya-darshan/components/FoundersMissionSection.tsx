@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 export default function FoundersMissionSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -176,9 +177,11 @@ export default function FoundersMissionSection() {
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {galleryImages.map((image, index) => (
               <div key={index} className="masonry-item">
-                <img 
+                <Image 
                   src={image.src} 
                   alt={image.alt} 
+                  width={600}
+                  height={400}
                   className="gallery-image" 
                   onError={(e) => {
                     const target = e.target as HTMLImageElement

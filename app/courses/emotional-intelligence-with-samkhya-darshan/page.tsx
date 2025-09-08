@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import './emotional-intelligence-landing.css'
 import CountdownHeader from './components/CountdownHeader'
 import HeroSection from './components/HeroSection'
@@ -117,9 +118,11 @@ export default function EmotionalIntelligenceLanding() {
         <div className="container-custom">
           <div className="bg-gradient-to-r from-temple-gold to-copper-orange rounded-3xl p-8 text-center">
             <div className="flex items-center justify-center gap-6 mb-6">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png" 
                 alt="Shikshanam Logo" 
+                width={48}
+                height={48}
                 className="w-12 h-12 opacity-90"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;

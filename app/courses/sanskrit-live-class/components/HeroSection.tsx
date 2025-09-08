@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import Image from 'next/image';
 import VideoModal from './VideoModal';
 
 export default function HeroSection() {
@@ -10,12 +11,12 @@ export default function HeroSection() {
   const [videoId, setVideoId] = useState<string | null>(null);
 
   // Hindi alphabets array
-  const hindiAlphabets = [
+  const hindiAlphabets = useMemo(() => [
     'क', 'ख', 'ग', 'घ', 'ङ', 'च', 'छ', 'ज', 'झ', 'ञ', 
     'ट', 'ठ', 'ड', 'ढ', 'ण', 'त', 'थ', 'द', 'ध', 'न', 
     'प', 'फ', 'ब', 'भ', 'म', 'य', 'र', 'ल', 'व', 'श', 
     'ष', 'स', 'ह', 'क्ष', 'त्र', 'ज्ञ'
-  ];
+  ], []);
 
   // Character cycling effect
   useEffect(() => {
@@ -119,7 +120,7 @@ export default function HeroSection() {
       window.removeEventListener('resize', handleResize);
       clearTimeout(resizeTimeout);
     };
-  }, []);
+  }, [hindiAlphabets]);
 
   const handleVideoClick = () => {
     setVideoId('e4xRSjCn1pU');
@@ -187,15 +188,17 @@ export default function HeroSection() {
               data-video-id="e4xRSjCn1pU"
               onClick={handleVideoClick}
             >
-              <img 
+              <Image 
                 src="https://img.youtube.com/vi/e4xRSjCn1pU/maxresdefault.jpg" 
+                alt="Sanskrit Bhasha Pragya Program Preview" 
+                width={1280}
+                height={720}
+                className="video-preview-thumbnail" 
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.onerror = null;
                   target.src = 'https://placehold.co/1280x720/2c2620/fcf8f3?text=Video+Preview';
                 }}
-                alt="Sanskrit Bhasha Pragya Program Preview" 
-                className="video-preview-thumbnail" 
               />
               <div className="video-preview-overlay">
                 <div className="video-preview-text-top">

@@ -8,6 +8,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import IndianPatterns from '@/components/ornaments/IndianPatterns';
@@ -257,9 +258,11 @@ export default function DashboardPage() {
                       className="bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all duration-300 overflow-hidden group"
                     >
                       <div className="relative">
-                        <img
+                        <Image
                           src={course.product.thumbnail}
                           alt={course.product.title}
+                          width={400}
+                          height={192}
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute top-4 right-4">
@@ -290,9 +293,11 @@ export default function DashboardPage() {
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-2">
                             <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
-                              <img
-                                src={course.product.instructor.profilePicture}
+                              <Image
+                                src={course.product.instructor.profilePicture || '/images/default-avatar.png'}
                                 alt={course.product.instructor.name}
+                                width={24}
+                                height={24}
                                 className="w-6 h-6 rounded-full object-cover"
                               />
                             </div>
@@ -396,9 +401,11 @@ export default function DashboardPage() {
                   <div className="space-y-4">
                     {dashboardData.recommendations.map((rec, index) => (
                       <div key={rec.productId} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer">
-                        <img
+                        <Image
                           src={rec.product.thumbnail}
                           alt={rec.product.title}
+                          width={48}
+                          height={48}
                           className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
                         />
                         <div className="flex-1 min-w-0">

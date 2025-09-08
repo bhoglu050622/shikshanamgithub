@@ -3,6 +3,7 @@
  * Displays personalized course recommendations
  */
 
+import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -130,9 +131,11 @@ export function Recommendations({ recommendations, onRecommendationClick }: Reco
               {/* Course Thumbnail */}
               <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 rounded-lg overflow-hidden">
                 {product.thumbnail ? (
-                  <img 
+                  <Image 
                     src={product.thumbnail} 
                     alt={product.title}
+                    width={64}
+                    height={64}
                     className="w-full h-full object-cover"
                   />
                 ) : (

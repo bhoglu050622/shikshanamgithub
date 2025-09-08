@@ -56,6 +56,7 @@ export type AnalyticsEvent =
   | 'search_click'
   | 'search_query'
   | 'search_result_click'
+  | 'browse_all_courses_click'
   
   // Theme events
   | 'theme_toggle'
@@ -67,6 +68,13 @@ export type AnalyticsEvent =
   | 'video_complete'
   | 'download_click'
   | 'share_click'
+  | 'testimonial_click'
+  | 'founder_view'
+  | 'mission_learn_more'
+  | 'community_join'
+  | 'newsletter_subscription'
+  | 'event_view'
+  | 'social_click'
   
   // Error events
   | 'error_occurred'

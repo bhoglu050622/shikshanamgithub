@@ -221,7 +221,7 @@ export const getBreadcrumbs = (pathname: string) => {
     }
     
     const name = nameMap[segment] || segment.charAt(0).toUpperCase() + segment.slice(1)
-    breadcrumbs.push({ name, href: currentPath })
+    breadcrumbs.push({ name, href: currentPath as any })
   })
   
   return breadcrumbs
