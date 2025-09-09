@@ -171,9 +171,9 @@ export default function RootLayout({
             <AuthProvider>
               <PerformanceMonitor />
               <AnalyticsInitializer />
-              <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden">
+              <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
                 <Header />
-                <main id="main-content" className="main-container" role="main">
+                <main id="main-content" className="w-full" role="main">
                   {children}
                 </main>
                 <Footer />

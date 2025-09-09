@@ -330,14 +330,16 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Prevent horizontal overflow */
+  /* Prevent horizontal overflow and ensure full width */
   html, body {
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
   
   /* Ensure root container doesn't overflow */
   #__next {
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
@@ -346,6 +348,12 @@
   * {
     max-width: 100%;
     box-sizing: border-box;
+  }
+  
+  /* Ensure full width for main containers */
+  .main-container {
+    width: 100%;
+    max-width: 100%;
   }
   
   /* Ensure footer sits flush at bottom */
@@ -621,12 +629,12 @@
   }
   
   .container-custom {
-    @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    @apply w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
   }
   
   /* Responsive container for main content */
   .main-container {
-    @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    @apply w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
   }
   
   .grid-12 {

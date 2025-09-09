@@ -3,12 +3,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, BookOpen, Lightbulb, Heart, Sparkles, Flower, Play, Users, Award } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import Mandala from '../ornaments/Mandala'
-import PeacockFeather from '../ornaments/PeacockFeather'
-import GlyphParticles from '../ornaments/GlyphParticles'
-import Rangoli from '../ornaments/Rangoli'
-import DynamicLotus3D from '../3d/DynamicLotus3D'
-import DynamicYantra3D from '../3d/DynamicYantra3D'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
 import { useScrollAnimations, useStaggeredAnimations } from '@/lib/hooks/useProgressiveAnimations'
 
@@ -66,54 +60,12 @@ export default function Hero() {
 
   return (
     <section id="home" className="section-padding relative min-h-screen flex items-center bg-parchment-ivory transition-colors duration-300">
-      {/* Background Ornaments */}
+      {/* Simple background */}
       <div className="absolute inset-0 -z-10">
-        {/* 3D Elements - Only render on client */}
-        {isClient && (
-          <>
-            <div className="absolute top-20 right-20 opacity-30">
-              <DynamicLotus3D />
-            </div>
-            <div className="absolute bottom-20 left-20 opacity-25">
-              <DynamicYantra3D />
-            </div>
-            
-            {/* Slow-rotating mandala with golden olive color */}
-            <Mandala 
-              size={300} 
-              className="top-20 left-10 opacity-20 dark:opacity-10 text-golden-olive" 
-              speed={60}
-            />
-            <Mandala 
-              size={200} 
-              className="bottom-20 right-10 opacity-15 dark:opacity-8 text-golden-olive" 
-              speed={80}
-            />
-            
-            {/* Parallax peacock feathers */}
-            <PeacockFeather 
-              size={120} 
-              className="top-40 right-20 opacity-25 dark:opacity-15" 
-              parallax={true}
-            />
-            <PeacockFeather 
-              size={100} 
-              className="bottom-40 left-20 opacity-20 dark:opacity-12" 
-              parallax={true}
-            />
-            
-            {/* Glyph particles */}
-            <GlyphParticles count={18} className="opacity-60 dark:opacity-40" />
-          </>
-        )}
-        
-        {/* Enhanced background gradients with Shikshanam colors */}
-        <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-golden-olive/10 via-deep-maroon/8 to-copper-orange/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-deep-maroon/10 via-copper-orange/8 to-golden-olive/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-copper-orange/10 via-golden-olive/8 to-deep-maroon/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-4000"></div>
-        
-        {/* Indian pattern overlay */}
-        <div className="absolute inset-0 indian-pattern opacity-30 dark:opacity-20"></div>
+        {/* Subtle background gradients */}
+        <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-golden-olive/5 via-deep-maroon/3 to-copper-orange/5 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-deep-maroon/5 via-copper-orange/3 to-golden-olive/5 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-copper-orange/5 via-golden-olive/3 to-deep-maroon/5 rounded-full mix-blend-multiply filter blur-3xl"></div>
       </div>
 
       <div className="container-custom text-center relative z-10">

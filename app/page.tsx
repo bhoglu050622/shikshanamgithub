@@ -8,14 +8,12 @@ import FoundersMission from '@/components/sections/FoundersMission'
 import Contribute from '@/components/sections/Contribute'
 import Community from '@/components/sections/Community'
 import DownloadAppNew from '@/components/sections/DownloadAppNew'
-import IndianPatterns from '@/components/ornaments/IndianPatterns'
 import OAuthHandler from '@/components/OAuthHandler'
 
 export default function Home() {
   return (
     <>
       <OAuthHandler />
-      <IndianPatterns />
       <Hero />
       <AlignYourself />
       <Schools />
