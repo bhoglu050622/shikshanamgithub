@@ -22,7 +22,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
 
   // Preload the image
   useEffect(() => {
-    const img = new Image()
+    const img = document.createElement('img')
     img.src = video.thumbnailUrl
     img.onload = () => setImageLoaded(true)
     img.onerror = () => setImageLoaded(true)

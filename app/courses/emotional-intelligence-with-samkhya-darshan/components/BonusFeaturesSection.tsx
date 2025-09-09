@@ -45,7 +45,7 @@ const BonusCard = ({ feature }: BonusCardProps) => {
 
   // Preload the image
   useEffect(() => {
-    const img = new Image()
+    const img = document.createElement('img')
     img.src = feature.iconUrl
     img.onload = () => setImageLoaded(true)
     img.onerror = () => setImageLoaded(true)

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo, useCallback } from 'react';
 
 interface FlashcardData {
   sanskrit: string;
@@ -11,8 +11,8 @@ interface FlashcardData {
 export default function InteractiveFlashcards() {
   const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Data for the flashcards with multiple variations
-  const cardDataSets: { [key: string]: FlashcardData[] } = {
+  // Data for the flashcards with multiple variations - memoized to prevent re-creation
+  const cardDataSets = useMemo(() => ({
     '1': [
       { sanskrit: 'कथम् अस्ति?', hindi: 'आप कैसी हैं?', english: 'How are you?' },
       { sanskrit: 'शुभ प्रभातम्।', hindi: 'सुप्रभात।', english: 'Good morning.' }
@@ -29,68 +29,68 @@ export default function InteractiveFlashcards() {
       { sanskrit: 'धन्यवादः।', hindi: 'धन्यवाद।', english: 'Thank you.' },
       { sanskrit: 'पुनः मिलामः।', hindi: 'फिर मिलेंगे।', english: 'See you again.' }
     ]
-  };
+  }), []);
 
-  const cardIndexes: { [key: string]: number } = { '1': 0, '2': 0, '3': 0, '4': 0 };
-  const cardTimers: { [key: string]: NodeJS.Timeout } = {};
+  const cardIndexes = useMemo(() => ({ '1': 0, '2': 0, '3': 0, '4': 0 }), []);
+  const cardTimers = useMemo(() => ({} as { [key: string]: NodeJS.Timeout }), []);
 
-  useEffect(() => {
-    const startAutoFlipTimer = (card: HTMLDivElement) => {
-      const cardId = card.dataset.cardId;
-      if (!cardId) return;
+  const startAutoFlipTimer = useCallback((card: HTMLDivElement) => {
+    const cardId = card.dataset.cardId;
+    if (!cardId) return;
 
-      // Clear any existing timer for this card
-      if (cardTimers[cardId]) {
-        clearTimeout(cardTimers[cardId]);
-      }
+    // Clear any existing timer for this card
+    if (cardTimers[cardId]) {
+      clearTimeout(cardTimers[cardId]);
+    }
 
-      // Set a new timer
-      cardTimers[cardId] = setTimeout(() => {
-        card.classList.toggle('is-flipped');
-        startAutoFlipTimer(card); // Restart the timer for the next flip
-      }, 40000); // 40 seconds
-    };
-
-    const updateCardContent = (cardId: string) => {
-      const dataSet = cardDataSets[cardId];
-      if (!dataSet) return;
-
-      const currentIndex = cardIndexes[cardId];
-      const nextIndex = (currentIndex + 1) % dataSet.length;
-      cardIndexes[cardId] = nextIndex;
-      
-      const nextData = dataSet[nextIndex];
-
-      const card = cardRefs.current[cardId];
-      if (!card) return;
-
-      const frontSanskrit = card.querySelector('.flashcard-sanskrit-text');
-      const backHindi = card.querySelector('.flashcard-back .hindi-text');
-      const backEnglish = card.querySelector('.flashcard-back .translation-text:not(.hindi-text)');
-      
-      if (frontSanskrit) frontSanskrit.textContent = nextData.sanskrit;
-      if (backHindi) backHindi.textContent = nextData.hindi;
-      if (backEnglish) backEnglish.textContent = nextData.english;
-    };
-
-    const handleCardClick = (card: HTMLDivElement) => {
+    // Set a new timer
+    cardTimers[cardId] = setTimeout(() => {
       card.classList.toggle('is-flipped');
-      // When user interacts, reset the timer
-      startAutoFlipTimer(card);
-    };
+      startAutoFlipTimer(card); // Restart the timer for the next flip
+    }, 40000); // 40 seconds
+  }, [cardTimers]);
 
-    const handleTransitionEnd = (event: TransitionEvent, card: HTMLDivElement) => {
-      // Only update content when the main flip transition ends
-      if (event.propertyName === 'transform' && event.target === card.querySelector('.flashcard-inner')) {
-        if (!card.classList.contains('is-flipped')) {
-          const cardId = card.dataset.cardId;
-          if (cardId) {
-            updateCardContent(cardId);
-          }
+  const updateCardContent = useCallback((cardId: string) => {
+    const dataSet = cardDataSets[cardId as keyof typeof cardDataSets];
+    if (!dataSet) return;
+
+    const currentIndex = cardIndexes[cardId as keyof typeof cardIndexes];
+    const nextIndex = (currentIndex + 1) % dataSet.length;
+    (cardIndexes as any)[cardId] = nextIndex;
+    
+    const nextData = dataSet[nextIndex];
+
+    const card = cardRefs.current[cardId];
+    if (!card) return;
+
+    const frontSanskrit = card.querySelector('.flashcard-sanskrit-text');
+    const backHindi = card.querySelector('.flashcard-back .hindi-text');
+    const backEnglish = card.querySelector('.flashcard-back .translation-text:not(.hindi-text)');
+    
+    if (frontSanskrit) frontSanskrit.textContent = nextData.sanskrit;
+    if (backHindi) backHindi.textContent = nextData.hindi;
+    if (backEnglish) backEnglish.textContent = nextData.english;
+  }, [cardDataSets, cardIndexes]);
+
+  const handleCardClick = useCallback((card: HTMLDivElement) => {
+    card.classList.toggle('is-flipped');
+    // When user interacts, reset the timer
+    startAutoFlipTimer(card);
+  }, [startAutoFlipTimer]);
+
+  const handleTransitionEnd = useCallback((event: TransitionEvent, card: HTMLDivElement) => {
+    // Only update content when the main flip transition ends
+    if (event.propertyName === 'transform' && event.target === card.querySelector('.flashcard-inner')) {
+      if (!card.classList.contains('is-flipped')) {
+        const cardId = card.dataset.cardId;
+        if (cardId) {
+          updateCardContent(cardId);
         }
       }
-    };
+    }
+  }, [updateCardContent]);
 
+  useEffect(() => {
     // Initialize all cards
     Object.keys(cardDataSets).forEach(cardId => {
       const card = cardRefs.current[cardId];
@@ -112,7 +112,7 @@ export default function InteractiveFlashcards() {
     return () => {
       Object.values(cardTimers).forEach(timer => clearTimeout(timer));
     };
-  }, [cardDataSets, cardIndexes, cardTimers]);
+  }, [cardDataSets, cardTimers, handleTransitionEnd, handleCardClick, startAutoFlipTimer]);
 
   return (
     <section id="interactive-flashcards-section">

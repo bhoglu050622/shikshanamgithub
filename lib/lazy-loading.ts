@@ -123,7 +123,7 @@ export class LazyImageLoader extends LazyLoader {
     }
 
     // Create new image to preload
-    const newImg = new Image();
+    const newImg = document.createElement('img');
     
     newImg.onload = () => {
       img.src = src;

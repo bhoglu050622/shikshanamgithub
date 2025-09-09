@@ -39,7 +39,7 @@ const ReviewCard = ({ name, bio, quote, videoId, thumbnailUrl, rating }: ReviewC
 
   // Preload the image
   useEffect(() => {
-    const img = new Image()
+    const img = document.createElement('img')
     img.src = thumbnailUrl
     img.onload = () => setImageLoaded(true)
     img.onerror = () => setImageLoaded(true)

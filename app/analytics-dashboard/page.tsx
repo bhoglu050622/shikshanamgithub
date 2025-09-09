@@ -80,32 +80,6 @@ export default function AnalyticsDashboard() {
     }
   }, [])
 
-  // Auto-refresh functionality
-  useEffect(() => {
-    if (refreshInterval && isAuthenticated) {
-      const interval = setInterval(() => {
-        fetchDashboardData()
-      }, refreshInterval * 1000)
-      
-      return () => clearInterval(interval)
-    }
-  }, [refreshInterval, isAuthenticated, dateRange, fetchDashboardData])
-
-  const handleLogin = (success: boolean) => {
-    if (success) {
-      setIsAuthenticated(true)
-      setShowLoginModal(false)
-      localStorage.setItem('analytics_dashboard_auth', 'authenticated')
-      fetchDashboardData()
-    }
-  }
-
-  const handleLogout = () => {
-    setIsAuthenticated(false)
-    setShowLoginModal(true)
-    localStorage.removeItem('analytics_dashboard_auth')
-  }
-
   const fetchDashboardData = useCallback(async () => {
     if (!isAuthenticated) return
     
@@ -123,6 +97,32 @@ export default function AnalyticsDashboard() {
       setIsLoading(false)
     }
   }, [isAuthenticated, dateRange.start, dateRange.end, compareMode])
+
+  // Auto-refresh functionality
+  useEffect(() => {
+    if (refreshInterval && isAuthenticated) {
+      const interval = setInterval(() => {
+        fetchDashboardData()
+      }, refreshInterval * 1000)
+      
+      return () => clearInterval(interval)
+    }
+  }, [refreshInterval, isAuthenticated, fetchDashboardData])
+
+  const handleLogin = (success: boolean) => {
+    if (success) {
+      setIsAuthenticated(true)
+      setShowLoginModal(false)
+      localStorage.setItem('analytics_dashboard_auth', 'authenticated')
+      fetchDashboardData()
+    }
+  }
+
+  const handleLogout = () => {
+    setIsAuthenticated(false)
+    setShowLoginModal(true)
+    localStorage.removeItem('analytics_dashboard_auth')
+  }
 
   const handleDateRangeChange = (newRange: { start: string; end: string }) => {
     setDateRange(newRange)
