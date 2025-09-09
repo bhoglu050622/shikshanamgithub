@@ -25,8 +25,6 @@ import {
   Lightbulb,
   Award
 } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 
 // Sandhi rules and examples
@@ -235,9 +233,7 @@ export default function SandhiToolPage() {
   }
 
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
-      
+    <>
       {/* Hero Section */}
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30 dark:from-saffron-900/10 dark:via-transparent dark:to-deep-teal-900/10">
         {/* Background Ornaments */}
@@ -627,8 +623,6 @@ export default function SandhiToolPage() {
           </AnimatePresence>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </>
   )
 }

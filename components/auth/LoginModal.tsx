@@ -39,12 +39,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-parchment-ivory border-golden-olive/20">
+      <DialogContent className="sm:max-w-md premium-modal">
         <DialogHeader className="text-center">
-          <DialogTitle className="text-2xl font-display font-bold text-deep-maroon">
+          <DialogTitle className="text-2xl font-display font-bold premium-text-primary">
             Welcome to शिक्षणम्
           </DialogTitle>
-          <p className="text-sand-beige mt-2">
+          <p className="premium-text-secondary mt-2">
             Choose your preferred way to continue your learning journey
           </p>
         </DialogHeader>
@@ -58,7 +58,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             <Button
               onClick={handleGoogleLogin}
               disabled={isLoading}
-              className="w-full h-12 bg-white border-2 border-gray-200 hover:border-golden-olive text-deep-maroon font-medium rounded-xl shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center space-x-3"
+              variant="secondary"
+              className="w-full h-12 font-medium flex items-center justify-center space-x-3"
             >
               <Chrome className="w-5 h-5" />
               <span>Continue with Google</span>
@@ -73,7 +74,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             <Button
               onClick={handleEmailLogin}
               disabled={isLoading}
-              className="w-full h-12 bg-gradient-to-r from-golden-olive to-copper-orange hover:from-golden-olive/90 hover:to-copper-orange/90 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center space-x-3"
+              variant="primary"
+              className="w-full h-12 font-medium flex items-center justify-center space-x-3"
             >
               <Mail className="w-5 h-5" />
               <span>Continue with Email</span>
@@ -82,13 +84,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         </div>
 
         <div className="text-center mt-6">
-          <p className="text-sm text-sand-beige">
+          <p className="text-sm premium-text-secondary">
             By continuing, you agree to our{' '}
-            <a href="/terms" className="text-golden-olive hover:underline">
+            <a href="/terms" className="text-premium-accent-primary hover:text-premium-accent-primary/80 underline">
               Terms of Service
             </a>{' '}
             and{' '}
-            <a href="/privacy" className="text-golden-olive hover:underline">
+            <a href="/privacy" className="text-premium-accent-primary hover:text-premium-accent-primary/80 underline">
               Privacy Policy
             </a>
           </p>

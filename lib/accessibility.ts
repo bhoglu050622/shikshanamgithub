@@ -1,384 +1,313 @@
 /**
- * Accessibility utilities for the Shikshanam application
- * Provides comprehensive accessibility features including ARIA attributes,
- * keyboard navigation, focus management, and reduced motion support.
+ * Accessibility Utilities
+ * Provides tools for WCAG AA/AAA compliance and accessibility enhancements
  */
 
-import { useReducedMotion } from 'framer-motion'
+// Color contrast ratios for WCAG compliance
+export const CONTRAST_RATIOS = {
+  AA_NORMAL: 4.5,      // WCAG AA for normal text
+  AA_LARGE: 3.0,       // WCAG AA for large text (18pt+ or 14pt+ bold)
+  AAA_NORMAL: 7.0,     // WCAG AAA for normal text
+  AAA_LARGE: 4.5,      // WCAG AAA for large text
+} as const;
 
-// ARIA attribute helpers
-export const getAriaAttributes = {
-  // Button accessibility
-  button: (options: {
-    label?: string
-    expanded?: boolean
-    controls?: string
-    describedBy?: string
-    pressed?: boolean
-    disabled?: boolean
-  }) => ({
-    'aria-label': options.label,
-    'aria-expanded': options.expanded,
-    'aria-controls': options.controls,
-    'aria-describedby': options.describedBy,
-    'aria-pressed': options.pressed,
-    'aria-disabled': options.disabled,
-  }),
+// Minimum touch target sizes
+export const TOUCH_TARGETS = {
+  MINIMUM: 44,         // Minimum touch target size in pixels
+  RECOMMENDED: 48,     // Recommended touch target size
+} as const;
 
-  // Navigation accessibility
-  navigation: (options: {
-    label?: string
-    current?: boolean
-    orientation?: 'horizontal' | 'vertical'
-  }) => ({
-    'aria-label': options.label,
-    'aria-current': options.current ? 'page' : undefined,
-    'aria-orientation': options.orientation,
-  }),
+// Focus management
+export class FocusManager {
+  private focusHistory: HTMLElement[] = [];
+  private currentFocusIndex = -1;
 
-  // Form accessibility
-  form: (options: {
-    label?: string
-    required?: boolean
-    invalid?: boolean
-    describedBy?: string
-  }) => ({
-    'aria-label': options.label,
-    'aria-required': options.required,
-    'aria-invalid': options.invalid,
-    'aria-describedby': options.describedBy,
-  }),
-
-  // Modal/Dialog accessibility
-  dialog: (options: {
-    label?: string
-    describedBy?: string
-    modal?: boolean
-  }) => ({
-    'aria-label': options.label,
-    'aria-describedby': options.describedBy,
-    'aria-modal': options.modal,
-    role: 'dialog',
-  }),
-
-  // Live region for announcements
-  liveRegion: (options: {
-    polite?: boolean
-    assertive?: boolean
-  }) => ({
-    'aria-live': options.assertive ? 'assertive' : 'polite',
-    'aria-atomic': 'true',
-  }),
-
-  // Tablist accessibility
-  tablist: (options: {
-    orientation?: 'horizontal' | 'vertical'
-    label?: string
-  }) => ({
-    role: 'tablist',
-    'aria-orientation': options.orientation,
-    'aria-label': options.label,
-  }),
-
-  // Tab accessibility
-  tab: (options: {
-    selected?: boolean
-    controls?: string
-    label?: string
-  }) => ({
-    role: 'tab',
-    'aria-selected': options.selected,
-    'aria-controls': options.controls,
-    'aria-label': options.label,
-  }),
-
-  // Tabpanel accessibility
-  tabpanel: (options: {
-    labelledBy?: string
-    label?: string
-  }) => ({
-    role: 'tabpanel',
-    'aria-labelledby': options.labelledBy,
-    'aria-label': options.label,
-  }),
-}
-
-// Keyboard navigation helpers
-export const keyboardNavigation = {
-  // Arrow key navigation for horizontal/vertical lists
-  handleArrowKeys: (
-    event: React.KeyboardEvent,
-    options: {
-      orientation: 'horizontal' | 'vertical'
-      currentIndex: number
-      totalItems: number
-      onIndexChange: (index: number) => void
-      loop?: boolean
-    }
-  ) => {
-    const { orientation, currentIndex, totalItems, onIndexChange, loop = true } = options
-    
-    if (orientation === 'horizontal') {
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault()
-        const newIndex = currentIndex > 0 ? currentIndex - 1 : (loop ? totalItems - 1 : currentIndex)
-        onIndexChange(newIndex)
-      } else if (event.key === 'ArrowRight') {
-        event.preventDefault()
-        const newIndex = currentIndex < totalItems - 1 ? currentIndex + 1 : (loop ? 0 : currentIndex)
-        onIndexChange(newIndex)
-      }
-    } else {
-      if (event.key === 'ArrowUp') {
-        event.preventDefault()
-        const newIndex = currentIndex > 0 ? currentIndex - 1 : (loop ? totalItems - 1 : currentIndex)
-        onIndexChange(newIndex)
-      } else if (event.key === 'ArrowDown') {
-        event.preventDefault()
-        const newIndex = currentIndex < totalItems - 1 ? currentIndex + 1 : (loop ? 0 : currentIndex)
-        onIndexChange(newIndex)
-      }
-    }
-  },
-
-  // Escape key handler for modals/dropdowns
-  handleEscape: (
-    event: React.KeyboardEvent,
-    onEscape: () => void
-  ) => {
-    if (event.key === 'Escape') {
-      event.preventDefault()
-      onEscape()
-    }
-  },
-
-  // Enter/Space key handler for interactive elements
-  handleActivation: (
-    event: React.KeyboardEvent,
-    onActivate: () => void
-  ) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      onActivate()
-    }
-  },
-
-  // Tab navigation with focus trapping
-  handleTabNavigation: (
-    event: React.KeyboardEvent,
-    options: {
-      firstFocusableElement?: HTMLElement | null
-      lastFocusableElement?: HTMLElement | null
-      trapFocus?: boolean
-    }
-  ) => {
-    if (event.key === 'Tab' && options.trapFocus) {
-      const { firstFocusableElement, lastFocusableElement } = options
-      
-      if (event.shiftKey) {
-        // Shift + Tab (backwards)
-        if (document.activeElement === firstFocusableElement) {
-          event.preventDefault()
-          lastFocusableElement?.focus()
-        }
-      } else {
-        // Tab (forwards)
-        if (document.activeElement === lastFocusableElement) {
-          event.preventDefault()
-          firstFocusableElement?.focus()
-        }
-      }
-    }
-  },
-}
-
-// Focus management utilities
-export const focusManagement = {
-  // Focus trap for modals
-  createFocusTrap: (container: HTMLElement) => {
+  /**
+   * Trap focus within a container
+   */
+  static trapFocus(container: HTMLElement): () => void {
     const focusableElements = container.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    ) as NodeListOf<HTMLElement>
-    
-    const firstElement = focusableElements[0]
-    const lastElement = focusableElements[focusableElements.length - 1]
-    
-    return {
-      firstElement,
-      lastElement,
-      focusableElements: Array.from(focusableElements),
-    }
-  },
+    ) as NodeListOf<HTMLElement>;
 
-  // Restore focus to previously focused element
-  restoreFocus: (() => {
-    let previouslyFocusedElement: HTMLElement | null = null
-    
-    return {
-      save: () => {
-        previouslyFocusedElement = document.activeElement as HTMLElement
-      },
-      restore: () => {
-        if (previouslyFocusedElement) {
-          previouslyFocusedElement.focus()
-          previouslyFocusedElement = null
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
         }
-      },
-    }
-  })(),
-
-  // Announce changes to screen readers
-  announce: (message: string, priority: 'polite' | 'assertive' = 'polite') => {
-    const announcement = document.createElement('div')
-    announcement.setAttribute('aria-live', priority)
-    announcement.setAttribute('aria-atomic', 'true')
-    announcement.className = 'sr-only'
-    announcement.textContent = message
-    
-    document.body.appendChild(announcement)
-    
-    // Remove after announcement
-    setTimeout(() => {
-      document.body.removeChild(announcement)
-    }, 1000)
-  },
-}
-
-// Screen reader utilities
-export const screenReader = {
-  // Hide element from screen readers
-  hide: (element: HTMLElement) => {
-    element.setAttribute('aria-hidden', 'true')
-  },
-
-  // Show element to screen readers
-  show: (element: HTMLElement) => {
-    element.removeAttribute('aria-hidden')
-  },
-
-  // Create screen reader only text
-  createScreenReaderText: (text: string) => {
-    const element = document.createElement('span')
-    element.className = 'sr-only'
-    element.textContent = text
-    return element
-  },
-}
-
-// Motion accessibility utilities
-export const motionAccessibility = {
-  // Get reduced motion preferences
-  useReducedMotion: () => useReducedMotion(),
-
-  // Create motion variants that respect reduced motion
-  createAccessibleVariants: (variants: any, shouldReduceMotion: boolean) => {
-    if (shouldReduceMotion) {
-      // Return static variants for reduced motion
-      return {
-        initial: { opacity: 1 },
-        animate: { opacity: 1 },
-        exit: { opacity: 1 },
-        ...variants,
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
       }
-    }
-    return variants
-  },
+    };
 
-  // Safe animation duration that respects reduced motion
-  getSafeDuration: (duration: number, shouldReduceMotion: boolean) => {
-    return shouldReduceMotion ? 0 : duration
-  },
+    container.addEventListener('keydown', handleTabKey);
+    firstElement?.focus();
+
+    return () => {
+      container.removeEventListener('keydown', handleTabKey);
+    };
+  }
+
+  /**
+   * Restore focus to the last focused element
+   */
+  restoreFocus(): void {
+    const lastElement = this.focusHistory[this.focusHistory.length - 1];
+    if (lastElement && document.contains(lastElement)) {
+      lastElement.focus();
+    }
+  }
+
+  /**
+   * Save current focus
+   */
+  saveFocus(): void {
+    const activeElement = document.activeElement as HTMLElement;
+    if (activeElement) {
+      this.focusHistory.push(activeElement);
+    }
+  }
 }
 
 // Color contrast utilities
-export const colorContrast = {
-  // Check if color combination meets WCAG standards
-  checkContrast: (foreground: string, background: string, level: 'AA' | 'AAA' = 'AA') => {
-    // This would typically use a color contrast library
-    // For now, return a placeholder
-    return {
-      ratio: 4.5, // Placeholder
-      meetsAA: true,
-      meetsAAA: false,
-    }
-  },
+export class ColorContrast {
+  /**
+   * Calculate relative luminance of a color
+   */
+  static getRelativeLuminance(r: number, g: number, b: number): number {
+    const [rs, gs, bs] = [r, g, b].map(c => {
+      c = c / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+  }
 
-  // Get high contrast colors for better accessibility
-  getHighContrastColors: (baseColor: string) => {
-    // This would typically use a color manipulation library
-    return {
-      light: '#ffffff',
-      dark: '#000000',
-      highContrast: baseColor,
+  /**
+   * Calculate contrast ratio between two colors
+   */
+  static getContrastRatio(color1: [number, number, number], color2: [number, number, number]): number {
+    const lum1 = this.getRelativeLuminance(...color1);
+    const lum2 = this.getRelativeLuminance(...color2);
+    const brightest = Math.max(lum1, lum2);
+    const darkest = Math.min(lum1, lum2);
+    return (brightest + 0.05) / (darkest + 0.05);
+  }
+
+  /**
+   * Check if contrast ratio meets WCAG standards
+   */
+  static meetsWCAG(
+    foreground: [number, number, number],
+    background: [number, number, number],
+    level: 'AA' | 'AAA' = 'AA',
+    size: 'normal' | 'large' = 'normal'
+  ): boolean {
+    const ratio = this.getContrastRatio(foreground, background);
+    const requiredRatio = level === 'AA' 
+      ? (size === 'large' ? CONTRAST_RATIOS.AA_LARGE : CONTRAST_RATIOS.AA_NORMAL)
+      : (size === 'large' ? CONTRAST_RATIOS.AAA_LARGE : CONTRAST_RATIOS.AAA_NORMAL);
+    
+    return ratio >= requiredRatio;
+  }
+
+  /**
+   * Get accessible text color for a background
+   */
+  static getAccessibleTextColor(
+    background: [number, number, number],
+    level: 'AA' | 'AAA' = 'AA',
+    size: 'normal' | 'large' = 'normal'
+  ): [number, number, number] {
+    const requiredRatio = level === 'AA' 
+      ? (size === 'large' ? CONTRAST_RATIOS.AA_LARGE : CONTRAST_RATIOS.AA_NORMAL)
+      : (size === 'large' ? CONTRAST_RATIOS.AAA_LARGE : CONTRAST_RATIOS.AAA_NORMAL);
+
+    // Try white text first
+    if (this.getContrastRatio([255, 255, 255], background) >= requiredRatio) {
+      return [255, 255, 255];
     }
-  },
+
+    // Try black text
+    if (this.getContrastRatio([0, 0, 0], background) >= requiredRatio) {
+      return [0, 0, 0];
+    }
+
+    // Calculate optimal gray
+    const bgLuminance = this.getRelativeLuminance(...background);
+    const targetLuminance = bgLuminance > 0.5 
+      ? bgLuminance - (requiredRatio - 1) / requiredRatio
+      : bgLuminance + (requiredRatio - 1) / requiredRatio;
+
+    const gray = Math.round(targetLuminance * 255);
+    return [gray, gray, gray];
+  }
+}
+
+// Screen reader utilities
+export class ScreenReader {
+  /**
+   * Announce text to screen readers
+   */
+  static announce(text: string, priority: 'polite' | 'assertive' = 'polite'): void {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', priority);
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = text;
+
+    document.body.appendChild(announcement);
+
+    setTimeout(() => {
+      document.body.removeChild(announcement);
+    }, 1000);
+  }
+
+  /**
+   * Create visually hidden text for screen readers
+   */
+  static createScreenReaderText(text: string): HTMLElement {
+    const element = document.createElement('span');
+    element.className = 'sr-only';
+    element.textContent = text;
+    return element;
+  }
+}
+
+// Keyboard navigation utilities
+export class KeyboardNavigation {
+  /**
+   * Handle arrow key navigation for lists
+   */
+  static handleArrowNavigation(
+    event: KeyboardEvent,
+    items: HTMLElement[],
+    currentIndex: number,
+    orientation: 'horizontal' | 'vertical' = 'vertical'
+  ): number {
+    const isHorizontal = orientation === 'horizontal';
+    const isVertical = orientation === 'vertical';
+
+    if (isVertical && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+      event.preventDefault();
+      const direction = event.key === 'ArrowUp' ? -1 : 1;
+      const nextIndex = (currentIndex + direction + items.length) % items.length;
+      items[nextIndex].focus();
+      return nextIndex;
+    }
+
+    if (isHorizontal && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+      event.preventDefault();
+      const direction = event.key === 'ArrowLeft' ? -1 : 1;
+      const nextIndex = (currentIndex + direction + items.length) % items.length;
+      items[nextIndex].focus();
+      return nextIndex;
+    }
+
+    return currentIndex;
+  }
+
+  /**
+   * Handle escape key to close modals/dropdowns
+   */
+  static handleEscapeKey(event: KeyboardEvent, onEscape: () => void): void {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      onEscape();
+    }
+  }
 }
 
 // Form accessibility utilities
-export const formAccessibility = {
-  // Create accessible form field
-  createAccessibleField: (options: {
-    id: string
-    label: string
-    required?: boolean
-    error?: string
-    helpText?: string
-  }) => {
-    const { id, label, required, error, helpText } = options
-    
+export class FormAccessibility {
+  /**
+   * Validate form field accessibility
+   */
+  static validateField(field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): {
+    isValid: boolean;
+    errors: string[];
+  } {
+    const errors: string[] = [];
+
+    // Check for label
+    const label = document.querySelector(`label[for="${field.id}"]`);
+    if (!label && !field.getAttribute('aria-label') && !field.getAttribute('aria-labelledby')) {
+      errors.push('Field must have a label, aria-label, or aria-labelledby');
+    }
+
+    // Check for required field indication
+    if (field.required && !field.getAttribute('aria-required')) {
+      errors.push('Required fields should have aria-required="true"');
+    }
+
+    // Check for error state
+    if (field.getAttribute('aria-invalid') === 'true' && !field.getAttribute('aria-describedby')) {
+      errors.push('Invalid fields should have aria-describedby pointing to error message');
+    }
+
     return {
-      inputProps: {
-        id,
-        'aria-required': required,
-        'aria-invalid': !!error,
-        'aria-describedby': [
-          error ? `${id}-error` : null,
-          helpText ? `${id}-help` : null,
-        ].filter(Boolean).join(' ') || undefined,
-      },
-      labelProps: {
-        htmlFor: id,
-      },
-      errorProps: error ? {
-        id: `${id}-error`,
-        role: 'alert',
-        'aria-live': 'polite',
-      } : undefined,
-      helpProps: helpText ? {
-        id: `${id}-help`,
-      } : undefined,
-    }
-  },
+      isValid: errors.length === 0,
+      errors
+    };
+  }
 
-  // Validate form field accessibility
-  validateFieldAccessibility: (field: HTMLInputElement) => {
-    const issues: string[] = []
-    
-    if (!field.id) {
-      issues.push('Field must have an id attribute')
-    }
-    
-    if (!field.getAttribute('aria-label') && !document.querySelector(`label[for="${field.id}"]`)) {
-      issues.push('Field must have a label or aria-label')
-    }
-    
-    if (field.hasAttribute('aria-invalid') && !field.getAttribute('aria-describedby')) {
-      issues.push('Invalid fields must have error message referenced by aria-describedby')
-    }
-    
-    return issues
-  },
+  /**
+   * Create accessible error message
+   */
+  static createErrorMessage(fieldId: string, message: string): HTMLElement {
+    const errorElement = document.createElement('div');
+    errorElement.id = `${fieldId}-error`;
+    errorElement.className = 'text-red-600 text-sm mt-1';
+    errorElement.setAttribute('role', 'alert');
+    errorElement.setAttribute('aria-live', 'polite');
+    errorElement.textContent = message;
+    return errorElement;
+  }
 }
 
-// Export all utilities as a single object
-export const accessibility = {
-  aria: getAriaAttributes,
-  keyboard: keyboardNavigation,
-  focus: focusManagement,
-  screenReader,
-  motion: motionAccessibility,
-  contrast: colorContrast,
-  form: formAccessibility,
+// Motion and animation accessibility
+export class MotionAccessibility {
+  /**
+   * Check if user prefers reduced motion
+   */
+  static prefersReducedMotion(): boolean {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  /**
+   * Get appropriate animation duration based on user preferences
+   */
+  static getAnimationDuration(defaultDuration: number): number {
+    return this.prefersReducedMotion() ? 0 : defaultDuration;
+  }
+
+  /**
+   * Apply reduced motion styles
+   */
+  static applyReducedMotion(element: HTMLElement): void {
+    if (this.prefersReducedMotion()) {
+      element.style.animation = 'none';
+      element.style.transition = 'none';
+    }
+  }
 }
 
-export default accessibility
+// Export utility functions
+export const accessibilityUtils = {
+  FocusManager,
+  ColorContrast,
+  ScreenReader,
+  KeyboardNavigation,
+  FormAccessibility,
+  MotionAccessibility,
+  CONTRAST_RATIOS,
+  TOUCH_TARGETS,
+};

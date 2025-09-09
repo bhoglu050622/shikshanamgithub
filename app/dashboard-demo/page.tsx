@@ -78,7 +78,7 @@ export default function DashboardDemoPage() {
                     <button
                       key={demoEmail}
                       onClick={() => setEmail(demoEmail)}
-                      className="block w-full text-sm text-orange-600 dark:text-orange-400 hover:underline"
+                      className="block w-full text-sm text-orange-600 dark:text-orange-400"
                     >
                       {demoEmail}
                     </button>

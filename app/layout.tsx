@@ -5,6 +5,9 @@ import FontPreloader from '@/components/optimization/FontPreloader'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import AnalyticsInitializer from '@/components/AnalyticsInitializer'
+import '@/lib/analytics-tracker' // Initialize analytics tracker
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/theme'
 import { AuthProvider } from '@/lib/auth-context'
 import { initAnalytics } from '@/lib/analytics'
@@ -140,7 +143,13 @@ export default function RootLayout({
             <AuthProvider>
               <PerformanceMonitor />
               <AnalyticsInitializer />
-              {children}
+              <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden">
+                <Header />
+                <main id="main-content" className="main-container" role="main">
+                  {children}
+                </main>
+                <Footer />
+              </div>
             </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>

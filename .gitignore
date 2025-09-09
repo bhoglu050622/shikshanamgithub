@@ -87,3 +87,5 @@ coverage/
 
 # TernJS port file
 .tern-port
+
+/lib/generated/prisma

@@ -19,7 +19,9 @@ import { Recommendations } from '../../components/dashboard/Recommendations';
 import { Transactions } from '../../components/dashboard/Transactions';
 import { DashboardSkeleton } from '../../components/dashboard/DashboardSkeleton';
 import { DashboardError } from '../../components/dashboard/DashboardError';
+import { LoadingOverlay, SkeletonComponents } from '@/components/ui/LoadingStates';
 import { useAuth } from '@/lib/auth-context';
+import { useRealTimeRecommendations } from '@/lib/hooks/useRealTimeRecommendations';
 import type { DashboardData } from '@/lib/dashboard/dashboard-service';
 
 export default function DashboardPage() {
@@ -29,6 +31,20 @@ export default function DashboardPage() {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Real-time recommendations
+  const {
+    recommendations: realTimeRecommendations,
+    learnerProfile,
+    generatedAt,
+    isLoading: recommendationsLoading,
+    error: recommendationsError,
+    refresh: refreshRecommendations
+  } = useRealTimeRecommendations({
+    email: user?.email || '',
+    refreshInterval: 300000, // 5 minutes
+    enabled: isLoggedIn && !!user?.email
+  });
 
   useEffect(() => {
     // Wait for auth to initialize
@@ -51,7 +67,7 @@ export default function DashboardPage() {
       setError(null);
 
       console.log('Fetching dashboard data...');
-      const response = await fetch('/api/dashboard/real-data');
+      const response = await fetch('/api/dashboard/me');
       
       console.log('Response status:', response.status);
       
@@ -390,44 +406,101 @@ export default function DashboardPage() {
             {/* Right Column - Recommendations and Quick Stats */}
             <div className="space-y-6">
               
-              {/* Recommendations */}
+              {/* Real-time Recommendations */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                  <h2 className="text-xl font-bold text-slate-800 mb-6">Recommended for You</h2>
-                  <div className="space-y-4">
-                    {dashboardData.recommendations.map((rec, index) => (
-                      <div key={rec.productId} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer">
-                        <Image
-                          src={rec.product.thumbnail}
-                          alt={rec.product.title}
-                          width={48}
-                          height={48}
-                          className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-slate-800 text-sm line-clamp-2">{rec.product.title}</h3>
-                          <p className="text-xs text-slate-600 mt-1">{rec.reason}</p>
-                          <div className="flex items-center justify-between mt-2">
-                            <div className="flex items-center gap-2">
-                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                              <span className="text-xs text-slate-500">{Math.round(rec.score * 100)}% match</span>
-                            </div>
-                            <span className={`text-xs font-medium ${
-                              rec.product.price === 0 
-                                ? 'text-green-600' 
-                                : 'text-blue-600'
-                            }`}>
-                              {formatCurrency(rec.product.price, rec.product.currency)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl font-bold text-slate-800">Recommended for You</h2>
+                    <div className="flex items-center gap-2">
+                      {recommendationsLoading && (
+                        <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                      )}
+                      <button
+                        onClick={refreshRecommendations}
+                        className="text-xs text-slate-500 hover:text-slate-700 transition-colors"
+                        title="Refresh recommendations"
+                      >
+                        Refresh
+                      </button>
+                    </div>
                   </div>
+                  
+                  {recommendationsLoading ? (
+                    <SkeletonComponents.NavigationMenu />
+                  ) : recommendationsError ? (
+                    <div className="text-center py-4">
+                      <p className="text-sm text-red-600 mb-2">Failed to load recommendations</p>
+                      <button
+                        onClick={refreshRecommendations}
+                        className="text-xs text-blue-600 hover:text-blue-800 transition-colors"
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {realTimeRecommendations.length > 0 ? (
+                        realTimeRecommendations.map((rec, index) => (
+                          <div key={rec.productId} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer group">
+                            <Image
+                              src={rec.product.thumbnail}
+                              alt={rec.product.title}
+                              width={48}
+                              height={48}
+                              className="w-12 h-12 rounded-lg object-cover flex-shrink-0 group-hover:scale-105 transition-transform"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-medium text-slate-800 text-sm line-clamp-2">{rec.product.title}</h3>
+                              <p className="text-xs text-slate-600 mt-1">{rec.reason}</p>
+                              <div className="flex items-center justify-between mt-2">
+                                <div className="flex items-center gap-2">
+                                  <div className={`w-2 h-2 rounded-full ${
+                                    rec.score > 0.8 ? 'bg-green-500' :
+                                    rec.score > 0.6 ? 'bg-yellow-500' : 'bg-blue-500'
+                                  }`}></div>
+                                  <span className="text-xs text-slate-500">{Math.round(rec.score * 100)}% match</span>
+                                </div>
+                                <span className={`text-xs font-medium ${
+                                  rec.product.price === 0 
+                                    ? 'text-green-600' 
+                                    : 'text-blue-600'
+                                }`}>
+                                  {formatCurrency(rec.product.price, rec.product.currency)}
+                                </span>
+                              </div>
+                              {rec.realTimeFactors && (
+                                <div className="mt-1">
+                                  <span className="text-xs text-slate-400">
+                                    {rec.realTimeFactors.timeOfDay >= 6 && rec.realTimeFactors.timeOfDay <= 10 && '🌅 Morning pick'}
+                                    {rec.realTimeFactors.timeOfDay >= 18 && rec.realTimeFactors.timeOfDay <= 22 && '🌙 Evening study'}
+                                    {rec.realTimeFactors.learningStreak && '⭐ Advanced learner'}
+                                    {rec.realTimeFactors.recentActivity > 0 && '🔥 Hot streak'}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="text-center py-8">
+                          <p className="text-sm text-slate-500 mb-2">No recommendations available</p>
+                          <p className="text-xs text-slate-400">Complete some courses to get personalized recommendations</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  
+                  {generatedAt && (
+                    <div className="mt-4 pt-4 border-t border-slate-200">
+                      <p className="text-xs text-slate-400 text-center">
+                        Last updated: {new Date(generatedAt).toLocaleTimeString()}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
 

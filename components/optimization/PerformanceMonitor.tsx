@@ -1,126 +1,310 @@
-'use client'
+/**
+ * Performance Monitor Component
+ * Tracks and reports performance metrics
+ */
 
-import { useEffect } from 'react'
+'use client';
 
-export default function PerformanceMonitor() {
+import { useEffect, useState } from 'react';
+
+interface PerformanceMetrics {
+  fcp: number | null; // First Contentful Paint
+  lcp: number | null; // Largest Contentful Paint
+  fid: number | null; // First Input Delay
+  cls: number | null; // Cumulative Layout Shift
+  ttfb: number | null; // Time to First Byte
+  fmp: number | null; // First Meaningful Paint
+}
+
+interface PerformanceMonitorProps {
+  onMetricsUpdate?: (metrics: PerformanceMetrics) => void;
+  reportToAnalytics?: boolean;
+  logToConsole?: boolean;
+}
+
+export default function PerformanceMonitor({
+  onMetricsUpdate,
+  reportToAnalytics = true,
+  logToConsole = false
+}: PerformanceMonitorProps) {
+  const [metrics, setMetrics] = useState<PerformanceMetrics>({
+    fcp: null,
+    lcp: null,
+    fid: null,
+    cls: null,
+    ttfb: null,
+    fmp: null
+  });
+
   useEffect(() => {
-    // Only run in production
-    if (process.env.NODE_ENV !== 'production') return
+    if (typeof window === 'undefined') return;
 
-    // Monitor Core Web Vitals
-    const observer = new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        // Log to console for debugging (in production, you'd send to analytics)
-        const metricData: any = {
-          name: entry.name,
-          startTime: entry.startTime,
-          duration: entry.duration,
+    const collectMetrics = async () => {
+      const newMetrics: PerformanceMetrics = {
+        fcp: null,
+        lcp: null,
+        fid: null,
+        cls: null,
+        ttfb: null,
+        fmp: null
+      };
+
+      // Collect Web Vitals
+      if ('PerformanceObserver' in window) {
+        // First Contentful Paint
+        try {
+          const fcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            const fcpEntry = entries.find(entry => entry.name === 'first-contentful-paint');
+            if (fcpEntry) {
+              newMetrics.fcp = fcpEntry.startTime;
+            }
+          });
+          fcpObserver.observe({ entryTypes: ['paint'] });
+        } catch (error) {
+          console.warn('FCP observer failed:', error);
         }
 
-        // Add type-specific properties if they exist
-        if ('value' in entry) {
-          metricData.value = (entry as any).value
-        }
-        if ('delta' in entry) {
-          metricData.delta = (entry as any).delta
-        }
-        if ('id' in entry) {
-          metricData.id = (entry as any).id
-        }
-        if ('navigationType' in entry) {
-          metricData.navigationType = (entry as any).navigationType
+        // Largest Contentful Paint
+        try {
+          const lcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            if (lastEntry) {
+              newMetrics.lcp = lastEntry.startTime;
+            }
+          });
+          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+        } catch (error) {
+          console.warn('LCP observer failed:', error);
         }
 
-        console.log('Performance metric:', metricData)
+        // First Input Delay
+        try {
+          const fidObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry: any) => {
+              if (entry.processingStart && entry.startTime) {
+                newMetrics.fid = entry.processingStart - entry.startTime;
+              }
+            });
+          });
+          fidObserver.observe({ entryTypes: ['first-input'] });
+        } catch (error) {
+          console.warn('FID observer failed:', error);
+        }
 
-        // You can send this data to your analytics service
-        // Example: sendToAnalytics(entry)
+        // Cumulative Layout Shift
+        try {
+          let clsValue = 0;
+          const clsObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry: any) => {
+              if (!entry.hadRecentInput) {
+                clsValue += entry.value;
+              }
+            });
+            newMetrics.cls = clsValue;
+          });
+          clsObserver.observe({ entryTypes: ['layout-shift'] });
+        } catch (error) {
+          console.warn('CLS observer failed:', error);
+        }
       }
-    })
 
-    // Observe different types of performance entries
-    try {
-      observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] })
-    } catch (e) {
-      // Fallback for browsers that don't support all entry types
-      observer.observe({ entryTypes: ['measure', 'navigation'] })
+      // Time to First Byte
+      const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+      if (navigationEntry) {
+        newMetrics.ttfb = navigationEntry.responseStart - navigationEntry.requestStart;
+      }
+
+      // First Meaningful Paint (approximation)
+      const paintEntries = performance.getEntriesByType('paint');
+      const fmpEntry = paintEntries.find(entry => entry.name === 'first-meaningful-paint');
+      if (fmpEntry) {
+        newMetrics.fmp = fmpEntry.startTime;
+      }
+
+      setMetrics(newMetrics);
+      onMetricsUpdate?.(newMetrics);
+
+      if (logToConsole) {
+        console.log('Performance Metrics:', newMetrics);
+      }
+
+      if (reportToAnalytics) {
+        reportMetrics(newMetrics);
+      }
+    };
+
+    // Collect metrics after page load
+    if (document.readyState === 'complete') {
+      collectMetrics();
+    } else {
+      window.addEventListener('load', collectMetrics);
     }
 
-    // Monitor page load performance
-    window.addEventListener('load', () => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
-      
-      if (navigation) {
-        const metrics = {
-          // DNS lookup time
-          dns: navigation.domainLookupEnd - navigation.domainLookupStart,
-          // TCP connection time
-          tcp: navigation.connectEnd - navigation.connectStart,
-          // Request time
-          request: navigation.responseStart - navigation.requestStart,
-          // Response time
-          response: navigation.responseEnd - navigation.responseStart,
-          // DOM processing time
-          domProcessing: navigation.domComplete - navigation.domContentLoadedEventStart,
-          // Total page load time
-          total: navigation.loadEventEnd - navigation.fetchStart,
-        }
+    // Collect metrics periodically
+    const interval = setInterval(collectMetrics, 30000); // Every 30 seconds
 
-        console.log('Page load metrics:', metrics)
-        
-        // Send to analytics
-        // sendToAnalytics('page_load', metrics)
-      }
-    })
-
-    // Monitor resource loading
-    const resourceObserver = new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        if (entry.duration > 1000) { // Log resources that take more than 1 second
-          const resourceData: any = {
-            name: entry.name,
-            duration: entry.duration,
-          }
-          
-          // Add transferSize if it exists (for PerformanceResourceTiming)
-          if ('transferSize' in entry) {
-            resourceData.size = (entry as any).transferSize
-          }
-          
-          console.log('Slow resource:', resourceData)
-        }
-      }
-    })
-
-    try {
-      resourceObserver.observe({ entryTypes: ['resource'] })
-    } catch (e) {
-      console.warn('Resource observer not supported')
-    }
-
-    // Cleanup
     return () => {
-      observer.disconnect()
-      resourceObserver.disconnect()
+      window.removeEventListener('load', collectMetrics);
+      clearInterval(interval);
+    };
+  }, [onMetricsUpdate, reportToAnalytics, logToConsole]);
+
+  // Report metrics to analytics
+  const reportMetrics = (metrics: PerformanceMetrics) => {
+    try {
+      // Report to Google Analytics if available
+      if (typeof window !== 'undefined' && typeof (window as any).gtag !== 'undefined') {
+        const gtag = (window as any).gtag;
+        if (metrics.fcp) gtag('event', 'web_vitals', { name: 'FCP', value: Math.round(metrics.fcp) });
+        if (metrics.lcp) gtag('event', 'web_vitals', { name: 'LCP', value: Math.round(metrics.lcp) });
+        if (metrics.fid) gtag('event', 'web_vitals', { name: 'FID', value: Math.round(metrics.fid) });
+        if (metrics.cls) gtag('event', 'web_vitals', { name: 'CLS', value: Math.round(metrics.cls * 1000) });
+        if (metrics.ttfb) gtag('event', 'web_vitals', { name: 'TTFB', value: Math.round(metrics.ttfb) });
+      }
+
+      // Report to custom analytics endpoint
+      fetch('/api/analytics/performance', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          metrics,
+          timestamp: Date.now(),
+          url: window.location.href,
+          userAgent: navigator.userAgent
+        })
+      }).catch(error => {
+        console.warn('Failed to report performance metrics:', error);
+      });
+    } catch (error) {
+      console.warn('Error reporting performance metrics:', error);
     }
-  }, [])
+  };
 
-  return null // This component doesn't render anything
+  // Performance score calculation
+  const calculateScore = (): number => {
+    let score = 100;
+    
+    // FCP scoring (good: <1.8s, needs improvement: 1.8-3s, poor: >3s)
+    if (metrics.fcp) {
+      if (metrics.fcp > 3000) score -= 30;
+      else if (metrics.fcp > 1800) score -= 15;
+    }
+    
+    // LCP scoring (good: <2.5s, needs improvement: 2.5-4s, poor: >4s)
+    if (metrics.lcp) {
+      if (metrics.lcp > 4000) score -= 30;
+      else if (metrics.lcp > 2500) score -= 15;
+    }
+    
+    // FID scoring (good: <100ms, needs improvement: 100-300ms, poor: >300ms)
+    if (metrics.fid) {
+      if (metrics.fid > 300) score -= 20;
+      else if (metrics.fid > 100) score -= 10;
+    }
+    
+    // CLS scoring (good: <0.1, needs improvement: 0.1-0.25, poor: >0.25)
+    if (metrics.cls) {
+      if (metrics.cls > 0.25) score -= 20;
+      else if (metrics.cls > 0.1) score -= 10;
+    }
+    
+    return Math.max(0, score);
+  };
+
+  const score = calculateScore();
+
+  return (
+    <div className="performance-monitor">
+      {/* This component doesn't render anything visible by default */}
+      {/* You can uncomment the following to show performance metrics in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="fixed bottom-4 right-4 bg-black text-white p-4 rounded-lg text-xs font-mono z-50">
+          <div className="mb-2 font-bold">Performance Score: {score}/100</div>
+          <div>FCP: {metrics.fcp ? `${Math.round(metrics.fcp)}ms` : 'N/A'}</div>
+          <div>LCP: {metrics.lcp ? `${Math.round(metrics.lcp)}ms` : 'N/A'}</div>
+          <div>FID: {metrics.fid ? `${Math.round(metrics.fid)}ms` : 'N/A'}</div>
+          <div>CLS: {metrics.cls ? metrics.cls.toFixed(3) : 'N/A'}</div>
+          <div>TTFB: {metrics.ttfb ? `${Math.round(metrics.ttfb)}ms` : 'N/A'}</div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-// Function to send metrics to analytics (implement based on your analytics service)
-function sendToAnalytics(eventName: string, data: any) {
-  // Example implementation for Google Analytics
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', eventName, {
-      custom_parameter: data,
-    })
+/**
+ * Performance optimization utilities
+ */
+export const performanceUtils = {
+  /**
+   * Preload critical resources
+   */
+  preloadResource(href: string, as: string, type?: string): void {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.href = href;
+    link.as = as;
+    if (type) link.type = type;
+    document.head.appendChild(link);
+  },
+
+  /**
+   * Prefetch resources for next page
+   */
+  prefetchResource(href: string): void {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = href;
+    document.head.appendChild(link);
+  },
+
+  /**
+   * Defer non-critical JavaScript
+   */
+  deferScript(src: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+      document.head.appendChild(script);
+    });
+  },
+
+  /**
+   * Optimize images
+   */
+  optimizeImage(src: string, width?: number, height?: number, quality = 75): string {
+    // This would typically use an image optimization service
+    // For now, return the original src
+    return src;
+  },
+
+  /**
+   * Check if connection is slow
+   */
+  isSlowConnection(): boolean {
+    if ('connection' in navigator) {
+      const connection = (navigator as any).connection;
+      return connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g';
+    }
+    return false;
+  },
+
+  /**
+   * Get connection type
+   */
+  getConnectionType(): string {
+    if ('connection' in navigator) {
+      const connection = (navigator as any).connection;
+      return connection.effectiveType || 'unknown';
+    }
+    return 'unknown';
   }
-
-  // Example implementation for custom analytics
-  // fetch('/api/analytics', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ event: eventName, data }),
-  // })
-}
+};

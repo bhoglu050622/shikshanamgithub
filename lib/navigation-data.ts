@@ -14,7 +14,8 @@ import {
   MessageSquare,
   Star,
   ArrowRight,
-  Package
+  Package,
+  Sparkles
 } from 'lucide-react'
 
 export interface NavigationLink {
@@ -49,11 +50,11 @@ export const navigationGroups: NavigationGroup[] = [
     title: 'Learn',
     icon: BookOpen,
     featured: {
-      title: 'Start Sanskrit in 7 Days',
-      description: 'Begin your journey with our foundational course',
-      href: '/schools/sanskrit',
-      thumbnail: '/images/sanskrit-course-thumb.jpg',
-      badge: 'Popular'
+      title: 'Dharma Path',
+      description: 'Begin your sacred journey of self-discovery',
+      href: '/dharma-path',
+      thumbnail: '/images/dharma-path-thumb.jpg',
+      badge: 'New'
     },
     columns: [
       {
@@ -67,6 +68,8 @@ export const navigationGroups: NavigationGroup[] = [
       {
         title: 'Learning Paths',
         links: [
+          { name: 'Dharma Path', href: '/dharma-path', icon: Sparkles, description: 'Sacred journey of self-discovery' },
+          { name: 'Guṇa Profiler', href: '/guna-profiler', icon: Star, description: 'Discover your Vedic personality type' },
           { name: 'Learning Packages', href: '/packages', icon: Package, description: 'Comprehensive course bundles' },
           { name: 'Live Classes', href: '/courses/sanskrit-live-class', icon: Video, description: 'Interactive sessions with gurus' },
           { name: 'Self-Paced Courses', href: '/courses', icon: BookOpen, description: 'Learn at your own pace' },
@@ -147,7 +150,7 @@ export const navigationGroups: NavigationGroup[] = [
       {
         title: 'Knowledge Hub',
         links: [
-          { name: 'Sanskrit Blog', href: '/blogs/sanskrit', icon: FileText, description: 'Articles & insights' },
+          { name: 'Wisdom', href: '/wisdom', icon: Lightbulb, description: 'Articles & insights' },
           { name: 'Student Stories', href: '/about', icon: MessageSquare, description: 'Success stories & testimonials' },
           { name: 'Community Forum', href: '/contact', icon: Users, description: 'Connect with fellow learners' },
         ]

@@ -4,41 +4,69 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   X, 
-  Search, 
-  LogIn, 
-  ChevronDown, 
-  ChevronRight,
-  ArrowRight
+  BookOpen,
+  MapPin,
+  Users,
+  Heart,
+  LayoutDashboard,
+  Sun,
+  Moon,
+  Monitor
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import ThemeToggle from '../ThemeToggle'
-import { navigationGroups } from '@/lib/navigation-data'
+import { useTheme } from '@/lib/theme'
+import { useAuth } from '@/lib/auth-context'
+import { trackEvent } from '@/lib/analytics'
 
 interface MobileDrawerProps {
   isOpen: boolean
   onClose: () => void
 }
 
-export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set())
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-
-  const toggleSection = (sectionId: string) => {
-    const newExpanded = new Set(expandedSections)
-    if (newExpanded.has(sectionId)) {
-      newExpanded.delete(sectionId)
-    } else {
-      newExpanded.add(sectionId)
-    }
-    setExpandedSections(newExpanded)
+// Essential navigation items for visitors
+const mobileNavItems = [
+  {
+    name: 'Courses',
+    href: '/courses',
+    icon: BookOpen,
+    description: 'Explore our courses'
+  },
+  {
+    name: 'Packages',
+    href: '/packages',
+    icon: Heart,
+    description: 'Learning packages'
+  },
+  {
+    name: 'Wisdom',
+    href: '/wisdom',
+    icon: BookOpen,
+    description: 'Articles & insights'
+  },
+  {
+    name: 'About',
+    href: '/about',
+    icon: Users,
+    description: 'Learn about us'
+  },
+  {
+    name: 'Contact',
+    href: '/contact',
+    icon: MapPin,
+    description: 'Get in touch'
   }
+]
+
+export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+  const { theme, setTheme, actualTheme } = useTheme()
+  const { isLoggedIn, user, isInitialized, logout } = useAuth()
 
   const handleLinkClick = () => {
     onClose()
   }
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <>
           {/* Backdrop */}
@@ -47,144 +75,124 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/80"
             onClick={onClose}
           />
 
-          {/* Drawer */}
+          {/* Mobile Navigation Overlay */}
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 z-50 h-full w-full max-w-sm bg-parchment-ivory/95 backdrop-blur-md shadow-2xl border-l border-golden-olive/20"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="fixed top-16 left-4 right-4 z-50 bg-white dark:bg-gray-900 shadow-2xl rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
-            <div className="flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-golden-olive/20">
-                <h2 className="text-xl font-bold text-dark-olive">
-                  Navigation
-                </h2>
-                <button
-                  onClick={onClose}
-                  className="p-2 rounded-lg hover:bg-sand-beige/50 transition-colors duration-200"
-                >
-                  <X className="w-6 h-6 text-golden-olive" />
-                </button>
-              </div>
-
-              {/* Utilities at top */}
-              <div className="p-6 border-b border-golden-olive/20">
-                <div className="space-y-4">
-                  {/* Search */}
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-golden-olive" />
-                    <input
-                      type="text"
-                      placeholder="Search courses, gurus..."
-                      className="w-full pl-10 pr-4 py-3 bg-white/80 border border-golden-olive/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-olive text-dark-olive placeholder-sand-beige"
-                    />
-                  </div>
-
-                  {/* Theme Toggle */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-dark-olive">Theme</span>
-                    <ThemeToggle />
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation Content */}
-              <div className="flex-1 overflow-y-auto">
-                <div className="p-6 space-y-2">
-                  {navigationGroups.map((group) => (
-                    <div key={group.id} className="border border-golden-olive/20 rounded-xl overflow-hidden">
-                      {/* Section Header */}
-                      <button
-                        onClick={() => toggleSection(group.id)}
-                        className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-sand-beige/50 to-sand-beige/80 hover:from-sand-beige/70 hover:to-sand-beige/90 transition-all duration-200"
+            <div className="flex flex-col max-h-[80vh] overflow-hidden">
+              {/* Navigation Items */}
+              <div className="overflow-y-auto">
+                <div className="p-4">
+                  {/* Main Navigation */}
+                  <nav className="space-y-1">
+                    {mobileNavItems.map((item, index) => (
+                      <motion.a
+                        key={item.name}
+                        href={item.href}
+                        onClick={handleLinkClick}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 group"
                       >
-                        <div className="flex items-center space-x-3">
-                          <group.icon className="w-5 h-5 text-golden-olive" />
-                          <span className="font-semibold text-dark-olive">
-                            {group.title}
-                          </span>
-                        </div>
-                        {expandedSections.has(group.id) ? (
-                          <ChevronDown className="w-5 h-5 text-golden-olive" />
-                        ) : (
-                          <ChevronRight className="w-5 h-5 text-golden-olive" />
-                        )}
-                      </button>
+                        <item.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                        <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {item.name}
+                        </span>
+                      </motion.a>
+                    ))}
+                  </nav>
 
-                      {/* Section Content */}
-                      <AnimatePresence>
-                        {expandedSections.has(group.id) && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="overflow-hidden"
+                  {/* User Authentication Section */}
+                  {isInitialized && (
+                    <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
+                      {isLoggedIn && user ? (
+                        <div className="space-y-1">
+                          <motion.a
+                            href="/dashboard"
+                            onClick={handleLinkClick}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 group"
                           >
-                            <div className="p-4 bg-white/80">
-                              {group.columns.map((column, columnIndex) => (
-                                <div key={columnIndex} className="mb-6 last:mb-0">
-                                  <h4 className="text-sm font-semibold text-dark-olive mb-3 uppercase tracking-wide">
-                                    {column.title}
-                                  </h4>
-                                  <div className="space-y-2">
-                                    {column.links.map((link, linkIndex) => (
-                                      <motion.a
-                                        key={linkIndex}
-                                        href={link.href}
-                                        onClick={handleLinkClick}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-sand-beige/50 transition-all duration-200 group"
-                                      >
-                                        <link.icon className="w-4 h-4 text-golden-olive mt-0.5 group-hover:text-copper-orange transition-colors flex-shrink-0" />
-                                        <div className="min-w-0 flex-1">
-                                          <div className="font-medium text-dark-olive group-hover:text-golden-olive transition-colors text-sm">
-                                            {link.name}
-                                          </div>
-                                          <div className="text-xs text-sand-beige mt-1">
-                                            {link.description}
-                                          </div>
-                                        </div>
-                                      </motion.a>
-                                    ))}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                            <LayoutDashboard className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <span className="font-medium text-blue-600 dark:text-blue-400">My Dashboard</span>
+                          </motion.a>
+                          <button
+                            onClick={() => {
+                              logout()
+                              onClose()
+                            }}
+                            className="w-full text-left p-3 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                          >
+                            Sign Out
+                          </button>
+                        </div>
+                      ) : (
+                        <motion.a
+                          href="/?login=true"
+                          onClick={handleLinkClick}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="flex items-center justify-center space-x-2 p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 font-medium"
+                        >
+                          <span>Sign In</span>
+                        </motion.a>
+                      )}
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
 
-              {/* Footer CTA */}
-              <div className="p-6 border-t border-golden-olive/20">
-                <motion.a
-                  href="/schools"
-                  onClick={handleLinkClick}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-golden-olive to-copper-orange text-white px-6 py-3 rounded-2xl font-medium hover:from-golden-olive/90 hover:to-copper-orange/90 transition-all duration-200 shadow-lg"
-                >
-                  <span>Browse All Courses</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-
-                {/* Login Button */}
-                <motion.button
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center space-x-2 mt-3 bg-white border border-golden-olive/20 text-golden-olive px-6 py-3 rounded-2xl font-medium hover:bg-sand-beige/50 transition-all duration-200"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span>Login</span>
-                </motion.button>
+              {/* Theme Toggle */}
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">Theme</span>
+                  </div>
+                  <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                    {[
+                      { value: 'light' as const, icon: Sun, label: 'Light' },
+                      { value: 'dark' as const, icon: Moon, label: 'Dark' },
+                      { value: 'system' as const, icon: Monitor, label: 'Auto' }
+                    ].map(({ value, icon: Icon, label }) => (
+                      <motion.button
+                        key={value}
+                        onClick={() => {
+                          setTheme(value)
+                          trackEvent('theme_toggle', { 
+                            from_theme: theme, 
+                            to_theme: value,
+                            actual_theme: actualTheme,
+                            from: 'mobile_drawer'
+                          })
+                        }}
+                        className={cn(
+                          "flex-1 flex items-center justify-center space-x-1 px-2 py-2 rounded-md text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 tap-target",
+                          theme === value 
+                            ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 shadow-sm' 
+                            : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                        )}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        aria-label={`Switch to ${label} theme`}
+                      >
+                        <Icon className="w-3 h-3" />
+                        <span>{label}</span>
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>

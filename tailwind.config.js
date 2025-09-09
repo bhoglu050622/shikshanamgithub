@@ -236,6 +236,19 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
+  			// Premium Design System Colors
+  			'premium': {
+  				'bg-primary': 'hsl(var(--premium-bg-primary))',
+  				'bg-secondary': 'hsl(var(--premium-bg-secondary))',
+  				'text-primary': 'hsl(var(--premium-text-primary))',
+  				'text-secondary': 'hsl(var(--premium-text-secondary))',
+  				'border': 'hsl(var(--premium-border))',
+  				'accent-primary': 'hsl(var(--premium-accent-primary))',
+  				'accent-secondary': 'hsl(var(--premium-accent-secondary))',
+  				'success': 'hsl(var(--premium-success))',
+  				'warning': 'hsl(var(--premium-warning))',
+  				'error': 'hsl(var(--premium-error))'
+  			},
   			// Shikshanam Final Color System
   			'parchment-ivory': 'hsl(var(--parchment-ivory))',
   			'golden-olive': 'hsl(var(--golden-olive))',

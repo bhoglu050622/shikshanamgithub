@@ -12,6 +12,11 @@ export interface Recommendation {
   score: number;
   reason: string;
   type: 'resume' | 'next_lesson' | 'category_match' | 'popular' | 'similar';
+  realTimeFactors?: {
+    timeOfDay: number;
+    learningStreak: boolean;
+    recentActivity: number;
+  };
 }
 
 export interface LearnerProfile {

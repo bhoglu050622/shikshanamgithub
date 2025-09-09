@@ -52,19 +52,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     onClick,
     ...props
   }, ref) => {
-    // Base classes for all buttons
+    // Base classes for all buttons with premium design system
     const baseClasses = cn(
-      // Base styles
-      'inline-flex items-center justify-center font-semibold transition-all duration-300',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-golden-olive focus-visible:ring-offset-2',
+      // Base styles with enhanced accessibility and visual quality
+      'inline-flex items-center justify-center font-semibold transition-all duration-300 ease-out',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
-      'tap-target', // Ensures minimum 44px touch target
+      'tap-target antialiased', // Ensures minimum 44px touch target and smooth text
       
-      // Size variants
+      // Size variants with premium rounded corners (0.75rem-1rem)
       {
-        'h-8 px-3 text-sm rounded-lg': size === 'sm',
-        'h-10 px-4 text-base rounded-xl': size === 'md',
-        'h-12 px-6 text-lg rounded-2xl': size === 'lg',
+        'h-9 px-3 text-sm rounded-xl': size === 'sm',  // 12px border radius
+        'h-11 px-4 text-base rounded-xl': size === 'md', // 12px border radius
+        'h-12 px-6 text-lg rounded-2xl': size === 'lg',  // 16px border radius
       },
       
       // Width
@@ -72,25 +72,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'w-full': fullWidth,
       },
       
-      // Variant styles
+      // Premium variant styles
       {
-        // Primary - Golden olive gradient
-        'bg-gradient-to-r from-golden-olive to-golden-olive/90 hover:from-golden-olive/90 hover:to-golden-olive/80 text-white shadow-lg hover:shadow-xl hover:scale-105': variant === 'primary',
+        // Primary - Premium blue with subtle shadows
+        'bg-premium-accent-primary hover:bg-premium-accent-primary/90 text-white shadow-[0_4px_14px_rgba(37,99,235,0.1)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.15)] hover:scale-[1.02] active:scale-[0.98]': variant === 'primary',
         
-        // Secondary - Deep maroon
-        'bg-gradient-to-r from-deep-maroon to-deep-maroon/90 hover:from-deep-maroon/90 hover:to-deep-maroon/80 text-white shadow-lg hover:shadow-xl hover:scale-105': variant === 'secondary',
+        // Secondary - Clean white/dark background with border
+        'bg-premium-bg-secondary text-premium-text-primary border border-premium-border hover:bg-premium-bg-primary shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:scale-[1.02] active:scale-[0.98]': variant === 'secondary',
         
-        // Outline - Golden olive border
-        'border-2 border-golden-olive text-golden-olive hover:bg-golden-olive hover:text-white hover:scale-105': variant === 'outline',
+        // Outline - Premium blue border
+        'border-2 border-premium-accent-primary text-premium-accent-primary hover:bg-premium-accent-primary hover:text-white hover:scale-[1.02] active:scale-[0.98] bg-transparent': variant === 'outline',
         
-        // Ghost - Transparent with hover
-        'text-golden-olive hover:bg-golden-olive/10 hover:text-golden-olive': variant === 'ghost',
+        // Ghost - Transparent with subtle hover
+        'text-premium-accent-primary hover:bg-premium-accent-primary/10 hover:scale-[1.02] active:scale-[0.98] bg-transparent': variant === 'ghost',
         
-        // Link - Text only
-        'text-golden-olive hover:text-golden-olive/80 underline-offset-4 hover:underline p-0 h-auto': variant === 'link',
+        // Link - Text only with premium accent
+        'text-premium-accent-primary hover:text-premium-accent-primary/80 underline-offset-4 hover:underline p-0 h-auto bg-transparent': variant === 'link',
         
-        // Destructive - Red for dangerous actions
-        'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl hover:scale-105': variant === 'destructive',
+        // Destructive - Premium error styling
+        'bg-premium-error hover:bg-premium-error/90 text-white shadow-[0_4px_14px_rgba(220,38,38,0.1)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.15)] hover:scale-[1.02] active:scale-[0.98]': variant === 'destructive',
       },
       
       className

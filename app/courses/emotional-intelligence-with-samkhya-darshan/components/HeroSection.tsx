@@ -191,7 +191,7 @@ export default function HeroSection() {
           </div>
           <a 
             href="https://shikshanam.in/sankhya-philosophy/"
-            className="text-text-tertiary font-medium hover:text-temple-gold hover:underline transition-colors duration-300"
+            className="text-text-tertiary font-medium hover:text-temple-gold transition-colors duration-300"
           >
             What is Sāṅkhya?
           </a>

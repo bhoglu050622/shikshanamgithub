@@ -204,26 +204,44 @@ export const trackEvent = (
     console.log('Analytics Event:', eventData)
   }
 
-  // Send to analytics endpoint
-  if (config.endpoint && typeof window !== 'undefined') {
-    // Use sendBeacon for better reliability
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(
-        config.endpoint,
-        JSON.stringify(eventData)
-      )
-    } else {
-      // Fallback to fetch
-      fetch(config.endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(eventData),
-        keepalive: true,
-      }).catch((error) => {
-        console.warn('Failed to send analytics event:', error)
-      })
+  // Send to new analytics tracker
+  if (typeof window !== 'undefined') {
+    try {
+      const { analyticsTracker } = require('./analytics-tracker')
+      
+      // Convert legacy event to new format
+      const eventStr = event as string
+      if (eventStr === 'page_view') {
+        analyticsTracker.trackPageView(properties.page_url, properties.page_title)
+      } else if (eventStr.includes('click') && properties.href) {
+        analyticsTracker.trackOutboundClick(properties.href, properties.link_text)
+      } else {
+        analyticsTracker.trackCustomEvent({
+          event_name: eventStr,
+          ...properties
+        })
+      }
+    } catch (error) {
+      // Fallback to old endpoint if tracker fails
+      if (config.endpoint) {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(
+            config.endpoint,
+            JSON.stringify(eventData)
+          )
+        } else {
+          fetch(config.endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(eventData),
+            keepalive: true,
+          }).catch((error) => {
+            console.warn('Failed to send analytics event:', error)
+          })
+        }
+      }
     }
   }
 

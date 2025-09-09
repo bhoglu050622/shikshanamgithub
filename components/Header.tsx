@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, LogIn, Search, ChevronDown, BookOpen } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import ThemeToggle from './ThemeToggle'
 import MegaMenu from './navigation/MegaMenu'
@@ -14,6 +15,8 @@ import { topLevelNavItems } from '@/lib/navigation-data'
 import Button, { CTAButton } from './ui/button'
 import { ROUTES } from '@/lib/routes'
 import { trackEvent } from '@/lib/analytics'
+import { shouldHideThemeToggle } from '@/lib/config/theme-exclusions'
+import { usePathname } from 'next/navigation'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,6 +28,9 @@ export default function Header() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   
   const { isLoggedIn, user, isInitialized, logout } = useAuth()
+  const pathname = usePathname()
+  const router = useRouter()
+  const hideThemeToggle = shouldHideThemeToggle(pathname)
 
   useEffect(() => {
     setIsClient(true)
@@ -35,7 +41,7 @@ export default function Header() {
       initial={isClient ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-0 z-50 bg-parchment-ivory/90 backdrop-blur-md border-b border-golden-olive/20 shadow-sm"
+      className="sticky top-0 z-50 premium-header"
       role="banner"
     >
       <div className="container-custom">
@@ -77,11 +83,13 @@ export default function Header() {
                         nav_href: item.href,
                         from: 'header_desktop'
                       })
+                      // Navigate to the target href for non-dropdown items
+                      router.push(item.href)
                     }
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-high-contrast hover:text-golden-olive font-medium transition-colors duration-200 flex items-center space-x-1 focus-ring tap-target whitespace-nowrap"
+                  className="premium-nav-item font-medium flex items-center space-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-3 py-2"
                 >
                   <item.icon className="w-4 h-4" />
                   <span>{item.name}</span>
@@ -106,14 +114,14 @@ export default function Header() {
                 setIsSearchOpen(!isSearchOpen)
                 trackEvent('search_click', { from: 'header_desktop' })
               }}
-              className="p-2 rounded-xl hover:bg-sand-beige/50 transition-colors duration-200 focus-ring tap-target"
+              className="p-2 rounded-xl hover:bg-premium-accent-primary/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-high-contrast" />
+              <Search className="w-5 h-5 premium-text-primary" />
             </motion.button>
 
-            {/* Theme Toggle */}
-            <ThemeToggle />
+            {/* Theme Toggle - Hidden on excluded pages */}
+            {!hideThemeToggle && <ThemeToggle />}
 
             {/* Login Button or User Dropdown */}
             {isInitialized && isLoggedIn && user ? (
@@ -124,21 +132,18 @@ export default function Header() {
                 size="md"
               />
             ) : (
-              <div className="w-20 h-10 bg-sand-beige/20 rounded-xl animate-pulse" />
+              <div className="w-20 h-10 bg-premium-border rounded-xl animate-pulse" />
             )}
           </div>
 
           {/* Mobile Controls */}
           <div className="lg:hidden flex items-center gap-3 ml-auto flex-shrink-0">
-            {/* Mobile Theme Toggle */}
-            <ThemeToggle />
-            
             {/* Mobile Menu Button - Enhanced */}
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative p-3 rounded-xl bg-gradient-to-r from-golden-olive/10 to-copper-orange/10 hover:from-golden-olive/20 hover:to-copper-orange/20 transition-all duration-200 focus-ring tap-target border border-golden-olive/20"
+              className="relative p-3 rounded-xl bg-premium-accent-primary/10 hover:bg-premium-accent-primary/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target border border-premium-border"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
             >
@@ -146,119 +151,23 @@ export default function Header() {
                 <motion.div
                   animate={isMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-golden-olive rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-premium-accent-primary rounded-full transform -translate-x-1/2 -translate-y-1/2"
                 />
                 <motion.div
                   animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-golden-olive rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-premium-accent-primary rounded-full transform -translate-x-1/2 -translate-y-1/2"
                 />
                 <motion.div
                   animate={isMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-golden-olive rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-premium-accent-primary rounded-full transform -translate-x-1/2 -translate-y-1/2"
                 />
               </div>
             </motion.button>
           </div>
         </div>
 
-        {/* Mobile Menu - Enhanced */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <>
-              {/* Backdrop */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
-                onClick={() => setIsMenuOpen(false)}
-              />
-
-              {/* Mobile Menu Panel */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="lg:hidden absolute top-full left-0 right-0 z-50 bg-parchment-ivory/95 backdrop-blur-md border-t border-golden-olive/20 shadow-xl"
-                role="navigation"
-                aria-label="Mobile navigation"
-              >
-                <div className="p-4 space-y-4">
-                  {/* Search Bar */}
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-golden-olive" />
-                    <input
-                      type="text"
-                      placeholder="Search courses, gurus..."
-                      className="w-full pl-10 pr-4 py-3 bg-white/80 border border-golden-olive/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-olive text-dark-olive placeholder-sand-beige"
-                    />
-                  </div>
-
-                  {/* Quick Navigation Grid */}
-                  <div className="grid grid-cols-2 gap-3">
-                    {topLevelNavItems.map((item) => (
-                      <motion.a
-                        key={item.name}
-                        href={item.href}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          setIsMenuOpen(false)
-                          trackEvent('nav_click', { 
-                            nav_item: item.name, 
-                            nav_href: item.href,
-                            from: 'header_mobile'
-                          })
-                        }}
-                        className="flex flex-col items-center space-y-2 p-4 bg-white/60 hover:bg-white/80 border border-golden-olive/10 hover:border-golden-olive/30 rounded-xl transition-all duration-200 focus-ring tap-target group"
-                      >
-                        <div className="p-2 rounded-lg bg-gradient-to-br from-golden-olive/10 to-copper-orange/10 group-hover:from-golden-olive/20 group-hover:to-copper-orange/20 transition-all duration-200">
-                          <item.icon className="w-5 h-5 text-golden-olive" />
-                        </div>
-                        <span className="font-medium text-sm text-dark-olive group-hover:text-golden-olive transition-colors">
-                          {item.name}
-                        </span>
-                      </motion.a>
-                    ))}
-                  </div>
-
-                  {/* Quick Actions */}
-                  <div className="pt-2 border-t border-golden-olive/20">
-                    <div className="flex space-x-3">
-                      {isInitialized && isLoggedIn && user ? (
-                        <motion.button
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => {
-                            setIsMenuOpen(false)
-                            logout()
-                          }}
-                          className="flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-xl font-medium transition-all duration-200 focus-ring tap-target bg-red-50 text-red-600 hover:bg-red-100"
-                        >
-                          <LogIn className="w-4 h-4" />
-                          <span>Logout</span>
-                        </motion.button>
-                      ) : isInitialized ? (
-                        <CTAButton.Login
-                          onClick={() => {
-                            setIsMenuOpen(false)
-                            setIsLoginModalOpen(true)
-                          }}
-                          size="md"
-                          fullWidth
-                        />
-                      ) : (
-                        <div className="flex-1 h-12 bg-sand-beige/20 rounded-xl animate-pulse" />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
 
         {/* MegaMenu */}
         <MegaMenu 

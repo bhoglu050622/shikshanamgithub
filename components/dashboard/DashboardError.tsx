@@ -143,7 +143,7 @@ export function DashboardError({ error, onRetry }: DashboardErrorProps) {
               If the problem persists, please contact our support team at{' '}
               <a 
                 href="mailto:support@shikshanam.com" 
-                className="text-orange-600 dark:text-orange-400 hover:underline"
+                className="text-orange-600 dark:text-orange-400"
               >
                 support@shikshanam.com
               </a>

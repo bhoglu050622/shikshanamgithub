@@ -1,0 +1,358 @@
+// Shikshanam CMS Database Schema
+// This is your Prisma schema file for the Shikshanam Hybrid CMS
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../cms/lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Authentication & Users
+model User {
+  id          String   @id @default(cuid())
+  username    String   @unique
+  email       String?  @unique
+  passwordHash String
+  role        UserRole @default(EDITOR)
+  isActive    Boolean  @default(true)
+  lastLogin   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  createdCourses    Course[]      @relation("CourseCreator")
+  createdLessons    Lesson[]      @relation("LessonCreator")
+  createdPackages   Package[]     @relation("PackageCreator")
+  createdBlogPosts  BlogPost[]    @relation("BlogCreator")
+  createdPages      Page[]        @relation("PageCreator")
+  authorProfile     Author?       @relation("UserAuthor")
+  auditLogs         AuditLog[]
+  createdRevisions  Revision[]    @relation("RevisionCreator")
+  reviewedRevisions Revision[]    @relation("RevisionReviewer")
+  publishedRevisions Revision[]   @relation("RevisionPublisher")
+  refreshTokens     RefreshToken[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  REVIEWER
+  PUBLISHER
+  VIEWER
+}
+
+// Content Models
+model Course {
+  id              String   @id @default(cuid())
+  title           String
+  subtitle        String?
+  slug            String   @unique
+  shortDescription String?
+  longDescription String?
+  coverImage      String?
+  gallery         String[] @default([])
+  duration        Int?     // in minutes
+  level           CourseLevel @default(BEGINNER)
+  language        String   @default("en")
+  price           Decimal?
+  currency        String   @default("USD")
+  tags            String[] @default([])
+  categories      String[] @default([])
+  status          ContentStatus @default(DRAFT)
+  isFeatured      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  createdById     String
+
+  // Relations
+  creator         User      @relation("CourseCreator", fields: [createdById], references: [id])
+  lessons         Lesson[]
+  packageCourses  PackageCourse[]
+  seoMeta         SeoMeta?
+
+  @@map("courses")
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String
+  content     String   // Rich text content
+  order       Int
+  duration    Int?     // in minutes
+  resources   String[] @default([]) // PDF/links
+  isPreview   Boolean  @default(false)
+  courseId    String
+  status      ContentStatus @default(DRAFT)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String
+
+  // Relations
+  creator   User     @relation("LessonCreator", fields: [createdById], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, slug])
+  @@map("lessons")
+}
+
+model Package {
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  description   String?
+  price         Decimal
+  type          PackageType @default(PREMIUM)
+  features      String[] @default([])
+  validityDays  Int?
+  status        ContentStatus @default(DRAFT)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  createdById   String
+
+  // Relations
+  creator        User            @relation("PackageCreator", fields: [createdById], references: [id])
+  packageCourses PackageCourse[]
+  seoMeta        SeoMeta?
+
+  @@map("packages")
+}
+
+model PackageCourse {
+  id        String @id @default(cuid())
+  packageId String
+  courseId  String
+
+  package Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  course  Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([packageId, courseId])
+  @@map("package_courses")
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String   // Rich text content
+  featuredImage String?
+  tags        String[] @default([])
+  series      String?
+  publishDate DateTime?
+  status      ContentStatus @default(DRAFT)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String
+  authorId    String?
+
+  // Relations
+  creator   User      @relation("BlogCreator", fields: [createdById], references: [id])
+  author    Author?   @relation(fields: [authorId], references: [id])
+  seoMeta   SeoMeta?
+
+  @@map("blog_posts")
+}
+
+model Page {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  layout      String   @default("default")
+  content     String   // JSON content blocks
+  status      ContentStatus @default(DRAFT)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String
+
+  // Relations
+  creator   User      @relation("PageCreator", fields: [createdById], references: [id])
+  seoMeta   SeoMeta?
+
+  @@map("pages")
+}
+
+model Author {
+  id          String   @id @default(cuid())
+  name        String
+  bio         String?
+  avatar      String?
+  socialLinks Json?    // { twitter: "...", linkedin: "..." }
+  profileUrl  String?
+  userId      String?  @unique
+
+  // Relations
+  user      User?      @relation("UserAuthor", fields: [userId], references: [id])
+  blogPosts BlogPost[]
+
+  @@map("authors")
+}
+
+model Media {
+  id          String   @id @default(cuid())
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int
+  url         String
+  altText     String?
+  caption     String?
+  variants    Json?    // Responsive variants
+  createdAt   DateTime @default(now())
+
+  @@map("media")
+}
+
+model SeoMeta {
+  id          String  @id @default(cuid())
+  title       String?
+  description String?
+  keywords    String?
+  canonical   String?
+  ogTitle     String?
+  ogDescription String?
+  ogImage     String?
+  twitterCard String?
+  noIndex     Boolean @default(false)
+  noFollow    Boolean @default(false)
+
+  // Relations (one-to-one with content)
+  courseId   String?   @unique
+  packageId  String?   @unique
+  blogPostId String?   @unique
+  pageId     String?   @unique
+
+  course   Course?   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  package  Package?  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  blogPost BlogPost? @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+  page     Page?     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@map("seo_meta")
+}
+
+// Workflow & Versioning
+model Revision {
+  id          String   @id @default(cuid())
+  contentType ContentType
+  contentId   String   // Generic content ID - will reference different tables based on contentType
+  version     Int
+  data        Json     // Snapshot of content at this revision
+  status      RevisionStatus @default(DRAFT)
+  previewToken String? @unique
+  previewExpiresAt DateTime?
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  createdById String
+  reviewedById String?
+  publishedById String?
+  reviewNotes String?
+
+  // Relations
+  creator   User @relation("RevisionCreator", fields: [createdById], references: [id])
+  reviewer  User? @relation("RevisionReviewer", fields: [reviewedById], references: [id])
+  publisher User? @relation("RevisionPublisher", fields: [publishedById], references: [id])
+
+  @@unique([contentType, contentId, version])
+  @@map("revisions")
+}
+
+// Settings & Configuration
+model Settings {
+  id    String @id @default("global")
+  data  Json   // All settings as JSON
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model Snippet {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  type        String   // hero, cta, testimonial, pricing
+  content     Json     // Block data
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("snippets")
+}
+
+model Redirect {
+  id          String   @id @default(cuid())
+  sourcePath  String   @unique
+  targetPath  String
+  statusCode  Int      @default(301)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@map("redirects")
+}
+
+// Audit & Analytics
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String   // create, update, delete, publish, etc.
+  resource  String   // course, lesson, package, etc.
+  resourceId String?
+  metadata  Json?    // Additional context
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
+
+// Enums
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum RevisionStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  NEEDS_CHANGES
+  PUBLISHED
+}
+
+enum ContentType {
+  COURSE
+  LESSON
+  PACKAGE
+  BLOG_POST
+  PAGE
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum PackageType {
+  FREE
+  PREMIUM
+  PRO_MAX
+}
