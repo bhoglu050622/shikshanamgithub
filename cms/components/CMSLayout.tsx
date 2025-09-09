@@ -38,14 +38,14 @@ interface CMSLayoutProps {
 
 const navigation = [
   { name: 'Dashboard', href: '/cms', icon: BarChart3 },
-  { name: 'Analytics', href: '/cms/analytics', icon: Activity },
-  { name: 'System', href: '/cms/system', icon: Server },
-  { name: 'Website', href: '/cms/website', icon: Globe },
-  { name: 'Courses', href: '/cms/courses', icon: BookOpen },
-  { name: 'Blog Posts', href: '/cms/blog', icon: FileText },
-  { name: 'Packages', href: '/cms/packages', icon: Package },
-  { name: 'Authors', href: '/cms/authors', icon: Users },
+  { name: 'Content', href: '/cms/content', icon: FileText },
+  { name: 'Editor', href: '/cms/editor', icon: BookOpen },
   { name: 'Media', href: '/cms/media', icon: Image },
+  { name: 'Revisions', href: '/cms/revisions', icon: Activity },
+  { name: 'Preview & Staging', href: '/cms/preview', icon: Globe },
+  { name: 'Publishing', href: '/cms/publishing', icon: Server },
+  { name: 'Integrations', href: '/cms/integrations', icon: Package },
+  { name: 'Users & Permissions', href: '/cms/users', icon: Users },
   { name: 'Settings', href: '/cms/settings', icon: Settings },
 ]
 
