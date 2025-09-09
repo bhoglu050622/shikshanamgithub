@@ -139,7 +139,7 @@ export default function Hero() {
 
           <StaggerItem>
             <p ref={subtitleRef} className="text-mobile-subheading text-medium-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable">
-              Discover Wisdom, Language & Self-Transformation
+              What do you seek?
             </p>
           </StaggerItem>
 

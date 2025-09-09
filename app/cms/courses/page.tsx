@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/cms/context/AuthContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -61,7 +61,7 @@ export default function CoursesPage() {
     pages: 0,
   })
 
-  const fetchCourses = async () => {
+  const fetchCourses = useCallback(async () => {
     try {
       setLoading(true)
       const params = new URLSearchParams({
@@ -91,11 +91,11 @@ export default function CoursesPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [page, search, statusFilter])
 
   useEffect(() => {
     fetchCourses()
-  }, [page, search, statusFilter])
+  }, [fetchCourses])
 
   const getStatusColor = (status: string) => {
     switch (status) {

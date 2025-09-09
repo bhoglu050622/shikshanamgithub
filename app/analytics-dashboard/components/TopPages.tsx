@@ -29,27 +29,26 @@ export default function TopPages({ dateRange, onExport, expanded = false }: TopP
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    fetchData()
-  }, [dateRange])
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const limit = expanded ? 50 : 10
-      const response = await fetch(
-        `/api/analytics/agg/top-pages?start=${dateRange.start}&end=${dateRange.end}&limit=${limit}`
-      )
-      
-      if (response.ok) {
-        const pagesData = await response.json()
-        setPages(pagesData)
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const limit = expanded ? 50 : 10
+        const response = await fetch(
+          `/api/analytics/agg/top-pages?start=${dateRange.start}&end=${dateRange.end}&limit=${limit}`
+        )
+        
+        if (response.ok) {
+          const pagesData = await response.json()
+          setPages(pagesData)
+        }
+      } catch (error) {
+        console.error('Failed to fetch top pages:', error)
+      } finally {
+        setIsLoading(false)
       }
-    } catch (error) {
-      console.error('Failed to fetch top pages:', error)
-    } finally {
-      setIsLoading(false)
     }
-  }
+    fetchData()
+  }, [dateRange, expanded])
 
   const formatUrl = (url: string) => {
     try {

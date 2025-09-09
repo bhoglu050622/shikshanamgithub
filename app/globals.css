@@ -528,6 +528,33 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    
+    /* Ensure all content is visible when motion is reduced */
+    [style*="opacity:0"] {
+      opacity: 1 !important;
+    }
+    
+    [style*="transform:translateY(30px)"] {
+      transform: none !important;
+    }
+    
+    [style*="transform:translateY(20px)"] {
+      transform: none !important;
+    }
+  }
+  
+  /* Fallback for when JavaScript fails to load - ensure content is visible after a delay */
+  @media (prefers-reduced-motion: no-preference) {
+    [style*="opacity:0"] {
+      animation: fallback-fade-in 0.1s ease-out 2s forwards;
+    }
+  }
+  
+  @keyframes fallback-fade-in {
+    to {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 }
 

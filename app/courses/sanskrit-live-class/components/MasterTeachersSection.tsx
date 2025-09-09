@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 export default function MasterTeachersSection() {
   return (
@@ -51,7 +52,9 @@ export default function MasterTeachersSection() {
           <p className="guests-subheading">Every weekend, join exclusive sessions with leading creators and learners from the Dharmic community.</p>
           <div className="guest-creators-list">
             <div className="creator-profile">
-              <img 
+              <Image 
+                width={80}
+                height={80}
                 src="https://placehold.co/80x80/2c323b/f39c12?text=VC" 
                 alt="Vishal Chaurasia" 
                 className="creator-avatar"

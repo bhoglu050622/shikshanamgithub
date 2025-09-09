@@ -5,7 +5,8 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 
 interface DashboardData {
   learner: {
@@ -41,7 +42,7 @@ export default function SimpleDashboardPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchDashboard = async () => {
+  const fetchDashboard = useCallback(async () => {
     setLoading(true);
     setError(null);
     
@@ -59,13 +60,13 @@ export default function SimpleDashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email]);
 
   useEffect(() => {
     if (email) {
       fetchDashboard();
     }
-  }, []);
+  }, [email, fetchDashboard]);
 
   return (
     <div style={{ 
@@ -227,9 +228,11 @@ export default function SimpleDashboardPage() {
                 alignItems: 'center',
                 gap: '20px'
               }}>
-                <img
+                <Image
                   src={item.product.thumbnail}
                   alt={item.product.title}
+                  width={100}
+                  height={60}
                   style={{
                     width: '100px',
                     height: '60px',

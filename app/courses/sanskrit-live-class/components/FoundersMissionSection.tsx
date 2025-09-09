@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 export default function FoundersMissionSection() {
   return (
@@ -27,7 +28,9 @@ export default function FoundersMissionSection() {
           
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-01-scaled.png" 
                 alt="Gallery Image 1" 
                 className="gallery-image"
@@ -39,7 +42,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-02-scaled.png" 
                 alt="Gallery Image 2" 
                 className="gallery-image"
@@ -51,7 +56,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-03-scaled.png" 
                 alt="Gallery Image 3" 
                 className="gallery-image"
@@ -63,7 +70,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-04-scaled.png" 
                 alt="Gallery Image 4" 
                 className="gallery-image"
@@ -75,7 +84,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-06-scaled.png" 
                 alt="Gallery Image 5" 
                 className="gallery-image"
@@ -87,7 +98,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-05-5-scaled.png" 
                 alt="Gallery Image 6" 
                 className="gallery-image"
@@ -99,7 +112,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-07-scaled.png" 
                 alt="Gallery Image 7" 
                 className="gallery-image"
@@ -111,7 +126,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-16.png" 
                 alt="Gallery Image 16" 
                 className="gallery-image"
@@ -123,7 +140,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-13.png" 
                 alt="Gallery Image 13" 
                 className="gallery-image"
@@ -135,7 +154,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-12-scaled.png" 
                 alt="Gallery Image 12" 
                 className="gallery-image"
@@ -147,7 +168,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-11-scaled.png" 
                 alt="Gallery Image 11" 
                 className="gallery-image"
@@ -159,7 +182,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-15.png" 
                 alt="Gallery Image 15" 
                 className="gallery-image"
@@ -171,7 +196,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-14-scaled.png" 
                 alt="Gallery Image 14" 
                 className="gallery-image"
@@ -183,7 +210,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-08-scaled.png" 
                 alt="Gallery Image 8" 
                 className="gallery-image"
@@ -195,7 +224,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-09-4-scaled.png" 
                 alt="Gallery Image 9" 
                 className="gallery-image"
@@ -207,7 +238,9 @@ export default function FoundersMissionSection() {
               />
             </div>
             <div className="masonry-item">
-              <img 
+              <Image 
+                width={600}
+                height={400}
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-10-3-scaled.png" 
                 alt="Gallery Image 10" 
                 className="gallery-image"

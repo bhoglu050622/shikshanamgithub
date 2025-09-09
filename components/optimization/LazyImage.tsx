@@ -7,6 +7,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { LazyImageLoader } from '@/lib/lazy-loading';
+import Image from 'next/image';
 
 interface LazyImageProps {
   src: string;
@@ -68,9 +69,11 @@ export default function LazyImage({
       loaderRef.current.observe(imgRef.current);
     }
 
+    const currentImgRef = imgRef.current;
+
     return () => {
-      if (loaderRef.current && imgRef.current) {
-        loaderRef.current.unobserve(imgRef.current);
+      if (loaderRef.current && currentImgRef) {
+        loaderRef.current.unobserve(currentImgRef);
       }
     };
   }, [priority, placeholder, errorImage, fadeIn, fadeInDuration]);
@@ -91,12 +94,12 @@ export default function LazyImage({
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      <img
+      <Image
         ref={imgRef}
         src={finalSrc}
         alt={alt}
-        width={width}
-        height={height}
+        width={width || 0}
+        height={height || 0}
         sizes={sizes}
         loading={loading}
         onLoad={handleLoad}

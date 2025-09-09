@@ -29,7 +29,7 @@ export default function HeroSection() {
     }, cycleSpeed);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [hindiAlphabets]);
 
   // Canvas particle animation
   useEffect(() => {

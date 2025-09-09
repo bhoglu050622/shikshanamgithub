@@ -82,6 +82,7 @@ export function useProgressiveAnimations({
     if (!shouldAnimate) {
       element.style.opacity = '1';
       element.style.transform = 'none';
+      element.style.transition = 'none';
       return;
     }
 
@@ -140,6 +141,7 @@ export function useProgressiveAnimations({
       elements.forEach(el => {
         el.style.opacity = '1';
         el.style.transform = 'none';
+        el.style.transition = 'none';
       });
       return;
     }
@@ -242,7 +244,15 @@ export function useScrollAnimations(
   const { shouldAnimate, createIntersectionObserver, animateOnScroll } = useProgressiveAnimations();
 
   const ref = useCallback((node: HTMLElement | null) => {
-    if (!node || !shouldAnimate) return;
+    if (!node) return;
+
+    // If animations are disabled, make content visible immediately
+    if (!shouldAnimate) {
+      node.style.opacity = '1';
+      node.style.transform = 'none';
+      node.style.transition = 'none';
+      return;
+    }
 
     const observer = createIntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -272,7 +282,18 @@ export function useStaggeredAnimations(
   const { shouldAnimate, staggerAnimation, createIntersectionObserver } = useProgressiveAnimations();
 
   const ref = useCallback((node: HTMLElement | null) => {
-    if (!node || !shouldAnimate) return;
+    if (!node) return;
+
+    // If animations are disabled, make all child content visible immediately
+    if (!shouldAnimate) {
+      const elements = Array.from(node.children) as HTMLElement[];
+      elements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.transition = 'none';
+      });
+      return;
+    }
 
     const observer = createIntersectionObserver((entries) => {
       entries.forEach(entry => {

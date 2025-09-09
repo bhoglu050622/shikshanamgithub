@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 export default function BonusFeaturesSection() {
   return (
@@ -16,7 +17,9 @@ export default function BonusFeaturesSection() {
             <div className="bonus-card-content">
               <div className="card-header">
                 <div className="bonus-icon">
-                  <img 
+                  <Image 
+                    width={72}
+                    height={72}
                     src="https://shikshanam.in/wp-content/uploads/2025/08/icons-features-Recovered-212.png" 
                     alt="Learning Material Icon" 
                     className="animate-all"
@@ -42,7 +45,9 @@ export default function BonusFeaturesSection() {
             <div className="bonus-card-content">
               <div className="card-header">
                 <div className="bonus-icon">
-                  <img 
+                  <Image 
+                    width={72}
+                    height={72}
                     src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-202.png" 
                     alt="Practice Sheets Icon" 
                     className="animate-all"
@@ -68,7 +73,9 @@ export default function BonusFeaturesSection() {
             <div className="bonus-card-content">
               <div className="card-header">
                 <div className="bonus-icon">
-                  <img 
+                  <Image 
+                    width={72}
+                    height={72}
                     src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-208.png" 
                     alt="Private WhatsApp Group Icon" 
                     className="animate-all"
@@ -94,7 +101,9 @@ export default function BonusFeaturesSection() {
             <div className="bonus-card-content">
               <div className="card-header">
                 <div className="bonus-icon">
-                  <img 
+                  <Image 
+                    width={72}
+                    height={72}
                     src="https://shikshanam.in/wp-content/uploads/2025/08/icons-features-Recovered-211.png" 
                     alt="Course Access Icon" 
                     className="animate-all"
@@ -120,7 +129,9 @@ export default function BonusFeaturesSection() {
             <div className="bonus-card-content">
               <div className="card-header">
                 <div className="bonus-icon">
-                  <img 
+                  <Image 
+                    width={72}
+                    height={72}
                     src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-206.png" 
                     alt="Certificate of Completion Icon" 
                     className="animate-all"
@@ -146,7 +157,9 @@ export default function BonusFeaturesSection() {
             <div className="bonus-card-content">
               <div className="card-header">
                 <div className="bonus-icon">
-                  <img 
+                  <Image 
+                    width={72}
+                    height={72}
                     src="https://shikshanam.in/wp-content/uploads/2025/08/icons-features-Recovered-213.png" 
                     alt="Priority Access Icon" 
                     className="animate-all"

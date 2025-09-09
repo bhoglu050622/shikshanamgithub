@@ -25,26 +25,25 @@ export default function HeatmapGrid({ dateRange }: HeatmapGridProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(
+          `/api/analytics/agg/heatmap?start=${dateRange.start}&end=${dateRange.end}`
+        )
+        
+        if (response.ok) {
+          const data = await response.json()
+          setHeatmapData(data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch heatmap data:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData()
   }, [dateRange])
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch(
-        `/api/analytics/agg/heatmap?start=${dateRange.start}&end=${dateRange.end}`
-      )
-      
-      if (response.ok) {
-        const data = await response.json()
-        setHeatmapData(data)
-      }
-    } catch (error) {
-      console.error('Failed to fetch heatmap data:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const hours = Array.from({ length: 24 }, (_, i) => i)

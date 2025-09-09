@@ -6,6 +6,7 @@ import { ShivaResult } from '../types/shiva-alignment'
 import { courseRecommendations } from '../data/archetypes'
 import DharmaPathChart from './DharmaPathChart'
 import FeedbackSection from './FeedbackSection'
+import Image from 'next/image'
 
 interface ResultsScreenProps {
   result: ShivaResult
@@ -301,7 +302,9 @@ export default function ResultsScreen({
                 boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)'
               }}
             >
-              <img 
+              <Image 
+                width={24}
+                height={24}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png" 
                 alt="WhatsApp" 
                 className="w-6 h-6"

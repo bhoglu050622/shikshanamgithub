@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "prisma generate",
     "clean": "rimraf .next .turbo .cache node_modules",
     "reinstall": "npm run clean && npm i",
     "dev:clean": "npm run clean && npm install && NEXT_WEBPACK_USEPERSISTENTCACHE=0 next dev",

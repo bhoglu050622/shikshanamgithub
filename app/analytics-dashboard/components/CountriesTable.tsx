@@ -24,26 +24,25 @@ export default function CountriesTable({ dateRange }: CountriesTableProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(
+          `/api/analytics/agg/countries?start=${dateRange.start}&end=${dateRange.end}&limit=10`
+        )
+        
+        if (response.ok) {
+          const countriesData = await response.json()
+          setCountries(countriesData)
+        }
+      } catch (error) {
+        console.error('Failed to fetch countries data:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData()
   }, [dateRange])
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch(
-        `/api/analytics/agg/countries?start=${dateRange.start}&end=${dateRange.end}&limit=10`
-      )
-      
-      if (response.ok) {
-        const countriesData = await response.json()
-        setCountries(countriesData)
-      }
-    } catch (error) {
-      console.error('Failed to fetch countries data:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   // Country flag emoji mapping (simplified)
   const getCountryFlag = (country: string) => {

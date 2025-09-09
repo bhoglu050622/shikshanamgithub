@@ -26,26 +26,25 @@ export default function OSBrowsersChart({ dateRange }: OSBrowsersChartProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(
+          `/api/analytics/agg/os-browsers?start=${dateRange.start}&end=${dateRange.end}`
+        )
+        
+        if (response.ok) {
+          const osBrowserData = await response.json()
+          setData(osBrowserData)
+        }
+      } catch (error) {
+        console.error('Failed to fetch OS/browser data:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData()
   }, [dateRange])
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch(
-        `/api/analytics/agg/os-browsers?start=${dateRange.start}&end=${dateRange.end}`
-      )
-      
-      if (response.ok) {
-        const osBrowserData = await response.json()
-        setData(osBrowserData)
-      }
-    } catch (error) {
-      console.error('Failed to fetch OS/browser data:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const getOSIcon = (os: string) => {
     if (os.toLowerCase().includes('windows')) return '🪟'

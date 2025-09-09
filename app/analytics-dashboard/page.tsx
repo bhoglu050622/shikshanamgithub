@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -89,7 +89,7 @@ export default function AnalyticsDashboard() {
       
       return () => clearInterval(interval)
     }
-  }, [refreshInterval, isAuthenticated, dateRange])
+  }, [refreshInterval, isAuthenticated, dateRange, fetchDashboardData])
 
   const handleLogin = (success: boolean) => {
     if (success) {
@@ -106,7 +106,7 @@ export default function AnalyticsDashboard() {
     localStorage.removeItem('analytics_dashboard_auth')
   }
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     if (!isAuthenticated) return
     
     setIsLoading(true)
@@ -122,7 +122,7 @@ export default function AnalyticsDashboard() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [isAuthenticated, dateRange.start, dateRange.end, compareMode])
 
   const handleDateRangeChange = (newRange: { start: string; end: string }) => {
     setDateRange(newRange)

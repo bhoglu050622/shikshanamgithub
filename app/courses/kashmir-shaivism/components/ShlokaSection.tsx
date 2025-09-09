@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function ShlokaSection() {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -38,9 +39,11 @@ export default function ShlokaSection() {
         <div className="shloka-container">
           {/* Symbol/Logo */}
           <div className="shloka-symbol">
-            <img 
+            <Image 
               src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png" 
               alt="Shikshanam Logo" 
+              width={100}
+              height={100}
               onError={handleImageError}
             />
           </div>

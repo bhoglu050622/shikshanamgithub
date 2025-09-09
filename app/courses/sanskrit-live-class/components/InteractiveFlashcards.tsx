@@ -112,7 +112,7 @@ export default function InteractiveFlashcards() {
     return () => {
       Object.values(cardTimers).forEach(timer => clearTimeout(timer));
     };
-  }, []);
+  }, [cardDataSets, cardIndexes, cardTimers]);
 
   return (
     <section id="interactive-flashcards-section">

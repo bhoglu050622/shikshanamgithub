@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ShivaResult } from '../types/shiva-alignment'
 
@@ -21,7 +21,7 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
   const [recommendedCourses, setRecommendedCourses] = useState<any[]>([])
   const [recommendedBooks, setRecommendedBooks] = useState<any[]>([])
 
-  const generateRecommendations = (profile: DharmaPathData) => {
+  const generateRecommendations = useCallback((profile: DharmaPathData) => {
     const courses = []
     const books = []
 
@@ -225,7 +225,7 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
 
     setRecommendedCourses(courses.slice(0, 4)) // Limit to 4 courses
     setRecommendedBooks(books.slice(0, 4)) // Limit to 4 books
-  }
+  }, [result])
 
   useEffect(() => {
     // Load dharma path profile
@@ -239,7 +239,7 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
         console.error('Error loading dharma profile:', error)
       }
     }
-  }, [result])
+  }, [result, generateRecommendations])
 
   const getJourneySteps = () => {
     const steps = []

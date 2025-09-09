@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 interface ReviewCardProps {
   name: string
@@ -75,9 +76,11 @@ const ReviewCard = ({ name, bio, quote, videoId, thumbnailUrl, rating }: ReviewC
             <div className="w-8 h-8 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
-        <img
+        <Image
           src={thumbnailUrl}
           alt={`${name} video thumbnail`}
+          layout="fill"
+          objectFit="cover"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageLoaded(true)} // Fallback if image fails to load

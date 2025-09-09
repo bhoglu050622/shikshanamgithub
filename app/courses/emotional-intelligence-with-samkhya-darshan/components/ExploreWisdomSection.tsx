@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import VideoModal from './VideoModal'
+import Image from 'next/image'
 
 interface VideoData {
   id: string
@@ -35,9 +36,11 @@ const VideoCard = ({ video }: VideoCardProps) => {
             <div className="w-8 h-8 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
-        <img
+        <Image
           src={video.thumbnailUrl}
           alt={video.title}
+          layout="fill"
+          objectFit="cover"
           className={`w-full h-full object-cover transition-transform duration-400 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           onError={(e) => {
             const target = e.target as HTMLImageElement

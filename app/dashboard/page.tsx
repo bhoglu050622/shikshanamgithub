@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -46,34 +46,7 @@ export default function DashboardPage() {
     enabled: isLoggedIn && !!user?.email
   });
 
-  useEffect(() => {
-    // Wait for auth to initialize
-    if (!isInitialized) {
-      return;
-    }
-
-    // Redirect to login if not authenticated
-    if (!isLoggedIn || !user) {
-      router.push('/?login=true');
-      return;
-    }
-
-    fetchDashboardData();
-  }, [isInitialized, isLoggedIn, user, router]);
-
-  // Auto-refresh dashboard data every 10 minutes
-  useEffect(() => {
-    if (!isLoggedIn || !user || !dashboardData) return;
-
-    const autoRefreshInterval = setInterval(() => {
-      console.log('Auto-refreshing dashboard data...');
-      fetchDashboardData();
-    }, 600000); // 10 minutes
-
-    return () => clearInterval(autoRefreshInterval);
-  }, [isLoggedIn, user, dashboardData]);
-
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -122,7 +95,34 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    // Wait for auth to initialize
+    if (!isInitialized) {
+      return;
+    }
+
+    // Redirect to login if not authenticated
+    if (!isLoggedIn || !user) {
+      router.push('/?login=true');
+      return;
+    }
+
+    fetchDashboardData();
+  }, [isInitialized, isLoggedIn, user, router, fetchDashboardData]);
+
+  // Auto-refresh dashboard data every 10 minutes
+  useEffect(() => {
+    if (!isLoggedIn || !user || !dashboardData) return;
+
+    const autoRefreshInterval = setInterval(() => {
+      console.log('Auto-refreshing dashboard data...');
+      fetchDashboardData();
+    }, 600000); // 10 minutes
+
+    return () => clearInterval(autoRefreshInterval);
+  }, [isLoggedIn, user, dashboardData, fetchDashboardData]);
 
   const handleRefresh = () => {
     if (isLoggedIn && user) {

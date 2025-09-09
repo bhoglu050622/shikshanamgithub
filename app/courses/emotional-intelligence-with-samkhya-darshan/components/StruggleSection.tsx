@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 interface StruggleItem {
   id: string
@@ -115,9 +116,11 @@ export default function StruggleSection() {
                 }}
               >
                 <div className="accordion-content-inner flex flex-col items-center gap-6 p-8">
-                  <img
+                  <Image
                     src={item.image}
                     alt={`${item.title} illustration`}
+                    width={400}
+                    height={200}
                     className="w-full max-w-xs h-auto rounded-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement

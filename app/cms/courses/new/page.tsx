@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { useAuth } from '@/cms/context/AuthContext'
 import { RichTextEditor } from '@/cms/components/editor/RichTextEditor'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -390,9 +391,11 @@ export default function NewCoursePage() {
                   {courseData.coverImage && (
                     <div className="border rounded-lg p-4">
                       <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
-                      <img 
+                      <Image 
                         src={courseData.coverImage} 
                         alt="Course cover" 
+                        width={320}
+                        height={192}
                         className="w-full max-w-xs h-48 object-cover rounded"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none'

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function FoundersMissionSection() {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -84,9 +85,11 @@ export default function FoundersMissionSection() {
                 className="masonry-item animate-on-scroll" 
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <img 
+                <Image 
                   src={image.src} 
                   alt={image.alt} 
+                  width={600}
+                  height={400}
                   className="gallery-image" 
                   onError={handleImageError}
                 />

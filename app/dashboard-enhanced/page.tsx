@@ -6,6 +6,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 
 interface DashboardData {
   learner: {
@@ -465,9 +466,11 @@ export default function EnhancedDashboardPage() {
                       e.currentTarget.style.boxShadow = 'none';
                     }}>
                       <div style={{ display: 'flex', gap: '1rem' }}>
-                        <img
+                        <Image
                           src={item.product.thumbnail}
                           alt={item.product.title}
+                          width={80}
+                          height={60}
                           style={{
                             width: '80px',
                             height: '60px',
@@ -673,9 +676,11 @@ export default function EnhancedDashboardPage() {
                         e.currentTarget.style.backgroundColor = 'transparent';
                       }}>
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
-                          <img
+                          <Image
                             src={rec.thumbnail}
                             alt={rec.title}
+                            width={40}
+                            height={30}
                             style={{
                               width: '40px',
                               height: '30px',

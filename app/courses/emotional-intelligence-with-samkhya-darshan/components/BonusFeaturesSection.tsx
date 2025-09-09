@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 interface BonusFeature {
   id: string
@@ -94,9 +95,11 @@ const BonusCard = ({ feature }: BonusCardProps) => {
                 <div className="w-6 h-6 border-2 border-current border-t-transparent rounded-full animate-spin opacity-50"></div>
               </div>
             )}
-            <img
+            <Image
               src={feature.iconUrl}
               alt={feature.iconAlt}
+              width={64}
+              height={64}
               className={`w-16 h-16 object-contain transition-all duration-300 icon-wobble ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
               onError={(e) => {
                 const target = e.target as HTMLImageElement

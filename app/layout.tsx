@@ -125,6 +125,34 @@ export default function RootLayout({
             __html: `{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}`
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Fallback to ensure content is visible if JavaScript fails
+              (function() {
+                function makeContentVisible() {
+                  const hiddenElements = document.querySelectorAll('[style*="opacity:0"]');
+                  hiddenElements.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                    el.style.transition = 'none';
+                  });
+                }
+                
+                // Run immediately
+                makeContentVisible();
+                
+                // Run after DOM is ready
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', makeContentVisible);
+                }
+                
+                // Run after a short delay as final fallback
+                setTimeout(makeContentVisible, 100);
+              })();
+            `
+          }}
+        />
       </head>
       <body className={`${inter.className} antialiased`}>
         {/* Skip Links for Accessibility */}

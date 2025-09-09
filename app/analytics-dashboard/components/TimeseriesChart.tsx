@@ -34,30 +34,29 @@ export default function TimeseriesChart({ dateRange, compareMode }: TimeseriesCh
   ]
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        // Determine interval based on date range
+        const daysDiff = Math.ceil((new Date(dateRange.end).getTime() - new Date(dateRange.start).getTime()) / (1000 * 60 * 60 * 24))
+        const interval = daysDiff <= 7 ? 'hour' : 'day'
+  
+        const response = await fetch(
+          `/api/analytics/agg/timeseries?metric=${selectedMetric}&interval=${interval}&start=${dateRange.start}&end=${dateRange.end}`
+        )
+        
+        if (response.ok) {
+          const timeseriesData = await response.json()
+          setData(timeseriesData)
+        }
+      } catch (error) {
+        console.error('Failed to fetch timeseries data:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData()
   }, [dateRange, selectedMetric])
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      // Determine interval based on date range
-      const daysDiff = Math.ceil((new Date(dateRange.end).getTime() - new Date(dateRange.start).getTime()) / (1000 * 60 * 60 * 24))
-      const interval = daysDiff <= 7 ? 'hour' : 'day'
-
-      const response = await fetch(
-        `/api/analytics/agg/timeseries?metric=${selectedMetric}&interval=${interval}&start=${dateRange.start}&end=${dateRange.end}`
-      )
-      
-      if (response.ok) {
-        const timeseriesData = await response.json()
-        setData(timeseriesData)
-      }
-    } catch (error) {
-      console.error('Failed to fetch timeseries data:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr)

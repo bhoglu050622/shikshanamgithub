@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { User, ChevronDown, LogOut, BookOpen, Compass, UserCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -67,9 +68,11 @@ export default function UserDropdown({ user, onLogout }: UserDropdownProps) {
         {/* Avatar */}
         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-golden-olive to-copper-orange flex items-center justify-center">
           {user.avatar ? (
-            <img
+            <Image
               src={user.avatar}
               alt={user.name}
+              width={32}
+              height={32}
               className="w-8 h-8 rounded-full object-cover"
             />
           ) : (
@@ -111,9 +114,11 @@ export default function UserDropdown({ user, onLogout }: UserDropdownProps) {
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-golden-olive to-copper-orange flex items-center justify-center">
                   {user.avatar ? (
-                    <img
+                    <Image
                       src={user.avatar}
                       alt={user.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full object-cover"
                     />
                   ) : (

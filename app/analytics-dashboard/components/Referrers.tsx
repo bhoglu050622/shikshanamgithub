@@ -27,26 +27,25 @@ export default function Referrers({ dateRange, onExport }: ReferrersProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(
+          `/api/analytics/agg/referrers?start=${dateRange.start}&end=${dateRange.end}&limit=10`
+        )
+        
+        if (response.ok) {
+          const referrersData = await response.json()
+          setReferrers(referrersData)
+        }
+      } catch (error) {
+        console.error('Failed to fetch referrers:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData()
   }, [dateRange])
-
-  const fetchData = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch(
-        `/api/analytics/agg/referrers?start=${dateRange.start}&end=${dateRange.end}&limit=10`
-      )
-      
-      if (response.ok) {
-        const referrersData = await response.json()
-        setReferrers(referrersData)
-      }
-    } catch (error) {
-      console.error('Failed to fetch referrers:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const getReferrerIcon = (host: string) => {
     if (host.includes('google')) return <Search className="w-4 h-4 text-blue-500" />

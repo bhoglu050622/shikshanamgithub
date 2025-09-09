@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function TeacherSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -81,9 +82,11 @@ export default function TeacherSection() {
               ref={videoPlaceholderRef}
               data-video-id="oppR6FUIPno"
             >
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2024/05/1.png" 
                 alt="Vishal Chaurasia" 
+                width={400}
+                height={500}
                 className="teacher-image"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
