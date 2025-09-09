@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // Time to Sanskrit phrase mapping
@@ -118,6 +118,24 @@ export default function AIClockWidget() {
   const [time, setTime] = useState('14:30')
   const [sanskritPhrase, setSanskritPhrase] = useState<{ phrase: string; transliteration: string; meaning: string } | null>(null)
   const [isRevealed, setIsRevealed] = useState(false)
+  const [activeMode, setActiveMode] = useState<'pronunciation' | 'drills' | 'doubts'>('pronunciation')
+  const [isSessionActive, setIsSessionActive] = useState(false)
+  const [currentTime, setCurrentTime] = useState(new Date())
+
+  // Update current time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Set initial time to current time
+  useEffect(() => {
+    const now = new Date()
+    const timeString = now.toTimeString().slice(0, 5)
+    setTime(timeString)
+  }, [])
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTime(e.target.value)
@@ -125,12 +143,43 @@ export default function AIClockWidget() {
     setSanskritPhrase(null)
   }
 
-  const revealSanskrit = () => {
+  const revealSanskrit = useCallback(() => {
     const phrase = timeToSanskritMap[time]
     if (phrase) {
       setSanskritPhrase(phrase)
       setIsRevealed(true)
+    } else {
+      // Handle times not in the map by finding the closest match
+      const [hours, minutes] = time.split(':').map(Number)
+      const roundedMinutes = minutes < 15 ? 0 : minutes < 45 ? 30 : 0
+      const roundedHours = minutes >= 45 ? (hours + 1) % 24 : hours
+      const roundedTime = `${roundedHours.toString().padStart(2, '0')}:${roundedMinutes.toString().padStart(2, '0')}`
+      const closestPhrase = timeToSanskritMap[roundedTime]
+      if (closestPhrase) {
+        setSanskritPhrase(closestPhrase)
+        setIsRevealed(true)
+      }
     }
+  }, [time])
+
+  const handleModeChange = (mode: 'pronunciation' | 'drills' | 'doubts') => {
+    setActiveMode(mode)
+  }
+
+  const handleStartSession = () => {
+    setIsSessionActive(true)
+    // Simulate session start - in real implementation, this would connect to AI service
+    setTimeout(() => {
+      setIsSessionActive(false)
+    }, 5000) // 5 minute session simulation
+  }
+
+  const useCurrentTime = () => {
+    const now = new Date()
+    const timeString = now.toTimeString().slice(0, 5)
+    setTime(timeString)
+    setIsRevealed(false)
+    setSanskritPhrase(null)
   }
 
   return (
@@ -160,6 +209,18 @@ export default function AIClockWidget() {
                 <ClockSVG time={time} />
               </div>
               
+              {/* Current Time Display */}
+              <div className="mb-4">
+                <div className="text-sm text-muted-gray mb-2">Current Time:</div>
+                <div className="text-2xl font-bold text-teal-primary">
+                  {currentTime.toLocaleTimeString('en-US', { 
+                    hour12: false, 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                  })}
+                </div>
+              </div>
+
               {/* Time Input */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
                 <div className="flex items-center gap-2">
@@ -177,9 +238,15 @@ export default function AIClockWidget() {
                 </div>
                 
                 <button
+                  onClick={useCurrentTime}
+                  className="px-4 py-2 border border-teal-primary/30 rounded-xl text-teal-primary hover:bg-teal-primary/10 transition-colors"
+                >
+                  Use Current Time
+                </button>
+                
+                <button
                   onClick={revealSanskrit}
                   className="btn-sanskrit-primary px-6 py-2"
-                  disabled={!timeToSanskritMap[time]}
                 >
                   Reveal Sanskrit
                 </button>
@@ -221,7 +288,12 @@ export default function AIClockWidget() {
               ].map((mode) => (
                 <button
                   key={mode.key}
-                  className="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center space-x-2 bg-white text-teal-primary shadow-sm"
+                  onClick={() => handleModeChange(mode.key as 'pronunciation' | 'drills' | 'doubts')}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    activeMode === mode.key 
+                      ? 'bg-white text-teal-primary shadow-sm' 
+                      : 'text-muted-gray hover:text-teal-primary hover:bg-white/50'
+                  }`}
                 >
                   <span>{mode.icon}</span>
                   <span className="hidden sm:inline">{mode.label}</span>
@@ -230,11 +302,75 @@ export default function AIClockWidget() {
               ))}
             </div>
 
+            {/* Mode Content */}
+            <div className="mb-6 p-4 bg-light-cyan rounded-xl">
+              {activeMode === 'pronunciation' && (
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-dark-text mb-2">🎤 Pronunciation Coach</h3>
+                  <p className="text-muted-gray mb-4">Practice Sanskrit pronunciation with AI feedback</p>
+                  <div className="text-sm text-muted-gray">
+                    • Real-time pronunciation analysis<br/>
+                    • Phonetic guidance for difficult sounds<br/>
+                    • Progress tracking and improvement tips
+                  </div>
+                </div>
+              )}
+              {activeMode === 'drills' && (
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-dark-text mb-2">🎯 Grammar Drills</h3>
+                  <p className="text-muted-gray mb-4">Master declensions and conjugations through practice</p>
+                  <div className="text-sm text-muted-gray">
+                    • Interactive declension exercises<br/>
+                    • Verb conjugation practice<br/>
+                    • Instant feedback and corrections
+                  </div>
+                </div>
+              )}
+              {activeMode === 'doubts' && (
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-dark-text mb-2">❓ Quick Doubt Solver</h3>
+                  <p className="text-muted-gray mb-4">Get instant answers to your Sanskrit questions</p>
+                  <div className="text-sm text-muted-gray">
+                    • Ask questions about grammar, vocabulary, or usage<br/>
+                    • Contextual explanations with examples<br/>
+                    • Related concept suggestions
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* CTA */}
             <div className="text-center">
-              <button className="btn-sanskrit-primary text-lg px-8 py-4">
-                Try a 5-minute session (no signup for first run)
+              <button 
+                onClick={handleStartSession}
+                disabled={isSessionActive}
+                className={`btn-sanskrit-primary text-lg px-8 py-4 transition-all duration-300 ${
+                  isSessionActive 
+                    ? 'opacity-75 cursor-not-allowed' 
+                    : 'hover:scale-105 hover:shadow-lg'
+                }`}
+              >
+                {isSessionActive ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Session Active - 5 minutes</span>
+                  </div>
+                ) : (
+                  `Try a 5-minute ${activeMode} session (no signup for first run)`
+                )}
               </button>
+              
+              {isSessionActive && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-3 bg-green-50 border border-green-200 rounded-xl"
+                >
+                  <p className="text-green-700 text-sm">
+                    🎉 Your AI {activeMode} session is now active! Practice and learn with personalized feedback.
+                  </p>
+                </motion.div>
+              )}
             </div>
           </div>
         </div>
