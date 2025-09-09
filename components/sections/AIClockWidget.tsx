@@ -3,56 +3,173 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-// Time to Sanskrit phrase mapping
-const timeToSanskritMap: Record<string, { phrase: string; transliteration: string; meaning: string }> = {
-  '00:00': { phrase: 'मध्यरात्रिः', transliteration: 'madhyarātriḥ', meaning: 'midnight' },
-  '00:30': { phrase: 'मध्यरात्र्यर्धम्', transliteration: 'madhyarātryardham', meaning: 'half past midnight' },
-  '01:00': { phrase: 'एकवादनम्', transliteration: 'ekavādanam', meaning: 'one o\'clock' },
-  '01:30': { phrase: 'एकवादनमर्धम्', transliteration: 'ekavādanamardham', meaning: 'half past one' },
-  '02:00': { phrase: 'द्विवादनम्', transliteration: 'dvivādanam', meaning: 'two o\'clock' },
-  '02:30': { phrase: 'द्विवादनमर्धम्', transliteration: 'dvivādanamardham', meaning: 'half past two' },
-  '03:00': { phrase: 'त्रिवादनम्', transliteration: 'trivādanam', meaning: 'three o\'clock' },
-  '03:30': { phrase: 'त्रिवादनमर्धम्', transliteration: 'trivādanamardham', meaning: 'half past three' },
-  '04:00': { phrase: 'चतुर्वादनम्', transliteration: 'caturvādanam', meaning: 'four o\'clock' },
-  '04:30': { phrase: 'चतुर्वादनमर्धम्', transliteration: 'caturvādanamardham', meaning: 'half past four' },
-  '05:00': { phrase: 'पञ्चवादनम्', transliteration: 'pañcavādanam', meaning: 'five o\'clock' },
-  '05:30': { phrase: 'पञ्चवादनमर्धम्', transliteration: 'pañcavādanamardham', meaning: 'half past five' },
-  '06:00': { phrase: 'प्रातःकालः', transliteration: 'prātaḥkālaḥ', meaning: 'morning' },
-  '06:30': { phrase: 'प्रातःकाल्यर्धम्', transliteration: 'prātaḥkālyardham', meaning: 'half past six' },
-  '07:00': { phrase: 'सप्तवादनम्', transliteration: 'saptavādanam', meaning: 'seven o\'clock' },
-  '07:30': { phrase: 'सप्तवादनमर्धम्', transliteration: 'saptavādanamardham', meaning: 'half past seven' },
-  '08:00': { phrase: 'अष्टवादनम्', transliteration: 'aṣṭavādanam', meaning: 'eight o\'clock' },
-  '08:30': { phrase: 'अष्टवादनमर्धम्', transliteration: 'aṣṭavādanamardham', meaning: 'half past eight' },
-  '09:00': { phrase: 'नववादनम्', transliteration: 'navavādanam', meaning: 'nine o\'clock' },
-  '09:30': { phrase: 'नववादनमर्धम्', transliteration: 'navavādanamardham', meaning: 'half past nine' },
-  '10:00': { phrase: 'दशवादनम्', transliteration: 'daśavādanam', meaning: 'ten o\'clock' },
-  '10:30': { phrase: 'दशवादनमर्धम्', transliteration: 'daśavādanamardham', meaning: 'half past ten' },
-  '11:00': { phrase: 'एकादशवादनम्', transliteration: 'ekādaśavādanam', meaning: 'eleven o\'clock' },
-  '11:30': { phrase: 'एकादशवादनमर्धम्', transliteration: 'ekādaśavādanamardham', meaning: 'half past eleven' },
-  '12:00': { phrase: 'मध्यान्हम्', transliteration: 'madhyānham', meaning: 'noon' },
-  '12:30': { phrase: 'मध्यान्हमर्धम्', transliteration: 'madhyānhamardham', meaning: 'half past twelve' },
-  '13:00': { phrase: 'त्रयोदशवादनम्', transliteration: 'trayodaśavādanam', meaning: 'one o\'clock pm' },
-  '13:30': { phrase: 'त्रयोदशवादनमर्धम्', transliteration: 'trayodaśavādanamardham', meaning: 'half past one pm' },
-  '14:00': { phrase: 'चतुर्दशवादनम्', transliteration: 'chaturdaśavādanam', meaning: 'two o\'clock pm' },
-  '14:30': { phrase: 'चतुर्दशवादनमर्धम्', transliteration: 'chaturdaśavādanamardham', meaning: 'half past two pm' },
-  '15:00': { phrase: 'पञ्चदशवादनम्', transliteration: 'pañcadaśavādanam', meaning: 'three o\'clock pm' },
-  '15:30': { phrase: 'पञ्चदशवादनमर्धम्', transliteration: 'pañcadaśavādanamardham', meaning: 'half past three pm' },
-  '16:00': { phrase: 'षोडशवादनम्', transliteration: 'ṣoḍaśavādanam', meaning: 'four o\'clock pm' },
-  '16:30': { phrase: 'षोडशवादनमर्धम्', transliteration: 'ṣoḍaśavādanamardham', meaning: 'half past four pm' },
-  '17:00': { phrase: 'सप्तदशवादनम्', transliteration: 'saptadaśavādanam', meaning: 'five o\'clock pm' },
-  '17:30': { phrase: 'सप्तदशवादनमर्धम्', transliteration: 'saptadaśavādanamardham', meaning: 'half past five pm' },
-  '18:00': { phrase: 'सायं', transliteration: 'sāyaṃ', meaning: 'evening' },
-  '18:30': { phrase: 'सायमर्धम्', transliteration: 'sāyamardham', meaning: 'half past six pm' },
-  '19:00': { phrase: 'एकोनविंशतिवादनम्', transliteration: 'ekonaviṁśativādanam', meaning: 'seven o\'clock pm' },
-  '19:30': { phrase: 'एकोनविंशतिवादनमर्धम्', transliteration: 'ekonaviṁśativādanamardham', meaning: 'half past seven pm' },
-  '20:00': { phrase: 'विंशतिवादनम्', transliteration: 'viṁśativādanam', meaning: 'eight o\'clock pm' },
-  '20:30': { phrase: 'विंशतिवादनमर्धम्', transliteration: 'viṁśativādanamardham', meaning: 'half past eight pm' },
-  '21:00': { phrase: 'एकविंशतिवादनम्', transliteration: 'ekaviṁśativādanam', meaning: 'nine o\'clock pm' },
-  '21:30': { phrase: 'एकविंशतिवादनमर्धम्', transliteration: 'ekaviṁśativādanamardham', meaning: 'half past nine pm' },
-  '22:00': { phrase: 'द्वाविंशतिवादनम्', transliteration: 'dvāviṁśativādanam', meaning: 'ten o\'clock pm' },
-  '22:30': { phrase: 'द्वाविंशतिवादनमर्धम्', transliteration: 'dvāviṁśativādanamardham', meaning: 'half past ten pm' },
-  '23:00': { phrase: 'त्रयोविंशतिवादनम्', transliteration: 'trayoviṁśativādanam', meaning: 'eleven o\'clock pm' },
-  '23:30': { phrase: 'त्रयोविंशतिवादनमर्धम्', transliteration: 'trayoviṁśativādanamardham', meaning: 'half past eleven pm' }
+// Sanskrit Numbers (1-60)
+const sanskritNumbers: Record<number, { word: string; transliteration: string }> = {
+  1: { word: 'एक', transliteration: 'eka' },
+  2: { word: 'द्वि', transliteration: 'dvi' },
+  3: { word: 'त्रि', transliteration: 'tri' },
+  4: { word: 'चतुर्', transliteration: 'catur' },
+  5: { word: 'पञ्च', transliteration: 'pañca' },
+  6: { word: 'षट्', transliteration: 'ṣaṭ' },
+  7: { word: 'सप्त', transliteration: 'sapta' },
+  8: { word: 'अष्ट', transliteration: 'aṣṭa' },
+  9: { word: 'नव', transliteration: 'nava' },
+  10: { word: 'दश', transliteration: 'daśa' },
+  11: { word: 'एकादश', transliteration: 'ekādaśa' },
+  12: { word: 'द्वादश', transliteration: 'dvādaśa' },
+  13: { word: 'त्रयोदश', transliteration: 'trayodaśa' },
+  14: { word: 'चतुर्दश', transliteration: 'caturdaśa' },
+  15: { word: 'पञ्चदश', transliteration: 'pañcadaśa' },
+  16: { word: 'षोडश', transliteration: 'ṣoḍaśa' },
+  17: { word: 'सप्तदश', transliteration: 'saptadaśa' },
+  18: { word: 'अष्टादश', transliteration: 'aṣṭādaśa' },
+  19: { word: 'एकोनविंशति', transliteration: 'ekonaviṁśati' },
+  20: { word: 'विंशति', transliteration: 'viṁśati' },
+  21: { word: 'एकविंशति', transliteration: 'ekaviṁśati' },
+  22: { word: 'द्वाविंशति', transliteration: 'dvāviṁśati' },
+  23: { word: 'त्रयोविंशति', transliteration: 'trayoviṁśati' },
+  24: { word: 'चतुर्विंशति', transliteration: 'caturviṁśati' },
+  25: { word: 'पञ्चविंशति', transliteration: 'pañcaviṁśati' },
+  26: { word: 'षड्विंशति', transliteration: 'ṣaḍviṁśati' },
+  27: { word: 'सप्तविंशति', transliteration: 'saptaviṁśati' },
+  28: { word: 'अष्टाविंशति', transliteration: 'aṣṭāviṁśati' },
+  29: { word: 'एकोनत्रिंशत्', transliteration: 'ekonatriṁśat' },
+  30: { word: 'त्रिंशत्', transliteration: 'triṁśat' },
+  31: { word: 'एकत्रिंशत्', transliteration: 'ekatriṁśat' },
+  32: { word: 'द्वात्रिंशत्', transliteration: 'dvātriṁśat' },
+  33: { word: 'त्रयस्त्रिंशत्', transliteration: 'trayastriṁśat' },
+  34: { word: 'चतुस्त्रिंशत्', transliteration: 'catustriṁśat' },
+  35: { word: 'पञ्चत्रिंशत्', transliteration: 'pañcatriṁśat' },
+  36: { word: 'षट्त्रिंशत्', transliteration: 'ṣaṭtriṁśat' },
+  37: { word: 'सप्तत्रिंशत्', transliteration: 'saptatriṁśat' },
+  38: { word: 'अष्टात्रिंशत्', transliteration: 'aṣṭātriṁśat' },
+  39: { word: 'एकोनचत्वारिंशत्', transliteration: 'ekonacatvāriṁśat' },
+  40: { word: 'चत्वारिंशत्', transliteration: 'catvāriṁśat' },
+  41: { word: 'एकचत्वारिंशत्', transliteration: 'ekacatvāriṁśat' },
+  42: { word: 'द्विचत्वारिंशत्', transliteration: 'dvicatvāriṁśat' },
+  43: { word: 'त्रयश्चत्वारिंशत्', transliteration: 'trayaścatvāriṁśat' },
+  44: { word: 'चतुश्चत्वारिंशत्', transliteration: 'catuścatvāriṁśat' },
+  45: { word: 'पञ्चचत्वारिंशत्', transliteration: 'pañcacatvāriṁśat' },
+  46: { word: 'षट्चत्वारिंशत्', transliteration: 'ṣaṭcatvāriṁśat' },
+  47: { word: 'सप्तचत्वारिंशत्', transliteration: 'saptacatvāriṁśat' },
+  48: { word: 'अष्टाचत्वारिंशत्', transliteration: 'aṣṭācatvāriṁśat' },
+  49: { word: 'एकोनपञ्चाशत्', transliteration: 'ekonapañcāśat' },
+  50: { word: 'पञ्चाशत्', transliteration: 'pañcāśat' },
+  51: { word: 'एकपञ्चाशत्', transliteration: 'ekapañcāśat' },
+  52: { word: 'द्विपञ्चाशत्', transliteration: 'dvipañcāśat' },
+  53: { word: 'त्रयःपञ्चाशत्', transliteration: 'trayaḥpañcāśat' },
+  54: { word: 'चतुःपञ्चाशत्', transliteration: 'catuḥpañcāśat' },
+  55: { word: 'पञ्चपञ्चाशत्', transliteration: 'pañcapañcāśat' },
+  56: { word: 'षट्पञ्चाशत्', transliteration: 'ṣaṭpañcāśat' },
+  57: { word: 'सप्तपञ्चाशत्', transliteration: 'saptapañcāśat' },
+  58: { word: 'अष्टापञ्चाशत्', transliteration: 'aṣṭāpañcāśat' },
+  59: { word: 'एकोनषष्टि', transliteration: 'ekonaṣaṣṭi' },
+  60: { word: 'षष्टि', transliteration: 'ṣaṣṭi' }
+}
+
+// Sanskrit Hours (0-23)
+const sanskritHours: Record<number, { word: string; transliteration: string }> = {
+  0: { word: 'शून्य', transliteration: 'śūnya' },
+  1: { word: 'एक', transliteration: 'eka' },
+  2: { word: 'द्वि', transliteration: 'dvi' },
+  3: { word: 'त्रि', transliteration: 'tri' },
+  4: { word: 'चतुर्', transliteration: 'catur' },
+  5: { word: 'पञ्च', transliteration: 'pañca' },
+  6: { word: 'षट्', transliteration: 'ṣaṭ' },
+  7: { word: 'सप्त', transliteration: 'sapta' },
+  8: { word: 'अष्ट', transliteration: 'aṣṭa' },
+  9: { word: 'नव', transliteration: 'nava' },
+  10: { word: 'दश', transliteration: 'daśa' },
+  11: { word: 'एकादश', transliteration: 'ekādaśa' },
+  12: { word: 'द्वादश', transliteration: 'dvādaśa' },
+  13: { word: 'त्रयोदश', transliteration: 'trayodaśa' },
+  14: { word: 'चतुर्दश', transliteration: 'caturdaśa' },
+  15: { word: 'पञ्चदश', transliteration: 'pañcadaśa' },
+  16: { word: 'षोडश', transliteration: 'ṣoḍaśa' },
+  17: { word: 'सप्तदश', transliteration: 'saptadaśa' },
+  18: { word: 'अष्टादश', transliteration: 'aṣṭādaśa' },
+  19: { word: 'एकोनविंशति', transliteration: 'ekonaviṁśati' },
+  20: { word: 'विंशति', transliteration: 'viṁśati' },
+  21: { word: 'एकविंशति', transliteration: 'ekaviṁśati' },
+  22: { word: 'द्वाविंशति', transliteration: 'dvāviṁśati' },
+  23: { word: 'त्रयोविंशति', transliteration: 'trayoviṁśati' }
+}
+
+// Function to generate Sanskrit time expression
+function generateSanskritTime(timeString: string): { phrase: string; transliteration: string; meaning: string } {
+  const [hours, minutes] = timeString.split(':').map(Number)
+  
+  // Special cases
+  if (hours === 0 && minutes === 0) {
+    return {
+      phrase: 'मध्यरात्रि',
+      transliteration: 'madhyarātri',
+      meaning: 'midnight'
+    }
+  }
+  
+  if (hours === 12 && minutes === 0) {
+    return {
+      phrase: 'मध्याह्न',
+      transliteration: 'madhyāhna',
+      meaning: 'midday/noon'
+    }
+  }
+  
+  // Get hour in Sanskrit
+  const hourSanskrit = sanskritHours[hours]
+  const hourWord = hourSanskrit.word + 'वादनम्'
+  const hourTransliteration = hourSanskrit.transliteration + 'vādanam'
+  
+  // Generate time expression based on minutes
+  if (minutes === 0) {
+    // Exactly o'clock
+    return {
+      phrase: hourWord,
+      transliteration: hourTransliteration,
+      meaning: `${hours} o'clock`
+    }
+  } else if (minutes >= 1 && minutes <= 29) {
+    // Minutes past the hour
+    const minuteSanskrit = sanskritNumbers[minutes]
+    const phrase = `${minuteSanskrit.word}अधिक ${hourWord}`
+    const transliteration = `${minuteSanskrit.transliteration}adhika ${hourTransliteration}`
+    return {
+      phrase,
+      transliteration,
+      meaning: `${minutes} minutes past ${hours}`
+    }
+  } else if (minutes === 30) {
+    // Half past
+    const phrase = `सार्ध ${hourWord}`
+    const transliteration = `sārdha ${hourTransliteration}`
+    return {
+      phrase,
+      transliteration,
+      meaning: `half past ${hours}`
+    }
+  } else if (minutes >= 31 && minutes <= 59) {
+    // Minutes to next hour
+    const minutesToNext = 60 - minutes
+    const nextHour = (hours + 1) % 24
+    const nextHourSanskrit = sanskritHours[nextHour]
+    const minuteSanskrit = sanskritNumbers[minutesToNext]
+    
+    const phrase = `${minuteSanskrit.word}ऊन ${nextHourSanskrit.word}वादनम्`
+    const transliteration = `${minuteSanskrit.transliteration}ūna ${nextHourSanskrit.transliteration}vādanam`
+    return {
+      phrase,
+      transliteration,
+      meaning: `${minutesToNext} minutes to ${nextHour}`
+    }
+  }
+  
+  // Fallback
+  return {
+    phrase: hourWord,
+    transliteration: hourTransliteration,
+    meaning: `${hours}:${minutes}`
+  }
 }
 
 function ClockSVG({ time }: { time: string }) {
@@ -144,22 +261,9 @@ export default function AIClockWidget() {
   }
 
   const revealSanskrit = useCallback(() => {
-    const phrase = timeToSanskritMap[time]
-    if (phrase) {
-      setSanskritPhrase(phrase)
-      setIsRevealed(true)
-    } else {
-      // Handle times not in the map by finding the closest match
-      const [hours, minutes] = time.split(':').map(Number)
-      const roundedMinutes = minutes < 15 ? 0 : minutes < 45 ? 30 : 0
-      const roundedHours = minutes >= 45 ? (hours + 1) % 24 : hours
-      const roundedTime = `${roundedHours.toString().padStart(2, '0')}:${roundedMinutes.toString().padStart(2, '0')}`
-      const closestPhrase = timeToSanskritMap[roundedTime]
-      if (closestPhrase) {
-        setSanskritPhrase(closestPhrase)
-        setIsRevealed(true)
-      }
-    }
+    const phrase = generateSanskritTime(time)
+    setSanskritPhrase(phrase)
+    setIsRevealed(true)
   }, [time])
 
   const handleModeChange = (mode: 'pronunciation' | 'drills' | 'doubts') => {
