@@ -235,8 +235,6 @@ export default function AIClockWidget() {
   const [time, setTime] = useState('14:30')
   const [sanskritPhrase, setSanskritPhrase] = useState<{ phrase: string; transliteration: string; meaning: string } | null>(null)
   const [isRevealed, setIsRevealed] = useState(false)
-  const [activeMode, setActiveMode] = useState<'pronunciation' | 'drills' | 'doubts'>('pronunciation')
-  const [isSessionActive, setIsSessionActive] = useState(false)
   const [currentTime, setCurrentTime] = useState(new Date())
 
   // Update current time every second
@@ -267,17 +265,6 @@ export default function AIClockWidget() {
     setIsRevealed(true)
   }, [time])
 
-  const handleModeChange = (mode: 'pronunciation' | 'drills' | 'doubts') => {
-    setActiveMode(mode)
-  }
-
-  const handleStartSession = () => {
-    setIsSessionActive(true)
-    // Simulate session start - in real implementation, this would connect to AI service
-    setTimeout(() => {
-      setIsSessionActive(false)
-    }, 5000) // 5 minute session simulation
-  }
 
   const useCurrentTime = () => {
     const now = new Date()
@@ -387,99 +374,8 @@ export default function AIClockWidget() {
               )}
             </AnimatePresence>
 
-            {/* Mode Tabs */}
-            <div className="flex justify-center space-x-1 bg-light-cyan rounded-2xl p-1 mb-6">
-              {[
-                { key: 'pronunciation', label: 'Pronunciation Coach', icon: '🎤' },
-                { key: 'drills', label: 'Declension/Conjugation Drills', icon: '🎯' },
-                { key: 'doubts', label: 'Quick Doubt Solver', icon: '❓' }
-              ].map((mode) => (
-                <button
-                  key={mode.key}
-                  onClick={() => handleModeChange(mode.key as 'pronunciation' | 'drills' | 'doubts')}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
-                    activeMode === mode.key 
-                      ? 'bg-white text-teal-primary shadow-sm' 
-                      : 'text-muted-gray hover:text-teal-primary hover:bg-white/50'
-                  }`}
-                >
-                  <span>{mode.icon}</span>
-                  <span className="hidden sm:inline">{mode.label}</span>
-                  <span className="sm:hidden">{mode.label.split(' ')[0]}</span>
-                </button>
-              ))}
-            </div>
 
-            {/* Mode Content */}
-            <div className="mb-6 p-4 bg-light-cyan rounded-xl">
-              {activeMode === 'pronunciation' && (
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-dark-text mb-2">🎤 Pronunciation Coach</h3>
-                  <p className="text-muted-gray mb-4">Practice Sanskrit pronunciation with AI feedback</p>
-                  <div className="text-sm text-muted-gray">
-                    • Real-time pronunciation analysis<br/>
-                    • Phonetic guidance for difficult sounds<br/>
-                    • Progress tracking and improvement tips
-                  </div>
-                </div>
-              )}
-              {activeMode === 'drills' && (
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-dark-text mb-2">🎯 Grammar Drills</h3>
-                  <p className="text-muted-gray mb-4">Master declensions and conjugations through practice</p>
-                  <div className="text-sm text-muted-gray">
-                    • Interactive declension exercises<br/>
-                    • Verb conjugation practice<br/>
-                    • Instant feedback and corrections
-                  </div>
-                </div>
-              )}
-              {activeMode === 'doubts' && (
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-dark-text mb-2">❓ Quick Doubt Solver</h3>
-                  <p className="text-muted-gray mb-4">Get instant answers to your Sanskrit questions</p>
-                  <div className="text-sm text-muted-gray">
-                    • Ask questions about grammar, vocabulary, or usage<br/>
-                    • Contextual explanations with examples<br/>
-                    • Related concept suggestions
-                  </div>
-                </div>
-              )}
-            </div>
 
-            {/* CTA */}
-            <div className="text-center">
-              <button 
-                onClick={handleStartSession}
-                disabled={isSessionActive}
-                className={`btn-sanskrit-primary text-lg px-8 py-4 transition-all duration-300 ${
-                  isSessionActive 
-                    ? 'opacity-75 cursor-not-allowed' 
-                    : 'hover:scale-105 hover:shadow-lg'
-                }`}
-              >
-                {isSessionActive ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Session Active - 5 minutes</span>
-                  </div>
-                ) : (
-                  `Try a 5-minute ${activeMode} session (no signup for first run)`
-                )}
-              </button>
-              
-              {isSessionActive && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 p-3 bg-green-50 border border-green-200 rounded-xl"
-                >
-                  <p className="text-green-700 text-sm">
-                    🎉 Your AI {activeMode} session is now active! Practice and learn with personalized feedback.
-                  </p>
-                </motion.div>
-              )}
-            </div>
           </div>
         </div>
       </div>
