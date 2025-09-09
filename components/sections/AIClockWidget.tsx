@@ -255,7 +255,8 @@ export default function AIClockWidget() {
   }, [])
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTime(e.target.value)
+    const inputValue = e.target.value
+    setTime(inputValue)
     setIsRevealed(false)
     setSanskritPhrase(null)
   }
@@ -322,6 +323,9 @@ export default function AIClockWidget() {
                     hour: '2-digit', 
                     minute: '2-digit' 
                   })}
+                </div>
+                <div className="text-xs text-muted-gray mt-1">
+                  Processing: {time} (24-hour format)
                 </div>
               </div>
 
