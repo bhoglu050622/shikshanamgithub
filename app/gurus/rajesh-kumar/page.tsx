@@ -3,8 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { User, Star, Award, BookOpen, Clock, Users, MessageCircle, Calendar, MapPin, CheckCircle, Mail, Video } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 
 const guruProfile = {
@@ -32,8 +30,7 @@ export default function RajeshKumarPage() {
   const [showContactModal, setShowContactModal] = useState(false)
 
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
+    <>
       
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30 dark:from-saffron-900/10 dark:via-transparent dark:to-deep-teal-900/10">
         <div className="container-custom relative z-10">
@@ -280,7 +277,6 @@ export default function RajeshKumarPage() {
       </div>
       </section>
 
-      <Footer />
-    </div>
+    </>
   )
 }

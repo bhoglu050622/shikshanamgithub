@@ -3,8 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import UnsurePathJourney from '@/components/sections/DarshanaCircularVisualization'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 export default function UnsurePathDemoPage() {
   const [showQuiz, setShowQuiz] = useState(false)
@@ -43,8 +41,7 @@ export default function UnsurePathDemoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
-      <Header />
+    <>
       
       {/* Demo Header */}
       <section className="py-16 bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30 dark:from-saffron-900/10 dark:via-transparent dark:to-deep-teal-900/10">
@@ -242,7 +239,6 @@ export default function UnsurePathDemoPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </>
   )
 }

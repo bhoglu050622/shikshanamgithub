@@ -2,7 +2,32 @@
 const nextConfig = {
   outputFileTracingRoot: __dirname,
   images: {
-    domains: ['images.unsplash.com', 'shikshanam.com', 'shikshanam.in', 'i0.wp.com', 'i1.wp.com', 'i2.wp.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'shikshanam.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'shikshanam.in',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i0.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i1.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i2.wp.com',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

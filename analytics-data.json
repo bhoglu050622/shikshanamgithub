@@ -1,14 +1,14 @@
 [
   {
     "event_type": "pageview",
-    "timestamp": "2025-09-09T05:42:18.539Z",
-    "url": "http://localhost:3000/tools/sandhi",
+    "timestamp": "2025-09-09T06:28:10.905Z",
+    "url": "http://localhost:3000/cms/login",
     "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
-    "referrer": "http://localhost:3000/tools/sandhi",
+    "referrer": "http://localhost:3000/cms/login",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
     "language": "en-GB",
     "visitor_id": "visitor_1757368385116_iwaf2jykf",
-    "session_id": "session_1757396385273_oik7d84l6",
+    "session_id": "session_1757398952349_e03zqlucc",
     "screen": "1440x900",
     "additional": {},
     "client_generated": true,
@@ -17,19 +17,19 @@
     "os": "macOS",
     "browser": "Chrome",
     "platform": "Desktop",
-    "id": "1757396548608-n2spkr8ht",
-    "received_at": "2025-09-09T05:42:28.608Z"
+    "id": "1757399296734-jnjusnvko",
+    "received_at": "2025-09-09T06:28:16.734Z"
   },
   {
     "event_type": "pageview",
-    "timestamp": "2025-09-09T05:42:18.539Z",
-    "url": "/tools/sandhi",
+    "timestamp": "2025-09-09T06:28:10.906Z",
+    "url": "/cms/login",
     "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
-    "referrer": "http://localhost:3000/tools/sandhi",
+    "referrer": "http://localhost:3000/cms/login",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
     "language": "en-GB",
     "visitor_id": "visitor_1757368385116_iwaf2jykf",
-    "session_id": "session_1757396385273_oik7d84l6",
+    "session_id": "session_1757398952349_e03zqlucc",
     "screen": "1440x900",
     "additional": {},
     "client_generated": true,
@@ -38,7 +38,30 @@
     "os": "macOS",
     "browser": "Chrome",
     "platform": "Desktop",
-    "id": "1757396548608-588992g45",
-    "received_at": "2025-09-09T05:42:28.608Z"
+    "id": "1757399296734-pedqhtxsn",
+    "received_at": "2025-09-09T06:28:16.734Z"
+  },
+  {
+    "event_type": "session_end",
+    "timestamp": "2025-09-09T06:28:13.581Z",
+    "url": "http://localhost:3000/cms/login",
+    "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
+    "referrer": "http://localhost:3000/cms/login",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+    "language": "en-GB",
+    "visitor_id": "visitor_1757368385116_iwaf2jykf",
+    "session_id": "session_1757398952349_e03zqlucc",
+    "screen": "1440x900",
+    "additional": {
+      "session_end_time": "2025-09-09T06:28:13.596Z"
+    },
+    "client_generated": true,
+    "client_version": "1.0.0",
+    "ip_hash": "18fl",
+    "os": "macOS",
+    "browser": "Chrome",
+    "platform": "Desktop",
+    "id": "1757399296734-s6n8bud9l",
+    "received_at": "2025-09-09T06:28:16.734Z"
   }
 ]

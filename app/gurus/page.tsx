@@ -1,5 +1,3 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -40,8 +38,7 @@ const gurus = [
 
 export default function GurusPage() {
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
+    <>
       <main className="main-container py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -124,7 +121,6 @@ export default function GurusPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+    </>
   )
 }

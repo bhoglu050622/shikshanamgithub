@@ -1,5 +1,3 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,8 +7,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
+    <>
       <main className="main-container py-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -130,7 +127,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+    </>
   )
 }

@@ -29,8 +29,6 @@ import {
   Heart,
   Brain
 } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 
 export default function SchoolOfVaisheshikaPage() {
@@ -41,8 +39,7 @@ export default function SchoolOfVaisheshikaPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
-      <Header />
+    <>
       
       {/* Hero Section - Green Capsule */}
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-green-50/30 via-transparent to-teal-50/30 dark:from-green-900/10 dark:via-transparent dark:to-teal-900/10">
@@ -671,7 +668,6 @@ export default function SchoolOfVaisheshikaPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </>
   )
 }

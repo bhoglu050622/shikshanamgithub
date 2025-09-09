@@ -9,8 +9,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import IndianPatterns from '@/components/ornaments/IndianPatterns';
 import { DashboardSummary } from '../../components/dashboard/DashboardSummary';
 import { CourseCards } from '../../components/dashboard/CourseCards';
@@ -31,6 +29,8 @@ export default function DashboardPage() {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
+  const [dataSource, setDataSource] = useState<string>('unknown');
 
   // Real-time recommendations
   const {
@@ -61,13 +61,25 @@ export default function DashboardPage() {
     fetchDashboardData();
   }, [isInitialized, isLoggedIn, user, router]);
 
+  // Auto-refresh dashboard data every 10 minutes
+  useEffect(() => {
+    if (!isLoggedIn || !user || !dashboardData) return;
+
+    const autoRefreshInterval = setInterval(() => {
+      console.log('Auto-refreshing dashboard data...');
+      fetchDashboardData();
+    }, 600000); // 10 minutes
+
+    return () => clearInterval(autoRefreshInterval);
+  }, [isLoggedIn, user, dashboardData]);
+
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      console.log('Fetching dashboard data...');
-      const response = await fetch('/api/dashboard/me');
+      console.log('Fetching real dashboard data from Graphy...');
+      const response = await fetch('/api/dashboard/real-data');
       
       console.log('Response status:', response.status);
       
@@ -79,10 +91,34 @@ export default function DashboardPage() {
 
       const result = await response.json();
       console.log('Dashboard data received:', result);
+      
+      // Log data source for debugging
+      if (result.metadata?.cacheStatus === 'real-data-from-graphy') {
+        console.log('✅ Using REAL data from Graphy API');
+        setDataSource('graphy');
+      } else {
+        console.log('⚠️ Using mock/cached data - Graphy API may not be configured');
+        setDataSource('mock');
+      }
+      
       setDashboardData(result.data);
+      setLastRefresh(new Date());
     } catch (err) {
       console.error('Error fetching dashboard:', err);
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+      
+      // Handle specific Graphy API errors
+      if (errorMessage.includes('Learner not found')) {
+        setError('No courses found for your account. Please check if you\'re logged in with the correct email or contact support.');
+      } else if (errorMessage.includes('Dashboard service error')) {
+        setError('Unable to connect to course data. Please try again in a few moments.');
+      } else if (errorMessage.includes('Authentication required')) {
+        setError('Please log in to view your dashboard.');
+        router.push('/?login=true');
+        return;
+      } else {
+        setError(errorMessage);
+      }
     } finally {
       setLoading(false);
     }
@@ -90,7 +126,9 @@ export default function DashboardPage() {
 
   const handleRefresh = () => {
     if (isLoggedIn && user) {
+      console.log('Manual refresh triggered...');
       fetchDashboardData();
+      refreshRecommendations(); // Also refresh recommendations
     }
   };
 
@@ -117,7 +155,6 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 transition-colors duration-300 overflow-x-hidden">
       <IndianPatterns />
-      <Header />
       <main className="main-container" role="main">
         <div className="container mx-auto px-4 py-6 max-w-7xl">
           
@@ -144,10 +181,33 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-2 mt-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs text-slate-500">Active learner</span>
+                      {lastRefresh && (
+                        <span className="text-xs text-slate-400 ml-2">
+                          • Updated {lastRefresh.toLocaleTimeString()}
+                        </span>
+                      )}
+                      {dataSource === 'graphy' && (
+                        <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full ml-2">
+                          ✅ Live Data
+                        </span>
+                      )}
+                      {dataSource === 'mock' && (
+                        <span className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full ml-2">
+                          ⚠️ Demo Data
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
+                  <button
+                    onClick={handleRefresh}
+                    disabled={loading}
+                    className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+                  >
+                    {loading ? 'Refreshing...' : 'Refresh'}
+                  </button>
+                  <div className="w-px h-8 bg-slate-200"></div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-slate-800">
                       {dashboardData.summary.totalCourses}
@@ -532,7 +592,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

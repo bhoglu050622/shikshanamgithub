@@ -18,8 +18,6 @@ import {
   Mail,
   Phone
 } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Image from 'next/image'
 
 const guruProfile = {
@@ -87,8 +85,7 @@ export default function PriyaSharmaPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
-      <Header />
+    <>
       
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-br from-saffron-50 via-white to-deep-teal-50 dark:from-wisdom-900 dark:via-wisdom-800 dark:to-wisdom-900">
@@ -402,7 +399,6 @@ export default function PriyaSharmaPage() {
         )}
       </AnimatePresence>
 
-      <Footer />
-    </div>
+    </>
   )
 }

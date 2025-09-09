@@ -1,5 +1,3 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,8 +7,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
+    <>
       <main className="main-container py-16">
         <div className="max-w-md mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8">
@@ -117,7 +114,6 @@ export default function LoginPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+    </>
   )
 }

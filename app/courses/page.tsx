@@ -51,8 +51,6 @@ import {
   Percent,
   Package
 } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import Button, { CTAButton } from '@/components/ui/button'
 import { ROUTES, generateRoutes } from '@/lib/routes'
@@ -391,9 +389,7 @@ export default function CoursesPage() {
   })).filter(category => category.courses.length > 0)
 
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
-      
+    <>
       {/* Hero Section */}
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30">
         {/* Background Ornaments */}
@@ -836,7 +832,6 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </>
   )
 }

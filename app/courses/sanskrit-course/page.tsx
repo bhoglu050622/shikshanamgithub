@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { courseLd, organizationLd, faqLd, instructorLd } from '@/lib/schema'
-import Header from '@/components/Header'
 import Hero from './components/Hero'
 import StickyEnrollBar from './components/StickyEnrollBar'
 import ProblemFitCarousel from './components/ProblemFitCarousel'
@@ -109,8 +108,6 @@ export default function SanskritCoursePage() {
         }}
       />
 
-      {/* Header Navigation */}
-      <Header />
 
       <main 
         className="min-h-screen bg-gradient-to-br from-off-white-500 via-sand-500 to-off-white-500 dark:from-wisdom-900 dark:via-wisdom-800 dark:to-wisdom-900"

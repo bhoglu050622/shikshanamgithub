@@ -1,7 +1,5 @@
 'use client'
 
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import SanskritHero from './SanskritHero'
 import FlashcardGrid from './FlashcardGrid'
 import SequentialPath from './SequentialPath'
@@ -12,8 +10,7 @@ import ResourcesTreasury from './ResourcesTreasury'
 
 export default function SchoolOfSanskritPage() {
   return (
-    <div className="min-h-screen bg-parchment-ivory transition-colors duration-300">
-      <Header />
+    <>
       
       {/* Hero Section */}
       <SanskritHero />
@@ -35,7 +32,6 @@ export default function SchoolOfSanskritPage() {
       {/* Resources & Treasury Section */}
       <ResourcesTreasury />
       
-      <Footer />
-    </div>
+    </>
   )
 }

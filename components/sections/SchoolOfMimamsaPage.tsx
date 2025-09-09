@@ -18,8 +18,6 @@ import {
   Lightbulb,
   Target
 } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 
 export default function SchoolOfMimamsaPage() {
@@ -30,8 +28,7 @@ export default function SchoolOfMimamsaPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
-      <Header />
+    <>
       
       {/* Hero Section - Orange Capsule */}
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-orange-50/30 via-transparent to-teal-50/30 dark:from-orange-900/10 dark:via-transparent dark:to-teal-900/10">
@@ -180,7 +177,6 @@ export default function SchoolOfMimamsaPage() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </>
   )
 }

@@ -30,8 +30,6 @@ import {
   Globe,
   HelpCircle
 } from 'lucide-react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import SelfHelpHero from './SelfHelpHero'
 import SkillTracks from './SkillTracks'
@@ -265,8 +263,7 @@ export default function SchoolOfSelfHelpPage() {
   }
 
   return (
-    <div className="min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300">
-      <Header />
+    <>
       
       {/* Enhanced Hero Section */}
       <SelfHelpHero 
@@ -480,6 +477,6 @@ export default function SchoolOfSelfHelpPage() {
         onNewsletterSubscribe={(email) => analytics.track('newsletter_subscription', { email })}
         onSocialClick={(platform) => analytics.track('social_click', { platform })}
       />
-    </div>
+    </>
   )
 }

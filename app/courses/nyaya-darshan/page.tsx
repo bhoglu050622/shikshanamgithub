@@ -10,13 +10,10 @@ import CertificateShowcase from './components/CertificateShowcase';
 import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
 import FinalCTA from './components/FinalCTA';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function NyayaDarshanCoursePage() {
   return (
-    <div className="min-h-screen bg-parchment transition-colors duration-300 overflow-x-hidden">
-      <Header />
+    <>
       <HeroSection />
       <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
         <div className="container-custom">
@@ -63,7 +60,6 @@ export default function NyayaDarshanCoursePage() {
           <FinalCTA />
         </div>
       </section>
-      <Footer />
-    </div>
+    </>
   );
 }
