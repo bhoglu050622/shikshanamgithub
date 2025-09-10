@@ -54,6 +54,7 @@ model RefreshToken {
 
 enum UserRole {
   ADMIN
+  EDITOR
   CONTENT_EDITOR
   PUBLISHER
   INSTRUCTOR
