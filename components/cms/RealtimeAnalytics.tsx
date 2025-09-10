@@ -20,7 +20,7 @@ export function RealtimeAnalytics({ className }: RealtimeAnalyticsProps) {
   const { analytics, isLoading } = useRealtimeAnalytics()
   
   // Real-time notifications
-  const [notifications, markAsRead, clearAll] = useRealtimeNotifications()
+  const { notifications, markAsRead, clearAll } = useRealtimeNotifications()
 
   if (!user) {
     return (

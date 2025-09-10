@@ -62,8 +62,12 @@ export function SectionEditor({ contentType, contentId, className }: SectionEdit
   const { templates, getTemplate, getAvailableTypes } = useSectionTemplates()
 
   // Drag and drop
+  const handleReorder = useCallback(async (sectionId: string, newOrder: number) => {
+    await moveSection(sectionId, newOrder)
+  }, [moveSection])
+  
   const { draggedSection, dragOverSection, handleDragStart, handleDragOver, handleDragEnd } = 
-    useSectionDragAndDrop(sections, moveSection)
+    useSectionDragAndDrop(sections, handleReorder)
 
   // Section form state
   const [sectionForm, setSectionForm] = useState<Partial<ContentSection>>({
@@ -79,6 +83,7 @@ export function SectionEditor({ contentType, contentId, className }: SectionEdit
       const newSection = {
         ...template,
         ...sectionForm,
+        type: sectionForm.type || 'text',
         order: sections.length + 1
       }
       
@@ -400,7 +405,7 @@ export function SectionEditor({ contentType, contentId, className }: SectionEdit
               <label className="text-sm font-medium">Section Type</label>
               <Select
                 value={sectionForm.type}
-                onValueChange={(value) => setSectionForm({ ...sectionForm, type: value })}
+                onValueChange={(value) => setSectionForm({ ...sectionForm, type: value as any })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select section type" />

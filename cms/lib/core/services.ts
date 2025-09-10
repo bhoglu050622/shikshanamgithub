@@ -21,6 +21,7 @@ import {
   CourseQueryOptions,
   BlogQueryOptions,
   PackageQueryOptions,
+  MediaQueryOptions,
   CreateCourseData,
   UpdateCourseData,
   CreateLessonData,
@@ -940,7 +941,10 @@ export class PackageService extends BaseService {
     ])
 
     return {
-      data: packages as CMSPackage[],
+      data: packages.map(pkg => ({
+        ...pkg,
+        price: pkg.price.toNumber(),
+      })) as CMSPackage[],
       pagination: {
         page,
         limit,
@@ -974,7 +978,10 @@ export class PackageService extends BaseService {
       throw new NotFoundError('Package', id)
     }
 
-    return package_ as CMSPackage
+    return {
+      ...package_,
+      price: package_.price.toNumber(),
+    } as CMSPackage
   }
 
   async getBySlug(slug: string, user: AuthUser): Promise<CMSPackage> {
@@ -1001,7 +1008,10 @@ export class PackageService extends BaseService {
       throw new NotFoundError('Package', slug)
     }
 
-    return package_ as CMSPackage
+    return {
+      ...package_,
+      price: package_.price.toNumber(),
+    } as CMSPackage
   }
 
   async create(data: CreatePackageData, user: AuthUser): Promise<CMSPackage> {
@@ -1046,7 +1056,10 @@ export class PackageService extends BaseService {
       slug: data.slug,
     })
 
-    return package_ as CMSPackage
+    return {
+      ...package_,
+      price: package_.price.toNumber(),
+    } as CMSPackage
   }
 
   async update(data: UpdatePackageData, user: AuthUser): Promise<CMSPackage> {
@@ -1105,7 +1118,10 @@ export class PackageService extends BaseService {
       slug: package_.slug,
     })
 
-    return package_ as CMSPackage
+    return {
+      ...package_,
+      price: package_.price.toNumber(),
+    } as CMSPackage
   }
 
   async delete(id: string, user: AuthUser): Promise<void> {
@@ -1207,7 +1223,7 @@ export class PackageService extends BaseService {
 
 // Media Service
 export class MediaService extends BaseService {
-  async getAll(options: QueryOptions = {}, user: AuthUser): Promise<PaginatedResponse<CMSMedia>> {
+  async getAll(options: MediaQueryOptions = {}, user: AuthUser): Promise<PaginatedResponse<CMSMedia>> {
     await this.requireAuth(user, UserRole.VIEWER)
 
     const {
@@ -1413,7 +1429,7 @@ export class RevisionService extends BaseService {
 }
 
 // Centralized CMS Service
-export class CMSService {
+export class CMSService extends BaseService {
   public readonly courses = new CourseService()
   public readonly lessons = new LessonService()
   public readonly blogs = new BlogService()
@@ -1423,7 +1439,7 @@ export class CMSService {
 
   // Analytics methods
   async getSystemAnalytics(user: AuthUser) {
-    await this.courses.requireAuth(user, UserRole.VIEWER)
+    await this.requireAuth(user, UserRole.VIEWER)
 
     const [
       totalUsers,
@@ -1460,7 +1476,7 @@ export class CMSService {
 
   // Search across all content
   async search(query: string, user: AuthUser, options: { limit?: number; types?: ContentType[] } = {}) {
-    await this.courses.requireAuth(user, UserRole.VIEWER)
+    await this.requireAuth(user, UserRole.VIEWER)
 
     const { limit = 20, types = [ContentType.COURSE, ContentType.BLOG_POST, ContentType.PACKAGE] } = options
 

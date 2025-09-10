@@ -47,7 +47,7 @@ export function CourseManager({ className }: CourseManagerProps) {
   } = useCourse(selectedCourseId || '', user)
 
   // Real-time updates for selected course
-  useEntityRealtime('course', selectedCourseId || '', selectedCourse, setSelectedCourse)
+  const { data: realtimeCourse, setData: setRealtimeCourse } = useEntityRealtime('course', selectedCourseId || '', selectedCourse)
 
   // Course form state
   const [formData, setFormData] = useState<CreateCourseData>({
@@ -86,7 +86,7 @@ export function CourseManager({ className }: CourseManagerProps) {
 
   const handleUpdateCourse = async (id: string, data: UpdateCourseData) => {
     try {
-      await updateCourse({ id, ...data })
+      await updateCourse(data)
       setEditingCourse(null)
     } catch (error) {
       console.error('Failed to update course:', error)

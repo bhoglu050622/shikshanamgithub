@@ -239,6 +239,10 @@ export interface PackageQueryOptions extends QueryOptions {
   priceMax?: number
 }
 
+export interface MediaQueryOptions extends QueryOptions {
+  mimeType?: string
+}
+
 // Create/Update types
 export interface CreateCourseData {
   title: string
