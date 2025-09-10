@@ -24,16 +24,17 @@ model User {
   updatedAt    DateTime  @updatedAt
 
   // Relations
-  createdCourses     Course[]       @relation("CourseCreator")
-  createdLessons     Lesson[]       @relation("LessonCreator")
-  createdPackages    Package[]      @relation("PackageCreator")
-  createdBlogPosts   BlogPost[]     @relation("BlogCreator")
-  createdPages       Page[]         @relation("PageCreator")
-  authorProfile      Author?        @relation("UserAuthor")
+  createdCourses     Course[]         @relation("CourseCreator")
+  createdLessons     Lesson[]         @relation("LessonCreator")
+  createdPackages    Package[]        @relation("PackageCreator")
+  createdBlogPosts   BlogPost[]       @relation("BlogCreator")
+  createdPages       Page[]           @relation("PageCreator")
+  createdSections    ContentSection[] @relation("SectionCreator")
+  authorProfile      Author?          @relation("UserAuthor")
   auditLogs          AuditLog[]
-  createdRevisions   Revision[]     @relation("RevisionCreator")
-  reviewedRevisions  Revision[]     @relation("RevisionReviewer")
-  publishedRevisions Revision[]     @relation("RevisionPublisher")
+  createdRevisions   Revision[]       @relation("RevisionCreator")
+  reviewedRevisions  Revision[]       @relation("RevisionReviewer")
+  publishedRevisions Revision[]       @relation("RevisionPublisher")
   refreshTokens      RefreshToken[]
 
   @@map("users")
@@ -54,8 +55,10 @@ model RefreshToken {
 enum UserRole {
   ADMIN
   EDITOR
-  REVIEWER
+  CONTENT_EDITOR
   PUBLISHER
+  INSTRUCTOR
+  SUPPORT_MODERATOR
   VIEWER
 }
 
@@ -303,6 +306,26 @@ model Redirect {
   createdAt  DateTime @default(now())
 
   @@map("redirects")
+}
+
+// Content Sections for granular editing
+model ContentSection {
+  id          String      @id @default(cuid())
+  type        String // text, image, video, quiz, code, quote, list, table
+  content     Json // Section content data
+  order       Int // Display order
+  metadata    Json? // Additional metadata (title, description, alt, caption, etc.)
+  isVisible   Boolean     @default(true)
+  contentType ContentType
+  contentId   String // ID of the parent content (course, lesson, blog, etc.)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  createdById String
+
+  // Relations
+  creator User @relation("SectionCreator", fields: [createdById], references: [id])
+
+  @@map("content_sections")
 }
 
 // Audit & Analytics

@@ -43,10 +43,11 @@ abstract class BaseService {
     const roleHierarchy = {
       [UserRole.VIEWER]: 1,
       [UserRole.SUPPORT_MODERATOR]: 2,
-      [UserRole.CONTENT_EDITOR]: 3,
-      [UserRole.INSTRUCTOR]: 4,
-      [UserRole.PUBLISHER]: 5,
-      [UserRole.ADMIN]: 6,
+      [UserRole.EDITOR]: 3,
+      [UserRole.CONTENT_EDITOR]: 4,
+      [UserRole.INSTRUCTOR]: 5,
+      [UserRole.PUBLISHER]: 6,
+      [UserRole.ADMIN]: 7,
     }
 
     if (roleHierarchy[user.role] < roleHierarchy[requiredRole]) {

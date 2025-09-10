@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '@/cms/context/AuthContext'
 import { useCourses, useCourse } from '@/cms/lib/core/hooks'
-import { useCMSRealtime, useEntityRealtime } from '@/cms/lib/core/realtime'
+import { useCMSRealtime, useEntityRealtime } from '@/cms/lib/core/realtime-hooks'
 import { CreateCourseData, UpdateCourseData } from '@/cms/lib/core/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'

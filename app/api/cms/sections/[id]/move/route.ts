@@ -30,7 +30,7 @@ export async function PUT(
 
     // Invalidate cache for the content
     const section = await sectionEditor.getSection(id, user)
-    const cacheKey = `sections:${section.contentType}:${section.contentId}`
+    const cacheKey = `sections:${(section as any).contentType}:${(section as any).contentId}`
     CacheManager.invalidateCourse(user, cacheKey)
 
     // Trigger real-time event

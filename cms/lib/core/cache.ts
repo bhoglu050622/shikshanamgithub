@@ -374,7 +374,7 @@ export class CacheManager {
 export function withCache<T>(
   cacheKey: string,
   ttl: number = 5 * 60 * 1000,
-  getCacheKey: (user: AuthUser, ...params: any[]) => string = generateCacheKey
+  getCacheKey: (user: AuthUser, ...params: any[]) => string = (user: AuthUser, ...params: any[]) => generateCacheKey(cacheKey, user, ...params)
 ) {
   return function(
     target: any,

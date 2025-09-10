@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -613,15 +613,13 @@ export function ContentCreationWizard({ onComplete, onCancel }: ContentCreationW
             <p className="text-gray-600">{steps[currentStep]?.description}</p>
           </CardHeader>
           <CardContent>
-            {currentStepComponent && (
-              <currentStepComponent
-                onNext={handleStepNext}
-                onBack={handleStepBack}
-                data={wizardData}
-                isFirst={currentStep === 0}
-                isLast={currentStep === steps.length - 1}
-              />
-            )}
+            {currentStepComponent && React.createElement(currentStepComponent, {
+              onNext: handleStepNext,
+              onBack: handleStepBack,
+              data: wizardData,
+              isFirst: currentStep === 0,
+              isLast: currentStep === steps.length - 1
+            })}
           </CardContent>
         </Card>
 

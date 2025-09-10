@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRealtimeNotifications } from '@/cms/lib/realtime'
+import { useRealtimeNotifications } from '@/cms/lib/core/realtime-hooks'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -22,7 +22,7 @@ import {
 import { formatDistanceToNow } from 'date-fns'
 
 export function NotificationCenter() {
-  const [notifications, markAsRead] = useRealtimeNotifications()
+  const { notifications, markAsRead, clearAll } = useRealtimeNotifications()
   const [isOpen, setIsOpen] = useState(false)
   
   const unreadCount = notifications.filter(n => !n.read).length

@@ -138,6 +138,7 @@ export const AUDIT_ACTIONS = {
   APPROVE: 'approve',
   REJECT: 'reject',
   PUBLISH: 'publish',
+  UNPUBLISH: 'unpublish',
   ROLLBACK: 'rollback',
   
   // Preview

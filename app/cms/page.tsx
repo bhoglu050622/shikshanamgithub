@@ -135,19 +135,17 @@ export default function CMSDashboard() {
             {quickActions.map((action, index) => {
               const Icon = action.icon
               return (
-                <Button
+                <a
                   key={index}
-                  className={`${action.color} text-white h-auto p-4 flex flex-col items-center space-y-2`}
-                  asChild
+                  href={action.href}
+                  className={`${action.color} text-white h-auto p-4 flex flex-col items-center space-y-2 rounded-lg hover:opacity-90 transition-opacity`}
                 >
-                  <a href={action.href}>
-                    <Icon className="w-6 h-6" />
-                    <div className="text-center">
-                      <div className="font-medium">{action.title}</div>
-                      <div className="text-xs opacity-90">{action.description}</div>
-                    </div>
-                  </a>
-                </Button>
+                  <Icon className="w-6 h-6" />
+                  <div className="text-center">
+                    <div className="font-medium">{action.title}</div>
+                    <div className="text-xs opacity-90">{action.description}</div>
+                  </div>
+                </a>
               )
             })}
           </div>
@@ -256,95 +254,77 @@ export default function CMSDashboard() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/content">
-                <FileText className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Content Management</div>
-                  <div className="text-xs text-gray-500">Manage all content types</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/content" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <FileText className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Content Management</div>
+                <div className="text-xs text-gray-500">Manage all content types</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/editor">
-                <BookOpen className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">WYSIWYG Editor</div>
-                  <div className="text-xs text-gray-500">Create and edit content</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/editor" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <BookOpen className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">WYSIWYG Editor</div>
+                <div className="text-xs text-gray-500">Create and edit content</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/media">
-                <Image className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Media Library</div>
-                  <div className="text-xs text-gray-500">Upload and manage files</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/media" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Image className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Media Library</div>
+                <div className="text-xs text-gray-500">Upload and manage files</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/revisions">
-                <Activity className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Revisions</div>
-                  <div className="text-xs text-gray-500">Version control and history</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/revisions" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Activity className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Revisions</div>
+                <div className="text-xs text-gray-500">Version control and history</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/preview">
-                <Globe className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Preview & Staging</div>
-                  <div className="text-xs text-gray-500">Test before publishing</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/preview" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Globe className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Preview & Staging</div>
+                <div className="text-xs text-gray-500">Test before publishing</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/publishing">
-                <Server className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Publishing</div>
-                  <div className="text-xs text-gray-500">Deploy and manage releases</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/publishing" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Server className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Publishing</div>
+                <div className="text-xs text-gray-500">Deploy and manage releases</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/users">
-                <Users className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Users & Permissions</div>
-                  <div className="text-xs text-gray-500">Manage access and roles</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/users" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Users className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Users & Permissions</div>
+                <div className="text-xs text-gray-500">Manage access and roles</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/integrations">
-                <Package className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Integrations</div>
-                  <div className="text-xs text-gray-500">Connect external services</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/integrations" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Package className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Integrations</div>
+                <div className="text-xs text-gray-500">Connect external services</div>
+              </div>
+            </a>
             
-            <Button variant="outline" className="h-auto p-4 flex items-center space-x-3" asChild>
-              <a href="/cms/settings">
-                <Settings className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-medium">Settings</div>
-                  <div className="text-xs text-gray-500">Configure system options</div>
-                </div>
-              </a>
-            </Button>
+            <a href="/cms/settings" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Settings className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Settings</div>
+                <div className="text-xs text-gray-500">Configure system options</div>
+              </div>
+            </a>
           </div>
         </CardContent>
       </Card>

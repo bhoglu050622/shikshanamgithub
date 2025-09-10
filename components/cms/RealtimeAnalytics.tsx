@@ -3,7 +3,7 @@
 import React from 'react'
 import { useAuth } from '@/cms/context/AuthContext'
 import { useSystemAnalytics } from '@/cms/lib/core/hooks'
-import { useRealtimeAnalytics, useRealtimeNotifications } from '@/cms/lib/core/realtime'
+import { useRealtimeAnalytics, useRealtimeNotifications } from '@/cms/lib/core/realtime-hooks'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'

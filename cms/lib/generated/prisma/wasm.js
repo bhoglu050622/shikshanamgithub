@@ -311,6 +311,20 @@ exports.Prisma.RedirectScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ContentSectionScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  content: 'content',
+  order: 'order',
+  metadata: 'metadata',
+  isVisible: 'isVisible',
+  contentType: 'contentType',
+  contentId: 'contentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdById: 'createdById'
+};
+
 exports.Prisma.AuditLogScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -355,8 +369,10 @@ exports.Prisma.JsonNullValueFilter = {
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
   EDITOR: 'EDITOR',
-  REVIEWER: 'REVIEWER',
+  CONTENT_EDITOR: 'CONTENT_EDITOR',
   PUBLISHER: 'PUBLISHER',
+  INSTRUCTOR: 'INSTRUCTOR',
+  SUPPORT_MODERATOR: 'SUPPORT_MODERATOR',
   VIEWER: 'VIEWER'
 };
 
@@ -410,6 +426,7 @@ exports.Prisma.ModelName = {
   Settings: 'Settings',
   Snippet: 'Snippet',
   Redirect: 'Redirect',
+  ContentSection: 'ContentSection',
   AuditLog: 'AuditLog'
 };
 

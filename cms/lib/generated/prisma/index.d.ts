@@ -89,6 +89,11 @@ export type Snippet = $Result.DefaultSelection<Prisma.$SnippetPayload>
  */
 export type Redirect = $Result.DefaultSelection<Prisma.$RedirectPayload>
 /**
+ * Model ContentSection
+ * 
+ */
+export type ContentSection = $Result.DefaultSelection<Prisma.$ContentSectionPayload>
+/**
  * Model AuditLog
  * 
  */
@@ -101,8 +106,10 @@ export namespace $Enums {
   export const UserRole: {
   ADMIN: 'ADMIN',
   EDITOR: 'EDITOR',
-  REVIEWER: 'REVIEWER',
+  CONTENT_EDITOR: 'CONTENT_EDITOR',
   PUBLISHER: 'PUBLISHER',
+  INSTRUCTOR: 'INSTRUCTOR',
+  SUPPORT_MODERATOR: 'SUPPORT_MODERATOR',
   VIEWER: 'VIEWER'
 };
 
@@ -450,6 +457,16 @@ export class PrismaClient<
     * ```
     */
   get redirect(): Prisma.RedirectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contentSection`: Exposes CRUD operations for the **ContentSection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContentSections
+    * const contentSections = await prisma.contentSection.findMany()
+    * ```
+    */
+  get contentSection(): Prisma.ContentSectionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.auditLog`: Exposes CRUD operations for the **AuditLog** model.
@@ -915,6 +932,7 @@ export namespace Prisma {
     Settings: 'Settings',
     Snippet: 'Snippet',
     Redirect: 'Redirect',
+    ContentSection: 'ContentSection',
     AuditLog: 'AuditLog'
   };
 
@@ -934,7 +952,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "refreshToken" | "course" | "lesson" | "package" | "packageCourse" | "blogPost" | "page" | "author" | "media" | "seoMeta" | "revision" | "settings" | "snippet" | "redirect" | "auditLog"
+      modelProps: "user" | "refreshToken" | "course" | "lesson" | "package" | "packageCourse" | "blogPost" | "page" | "author" | "media" | "seoMeta" | "revision" | "settings" | "snippet" | "redirect" | "contentSection" | "auditLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2048,6 +2066,80 @@ export namespace Prisma {
           }
         }
       }
+      ContentSection: {
+        payload: Prisma.$ContentSectionPayload<ExtArgs>
+        fields: Prisma.ContentSectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContentSectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContentSectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>
+          }
+          findFirst: {
+            args: Prisma.ContentSectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContentSectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>
+          }
+          findMany: {
+            args: Prisma.ContentSectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>[]
+          }
+          create: {
+            args: Prisma.ContentSectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>
+          }
+          createMany: {
+            args: Prisma.ContentSectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContentSectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>[]
+          }
+          delete: {
+            args: Prisma.ContentSectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>
+          }
+          update: {
+            args: Prisma.ContentSectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContentSectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContentSectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContentSectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContentSectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContentSectionPayload>
+          }
+          aggregate: {
+            args: Prisma.ContentSectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContentSection>
+          }
+          groupBy: {
+            args: Prisma.ContentSectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContentSectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContentSectionCountArgs<ExtArgs>
+            result: $Utils.Optional<ContentSectionCountAggregateOutputType> | number
+          }
+        }
+      }
       AuditLog: {
         payload: Prisma.$AuditLogPayload<ExtArgs>
         fields: Prisma.AuditLogFieldRefs
@@ -2229,6 +2321,7 @@ export namespace Prisma {
     settings?: SettingsOmit
     snippet?: SnippetOmit
     redirect?: RedirectOmit
+    contentSection?: ContentSectionOmit
     auditLog?: AuditLogOmit
   }
 
@@ -2315,6 +2408,7 @@ export namespace Prisma {
     createdPackages: number
     createdBlogPosts: number
     createdPages: number
+    createdSections: number
     auditLogs: number
     createdRevisions: number
     reviewedRevisions: number
@@ -2328,6 +2422,7 @@ export namespace Prisma {
     createdPackages?: boolean | UserCountOutputTypeCountCreatedPackagesArgs
     createdBlogPosts?: boolean | UserCountOutputTypeCountCreatedBlogPostsArgs
     createdPages?: boolean | UserCountOutputTypeCountCreatedPagesArgs
+    createdSections?: boolean | UserCountOutputTypeCountCreatedSectionsArgs
     auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
     createdRevisions?: boolean | UserCountOutputTypeCountCreatedRevisionsArgs
     reviewedRevisions?: boolean | UserCountOutputTypeCountReviewedRevisionsArgs
@@ -2379,6 +2474,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCreatedPagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PageWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreatedSectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContentSectionWhereInput
   }
 
   /**
@@ -2724,6 +2826,7 @@ export namespace Prisma {
     createdPackages?: boolean | User$createdPackagesArgs<ExtArgs>
     createdBlogPosts?: boolean | User$createdBlogPostsArgs<ExtArgs>
     createdPages?: boolean | User$createdPagesArgs<ExtArgs>
+    createdSections?: boolean | User$createdSectionsArgs<ExtArgs>
     authorProfile?: boolean | User$authorProfileArgs<ExtArgs>
     auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
     createdRevisions?: boolean | User$createdRevisionsArgs<ExtArgs>
@@ -2776,6 +2879,7 @@ export namespace Prisma {
     createdPackages?: boolean | User$createdPackagesArgs<ExtArgs>
     createdBlogPosts?: boolean | User$createdBlogPostsArgs<ExtArgs>
     createdPages?: boolean | User$createdPagesArgs<ExtArgs>
+    createdSections?: boolean | User$createdSectionsArgs<ExtArgs>
     authorProfile?: boolean | User$authorProfileArgs<ExtArgs>
     auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
     createdRevisions?: boolean | User$createdRevisionsArgs<ExtArgs>
@@ -2795,6 +2899,7 @@ export namespace Prisma {
       createdPackages: Prisma.$PackagePayload<ExtArgs>[]
       createdBlogPosts: Prisma.$BlogPostPayload<ExtArgs>[]
       createdPages: Prisma.$PagePayload<ExtArgs>[]
+      createdSections: Prisma.$ContentSectionPayload<ExtArgs>[]
       authorProfile: Prisma.$AuthorPayload<ExtArgs> | null
       auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
       createdRevisions: Prisma.$RevisionPayload<ExtArgs>[]
@@ -3211,6 +3316,7 @@ export namespace Prisma {
     createdPackages<T extends User$createdPackagesArgs<ExtArgs> = {}>(args?: Subset<T, User$createdPackagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdBlogPosts<T extends User$createdBlogPostsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdBlogPostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdPages<T extends User$createdPagesArgs<ExtArgs> = {}>(args?: Subset<T, User$createdPagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    createdSections<T extends User$createdSectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdSectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     authorProfile<T extends User$authorProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$authorProfileArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     auditLogs<T extends User$auditLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdRevisions<T extends User$createdRevisionsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdRevisionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3760,6 +3866,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PageScalarFieldEnum | PageScalarFieldEnum[]
+  }
+
+  /**
+   * User.createdSections
+   */
+  export type User$createdSectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    where?: ContentSectionWhereInput
+    orderBy?: ContentSectionOrderByWithRelationInput | ContentSectionOrderByWithRelationInput[]
+    cursor?: ContentSectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContentSectionScalarFieldEnum | ContentSectionScalarFieldEnum[]
   }
 
   /**
@@ -19950,6 +20080,1168 @@ export namespace Prisma {
 
 
   /**
+   * Model ContentSection
+   */
+
+  export type AggregateContentSection = {
+    _count: ContentSectionCountAggregateOutputType | null
+    _avg: ContentSectionAvgAggregateOutputType | null
+    _sum: ContentSectionSumAggregateOutputType | null
+    _min: ContentSectionMinAggregateOutputType | null
+    _max: ContentSectionMaxAggregateOutputType | null
+  }
+
+  export type ContentSectionAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ContentSectionSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ContentSectionMinAggregateOutputType = {
+    id: string | null
+    type: string | null
+    order: number | null
+    isVisible: boolean | null
+    contentType: $Enums.ContentType | null
+    contentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type ContentSectionMaxAggregateOutputType = {
+    id: string | null
+    type: string | null
+    order: number | null
+    isVisible: boolean | null
+    contentType: $Enums.ContentType | null
+    contentId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type ContentSectionCountAggregateOutputType = {
+    id: number
+    type: number
+    content: number
+    order: number
+    metadata: number
+    isVisible: number
+    contentType: number
+    contentId: number
+    createdAt: number
+    updatedAt: number
+    createdById: number
+    _all: number
+  }
+
+
+  export type ContentSectionAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type ContentSectionSumAggregateInputType = {
+    order?: true
+  }
+
+  export type ContentSectionMinAggregateInputType = {
+    id?: true
+    type?: true
+    order?: true
+    isVisible?: true
+    contentType?: true
+    contentId?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type ContentSectionMaxAggregateInputType = {
+    id?: true
+    type?: true
+    order?: true
+    isVisible?: true
+    contentType?: true
+    contentId?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type ContentSectionCountAggregateInputType = {
+    id?: true
+    type?: true
+    content?: true
+    order?: true
+    metadata?: true
+    isVisible?: true
+    contentType?: true
+    contentId?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+    _all?: true
+  }
+
+  export type ContentSectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContentSection to aggregate.
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContentSections to fetch.
+     */
+    orderBy?: ContentSectionOrderByWithRelationInput | ContentSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContentSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContentSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContentSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContentSections
+    **/
+    _count?: true | ContentSectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContentSectionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContentSectionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContentSectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContentSectionMaxAggregateInputType
+  }
+
+  export type GetContentSectionAggregateType<T extends ContentSectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateContentSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContentSection[P]>
+      : GetScalarType<T[P], AggregateContentSection[P]>
+  }
+
+
+
+
+  export type ContentSectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContentSectionWhereInput
+    orderBy?: ContentSectionOrderByWithAggregationInput | ContentSectionOrderByWithAggregationInput[]
+    by: ContentSectionScalarFieldEnum[] | ContentSectionScalarFieldEnum
+    having?: ContentSectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContentSectionCountAggregateInputType | true
+    _avg?: ContentSectionAvgAggregateInputType
+    _sum?: ContentSectionSumAggregateInputType
+    _min?: ContentSectionMinAggregateInputType
+    _max?: ContentSectionMaxAggregateInputType
+  }
+
+  export type ContentSectionGroupByOutputType = {
+    id: string
+    type: string
+    content: JsonValue
+    order: number
+    metadata: JsonValue | null
+    isVisible: boolean
+    contentType: $Enums.ContentType
+    contentId: string
+    createdAt: Date
+    updatedAt: Date
+    createdById: string
+    _count: ContentSectionCountAggregateOutputType | null
+    _avg: ContentSectionAvgAggregateOutputType | null
+    _sum: ContentSectionSumAggregateOutputType | null
+    _min: ContentSectionMinAggregateOutputType | null
+    _max: ContentSectionMaxAggregateOutputType | null
+  }
+
+  type GetContentSectionGroupByPayload<T extends ContentSectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContentSectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContentSectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContentSectionGroupByOutputType[P]>
+            : GetScalarType<T[P], ContentSectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContentSectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    content?: boolean
+    order?: boolean
+    metadata?: boolean
+    isVisible?: boolean
+    contentType?: boolean
+    contentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contentSection"]>
+
+  export type ContentSectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    content?: boolean
+    order?: boolean
+    metadata?: boolean
+    isVisible?: boolean
+    contentType?: boolean
+    contentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contentSection"]>
+
+  export type ContentSectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    content?: boolean
+    order?: boolean
+    metadata?: boolean
+    isVisible?: boolean
+    contentType?: boolean
+    contentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contentSection"]>
+
+  export type ContentSectionSelectScalar = {
+    id?: boolean
+    type?: boolean
+    content?: boolean
+    order?: boolean
+    metadata?: boolean
+    isVisible?: boolean
+    contentType?: boolean
+    contentId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+  }
+
+  export type ContentSectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "content" | "order" | "metadata" | "isVisible" | "contentType" | "contentId" | "createdAt" | "updatedAt" | "createdById", ExtArgs["result"]["contentSection"]>
+  export type ContentSectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ContentSectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ContentSectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ContentSectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContentSection"
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      type: string
+      content: Prisma.JsonValue
+      order: number
+      metadata: Prisma.JsonValue | null
+      isVisible: boolean
+      contentType: $Enums.ContentType
+      contentId: string
+      createdAt: Date
+      updatedAt: Date
+      createdById: string
+    }, ExtArgs["result"]["contentSection"]>
+    composites: {}
+  }
+
+  type ContentSectionGetPayload<S extends boolean | null | undefined | ContentSectionDefaultArgs> = $Result.GetResult<Prisma.$ContentSectionPayload, S>
+
+  type ContentSectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContentSectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContentSectionCountAggregateInputType | true
+    }
+
+  export interface ContentSectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContentSection'], meta: { name: 'ContentSection' } }
+    /**
+     * Find zero or one ContentSection that matches the filter.
+     * @param {ContentSectionFindUniqueArgs} args - Arguments to find a ContentSection
+     * @example
+     * // Get one ContentSection
+     * const contentSection = await prisma.contentSection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContentSectionFindUniqueArgs>(args: SelectSubset<T, ContentSectionFindUniqueArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContentSection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContentSectionFindUniqueOrThrowArgs} args - Arguments to find a ContentSection
+     * @example
+     * // Get one ContentSection
+     * const contentSection = await prisma.contentSection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContentSectionFindUniqueOrThrowArgs>(args: SelectSubset<T, ContentSectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContentSection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionFindFirstArgs} args - Arguments to find a ContentSection
+     * @example
+     * // Get one ContentSection
+     * const contentSection = await prisma.contentSection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContentSectionFindFirstArgs>(args?: SelectSubset<T, ContentSectionFindFirstArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContentSection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionFindFirstOrThrowArgs} args - Arguments to find a ContentSection
+     * @example
+     * // Get one ContentSection
+     * const contentSection = await prisma.contentSection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContentSectionFindFirstOrThrowArgs>(args?: SelectSubset<T, ContentSectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContentSections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContentSections
+     * const contentSections = await prisma.contentSection.findMany()
+     * 
+     * // Get first 10 ContentSections
+     * const contentSections = await prisma.contentSection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contentSectionWithIdOnly = await prisma.contentSection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContentSectionFindManyArgs>(args?: SelectSubset<T, ContentSectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContentSection.
+     * @param {ContentSectionCreateArgs} args - Arguments to create a ContentSection.
+     * @example
+     * // Create one ContentSection
+     * const ContentSection = await prisma.contentSection.create({
+     *   data: {
+     *     // ... data to create a ContentSection
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContentSectionCreateArgs>(args: SelectSubset<T, ContentSectionCreateArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContentSections.
+     * @param {ContentSectionCreateManyArgs} args - Arguments to create many ContentSections.
+     * @example
+     * // Create many ContentSections
+     * const contentSection = await prisma.contentSection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContentSectionCreateManyArgs>(args?: SelectSubset<T, ContentSectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContentSections and returns the data saved in the database.
+     * @param {ContentSectionCreateManyAndReturnArgs} args - Arguments to create many ContentSections.
+     * @example
+     * // Create many ContentSections
+     * const contentSection = await prisma.contentSection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContentSections and only return the `id`
+     * const contentSectionWithIdOnly = await prisma.contentSection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContentSectionCreateManyAndReturnArgs>(args?: SelectSubset<T, ContentSectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContentSection.
+     * @param {ContentSectionDeleteArgs} args - Arguments to delete one ContentSection.
+     * @example
+     * // Delete one ContentSection
+     * const ContentSection = await prisma.contentSection.delete({
+     *   where: {
+     *     // ... filter to delete one ContentSection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContentSectionDeleteArgs>(args: SelectSubset<T, ContentSectionDeleteArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContentSection.
+     * @param {ContentSectionUpdateArgs} args - Arguments to update one ContentSection.
+     * @example
+     * // Update one ContentSection
+     * const contentSection = await prisma.contentSection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContentSectionUpdateArgs>(args: SelectSubset<T, ContentSectionUpdateArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContentSections.
+     * @param {ContentSectionDeleteManyArgs} args - Arguments to filter ContentSections to delete.
+     * @example
+     * // Delete a few ContentSections
+     * const { count } = await prisma.contentSection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContentSectionDeleteManyArgs>(args?: SelectSubset<T, ContentSectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContentSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContentSections
+     * const contentSection = await prisma.contentSection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContentSectionUpdateManyArgs>(args: SelectSubset<T, ContentSectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContentSections and returns the data updated in the database.
+     * @param {ContentSectionUpdateManyAndReturnArgs} args - Arguments to update many ContentSections.
+     * @example
+     * // Update many ContentSections
+     * const contentSection = await prisma.contentSection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContentSections and only return the `id`
+     * const contentSectionWithIdOnly = await prisma.contentSection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContentSectionUpdateManyAndReturnArgs>(args: SelectSubset<T, ContentSectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContentSection.
+     * @param {ContentSectionUpsertArgs} args - Arguments to update or create a ContentSection.
+     * @example
+     * // Update or create a ContentSection
+     * const contentSection = await prisma.contentSection.upsert({
+     *   create: {
+     *     // ... data to create a ContentSection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContentSection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContentSectionUpsertArgs>(args: SelectSubset<T, ContentSectionUpsertArgs<ExtArgs>>): Prisma__ContentSectionClient<$Result.GetResult<Prisma.$ContentSectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContentSections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionCountArgs} args - Arguments to filter ContentSections to count.
+     * @example
+     * // Count the number of ContentSections
+     * const count = await prisma.contentSection.count({
+     *   where: {
+     *     // ... the filter for the ContentSections we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContentSectionCountArgs>(
+      args?: Subset<T, ContentSectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContentSectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContentSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContentSectionAggregateArgs>(args: Subset<T, ContentSectionAggregateArgs>): Prisma.PrismaPromise<GetContentSectionAggregateType<T>>
+
+    /**
+     * Group by ContentSection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContentSectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContentSectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContentSectionGroupByArgs['orderBy'] }
+        : { orderBy?: ContentSectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContentSectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContentSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContentSection model
+   */
+  readonly fields: ContentSectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContentSection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContentSectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContentSection model
+   */
+  interface ContentSectionFieldRefs {
+    readonly id: FieldRef<"ContentSection", 'String'>
+    readonly type: FieldRef<"ContentSection", 'String'>
+    readonly content: FieldRef<"ContentSection", 'Json'>
+    readonly order: FieldRef<"ContentSection", 'Int'>
+    readonly metadata: FieldRef<"ContentSection", 'Json'>
+    readonly isVisible: FieldRef<"ContentSection", 'Boolean'>
+    readonly contentType: FieldRef<"ContentSection", 'ContentType'>
+    readonly contentId: FieldRef<"ContentSection", 'String'>
+    readonly createdAt: FieldRef<"ContentSection", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContentSection", 'DateTime'>
+    readonly createdById: FieldRef<"ContentSection", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContentSection findUnique
+   */
+  export type ContentSectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which ContentSection to fetch.
+     */
+    where: ContentSectionWhereUniqueInput
+  }
+
+  /**
+   * ContentSection findUniqueOrThrow
+   */
+  export type ContentSectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which ContentSection to fetch.
+     */
+    where: ContentSectionWhereUniqueInput
+  }
+
+  /**
+   * ContentSection findFirst
+   */
+  export type ContentSectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which ContentSection to fetch.
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContentSections to fetch.
+     */
+    orderBy?: ContentSectionOrderByWithRelationInput | ContentSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContentSections.
+     */
+    cursor?: ContentSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContentSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContentSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContentSections.
+     */
+    distinct?: ContentSectionScalarFieldEnum | ContentSectionScalarFieldEnum[]
+  }
+
+  /**
+   * ContentSection findFirstOrThrow
+   */
+  export type ContentSectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which ContentSection to fetch.
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContentSections to fetch.
+     */
+    orderBy?: ContentSectionOrderByWithRelationInput | ContentSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContentSections.
+     */
+    cursor?: ContentSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContentSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContentSections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContentSections.
+     */
+    distinct?: ContentSectionScalarFieldEnum | ContentSectionScalarFieldEnum[]
+  }
+
+  /**
+   * ContentSection findMany
+   */
+  export type ContentSectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * Filter, which ContentSections to fetch.
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContentSections to fetch.
+     */
+    orderBy?: ContentSectionOrderByWithRelationInput | ContentSectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContentSections.
+     */
+    cursor?: ContentSectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContentSections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContentSections.
+     */
+    skip?: number
+    distinct?: ContentSectionScalarFieldEnum | ContentSectionScalarFieldEnum[]
+  }
+
+  /**
+   * ContentSection create
+   */
+  export type ContentSectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ContentSection.
+     */
+    data: XOR<ContentSectionCreateInput, ContentSectionUncheckedCreateInput>
+  }
+
+  /**
+   * ContentSection createMany
+   */
+  export type ContentSectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContentSections.
+     */
+    data: ContentSectionCreateManyInput | ContentSectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContentSection createManyAndReturn
+   */
+  export type ContentSectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContentSections.
+     */
+    data: ContentSectionCreateManyInput | ContentSectionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContentSection update
+   */
+  export type ContentSectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ContentSection.
+     */
+    data: XOR<ContentSectionUpdateInput, ContentSectionUncheckedUpdateInput>
+    /**
+     * Choose, which ContentSection to update.
+     */
+    where: ContentSectionWhereUniqueInput
+  }
+
+  /**
+   * ContentSection updateMany
+   */
+  export type ContentSectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContentSections.
+     */
+    data: XOR<ContentSectionUpdateManyMutationInput, ContentSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which ContentSections to update
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * Limit how many ContentSections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContentSection updateManyAndReturn
+   */
+  export type ContentSectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * The data used to update ContentSections.
+     */
+    data: XOR<ContentSectionUpdateManyMutationInput, ContentSectionUncheckedUpdateManyInput>
+    /**
+     * Filter which ContentSections to update
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * Limit how many ContentSections to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContentSection upsert
+   */
+  export type ContentSectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ContentSection to update in case it exists.
+     */
+    where: ContentSectionWhereUniqueInput
+    /**
+     * In case the ContentSection found by the `where` argument doesn't exist, create a new ContentSection with this data.
+     */
+    create: XOR<ContentSectionCreateInput, ContentSectionUncheckedCreateInput>
+    /**
+     * In case the ContentSection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContentSectionUpdateInput, ContentSectionUncheckedUpdateInput>
+  }
+
+  /**
+   * ContentSection delete
+   */
+  export type ContentSectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+    /**
+     * Filter which ContentSection to delete.
+     */
+    where: ContentSectionWhereUniqueInput
+  }
+
+  /**
+   * ContentSection deleteMany
+   */
+  export type ContentSectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContentSections to delete
+     */
+    where?: ContentSectionWhereInput
+    /**
+     * Limit how many ContentSections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContentSection without action
+   */
+  export type ContentSectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContentSection
+     */
+    select?: ContentSectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContentSection
+     */
+    omit?: ContentSectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentSectionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model AuditLog
    */
 
@@ -21305,6 +22597,23 @@ export namespace Prisma {
   export type RedirectScalarFieldEnum = (typeof RedirectScalarFieldEnum)[keyof typeof RedirectScalarFieldEnum]
 
 
+  export const ContentSectionScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    content: 'content',
+    order: 'order',
+    metadata: 'metadata',
+    isVisible: 'isVisible',
+    contentType: 'contentType',
+    contentId: 'contentId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    createdById: 'createdById'
+  };
+
+  export type ContentSectionScalarFieldEnum = (typeof ContentSectionScalarFieldEnum)[keyof typeof ContentSectionScalarFieldEnum]
+
+
   export const AuditLogScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -21569,6 +22878,7 @@ export namespace Prisma {
     createdPackages?: PackageListRelationFilter
     createdBlogPosts?: BlogPostListRelationFilter
     createdPages?: PageListRelationFilter
+    createdSections?: ContentSectionListRelationFilter
     authorProfile?: XOR<AuthorNullableScalarRelationFilter, AuthorWhereInput> | null
     auditLogs?: AuditLogListRelationFilter
     createdRevisions?: RevisionListRelationFilter
@@ -21592,6 +22902,7 @@ export namespace Prisma {
     createdPackages?: PackageOrderByRelationAggregateInput
     createdBlogPosts?: BlogPostOrderByRelationAggregateInput
     createdPages?: PageOrderByRelationAggregateInput
+    createdSections?: ContentSectionOrderByRelationAggregateInput
     authorProfile?: AuthorOrderByWithRelationInput
     auditLogs?: AuditLogOrderByRelationAggregateInput
     createdRevisions?: RevisionOrderByRelationAggregateInput
@@ -21618,6 +22929,7 @@ export namespace Prisma {
     createdPackages?: PackageListRelationFilter
     createdBlogPosts?: BlogPostListRelationFilter
     createdPages?: PageListRelationFilter
+    createdSections?: ContentSectionListRelationFilter
     authorProfile?: XOR<AuthorNullableScalarRelationFilter, AuthorWhereInput> | null
     auditLogs?: AuditLogListRelationFilter
     createdRevisions?: RevisionListRelationFilter
@@ -22812,6 +24124,93 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Redirect"> | Date | string
   }
 
+  export type ContentSectionWhereInput = {
+    AND?: ContentSectionWhereInput | ContentSectionWhereInput[]
+    OR?: ContentSectionWhereInput[]
+    NOT?: ContentSectionWhereInput | ContentSectionWhereInput[]
+    id?: StringFilter<"ContentSection"> | string
+    type?: StringFilter<"ContentSection"> | string
+    content?: JsonFilter<"ContentSection">
+    order?: IntFilter<"ContentSection"> | number
+    metadata?: JsonNullableFilter<"ContentSection">
+    isVisible?: BoolFilter<"ContentSection"> | boolean
+    contentType?: EnumContentTypeFilter<"ContentSection"> | $Enums.ContentType
+    contentId?: StringFilter<"ContentSection"> | string
+    createdAt?: DateTimeFilter<"ContentSection"> | Date | string
+    updatedAt?: DateTimeFilter<"ContentSection"> | Date | string
+    createdById?: StringFilter<"ContentSection"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ContentSectionOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    content?: SortOrder
+    order?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    contentType?: SortOrder
+    contentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+    creator?: UserOrderByWithRelationInput
+  }
+
+  export type ContentSectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContentSectionWhereInput | ContentSectionWhereInput[]
+    OR?: ContentSectionWhereInput[]
+    NOT?: ContentSectionWhereInput | ContentSectionWhereInput[]
+    type?: StringFilter<"ContentSection"> | string
+    content?: JsonFilter<"ContentSection">
+    order?: IntFilter<"ContentSection"> | number
+    metadata?: JsonNullableFilter<"ContentSection">
+    isVisible?: BoolFilter<"ContentSection"> | boolean
+    contentType?: EnumContentTypeFilter<"ContentSection"> | $Enums.ContentType
+    contentId?: StringFilter<"ContentSection"> | string
+    createdAt?: DateTimeFilter<"ContentSection"> | Date | string
+    updatedAt?: DateTimeFilter<"ContentSection"> | Date | string
+    createdById?: StringFilter<"ContentSection"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ContentSectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    content?: SortOrder
+    order?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    contentType?: SortOrder
+    contentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+    _count?: ContentSectionCountOrderByAggregateInput
+    _avg?: ContentSectionAvgOrderByAggregateInput
+    _max?: ContentSectionMaxOrderByAggregateInput
+    _min?: ContentSectionMinOrderByAggregateInput
+    _sum?: ContentSectionSumOrderByAggregateInput
+  }
+
+  export type ContentSectionScalarWhereWithAggregatesInput = {
+    AND?: ContentSectionScalarWhereWithAggregatesInput | ContentSectionScalarWhereWithAggregatesInput[]
+    OR?: ContentSectionScalarWhereWithAggregatesInput[]
+    NOT?: ContentSectionScalarWhereWithAggregatesInput | ContentSectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContentSection"> | string
+    type?: StringWithAggregatesFilter<"ContentSection"> | string
+    content?: JsonWithAggregatesFilter<"ContentSection">
+    order?: IntWithAggregatesFilter<"ContentSection"> | number
+    metadata?: JsonNullableWithAggregatesFilter<"ContentSection">
+    isVisible?: BoolWithAggregatesFilter<"ContentSection"> | boolean
+    contentType?: EnumContentTypeWithAggregatesFilter<"ContentSection"> | $Enums.ContentType
+    contentId?: StringWithAggregatesFilter<"ContentSection"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ContentSection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContentSection"> | Date | string
+    createdById?: StringWithAggregatesFilter<"ContentSection"> | string
+  }
+
   export type AuditLogWhereInput = {
     AND?: AuditLogWhereInput | AuditLogWhereInput[]
     OR?: AuditLogWhereInput[]
@@ -22902,6 +24301,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -22925,6 +24325,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -22948,6 +24349,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -22971,6 +24373,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -24282,6 +25685,103 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ContentSectionCreateInput = {
+    id?: string
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    order: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: boolean
+    contentType: $Enums.ContentType
+    contentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutCreatedSectionsInput
+  }
+
+  export type ContentSectionUncheckedCreateInput = {
+    id?: string
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    order: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: boolean
+    contentType: $Enums.ContentType
+    contentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+  }
+
+  export type ContentSectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutCreatedSectionsNestedInput
+  }
+
+  export type ContentSectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ContentSectionCreateManyInput = {
+    id?: string
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    order: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: boolean
+    contentType: $Enums.ContentType
+    contentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+  }
+
+  export type ContentSectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentSectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
   export type AuditLogCreateInput = {
     id?: string
     action: string
@@ -24459,6 +25959,12 @@ export namespace Prisma {
     none?: PageWhereInput
   }
 
+  export type ContentSectionListRelationFilter = {
+    every?: ContentSectionWhereInput
+    some?: ContentSectionWhereInput
+    none?: ContentSectionWhereInput
+  }
+
   export type AuthorNullableScalarRelationFilter = {
     is?: AuthorWhereInput | null
     isNot?: AuthorWhereInput | null
@@ -24504,6 +26010,10 @@ export namespace Prisma {
   }
 
   export type PageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContentSectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25576,6 +27086,52 @@ export namespace Prisma {
     statusCode?: SortOrder
   }
 
+  export type ContentSectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    content?: SortOrder
+    order?: SortOrder
+    metadata?: SortOrder
+    isVisible?: SortOrder
+    contentType?: SortOrder
+    contentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type ContentSectionAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type ContentSectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    order?: SortOrder
+    isVisible?: SortOrder
+    contentType?: SortOrder
+    contentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type ContentSectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    order?: SortOrder
+    isVisible?: SortOrder
+    contentType?: SortOrder
+    contentId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type ContentSectionSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
   export type AuditLogCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -25643,6 +27199,13 @@ export namespace Prisma {
     connectOrCreate?: PageCreateOrConnectWithoutCreatorInput | PageCreateOrConnectWithoutCreatorInput[]
     createMany?: PageCreateManyCreatorInputEnvelope
     connect?: PageWhereUniqueInput | PageWhereUniqueInput[]
+  }
+
+  export type ContentSectionCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ContentSectionCreateWithoutCreatorInput, ContentSectionUncheckedCreateWithoutCreatorInput> | ContentSectionCreateWithoutCreatorInput[] | ContentSectionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ContentSectionCreateOrConnectWithoutCreatorInput | ContentSectionCreateOrConnectWithoutCreatorInput[]
+    createMany?: ContentSectionCreateManyCreatorInputEnvelope
+    connect?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
   }
 
   export type AuthorCreateNestedOneWithoutUserInput = {
@@ -25719,6 +27282,13 @@ export namespace Prisma {
     connectOrCreate?: PageCreateOrConnectWithoutCreatorInput | PageCreateOrConnectWithoutCreatorInput[]
     createMany?: PageCreateManyCreatorInputEnvelope
     connect?: PageWhereUniqueInput | PageWhereUniqueInput[]
+  }
+
+  export type ContentSectionUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ContentSectionCreateWithoutCreatorInput, ContentSectionUncheckedCreateWithoutCreatorInput> | ContentSectionCreateWithoutCreatorInput[] | ContentSectionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ContentSectionCreateOrConnectWithoutCreatorInput | ContentSectionCreateOrConnectWithoutCreatorInput[]
+    createMany?: ContentSectionCreateManyCreatorInputEnvelope
+    connect?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
   }
 
   export type AuthorUncheckedCreateNestedOneWithoutUserInput = {
@@ -25854,6 +27424,20 @@ export namespace Prisma {
     update?: PageUpdateWithWhereUniqueWithoutCreatorInput | PageUpdateWithWhereUniqueWithoutCreatorInput[]
     updateMany?: PageUpdateManyWithWhereWithoutCreatorInput | PageUpdateManyWithWhereWithoutCreatorInput[]
     deleteMany?: PageScalarWhereInput | PageScalarWhereInput[]
+  }
+
+  export type ContentSectionUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ContentSectionCreateWithoutCreatorInput, ContentSectionUncheckedCreateWithoutCreatorInput> | ContentSectionCreateWithoutCreatorInput[] | ContentSectionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ContentSectionCreateOrConnectWithoutCreatorInput | ContentSectionCreateOrConnectWithoutCreatorInput[]
+    upsert?: ContentSectionUpsertWithWhereUniqueWithoutCreatorInput | ContentSectionUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ContentSectionCreateManyCreatorInputEnvelope
+    set?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    disconnect?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    delete?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    connect?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    update?: ContentSectionUpdateWithWhereUniqueWithoutCreatorInput | ContentSectionUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ContentSectionUpdateManyWithWhereWithoutCreatorInput | ContentSectionUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ContentSectionScalarWhereInput | ContentSectionScalarWhereInput[]
   }
 
   export type AuthorUpdateOneWithoutUserNestedInput = {
@@ -26004,6 +27588,20 @@ export namespace Prisma {
     update?: PageUpdateWithWhereUniqueWithoutCreatorInput | PageUpdateWithWhereUniqueWithoutCreatorInput[]
     updateMany?: PageUpdateManyWithWhereWithoutCreatorInput | PageUpdateManyWithWhereWithoutCreatorInput[]
     deleteMany?: PageScalarWhereInput | PageScalarWhereInput[]
+  }
+
+  export type ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ContentSectionCreateWithoutCreatorInput, ContentSectionUncheckedCreateWithoutCreatorInput> | ContentSectionCreateWithoutCreatorInput[] | ContentSectionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ContentSectionCreateOrConnectWithoutCreatorInput | ContentSectionCreateOrConnectWithoutCreatorInput[]
+    upsert?: ContentSectionUpsertWithWhereUniqueWithoutCreatorInput | ContentSectionUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ContentSectionCreateManyCreatorInputEnvelope
+    set?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    disconnect?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    delete?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    connect?: ContentSectionWhereUniqueInput | ContentSectionWhereUniqueInput[]
+    update?: ContentSectionUpdateWithWhereUniqueWithoutCreatorInput | ContentSectionUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ContentSectionUpdateManyWithWhereWithoutCreatorInput | ContentSectionUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ContentSectionScalarWhereInput | ContentSectionScalarWhereInput[]
   }
 
   export type AuthorUncheckedUpdateOneWithoutUserNestedInput = {
@@ -26756,6 +28354,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPublishedRevisionsInput, UserUpdateWithoutPublishedRevisionsInput>, UserUncheckedUpdateWithoutPublishedRevisionsInput>
   }
 
+  export type UserCreateNestedOneWithoutCreatedSectionsInput = {
+    create?: XOR<UserCreateWithoutCreatedSectionsInput, UserUncheckedCreateWithoutCreatedSectionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedSectionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCreatedSectionsNestedInput = {
+    create?: XOR<UserCreateWithoutCreatedSectionsInput, UserUncheckedCreateWithoutCreatedSectionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedSectionsInput
+    upsert?: UserUpsertWithoutCreatedSectionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreatedSectionsInput, UserUpdateWithoutCreatedSectionsInput>, UserUncheckedUpdateWithoutCreatedSectionsInput>
+  }
+
   export type UserCreateNestedOneWithoutAuditLogsInput = {
     create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
@@ -27393,6 +29005,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ContentSectionCreateWithoutCreatorInput = {
+    id?: string
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    order: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: boolean
+    contentType: $Enums.ContentType
+    contentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContentSectionUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    order: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: boolean
+    contentType: $Enums.ContentType
+    contentId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContentSectionCreateOrConnectWithoutCreatorInput = {
+    where: ContentSectionWhereUniqueInput
+    create: XOR<ContentSectionCreateWithoutCreatorInput, ContentSectionUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ContentSectionCreateManyCreatorInputEnvelope = {
+    data: ContentSectionCreateManyCreatorInput | ContentSectionCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AuthorCreateWithoutUserInput = {
     id?: string
     name: string
@@ -27778,6 +29426,39 @@ export namespace Prisma {
     createdById?: StringFilter<"Page"> | string
   }
 
+  export type ContentSectionUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: ContentSectionWhereUniqueInput
+    update: XOR<ContentSectionUpdateWithoutCreatorInput, ContentSectionUncheckedUpdateWithoutCreatorInput>
+    create: XOR<ContentSectionCreateWithoutCreatorInput, ContentSectionUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ContentSectionUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: ContentSectionWhereUniqueInput
+    data: XOR<ContentSectionUpdateWithoutCreatorInput, ContentSectionUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type ContentSectionUpdateManyWithWhereWithoutCreatorInput = {
+    where: ContentSectionScalarWhereInput
+    data: XOR<ContentSectionUpdateManyMutationInput, ContentSectionUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type ContentSectionScalarWhereInput = {
+    AND?: ContentSectionScalarWhereInput | ContentSectionScalarWhereInput[]
+    OR?: ContentSectionScalarWhereInput[]
+    NOT?: ContentSectionScalarWhereInput | ContentSectionScalarWhereInput[]
+    id?: StringFilter<"ContentSection"> | string
+    type?: StringFilter<"ContentSection"> | string
+    content?: JsonFilter<"ContentSection">
+    order?: IntFilter<"ContentSection"> | number
+    metadata?: JsonNullableFilter<"ContentSection">
+    isVisible?: BoolFilter<"ContentSection"> | boolean
+    contentType?: EnumContentTypeFilter<"ContentSection"> | $Enums.ContentType
+    contentId?: StringFilter<"ContentSection"> | string
+    createdAt?: DateTimeFilter<"ContentSection"> | Date | string
+    updatedAt?: DateTimeFilter<"ContentSection"> | Date | string
+    createdById?: StringFilter<"ContentSection"> | string
+  }
+
   export type AuthorUpsertWithoutUserInput = {
     update: XOR<AuthorUpdateWithoutUserInput, AuthorUncheckedUpdateWithoutUserInput>
     create: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
@@ -27950,6 +29631,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -27972,6 +29654,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -28010,6 +29693,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -28032,6 +29716,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -28053,6 +29738,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -28075,6 +29761,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -28212,6 +29899,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -28234,6 +29922,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -28342,6 +30031,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -28364,6 +30054,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -28457,6 +30148,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -28479,6 +30171,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -28562,6 +30255,7 @@ export namespace Prisma {
     createdLessons?: LessonCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -28584,6 +30278,7 @@ export namespace Prisma {
     createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -28681,6 +30376,7 @@ export namespace Prisma {
     createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -28703,6 +30399,7 @@ export namespace Prisma {
     createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -28982,6 +30679,7 @@ export namespace Prisma {
     createdLessons?: LessonCreateNestedManyWithoutCreatorInput
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -29004,6 +30702,7 @@ export namespace Prisma {
     createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -29106,6 +30805,7 @@ export namespace Prisma {
     createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -29128,6 +30828,7 @@ export namespace Prisma {
     createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -29226,6 +30927,7 @@ export namespace Prisma {
     createdLessons?: LessonCreateNestedManyWithoutCreatorInput
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -29248,6 +30950,7 @@ export namespace Prisma {
     createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -29325,6 +31028,7 @@ export namespace Prisma {
     createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -29347,6 +31051,7 @@ export namespace Prisma {
     createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -29415,6 +31120,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
@@ -29437,6 +31143,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
@@ -29519,6 +31226,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
@@ -29541,6 +31249,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
@@ -29923,6 +31632,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
@@ -29945,6 +31655,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
@@ -29972,6 +31683,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -29994,6 +31706,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -30021,6 +31734,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
@@ -30043,6 +31757,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
@@ -30081,6 +31796,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
@@ -30103,6 +31819,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
@@ -30136,6 +31853,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -30158,6 +31876,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
@@ -30191,6 +31910,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
@@ -30213,10 +31933,119 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutCreatedSectionsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
+    createdPages?: PageCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCreatedSectionsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseUncheckedCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
+    createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCreatedSectionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreatedSectionsInput, UserUncheckedCreateWithoutCreatedSectionsInput>
+  }
+
+  export type UserUpsertWithoutCreatedSectionsInput = {
+    update: XOR<UserUpdateWithoutCreatedSectionsInput, UserUncheckedUpdateWithoutCreatedSectionsInput>
+    create: XOR<UserCreateWithoutCreatedSectionsInput, UserUncheckedCreateWithoutCreatedSectionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreatedSectionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreatedSectionsInput, UserUncheckedUpdateWithoutCreatedSectionsInput>
+  }
+
+  export type UserUpdateWithoutCreatedSectionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreatedSectionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUncheckedUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -30235,6 +32064,7 @@ export namespace Prisma {
     createdPackages?: PackageCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
     createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorCreateNestedOneWithoutUserInput
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
@@ -30257,6 +32087,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
     createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
     createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
     authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
@@ -30295,6 +32126,7 @@ export namespace Prisma {
     createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUpdateOneWithoutUserNestedInput
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
@@ -30317,6 +32149,7 @@ export namespace Prisma {
     createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
     createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
     createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
     authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
@@ -30398,6 +32231,19 @@ export namespace Prisma {
     layout?: string
     content: string
     status?: $Enums.ContentStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContentSectionCreateManyCreatorInput = {
+    id?: string
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    order: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: boolean
+    contentType: $Enums.ContentType
+    contentId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -30712,6 +32558,45 @@ export namespace Prisma {
     layout?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentSectionUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentSectionUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentSectionUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    order?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    contentType?: EnumContentTypeFieldUpdateOperationsInput | $Enums.ContentType
+    contentId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -370,9 +370,9 @@ export class SectionEditorService {
     const duplicatedSection = await prisma.contentSection.create({
       data: {
         type: originalSection.type,
-        content: originalSection.content,
+        content: originalSection.content as any,
         order: (lastSection?.order || 0) + 1,
-        metadata: originalSection.metadata,
+        metadata: originalSection.metadata as any,
         isVisible: originalSection.isVisible,
         contentType: originalSection.contentType as ContentType,
         contentId: originalSection.contentId,
@@ -542,10 +542,12 @@ export class SectionEditorService {
   private async requireAuth(user: AuthUser, requiredRole: UserRole): Promise<void> {
     const roleHierarchy = {
       [UserRole.VIEWER]: 1,
-      [UserRole.EDITOR]: 2,
-      [UserRole.REVIEWER]: 3,
-      [UserRole.PUBLISHER]: 4,
-      [UserRole.ADMIN]: 5,
+      [UserRole.SUPPORT_MODERATOR]: 2,
+      [UserRole.EDITOR]: 3,
+      [UserRole.CONTENT_EDITOR]: 4,
+      [UserRole.INSTRUCTOR]: 5,
+      [UserRole.PUBLISHER]: 6,
+      [UserRole.ADMIN]: 7,
     }
 
     if (roleHierarchy[user.role] < roleHierarchy[requiredRole]) {

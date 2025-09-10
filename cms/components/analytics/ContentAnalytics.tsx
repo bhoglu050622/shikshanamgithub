@@ -231,7 +231,7 @@ export function ContentAnalytics({
           <p className="text-gray-600">Track performance and engagement metrics</p>
         </div>
         <div className="flex items-center gap-2">
-          <Select value={selectedDateRange} onValueChange={setSelectedDateRange}>
+          <Select value={selectedDateRange} onValueChange={(value) => setSelectedDateRange(value as "7d" | "30d" | "90d" | "1y")}>
             <SelectTrigger className="w-32">
               <SelectValue />
             </SelectTrigger>
@@ -414,7 +414,10 @@ export function ContentAnalytics({
                         <Badge variant="outline" className="mt-1 capitalize">{item.type}</Badge>
                       </div>
                       <div className="flex items-center gap-2">
-                        <TrendIcon className={`w-4 h-4 ${getTrendColor(item.trend)}`} />
+                        {(() => {
+                          const TrendIcon = getTrendIcon(item.trend)
+                          return <TrendIcon className={`w-4 h-4 ${getTrendColor(item.trend)}`} />
+                        })()}
                         <span className={`text-sm font-medium ${getTrendColor(item.trend)}`}>
                           {item.trendPercentage}%
                         </span>

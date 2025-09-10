@@ -25,7 +25,7 @@ export async function POST(
       }
 
       case 'approve': {
-        const user = await requireAuth(UserRole.REVIEWER)(request)
+        const user = await requireAuth(UserRole.PUBLISHER)(request)
         const revision = await WorkflowManager.approveRevision({
           revisionId,
           user,
@@ -36,7 +36,7 @@ export async function POST(
       }
 
       case 'reject': {
-        const user = await requireAuth(UserRole.REVIEWER)(request)
+        const user = await requireAuth(UserRole.PUBLISHER)(request)
         if (!reviewNotes) {
           return NextResponse.json(
             { error: 'Review notes are required for rejection' },

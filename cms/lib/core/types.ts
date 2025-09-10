@@ -18,6 +18,16 @@ import {
   PackageType
 } from '../generated/prisma'
 
+// Re-export Prisma types for use in other modules
+export { 
+  UserRole,
+  ContentStatus,
+  ContentType,
+  RevisionStatus,
+  CourseLevel,
+  PackageType
+}
+
 // Base types
 export interface CMSUser {
   id: string
@@ -303,7 +313,7 @@ export interface UpdatePackageData extends Partial<CreatePackageData> {
 // Real-time event types
 export interface CMSEvent {
   type: 'create' | 'update' | 'delete' | 'publish' | 'unpublish' | 'status_change'
-  entity: 'course' | 'lesson' | 'package' | 'blog' | 'page' | 'user' | 'media'
+  entity: 'course' | 'lesson' | 'package' | 'blog' | 'page' | 'user' | 'media' | 'section'
   entityId: string
   data?: any
   timestamp: Date

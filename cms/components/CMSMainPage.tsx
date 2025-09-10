@@ -12,6 +12,7 @@ import {
   Image,
   BarChart3,
   Users,
+  User,
   Settings,
   Eye,
   Send,
@@ -73,42 +74,6 @@ import {
   LayoutList,
   LayoutTemplate,
   LayoutDashboard,
-  LayoutSidebar,
-  LayoutSidebarReverse,
-  LayoutTop,
-  LayoutBottom,
-  LayoutLeft,
-  LayoutRight,
-  LayoutCenter,
-  LayoutAlignTop,
-  LayoutAlignBottom,
-  LayoutAlignLeft,
-  LayoutAlignRight,
-  LayoutAlignCenter,
-  LayoutAlignJustify,
-  LayoutAlignStart,
-  LayoutAlignEnd,
-  LayoutAlignMiddle,
-  LayoutAlignStretch,
-  LayoutAlignBaseline,
-  LayoutAlignTextTop,
-  LayoutAlignTextBottom,
-  LayoutAlignSub,
-  LayoutAlignSuper,
-  LayoutAlignTextStart,
-  LayoutAlignTextEnd,
-  LayoutAlignTextCenter,
-  LayoutAlignTextJustify,
-  LayoutAlignTextLeft,
-  LayoutAlignTextRight,
-  LayoutAlignTextTop as LayoutAlignTextTopIcon,
-  LayoutAlignTextBottom as LayoutAlignTextBottomIcon,
-  LayoutAlignTextStart as LayoutAlignTextStartIcon,
-  LayoutAlignTextEnd as LayoutAlignTextEndIcon,
-  LayoutAlignTextCenter as LayoutAlignTextCenterIcon,
-  LayoutAlignTextJustify as LayoutAlignTextJustifyIcon,
-  LayoutAlignTextLeft as LayoutAlignTextLeftIcon,
-  LayoutAlignTextRight as LayoutAlignTextRightIcon
 } from 'lucide-react'
 import { ContentCreationWizard } from './wizard/ContentCreationWizard'
 import { VisualEditor } from './editor/VisualEditor'
@@ -143,18 +108,29 @@ export function CMSMainPage({ userRole, initialTab = 'dashboard' }: CMSMainPageP
     setActiveTab('editor')
   }
 
-  const handleSaveContent = async (data: any) => {
+  const handleSaveContent = async (data: any): Promise<any> => {
     console.log('Saving content:', data)
-    // Implement save logic
+    // Implement save logic and return saved content
+    return {
+      id: data.id || 'new-id',
+      ...data,
+      updatedAt: new Date()
+    }
   }
 
-  const handlePreviewContent = async (data: any) => {
+  const handlePreviewContent = async (data: any): Promise<string> => {
     console.log('Previewing content:', data)
-    // Implement preview logic
+    // Implement preview logic and return preview URL
+    return `/preview/${data.id || 'new'}`
   }
 
   const handlePublishContent = async (data: any) => {
     console.log('Publishing content:', data)
+    // Implement publish logic
+  }
+
+  const handlePublishRevision = async (revisionId: string) => {
+    console.log('Publishing content revision:', revisionId)
     // Implement publish logic
   }
 
@@ -417,8 +393,11 @@ export function CMSMainPage({ userRole, initialTab = 'dashboard' }: CMSMainPageP
             currentData={selectedContent || {}}
             revisions={[]}
             onSaveRevision={handleSaveContent}
-            onPublishRevision={canPublish ? handlePublishContent : undefined}
-            onRollbackToRevision={canPublish ? () => {} : undefined}
+            onPublishRevision={handlePublishRevision}
+            onRollbackToRevision={async (revisionId: string) => {
+              console.log('Rolling back to revision:', revisionId)
+              // Implement rollback logic
+            }}
             onGeneratePreview={() => Promise.resolve({ token: 'test', url: '/preview', expiresAt: new Date() })}
             onAddReviewComment={() => Promise.resolve()}
             canPublish={canPublish}
@@ -449,7 +428,12 @@ export function CMSMainPage({ userRole, initialTab = 'dashboard' }: CMSMainPageP
           <SEOManager
             contentType="course"
             contentId="1"
-            initialData={{}}
+            initialData={{
+              title: '',
+              metaDescription: '',
+              keywords: [],
+              canonicalUrl: ''
+            }}
             content=""
             onSave={() => Promise.resolve()}
             onAnalyze={() => Promise.resolve({

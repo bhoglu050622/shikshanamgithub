@@ -3,7 +3,7 @@ import { requireAuth, AuthError } from '@/cms/lib/auth'
 import { cms } from '@/cms/lib/core/services'
 import { CacheManager } from '@/cms/lib/core/cache'
 import { triggerCMSEvent } from '@/cms/lib/core/realtime'
-import { UserRole, ContentStatus } from '@/cms/lib/generated/prisma'
+import { UserRole, ContentStatus, CourseLevel } from '@/cms/lib/generated/prisma'
 import { CMSError } from '@/cms/lib/core/types'
 
 // GET /api/cms/courses - List all courses
@@ -15,9 +15,9 @@ export async function GET(request: NextRequest) {
     const options = {
       page: parseInt(searchParams.get('page') || '1'),
       limit: parseInt(searchParams.get('limit') || '10'),
-      status: searchParams.get('status') as ContentStatus | null,
+      status: searchParams.get('status') as ContentStatus | undefined,
       search: searchParams.get('search') || undefined,
-      level: searchParams.get('level') || undefined,
+      level: searchParams.get('level') as CourseLevel | undefined,
       category: searchParams.get('category') || undefined,
       tags: searchParams.get('tags')?.split(',').filter(Boolean),
       isFeatured: searchParams.get('isFeatured') === 'true' ? true : 

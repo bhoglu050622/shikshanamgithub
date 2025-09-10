@@ -138,11 +138,11 @@ export function useCourses(options: CourseQueryOptions = {}, user: AuthUser | nu
 }
 
 export function useCourse(id: string, user: AuthUser | null) {
-  return useCMSOperation(cms.courses.getById, user, id)
+  return useCMSOperation((user: AuthUser) => cms.courses.getById(id, user), user)
 }
 
 export function useCourseBySlug(slug: string, user: AuthUser | null) {
-  return useCMSOperation(cms.courses.getBySlug, user, slug)
+  return useCMSOperation((user: AuthUser) => cms.courses.getBySlug(slug, user), user)
 }
 
 // Lesson hooks
@@ -204,7 +204,7 @@ export function useLessons(courseId: string, user: AuthUser | null) {
 }
 
 export function useLesson(id: string, user: AuthUser | null) {
-  return useCMSOperation(cms.lessons.getById, user, id)
+  return useCMSOperation((user: AuthUser) => cms.lessons.getById(id, user), user)
 }
 
 // Blog hooks
@@ -274,11 +274,11 @@ export function useBlogPosts(options: BlogQueryOptions = {}, user: AuthUser | nu
 }
 
 export function useBlogPost(id: string, user: AuthUser | null) {
-  return useCMSOperation(cms.blogs.getById, user, id)
+  return useCMSOperation((user: AuthUser) => cms.blogs.getById(id, user), user)
 }
 
 export function useBlogPostBySlug(slug: string, user: AuthUser | null) {
-  return useCMSOperation(cms.blogs.getBySlug, user, slug)
+  return useCMSOperation((user: AuthUser) => cms.blogs.getBySlug(slug, user), user)
 }
 
 // Package hooks
@@ -354,11 +354,11 @@ export function usePackages(options: PackageQueryOptions = {}, user: AuthUser | 
 }
 
 export function usePackage(id: string, user: AuthUser | null) {
-  return useCMSOperation(cms.packages.getById, user, id)
+  return useCMSOperation((user: AuthUser) => cms.packages.getById(id, user), user)
 }
 
 export function usePackageBySlug(slug: string, user: AuthUser | null) {
-  return useCMSOperation(cms.packages.getBySlug, user, slug)
+  return useCMSOperation((user: AuthUser) => cms.packages.getBySlug(slug, user), user)
 }
 
 // Media hooks
@@ -404,7 +404,7 @@ export function useMedia(options: any = {}, user: AuthUser | null) {
 }
 
 export function useMediaItem(id: string, user: AuthUser | null) {
-  return useCMSOperation(cms.media.getById, user, id)
+  return useCMSOperation((user: AuthUser) => cms.media.getById(id, user), user)
 }
 
 // Analytics hooks
@@ -479,11 +479,11 @@ export function useCMSSearch(user: AuthUser | null) {
 
 // Revision hooks
 export function useRevisionHistory(contentType: any, contentId: string, user: AuthUser | null) {
-  return useCMSOperation(cms.revisions.getHistory, user, contentType, contentId)
+  return useCMSOperation((user: AuthUser) => cms.revisions.getHistory(contentType, contentId, user), user)
 }
 
 export function useRevision(id: string, user: AuthUser | null) {
-  return useCMSOperation(cms.revisions.getById, user, id)
+  return useCMSOperation((user: AuthUser) => cms.revisions.getById(id, user), user)
 }
 
 // Workflow hooks
