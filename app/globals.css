@@ -24,6 +24,98 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
   }
+  
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+  
+  /* Remove all underlining effects */
+  .no-underline {
+    text-decoration: none !important;
+  }
+  
+  /* Cool animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out;
+  }
+  
+  .animate-rotate-slow {
+    animation: rotateSlow 20s linear infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulseSlow 3s ease-in-out infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounceSlow 2s ease-in-out infinite;
+  }
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(218, 165, 32, 0.3); }
+  to { box-shadow: 0 0 30px rgba(218, 165, 32, 0.6), 0 0 40px rgba(218, 165, 32, 0.3); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
@@ -31,38 +123,38 @@
 @layer base {
   :root {
     /* Premium Design System - Light Mode */
-    --background: 45 20% 98%; /* #F9FAFB equivalent */
-    --foreground: 220 13% 9%; /* #111827 equivalent */
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 220 13% 9%; /* #111827 */
-    --popover: 0 0% 100%; /* #FFFFFF */
-    --popover-foreground: 220 13% 9%; /* #111827 */
-    --primary: 220 13% 9%; /* #111827 */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF */
-    --secondary: 210 20% 22%; /* #374151 */
-    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
-    --muted: 210 16% 82%; /* #E5E7EB */
-    --muted-foreground: 210 20% 22%; /* #374151 */
-    --accent: 221 83% 53%; /* #2563EB */
-    --accent-foreground: 0 0% 100%; /* #FFFFFF */
-    --destructive: 0 74% 50%; /* #DC2626 */
-    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
-    --border: 210 16% 82%; /* #E5E7EB */
-    --input: 210 16% 82%; /* #E5E7EB */
-    --ring: 221 83% 53%; /* #2563EB */
+    --background: 0 0% 100%; /* Pure white for premium feel */
+    --foreground: 0 0% 8%; /* Deep charcoal for premium text */
+    --card: 0 0% 100%; /* Pure white cards */
+    --card-foreground: 0 0% 8%; /* Deep charcoal text on cards */
+    --popover: 0 0% 100%; /* Pure white popovers */
+    --popover-foreground: 0 0% 8%; /* Deep charcoal text */
+    --primary: 45 67% 50%; /* Premium golden olive */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+    --secondary: 0 30% 20%; /* Deep maroon secondary */
+    --secondary-foreground: 0 0% 100%; /* White text on secondary */
+    --muted: 0 0% 96%; /* Light gray for muted elements */
+    --muted-foreground: 0 0% 45%; /* Medium gray text */
+    --accent: 20 80% 50%; /* Copper orange accent */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+    --destructive: 0 74% 50%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text */
+    --border: 0 0% 90%; /* Light border */
+    --input: 0 0% 96%; /* Light input background */
+    --ring: 45 67% 50%; /* Golden olive focus ring */
     --radius: 0.75rem; /* 12px */
     
     /* Premium Design System Core Colors - Light Mode */
-    --premium-bg-primary: 45 20% 98%; /* #F9FAFB */
-    --premium-bg-secondary: 0 0% 100%; /* #FFFFFF */
-    --premium-text-primary: 220 13% 9%; /* #111827 */
-    --premium-text-secondary: 210 20% 22%; /* #374151 */
-    --premium-border: 210 16% 82%; /* #E5E7EB */
-    --premium-accent-primary: 221 83% 53%; /* #2563EB */
-    --premium-accent-secondary: 271 81% 56%; /* #9333EA */
-    --premium-success: 142 71% 45%; /* #16A34A */
-    --premium-warning: 38 92% 50%; /* #F59E0B */
-    --premium-error: 0 74% 50%; /* #DC2626 */
+    --premium-bg-primary: 0 0% 100%; /* Pure white background */
+    --premium-bg-secondary: 0 0% 98%; /* Off-white secondary background */
+    --premium-text-primary: 0 0% 8%; /* Deep charcoal primary text */
+    --premium-text-secondary: 0 0% 25%; /* Dark gray secondary text */
+    --premium-border: 0 0% 90%; /* Light gray borders */
+    --premium-accent-primary: 45 67% 50%; /* Golden olive primary accent */
+    --premium-accent-secondary: 0 30% 20%; /* Deep maroon secondary accent */
+    --premium-success: 142 71% 45%; /* Green for success */
+    --premium-warning: 38 92% 50%; /* Orange for warnings */
+    --premium-error: 0 74% 50%; /* Red for errors */
     
     /* School of Sanskrit Color System - Light Mode */
     /* 1. Teal (primary card color) */
@@ -106,25 +198,25 @@
     --deep-indigo: 240 100% 6%;
     
     /* Premium Light Theme Colors */
-    --premium-bg-primary: 0 0% 100%;
-    --premium-bg-secondary: 0 0% 98%;
-    --premium-bg-tertiary: 0 0% 96%;
-    --premium-bg-elevated: 0 0% 100%;
-    --premium-bg-overlay: 0 0% 100% / 0.95;
+    --premium-bg-primary: 0 0% 100%; /* Pure white */
+    --premium-bg-secondary: 0 0% 98%; /* Off-white */
+    --premium-bg-tertiary: 0 0% 96%; /* Light gray */
+    --premium-bg-elevated: 0 0% 100%; /* Pure white elevated */
+    --premium-bg-overlay: 0 0% 100% / 0.95; /* White overlay */
     
-    --premium-text-primary: 0 0% 9%;
-    --premium-text-secondary: 0 0% 25%;
-    --premium-text-tertiary: 0 0% 45%;
-    --premium-text-quaternary: 0 0% 65%;
-    --premium-text-inverse: 0 0% 100%;
+    --premium-text-primary: 0 0% 8%; /* Deep charcoal */
+    --premium-text-secondary: 0 0% 25%; /* Dark gray */
+    --premium-text-tertiary: 0 0% 45%; /* Medium gray */
+    --premium-text-quaternary: 0 0% 65%; /* Light gray */
+    --premium-text-inverse: 0 0% 100%; /* White */
     
-    --premium-border-primary: 0 0% 90%;
-    --premium-border-secondary: 0 0% 85%;
-    --premium-border-accent: 45 67% 50%;
+    --premium-border-primary: 0 0% 90%; /* Light border */
+    --premium-border-secondary: 0 0% 85%; /* Medium border */
+    --premium-border-accent: 45 67% 50%; /* Golden olive border */
     
-    --premium-accent-primary: 45 67% 50%;
-    --premium-accent-secondary: 0 30% 20%;
-    --premium-accent-tertiary: 20 80% 50%;
+    --premium-accent-primary: 45 67% 50%; /* Golden olive */
+    --premium-accent-secondary: 0 30% 20%; /* Deep maroon */
+    --premium-accent-tertiary: 20 80% 50%; /* Copper orange */
     
     --premium-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --premium-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -170,37 +262,37 @@
 
   .dark {
     /* Premium Design System - Dark Mode */
-    --background: 215 28% 6%; /* #0F172A equivalent */
-    --foreground: 210 20% 98%; /* #F9FAFB equivalent */
-    --card: 215 25% 12%; /* #1E293B */
-    --card-foreground: 210 20% 98%; /* #F9FAFB */
-    --popover: 215 25% 12%; /* #1E293B */
-    --popover-foreground: 210 20% 98%; /* #F9FAFB */
-    --primary: 210 20% 98%; /* #F9FAFB */
-    --primary-foreground: 215 28% 6%; /* #0F172A */
-    --secondary: 210 18% 73%; /* #CBD5E1 */
-    --secondary-foreground: 215 28% 6%; /* #0F172A */
-    --muted: 215 20% 20%; /* #334155 */
-    --muted-foreground: 210 18% 73%; /* #CBD5E1 */
-    --accent: 221 83% 63%; /* #3B82F6 */
-    --accent-foreground: 0 0% 100%; /* #FFFFFF */
-    --destructive: 0 72% 51%; /* #EF4444 */
-    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
-    --border: 215 20% 20%; /* #334155 */
-    --input: 215 20% 20%; /* #334155 */
-    --ring: 221 83% 63%; /* #3B82F6 */
+    --background: 0 0% 9%; /* Deep charcoal background */
+    --foreground: 0 0% 95%; /* Near white text */
+    --card: 0 0% 12%; /* Dark card background */
+    --card-foreground: 0 0% 95%; /* Near white text on cards */
+    --popover: 0 0% 12%; /* Dark popover background */
+    --popover-foreground: 0 0% 95%; /* Near white text */
+    --primary: 45 67% 75%; /* Lighter golden olive for dark mode */
+    --primary-foreground: 0 0% 9%; /* Dark text on primary */
+    --secondary: 0 30% 40%; /* Lighter deep maroon */
+    --secondary-foreground: 0 0% 95%; /* Near white text */
+    --muted: 0 0% 20%; /* Dark muted background */
+    --muted-foreground: 0 0% 65%; /* Medium gray text */
+    --accent: 20 80% 70%; /* Lighter copper orange */
+    --accent-foreground: 0 0% 9%; /* Dark text on accent */
+    --destructive: 0 72% 51%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 95%; /* Near white text */
+    --border: 0 0% 20%; /* Dark border */
+    --input: 0 0% 20%; /* Dark input background */
+    --ring: 45 67% 75%; /* Lighter golden olive focus ring */
     
     /* Premium Design System Core Colors - Dark Mode */
-    --premium-bg-primary: 215 28% 6%; /* #0F172A */
-    --premium-bg-secondary: 215 25% 12%; /* #1E293B */
-    --premium-text-primary: 210 20% 98%; /* #F9FAFB */
-    --premium-text-secondary: 210 18% 73%; /* #CBD5E1 */
-    --premium-border: 215 20% 20%; /* #334155 */
-    --premium-accent-primary: 221 83% 63%; /* #3B82F6 */
-    --premium-accent-secondary: 271 81% 65%; /* #A855F7 */
-    --premium-success: 142 70% 54%; /* #22C55E */
-    --premium-warning: 38 92% 58%; /* #FBBF24 */
-    --premium-error: 0 72% 51%; /* #EF4444 */
+    --premium-bg-primary: 0 0% 9%; /* Deep charcoal background */
+    --premium-bg-secondary: 0 0% 12%; /* Dark secondary background */
+    --premium-text-primary: 0 0% 95%; /* Near white primary text */
+    --premium-text-secondary: 0 0% 80%; /* Light gray secondary text */
+    --premium-border: 0 0% 20%; /* Dark borders */
+    --premium-accent-primary: 45 67% 75%; /* Lighter golden olive */
+    --premium-accent-secondary: 0 30% 40%; /* Lighter deep maroon */
+    --premium-success: 142 70% 54%; /* Green for success */
+    --premium-warning: 38 92% 58%; /* Orange for warnings */
+    --premium-error: 0 72% 51%; /* Red for errors */
     
     /* School of Sanskrit Color System - Dark Mode */
     /* 1. Teal (primary card color) - brighter */
@@ -246,25 +338,25 @@
     --deep-indigo: 240 100% 25%;
     
     /* Premium Dark Theme Colors */
-    --premium-bg-primary: 0 0% 9%;
-    --premium-bg-secondary: 0 0% 11%;
-    --premium-bg-tertiary: 0 0% 13%;
-    --premium-bg-elevated: 0 0% 15%;
-    --premium-bg-overlay: 0 0% 0% / 0.95;
+    --premium-bg-primary: 0 0% 9%; /* Deep charcoal */
+    --premium-bg-secondary: 0 0% 12%; /* Dark secondary */
+    --premium-bg-tertiary: 0 0% 15%; /* Dark tertiary */
+    --premium-bg-elevated: 0 0% 18%; /* Dark elevated */
+    --premium-bg-overlay: 0 0% 0% / 0.95; /* Black overlay */
     
-    --premium-text-primary: 0 0% 95%;
-    --premium-text-secondary: 0 0% 80%;
-    --premium-text-tertiary: 0 0% 65%;
-    --premium-text-quaternary: 0 0% 50%;
-    --premium-text-inverse: 0 0% 9%;
+    --premium-text-primary: 0 0% 95%; /* Near white */
+    --premium-text-secondary: 0 0% 80%; /* Light gray */
+    --premium-text-tertiary: 0 0% 65%; /* Medium gray */
+    --premium-text-quaternary: 0 0% 50%; /* Dark gray */
+    --premium-text-inverse: 0 0% 9%; /* Dark charcoal */
     
-    --premium-border-primary: 0 0% 20%;
-    --premium-border-secondary: 0 0% 25%;
-    --premium-border-accent: 45 67% 75%;
+    --premium-border-primary: 0 0% 20%; /* Dark border */
+    --premium-border-secondary: 0 0% 25%; /* Medium dark border */
+    --premium-border-accent: 45 67% 75%; /* Lighter golden olive border */
     
-    --premium-accent-primary: 45 67% 75%;
-    --premium-accent-secondary: 0 30% 40%;
-    --premium-accent-tertiary: 20 80% 70%;
+    --premium-accent-primary: 45 67% 75%; /* Lighter golden olive */
+    --premium-accent-secondary: 0 30% 40%; /* Lighter deep maroon */
+    --premium-accent-tertiary: 20 80% 70%; /* Lighter copper orange */
     
     --premium-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
     --premium-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);

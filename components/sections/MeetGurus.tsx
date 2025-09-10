@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
-import { useState } from 'react'
+import { motion, useReducedMotion, useInView } from 'framer-motion'
+import { useState, useRef } from 'react'
 import { 
   User, 
   ExternalLink, 
@@ -66,7 +66,7 @@ const gurus: Guru[] = [
     ],
     rating: 4.9,
     studentsCount: 2500,
-    color: "from-saffron-500 to-saffron-600",
+    color: "from-primary to-primary/90",
     icon: TrendingUp
   },
   {
@@ -92,7 +92,7 @@ const gurus: Guru[] = [
     ],
     rating: 4.8,
     studentsCount: 1800,
-    color: "from-lotus-pink-500 to-lotus-pink-600",
+    color: "from-accent to-accent/90",
     icon: Heart
   },
   {
@@ -118,7 +118,7 @@ const gurus: Guru[] = [
     ],
     rating: 4.9,
     studentsCount: 1200,
-    color: "from-deep-teal-500 to-deep-teal-600",
+    color: "from-secondary to-secondary/90",
     icon: Brain
   }
 ]
@@ -150,21 +150,21 @@ const GuruCard = ({
       onHoverEnd={() => setIsHovered(false)}
       onClick={() => onGuruClick?.(guru)}
     >
-      <div className="card-premium p-6 text-center group-hover:shadow-2xl transition-all duration-300 h-full">
+      <div className="bg-card p-6 text-center group-hover:shadow-2xl transition-all duration-300 h-full">
         {/* Guru Avatar */}
         <div className="relative w-32 h-32 mx-auto mb-6">
           <motion.div 
-            className="w-32 h-32 bg-gradient-to-br from-saffron-400 to-saffron-600 rounded-full flex items-center justify-center relative overflow-hidden"
+            className="w-32 h-32 bg-gradient-to-br from-primary/80 to-primary rounded-full flex items-center justify-center relative overflow-hidden"
             animate={shouldReduceMotion ? {} : {
               rotate: isHovered ? 5 : 0,
             }}
             transition={{ duration: 0.3 }}
           >
-            <User className="w-16 h-16 text-white" />
+            <User className="w-16 h-16 text-primary-foreground" />
             
             {/* Halo glow effect */}
             <motion.div 
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-soft-gold-400/30 to-saffron-400/30 blur-sm"
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/30 to-primary/50 blur-sm"
               animate={shouldReduceMotion ? {} : {
                 scale: isHovered ? 1.2 : 1,
                 opacity: isHovered ? 0.8 : 0.4,
@@ -174,35 +174,35 @@ const GuruCard = ({
             
             {/* Specialty icon */}
             <div className={`absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r ${guru.color} rounded-full flex items-center justify-center shadow-lg`}>
-              <guru.icon className="w-5 h-5 text-white" />
+              <guru.icon className="w-5 h-5 text-primary-foreground" />
             </div>
           </motion.div>
         </div>
         
         {/* Guru Info */}
-        <h3 className="text-xl font-display text-indigo-700 dark:text-soft-gold-500 mb-2">
+        <h3 className="text-xl font-display text-foreground mb-2">
           {guru.name}
         </h3>
         
-        <p className="text-saffron-600 dark:text-saffron-400 text-sm mb-3 font-medium">
+        <p className="text-primary text-sm mb-3 font-medium">
           {guru.specialty}
         </p>
         
-        <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed mb-4">
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
           {guru.credibility}
         </p>
         
         {/* Rating and Students */}
         <div className="flex items-center justify-center space-x-4 mb-4">
           <div className="flex items-center space-x-1">
-            <Star className="w-4 h-4 text-soft-gold-500 fill-current" />
-            <span className="text-sm font-medium text-wisdom-700 dark:text-wisdom-300">
+            <Star className="w-4 h-4 text-primary fill-current" />
+            <span className="text-sm font-medium text-foreground">
               {guru.rating}
             </span>
           </div>
           <div className="flex items-center space-x-1">
-            <Users className="w-4 h-4 text-peacock-green-500" />
-            <span className="text-sm text-wisdom-600 dark:text-wisdom-400">
+            <Users className="w-4 h-4 text-secondary" />
+            <span className="text-sm text-muted-foreground">
               {guru.studentsCount.toLocaleString()}+ students
             </span>
           </div>
@@ -210,13 +210,13 @@ const GuruCard = ({
         
         {/* Key Achievements */}
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-indigo-700 dark:text-soft-gold-500 mb-2">
+          <h4 className="text-sm font-medium text-foreground mb-2">
             Key Achievements
           </h4>
           <ul className="space-y-1">
             {guru.achievements.slice(0, 2).map((achievement, idx) => (
-              <li key={idx} className="flex items-start space-x-2 text-xs text-wisdom-600 dark:text-wisdom-400">
-                <Award className="w-3 h-3 text-saffron-500 dark:text-saffron-400 mt-0.5 flex-shrink-0" />
+              <li key={idx} className="flex items-start space-x-2 text-xs text-muted-foreground">
+                <Award className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                 <span>{achievement}</span>
               </li>
             ))}
@@ -231,7 +231,7 @@ const GuruCard = ({
             e.stopPropagation()
             onViewProfile?.(guru)
           }}
-          className="w-full bg-gradient-to-r from-saffron-500 to-deep-teal-500 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300"
+          className="w-full bg-gradient-to-r from-primary to-secondary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300"
         >
           <span>View Profile</span>
           <ExternalLink className="w-4 h-4" />
@@ -264,7 +264,7 @@ const GuruModal = ({
       onClick={onClose}
     >
       <motion.div
-        className="bg-white dark:bg-wisdom-800 rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-card rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
         initial={shouldReduceMotion ? { scale: 1 } : { scale: 0.9, opacity: 0 }}
         animate={shouldReduceMotion ? {} : { scale: 1, opacity: 1 }}
         exit={shouldReduceMotion ? { scale: 1 } : { scale: 0.9, opacity: 0 }}
@@ -274,31 +274,31 @@ const GuruModal = ({
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-start space-x-6">
             <div className="relative">
-              <div className="w-24 h-24 bg-gradient-to-br from-saffron-400 to-saffron-600 rounded-full flex items-center justify-center">
-                <User className="w-12 h-12 text-white" />
+              <div className="w-24 h-24 bg-gradient-to-br from-primary/80 to-primary rounded-full flex items-center justify-center">
+                <User className="w-12 h-12 text-primary-foreground" />
               </div>
               <div className={`absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r ${guru.color} rounded-full flex items-center justify-center`}>
-                <guru.icon className="w-4 h-4 text-white" />
+                <guru.icon className="w-4 h-4 text-primary-foreground" />
               </div>
             </div>
             <div>
-              <h2 className="text-2xl font-display text-indigo-700 dark:text-soft-gold-500 mb-1">
+              <h2 className="text-2xl font-display text-foreground mb-1">
                 {guru.name}
               </h2>
-              <p className="text-saffron-600 dark:text-saffron-400 font-medium mb-2">
+              <p className="text-primary font-medium mb-2">
                 {guru.specialty}
               </p>
-              <div className="flex items-center space-x-4 text-sm text-wisdom-600 dark:text-wisdom-400">
+              <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-1">
-                  <Star className="w-4 h-4 text-soft-gold-500 fill-current" />
+                  <Star className="w-4 h-4 text-primary fill-current" />
                   <span>{guru.rating}</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Users className="w-4 h-4 text-peacock-green-500" />
+                  <Users className="w-4 h-4 text-secondary" />
                   <span>{guru.studentsCount.toLocaleString()}+ students</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Calendar className="w-4 h-4 text-deep-teal-500" />
+                  <Calendar className="w-4 h-4 text-accent" />
                   <span>{guru.experience}</span>
                 </div>
               </div>
@@ -306,7 +306,7 @@ const GuruModal = ({
           </div>
           <button
             onClick={onClose}
-            className="text-wisdom-400 hover:text-wisdom-600 dark:hover:text-wisdom-300 transition-colors"
+            className="text-muted-foreground hover:text-foreground/80 transition-colors"
             aria-label="Close guru profile"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,33 +321,33 @@ const GuruModal = ({
           <div className="space-y-6">
             {/* Education */}
             <div>
-              <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-3 flex items-center">
-                <GraduationCap className="w-5 h-5 mr-2" />
+              <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
+                <GraduationCap className="w-5 h-5 mr-2 text-primary" />
                 Education & Credentials
               </h3>
-              <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {guru.education}
               </p>
             </div>
             
             {/* Teaching Style */}
             <div>
-              <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-3 flex items-center">
-                <BookOpen className="w-5 h-5 mr-2" />
+              <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
+                <BookOpen className="w-5 h-5 mr-2 text-primary" />
                 Teaching Style
               </h3>
-              <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {guru.teachingStyle}
               </p>
             </div>
             
             {/* Philosophy */}
             <div>
-              <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-3 flex items-center">
-                <Sparkles className="w-5 h-5 mr-2" />
+              <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
+                <Sparkles className="w-5 h-5 mr-2 text-primary" />
                 Philosophy
               </h3>
-              <p className="text-wisdom-600 dark:text-wisdom-400 text-sm leading-relaxed italic">
+              <p className="text-muted-foreground text-sm leading-relaxed italic">
                 "{guru.philosophy}"
               </p>
             </div>
@@ -357,17 +357,15 @@ const GuruModal = ({
           <div className="space-y-6">
             {/* Achievements */}
             <div>
-              <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-3 flex items-center">
-                <Award className="w-5 h-5 mr-2" />
+              <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
+                <Award className="w-5 h-5 mr-2 text-primary" />
                 Key Achievements
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 {guru.achievements.map((achievement, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <Award className="w-4 h-4 text-saffron-500 dark:text-saffron-400 mt-1 flex-shrink-0" />
-                    <span className="text-wisdom-600 dark:text-wisdom-400 text-sm">
-                      {achievement}
-                    </span>
+                  <li key={index} className="flex items-start space-x-2 text-xs text-muted-foreground">
+                    <Award className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
+                    <span>{achievement}</span>
                   </li>
                 ))}
               </ul>
@@ -375,15 +373,15 @@ const GuruModal = ({
             
             {/* Courses */}
             <div>
-              <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-3 flex items-center">
-                <BookOpen className="w-5 h-5 mr-2" />
+              <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
+                <BookOpen className="w-5 h-5 mr-2 text-primary" />
                 Courses by {guru.name.split(' ')[0]}
               </h3>
               <ul className="space-y-2">
                 {guru.courses.map((course, index) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <BookOpen className="w-4 h-4 text-peacock-green-500 dark:text-peacock-green-400 mt-1 flex-shrink-0" />
-                    <span className="text-wisdom-600 dark:text-wisdom-400 text-sm">
+                    <BookOpen className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">
                       {course}
                     </span>
                   </li>
@@ -402,7 +400,7 @@ const GuruModal = ({
             onClick={onClose}
           >
             <span>Close</span>
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-4 h-4 text-primary-foreground" />
           </motion.button>
         </div>
       </motion.div>
@@ -414,6 +412,8 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
   const [selectedGuru, setSelectedGuru] = useState<Guru | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const shouldReduceMotion = useReducedMotion()
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
 
   const handleGuruClick = (guru: Guru) => {
     setSelectedGuru(guru)
@@ -428,44 +428,85 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
   }
 
   return (
-    <section className="section-padding" aria-labelledby="gurus-title">
+    <section className="section-padding relative overflow-hidden" aria-labelledby="gurus-title">
+      {/* Background Animation */}
+      <div className="absolute inset-0 -z-10">
+        <motion.div
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full mix-blend-multiply filter blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            rotate: -360,
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ 
+            duration: 35,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full mix-blend-multiply filter blur-3xl"
+        />
+      </div>
+
       <div className="container-custom">
         <motion.div
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          ref={ref}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center mb-16"
         >
-          <h2 id="gurus-title" className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-            Meet Your Gurus
-          </h2>
-          <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-2xl mx-auto mb-8">
-            Learn from scholars, practitioners, and mentors who have dedicated their lives to 
-            understanding and teaching ancient Indian wisdom for modern application.
-          </p>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-saffron-600 dark:text-saffron-400">
-                {gurus.reduce((sum, guru) => sum + guru.studentsCount, 0).toLocaleString()}+
-              </div>
-              <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Students Taught</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-peacock-green-600 dark:text-peacock-green-400">
-                {gurus.reduce((sum, guru) => sum + guru.achievements.length, 0)}+
-              </div>
-              <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Achievements</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-deep-teal-600 dark:text-deep-teal-400">
-                {gurus.reduce((sum, guru) => sum + parseInt(guru.experience), 0)}+
-              </div>
-              <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Years Experience</div>
-            </div>
-          </div>
+          <motion.h2 
+            id="gurus-title" 
+            className="text-display text-foreground mb-4"
+            animate={isInView ? {
+              textShadow: [
+                '0 0 0px rgba(218, 165, 32, 0)',
+                '0 0 20px rgba(218, 165, 32, 0.3)',
+                '0 0 0px rgba(218, 165, 32, 0)'
+              ]
+            } : {}}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            Meet Your{' '}
+            <motion.span
+              className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+              animate={isInView ? {
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+              } : {}}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{ backgroundSize: '200% 200%' }}
+            >
+              Gurus
+            </motion.span>
+          </motion.h2>
+          <motion.p 
+            className="text-body text-muted-foreground max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.span
+              animate={isInView ? { opacity: [0.7, 1, 0.7] } : {}}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              Learn from scholars, practitioners, and mentors who have dedicated their lives to 
+              understanding and teaching ancient Indian wisdom for modern application.
+            </motion.span>
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -488,16 +529,34 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-wisdom-600 dark:text-wisdom-400 mb-6">
-            Ready to learn from these exceptional teachers?
-          </p>
-          <motion.button
-            whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-            className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto"
+          <motion.p 
+            className="text-muted-foreground mb-6"
+            animate={isInView ? { opacity: [0.7, 1, 0.7] } : {}}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span>View All Gurus</span>
-            <ExternalLink className="w-5 h-5" />
+            Ready to learn from these exceptional teachers?
+          </motion.p>
+          <motion.button
+            whileHover={shouldReduceMotion ? {} : { 
+              scale: 1.05, 
+              y: -2,
+              boxShadow: "0 10px 30px rgba(218, 165, 32, 0.3)"
+            }}
+            whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+            className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto no-underline"
+          >
+            <motion.span
+              animate={{ textShadow: ['0 0 0px rgba(218, 165, 32, 0)', '0 0 10px rgba(218, 165, 32, 0.5)', '0 0 0px rgba(218, 165, 32, 0)'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              View All Gurus
+            </motion.span>
+            <motion.div
+              whileHover={{ rotate: 45, scale: 1.2 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ExternalLink className="w-5 h-5" />
+            </motion.div>
           </motion.button>
         </motion.div>
       </div>

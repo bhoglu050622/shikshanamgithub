@@ -107,10 +107,11 @@ export async function getUserFromRequest(request: NextRequest): Promise<AuthUser
 export function hasRole(user: AuthUser, requiredRole: UserRole): boolean {
   const roleHierarchy = {
     [UserRole.VIEWER]: 1,
-    [UserRole.EDITOR]: 2,
-    [UserRole.REVIEWER]: 3,
-    [UserRole.PUBLISHER]: 4,
-    [UserRole.ADMIN]: 5,
+    [UserRole.SUPPORT_MODERATOR]: 2,
+    [UserRole.CONTENT_EDITOR]: 3,
+    [UserRole.INSTRUCTOR]: 4,
+    [UserRole.PUBLISHER]: 5,
+    [UserRole.ADMIN]: 6,
   }
 
   return roleHierarchy[user.role] >= roleHierarchy[requiredRole]

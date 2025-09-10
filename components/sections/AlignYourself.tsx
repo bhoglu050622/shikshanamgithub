@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Video, BookOpen, Clock, Users, Star, ArrowRight, ChevronLeft, ChevronRight, Play, Calendar } from 'lucide-react'
+import { BookOpen, Clock, Users, ChevronLeft, ChevronRight, Play, Calendar, Star, ArrowRight } from 'lucide-react'
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 
@@ -93,46 +93,6 @@ const selfPacedCourses = [
   }
 ]
 
-const learningOptions = [
-  {
-    title: 'Live Classes',
-    description: 'Join interactive sessions with expert Gurus in real-time',
-    icon: Video,
-    features: [
-      'Real-time interaction with teachers',
-      'Ask questions and get instant answers',
-      'Join a community of learners',
-      'Flexible scheduling options'
-    ],
-    stats: {
-      students: '2,500+',
-      rating: '4.9',
-      sessions: '500+'
-    },
-    color: 'from-saffron-500 to-saffron-600',
-    cta: 'Join Live Class',
-    href: '#live-classes'
-  },
-  {
-    title: 'Self-Paced Courses',
-    description: 'Learn at your own pace with comprehensive course materials',
-    icon: BookOpen,
-    features: [
-      'Pre-recorded video lessons',
-      'Downloadable study materials',
-      'Progress tracking system',
-      'Lifetime access to content'
-    ],
-    stats: {
-      students: '5,000+',
-      rating: '4.8',
-      courses: '100+'
-    },
-    color: 'from-turquoise-500 to-turquoise-600',
-    cta: 'Browse Courses',
-    href: '#courses'
-  }
-]
 
 // Course Card Component
 function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced' }) {
@@ -143,11 +103,11 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
   return (
     <motion.div
       whileHover={{ scale: 1.02, y: -5 }}
-      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0"
+      className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0"
       onClick={handleClick}
     >
       {/* Thumbnail */}
-      <div className="relative h-48 bg-gradient-to-br from-saffron-100 to-turquoise-100">
+      <div className="relative h-48 bg-gradient-to-br from-primary/10 to-accent/10">
         <Image
           src={course.thumbnail}
           alt={course.title}
@@ -158,31 +118,31 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
             target.style.display = 'none'
           }}
         />
-        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+        <div className="absolute inset-0 bg-foreground/10 flex items-center justify-center">
           {type === 'live' ? (
-            <div className="bg-white/90 rounded-full p-3">
-              <Play className="w-6 h-6 text-saffron-600" />
+            <div className="bg-card rounded-full p-3">
+              <Play className="w-6 h-6 text-primary" />
             </div>
           ) : (
-            <div className="bg-white/90 rounded-full p-3">
-              <BookOpen className="w-6 h-6 text-turquoise-600" />
+            <div className="bg-card rounded-full p-3">
+              <BookOpen className="w-6 h-6 text-accent" />
             </div>
           )}
         </div>
-        <div className="absolute top-3 right-3 bg-white/90 rounded-full px-3 py-1">
-          <span className="text-sm font-semibold text-wisdom-900">{course.price}</span>
+        <div className="absolute top-3 right-3 bg-card rounded-full px-3 py-1">
+          <span className="text-sm font-semibold text-foreground">{course.price}</span>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-bold text-lg text-wisdom-900 mb-2 line-clamp-2">{course.title}</h3>
-        <p className="text-sm text-wisdom-600 mb-3">{course.instructor}</p>
-        <p className="text-sm text-wisdom-700 mb-4 line-clamp-2">{course.description}</p>
+        <h3 className="font-bold text-lg text-foreground mb-2 line-clamp-2">{course.title}</h3>
+        <p className="text-sm text-muted-foreground mb-3">{course.instructor}</p>
+        <p className="text-sm text-foreground/80 mb-4 line-clamp-2">{course.description}</p>
 
         {/* Course Details */}
         <div className="space-y-2 mb-4">
-          <div className="flex items-center text-sm text-wisdom-600">
+          <div className="flex items-center text-sm text-muted-foreground">
             <Clock className="w-4 h-4 mr-2" />
             <span>{course.duration}</span>
             {type === 'live' && (
@@ -199,12 +159,12 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
             )}
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center text-sm text-wisdom-600">
+            <div className="flex items-center text-sm text-muted-foreground">
               <Users className="w-4 h-4 mr-2" />
               <span>{course.students} students</span>
             </div>
-            <div className="flex items-center text-sm text-wisdom-600">
-              <Star className="w-4 h-4 mr-1 text-saffron-500" />
+            <div className="flex items-center text-sm text-muted-foreground">
+              <Star className="w-4 h-4 mr-1 text-primary" />
               <span>{course.rating}</span>
             </div>
           </div>
@@ -214,10 +174,10 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`w-full py-3 px-4 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center space-x-2 ${
+          className={`w-full py-3 px-4 rounded-xl font-semibold text-primary-foreground transition-all duration-300 flex items-center justify-center space-x-2 ${
             type === 'live' 
-              ? 'bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700' 
-              : 'bg-gradient-to-r from-turquoise-500 to-turquoise-600 hover:from-turquoise-600 hover:to-turquoise-700'
+              ? 'bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80' 
+              : 'bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80'
           }`}
         >
           <span>{type === 'live' ? 'Join Live Class' : 'Start Course'}</span>
@@ -263,14 +223,14 @@ function CourseCarousel({ courses, type, title }: { courses: any[], type: 'live'
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="p-2 rounded-full bg-muted hover:bg-muted-foreground/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-foreground"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextSlide}
             disabled={currentIndex >= courses.length - maxVisible}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="p-2 rounded-full bg-muted hover:bg-muted-foreground/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-foreground"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -292,22 +252,22 @@ function CourseCarousel({ courses, type, title }: { courses: any[], type: 'live'
 
 export default function AlignYourself() {
   return (
-    <section id="align-yourself" className="section-padding bg-white relative overflow-hidden">
+    <section id="align-yourself" className="section-padding bg-background relative overflow-hidden">
       {/* Background Animation - Shooting Stars & Diya Lamps */}
       <div className="absolute inset-0 -z-10">
         {/* Shooting Stars */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-saffron-400 rounded-full animate-pulse opacity-60"></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-turquoise-400 rounded-full animate-pulse opacity-40 animation-delay-1000"></div>
-        <div className="absolute top-60 left-1/4 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse opacity-50 animation-delay-2000"></div>
-        <div className="absolute top-80 right-1/3 w-1 h-1 bg-saffron-300 rounded-full animate-pulse opacity-30 animation-delay-3000"></div>
+        <div className="absolute top-20 left-10 w-2 h-2 bg-primary/70 rounded-full animate-pulse opacity-60"></div>
+        <div className="absolute top-40 right-20 w-1 h-1 bg-accent/70 rounded-full animate-pulse opacity-40 animation-delay-1000"></div>
+        <div className="absolute top-60 left-1/4 w-1.5 h-1.5 bg-secondary/70 rounded-full animate-pulse opacity-50 animation-delay-2000"></div>
+        <div className="absolute top-80 right-1/3 w-1 h-1 bg-primary/50 rounded-full animate-pulse opacity-30 animation-delay-3000"></div>
         
         {/* Floating Diya Lamps */}
-        <div className="absolute top-32 right-10 w-8 h-8 bg-gradient-to-br from-saffron-200 to-saffron-300 rounded-full animate-float opacity-40"></div>
-        <div className="absolute top-52 left-20 w-6 h-6 bg-gradient-to-br from-turquoise-200 to-turquoise-300 rounded-full animate-float opacity-35 animation-delay-2000"></div>
-        <div className="absolute top-72 right-1/4 w-7 h-7 bg-gradient-to-br from-indigo-200 to-indigo-300 rounded-full animate-float opacity-30 animation-delay-4000"></div>
+        <div className="absolute top-32 right-10 w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/40 rounded-full animate-float opacity-40"></div>
+        <div className="absolute top-52 left-20 w-6 h-6 bg-gradient-to-br from-accent/20 to-accent/40 rounded-full animate-float opacity-35 animation-delay-2000"></div>
+        <div className="absolute top-72 right-1/4 w-7 h-7 bg-gradient-to-br from-secondary/20 to-secondary/40 rounded-full animate-float opacity-30 animation-delay-4000"></div>
         
         {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/30 via-transparent to-turquoise-50/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-background/30 via-transparent to-card/30"></div>
       </div>
       
       <div className="container-custom relative z-10">
@@ -319,14 +279,14 @@ export default function AlignYourself() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-wisdom-900 mb-6">
-            Align Yourself with the{' '}
-            <span className="bg-gradient-to-r from-saffron-600 to-turquoise-600 bg-clip-text text-transparent">
-              Universe!
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            Two Ways to Begin Your{' '}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Journey!
             </span>
           </h2>
-          <p className="text-xl text-wisdom-700 max-w-3xl mx-auto">
-            Choose your path to knowledge. Whether you prefer the energy of live interaction or the flexibility of self-paced learning, we have the perfect option for you.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses.
           </p>
         </motion.div>
 
@@ -336,7 +296,7 @@ export default function AlignYourself() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 flex flex-col items-center space-y-8"
         >
           <CourseCarousel 
             courses={liveClasses} 
@@ -350,117 +310,7 @@ export default function AlignYourself() {
           />
         </motion.div>
 
-        {/* Learning Options Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
-        >
-          {learningOptions.map((option, index) => (
-            <motion.div
-              key={option.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden"
-            >
-              {/* Header */}
-              <div className={`bg-gradient-to-br ${option.color} p-8 text-white`}>
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <option.icon className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold">{option.title}</h3>
-                    <p className="text-white/90">{option.description}</p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-8">
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-wisdom-900 mb-4">What you'll get:</h4>
-                  <ul className="space-y-3">
-                    {option.features.map((feature, featureIndex) => (
-                      <motion.li
-                        key={featureIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 + featureIndex * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-center space-x-3 text-wisdom-700"
-                      >
-                        <div className="w-2 h-2 bg-saffron-500 rounded-full"></div>
-                        <span>{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-2xl">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-wisdom-900">
-                      {option.stats.students}
-                    </div>
-                    <div className="text-sm text-wisdom-600">Students</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-wisdom-900 flex items-center justify-center">
-                      {option.stats.rating}
-                      <Star className="w-4 h-4 text-saffron-500 ml-1" />
-                    </div>
-                    <div className="text-sm text-wisdom-600">Rating</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-wisdom-900">
-                      {option.stats.sessions}
-                    </div>
-                    <div className="text-sm text-wisdom-600">
-                      {option.title === 'Live Classes' ? 'Sessions' : 'Courses'}
-                    </div>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-full bg-gradient-to-r ${option.color} text-white py-4 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 group-hover:shadow-xl`}
-                >
-                  <span>{option.cta}</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.button>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-deep-maroon mb-6">
-            Not sure which option is right for you?
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-shikshanam-secondary px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
-          >
-            Get Personalized Guidance
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   )

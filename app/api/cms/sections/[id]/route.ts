@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { requireAuth, AuthError } from '@/cms/lib/auth'
-import { cms } from '@/cms/lib/core/services'
+import { requireAuth } from '@/cms/lib/auth'
+import { sectionEditor } from '@/cms/lib/core/section-editor'
 import { CacheManager } from '@/cms/lib/core/cache'
 import { triggerCMSEvent } from '@/cms/lib/core/realtime'
-import { UserRole, ContentType } from '@/cms/lib/generated/prisma'
+import { UserRole } from '@/cms/lib/generated/prisma'
 import { CMSError } from '@/cms/lib/core/types'
 
-// GET /api/cms/courses/[id] - Get single course
+// GET /api/cms/sections/[id] - Get single section
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -16,37 +16,28 @@ export async function GET(
     const { id } = params
 
     // Check cache first
-    const cached = CacheManager.getCourse(user, id)
+    const cached = CacheManager.getCourse(user, `section:${id}`)
     if (cached) {
-      return NextResponse.json({ course: cached })
+      return NextResponse.json(cached)
     }
 
-    // Fetch from CMS service
-    const course = await cms.courses.getById(id, user)
+    // Fetch from section editor service
+    const section = await sectionEditor.getSection(id, user)
     
     // Cache the result
-    CacheManager.setCourse(user, id, course)
+    CacheManager.setCourse(user, `section:${id}`, section)
 
-    // Get revision history
-    const revisions = await cms.revisions.getHistory(ContentType.COURSE, id, user)
-
-    return NextResponse.json({
-      course,
-      revisions,
-    })
+    return NextResponse.json(section)
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.statusCode })
-    }
     if (error instanceof CMSError) {
       return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
-    console.error('Get course error:', error)
+    console.error('Get section error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
-// PUT /api/cms/courses/[id] - Update course
+// PUT /api/cms/sections/[id] - Update section
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -56,54 +47,51 @@ export async function PUT(
     const { id } = params
     const body = await request.json()
 
-    // Update course using CMS service
-    const updatedCourse = await cms.courses.update({ id, ...body }, user)
+    // Update section using section editor service
+    const updatedSection = await sectionEditor.updateSection(id, body, user)
 
     // Invalidate cache
-    CacheManager.invalidateCourse(user, id)
+    CacheManager.invalidateCourse(user, `section:${id}`)
 
     // Trigger real-time event
     await triggerCMSEvent({
       type: 'update',
-      entity: 'course',
+      entity: 'section',
       entityId: id,
-      data: updatedCourse,
+      data: updatedSection,
       timestamp: new Date(),
       userId: user.id
     })
 
-    return NextResponse.json(updatedCourse)
+    return NextResponse.json(updatedSection)
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.statusCode })
-    }
     if (error instanceof CMSError) {
       return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
-    console.error('Update course error:', error)
+    console.error('Update section error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
-// DELETE /api/cms/courses/[id] - Delete course
+// DELETE /api/cms/sections/[id] - Delete section
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = await requireAuth(UserRole.ADMIN)(request)
+    const user = await requireAuth(UserRole.EDITOR)(request)
     const { id } = params
 
-    // Delete course using CMS service
-    await cms.courses.delete(id, user)
+    // Delete section using section editor service
+    await sectionEditor.deleteSection(id, user)
 
     // Invalidate cache
-    CacheManager.invalidateCourse(user, id)
+    CacheManager.invalidateCourse(user, `section:${id}`)
 
     // Trigger real-time event
     await triggerCMSEvent({
       type: 'delete',
-      entity: 'course',
+      entity: 'section',
       entityId: id,
       data: { id },
       timestamp: new Date(),
@@ -112,13 +100,10 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.statusCode })
-    }
     if (error instanceof CMSError) {
       return NextResponse.json({ error: error.message }, { status: error.statusCode })
     }
-    console.error('Delete course error:', error)
+    console.error('Delete section error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

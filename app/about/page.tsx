@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import FoundersMission from '@/components/sections/FoundersMission'
 
 export const metadata: Metadata = {
   title: 'About Us - Shikshanam',
@@ -142,6 +143,9 @@ export default function AboutPage() {
           </div>
         </div>
       </main>
+
+      {/* Why We Built This and Founders Section */}
+      <FoundersMission />
     </>
   )
 }

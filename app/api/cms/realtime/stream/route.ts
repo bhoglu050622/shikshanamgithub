@@ -1,117 +1,80 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { requireAuth, AuthError } from '@/cms/lib/auth'
-import { UserRole } from '@/cms/lib/generated/prisma'
+import { NextRequest } from 'next/server'
+import { WebSocketRealtime } from '@/cms/lib/core/realtime'
 
-// GET /api/cms/realtime/stream - Server-Sent Events for real-time data
+// Server-Sent Events endpoint for real-time updates
 export async function GET(request: NextRequest) {
-  try {
-    // Verify authentication
-    const user = await requireAuth(UserRole.VIEWER)(request)
-
-    // Create readable stream for Server-Sent Events
-    const encoder = new TextEncoder()
-    
-    const stream = new ReadableStream({
-      start(controller) {
-        // Send initial connection message
-        const initialData = {
-          type: 'connection',
-          data: {
-            message: 'Real-time stream connected',
-            user: user.username,
-            timestamp: new Date().toISOString()
-          }
-        }
-        
-        controller.enqueue(
-          encoder.encode(`data: ${JSON.stringify(initialData)}\n\n`)
-        )
-
-        // Generate real-time metrics
-        const metricsInterval = setInterval(() => {
-          try {
-            const metricsData = {
-              type: 'metrics',
-              data: {
-                timestamp: new Date().toISOString(),
-                activeUsers: Math.floor(Math.random() * 200) + 50,
-                pageViews: Math.floor(Math.random() * 1000) + 500,
-                systemHealth: {
-                  cpu: Math.random() * 100,
-                  memory: Math.random() * 100,
-                  storage: Math.random() * 100
-                },
-                revenue: Math.floor(Math.random() * 10000) + 50000
-              }
-            }
-
-            controller.enqueue(
-              encoder.encode(`data: ${JSON.stringify(metricsData)}\n\n`)
-            )
-          } catch (error) {
-            console.error('Error generating metrics:', error)
-          }
-        }, 5000)
-
-        // Generate activity events
-        const activityInterval = setInterval(() => {
-          try {
-            if (Math.random() > 0.7) {
-              const activities = ['created', 'updated', 'published', 'deleted', 'reviewed']
-              const resources = ['course', 'lesson', 'blog post', 'package']
-              const users = ['John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson']
-
-              const activityData = {
-                type: 'activity',
-                data: {
-                  id: `activity-${Date.now()}`,
-                  user: users[Math.floor(Math.random() * users.length)],
-                  action: activities[Math.floor(Math.random() * activities.length)],
-                  resource: resources[Math.floor(Math.random() * resources.length)],
-                  timestamp: new Date().toISOString()
-                }
-              }
-
-              controller.enqueue(
-                encoder.encode(`data: ${JSON.stringify(activityData)}\n\n`)
-              )
-            }
-          } catch (error) {
-            console.error('Error generating activity:', error)
-          }
-        }, 10000)
-
-        // Cleanup function
-        const cleanup = () => {
-          clearInterval(metricsInterval)
-          clearInterval(activityInterval)
-        }
-
-        // Handle client disconnect
-        request.signal.addEventListener('abort', cleanup)
-        
-        return cleanup
-      },
-      
-      cancel() {
-        console.log('Real-time stream cancelled')
-      }
-    })
-
-    return new NextResponse(stream, {
-      headers: {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Cache-Control',
-      },
-    })
-  } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.statusCode })
-    }
-    console.error('Real-time stream error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  // Check if this is a Server-Sent Events request
+  const acceptHeader = request.headers.get('accept')
+  if (!acceptHeader?.includes('text/event-stream')) {
+    return new Response('Expected text/event-stream', { status: 400 })
   }
+
+  // Create a readable stream for Server-Sent Events
+  const stream = new ReadableStream({
+    start(controller) {
+      const encoder = new TextEncoder()
+      
+      // Send initial connection event
+      const initialEvent = `data: ${JSON.stringify({
+        type: 'connection',
+        message: 'Connected to CMS real-time updates',
+        timestamp: new Date().toISOString()
+      })}\n\n`
+      
+      controller.enqueue(encoder.encode(initialEvent))
+
+      // Set up real-time event listener
+      const postgresRealtime = require('@/cms/lib/core/realtime').PostgreSQLRealtime.getInstance()
+      
+      const unsubscribe = postgresRealtime.subscribe('cms_event', (event: any) => {
+        const eventData = `data: ${JSON.stringify({
+          type: 'cms_event',
+          data: event,
+          timestamp: new Date().toISOString()
+        })}\n\n`
+        
+        try {
+          controller.enqueue(encoder.encode(eventData))
+        } catch (error) {
+          console.error('Error sending SSE event:', error)
+          unsubscribe()
+          controller.close()
+        }
+      })
+
+      // Send periodic heartbeat to keep connection alive
+      const heartbeat = setInterval(() => {
+        try {
+          const heartbeatEvent = `data: ${JSON.stringify({
+            type: 'heartbeat',
+            timestamp: new Date().toISOString()
+          })}\n\n`
+          
+          controller.enqueue(encoder.encode(heartbeatEvent))
+        } catch (error) {
+          console.error('Error sending heartbeat:', error)
+          clearInterval(heartbeat)
+          unsubscribe()
+          controller.close()
+        }
+      }, 30000) // Send heartbeat every 30 seconds
+
+      // Cleanup on connection close
+      request.signal.addEventListener('abort', () => {
+        clearInterval(heartbeat)
+        unsubscribe()
+        controller.close()
+      })
+    }
+  })
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Cache-Control',
+    },
+  })
 }
