@@ -123,7 +123,7 @@ export function PointsSystem({
     if (newAchievements.length > 0) {
       setRecentAchievements(prev => [...prev, ...newAchievements])
     }
-  }, [totalPoints, level, badges])
+  }, [totalPoints, level, badges, achievements, recentAchievements])
 
   const getLevelTitle = (level: number): string => {
     if (level >= 10) return 'Enlightened Master'

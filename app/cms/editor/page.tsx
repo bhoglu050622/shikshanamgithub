@@ -84,7 +84,7 @@ export default function EditorPage() {
       // Set default type
       setContentData(prev => ({ ...prev, type: contentType }))
     }
-  }, [contentId, contentType])
+  }, [contentId, contentType, loadContent])
 
   const loadContent = async (id: string) => {
     try {

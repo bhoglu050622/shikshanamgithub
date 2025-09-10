@@ -49,7 +49,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const body = await request.json()
 
     // Update package using CMS service
-    const package_ = await cms.packages.update(id, body, user)
+    const package_ = await cms.packages.update({ ...body, id }, user)
 
     // Invalidate cache
     CacheManager.invalidatePackage(user, id)

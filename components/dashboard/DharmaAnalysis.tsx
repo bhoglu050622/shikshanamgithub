@@ -80,7 +80,7 @@ export function DharmaAnalysis({ userEmail }: DharmaAnalysisProps) {
 
   useEffect(() => {
     loadDharmaProfile()
-  }, [userEmail])
+  }, [userEmail, loadDharmaProfile])
 
   const loadDharmaProfile = () => {
     try {

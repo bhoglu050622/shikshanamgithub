@@ -151,7 +151,7 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  }, [router]);
+  }, [router, logout]);
 
   useEffect(() => {
     // Wait for auth to initialize

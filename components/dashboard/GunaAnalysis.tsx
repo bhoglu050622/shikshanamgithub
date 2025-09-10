@@ -45,7 +45,7 @@ export function GunaAnalysis({ userEmail }: GunaAnalysisProps) {
 
   useEffect(() => {
     loadGunaProfile()
-  }, [userEmail])
+  }, [userEmail, loadGunaProfile])
 
   const loadGunaProfile = () => {
     try {

@@ -49,7 +49,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const body = await request.json()
 
     // Update media using CMS service
-    const media = await cms.media.update(id, body, user)
+    const media = await cms.media.update({ ...body, id }, user)
 
     // Invalidate cache
     CacheManager.invalidateMedia(user, id)

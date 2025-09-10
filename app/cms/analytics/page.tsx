@@ -95,7 +95,7 @@ export default function AnalyticsPage() {
 
   useEffect(() => {
     fetchAnalytics()
-  }, [timeRange])
+  }, [timeRange, fetchAnalytics])
 
   const formatNumber = (num: number) => {
     if (num >= 1000000) {

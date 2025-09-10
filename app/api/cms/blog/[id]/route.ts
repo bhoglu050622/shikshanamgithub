@@ -49,7 +49,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const body = await request.json()
 
     // Update blog post using CMS service
-    const blogPost = await cms.blogs.update(id, body, user)
+    const blogPost = await cms.blogs.update({ ...body, id }, user)
 
     // Invalidate cache
     CacheManager.invalidateBlogPost(user, id)
