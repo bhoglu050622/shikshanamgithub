@@ -4,8 +4,8 @@ import React from 'react';
 
 // Mock Next.js router
 const mockFn = () => (() => {});
-if (typeof jest !== 'undefined') {
-  jest.mock('next/navigation', () => ({
+if (typeof (globalThis as any).jest !== 'undefined') {
+  (globalThis as any).jest.mock('next/navigation', () => ({
     useRouter: () => ({
       push: mockFn(),
       replace: mockFn(),
@@ -21,7 +21,7 @@ if (typeof jest !== 'undefined') {
   }));
 
   // Mock Next.js image
-  jest.mock('next/image', () => ({
+  (globalThis as any).jest.mock('next/image', () => ({
     __esModule: true,
     default: (props: any) => {
       // eslint-disable-next-line @next/next/no-img-element
@@ -37,7 +37,9 @@ if (typeof jest !== 'undefined') {
 if (typeof window !== 'undefined') {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
-    value: mockFn().mockImplementation(query => ({
+    value: (() => {
+      const mock = mockFn();
+      return mock.mockImplementation ? mock.mockImplementation(query => ({
       matches: false,
       media: query,
       onchange: null,
@@ -46,7 +48,8 @@ if (typeof window !== 'undefined') {
       addEventListener: mockFn(),
       removeEventListener: mockFn(),
       dispatchEvent: mockFn(),
-    })),
+    })) : mock;
+    })(),
   });
 }
 
