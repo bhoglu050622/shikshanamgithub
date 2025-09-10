@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/cms/context/AuthContext'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -76,17 +76,7 @@ export default function EditorPage() {
   const contentType = searchParams.get('type') as 'course' | 'lesson' | 'blog' | 'package' || 'blog'
   const contentId = searchParams.get('id')
 
-  useEffect(() => {
-    if (contentId) {
-      // Load existing content
-      loadContent(contentId)
-    } else {
-      // Set default type
-      setContentData(prev => ({ ...prev, type: contentType }))
-    }
-  }, [contentId, contentType, loadContent])
-
-  const loadContent = async (id: string) => {
+  const loadContent = useCallback(async (id: string) => {
     try {
       setLoading(true)
       const token = localStorage.getItem('cmsAccessToken')
@@ -109,7 +99,17 @@ export default function EditorPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [contentData.type])
+
+  useEffect(() => {
+    if (contentId) {
+      // Load existing content
+      loadContent(contentId)
+    } else {
+      // Set default type
+      setContentData(prev => ({ ...prev, type: contentType }))
+    }
+  }, [contentId, contentType, loadContent])
 
   const generateSlug = (title: string) => {
     return title

@@ -277,8 +277,9 @@ export default function MediaPage() {
                       {file.type === 'image' && file.thumbnailUrl ? (
                         <img 
                           src={file.thumbnailUrl} 
-                          alt={file.alt || file.originalName}
+                          alt={file.alt || file.originalName || 'Media thumbnail'}
                           className="w-full h-full object-cover rounded-lg"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="text-gray-400">
@@ -306,8 +307,9 @@ export default function MediaPage() {
                       {file.type === 'image' && file.thumbnailUrl ? (
                         <img 
                           src={file.thumbnailUrl} 
-                          alt={file.alt || file.originalName}
+                          alt={file.alt || file.originalName || 'Media thumbnail'}
                           className="w-full h-full object-cover rounded-lg"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="text-gray-400">

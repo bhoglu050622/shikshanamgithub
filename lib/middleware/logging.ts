@@ -146,6 +146,10 @@ export class Logger {
       error: error.message,
       metadata: { stack: error.stack, ...context },
       timestamp: new Date().toISOString(),
+      method: context.method || 'UNKNOWN',
+      url: context.url || 'UNKNOWN',
+      userAgent: context.userAgent || 'UNKNOWN',
+      ip: context.ip || 'UNKNOWN',
     } as LogContext);
   }
 

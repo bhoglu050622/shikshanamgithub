@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '@/cms/context/AuthContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -69,7 +69,7 @@ export default function AnalyticsPage() {
   const [timeRange, setTimeRange] = useState('7d')
   const [refreshing, setRefreshing] = useState(false)
 
-  const fetchAnalytics = async () => {
+  const fetchAnalytics = useCallback(async () => {
     try {
       setRefreshing(true)
       const token = localStorage.getItem('cmsAccessToken')
@@ -91,7 +91,7 @@ export default function AnalyticsPage() {
       setLoading(false)
       setRefreshing(false)
     }
-  }
+  }, [timeRange])
 
   useEffect(() => {
     fetchAnalytics()

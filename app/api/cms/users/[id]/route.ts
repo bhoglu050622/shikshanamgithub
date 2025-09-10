@@ -21,11 +21,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         id: true,
         username: true,
         email: true,
-        firstName: true,
-        lastName: true,
         role: true,
         isActive: true,
-        lastLoginAt: true,
+        lastLogin: true,
         createdAt: true,
         updatedAt: true,
         _count: {
@@ -33,7 +31,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             createdCourses: true,
             createdBlogPosts: true,
             createdPackages: true,
-            createdMedia: true,
           }
         }
       }
@@ -113,8 +110,6 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
         id: true,
         username: true,
         email: true,
-        firstName: true,
-        lastName: true,
         role: true,
         isActive: true,
         updatedAt: true,

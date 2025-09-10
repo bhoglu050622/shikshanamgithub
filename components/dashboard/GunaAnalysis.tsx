@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -39,15 +39,123 @@ interface GunaProfile {
   challenges: string[]
 }
 
+// Helper functions moved outside component to avoid dependency issues
+const getGunaInterpretation = (dominant: string, s: number, r: number, t: number): string => {
+  if (dominant === 'sattva') {
+    if (s > 12) return 'Highly Sattvic - Pure and Wise'
+    if (s > 8) return 'Sattvic Nature - Balanced and Spiritual'
+    return 'Sattvic Tendency - Seeking Purity'
+  } else if (dominant === 'rajas') {
+    if (r > 12) return 'Highly Rajasic - Dynamic and Active'
+    if (r > 8) return 'Rajasic Nature - Energetic and Goal-Oriented'
+    return 'Rajasic Tendency - Action-Oriented'
+  } else {
+    if (t > 12) return 'Highly Tamasic - Stable and Grounded'
+    if (t > 8) return 'Tamasic Nature - Calm and Steady'
+    return 'Tamasic Tendency - Seeking Stability'
+  }
+}
+
+const getGunaDescription = (dominant: string, balance: number): string => {
+  const descriptions: Record<string, string> = {
+    sattva: 'You embody purity, wisdom, and spiritual awareness. Your nature is calm, balanced, and drawn to truth and knowledge. You seek harmony and understanding in all aspects of life.',
+    rajas: 'You are dynamic, ambitious, and action-oriented. Your nature is energetic, passionate, and driven by goals and achievements. You bring enthusiasm and determination to everything you do.',
+    tamas: 'You are grounded, stable, and comfort-seeking. Your nature is calm, patient, and values security and tradition. You provide stability and reliability to those around you.'
+  }
+  
+  const balanceNote = balance < 30 ? ' You have a well-balanced nature across all three gunas.' : 
+                     balance < 60 ? ' You show a moderate preference for your dominant guna.' :
+                     ' You have a strong preference for your dominant guna.'
+  
+  return descriptions[dominant] + balanceNote
+}
+
+const getGunaRecommendations = (dominant: string, s: number, r: number, t: number): string[] => {
+  const recommendations: Record<string, string[]> = {
+    sattva: [
+      'Practice meditation and mindfulness daily',
+      'Engage in spiritual study and contemplation',
+      'Surround yourself with peaceful, positive influences',
+      'Focus on selfless service and helping others',
+      'Maintain a sattvic diet (fresh, natural foods)'
+    ],
+    rajas: [
+      'Channel your energy into productive activities',
+      'Set clear goals and create action plans',
+      'Practice time management and prioritization',
+      'Engage in physical exercise and dynamic practices',
+      'Balance work with rest and relaxation'
+    ],
+    tamas: [
+      'Establish consistent daily routines',
+      'Focus on one task at a time',
+      'Create a comfortable, organized environment',
+      'Practice grounding exercises and stability',
+      'Gradually introduce new experiences'
+    ]
+  }
+  
+  return recommendations[dominant] || []
+}
+
+const getGunaStrengths = (dominant: string, s: number, r: number, t: number): string[] => {
+  const strengths: Record<string, string[]> = {
+    sattva: ['Wisdom', 'Peacefulness', 'Spiritual awareness', 'Compassion', 'Clarity'],
+    rajas: ['Energy', 'Ambition', 'Leadership', 'Courage', 'Determination'],
+    tamas: ['Stability', 'Patience', 'Reliability', 'Groundedness', 'Consistency']
+  }
+  
+  return strengths[dominant] || []
+}
+
+const getGunaChallenges = (dominant: string, s: number, r: number, t: number): string[] => {
+  const challenges: Record<string, string[]> = {
+    sattva: ['Over-idealism', 'Passivity', 'Avoiding action', 'Perfectionism'],
+    rajas: ['Restlessness', 'Impatience', 'Burnout', 'Competitiveness'],
+    tamas: ['Resistance to change', 'Lethargy', 'Procrastination', 'Stubbornness']
+  }
+  
+  return challenges[dominant] || []
+}
+
+const calculateGunaProfile = (scores: Record<string, number>): GunaProfile => {
+  const sattva = scores.sattva || 0
+  const rajas = scores.rajas || 0
+  const tamas = scores.tamas || 0
+  
+  const dominantGuna = sattva > rajas && sattva > tamas ? 'sattva' :
+                      rajas > sattva && rajas > tamas ? 'rajas' : 'tamas'
+  
+  // Calculate balance (how close the scores are to each other)
+  const maxScore = Math.max(sattva, rajas, tamas)
+  const minScore = Math.min(sattva, rajas, tamas)
+  const balance = maxScore > 0 ? ((maxScore - minScore) / maxScore) * 100 : 100
+
+  const interpretation = getGunaInterpretation(dominantGuna, sattva, rajas, tamas)
+  const description = getGunaDescription(dominantGuna, balance)
+  const recommendations = getGunaRecommendations(dominantGuna, sattva, rajas, tamas)
+  const strengths = getGunaStrengths(dominantGuna, sattva, rajas, tamas)
+  const challenges = getGunaChallenges(dominantGuna, sattva, rajas, tamas)
+
+  return {
+    sattva,
+    rajas,
+    tamas,
+    dominantGuna,
+    balance,
+    interpretation,
+    description,
+    recommendations,
+    strengths,
+    challenges
+  }
+}
+
 export function GunaAnalysis({ userEmail }: GunaAnalysisProps) {
   const [gunaProfile, setGunaProfile] = useState<GunaProfile | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    loadGunaProfile()
-  }, [userEmail, loadGunaProfile])
-
-  const loadGunaProfile = () => {
+  const loadGunaProfile = useCallback(() => {
     try {
       const storedProfile = localStorage.getItem('dharma-path-profile')
       if (storedProfile) {
@@ -64,40 +172,11 @@ export function GunaAnalysis({ userEmail }: GunaAnalysisProps) {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [])
 
-  const calculateGunaProfile = (scores: Record<string, number>): GunaProfile => {
-    const sattva = scores.sattva || 0
-    const rajas = scores.rajas || 0
-    const tamas = scores.tamas || 0
-    
-    const dominantGuna = sattva > rajas && sattva > tamas ? 'sattva' :
-                        rajas > sattva && rajas > tamas ? 'rajas' : 'tamas'
-    
-    // Calculate balance (how close the scores are to each other)
-    const maxScore = Math.max(sattva, rajas, tamas)
-    const minScore = Math.min(sattva, rajas, tamas)
-    const balance = maxScore > 0 ? ((maxScore - minScore) / maxScore) * 100 : 100
-
-    const interpretation = getGunaInterpretation(dominantGuna, sattva, rajas, tamas)
-    const description = getGunaDescription(dominantGuna, balance)
-    const recommendations = getGunaRecommendations(dominantGuna, sattva, rajas, tamas)
-    const strengths = getGunaStrengths(dominantGuna, sattva, rajas, tamas)
-    const challenges = getGunaChallenges(dominantGuna, sattva, rajas, tamas)
-
-    return {
-      sattva,
-      rajas,
-      tamas,
-      dominantGuna,
-      balance,
-      interpretation,
-      description,
-      recommendations,
-      strengths,
-      challenges
-    }
-  }
+  useEffect(() => {
+    loadGunaProfile()
+  }, [userEmail, loadGunaProfile])
 
   const getGunaInterpretation = (dominant: string, s: number, r: number, t: number): string => {
     if (dominant === 'sattva') {

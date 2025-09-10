@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -51,7 +51,7 @@ export function PointsSystem({
   const [recentAchievements, setRecentAchievements] = useState<Achievement[]>([])
   const [pointsAnimation, setPointsAnimation] = useState(0)
 
-  const achievements: Achievement[] = [
+  const achievements: Achievement[] = useMemo(() => [
     {
       id: 'first-quiz',
       title: 'Spiritual Seeker',
@@ -106,7 +106,7 @@ export function PointsSystem({
       unlocked: level >= 10,
       rarity: 'legendary'
     }
-  ]
+  ], [totalPoints, level, badges])
 
   useEffect(() => {
     // Animate points counter

@@ -3,47 +3,52 @@ import '@testing-library/jest-dom';
 import React from 'react';
 
 // Mock Next.js router
-jest.mock('next/navigation', () => ({
-  useRouter: () => ({
-    push: jest.fn(),
-    replace: jest.fn(),
-    prefetch: jest.fn(),
-    back: jest.fn(),
-    forward: jest.fn(),
-    refresh: jest.fn(),
-  }),
-  useSearchParams: () => ({
-    get: jest.fn(),
-  }),
-  usePathname: () => '/',
-}));
+const mockFn = () => (() => {});
+if (typeof jest !== 'undefined') {
+  jest.mock('next/navigation', () => ({
+    useRouter: () => ({
+      push: mockFn(),
+      replace: mockFn(),
+      prefetch: mockFn(),
+      back: mockFn(),
+      forward: mockFn(),
+      refresh: mockFn(),
+    }),
+    useSearchParams: () => ({
+      get: mockFn(),
+    }),
+    usePathname: () => '/',
+  }));
 
-// Mock Next.js image
-jest.mock('next/image', () => ({
-  __esModule: true,
-  default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return React.createElement('img', props);
-  },
-}));
+  // Mock Next.js image
+  jest.mock('next/image', () => ({
+    __esModule: true,
+    default: (props: any) => {
+      // eslint-disable-next-line @next/next/no-img-element
+      return React.createElement('img', props);
+    },
+  }));
 
-// Mock fetch
-global.fetch = jest.fn();
+  // Mock fetch
+  global.fetch = mockFn();
+}
 
 // Mock window.matchMedia
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: jest.fn().mockImplementation(query => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: mockFn().mockImplementation(query => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: mockFn(), // deprecated
+      removeListener: mockFn(), // deprecated
+      addEventListener: mockFn(),
+      removeEventListener: mockFn(),
+      dispatchEvent: mockFn(),
+    })),
+  });
+}
 
 // Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
@@ -63,19 +68,19 @@ global.ResizeObserver = class ResizeObserver {
 
 // Mock localStorage
 const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
+  getItem: mockFn(),
+  setItem: mockFn(),
+  removeItem: mockFn(),
+  clear: mockFn(),
 };
 global.localStorage = localStorageMock;
 
 // Mock sessionStorage
 const sessionStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
+  getItem: mockFn(),
+  setItem: mockFn(),
+  removeItem: mockFn(),
+  clear: mockFn(),
 };
 global.sessionStorage = sessionStorageMock;
 

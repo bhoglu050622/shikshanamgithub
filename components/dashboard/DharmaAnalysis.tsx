@@ -5,7 +5,7 @@
 
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -78,11 +78,7 @@ export function DharmaAnalysis({ userEmail }: DharmaAnalysisProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'overview' | 'guna' | 'consciousness' | 'progress'>('overview')
 
-  useEffect(() => {
-    loadDharmaProfile()
-  }, [userEmail, loadDharmaProfile])
-
-  const loadDharmaProfile = () => {
+  const loadDharmaProfile = useCallback(() => {
     try {
       const storedProfile = localStorage.getItem('dharma-path-profile')
       if (storedProfile) {
@@ -95,7 +91,11 @@ export function DharmaAnalysis({ userEmail }: DharmaAnalysisProps) {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    loadDharmaProfile()
+  }, [userEmail, loadDharmaProfile])
 
   const calculateMetrics = (profile: DharmaProfile): SpiritualMetrics => {
     let totalPoints = 0

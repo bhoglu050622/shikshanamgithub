@@ -12,17 +12,12 @@ export async function GET(request: NextRequest) {
     const [courses, blogPosts, packages] = await Promise.all([
       prisma.course.findMany({
         where: {
-          OR: [
-            { status: 'PUBLISHED' },
-            { scheduledPublishAt: { not: null } }
-          ]
+          status: 'PUBLISHED'
         },
         select: {
           id: true,
           title: true,
           status: true,
-          scheduledPublishAt: true,
-          publishedAt: true,
           createdAt: true,
           creator: {
             select: {
@@ -35,17 +30,12 @@ export async function GET(request: NextRequest) {
       }),
       prisma.blogPost.findMany({
         where: {
-          OR: [
-            { status: 'PUBLISHED' },
-            { scheduledPublishAt: { not: null } }
-          ]
+          status: 'PUBLISHED'
         },
         select: {
           id: true,
           title: true,
           status: true,
-          scheduledPublishAt: true,
-          publishedAt: true,
           createdAt: true,
           creator: {
             select: {
@@ -58,17 +48,12 @@ export async function GET(request: NextRequest) {
       }),
       prisma.package.findMany({
         where: {
-          OR: [
-            { status: 'PUBLISHED' },
-            { scheduledPublishAt: { not: null } }
-          ]
+          status: 'PUBLISHED'
         },
         select: {
           id: true,
           title: true,
           status: true,
-          scheduledPublishAt: true,
-          publishedAt: true,
           createdAt: true,
           creator: {
             select: {

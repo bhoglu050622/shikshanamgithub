@@ -36,6 +36,38 @@ interface GeographicData {
   percentage: number
 }
 
+// Static data arrays - moved outside component to prevent recreation
+const USERS = [
+  'John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson', 'Alex Brown',
+  'Emily Davis', 'Chris Lee', 'Anna Garcia', 'David Kim', 'Lisa Wang'
+]
+
+const LOCATIONS = [
+  'New York, US', 'London, UK', 'Mumbai, IN', 'Toronto, CA', 'Sydney, AU',
+  'Berlin, DE', 'Tokyo, JP', 'São Paulo, BR', 'Paris, FR', 'Singapore, SG'
+]
+
+const PAGES = [
+  '/cms/courses', '/cms/blog', '/cms/packages', '/cms/settings',
+  '/cms/media', '/cms/authors', '/cms/analytics', '/cms/users'
+]
+
+const DEVICES: ('desktop' | 'mobile' | 'tablet')[] = ['desktop', 'mobile', 'tablet']
+const ROLES = ['ADMIN', 'EDITOR', 'REVIEWER', 'PUBLISHER', 'VIEWER']
+
+const COUNTRIES = [
+  { country: 'United States', baseUsers: 45 },
+  { country: 'India', baseUsers: 30 },
+  { country: 'United Kingdom', baseUsers: 25 },
+  { country: 'Canada', baseUsers: 20 },
+  { country: 'Australia', baseUsers: 15 },
+  { country: 'Germany', baseUsers: 12 },
+  { country: 'Japan', baseUsers: 10 },
+  { country: 'Brazil', baseUsers: 8 },
+  { country: 'France', baseUsers: 7 },
+  { country: 'Singapore', baseUsers: 5 }
+]
+
 export function UserActivityMonitor() {
   const [activeUsers, setActiveUsers] = useState<ActiveUser[]>([])
   const [geographicData, setGeographicData] = useState<GeographicData[]>([])
@@ -43,31 +75,14 @@ export function UserActivityMonitor() {
 
   useEffect(() => {
     const generateActiveUsers = (): ActiveUser[] => {
-      const users = [
-        'John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson', 'Alex Brown',
-        'Emily Davis', 'Chris Lee', 'Anna Garcia', 'David Kim', 'Lisa Wang'
-      ]
-      
-      const locations = [
-        'New York, US', 'London, UK', 'Mumbai, IN', 'Toronto, CA', 'Sydney, AU',
-        'Berlin, DE', 'Tokyo, JP', 'São Paulo, BR', 'Paris, FR', 'Singapore, SG'
-      ]
-
-      const pages = [
-        '/cms/courses', '/cms/blog', '/cms/packages', '/cms/settings',
-        '/cms/media', '/cms/authors', '/cms/analytics', '/cms/users'
-      ]
-
-      const devices: ('desktop' | 'mobile' | 'tablet')[] = ['desktop', 'mobile', 'tablet']
-      const roles = ['ADMIN', 'EDITOR', 'REVIEWER', 'PUBLISHER', 'VIEWER']
 
       return Array.from({ length: Math.floor(Math.random() * 8) + 3 }, (_, i) => ({
         id: `user-${i}`,
-        username: users[Math.floor(Math.random() * users.length)],
-        role: roles[Math.floor(Math.random() * roles.length)],
-        location: locations[Math.floor(Math.random() * locations.length)],
-        device: devices[Math.floor(Math.random() * devices.length)],
-        currentPage: pages[Math.floor(Math.random() * pages.length)],
+        username: USERS[Math.floor(Math.random() * USERS.length)],
+        role: ROLES[Math.floor(Math.random() * ROLES.length)],
+        location: LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)],
+        device: DEVICES[Math.floor(Math.random() * DEVICES.length)],
+        currentPage: PAGES[Math.floor(Math.random() * PAGES.length)],
         timeOnPage: Math.floor(Math.random() * 300) + 30, // 30 seconds to 5 minutes
         totalSessions: Math.floor(Math.random() * 100) + 1,
         lastActivity: new Date(Date.now() - Math.random() * 300000).toISOString(), // Within last 5 minutes
@@ -76,22 +91,9 @@ export function UserActivityMonitor() {
     }
 
     const generateGeographicData = (): GeographicData[] => {
-      const countries = [
-        { country: 'United States', baseUsers: 45 },
-        { country: 'India', baseUsers: 30 },
-        { country: 'United Kingdom', baseUsers: 25 },
-        { country: 'Canada', baseUsers: 20 },
-        { country: 'Australia', baseUsers: 15 },
-        { country: 'Germany', baseUsers: 12 },
-        { country: 'Japan', baseUsers: 10 },
-        { country: 'Brazil', baseUsers: 8 },
-        { country: 'France', baseUsers: 7 },
-        { country: 'Singapore', baseUsers: 5 }
-      ]
+      const total = COUNTRIES.reduce((sum, country) => sum + country.baseUsers, 0)
 
-      const total = countries.reduce((sum, country) => sum + country.baseUsers, 0)
-
-      return countries.map(country => {
+      return COUNTRIES.map(country => {
         const users = Math.floor(country.baseUsers + (Math.random() - 0.5) * 10)
         return {
           country: country.country,

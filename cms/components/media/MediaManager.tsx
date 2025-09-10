@@ -504,8 +504,9 @@ export function MediaManager({
                           {file.thumbnailUrl ? (
                             <img
                               src={file.thumbnailUrl}
-                              alt={file.altText || file.name}
+                              alt={file.altText || file.name || 'Media thumbnail'}
                               className="w-full h-full object-cover"
+                              loading="lazy"
                             />
                           ) : (
                             <FileIcon className="w-8 h-8 text-gray-400" />
