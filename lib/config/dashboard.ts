@@ -9,7 +9,7 @@ export const DASHBOARD_CONFIG = {
     BASE_URL: process.env.GRAPHY_API_BASE_URL || 'https://api.graphy.com',
     API_KEY: process.env.GRAPHY_API_KEY || '',
     SECRET_KEY: process.env.GRAPHY_SECRET_KEY || '',
-    TIMEOUT: 10000, // 10 seconds
+    TIMEOUT: 15000, // 15 seconds
     RETRY_ATTEMPTS: 3,
     RETRY_DELAY: 1000, // 1 second
   },

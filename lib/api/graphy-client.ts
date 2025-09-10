@@ -223,6 +223,7 @@ export class GraphyAPIClient {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.config.API_KEY}`,
       'X-API-Key': this.config.SECRET_KEY,
+      'Accept': 'application/json',
       ...options.headers,
     };
 
@@ -280,15 +281,16 @@ export class GraphyAPIClient {
     }
 
     try {
-      const response = await this.makeRequest<{ learners: GraphyLearner[] }>(
-        `/public/v2/learners?query=${encodeURIComponent(email)}`,
+      // Use the correct Graphy API endpoint for learners
+      const response = await this.makeRequest<{ data: GraphyLearner[] }>(
+        `/api/v1/learners?email=${encodeURIComponent(email)}`,
         { method: 'GET' },
         true,
         cacheKey,
         DASHBOARD_CONFIG.CACHE.STATIC_TTL
       );
 
-      const learner = response.learners.find(l => l.email.toLowerCase() === email.toLowerCase());
+      const learner = response.data?.find(l => l.email.toLowerCase() === email.toLowerCase());
       if (learner) {
         this.cache.set(cacheKey, learner, DASHBOARD_CONFIG.CACHE.STATIC_TTL);
       }
@@ -305,15 +307,15 @@ export class GraphyAPIClient {
     const cacheKey = `learner:id:${learnerId}:${includeCourseInfo}`;
     
     try {
-      const response = await this.makeRequest<GraphyLearner>(
-        `/public/v1/learners/${learnerId}?courseInfo=${includeCourseInfo}`,
+      const response = await this.makeRequest<{ data: GraphyLearner }>(
+        `/api/v1/learners/${learnerId}?include_courses=${includeCourseInfo}`,
         { method: 'GET' },
         true,
         cacheKey,
         DASHBOARD_CONFIG.CACHE.STATIC_TTL
       );
 
-      return response;
+      return response.data;
     } catch (error) {
       console.error('Error fetching learner by ID:', error);
       return null;
@@ -331,15 +333,15 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<GraphyProduct>(
-        `/public/v1/products/${productId}`,
+      const response = await this.makeRequest<{ data: GraphyProduct }>(
+        `/api/v1/products/${productId}`,
         { method: 'GET' },
         true,
         cacheKey,
         DASHBOARD_CONFIG.CACHE.STATIC_TTL
       );
 
-      return response;
+      return response.data;
     } catch (error) {
       console.error('Error fetching product:', error);
       const mockProducts = this.getMockProducts();
@@ -356,15 +358,15 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<{ enrollments: GraphyEnrollment[] }>(
-        `/public/v1/learners/${learnerId}/enrollments`,
+      const response = await this.makeRequest<{ data: GraphyEnrollment[] }>(
+        `/api/v1/learners/${learnerId}/enrollments`,
         { method: 'GET' },
         true,
         cacheKey,
         DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
       );
 
-      return response.enrollments || [];
+      return response.data || [];
     } catch (error) {
       console.error('Error fetching enrollments:', error);
       return this.getMockEnrollments(learnerId);
@@ -382,15 +384,15 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<GraphyProgressReport>(
-        `/t/api/public/v3/products/courseprogressreports?productId=${productId}&learnerId=${learnerId}`,
+      const response = await this.makeRequest<{ data: GraphyProgressReport }>(
+        `/api/v1/courses/${productId}/progress/${learnerId}`,
         { method: 'GET' },
         true,
         cacheKey,
         DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
       );
 
-      return response;
+      return response.data;
     } catch (error) {
       console.error('Error fetching progress report:', error);
       const mockReports = this.getMockProgressReports(learnerId);
@@ -407,15 +409,15 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<{ usage: GraphyUsage[] }>(
-        `/public/v1/learners/${learnerId}/usage?days=${days}`,
+      const response = await this.makeRequest<{ data: GraphyUsage[] }>(
+        `/api/v1/learners/${learnerId}/analytics/usage?days=${days}`,
         { method: 'GET' },
         true,
         cacheKey,
         DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
       );
 
-      return response.usage || [];
+      return response.data || [];
     } catch (error) {
       console.error('Error fetching usage:', error);
       return this.getMockUsage(learnerId);
@@ -430,13 +432,13 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<{ discussions: GraphyDiscussion[] }>(
-        `/public/v1/learners/${learnerId}/discussions?limit=${limit}&skip=${skip}`,
+      const response = await this.makeRequest<{ data: GraphyDiscussion[] }>(
+        `/api/v1/learners/${learnerId}/discussions?limit=${limit}&offset=${skip}`,
         { method: 'GET' },
         false // Don't cache discussions as they're real-time
       );
 
-      return response.discussions || [];
+      return response.data || [];
     } catch (error) {
       console.error('Error fetching discussions:', error);
       return [];
@@ -450,13 +452,13 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<{ quizReports: GraphyQuizReport[] }>(
-        `/public/v1/learners/${learnerId}/quiz-reports?limit=${limit}&skip=${skip}`,
+      const response = await this.makeRequest<{ data: GraphyQuizReport[] }>(
+        `/api/v1/learners/${learnerId}/quiz-reports?limit=${limit}&offset=${skip}`,
         { method: 'GET' },
         false // Don't cache quiz reports as they're real-time
       );
 
-      return response.quizReports || [];
+      return response.data || [];
     } catch (error) {
       console.error('Error fetching quiz reports:', error);
       return [];
@@ -470,13 +472,13 @@ export class GraphyAPIClient {
     }
     
     try {
-      const response = await this.makeRequest<{ transactions: GraphyTransaction[] }>(
-        `/public/v1/learners/${learnerId}/transactions?limit=${limit}&skip=${skip}`,
+      const response = await this.makeRequest<{ data: GraphyTransaction[] }>(
+        `/api/v1/learners/${learnerId}/transactions?limit=${limit}&offset=${skip}`,
         { method: 'GET' },
         false // Don't cache transactions as they're real-time
       );
 
-      return response.transactions || [];
+      return response.data || [];
     } catch (error) {
       console.error('Error fetching transactions:', error);
       return this.getMockTransactions(learnerId);
@@ -487,10 +489,10 @@ export class GraphyAPIClient {
   async assignCourse(learnerId: string, productId: string): Promise<boolean> {
     try {
       await this.makeRequest(
-        `/admin/v1/learners/${learnerId}/enrollments`,
+        `/api/v1/admin/learners/${learnerId}/enrollments`,
         {
           method: 'POST',
-          body: JSON.stringify({ productId }),
+          body: JSON.stringify({ product_id: productId }),
         }
       );
 
@@ -506,7 +508,7 @@ export class GraphyAPIClient {
   async unassignCourse(learnerId: string, enrollmentId: string): Promise<boolean> {
     try {
       await this.makeRequest(
-        `/admin/v1/enrollments/${enrollmentId}`,
+        `/api/v1/admin/enrollments/${enrollmentId}`,
         { method: 'DELETE' }
       );
 
@@ -522,10 +524,10 @@ export class GraphyAPIClient {
   async processRefund(transactionId: string, amount?: number): Promise<boolean> {
     try {
       await this.makeRequest(
-        `/admin/v1/transactions/${transactionId}/refund`,
+        `/api/v1/admin/transactions/${transactionId}/refund`,
         {
           method: 'POST',
-          body: JSON.stringify({ amount }),
+          body: JSON.stringify({ refund_amount: amount }),
         }
       );
 
@@ -841,6 +843,55 @@ export class GraphyAPIClient {
         productId: 'product-6'
       }
     ];
+  }
+
+  // Additional methods for dashboard
+  async getAllProducts(limit = 100, offset = 0): Promise<GraphyProduct[]> {
+    const cacheKey = `all-products:${limit}:${offset}`;
+    
+    // Check if we're in mock mode
+    if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
+      return this.getMockProducts();
+    }
+    
+    try {
+      const response = await this.makeRequest<{ data: GraphyProduct[] }>(
+        `/api/v1/products?limit=${limit}&offset=${offset}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.STATIC_TTL
+      );
+
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching all products:', error);
+      return this.getMockProducts();
+    }
+  }
+
+  async getPopularProducts(limit = 10): Promise<GraphyProduct[]> {
+    const cacheKey = `popular-products:${limit}`;
+    
+    // Check if we're in mock mode
+    if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
+      return this.getMockProducts().slice(0, limit);
+    }
+    
+    try {
+      const response = await this.makeRequest<{ data: GraphyProduct[] }>(
+        `/api/v1/products/popular?limit=${limit}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.STATIC_TTL
+      );
+
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching popular products:', error);
+      return this.getMockProducts().slice(0, limit);
+    }
   }
 
   // Utility methods

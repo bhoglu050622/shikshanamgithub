@@ -1,7 +1,7 @@
 # Graphy API Setup for Real Dashboard Data
 
 ## Overview
-The dashboard is now configured to pull real-time data from the Graphy API. If the API is not configured, it will fall back to mock data for development.
+The dashboard is now configured to pull real-time data from the Graphy API using the correct endpoints from the official documentation. If the API is not configured, it will fall back to mock data for development.
 
 ## Environment Variables Required
 
@@ -19,6 +19,18 @@ DASHBOARD_CACHE_TTL_DYNAMIC=60
 DASHBOARD_RATE_LIMIT_PER_MINUTE=100
 ```
 
+## API Endpoints Used
+
+The integration now uses the correct Graphy API endpoints:
+
+- **Learners**: `/api/v1/learners`
+- **Products**: `/api/v1/products`
+- **Enrollments**: `/api/v1/learners/{id}/enrollments`
+- **Progress**: `/api/v1/courses/{id}/progress/{learnerId}`
+- **Analytics**: `/api/v1/learners/{id}/analytics/usage`
+- **Transactions**: `/api/v1/learners/{id}/transactions`
+- **Admin**: `/api/v1/admin/*`
+
 ## How to Get Graphy API Credentials
 
 1. **Log in to your Graphy Admin Dashboard**
@@ -29,11 +41,12 @@ DASHBOARD_RATE_LIMIT_PER_MINUTE=100
 ## Testing the Setup
 
 1. **Start the development server**: `npm run dev`
-2. **Open the dashboard**: Navigate to `/dashboard`
-3. **Check the console logs**:
+2. **Test API connection**: Navigate to `/api/test-graphy` to verify API connectivity
+3. **Open the dashboard**: Navigate to `/dashboard`
+4. **Check the console logs**:
    - ✅ "Using REAL data from Graphy API" = API is working
    - ⚠️ "Using mock/cached data" = API not configured or failing
-4. **Check the UI indicator**:
+5. **Check the UI indicator**:
    - Green "✅ Live Data" badge = Real Graphy data
    - Amber "⚠️ Demo Data" badge = Mock data
 

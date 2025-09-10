@@ -107,8 +107,8 @@ export class DashboardService {
         products
       );
       
-      const allProducts = await this.getAllAvailableProducts();
-      const popularProducts = await this.getPopularProducts();
+      const allProducts = await graphyClient.getAllProducts();
+      const popularProducts = await graphyClient.getPopularProducts();
       const recommendations = await recommendationEngine.generateRecommendations(
         learnerProfile,
         allProducts,
@@ -409,23 +409,6 @@ export class DashboardService {
     return streak;
   }
 
-  /**
-   * Get all available products (for recommendations)
-   */
-  private async getAllAvailableProducts(): Promise<GraphyProduct[]> {
-    // This would typically call a Graphy API endpoint to get all products
-    // For now, return empty array - implement based on available Graphy API
-    return [];
-  }
-
-  /**
-   * Get popular products (for recommendations)
-   */
-  private async getPopularProducts(): Promise<GraphyProduct[]> {
-    // This would typically call a Graphy API endpoint to get popular products
-    // For now, return empty array - implement based on available Graphy API
-    return [];
-  }
 
   /**
    * Get mock recent activity data
