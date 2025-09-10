@@ -2,8 +2,18 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 
-// Mock Next.js router
+// Mock functions
 const mockFn = () => (() => {});
+const mockAsyncFn = () => (() => Promise.resolve());
+const mockFetchFn = () => (() => Promise.resolve(new Response()));
+
+// Safe jest mock function
+const createMockFn = () => {
+  if (typeof (globalThis as any).jest !== 'undefined') {
+    return (globalThis as any).jest.fn();
+  }
+  return () => {};
+};
 if (typeof (globalThis as any).jest !== 'undefined') {
   (globalThis as any).jest.mock('next/navigation', () => ({
     useRouter: () => ({
@@ -30,16 +40,14 @@ if (typeof (globalThis as any).jest !== 'undefined') {
   }));
 
   // Mock fetch
-  global.fetch = mockFn();
+  global.fetch = mockFetchFn();
 }
 
 // Mock window.matchMedia
 if (typeof window !== 'undefined') {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
-    value: (() => {
-      const mock = mockFn();
-      return mock.mockImplementation ? mock.mockImplementation(query => ({
+    value: (query: string) => ({
       matches: false,
       media: query,
       onchange: null,
@@ -48,18 +56,22 @@ if (typeof window !== 'undefined') {
       addEventListener: mockFn(),
       removeEventListener: mockFn(),
       dispatchEvent: mockFn(),
-    })) : mock;
-    })(),
+    }),
   });
 }
 
 // Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
+  root = null;
+  rootMargin = '';
+  thresholds = [];
+  
   constructor() {}
   disconnect() {}
   observe() {}
   unobserve() {}
-};
+  takeRecords() { return []; }
+} as any;
 
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
@@ -71,31 +83,37 @@ global.ResizeObserver = class ResizeObserver {
 
 // Mock localStorage
 const localStorageMock = {
-  getItem: mockFn(),
+  getItem: () => null,
   setItem: mockFn(),
   removeItem: mockFn(),
   clear: mockFn(),
+  length: 0,
+  key: () => null,
 };
-global.localStorage = localStorageMock;
+global.localStorage = localStorageMock as unknown as Storage;
 
 // Mock sessionStorage
 const sessionStorageMock = {
-  getItem: mockFn(),
+  getItem: () => null,
   setItem: mockFn(),
   removeItem: mockFn(),
   clear: mockFn(),
+  length: 0,
+  key: () => null,
 };
-global.sessionStorage = sessionStorageMock;
+global.sessionStorage = sessionStorageMock as unknown as Storage;
 
 // Mock crypto for JWT
 Object.defineProperty(global, 'crypto', {
   value: {
     randomUUID: () => 'mock-uuid',
-    getRandomValues: (arr) => arr.map(() => Math.floor(Math.random() * 256)),
+    getRandomValues: (arr: any) => arr.map(() => Math.floor(Math.random() * 256)),
   },
 });
 
 // Mock environment variables
-process.env.NODE_ENV = 'test';
-process.env.NEXTAUTH_SECRET = 'test-secret';
-process.env.NEXTAUTH_URL = 'http://localhost:3000';
+if (typeof process !== 'undefined' && process.env) {
+  (process.env as any).NODE_ENV = 'test';
+  (process.env as any).NEXTAUTH_SECRET = 'test-secret';
+  (process.env as any).NEXTAUTH_URL = 'http://localhost:3000';
+}
