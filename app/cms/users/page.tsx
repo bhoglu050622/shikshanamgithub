@@ -1,303 +1,129 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useAuth } from '@/cms/context/AuthContext'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import {
-  Users,
-  UserPlus,
-  Shield,
-  Key,
-  Settings,
-  Search,
-  Filter,
-  MoreHorizontal,
-  Edit,
+import { 
+  Users, 
+  Plus, 
+  Search, 
+  Filter, 
+  Edit, 
   Trash2,
-  Eye,
-  Lock,
-  Unlock,
+  User,
   Mail,
-  Phone,
   Calendar,
+  Shield,
+  Activity,
   CheckCircle,
-  XCircle,
-  AlertCircle,
+  XCircle
 } from 'lucide-react'
 
 interface User {
   id: string
   username: string
   email: string
-  role: 'ADMIN' | 'PUBLISHER' | 'REVIEWER' | 'EDITOR' | 'VIEWER'
-  status: 'active' | 'inactive' | 'pending'
-  lastLogin: string
+  firstName: string
+  lastName: string
+  role: string
+  isActive: boolean
+  lastLoginAt?: string
   createdAt: string
-  permissions: string[]
-  twoFactorEnabled: boolean
-  avatar?: string
-}
-
-interface Role {
-  id: string
-  name: string
-  description: string
-  permissions: string[]
-  color: string
-}
-
-interface Permission {
-  id: string
-  name: string
-  description: string
-  category: 'content' | 'media' | 'users' | 'system' | 'publishing'
-}
-
-const mockUsers: User[] = [
-  {
-    id: '1',
-    username: 'admin',
-    email: 'admin@shikshanam.com',
-    role: 'ADMIN',
-    status: 'active',
-    lastLogin: '2024-01-15T10:30:00Z',
-    createdAt: '2024-01-01T00:00:00Z',
-    permissions: ['*'],
-    twoFactorEnabled: true
-  },
-  {
-    id: '2',
-    username: 'dr_priya_sharma',
-    email: 'priya@shikshanam.com',
-    role: 'PUBLISHER',
-    status: 'active',
-    lastLogin: '2024-01-14T15:45:00Z',
-    createdAt: '2024-01-05T09:00:00Z',
-    permissions: ['content:read', 'content:write', 'content:publish', 'media:read', 'media:write'],
-    twoFactorEnabled: false
-  },
-  {
-    id: '3',
-    username: 'rajesh_kumar',
-    email: 'rajesh@shikshanam.com',
-    role: 'EDITOR',
-    status: 'active',
-    lastLogin: '2024-01-13T12:20:00Z',
-    createdAt: '2024-01-08T14:30:00Z',
-    permissions: ['content:read', 'content:write', 'media:read'],
-    twoFactorEnabled: false
-  },
-  {
-    id: '4',
-    username: 'meera_patel',
-    email: 'meera@shikshanam.com',
-    role: 'REVIEWER',
-    status: 'pending',
-    lastLogin: '2024-01-12T16:15:00Z',
-    createdAt: '2024-01-10T11:00:00Z',
-    permissions: ['content:read', 'content:review'],
-    twoFactorEnabled: false
-  },
-  {
-    id: '5',
-    username: 'viewer_user',
-    email: 'viewer@shikshanam.com',
-    role: 'VIEWER',
-    status: 'active',
-    lastLogin: '2024-01-11T08:30:00Z',
-    createdAt: '2024-01-12T10:00:00Z',
-    permissions: ['content:read'],
-    twoFactorEnabled: false
+  updatedAt: string
+  _count: {
+    createdCourses: number
+    createdBlogPosts: number
+    createdPackages: number
   }
-]
-
-const mockRoles: Role[] = [
-  {
-    id: 'admin',
-    name: 'ADMIN',
-    description: 'Full system access and control',
-    permissions: ['*'],
-    color: 'bg-red-100 text-red-800'
-  },
-  {
-    id: 'publisher',
-    name: 'PUBLISHER',
-    description: 'Can create, edit, and publish content',
-    permissions: ['content:read', 'content:write', 'content:publish', 'media:read', 'media:write'],
-    color: 'bg-purple-100 text-purple-800'
-  },
-  {
-    id: 'reviewer',
-    name: 'REVIEWER',
-    description: 'Can review and approve content',
-    permissions: ['content:read', 'content:review'],
-    color: 'bg-blue-100 text-blue-800'
-  },
-  {
-    id: 'editor',
-    name: 'EDITOR',
-    description: 'Can create and edit content',
-    permissions: ['content:read', 'content:write', 'media:read'],
-    color: 'bg-green-100 text-green-800'
-  },
-  {
-    id: 'viewer',
-    name: 'VIEWER',
-    description: 'Read-only access to content',
-    permissions: ['content:read'],
-    color: 'bg-gray-100 text-gray-800'
-  }
-]
-
-const mockPermissions: Permission[] = [
-  // Content permissions
-  { id: 'content:read', name: 'Read Content', description: 'View content items', category: 'content' },
-  { id: 'content:write', name: 'Write Content', description: 'Create and edit content', category: 'content' },
-  { id: 'content:publish', name: 'Publish Content', description: 'Publish content to production', category: 'content' },
-  { id: 'content:review', name: 'Review Content', description: 'Review and approve content', category: 'content' },
-  { id: 'content:delete', name: 'Delete Content', description: 'Delete content items', category: 'content' },
-  
-  // Media permissions
-  { id: 'media:read', name: 'Read Media', description: 'View media files', category: 'media' },
-  { id: 'media:write', name: 'Write Media', description: 'Upload and edit media', category: 'media' },
-  { id: 'media:delete', name: 'Delete Media', description: 'Delete media files', category: 'media' },
-  
-  // User permissions
-  { id: 'users:read', name: 'Read Users', description: 'View user accounts', category: 'users' },
-  { id: 'users:write', name: 'Write Users', description: 'Create and edit users', category: 'users' },
-  { id: 'users:delete', name: 'Delete Users', description: 'Delete user accounts', category: 'users' },
-  
-  // System permissions
-  { id: 'system:settings', name: 'System Settings', description: 'Modify system settings', category: 'system' },
-  { id: 'system:logs', name: 'View Logs', description: 'Access system logs', category: 'system' },
-  
-  // Publishing permissions
-  { id: 'publishing:deploy', name: 'Deploy', description: 'Deploy to production', category: 'publishing' },
-  { id: 'publishing:rollback', name: 'Rollback', description: 'Rollback deployments', category: 'publishing' }
-]
+}
 
 export default function UsersPage() {
   const { user } = useAuth()
-  const [users, setUsers] = useState<User[]>(mockUsers)
-  const [roles, setRoles] = useState<Role[]>(mockRoles)
-  const [permissions, setPermissions] = useState<Permission[]>(mockPermissions)
-  const [selectedUser, setSelectedUser] = useState<User | null>(null)
-  const [createUserDialog, setCreateUserDialog] = useState(false)
-  const [editUserDialog, setEditUserDialog] = useState(false)
-  const [newUser, setNewUser] = useState({
-    username: '',
-    email: '',
-    role: 'VIEWER' as User['role'],
-    permissions: [] as string[]
-  })
-  const [searchTerm, setSearchTerm] = useState('')
+  const [users, setUsers] = useState<User[]>([])
+  const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState('')
   const [roleFilter, setRoleFilter] = useState<string>('all')
   const [statusFilter, setStatusFilter] = useState<string>('all')
-
-  const filteredUsers = users.filter(user => {
-    const matchesSearch = !searchTerm || 
-      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesRole = roleFilter === 'all' || user.role === roleFilter
-    const matchesStatus = statusFilter === 'all' || user.status === statusFilter
-    
-    return matchesSearch && matchesRole && matchesStatus
+  const [page, setPage] = useState(1)
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 10,
+    total: 0,
+    pages: 0,
   })
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'active': return <CheckCircle className="w-4 h-4 text-green-500" />
-      case 'inactive': return <XCircle className="w-4 h-4 text-red-500" />
-      case 'pending': return <AlertCircle className="w-4 h-4 text-yellow-500" />
-      default: return <AlertCircle className="w-4 h-4 text-gray-500" />
+  const fetchUsers = useCallback(async () => {
+    try {
+      setLoading(true)
+      const params = new URLSearchParams({
+        page: page.toString(),
+        limit: '10',
+      })
+
+      if (search) params.set('search', search)
+      if (roleFilter !== 'all') params.set('role', roleFilter)
+      if (statusFilter !== 'all') params.set('isActive', statusFilter === 'active' ? 'true' : 'false')
+
+      const token = localStorage.getItem('cmsAccessToken')
+      const response = await fetch(`/api/cms/users?${params}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setUsers(data.users)
+        setPagination(data.pagination)
+      } else {
+        console.error('Failed to fetch users')
+      }
+    } catch (error) {
+      console.error('Error fetching users:', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [page, search, roleFilter, statusFilter])
+
+  useEffect(() => {
+    fetchUsers()
+  }, [fetchUsers])
+
+  const getRoleColor = (role: string) => {
+    switch (role) {
+      case 'ADMIN': return 'bg-red-100 text-red-800'
+      case 'PUBLISHER': return 'bg-purple-100 text-purple-800'
+      case 'INSTRUCTOR': return 'bg-blue-100 text-blue-800'
+      case 'CONTENT_EDITOR': return 'bg-green-100 text-green-800'
+      case 'EDITOR': return 'bg-yellow-100 text-yellow-800'
+      case 'SUPPORT_MODERATOR': return 'bg-orange-100 text-orange-800'
+      case 'VIEWER': return 'bg-gray-100 text-gray-800'
+      default: return 'bg-gray-100 text-gray-800'
     }
   }
 
-  const getStatusBadge = (status: string) => {
-    const variants = {
-      active: 'bg-green-100 text-green-800',
-      inactive: 'bg-red-100 text-red-800',
-      pending: 'bg-yellow-100 text-yellow-800'
-    }
-    return variants[status as keyof typeof variants] || 'bg-gray-100 text-gray-800'
+  const getStatusIcon = (isActive: boolean) => {
+    return isActive ? (
+      <CheckCircle className="w-4 h-4 text-green-600" />
+    ) : (
+      <XCircle className="w-4 h-4 text-red-600" />
+    )
   }
 
-  const getRoleBadge = (role: string) => {
-    const roleData = roles.find(r => r.name === role)
-    return roleData?.color || 'bg-gray-100 text-gray-800'
-  }
-
-  const handleCreateUser = () => {
-    const user: User = {
-      id: Date.now().toString(),
-      username: newUser.username,
-      email: newUser.email,
-      role: newUser.role,
-      status: 'pending',
-      lastLogin: '',
-      createdAt: new Date().toISOString(),
-      permissions: newUser.permissions,
-      twoFactorEnabled: false
-    }
+  const formatLastLogin = (lastLoginAt?: string) => {
+    if (!lastLoginAt) return 'Never'
+    const date = new Date(lastLoginAt)
+    const now = new Date()
+    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
     
-    setUsers(prev => [...prev, user])
-    setCreateUserDialog(false)
-    setNewUser({ username: '', email: '', role: 'VIEWER', permissions: [] })
-  }
-
-  const handleUpdateUser = (userId: string, updates: Partial<User>) => {
-    setUsers(prev => prev.map(user => 
-      user.id === userId ? { ...user, ...updates } : user
-    ))
-  }
-
-  const handleDeleteUser = (userId: string) => {
-    setUsers(prev => prev.filter(user => user.id !== userId))
-  }
-
-  const handleToggleUserStatus = (userId: string) => {
-    setUsers(prev => prev.map(user => 
-      user.id === userId ? { 
-        ...user, 
-        status: user.status === 'active' ? 'inactive' : 'active' 
-      } : user
-    ))
-  }
-
-  const handleTogglePermission = (permissionId: string) => {
-    setNewUser(prev => ({
-      ...prev,
-      permissions: prev.permissions.includes(permissionId)
-        ? prev.permissions.filter(p => p !== permissionId)
-        : [...prev.permissions, permissionId]
-    }))
-  }
-
-  const getPermissionsByCategory = (category: string) => {
-    return permissions.filter(p => p.category === category)
+    if (diffInHours < 1) return 'Just now'
+    if (diffInHours < 24) return `${diffInHours}h ago`
+    if (diffInHours < 168) return `${Math.floor(diffInHours / 24)}d ago`
+    return date.toLocaleDateString()
   }
 
   return (
@@ -305,376 +131,244 @@ export default function UsersPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Users & Permissions</h1>
-          <p className="text-gray-600">Manage user accounts, roles, and access permissions</p>
+          <h1 className="text-2xl font-bold text-gray-900">Users</h1>
+          <p className="text-gray-600">Manage user accounts and permissions</p>
         </div>
-        <Button onClick={() => setCreateUserDialog(true)}>
-          <UserPlus className="w-4 h-4 mr-2" />
-          Add User
+        <Button 
+          className="bg-orange-600 hover:bg-orange-700"
+          onClick={() => {
+            // TODO: Implement create user modal
+            console.log('Create new user')
+          }}
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          New User
         </Button>
       </div>
 
       {/* Filters */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center">
-            <Filter className="w-5 h-5 mr-2" />
-            Filters & Search
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-              <Input
-                placeholder="Search users..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
+        <CardContent className="p-4">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Input
+                  placeholder="Search users..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
             </div>
-            
             <Select value={roleFilter} onValueChange={setRoleFilter}>
-              <SelectTrigger>
-                <SelectValue placeholder="Role" />
+              <SelectTrigger className="w-48">
+                <Filter className="w-4 h-4 mr-2" />
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Roles</SelectItem>
-                {roles.map(role => (
-                  <SelectItem key={role.id} value={role.name}>{role.name}</SelectItem>
-                ))}
+                <SelectItem value="ADMIN">Admin</SelectItem>
+                <SelectItem value="PUBLISHER">Publisher</SelectItem>
+                <SelectItem value="INSTRUCTOR">Instructor</SelectItem>
+                <SelectItem value="CONTENT_EDITOR">Content Editor</SelectItem>
+                <SelectItem value="EDITOR">Editor</SelectItem>
+                <SelectItem value="SUPPORT_MODERATOR">Support Moderator</SelectItem>
+                <SelectItem value="VIEWER">Viewer</SelectItem>
               </SelectContent>
             </Select>
-
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger>
-                <SelectValue placeholder="Status" />
+              <SelectTrigger className="w-32">
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Status</SelectItem>
                 <SelectItem value="active">Active</SelectItem>
                 <SelectItem value="inactive">Inactive</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
               </SelectContent>
             </Select>
-
-            <div className="flex items-center space-x-2">
-              <Badge variant="outline">
-                {filteredUsers.length} users
-              </Badge>
-            </div>
           </div>
         </CardContent>
       </Card>
 
-      <Tabs defaultValue="users" className="space-y-6">
-        <TabsList>
-          <TabsTrigger value="users">Users</TabsTrigger>
-          <TabsTrigger value="roles">Roles</TabsTrigger>
-          <TabsTrigger value="permissions">Permissions</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="users" className="space-y-6">
-          {/* Users Table */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Users className="w-5 h-5 mr-2" />
-                User Accounts
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>User</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Last Login</TableHead>
-                    <TableHead>2FA</TableHead>
-                    <TableHead className="w-12"></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredUsers.map((user) => (
-                    <TableRow key={user.id}>
-                      <TableCell>
-                        <div>
-                          <div className="font-medium">{user.username}</div>
-                          <div className="text-sm text-gray-500">{user.email}</div>
+      {/* Users Table */}
+      {loading ? (
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-4">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="flex items-center space-x-4 animate-pulse">
+                  <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+                    <div className="h-3 bg-gray-200 rounded w-1/3"></div>
+                  </div>
+                  <div className="h-6 bg-gray-200 rounded w-20"></div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      ) : users.length === 0 ? (
+        <Card>
+          <CardContent className="flex flex-col items-center justify-center py-12">
+            <Users className="w-12 h-12 text-gray-400 mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No users found</h3>
+            <p className="text-gray-600 text-center mb-4">
+              {search || roleFilter !== 'all' || statusFilter !== 'all'
+                ? 'Try adjusting your search or filters'
+                : 'Get started by creating your first user account'
+              }
+            </p>
+            <Button 
+              className="bg-orange-600 hover:bg-orange-700"
+              onClick={() => {
+                // TODO: Implement create user modal
+                console.log('Create new user')
+              }}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Create User
+            </Button>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="border-b bg-gray-50">
+                  <tr>
+                    <th className="text-left p-4 font-medium text-gray-900">User</th>
+                    <th className="text-left p-4 font-medium text-gray-900">Role</th>
+                    <th className="text-left p-4 font-medium text-gray-900">Status</th>
+                    <th className="text-left p-4 font-medium text-gray-900">Content</th>
+                    <th className="text-left p-4 font-medium text-gray-900">Last Login</th>
+                    <th className="text-left p-4 font-medium text-gray-900">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((userData) => (
+                    <tr key={userData.id} className="border-b hover:bg-gray-50">
+                      <td className="p-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                            <User className="w-5 h-5 text-orange-600" />
+                          </div>
+                          <div>
+                            <div className="font-medium text-gray-900">
+                              {userData.firstName && userData.lastName 
+                                ? `${userData.firstName} ${userData.lastName}`
+                                : userData.username
+                              }
+                            </div>
+                            <div className="text-sm text-gray-500 flex items-center">
+                              <Mail className="w-3 h-3 mr-1" />
+                              {userData.email}
+                            </div>
+                          </div>
                         </div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge className={getRoleBadge(user.role)}>
-                          {user.role}
+                      </td>
+                      <td className="p-4">
+                        <Badge className={getRoleColor(userData.role)}>
+                          <Shield className="w-3 h-3 mr-1" />
+                          {userData.role.replace('_', ' ')}
                         </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center space-x-2">
-                          {getStatusIcon(user.status)}
-                          <Badge className={getStatusBadge(user.status)}>
-                            {user.status}
-                          </Badge>
+                      </td>
+                      <td className="p-4">
+                        <div className="flex items-center">
+                          {getStatusIcon(userData.isActive)}
+                          <span className="ml-2 text-sm">
+                            {userData.isActive ? 'Active' : 'Inactive'}
+                          </span>
                         </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="text-sm">
-                          {user.lastLogin ? new Date(user.lastLogin).toLocaleDateString() : 'Never'}
+                      </td>
+                      <td className="p-4">
+                        <div className="text-sm text-gray-600">
+                          <div className="flex items-center space-x-4">
+                            <span className="flex items-center">
+                              <Activity className="w-3 h-3 mr-1" />
+                              {userData._count.createdCourses} courses
+                            </span>
+                            <span className="flex items-center">
+                              <Activity className="w-3 h-3 mr-1" />
+                              {userData._count.createdBlogPosts} posts
+                            </span>
+                            <span className="flex items-center">
+                              <Activity className="w-3 h-3 mr-1" />
+                              {userData._count.createdPackages} packages
+                            </span>
+                          </div>
                         </div>
-                      </TableCell>
-                      <TableCell>
-                        {user.twoFactorEnabled ? (
-                          <CheckCircle className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <XCircle className="w-4 h-4 text-gray-400" />
-                        )}
-                      </TableCell>
-                      <TableCell>
+                      </td>
+                      <td className="p-4">
+                        <div className="text-sm text-gray-600 flex items-center">
+                          <Calendar className="w-3 h-3 mr-1" />
+                          {formatLastLogin(userData.lastLoginAt)}
+                        </div>
+                      </td>
+                      <td className="p-4">
                         <div className="flex items-center space-x-2">
-                          <Button
-                            variant="ghost"
+                          <Button 
+                            variant="outline" 
                             size="sm"
                             onClick={() => {
-                              setSelectedUser(user)
-                              setEditUserDialog(true)
+                              // TODO: Implement edit user functionality
+                              console.log('Edit user:', userData.id)
                             }}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleToggleUserStatus(user.id)}
-                          >
-                            {user.status === 'active' ? (
-                              <Lock className="w-4 h-4" />
-                            ) : (
-                              <Unlock className="w-4 h-4" />
-                            )}
-                          </Button>
+                          {user?.role === 'ADMIN' && userData.id !== user.id && (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="text-red-600 hover:text-red-700"
+                              onClick={() => {
+                                if (confirm(`Are you sure you want to delete user ${userData.username}?`)) {
+                                  // TODO: Implement delete user functionality
+                                  console.log('Delete user:', userData.id)
+                                }
+                              }}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          )}
                         </div>
-                      </TableCell>
-                    </TableRow>
+                      </td>
+                    </tr>
                   ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="roles" className="space-y-6">
-          {/* Roles */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Shield className="w-5 h-5 mr-2" />
-                Roles
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {roles.map((role) => (
-                  <div key={role.id} className="p-4 border rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-medium">{role.name}</h3>
-                      <Badge className={role.color}>
-                        {role.name}
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-3">{role.description}</p>
-                    <div className="space-y-1">
-                      <div className="text-sm font-medium">Permissions:</div>
-                      <div className="text-sm text-gray-600">
-                        {role.permissions.length} permission{role.permissions.length !== 1 ? 's' : ''}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="permissions" className="space-y-6">
-          {/* Permissions */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Key className="w-5 h-5 mr-2" />
-                Permissions
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {['content', 'media', 'users', 'system', 'publishing'].map(category => (
-                  <div key={category}>
-                    <h3 className="font-medium capitalize mb-3">{category} Permissions</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {getPermissionsByCategory(category).map((permission) => (
-                        <div key={permission.id} className="p-3 border rounded-lg">
-                          <div className="font-medium">{permission.name}</div>
-                          <div className="text-sm text-gray-600">{permission.description}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
-
-      {/* Create User Dialog */}
-      <Dialog open={createUserDialog} onOpenChange={setCreateUserDialog}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Create New User</DialogTitle>
-            <DialogDescription>
-              Add a new user account with appropriate permissions
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="username">Username</Label>
-                <Input
-                  id="username"
-                  value={newUser.username}
-                  onChange={(e) => setNewUser(prev => ({ ...prev, username: e.target.value }))}
-                  placeholder="Enter username"
-                />
-              </div>
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={newUser.email}
-                  onChange={(e) => setNewUser(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="Enter email"
-                />
-              </div>
+                </tbody>
+              </table>
             </div>
-            
-            <div>
-              <Label htmlFor="role">Role</Label>
-              <Select value={newUser.role} onValueChange={(value: any) => setNewUser(prev => ({ ...prev, role: value }))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {roles.map(role => (
-                    <SelectItem key={role.id} value={role.name}>{role.name}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div>
-              <Label>Custom Permissions</Label>
-              <div className="space-y-4 mt-2">
-                {['content', 'media', 'users', 'system', 'publishing'].map(category => (
-                  <div key={category}>
-                    <h4 className="font-medium capitalize mb-2">{category} Permissions</h4>
-                    <div className="space-y-2">
-                      {getPermissionsByCategory(category).map((permission) => (
-                        <div key={permission.id} className="flex items-center space-x-2">
-                          <Checkbox
-                            id={permission.id}
-                            checked={newUser.permissions.includes(permission.id)}
-                            onCheckedChange={() => handleTogglePermission(permission.id)}
-                          />
-                          <Label htmlFor={permission.id} className="text-sm">
-                            {permission.name}
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Pagination */}
+      {pagination.pages > 1 && (
+        <div className="flex items-center justify-between">
+          <div className="text-sm text-gray-600">
+            Showing {((pagination.page - 1) * pagination.limit) + 1} to {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} users
           </div>
-          
-          <div className="flex justify-end space-x-2">
-            <Button variant="outline" onClick={() => setCreateUserDialog(false)}>
-              Cancel
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              disabled={pagination.page <= 1}
+              onClick={() => setPage(page - 1)}
+            >
+              Previous
             </Button>
-            <Button onClick={handleCreateUser}>
-              Create User
+            <Button
+              variant="outline"
+              disabled={pagination.page >= pagination.pages}
+              onClick={() => setPage(page + 1)}
+            >
+              Next
             </Button>
           </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Edit User Dialog */}
-      <Dialog open={editUserDialog} onOpenChange={setEditUserDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit User</DialogTitle>
-            <DialogDescription>
-              Modify user account settings and permissions
-            </DialogDescription>
-          </DialogHeader>
-          
-          {selectedUser && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="edit-username">Username</Label>
-                  <Input
-                    id="edit-username"
-                    value={selectedUser.username}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, username: e.target.value } : null)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="edit-email">Email</Label>
-                  <Input
-                    id="edit-email"
-                    type="email"
-                    value={selectedUser.email}
-                    onChange={(e) => setSelectedUser(prev => prev ? { ...prev, email: e.target.value } : null)}
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <Label htmlFor="edit-role">Role</Label>
-                <Select 
-                  value={selectedUser.role} 
-                  onValueChange={(value: any) => setSelectedUser(prev => prev ? { ...prev, role: value } : null)}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {roles.map(role => (
-                      <SelectItem key={role.id} value={role.name}>{role.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          )}
-          
-          <div className="flex justify-end space-x-2">
-            <Button variant="outline" onClick={() => setEditUserDialog(false)}>
-              Cancel
-            </Button>
-            <Button onClick={() => {
-              if (selectedUser) {
-                handleUpdateUser(selectedUser.id, selectedUser)
-                setEditUserDialog(false)
-              }
-            }}>
-              Save Changes
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+        </div>
+      )}
     </div>
   )
 }

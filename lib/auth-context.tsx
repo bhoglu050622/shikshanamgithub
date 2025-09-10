@@ -39,11 +39,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Check for existing auth state on mount
   useEffect(() => {
-    // Check for saved auth state in cookies
-    const authData = getAuthCookie()
-    if (authData && authData.isLoggedIn && authData.user) {
-      setIsLoggedIn(true)
-      setUser(authData.user)
+    try {
+      // Check for saved auth state in cookies
+      const authData = getAuthCookie()
+      if (authData && authData.isLoggedIn && authData.user) {
+        setIsLoggedIn(true)
+        setUser(authData.user)
+      }
+    } catch (error) {
+      console.warn('Failed to load auth state from cookies:', error)
+      // Clear potentially corrupted auth data
+      deleteAuthCookie()
     }
     
     setIsInitialized(true)

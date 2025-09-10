@@ -156,7 +156,17 @@ async function handleStaticAsset(request) {
 // Handle API requests - network first with cache fallback
 async function handleAPIRequest(request) {
   try {
-    const networkResponse = await fetch(request);
+    // Create a new request with credentials included to ensure authentication cookies are sent
+    const authenticatedRequest = new Request(request, {
+      credentials: 'include',
+      headers: {
+        ...Object.fromEntries(request.headers.entries()),
+        // Ensure cookies are included for authentication
+        'Cache-Control': 'no-cache'
+      }
+    });
+    
+    const networkResponse = await fetch(authenticatedRequest);
     
     if (networkResponse.ok) {
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
@@ -187,7 +197,16 @@ async function handleAPIRequest(request) {
 // Handle page requests - network first with cache fallback
 async function handlePageRequest(request) {
   try {
-    const networkResponse = await fetch(request);
+    // Create a new request with credentials included for authenticated pages
+    const authenticatedRequest = new Request(request, {
+      credentials: 'include',
+      headers: {
+        ...Object.fromEntries(request.headers.entries()),
+        'Cache-Control': 'no-cache'
+      }
+    });
+    
+    const networkResponse = await fetch(authenticatedRequest);
     
     if (networkResponse.ok) {
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
@@ -214,7 +233,16 @@ async function handlePageRequest(request) {
 // Handle other requests - network first
 async function handleOtherRequest(request) {
   try {
-    return await fetch(request);
+    // Create a new request with credentials included
+    const authenticatedRequest = new Request(request, {
+      credentials: 'include',
+      headers: {
+        ...Object.fromEntries(request.headers.entries()),
+        'Cache-Control': 'no-cache'
+      }
+    });
+    
+    return await fetch(authenticatedRequest);
   } catch (error) {
     console.error('Service Worker: Network error for other request', error);
     return new Response('Resource not available', { status: 503 });
@@ -257,8 +285,12 @@ async function syncAction(action) {
   try {
     const response = await fetch(action.url, {
       method: action.method,
-      headers: action.headers,
-      body: action.body
+      headers: {
+        ...action.headers,
+        'Cache-Control': 'no-cache'
+      },
+      body: action.body,
+      credentials: 'include' // Include authentication cookies
     });
     
     if (response.ok) {

@@ -428,7 +428,7 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
   }
 
   return (
-    <section className="section-padding relative overflow-hidden" aria-labelledby="gurus-title">
+    <section className="py-8 sm:py-12 md:py-16 relative overflow-hidden" aria-labelledby="gurus-title">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10">
         <motion.div

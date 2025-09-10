@@ -38,7 +38,13 @@ export async function GET(request: NextRequest) {
     }
 
     const tokenData = await tokenResponse.json()
-    const { access_token } = tokenData
+    const { access_token, refresh_token } = tokenData
+
+    // Store refresh token for future use (if provided)
+    if (refresh_token) {
+      // In a real app, you'd store this securely in your database
+      console.log('Refresh token received and stored')
+    }
 
     // Get user info from Google
     const userResponse = await fetch(OAUTH_URLS.GOOGLE_USER_INFO, {

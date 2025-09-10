@@ -1,110 +1,113 @@
-# Graphy API Setup for Real Dashboard Data
+# Graphy API Setup Guide
 
 ## Overview
-The dashboard is now configured to pull real-time data from the Graphy API using the correct endpoints from the official documentation. If the API is not configured, it will fall back to mock data for development.
+This guide explains how to configure the Graphy API integration for the Shikshanam dashboard.
 
-## Environment Variables Required
+## Prerequisites
+- A Graphy account with Advanced Plan (API access is only available on Advanced Plan)
+- Access to your Graphy course platform
 
-Add these to your `.env.local` file:
+## Step 1: Get API Credentials
+
+1. Log in to your Graphy course platform
+2. In the menu bar, select **Integration API**
+3. On the right-hand side, you'll see your API dashboard
+4. Copy your **Merchant ID (MID)** and **API Token (Key)**
+
+## Step 2: Configure Environment Variables
+
+Create a `.env.local` file in your project root with the following variables:
 
 ```bash
 # Graphy API Configuration
-GRAPHY_API_BASE_URL=https://api.graphy.com
-GRAPHY_API_KEY=your_graphy_api_key_here
-GRAPHY_SECRET_KEY=your_graphy_secret_key_here
+GRAPHY_API_BASE_URL_V1=https://api.ongraphy.com/public/v1
+GRAPHY_API_BASE_URL_V3=https://api.ongraphy.com/t/api/public/v3
+GRAPHY_API_KEY=your_merchant_id_here
+GRAPHY_SECRET_KEY=your_api_token_here
+GRAPHY_MID=your_merchant_id_here
 
-# Optional: Cache and Rate Limiting
+# Dashboard Configuration
 DASHBOARD_CACHE_TTL_STATIC=3600
 DASHBOARD_CACHE_TTL_DYNAMIC=60
 DASHBOARD_RATE_LIMIT_PER_MINUTE=100
+
+# Security
+JWT_SECRET=your-jwt-secret-here
+CORS_ORIGINS=http://localhost:3000,https://shikshanam.com
+
+# Logging
+LOG_LEVEL=info
+ENABLE_API_LOGGING=true
 ```
 
-## API Endpoints Used
+## Step 3: API Endpoints
 
-The integration now uses the correct Graphy API endpoints:
+The Graphy API provides the following endpoints that we use:
 
-- **Learners**: `/api/v1/learners`
-- **Products**: `/api/v1/products`
-- **Enrollments**: `/api/v1/learners/{id}/enrollments`
-- **Progress**: `/api/v1/courses/{id}/progress/{learnerId}`
-- **Analytics**: `/api/v1/learners/{id}/analytics/usage`
-- **Transactions**: `/api/v1/learners/{id}/transactions`
-- **Admin**: `/api/v1/admin/*`
+### v1 API Endpoints (https://api.ongraphy.com/public/v1)
+- `POST /learners` - Create a new learner
+- `POST /learners/validity/update` - Update course validity for a learner
+- `GET /quizzes/{quizId}/reports` - Get quiz reports
+- `GET /transactions` - Get transactions with filtering
+- `GET /learners/{learnerId}/usage` - Get learner usage statistics
+- `GET /learners/{learnerId}/discussions` - Get learner discussions
 
-## How to Get Graphy API Credentials
+### v3 API Endpoints (https://api.ongraphy.com/t/api/public/v3)
+- `GET /products/activelearners` - Get active learners for products
+- `GET /products/courseprogressreports` - Get course progress reports
+- `GET /products/liveclass/attendees` - Get live class attendees
 
-1. **Log in to your Graphy Admin Dashboard**
-2. **Go to Settings > API Integration**
-3. **Generate API Key and Secret Key**
-4. **Copy the credentials to your environment variables**
+### Authentication
+All API requests use form-urlencoded authentication with:
+- `mid` (Merchant ID) - required
+- `key` (API Key) - required
 
-## Testing the Setup
+## Step 4: Testing the Integration
 
-1. **Start the development server**: `npm run dev`
-2. **Test API connection**: Navigate to `/api/test-graphy` to verify API connectivity
-3. **Open the dashboard**: Navigate to `/dashboard`
-4. **Check the console logs**:
-   - ✅ "Using REAL data from Graphy API" = API is working
-   - ⚠️ "Using mock/cached data" = API not configured or failing
-5. **Check the UI indicator**:
-   - Green "✅ Live Data" badge = Real Graphy data
-   - Amber "⚠️ Demo Data" badge = Mock data
-
-## Dashboard Features
-
-### Real-time Data Refresh
-- **Auto-refresh**: Every 10 minutes
-- **Manual refresh**: Click "Refresh" button in dashboard header
-- **Last updated**: Shows timestamp of last data fetch
-
-### Data Sources
-- **Course enrollment data**
-- **Progress reports**
-- **Activity timeline**
-- **Recommendations**
-- **Transactions**
-- **Certificates**
-
-### Error Handling
-- Graceful fallback to mock data if API fails
-- User-friendly error messages
-- Automatic retry mechanisms
-- Rate limiting protection
+1. Start your development server: `npm run dev`
+2. Log in to the dashboard
+3. Check the browser console for API status messages:
+   - ✅ "Using REAL data from Graphy API" - API is working
+   - 🔄 "Using fallback data - Graphy API unavailable" - API is not configured
+   - ⚠️ "Using mock/cached data" - API may not be configured
 
 ## Troubleshooting
 
-### Common Issues
+### API Not Configured Error
+If you see "Graphy API not configured" errors:
 
-1. **"Learner not found" error**
-   - Check if the email exists in Graphy
-   - Verify email authentication is working
-   - Contact support if needed
+1. Verify your `.env.local` file exists and has the correct values
+2. Restart your development server after adding environment variables
+3. Check that your API keys are correct (no extra spaces or quotes)
 
-2. **"Dashboard service error"**
-   - Check API credentials are correct
-   - Verify Graphy API is accessible
-   - Check network connectivity
+### 500 Internal Server Error
+If you get 500 errors from the Graphy API:
 
-3. **Rate limiting errors**
-   - Reduce refresh frequency
-   - Check API usage limits
-   - Contact Graphy support for higher limits
+1. Verify your API credentials are correct
+2. Check that your Graphy account has Advanced Plan
+3. Ensure the API endpoints are accessible from your server
+4. Check the server logs for detailed error messages
 
-### Debug Mode
+### Rate Limiting
+The API has rate limits. If you hit them:
 
-Set `ENABLE_API_LOGGING=true` in your environment to see detailed API logs.
+1. The system will automatically retry with exponential backoff
+2. Consider increasing the cache TTL values
+3. Monitor your API usage in the Graphy dashboard
 
-## API Endpoints Used
+## Fallback Mode
 
-The dashboard now uses `/api/dashboard/real-data` which:
-- Authenticates the user via cookies
-- Fetches real data from Graphy API
-- Returns structured dashboard data
-- Includes metadata about data source
+If the Graphy API is not configured or fails, the system will automatically fall back to demo data. This allows the dashboard to function for development and demonstration purposes.
 
-## Development vs Production
+## Documentation
 
-- **Development**: Falls back to mock data if API not configured
-- **Production**: Requires valid API credentials to function
+- [Graphy API Documentation](https://help.graphy.com/support/solutions/articles/1060000131905-how-to-use-apis-to-get-data-from-your-graphy-course-platform-)
+- [Graphy API Postman Collection](https://documenter.getpostman.com/view/15796483/Tzz5vKKr)
 
-This ensures developers can work without API access while production uses real data.
+## Support
+
+If you need help with the Graphy API integration:
+
+1. Check the Graphy support documentation
+2. Contact Graphy support for API-related issues
+3. Check the application logs for detailed error messages

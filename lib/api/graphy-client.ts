@@ -193,20 +193,27 @@ export class GraphyAPIClient {
   private cache = new MemoryCache();
   private rateLimiter = new RateLimiter();
   private config = DASHBOARD_CONFIG.GRAPHY;
+  private authErrorHandler?: (error: Error) => void;
 
   private async makeRequest<T>(
     endpoint: string,
     options: RequestInit = {},
     useCache = false,
     cacheKey?: string,
-    cacheTtl?: number
+    cacheTtl?: number,
+    useFormData = false,
+    baseUrl?: string
   ): Promise<T> {
+    const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const timestamp = new Date().toISOString();
+    
     // Check rate limit
     if (!this.rateLimiter.isAllowed(
       'graphy-api',
       DASHBOARD_CONFIG.RATE_LIMIT.GRAPHY_PER_MINUTE,
       DASHBOARD_CONFIG.RATE_LIMIT.WINDOW_MS
     )) {
+      console.error(`[${requestId}] Rate limit exceeded for Graphy API`);
       throw new Error('Rate limit exceeded');
     }
 
@@ -214,18 +221,80 @@ export class GraphyAPIClient {
     if (useCache && cacheKey) {
       const cached = this.cache.get<T>(cacheKey);
       if (cached) {
+        console.log(`[${requestId}] Cache hit for ${endpoint}`);
         return cached;
       }
     }
 
-    const url = `${this.config.BASE_URL}${endpoint}`;
-    const headers = {
+    // Add authentication parameters to the request
+    let finalEndpoint = endpoint;
+    let finalBody = options.body;
+    
+    // For GET requests, add mid and key as query parameters
+    if ((options.method || 'GET') === 'GET') {
+      const url = new URL(endpoint, baseUrl || this.config.BASE_URL_V1);
+      url.searchParams.append('mid', this.config.MID);
+      url.searchParams.append('key', this.config.API_KEY);
+      finalEndpoint = url.pathname + url.search;
+    } else if (useFormData && options.body) {
+      // For POST requests with form data, add mid and key to the form data
+      const formData = new URLSearchParams(options.body as string);
+      formData.append('mid', this.config.MID);
+      formData.append('key', this.config.API_KEY);
+      finalBody = formData.toString();
+    } else if (options.body) {
+      // For POST requests with JSON, add mid and key to the JSON body
+      try {
+        const bodyObj = typeof options.body === 'string' ? JSON.parse(options.body) : options.body;
+        bodyObj.mid = this.config.MID;
+        bodyObj.key = this.config.API_KEY;
+        finalBody = JSON.stringify(bodyObj);
+      } catch (error) {
+        console.warn(`[${requestId}] Could not parse JSON body to add auth params, using original body`);
+      }
+    } else {
+      // For POST requests without body, create a new body with auth params
+      if (useFormData) {
+        const formData = new URLSearchParams();
+        formData.append('mid', this.config.MID);
+        formData.append('key', this.config.API_KEY);
+        finalBody = formData.toString();
+      } else {
+        finalBody = JSON.stringify({
+          mid: this.config.MID,
+          key: this.config.API_KEY
+        });
+      }
+    }
+
+    const url = `${baseUrl || this.config.BASE_URL_V1}${finalEndpoint}`;
+    
+    // Use form-urlencoded headers for POST requests, JSON for GET
+    const headers = useFormData ? {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
+      ...options.headers,
+    } : {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.config.API_KEY}`,
-      'X-API-Key': this.config.SECRET_KEY,
       'Accept': 'application/json',
       ...options.headers,
     };
+
+    // Log outgoing request details (mask secrets)
+    const logHeaders = { ...headers } as any;
+    if (logHeaders.Authorization) {
+      logHeaders.Authorization = `Bearer ${this.config.API_KEY.substring(0, 8)}...`;
+    }
+    if (logHeaders['X-API-Key']) {
+      logHeaders['X-API-Key'] = `${this.config.SECRET_KEY.substring(0, 8)}...`;
+    }
+    
+    console.log(`[${requestId}] [${timestamp}] Graphy API Request:`, {
+      method: options.method || 'GET',
+      url,
+      headers: logHeaders,
+      body: options.body ? (typeof options.body === 'string' ? options.body.substring(0, 200) : '[Binary/FormData]') : undefined
+    });
 
     let retries = this.config.RETRY_ATTEMPTS;
     let lastError: Error | null = null;
@@ -238,20 +307,129 @@ export class GraphyAPIClient {
         const response = await fetch(url, {
           ...options,
           headers,
+          body: finalBody,
           signal: controller.signal,
         });
 
         clearTimeout(timeoutId);
 
+        // Log response details
+        const responseTimestamp = new Date().toISOString();
+        const contentType = response.headers.get('content-type');
+        
+        console.log(`[${requestId}] [${responseTimestamp}] Graphy API Response:`, {
+          status: response.status,
+          statusText: response.statusText,
+          contentType,
+          headers: Object.fromEntries(response.headers.entries())
+        });
+
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          // Handle 401 Unauthorized - Invalid session
+          if (response.status === 401) {
+            let errorDetails = '';
+            try {
+              const errorText = await response.text();
+              if (errorText) {
+                errorDetails = errorText.substring(0, 500);
+              }
+            } catch (e) {
+              // Ignore error reading response body
+            }
+            
+            console.error(`[${requestId}] Graphy API 401 Unauthorized - Invalid session:`, {
+              status: response.status,
+              statusText: response.statusText,
+              contentType,
+              errorDetails
+            });
+            
+            const error = new Error('Invalid session! You must be logged in for this operation');
+            (error as any).upstreamStatus = response.status;
+            (error as any).upstreamContentType = contentType;
+            (error as any).upstreamSnippet = errorDetails;
+            (error as any).errorCode = 'GRAPHY_INVALID_SESSION';
+            (error as any).isAuthError = true;
+            
+            // Handle authentication error
+            this.handleAuthError(error);
+            throw error;
+          }
+          
+          // Check if response is HTML (error page) instead of JSON
+          if (contentType && contentType.includes('text/html')) {
+            const htmlText = await response.text();
+            const htmlSnippet = htmlText.substring(0, 2048); // First 2KB
+            console.error(`[${requestId}] Graphy API returned HTML instead of JSON:`, {
+              status: response.status,
+              statusText: response.statusText,
+              contentType,
+              htmlSnippet
+            });
+            
+            // Create a structured error with upstream details
+            const error = new Error(`Graphy API returned HTML error page (${response.status}): ${response.statusText}`);
+            (error as any).upstreamStatus = response.status;
+            (error as any).upstreamContentType = contentType;
+            (error as any).upstreamSnippet = htmlSnippet;
+            (error as any).errorCode = 'GRAPHY_HTML_RESPONSE';
+            throw error;
+          }
+          
+          // For other non-2xx responses, try to get JSON error details
+          let errorDetails = '';
+          try {
+            const errorText = await response.text();
+            if (errorText) {
+              errorDetails = errorText.substring(0, 500);
+            }
+          } catch (e) {
+            // Ignore error reading response body
+          }
+          
+          console.error(`[${requestId}] Graphy API error response:`, {
+            status: response.status,
+            statusText: response.statusText,
+            contentType,
+            errorDetails
+          });
+          
+          const error = new Error(`Graphy API error (${response.status}): ${response.statusText}`);
+          (error as any).upstreamStatus = response.status;
+          (error as any).upstreamContentType = contentType;
+          (error as any).upstreamSnippet = errorDetails;
+          (error as any).errorCode = 'GRAPHY_API_ERROR';
+          throw error;
+        }
+
+        // Check if response is actually JSON
+        if (!contentType || !contentType.includes('application/json')) {
+          const textResponse = await response.text();
+          const textSnippet = textResponse.substring(0, 2048); // First 2KB
+          console.error(`[${requestId}] Graphy API returned non-JSON response:`, {
+            contentType,
+            textSnippet
+          });
+          
+          const error = new Error(`Graphy API returned non-JSON response: ${contentType}`);
+          (error as any).upstreamStatus = response.status;
+          (error as any).upstreamContentType = contentType;
+          (error as any).upstreamSnippet = textSnippet;
+          (error as any).errorCode = 'GRAPHY_NON_JSON_RESPONSE';
+          throw error;
         }
 
         const data = await response.json();
+        console.log(`[${requestId}] Graphy API success:`, {
+          dataType: typeof data,
+          dataKeys: data && typeof data === 'object' ? Object.keys(data) : 'not-object',
+          dataSize: JSON.stringify(data).length
+        });
 
         // Cache the result
         if (useCache && cacheKey && cacheTtl) {
           this.cache.set(cacheKey, data, cacheTtl);
+          console.log(`[${requestId}] Cached response for ${endpoint}`);
         }
 
         return data;
@@ -259,12 +437,21 @@ export class GraphyAPIClient {
         lastError = error as Error;
         retries--;
         
+        console.error(`[${requestId}] Graphy API request failed (${retries} retries left):`, {
+          error: error instanceof Error ? error.message : String(error),
+          retriesLeft: retries
+        });
+        
         if (retries > 0) {
           await new Promise(resolve => setTimeout(resolve, this.config.RETRY_DELAY));
         }
       }
     }
 
+    console.error(`[${requestId}] Graphy API request failed after all retries:`, {
+      finalError: lastError instanceof Error ? lastError.message : String(lastError)
+    });
+    
     throw lastError || new Error('Request failed after retries');
   }
 
@@ -274,32 +461,69 @@ export class GraphyAPIClient {
     const cached = this.cache.get<GraphyLearner>(cacheKey);
     if (cached) return cached;
 
-    // Check if we're in mock mode (no API credentials or API errors)
-    if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      console.log('Graphy API not configured, returning mock data');
-      return this.getMockLearner(email);
+    // Check if API is configured
+    if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here' || this.config.API_KEY === '') {
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      console.error('Please set GRAPHY_API_KEY and GRAPHY_SECRET_KEY in your environment variables');
+      console.error('Get your API keys from: https://help.graphy.com/support/solutions/articles/1060000131905-how-to-use-apis-to-get-data-from-your-graphy-course-platform-');
+      throw new Error('Graphy API not configured. Please set GRAPHY_API_KEY and GRAPHY_SECRET_KEY environment variables.');
     }
 
     try {
-      // Use the correct Graphy API endpoint for learners
-      const response = await this.makeRequest<{ data: GraphyLearner[] }>(
+      console.log(`🔍 Fetching learner data for email: ${email}`);
+      
+      // Try different API endpoint structures
+      const mid = this.config.MID;
+      const endpoints = [
         `/api/v1/learners?email=${encodeURIComponent(email)}`,
-        { method: 'GET' },
-        true,
-        cacheKey,
-        DASHBOARD_CONFIG.CACHE.STATIC_TTL
-      );
+        `/api/v1/users?email=${encodeURIComponent(email)}`,
+        `/api/v1/students?email=${encodeURIComponent(email)}`,
+        `/learners?email=${encodeURIComponent(email)}`,
+        `/users?email=${encodeURIComponent(email)}`,
+        // Try with merchant ID in path
+        ...(mid ? [
+          `/api/v1/${mid}/learners?email=${encodeURIComponent(email)}`,
+          `/api/v1/${mid}/users?email=${encodeURIComponent(email)}`,
+          `/api/v1/${mid}/students?email=${encodeURIComponent(email)}`,
+          `/${mid}/learners?email=${encodeURIComponent(email)}`,
+          `/${mid}/users?email=${encodeURIComponent(email)}`
+        ] : [])
+      ];
+      
+      let response: any = null;
+      let lastError: Error | null = null;
+      
+      for (const endpoint of endpoints) {
+        try {
+          console.log(`🔍 Trying endpoint: ${endpoint}`);
+          response = await this.makeRequest<{ data: GraphyLearner[] }>(
+            endpoint,
+            { method: 'GET' },
+            true,
+            cacheKey,
+            DASHBOARD_CONFIG.CACHE.STATIC_TTL
+          );
+          console.log(`👤 Graphy API response for learner:`, response);
+          break; // Success, exit the loop
+        } catch (error) {
+          console.log(`❌ Endpoint ${endpoint} failed:`, error instanceof Error ? error.message : String(error));
+          lastError = error as Error;
+          continue; // Try next endpoint
+        }
+      }
+      
+      if (!response) {
+        throw lastError || new Error('All Graphy API endpoints failed');
+      }
 
-      const learner = response.data?.find(l => l.email.toLowerCase() === email.toLowerCase());
+      const learner = response.data?.find((l: GraphyLearner) => l.email.toLowerCase() === email.toLowerCase());
       if (learner) {
         this.cache.set(cacheKey, learner, DASHBOARD_CONFIG.CACHE.STATIC_TTL);
       }
       return learner || null;
     } catch (error) {
       console.error('Error fetching learner by email:', error);
-      // Return mock data on API error for development
-      console.log('Falling back to mock data due to API error');
-      return this.getMockLearner(email);
+      throw error; // Don't fall back to mock data
     }
   }
 
@@ -326,10 +550,10 @@ export class GraphyAPIClient {
   async getProduct(productId: string): Promise<GraphyProduct | null> {
     const cacheKey = `product:${productId}`;
     
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      const mockProducts = this.getMockProducts();
-      return mockProducts.find(p => p.id === productId) || null;
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -344,20 +568,21 @@ export class GraphyAPIClient {
       return response.data;
     } catch (error) {
       console.error('Error fetching product:', error);
-      const mockProducts = this.getMockProducts();
-      return mockProducts.find(p => p.id === productId) || null;
+      throw error; // Don't fall back to mock data
     }
   }
 
   async getLearnerEnrollments(learnerId: string): Promise<GraphyEnrollment[]> {
     const cacheKey = `enrollments:${learnerId}`;
     
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      return this.getMockEnrollments(learnerId);
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
+      console.log(`📚 Fetching enrollments for learner: ${learnerId}`);
       const response = await this.makeRequest<{ data: GraphyEnrollment[] }>(
         `/api/v1/learners/${learnerId}/enrollments`,
         { method: 'GET' },
@@ -365,11 +590,12 @@ export class GraphyAPIClient {
         cacheKey,
         DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
       );
+      console.log(`📚 Graphy API enrollments response:`, response);
 
       return response.data || [];
     } catch (error) {
       console.error('Error fetching enrollments:', error);
-      return this.getMockEnrollments(learnerId);
+      throw error; // Don't fall back to mock data
     }
   }
 
@@ -377,10 +603,10 @@ export class GraphyAPIClient {
   async getCourseProgressReport(productId: string, learnerId: string): Promise<GraphyProgressReport | null> {
     const cacheKey = `progress:${productId}:${learnerId}`;
     
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      const mockReports = this.getMockProgressReports(learnerId);
-      return mockReports.find(r => r.productId === productId) || null;
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -395,17 +621,17 @@ export class GraphyAPIClient {
       return response.data;
     } catch (error) {
       console.error('Error fetching progress report:', error);
-      const mockReports = this.getMockProgressReports(learnerId);
-      return mockReports.find(r => r.productId === productId) || null;
+      throw error; // Don't fall back to mock data
     }
   }
 
   async getLearnerUsage(learnerId: string, days = 7): Promise<GraphyUsage[]> {
     const cacheKey = `usage:${learnerId}:${days}`;
     
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      return this.getMockUsage(learnerId);
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -420,15 +646,16 @@ export class GraphyAPIClient {
       return response.data || [];
     } catch (error) {
       console.error('Error fetching usage:', error);
-      return this.getMockUsage(learnerId);
+      throw error; // Don't fall back to mock data
     }
   }
 
   // Activity methods
   async getLearnerDiscussions(learnerId: string, limit = 20, skip = 0): Promise<GraphyDiscussion[]> {
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      return []; // Return empty array for discussions in mock mode
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -466,9 +693,10 @@ export class GraphyAPIClient {
   }
 
   async getLearnerTransactions(learnerId: string, limit = 20, skip = 0): Promise<GraphyTransaction[]> {
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      return this.getMockTransactions(learnerId);
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -481,7 +709,7 @@ export class GraphyAPIClient {
       return response.data || [];
     } catch (error) {
       console.error('Error fetching transactions:', error);
-      return this.getMockTransactions(learnerId);
+      throw error; // Don't fall back to mock data
     }
   }
 
@@ -538,7 +766,7 @@ export class GraphyAPIClient {
     }
   }
 
-  // Mock data methods for development/testing
+  // Mock data methods - NO LONGER USED (removed fallbacks to force real API usage)
   private getMockLearner(email: string): GraphyLearner {
     const names = {
       'test@example.com': 'Test Student',
@@ -849,9 +1077,10 @@ export class GraphyAPIClient {
   async getAllProducts(limit = 100, offset = 0): Promise<GraphyProduct[]> {
     const cacheKey = `all-products:${limit}:${offset}`;
     
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      return this.getMockProducts();
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -866,16 +1095,17 @@ export class GraphyAPIClient {
       return response.data || [];
     } catch (error) {
       console.error('Error fetching all products:', error);
-      return this.getMockProducts();
+      throw error; // Don't fall back to mock data
     }
   }
 
   async getPopularProducts(limit = 10): Promise<GraphyProduct[]> {
     const cacheKey = `popular-products:${limit}`;
     
-    // Check if we're in mock mode
+    // Check if API is configured
     if (!this.config.API_KEY || this.config.API_KEY === 'your_graphy_api_key_here') {
-      return this.getMockProducts().slice(0, limit);
+      console.error('Graphy API not configured - API_KEY is missing or invalid');
+      throw new Error('Graphy API not configured');
     }
     
     try {
@@ -890,7 +1120,347 @@ export class GraphyAPIClient {
       return response.data || [];
     } catch (error) {
       console.error('Error fetching popular products:', error);
-      return this.getMockProducts().slice(0, limit);
+      throw error; // Don't fall back to mock data
+    }
+  }
+
+  // New API methods based on actual Graphy API documentation
+  
+  // v1 API Methods
+  
+  /**
+   * Create a new learner using v1 API
+   */
+  async createLearner(params: {
+    email: string;
+    name?: string;
+    password?: string;
+    mobile?: string;
+    sendEmail?: boolean;
+    customFields?: Record<string, any>;
+  }): Promise<{ success: boolean; learnerId?: string; message?: string }> {
+    const formData = new URLSearchParams();
+    formData.append('mid', this.config.MID);
+    formData.append('key', this.config.API_KEY);
+    formData.append('email', params.email);
+    
+    if (params.name) formData.append('name', params.name);
+    if (params.password) formData.append('password', params.password);
+    if (params.mobile) formData.append('mobile', params.mobile);
+    if (params.sendEmail !== undefined) formData.append('sendEmail', params.sendEmail.toString());
+    if (params.customFields) formData.append('customFields', JSON.stringify(params.customFields));
+
+    try {
+      const response = await this.makeRequest<{ success: boolean; learnerId?: string; message?: string }>(
+        '/learners',
+        {
+          method: 'POST',
+          body: formData.toString(),
+        },
+        false,
+        undefined,
+        undefined,
+        true // useFormData
+      );
+      return response;
+    } catch (error) {
+      console.error('Error creating learner:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Update course validity for a learner
+   */
+  async updateCourseValidity(params: {
+    email: string;
+    productId: string;
+    validityDate: string; // yyyy-mm-dd format
+  }): Promise<{ success: boolean; message?: string }> {
+    const formData = new URLSearchParams();
+    formData.append('mid', this.config.MID);
+    formData.append('key', this.config.API_KEY);
+    formData.append('email', params.email);
+    formData.append('productId', params.productId);
+    formData.append('validityDate', params.validityDate);
+
+    try {
+      const response = await this.makeRequest<{ success: boolean; message?: string }>(
+        '/learners/validity/update',
+        {
+          method: 'POST',
+          body: formData.toString(),
+        },
+        false,
+        undefined,
+        undefined,
+        true // useFormData
+      );
+      return response;
+    } catch (error) {
+      console.error('Error updating course validity:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get quiz reports for a specific quiz
+   */
+  async getQuizReports(params: {
+    quizId: string;
+    date?: string; // yyyy/MM/dd format
+    skip?: number;
+    limit?: number;
+  }): Promise<GraphyQuizReport[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    if (params.date) queryParams.append('date', params.date);
+    if (params.skip !== undefined) queryParams.append('skip', params.skip.toString());
+    if (params.limit !== undefined) queryParams.append('limit', params.limit.toString());
+
+    const cacheKey = `quiz-reports:${params.quizId}:${params.date || 'all'}:${params.skip || 0}:${params.limit || 10}`;
+
+    try {
+      const response = await this.makeRequest<{ data: GraphyQuizReport[] }>(
+        `/quizzes/${params.quizId}/reports?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
+      );
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching quiz reports:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get transactions with filtering options
+   */
+  async getTransactions(params: {
+    skip?: number;
+    limit?: number;
+    startDate?: string; // yyyy/MM/dd or yyyy/MM/ddThh:mm:ss
+    endDate?: string;
+    status?: 'initiated' | 'success' | 'refund';
+    channel?: 'web' | 'android' | 'ios';
+    type?: 'free' | 'paid';
+  } = {}): Promise<GraphyTransaction[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    if (params.skip !== undefined) queryParams.append('skip', params.skip.toString());
+    if (params.limit !== undefined) queryParams.append('limit', params.limit.toString());
+    if (params.startDate) queryParams.append('startDate', params.startDate);
+    if (params.endDate) queryParams.append('endDate', params.endDate);
+    if (params.status) queryParams.append('status', params.status);
+    if (params.channel) queryParams.append('channel', params.channel);
+    if (params.type) queryParams.append('type', params.type);
+
+    const cacheKey = `transactions:${JSON.stringify(params)}`;
+
+    try {
+      const response = await this.makeRequest<{ data: GraphyTransaction[] }>(
+        `/transactions?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
+      );
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get learner usage statistics
+   */
+  async getLearnerUsageV1(params: {
+    learnerId: string;
+    productId: string;
+    date?: string; // yyyy/MM/dd format
+  }): Promise<GraphyUsage[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    queryParams.append('productId', params.productId);
+    if (params.date) queryParams.append('date', params.date);
+
+    const cacheKey = `learner-usage-v1:${params.learnerId}:${params.productId}:${params.date || 'all'}`;
+
+    try {
+      const response = await this.makeRequest<{ data: GraphyUsage[] }>(
+        `/learners/${params.learnerId}/usage?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
+      );
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching learner usage:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get learner discussions
+   */
+  async getLearnerDiscussionsV1(params: {
+    learnerId: string;
+    startDate?: string; // yyyy/MM/dd format
+    endDate?: string;
+  }): Promise<GraphyDiscussion[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    if (params.startDate) queryParams.append('startDate', params.startDate);
+    if (params.endDate) queryParams.append('endDate', params.endDate);
+
+    const cacheKey = `learner-discussions-v1:${params.learnerId}:${params.startDate || 'all'}:${params.endDate || 'all'}`;
+
+    try {
+      const response = await this.makeRequest<{ data: GraphyDiscussion[] }>(
+        `/learners/${params.learnerId}/discussions?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL
+      );
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching learner discussions:', error);
+      throw error;
+    }
+  }
+
+  // v3 API Methods
+
+  /**
+   * Get active learners for products (v3 API)
+   */
+  async getActiveLearners(params: {
+    productIds: string[]; // comma-separated or array
+    dateFrom: string; // yyyy/MM/dd format
+    dateTo: string; // yyyy/MM/dd format
+    skip?: number;
+    limit?: number;
+  }): Promise<{ learnerId: string; productId: string; lastActive: string; activityCount: number }[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    queryParams.append('productIds', Array.isArray(params.productIds) ? params.productIds.join(',') : params.productIds);
+    queryParams.append('dateFrom', params.dateFrom);
+    queryParams.append('dateTo', params.dateTo);
+    if (params.skip !== undefined) queryParams.append('skip', params.skip.toString());
+    if (params.limit !== undefined) queryParams.append('limit', params.limit.toString());
+
+    const cacheKey = `active-learners:${params.productIds.join(',')}:${params.dateFrom}:${params.dateTo}:${params.skip || 0}:${params.limit || 10}`;
+
+    try {
+      const response = await this.makeRequest<{ data: any[] }>(
+        `/products/activelearners?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL,
+        false, // useFormData
+        this.config.BASE_URL_V3 // baseUrl
+      );
+      
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching active learners:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get course progress reports (v3 API)
+   */
+  async getCourseProgressReportsV3(params: {
+    productIds: string[]; // comma-separated or array
+    skip?: number;
+    limit?: number;
+  }): Promise<GraphyProgressReport[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    queryParams.append('productIds', Array.isArray(params.productIds) ? params.productIds.join(',') : params.productIds);
+    if (params.skip !== undefined) queryParams.append('skip', params.skip.toString());
+    if (params.limit !== undefined) queryParams.append('limit', params.limit.toString());
+
+    const cacheKey = `course-progress-v3:${params.productIds.join(',')}:${params.skip || 0}:${params.limit || 10}`;
+
+    try {
+      const response = await this.makeRequest<{ data: GraphyProgressReport[] }>(
+        `/products/courseprogressreports?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL,
+        false, // useFormData
+        this.config.BASE_URL_V3 // baseUrl
+      );
+      
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching course progress reports:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get live class attendees (v3 API)
+   */
+  async getLiveClassAttendees(params: {
+    liveClassId: string;
+    skip?: number;
+    limit?: number;
+  }): Promise<{ learnerId: string; name: string; email: string; joinedAt: string; leftAt?: string; duration: number }[]> {
+    const queryParams = new URLSearchParams();
+    queryParams.append('mid', this.config.MID);
+    queryParams.append('key', this.config.API_KEY);
+    queryParams.append('liveClassId', params.liveClassId);
+    if (params.skip !== undefined) queryParams.append('skip', params.skip.toString());
+    if (params.limit !== undefined) queryParams.append('limit', params.limit.toString());
+
+    const cacheKey = `live-class-attendees:${params.liveClassId}:${params.skip || 0}:${params.limit || 10}`;
+
+    try {
+      const response = await this.makeRequest<{ data: any[] }>(
+        `/products/liveclass/attendees?${queryParams.toString()}`,
+        { method: 'GET' },
+        true,
+        cacheKey,
+        DASHBOARD_CONFIG.CACHE.DYNAMIC_TTL,
+        false, // useFormData
+        this.config.BASE_URL_V3 // baseUrl
+      );
+      
+      return response.data || [];
+    } catch (error) {
+      console.error('Error fetching live class attendees:', error);
+      throw error;
+    }
+  }
+
+  // Authentication error handling
+  setAuthErrorHandler(handler: (error: Error) => void): void {
+    this.authErrorHandler = handler;
+  }
+
+  private handleAuthError(error: Error): void {
+    console.error('Graphy API authentication error:', error);
+    if (this.authErrorHandler) {
+      this.authErrorHandler(error);
+    } else {
+      // Default behavior: redirect to login or show error message
+      console.warn('No auth error handler set. User should be redirected to login.');
     }
   }
 

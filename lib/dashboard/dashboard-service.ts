@@ -58,28 +58,63 @@ export interface DashboardSummary {
 }
 
 export class DashboardService {
+  private authErrorHandler?: (error: Error) => void;
+
+  constructor() {
+    // Set up authentication error handling for Graphy client
+    graphyClient.setAuthErrorHandler((error: Error) => {
+      console.error('Dashboard Service: Graphy API authentication error:', error);
+      if (this.authErrorHandler) {
+        this.authErrorHandler(error);
+      }
+    });
+  }
+
+  setAuthErrorHandler(handler: (error: Error) => void): void {
+    this.authErrorHandler = handler;
+  }
+
   /**
    * Get comprehensive dashboard data for a learner by email
    */
   async getDashboardByEmail(email: string): Promise<DashboardData | null> {
     try {
       // 1. Find learner by email
-      const learner = await graphyClient.getLearnerByEmail(email);
+      let learner: GraphyLearner | null = null;
+      try {
+        learner = await graphyClient.getLearnerByEmail(email);
+      } catch (error) {
+        console.error('Error fetching learner from Graphy API:', error);
+        // If API is not configured, create a mock learner for demo purposes
+        if (error instanceof Error && error.message.includes('Graphy API not configured')) {
+          console.log('🔄 Graphy API not configured, using demo data');
+          learner = this.createMockLearner(email);
+        } else {
+          throw error; // Re-throw other errors
+        }
+      }
+      
       if (!learner) {
         return null;
       }
 
-      // 2. Fetch enrollments first
-      const enrollments = await graphyClient.getLearnerEnrollments(learner.id);
+      // 2. Fetch enrollments first with error handling
+      let enrollments: GraphyEnrollment[] = [];
+      try {
+        enrollments = await graphyClient.getLearnerEnrollments(learner.id);
+        console.log(`📚 Found ${enrollments.length} enrollments for learner ${learner.email}`);
+      } catch (error) {
+        console.error('Error fetching enrollments:', error);
+        // If API is not configured, use mock enrollments
+        if (error instanceof Error && error.message.includes('Graphy API not configured')) {
+          enrollments = this.getMockEnrollments(learner.id);
+        } else {
+          enrollments = [];
+        }
+      }
 
-      // 3. Fetch all other learner data in parallel
-      const [
-        progressReports,
-        usage,
-        discussions,
-        quizReports,
-        transactions
-      ] = await Promise.all([
+      // 3. Fetch all other learner data in parallel with individual error handling
+      const results = await Promise.allSettled([
         this.getProgressReportsForEnrollments(learner.id, enrollments),
         graphyClient.getLearnerUsage(learner.id, 7),
         graphyClient.getLearnerDiscussions(learner.id, 50, 0),
@@ -87,9 +122,28 @@ export class DashboardService {
         graphyClient.getLearnerTransactions(learner.id, 50, 0)
       ]);
 
-      // 4. Get product details for all enrolled courses
-      const productIds = enrollments.map(e => e.productId);
-      const products = await this.getProductsByIds(productIds);
+      const progressReports = results[0].status === 'fulfilled' ? results[0].value : [];
+      const usage = results[1].status === 'fulfilled' ? results[1].value : [];
+      const discussions = results[2].status === 'fulfilled' ? results[2].value : [];
+      const quizReports = results[3].status === 'fulfilled' ? results[3].value : [];
+      const transactions = results[4].status === 'fulfilled' ? results[4].value : [];
+
+      // 4. Get product details for all enrolled courses with error handling
+      let products: GraphyProduct[] = [];
+      try {
+        const productIds = enrollments.map(e => e.productId);
+        console.log(`🔍 Fetching products for IDs: ${productIds.join(', ')}`);
+        products = await this.getProductsByIds(productIds);
+        console.log(`📖 Retrieved ${products.length} products from Graphy API`);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        // If API is not configured, use mock products
+        if (error instanceof Error && error.message.includes('Graphy API not configured')) {
+          products = this.getMockProducts();
+        } else {
+          products = [];
+        }
+      }
 
       // 5. Build dashboard products with progress and usage data
       const dashboardProducts = await this.buildDashboardProducts(
@@ -149,7 +203,10 @@ export class DashboardService {
       };
     } catch (error) {
       console.error('Error building dashboard:', error);
-      throw new Error('Failed to build dashboard data');
+      
+      // Don't return fallback data - let the error propagate
+      console.error('Failed to build dashboard data - no fallback provided');
+      throw error;
     }
   }
 
@@ -512,6 +569,149 @@ export class DashboardService {
         score: 0.79,
         productId: 'product-6'
       }
+    ];
+  }
+
+  /**
+   * Create mock learner data
+   */
+  private createMockLearner(email: string): GraphyLearner {
+    const names = {
+      'test@example.com': 'Test Student',
+      'aman@shikshanam.com': 'Aman Bhogal',
+      'bhoglu.aman@gmail.com': 'Aman Bhogal',
+      'amanbhogal.work@gmail.com': 'Aman Bhogal',
+      'student@example.com': 'John Doe',
+      'learner@test.com': 'Jane Smith'
+    };
+    
+    return {
+      id: 'mock-learner-1',
+      email: email,
+      name: names[email as keyof typeof names] || email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      phone: '+1234567890',
+      profilePicture: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+      createdAt: '2024-01-01T00:00:00Z',
+      updatedAt: '2024-01-15T00:00:00Z',
+    };
+  }
+
+  /**
+   * Get mock enrollments data
+   */
+  private getMockEnrollments(learnerId: string): GraphyEnrollment[] {
+    return [
+      {
+        id: 'enrollment-1',
+        learnerId: learnerId,
+        productId: 'product-1',
+        enrolledAt: '2024-01-01T00:00:00Z',
+        status: 'active',
+        progress: 75,
+        lastAccessedAt: '2024-01-15T00:00:00Z',
+      },
+      {
+        id: 'enrollment-2',
+        learnerId: learnerId,
+        productId: 'product-2',
+        enrolledAt: '2024-01-01T00:00:00Z',
+        status: 'completed',
+        progress: 100,
+        lastAccessedAt: '2024-01-20T00:00:00Z',
+        completedAt: '2024-01-20T00:00:00Z',
+      },
+    ];
+  }
+
+  /**
+   * Get mock products data
+   */
+  private getMockProducts(): GraphyProduct[] {
+    return [
+      {
+        id: 'product-1',
+        title: 'Sanskrit Basics',
+        description: 'Learn the fundamentals of Sanskrit language and grammar with interactive exercises and cultural context',
+        thumbnail: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop&crop=center',
+        price: 99,
+        currency: 'USD',
+        category: 'Language',
+        tags: ['sanskrit', 'basics', 'language', 'grammar'],
+        instructor: {
+          id: 'instructor-1',
+          name: 'Dr. Sanskrit Expert',
+          profilePicture: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+        },
+        syllabus: [
+          {
+            id: 'lesson-1',
+            title: 'Introduction to Sanskrit',
+            description: 'Basic introduction to Sanskrit language',
+            type: 'video',
+            duration: 30,
+            order: 1,
+            isLocked: false,
+            isCompleted: true,
+          },
+          {
+            id: 'lesson-2',
+            title: 'Sanskrit Alphabet',
+            description: 'Learn the Devanagari script',
+            type: 'video',
+            duration: 45,
+            order: 2,
+            isLocked: false,
+            isCompleted: true,
+          },
+          {
+            id: 'lesson-3',
+            title: 'Basic Grammar',
+            description: 'Introduction to Sanskrit grammar',
+            type: 'video',
+            duration: 60,
+            order: 3,
+            isLocked: false,
+            isCompleted: false,
+          },
+        ],
+        duration: 300,
+        difficulty: 'beginner',
+        language: 'English',
+        createdAt: '2024-01-01T00:00:00Z',
+        updatedAt: '2024-01-01T00:00:00Z',
+      },
+      {
+        id: 'product-2',
+        title: 'Advanced Sanskrit Literature',
+        description: 'Explore classical Sanskrit texts, poetry, and philosophical works with detailed analysis and commentary',
+        thumbnail: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop&crop=center',
+        price: 199,
+        currency: 'USD',
+        category: 'Literature',
+        tags: ['sanskrit', 'literature', 'poetry', 'classical'],
+        instructor: {
+          id: 'instructor-2',
+          name: 'Prof. Literature Master',
+          profilePicture: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+        },
+        syllabus: [
+          {
+            id: 'lesson-4',
+            title: 'Classical Texts',
+            description: 'Study of ancient Sanskrit texts',
+            type: 'video',
+            duration: 90,
+            order: 1,
+            isLocked: false,
+            isCompleted: true,
+          },
+        ],
+        duration: 600,
+        difficulty: 'advanced',
+        language: 'English',
+        createdAt: '2024-01-01T00:00:00Z',
+        updatedAt: '2024-01-01T00:00:00Z',
+      },
     ];
   }
 }

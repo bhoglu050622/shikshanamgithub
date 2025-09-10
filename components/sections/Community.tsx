@@ -216,8 +216,8 @@ export default function Community() {
               >
                 {/* Header */}
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${platform.color} rounded-2xl flex items-center justify-center`}>
-                    <platform.icon className="w-8 h-8 text-primary-foreground" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
+                    <platform.icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
                     <h4 className="text-2xl font-bold text-foreground">{platform.name}</h4>
@@ -259,7 +259,7 @@ export default function Community() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-full bg-gradient-to-r ${platform.color} text-primary-foreground py-4 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 relative overflow-hidden group`}
+                  className="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 relative overflow-hidden group"
                 >
                   <span className="relative z-10">{platform.cta}</span>
                   <ExternalLink className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300" />
@@ -275,7 +275,7 @@ export default function Community() {
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
-                    className="absolute inset-0 bg-primary-foreground/20 rounded-2xl"
+                    className="absolute inset-0 bg-white/20 rounded-2xl"
                   ></motion.div>
                 </motion.button>
               </motion.div>

@@ -59,6 +59,7 @@ export function useRealTimeRecommendations({
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include'
         }
       );
 
@@ -150,6 +151,7 @@ export function useSmartRecommendations({
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include'
       }
     );
 
@@ -204,6 +206,7 @@ export function useRecommendationTracking() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           productId,
           action,

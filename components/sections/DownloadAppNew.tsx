@@ -42,7 +42,7 @@ export default function DownloadApp() {
       </div>
 
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -105,7 +105,7 @@ export default function DownloadApp() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full bg-foreground text-background py-4 px-6 rounded-2xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center space-x-3 group"
+                className="w-full bg-white text-foreground py-4 px-6 rounded-2xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center space-x-3 group"
               >
                 <Apple className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                 <div className="text-left">
@@ -148,7 +148,7 @@ export default function DownloadApp() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="relative flex justify-center"
+            className="relative flex justify-center mt-8"
           >
             {/* 3D Rotating Phone Mockup */}
             <motion.div 

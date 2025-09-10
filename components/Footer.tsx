@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { BookOpen, Mail, Phone, MapPin, MessageCircle, Instagram, Twitter, Youtube, Heart, ArrowRight } from 'lucide-react'
 import { ROUTES, NAVIGATION_GROUPS } from '@/lib/routes'
 import { trackEvent } from '@/lib/analytics'
@@ -49,6 +48,7 @@ const contactInfo = [
   { icon: MapPin, text: 'Mumbai, Maharashtra, India', href: '#location' }
 ]
 
+
 export default function Footer() {
   return (
     <footer id="footer" className="bg-deep-maroon text-white transition-colors duration-300 relative overflow-hidden">
@@ -56,16 +56,7 @@ export default function Footer() {
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {/* Top Mandala Border */}
         <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
-          <motion.div
-            animate={{ 
-              x: [0, -100, 0],
-              rotate: [0, 360]
-            }}
-            transition={{ 
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+          <div
             className="flex space-x-8"
           >
             {[...Array(10)].map((_, i) => (
@@ -73,21 +64,12 @@ export default function Footer() {
                 <div className="w-8 h-8 border border-temple-gold/30 rounded-full"></div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         
         {/* Bottom Mandala Border */}
         <div className="absolute bottom-0 left-0 right-0 h-20 overflow-hidden">
-          <motion.div
-            animate={{ 
-              x: [0, 100, 0],
-              rotate: [0, -360]
-            }}
-            transition={{ 
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+          <div
             className="flex space-x-8"
           >
             {[...Array(10)].map((_, i) => (
@@ -95,21 +77,12 @@ export default function Footer() {
                 <div className="w-8 h-8 border border-copper-orange/30 rounded-full"></div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         
         {/* Side Mandala Patterns - Hidden on mobile to prevent overflow */}
         <div className="hidden lg:block absolute top-1/2 left-0 w-20 h-full overflow-hidden">
-          <motion.div
-            animate={{ 
-              y: [0, -50, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{ 
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          <div
             className="flex flex-col space-y-8"
           >
             {[...Array(8)].map((_, i) => (
@@ -117,20 +90,11 @@ export default function Footer() {
                 <div className="w-6 h-6 border border-temple-gold/25 rounded-full"></div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         
         <div className="hidden lg:block absolute top-1/2 right-0 w-20 h-full overflow-hidden">
-          <motion.div
-            animate={{ 
-              y: [0, 50, 0],
-              rotate: [0, -180, -360]
-            }}
-            transition={{ 
-              duration: 18,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          <div
             className="flex flex-col space-y-8"
           >
             {[...Array(8)].map((_, i) => (
@@ -138,46 +102,28 @@ export default function Footer() {
                 <div className="w-6 h-6 border border-copper-orange/25 rounded-full"></div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         
         {/* Floating Mandala Elements - Contained within safe areas */}
         <div className="absolute top-20 left-1/4 opacity-10 max-w-24 max-h-24">
-          <motion.div
-            animate={{ 
-              rotate: [0, 360],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ 
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+          <div
             className="w-24 h-24 border-2 border-temple-gold/20 rounded-full flex items-center justify-center"
           >
             <div className="w-16 h-16 border border-temple-gold/30 rounded-full flex items-center justify-center">
               <div className="w-8 h-8 border border-temple-gold/40 rounded-full"></div>
             </div>
-          </motion.div>
+          </div>
         </div>
         
         <div className="absolute bottom-20 right-1/4 opacity-10 max-w-20 max-h-20">
-          <motion.div
-            animate={{ 
-              rotate: [0, -360],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ 
-              duration: 35,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+          <div
             className="w-20 h-20 border-2 border-copper-orange/20 rounded-full flex items-center justify-center"
           >
             <div className="w-12 h-12 border border-copper-orange/30 rounded-full flex items-center justify-center">
               <div className="w-6 h-6 border border-copper-orange/40 rounded-full"></div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
       
@@ -199,42 +145,30 @@ export default function Footer() {
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3">
+            <div className="space-y-3 p-4 bg-sand-beige/10 rounded-2xl border border-temple-gold/20">
               {contactInfo.map((contact, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={contact.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors duration-200"
+                  className="flex items-center space-x-3 text-sand-beige hover:text-temple-gold transition-colors duration-200"
                 >
                   <contact.icon className="w-4 h-4 text-temple-gold" />
                   <span className="text-sm">{contact.text}</span>
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>
 
           {/* Footer Links */}
           {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
-            <motion.div
+            <div
               key={category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + categoryIndex * 0.1 }}
-              viewport={{ once: true }}
             >
-              <h3 className="font-semibold text-white mb-4">{category}</h3>
+              <h3 className="font-semibold text-sand-beige mb-4">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link, linkIndex) => (
-                  <motion.li
+                  <div
                     key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + linkIndex * 0.05 }}
-                    viewport={{ once: true }}
                   >
                     <a
                       href={link.href}
@@ -247,19 +181,15 @@ export default function Footer() {
                     >
                       {link.name}
                     </a>
-                  </motion.li>
+                  </div>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Newsletter Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
+        <div
           className="bg-sand-beige/10 rounded-3xl p-8 mb-12 backdrop-blur-sm border border-temple-gold/20"
         >
           <div className="text-center max-w-2xl mx-auto">
@@ -273,67 +203,48 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-2xl border-0 text-dark-olive bg-parchment-ivory/90 placeholder-sand-beige focus:ring-2 focus:ring-temple-gold focus:outline-none"
+                className="flex-1 px-4 py-3 rounded-2xl border-0 text-dark-olive bg-white placeholder-dark-olive/60 focus:ring-2 focus:ring-temple-gold focus:outline-none"
               />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 className="btn-shikshanam-primary px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <span>Subscribe</span>
                 <ArrowRight className="w-4 h-4" />
-              </motion.button>
+              </button>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bottom Section */}
         <div className="border-t border-temple-gold/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
+            <div
               className="text-sand-beige text-sm"
             >
               © 2024 Shikshanam. All rights reserved. Made with{' '}
               <Heart className="w-4 h-4 text-temple-gold inline" /> in India.
-            </motion.div>
+            </div>
 
             {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
+            <div
               className="flex items-center space-x-4"
             >
               {socialLinks.map((social, index) => (
-                <motion.a
+                <a
                   key={social.name}
                   href={social.href}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.1, y: -2 }}
                   className={`w-10 h-10 bg-sand-beige/10 rounded-2xl flex items-center justify-center text-sand-beige hover:text-temple-gold transition-all duration-200 hover:bg-sand-beige/20`}
                   title={social.name}
                 >
                   <social.icon className="w-5 h-5" />
-                </motion.a>
+                </a>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Additional Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
+          <div
             className="flex flex-wrap justify-center gap-6 mt-6 text-sand-beige text-sm"
           >
             <a 
@@ -364,7 +275,7 @@ export default function Footer() {
             >
               Accessibility
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </footer>

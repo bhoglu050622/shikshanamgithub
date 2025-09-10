@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, MotionProps } from 'framer-motion'
-import { ReactNode } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 
 interface MotionWrapperProps extends MotionProps {
   children: ReactNode
@@ -42,6 +42,12 @@ export default function MotionWrapper({
   className = '',
   ...props 
 }: MotionWrapperProps) {
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
   const variantConfig = motionVariants[variant]
   
   const motionProps = {
@@ -52,6 +58,11 @@ export default function MotionWrapper({
       delay: delay + staggerDelay,
       ...props.transition
     }
+  }
+
+  // Prevent hydration mismatch by not rendering motion until mounted
+  if (!mounted) {
+    return <div className={className}>{children}</div>
   }
 
   return (
@@ -74,6 +85,17 @@ export function StaggerContainer({
   className?: string
   staggerDelay?: number 
 }) {
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  // Prevent hydration mismatch by not rendering motion until mounted
+  if (!mounted) {
+    return <div className={className}>{children}</div>
+  }
+  
   return (
     <motion.div
       className={className}
@@ -100,6 +122,17 @@ export function StaggerItem({
   children: ReactNode
   className?: string 
 }) {
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  // Prevent hydration mismatch by not rendering motion until mounted
+  if (!mounted) {
+    return <div className={className}>{children}</div>
+  }
+  
   return (
     <motion.div
       className={className}

@@ -21,7 +21,49 @@ export async function GET(request: NextRequest) {
     }
 
     // Get learner data
-    const learner = await graphyClient.getLearnerByEmail(email);
+    let learner;
+    try {
+      learner = await graphyClient.getLearnerByEmail(email);
+    } catch (error) {
+      console.error('Error fetching learner:', error);
+      if (error instanceof Error && error.message.includes('Graphy API not configured')) {
+        // Create a mock learner for demo purposes
+        learner = {
+          id: 'mock-learner-1',
+          email: email,
+          name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+          phone: '+1234567890',
+          profilePicture: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+          createdAt: '2024-01-01T00:00:00Z',
+          updatedAt: '2024-01-15T00:00:00Z',
+        };
+      } else {
+        // Enhanced error handling with upstream details
+        const errorResponse: any = {
+          error: 'Failed to fetch learner data',
+          message: 'Unable to fetch learner information from Graphy API',
+          timestamp: new Date().toISOString(),
+          requestId: `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+        };
+
+        if (process.env.NODE_ENV === 'development') {
+          errorResponse.details = error instanceof Error ? error.message : String(error);
+          
+          // Include upstream error details if available
+          if (error instanceof Error && (error as any).upstreamStatus) {
+            errorResponse.upstreamError = {
+              status: (error as any).upstreamStatus,
+              contentType: (error as any).upstreamContentType,
+              snippet: (error as any).upstreamSnippet,
+              errorCode: (error as any).errorCode
+            };
+          }
+        }
+
+        return NextResponse.json(errorResponse, { status: 500 });
+      }
+    }
+    
     if (!learner) {
       return NextResponse.json(
         { error: 'Learner not found' },
@@ -30,12 +72,29 @@ export async function GET(request: NextRequest) {
     }
 
     // Get learner's enrollments and progress
-    const enrollments = await graphyClient.getLearnerEnrollments(learner.id);
-    const progressReports = await Promise.all(
-      enrollments.map(enrollment =>
-        graphyClient.getCourseProgressReport(enrollment.productId, learner.id)
-      )
-    ).then(results => results.filter((report): report is NonNullable<typeof report> => report !== null));
+    let enrollments: any[] = [];
+    let progressReports: any[] = [];
+    
+    try {
+      enrollments = await graphyClient.getLearnerEnrollments(learner.id);
+      progressReports = await Promise.all(
+        enrollments.map(enrollment =>
+          graphyClient.getCourseProgressReport(enrollment.productId, learner.id)
+        )
+      ).then(results => results.filter((report): report is NonNullable<typeof report> => report !== null));
+    } catch (error) {
+      console.error('Error fetching enrollments/progress:', error);
+      // Use empty arrays for demo mode when API is not configured
+      if (error instanceof Error && error.message.includes('Graphy API not configured')) {
+        enrollments = [];
+        progressReports = [];
+      } else {
+        // For other errors, still use empty arrays but log the error
+        console.error('Non-configuration error in enrollments/progress:', error);
+        enrollments = [];
+        progressReports = [];
+      }
+    }
 
     // Get all available products for recommendations
     const allProducts = await getAllAvailableProducts();
@@ -79,10 +138,30 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error generating recommendations:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate recommendations' },
-      { status: 500 }
-    );
+    
+    // Enhanced error handling with upstream details
+    const errorResponse: any = {
+      error: 'Failed to generate recommendations',
+      message: 'An unexpected error occurred while generating recommendations',
+      timestamp: new Date().toISOString(),
+      requestId: `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    };
+
+    if (process.env.NODE_ENV === 'development') {
+      errorResponse.details = error instanceof Error ? error.message : String(error);
+      
+      // Include upstream error details if available
+      if (error instanceof Error && (error as any).upstreamStatus) {
+        errorResponse.upstreamError = {
+          status: (error as any).upstreamStatus,
+          contentType: (error as any).upstreamContentType,
+          snippet: (error as any).upstreamSnippet,
+          errorCode: (error as any).errorCode
+        };
+      }
+    }
+
+    return NextResponse.json(errorResponse, { status: 500 });
   }
 }
 

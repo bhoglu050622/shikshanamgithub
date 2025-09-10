@@ -19,8 +19,23 @@ export interface AuthUser {
   email?: string | null
 }
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production'
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'your-super-secret-refresh-key-change-this-in-production'
+const JWT_SECRET = process.env.JWT_SECRET
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET
+
+// Only validate secrets at runtime, not during build
+function validateSecrets() {
+  if (!JWT_SECRET || JWT_SECRET === 'your-super-secret-jwt-key-change-this-in-production') {
+    throw new Error('JWT_SECRET environment variable must be set with a secure value')
+  }
+
+  if (!JWT_REFRESH_SECRET || JWT_REFRESH_SECRET === 'your-super-secret-refresh-key-change-this-in-production') {
+    throw new Error('JWT_REFRESH_SECRET environment variable must be set with a secure value')
+  }
+}
+
+// Type assertion to ensure secrets are strings (with fallback for build time)
+const jwtSecret = (JWT_SECRET || 'build-time-fallback') as string
+const jwtRefreshSecret = (JWT_REFRESH_SECRET || 'build-time-fallback') as string
 
 export class AuthError extends Error {
   constructor(message: string, public statusCode: number = 401) {
@@ -41,22 +56,27 @@ export async function verifyPassword(password: string, hashedPassword: string): 
 
 // Generate JWT tokens
 export function generateTokens(user: AuthUser): { accessToken: string; refreshToken: string } {
+  validateSecrets() // Validate at runtime
+  
   const payload: JWTPayload = {
     userId: user.id,
     username: user.username,
     role: user.role,
   }
 
-  const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: '15m' })
-  const refreshToken = jwt.sign({ userId: user.id }, JWT_REFRESH_SECRET, { expiresIn: '7d' })
+  const accessToken = jwt.sign(payload, jwtSecret, { expiresIn: '15m' })
+  const refreshToken = jwt.sign({ userId: user.id }, jwtRefreshSecret, { expiresIn: '7d' })
 
   return { accessToken, refreshToken }
 }
 
 // Verify JWT token
 export function verifyToken(token: string): JWTPayload {
+  validateSecrets() // Validate at runtime
+  
   try {
-    return jwt.verify(token, JWT_SECRET) as JWTPayload
+    const decoded = jwt.verify(token, jwtSecret)
+    return decoded as JWTPayload
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
       throw new AuthError('Token expired', 401)
@@ -67,8 +87,11 @@ export function verifyToken(token: string): JWTPayload {
 
 // Verify refresh token
 export function verifyRefreshToken(token: string): { userId: string } {
+  validateSecrets() // Validate at runtime
+  
   try {
-    return jwt.verify(token, JWT_REFRESH_SECRET) as { userId: string }
+    const decoded = jwt.verify(token, jwtRefreshSecret)
+    return decoded as { userId: string }
   } catch (error) {
     throw new AuthError('Invalid refresh token', 401)
   }
@@ -134,7 +157,11 @@ export function requireAuth(requiredRole: UserRole = UserRole.VIEWER) {
 // Bootstrap admin user
 export async function bootstrapAdmin(): Promise<void> {
   const adminUsername = process.env.BOOTSTRAP_ADMIN_USERNAME || 'shikshanam'
-  const adminPassword = process.env.BOOTSTRAP_ADMIN_PASSWORD || 'amanaman'
+  const adminPassword = process.env.BOOTSTRAP_ADMIN_PASSWORD
+  
+  if (!adminPassword) {
+    throw new Error('BOOTSTRAP_ADMIN_PASSWORD environment variable must be set')
+  }
 
   const existingAdmin = await prisma.user.findUnique({
     where: { username: adminUsername },

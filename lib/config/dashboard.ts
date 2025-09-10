@@ -6,9 +6,11 @@
 export const DASHBOARD_CONFIG = {
   // Graphy API Configuration
   GRAPHY: {
-    BASE_URL: process.env.GRAPHY_API_BASE_URL || 'https://api.graphy.com',
+    BASE_URL_V1: process.env.GRAPHY_API_BASE_URL_V1 || 'https://api.ongraphy.com/public/v1',
+    BASE_URL_V3: process.env.GRAPHY_API_BASE_URL_V3 || 'https://api.ongraphy.com/t/api/public/v3',
     API_KEY: process.env.GRAPHY_API_KEY || '',
     SECRET_KEY: process.env.GRAPHY_SECRET_KEY || '',
+    MID: process.env.GRAPHY_MID || '',
     TIMEOUT: 15000, // 15 seconds
     RETRY_ATTEMPTS: 3,
     RETRY_DELAY: 1000, // 1 second

@@ -8,6 +8,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import Image from 'next/image';
 import IndianPatterns from '@/components/ornaments/IndianPatterns';
 import { DashboardSummary } from '../../components/dashboard/DashboardSummary';
@@ -17,20 +19,36 @@ import { Recommendations } from '../../components/dashboard/Recommendations';
 import { Transactions } from '../../components/dashboard/Transactions';
 import { DashboardSkeleton } from '../../components/dashboard/DashboardSkeleton';
 import { DashboardError } from '../../components/dashboard/DashboardError';
+import { DharmaAnalysis } from '../../components/dashboard/DharmaAnalysis';
+import { GunaAnalysis } from '../../components/dashboard/GunaAnalysis';
+import { PointsSystem } from '../../components/dashboard/PointsSystem';
 import { LoadingOverlay, SkeletonComponents } from '@/components/ui/LoadingStates';
+import LoadingModal from '@/components/ui/LoadingModal';
 import { useAuth } from '@/lib/auth-context';
 import { useRealTimeRecommendations } from '@/lib/hooks/useRealTimeRecommendations';
+import { fetchWithAuth, isAuthError } from '@/lib/fetch-with-auth';
 import type { DashboardData } from '@/lib/dashboard/dashboard-service';
+
+// Client-side only motion wrapper to prevent hydration issues
+const ClientOnlyMotion = dynamic(() => Promise.resolve(motion.div), { 
+  ssr: false,
+  loading: () => <div />
+}) as typeof motion.div;
+
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { isLoggedIn, user, isInitialized } = useAuth();
+  const { isLoggedIn, user, isInitialized, logout } = useAuth();
   
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
   const [dataSource, setDataSource] = useState<string>('unknown');
+  const [activeTab, setActiveTab] = useState<'courses' | 'dharma' | 'guna'>('courses');
+  const [dharmaProgress, setDharmaProgress] = useState<{hasProfile: boolean, quizCount: number}>({hasProfile: false, quizCount: 0});
+  const [showLoadingModal, setShowLoadingModal] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   // Real-time recommendations
   const {
@@ -50,25 +68,55 @@ export default function DashboardPage() {
     try {
       setLoading(true);
       setError(null);
+      setShowLoadingModal(true);
+      setLoadingProgress(0);
+
+      // Simulate progress updates
+      const progressInterval = setInterval(() => {
+        setLoadingProgress(prev => {
+          if (prev < 90) {
+            return prev + Math.random() * 15;
+          }
+          return prev;
+        });
+      }, 200);
 
       console.log('Fetching real dashboard data from Graphy...');
-      const response = await fetch('/api/dashboard/real-data');
+      setLoadingProgress(20);
+      
+      const response = await fetchWithAuth('/api/dashboard/real-data');
       
       console.log('Response status:', response.status);
+      setLoadingProgress(50);
       
       if (!response.ok) {
         const errorData = await response.json();
         console.error('API Error:', errorData);
+        
+        // Handle authentication errors specifically
+        if (isAuthError(response) || (response.status === 401 && errorData.code === 'INVALID_SESSION')) {
+          console.error('Authentication error: Invalid session');
+          setError('Your session has expired. Please log in again.');
+          // Clear auth state and redirect to login
+          logout();
+          router.push('/auth/login?message=session_expired');
+          return;
+        }
+        
         throw new Error(errorData.message || 'Failed to fetch dashboard data');
       }
 
       const result = await response.json();
       console.log('Dashboard data received:', result);
+      setLoadingProgress(80);
       
       // Log data source for debugging
       if (result.metadata?.cacheStatus === 'real-data-from-graphy') {
         console.log('✅ Using REAL data from Graphy API');
         setDataSource('graphy');
+      } else if (result.metadata?.fallbackData === true) {
+        console.log('🔄 Using fallback data - Graphy API unavailable');
+        setDataSource('fallback');
       } else {
         console.log('⚠️ Using mock/cached data - Graphy API may not be configured');
         setDataSource('mock');
@@ -76,12 +124,19 @@ export default function DashboardPage() {
       
       setDashboardData(result.data);
       setLastRefresh(new Date());
+      setLoadingProgress(100);
+      
+      clearInterval(progressInterval);
     } catch (err) {
       console.error('Error fetching dashboard:', err);
       const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
       
       // Handle specific Graphy API errors
-      if (errorMessage.includes('Learner not found')) {
+      if (errorMessage.includes('Invalid session') || errorMessage.includes('You must be logged in')) {
+        setError('Your session has expired. Please log in again.');
+        logout();
+        router.push('/auth/login?message=session_expired');
+      } else if (errorMessage.includes('Learner not found')) {
         setError('No courses found for your account. Please check if you\'re logged in with the correct email or contact support.');
       } else if (errorMessage.includes('Dashboard service error')) {
         setError('Unable to connect to course data. Please try again in a few moments.');
@@ -92,6 +147,7 @@ export default function DashboardPage() {
       } else {
         setError(errorMessage);
       }
+      setShowLoadingModal(false);
     } finally {
       setLoading(false);
     }
@@ -105,11 +161,26 @@ export default function DashboardPage() {
 
     // Redirect to login if not authenticated
     if (!isLoggedIn || !user) {
+      setShowLoadingModal(false);
       router.push('/?login=true');
       return;
     }
 
     fetchDashboardData();
+    
+    // Check dharma progress
+    try {
+      const storedProfile = localStorage.getItem('dharma-path-profile');
+      if (storedProfile) {
+        const parsedProfile = JSON.parse(storedProfile);
+        setDharmaProgress({
+          hasProfile: !!parsedProfile.selectedAvatar,
+          quizCount: parsedProfile.quizResults?.length || 0
+        });
+      }
+    } catch (error) {
+      console.error('Error checking dharma progress:', error);
+    }
   }, [isInitialized, isLoggedIn, user, router, fetchDashboardData]);
 
   // Auto-refresh dashboard data every 10 minutes
@@ -132,6 +203,11 @@ export default function DashboardPage() {
     }
   };
 
+  const handleLoadingComplete = () => {
+    setShowLoadingModal(false);
+    setLoadingProgress(0);
+  };
+
   // Helper function to format currency
   const formatCurrency = (amount: number, currency: string) => {
     if (amount === 0) return 'Free';
@@ -140,26 +216,30 @@ export default function DashboardPage() {
     return `${amount.toLocaleString()} ${currency}`;
   };
 
-  if (loading) {
-    return <DashboardSkeleton />;
-  }
-
-  if (error) {
-    return <DashboardError error={error} onRetry={handleRefresh} />;
-  }
-
-  if (!dashboardData) {
-    return <DashboardError error="No dashboard data available" onRetry={handleRefresh} />;
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 transition-colors duration-300 overflow-x-hidden">
-      <IndianPatterns />
-      <main className="main-container" role="main">
-        <div className="container mx-auto px-4 py-6 max-w-7xl">
+    <ErrorBoundary>
+      {/* Loading Modal - Always render, controlled by showLoadingModal */}
+      <LoadingModal
+        isVisible={showLoadingModal}
+        progress={loadingProgress}
+        message="Loading your dashboard..."
+        onComplete={handleLoadingComplete}
+      />
+      
+      {loading ? (
+        <DashboardSkeleton />
+      ) : error ? (
+        <DashboardError error={error} onRetry={handleRefresh} />
+      ) : !dashboardData ? (
+        <DashboardError error="No dashboard data available" onRetry={handleRefresh} />
+      ) : (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 transition-colors duration-300 overflow-x-hidden">
+        <IndianPatterns />
+        <main className="main-container" role="main">
+          <div className="container mx-auto px-4 py-6 max-w-7xl">
           
           {/* Modern Header with User Profile */}
-          <motion.div
+          <ClientOnlyMotion
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -181,6 +261,12 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-2 mt-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs text-slate-500">Active learner</span>
+                      {dharmaProgress.hasProfile && (
+                        <>
+                          <div className="w-1 h-1 bg-slate-300 rounded-full"></div>
+                          <span className="text-xs text-saffron-600">🕉️ Spiritual Journey</span>
+                        </>
+                      )}
                       {lastRefresh && (
                         <span className="text-xs text-slate-400 ml-2">
                           • Updated {lastRefresh.toLocaleTimeString()}
@@ -194,6 +280,11 @@ export default function DashboardPage() {
                       {dataSource === 'mock' && (
                         <span className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full ml-2">
                           ⚠️ Demo Data
+                        </span>
+                      )}
+                      {dataSource === 'fallback' && (
+                        <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full ml-2">
+                          🔄 Fallback Mode
                         </span>
                       )}
                     </div>
@@ -221,13 +312,47 @@ export default function DashboardPage() {
                     </div>
                     <div className="text-xs text-slate-500">Completed</div>
                   </div>
+                  <div className="w-px h-8 bg-slate-200"></div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-saffron-600">
+                      {Math.round((dashboardData.summary.completedCourses / Math.max(dashboardData.summary.totalCourses, 1)) * 100)}%
+                    </div>
+                    <div className="text-xs text-slate-500">Progress</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ClientOnlyMotion>
+
+          {/* API Status Banner */}
+          {dataSource === 'fallback' && (
+            <ClientOnlyMotion
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-blue-900">API Service Temporarily Unavailable</h3>
+                    <p className="text-sm text-blue-700">
+                      We're experiencing connectivity issues with our course data service. 
+                      You're seeing demo data while we work to restore full functionality.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ClientOnlyMotion>
+          )}
 
           {/* Enhanced Dashboard Summary Cards */}
-          <motion.div
+          <ClientOnlyMotion
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -302,15 +427,47 @@ export default function DashboardPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ClientOnlyMotion>
 
-          {/* Main Content Grid */}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+          {/* Tab Navigation */}
+          <ClientOnlyMotion
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mb-8"
+          >
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-2">
+              <div className="flex space-x-2">
+                {[
+                  { id: 'courses', label: 'My Courses', icon: '📚' },
+                  { id: 'dharma', label: 'Spiritual Journey', icon: '🕉️' },
+                  { id: 'guna', label: 'Guna Analysis', icon: '⚖️' }
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? 'bg-saffron-100 text-saffron-700 shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="text-lg">{tab.icon}</span>
+                    <span>{tab.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </ClientOnlyMotion>
+
+          {/* Tab Content */}
+          {activeTab === 'courses' && (
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             
             {/* Left Column - Courses */}
             <div className="xl:col-span-2 space-y-8">
               {/* Course Cards Section */}
-              <motion.div
+              <ClientOnlyMotion
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -326,7 +483,7 @@ export default function DashboardPage() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {dashboardData.products.map((course, index) => (
-                    <motion.div
+                    <ClientOnlyMotion
                       key={course.product.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -428,13 +585,13 @@ export default function DashboardPage() {
                           )}
                         </button>
                       </div>
-                    </motion.div>
+                    </ClientOnlyMotion>
                   ))}
                 </div>
-              </motion.div>
+              </ClientOnlyMotion>
 
               {/* Activity Feed */}
-              <motion.div
+              <ClientOnlyMotion
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -460,14 +617,14 @@ export default function DashboardPage() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </ClientOnlyMotion>
             </div>
 
             {/* Right Column - Recommendations and Quick Stats */}
             <div className="space-y-6">
               
               {/* Real-time Recommendations */}
-              <motion.div
+              <ClientOnlyMotion
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -562,10 +719,10 @@ export default function DashboardPage() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </ClientOnlyMotion>
 
               {/* Quick Stats */}
-              <motion.div
+              <ClientOnlyMotion
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -587,11 +744,90 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </ClientOnlyMotion>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+          )}
+
+          {/* Dharma Analysis Tab */}
+          {activeTab === 'dharma' && (
+            <ClientOnlyMotion
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
+            >
+              {/* Quick Actions */}
+              <div className="bg-gradient-to-r from-saffron-50 to-orange-50 border border-saffron-200 rounded-xl p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Spiritual Journey Tools</h3>
+                    <p className="text-slate-600 text-sm">
+                      Explore your spiritual nature and discover your dharma path
+                    </p>
+                  </div>
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => window.location.href = '/dharma-path'}
+                      className="px-4 py-2 bg-saffron-600 hover:bg-saffron-700 text-white rounded-lg text-sm font-medium transition-colors"
+                    >
+                      Start Dharma Path
+                    </button>
+                    <button
+                      onClick={() => window.location.href = '/guna-profiler'}
+                      className="px-4 py-2 bg-white hover:bg-slate-50 text-saffron-700 border border-saffron-300 rounded-lg text-sm font-medium transition-colors"
+                    >
+                      Take Guna Profiler
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <DharmaAnalysis userEmail={user?.email} />
+            </ClientOnlyMotion>
+          )}
+
+          {/* Guna Analysis Tab */}
+          {activeTab === 'guna' && (
+            <ClientOnlyMotion
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
+            >
+              {/* Quick Actions */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Guna Profiler</h3>
+                    <p className="text-slate-600 text-sm">
+                      Discover your balance of Sattva, Rajas, and Tamas - the three fundamental qualities of nature
+                    </p>
+                  </div>
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => window.location.href = '/guna-profiler'}
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+                    >
+                      Take Guna Profiler
+                    </button>
+                    <button
+                      onClick={() => window.location.href = '/dharma-path'}
+                      className="px-4 py-2 bg-white hover:bg-slate-50 text-blue-700 border border-blue-300 rounded-lg text-sm font-medium transition-colors"
+                    >
+                      Explore Dharma Path
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <GunaAnalysis userEmail={user?.email} />
+            </ClientOnlyMotion>
+          )}
+          </div>
+        </main>
+      </div>
+      )}
+    </ErrorBoundary>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display } from 'next/font/google'
 import './globals.css'
-import FontPreloader from '@/components/optimization/FontPreloader'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import AnalyticsInitializer from '@/components/AnalyticsInitializer'
@@ -105,56 +104,32 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${nunito.variable} ${dmSerif.variable} ${tiroDevanagari.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
       <head>
-        <FontPreloader />
         <link rel="canonical" href="https://shikshanam.com" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Shikshanam","description":"Ancient Indian Knowledge Platform for Sanskrit, Darshanas, and Self-help","url":"https://shikshanam.com","logo":"https://shikshanam.com/logo.png","sameAs":["https://twitter.com/shikshanam","https://facebook.com/shikshanam","https://instagram.com/shikshanam"],"offers":{"@type":"Course","name":"Sanskrit Learning","description":"Learn Sanskrit through structured courses and live classes"}}`
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Shikshanam","description":"Ancient Indian Knowledge Platform","url":"https://shikshanam.com"}`
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}`
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Fallback to ensure content is visible if JavaScript fails
-              (function() {
-                function makeContentVisible() {
-                  const hiddenElements = document.querySelectorAll('[style*="opacity:0"]');
-                  hiddenElements.forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                    el.style.transition = 'none';
-                  });
-                }
-                
-                // Run immediately
-                makeContentVisible();
-                
-                // Run after DOM is ready
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', makeContentVisible);
-                }
-                
-                // Run after a short delay as final fallback
-                setTimeout(makeContentVisible, 100);
-              })();
-            `
-          }}
-        />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+        {/* Structured Data Scripts */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: '{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Shikshanam","description":"Ancient Indian Knowledge Platform for Sanskrit, Darshanas, and Self-help","url":"https://shikshanam.com","logo":"https://shikshanam.com/logo.png","sameAs":["https://twitter.com/shikshanam","https://facebook.com/shikshanam","https://instagram.com/shikshanam"],"offers":{"@type":"Course","name":"Sanskrit Learning","description":"Learn Sanskrit through structured courses and live classes"}}'
+          }}
+          suppressHydrationWarning
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}'
+          }}
+          suppressHydrationWarning
+        />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: '(function(){function makeContentVisible(){const hiddenElements=document.querySelectorAll(\'[style*="opacity:0"]\');hiddenElements.forEach(el=>{el.style.opacity=\'1\';el.style.transform=\'none\';el.style.transition=\'none\'});}makeContentVisible();if(document.readyState===\'loading\'){document.addEventListener(\'DOMContentLoaded\',makeContentVisible);}setTimeout(makeContentVisible,100);})();'
+          }}
+          suppressHydrationWarning
+        />
+        
         {/* Skip Links for Accessibility */}
         <a href="#main-content" className="skip-link">
           Skip to main content

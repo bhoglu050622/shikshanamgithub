@@ -2,178 +2,186 @@
 
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/cms/context/AuthContext'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import {
-  Settings,
-  Globe,
+import { 
+  Settings, 
+  Save, 
+  Globe, 
+  Palette, 
+  Mail, 
+  Shield, 
   Database,
-  Shield,
-  FileText,
-  Download,
-  Upload,
-  Trash2,
-  Save,
-  RefreshCw,
-  AlertTriangle,
-  CheckCircle,
-  Clock,
-  User,
-  Mail,
-  Key,
   Bell,
-  Palette,
-  Languages,
-  Workflow,
-  Archive,
-  HardDrive,
+  Users,
+  FileText,
+  Image,
+  Link,
+  Twitter,
+  Facebook,
+  Instagram,
+  Youtube
 } from 'lucide-react'
 
-interface SystemSettings {
+interface SettingsData {
   siteName: string
-  siteUrl: string
-  defaultLanguage: string
-  timezone: string
-  dateFormat: string
-  maintenanceMode: boolean
-  autoSave: boolean
-  autoSaveInterval: number
-  maxFileSize: number
-  allowedFileTypes: string[]
-}
-
-interface WorkflowSettings {
-  requireApproval: boolean
-  approvalWorkflow: 'simple' | 'complex'
-  autoPublish: boolean
-  publishDelay: number
-  rollbackEnabled: boolean
-  auditLogging: boolean
-}
-
-interface BackupSettings {
-  autoBackup: boolean
-  backupInterval: 'daily' | 'weekly' | 'monthly'
-  backupRetention: number
-  lastBackup?: string
-  backupLocation: 'local' | 'cloud'
-}
-
-const defaultSystemSettings: SystemSettings = {
-  siteName: 'Shikshanam CMS',
-  siteUrl: 'https://shikshanam.com',
-  defaultLanguage: 'en',
-  timezone: 'UTC',
-  dateFormat: 'YYYY-MM-DD',
-  maintenanceMode: false,
-  autoSave: true,
-  autoSaveInterval: 30,
-  maxFileSize: 10,
-  allowedFileTypes: ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'mp4', 'mp3']
-}
-
-const defaultWorkflowSettings: WorkflowSettings = {
-  requireApproval: true,
-  approvalWorkflow: 'simple',
-  autoPublish: false,
-  publishDelay: 0,
-  rollbackEnabled: true,
-  auditLogging: true
-}
-
-const defaultBackupSettings: BackupSettings = {
-  autoBackup: true,
-  backupInterval: 'daily',
-  backupRetention: 30,
-  lastBackup: '2024-01-15T10:30:00Z',
-  backupLocation: 'cloud'
+  siteDescription: string
+  logoLight: string
+  logoDark: string
+  brandColors: {
+    primary: string
+    secondary: string
+  }
+  defaultSEO: {
+    title: string
+    description: string
+    keywords: string
+    ogImage: string
+  }
+  analytics: {
+    localStorageKey: string
+    endpointEnabled: boolean
+    endpoint: string
+  }
+  contact: {
+    email: string
+    phone: string
+    address: string
+  }
+  social: {
+    twitter: string
+    facebook: string
+    instagram: string
+    youtube: string
+  }
+  features: {
+    registrationEnabled: boolean
+    commentsEnabled: boolean
+    ratingsEnabled: boolean
+    certificatesEnabled: boolean
+  }
 }
 
 export default function SettingsPage() {
   const { user } = useAuth()
-  const [systemSettings, setSystemSettings] = useState<SystemSettings>(defaultSystemSettings)
-  const [workflowSettings, setWorkflowSettings] = useState<WorkflowSettings>(defaultWorkflowSettings)
-  const [backupSettings, setBackupSettings] = useState<BackupSettings>(defaultBackupSettings)
-  const [isSaving, setIsSaving] = useState(false)
-  const [lastSaved, setLastSaved] = useState<Date | null>(null)
-  const [exportDialog, setExportDialog] = useState(false)
-  const [importDialog, setImportDialog] = useState(false)
+  const [settings, setSettings] = useState<SettingsData>({
+    siteName: 'Shikshanam',
+    siteDescription: 'Ancient wisdom for modern living',
+    logoLight: '/assets/logo-light.svg',
+    logoDark: '/assets/logo-dark.svg',
+    brandColors: {
+      primary: '#ea580c',
+      secondary: '#f59e0b',
+    },
+    defaultSEO: {
+      title: 'Shikshanam - Ancient Wisdom for Modern Living',
+      description: 'Learn Sanskrit, philosophy, and spiritual practices through comprehensive courses and guided learning.',
+      keywords: 'sanskrit, philosophy, spirituality, vedanta, yoga, meditation',
+      ogImage: '/assets/og-image.jpg',
+    },
+    analytics: {
+      localStorageKey: 'analytics_queue_v1',
+      endpointEnabled: true,
+      endpoint: '/api/analytics/collect',
+    },
+    contact: {
+      email: 'contact@shikshanam.com',
+      phone: '',
+      address: '',
+    },
+    social: {
+      twitter: '',
+      facebook: '',
+      instagram: '',
+      youtube: '',
+    },
+    features: {
+      registrationEnabled: true,
+      commentsEnabled: true,
+      ratingsEnabled: true,
+      certificatesEnabled: true,
+    },
+  })
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
 
-  const handleSaveSettings = async () => {
-    setIsSaving(true)
-    
-    // Simulate save operation
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsSaving(false)
-    setLastSaved(new Date())
-  }
+  useEffect(() => {
+    fetchSettings()
+  }, [])
 
-  const handleExportSettings = () => {
-    const settings = {
-      system: systemSettings,
-      workflow: workflowSettings,
-      backup: backupSettings,
-      exportedAt: new Date().toISOString(),
-      exportedBy: user?.username
-    }
-    
-    const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `cms-settings-${new Date().toISOString().split('T')[0]}.json`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-    
-    setExportDialog(false)
-  }
+  const fetchSettings = async () => {
+    try {
+      setLoading(true)
+      const token = localStorage.getItem('cmsAccessToken')
+      const response = await fetch('/api/cms/settings', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
 
-  const handleImportSettings = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-    
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      try {
-        const settings = JSON.parse(e.target?.result as string)
-        if (settings.system) setSystemSettings(settings.system)
-        if (settings.workflow) setWorkflowSettings(settings.workflow)
-        if (settings.backup) setBackupSettings(settings.backup)
-        setImportDialog(false)
-      } catch (error) {
-        console.error('Error importing settings:', error)
+      if (response.ok) {
+        const data = await response.json()
+        setSettings(data)
+      } else {
+        console.error('Failed to fetch settings')
       }
+    } catch (error) {
+      console.error('Error fetching settings:', error)
+    } finally {
+      setLoading(false)
     }
-    reader.readAsText(file)
   }
 
-  const handleCreateBackup = async () => {
-    // Simulate backup creation
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setBackupSettings(prev => ({ ...prev, lastBackup: new Date().toISOString() }))
+  const saveSettings = async () => {
+    try {
+      setSaving(true)
+      const token = localStorage.getItem('cmsAccessToken')
+      const response = await fetch('/api/cms/settings', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(settings),
+      })
+
+      if (response.ok) {
+        console.log('Settings saved successfully')
+        // Show success message
+      } else {
+        console.error('Failed to save settings')
+      }
+    } catch (error) {
+      console.error('Error saving settings:', error)
+    } finally {
+      setSaving(false)
+    }
   }
 
-  const handleRestoreBackup = () => {
-    // Implement backup restore logic
-    console.log('Restoring from backup...')
+  const updateSettings = (section: keyof SettingsData, field: string, value: any) => {
+    setSettings(prev => ({
+      ...prev,
+      [section]: {
+        ...(prev[section] as any),
+        [field]: value
+      }
+    }))
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading settings...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -182,459 +190,401 @@ export default function SettingsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-          <p className="text-gray-600">Configure system settings, workflows, and maintenance options</p>
+          <p className="text-gray-600">Configure your CMS and website settings</p>
         </div>
-        <div className="flex items-center space-x-2">
-          {lastSaved && (
-            <span className="text-sm text-gray-500">
-              Last saved: {lastSaved.toLocaleTimeString()}
-            </span>
-          )}
-          <Button onClick={handleSaveSettings} disabled={isSaving}>
-            {isSaving ? (
-              <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-            ) : (
-              <Save className="w-4 h-4 mr-2" />
-            )}
-            {isSaving ? 'Saving...' : 'Save Settings'}
-          </Button>
-        </div>
+        <Button 
+          className="bg-orange-600 hover:bg-orange-700"
+          onClick={saveSettings}
+          disabled={saving}
+        >
+          <Save className="w-4 h-4 mr-2" />
+          {saving ? 'Saving...' : 'Save Changes'}
+        </Button>
       </div>
 
-      <Tabs defaultValue="general" className="space-y-6">
-        <TabsList>
+      <Tabs defaultValue="general" className="w-full">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="general">General</TabsTrigger>
-          <TabsTrigger value="workflow">Workflow</TabsTrigger>
-          <TabsTrigger value="backup">Backup & Restore</TabsTrigger>
-          <TabsTrigger value="security">Security</TabsTrigger>
-          <TabsTrigger value="import-export">Import/Export</TabsTrigger>
+          <TabsTrigger value="appearance">Appearance</TabsTrigger>
+          <TabsTrigger value="seo">SEO</TabsTrigger>
+          <TabsTrigger value="contact">Contact</TabsTrigger>
+          <TabsTrigger value="social">Social</TabsTrigger>
+          <TabsTrigger value="features">Features</TabsTrigger>
         </TabsList>
 
+        {/* General Settings */}
         <TabsContent value="general" className="space-y-6">
-          {/* General Settings */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Globe className="w-5 h-5 mr-2" />
                 General Settings
               </CardTitle>
+              <CardDescription>
+                Basic information about your website
+              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="siteName">Site Name</Label>
+                <Input
+                  id="siteName"
+                  value={settings.siteName}
+                  onChange={(e) => updateSettings('siteName', 'siteName', e.target.value)}
+                  placeholder="Your website name"
+                />
+              </div>
+              <div>
+                <Label htmlFor="siteDescription">Site Description</Label>
+                <Textarea
+                  id="siteDescription"
+                  value={settings.siteDescription}
+                  onChange={(e) => updateSettings('siteDescription', 'siteDescription', e.target.value)}
+                  placeholder="Brief description of your website"
+                  rows={3}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="site-name">Site Name</Label>
+                  <Label htmlFor="logoLight">Light Logo URL</Label>
                   <Input
-                    id="site-name"
-                    value={systemSettings.siteName}
-                    onChange={(e) => setSystemSettings(prev => ({ ...prev, siteName: e.target.value }))}
+                    id="logoLight"
+                    value={settings.logoLight}
+                    onChange={(e) => updateSettings('logoLight', 'logoLight', e.target.value)}
+                    placeholder="/assets/logo-light.svg"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="site-url">Site URL</Label>
+                  <Label htmlFor="logoDark">Dark Logo URL</Label>
                   <Input
-                    id="site-url"
-                    value={systemSettings.siteUrl}
-                    onChange={(e) => setSystemSettings(prev => ({ ...prev, siteUrl: e.target.value }))}
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <Label htmlFor="default-language">Default Language</Label>
-                  <Select value={systemSettings.defaultLanguage} onValueChange={(value) => setSystemSettings(prev => ({ ...prev, defaultLanguage: value }))}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="en">English</SelectItem>
-                      <SelectItem value="hi">Hindi</SelectItem>
-                      <SelectItem value="sa">Sanskrit</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="timezone">Timezone</Label>
-                  <Select value={systemSettings.timezone} onValueChange={(value) => setSystemSettings(prev => ({ ...prev, timezone: value }))}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="UTC">UTC</SelectItem>
-                      <SelectItem value="Asia/Kolkata">Asia/Kolkata</SelectItem>
-                      <SelectItem value="America/New_York">America/New_York</SelectItem>
-                      <SelectItem value="Europe/London">Europe/London</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="date-format">Date Format</Label>
-                  <Select value={systemSettings.dateFormat} onValueChange={(value) => setSystemSettings(prev => ({ ...prev, dateFormat: value }))}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="YYYY-MM-DD">YYYY-MM-DD</SelectItem>
-                      <SelectItem value="MM/DD/YYYY">MM/DD/YYYY</SelectItem>
-                      <SelectItem value="DD/MM/YYYY">DD/MM/YYYY</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="maintenance-mode">Maintenance Mode</Label>
-                    <p className="text-sm text-gray-600">Enable maintenance mode to prevent public access</p>
-                  </div>
-                  <Switch
-                    id="maintenance-mode"
-                    checked={systemSettings.maintenanceMode}
-                    onCheckedChange={(checked) => setSystemSettings(prev => ({ ...prev, maintenanceMode: checked }))}
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="auto-save">Auto Save</Label>
-                    <p className="text-sm text-gray-600">Automatically save content changes</p>
-                  </div>
-                  <Switch
-                    id="auto-save"
-                    checked={systemSettings.autoSave}
-                    onCheckedChange={(checked) => setSystemSettings(prev => ({ ...prev, autoSave: checked }))}
-                  />
-                </div>
-              </div>
-              
-              {systemSettings.autoSave && (
-                <div>
-                  <Label htmlFor="auto-save-interval">Auto Save Interval (seconds)</Label>
-                  <Input
-                    id="auto-save-interval"
-                    type="number"
-                    value={systemSettings.autoSaveInterval}
-                    onChange={(e) => setSystemSettings(prev => ({ ...prev, autoSaveInterval: parseInt(e.target.value) }))}
-                    min="10"
-                    max="300"
-                  />
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="workflow" className="space-y-6">
-          {/* Workflow Settings */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Workflow className="w-5 h-5 mr-2" />
-                Workflow Settings
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="require-approval">Require Approval</Label>
-                    <p className="text-sm text-gray-600">Content must be approved before publishing</p>
-                  </div>
-                  <Switch
-                    id="require-approval"
-                    checked={workflowSettings.requireApproval}
-                    onCheckedChange={(checked) => setWorkflowSettings(prev => ({ ...prev, requireApproval: checked }))}
-                  />
-                </div>
-                
-                {workflowSettings.requireApproval && (
-                  <div>
-                    <Label htmlFor="approval-workflow">Approval Workflow</Label>
-                    <Select value={workflowSettings.approvalWorkflow} onValueChange={(value: any) => setWorkflowSettings(prev => ({ ...prev, approvalWorkflow: value }))}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="simple">Simple (Single Reviewer)</SelectItem>
-                        <SelectItem value="complex">Complex (Multiple Reviewers)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="auto-publish">Auto Publish</Label>
-                    <p className="text-sm text-gray-600">Automatically publish approved content</p>
-                  </div>
-                  <Switch
-                    id="auto-publish"
-                    checked={workflowSettings.autoPublish}
-                    onCheckedChange={(checked) => setWorkflowSettings(prev => ({ ...prev, autoPublish: checked }))}
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="rollback-enabled">Rollback Enabled</Label>
-                    <p className="text-sm text-gray-600">Allow content rollback functionality</p>
-                  </div>
-                  <Switch
-                    id="rollback-enabled"
-                    checked={workflowSettings.rollbackEnabled}
-                    onCheckedChange={(checked) => setWorkflowSettings(prev => ({ ...prev, rollbackEnabled: checked }))}
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="audit-logging">Audit Logging</Label>
-                    <p className="text-sm text-gray-600">Log all content changes and user actions</p>
-                  </div>
-                  <Switch
-                    id="audit-logging"
-                    checked={workflowSettings.auditLogging}
-                    onCheckedChange={(checked) => setWorkflowSettings(prev => ({ ...prev, auditLogging: checked }))}
+                    id="logoDark"
+                    value={settings.logoDark}
+                    onChange={(e) => updateSettings('logoDark', 'logoDark', e.target.value)}
+                    placeholder="/assets/logo-dark.svg"
                   />
                 </div>
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
 
-        <TabsContent value="backup" className="space-y-6">
-          {/* Backup & Restore */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Archive className="w-5 h-5 mr-2" />
-                Backup & Restore
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Label htmlFor="auto-backup">Auto Backup</Label>
-                    <p className="text-sm text-gray-600">Automatically create backups</p>
-                  </div>
-                  <Switch
-                    id="auto-backup"
-                    checked={backupSettings.autoBackup}
-                    onCheckedChange={(checked) => setBackupSettings(prev => ({ ...prev, autoBackup: checked }))}
-                  />
-                </div>
-                
-                {backupSettings.autoBackup && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <Label htmlFor="backup-interval">Backup Interval</Label>
-                      <Select value={backupSettings.backupInterval} onValueChange={(value: any) => setBackupSettings(prev => ({ ...prev, backupInterval: value }))}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="daily">Daily</SelectItem>
-                          <SelectItem value="weekly">Weekly</SelectItem>
-                          <SelectItem value="monthly">Monthly</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="backup-retention">Retention (days)</Label>
-                      <Input
-                        id="backup-retention"
-                        type="number"
-                        value={backupSettings.backupRetention}
-                        onChange={(e) => setBackupSettings(prev => ({ ...prev, backupRetention: parseInt(e.target.value) }))}
-                        min="1"
-                        max="365"
-                      />
-                    </div>
-                  </div>
-                )}
-                
-                <div>
-                  <Label htmlFor="backup-location">Backup Location</Label>
-                  <Select value={backupSettings.backupLocation} onValueChange={(value: any) => setBackupSettings(prev => ({ ...prev, backupLocation: value }))}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="local">Local Storage</SelectItem>
-                      <SelectItem value="cloud">Cloud Storage</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              
-              <div className="border-t pt-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="font-medium">Manual Backup</h3>
-                    <p className="text-sm text-gray-600">Create a backup now</p>
-                  </div>
-                  <Button onClick={handleCreateBackup}>
-                    <Archive className="w-4 h-4 mr-2" />
-                    Create Backup
-                  </Button>
-                </div>
-                
-                {backupSettings.lastBackup && (
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <Clock className="w-4 h-4" />
-                      <span>Last backup: {new Date(backupSettings.lastBackup).toLocaleString()}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="security" className="space-y-6">
-          {/* Security Settings */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Shield className="w-5 h-5 mr-2" />
-                Security Settings
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-12">
-                <Shield className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Security Configuration</h3>
-                <p className="text-gray-600">Configure security settings, SSL, and access controls</p>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="import-export" className="space-y-6">
-          {/* Import/Export */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Database className="w-5 h-5 mr-2" />
-                Import/Export
+                Analytics Settings
               </CardTitle>
+              <CardDescription>
+                Configure analytics and tracking
+              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-4 border rounded-lg">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <Download className="w-8 h-8 text-blue-500" />
-                    <div>
-                      <h3 className="font-medium">Export Settings</h3>
-                      <p className="text-sm text-gray-600">Download all settings as JSON</p>
-                    </div>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="analyticsKey">Analytics Storage Key</Label>
+                <Input
+                  id="analyticsKey"
+                  value={settings.analytics.localStorageKey}
+                  onChange={(e) => updateSettings('analytics', 'localStorageKey', e.target.value)}
+                  placeholder="analytics_queue_v1"
+                />
+              </div>
+              <div>
+                <Label htmlFor="analyticsEndpoint">Analytics Endpoint</Label>
+                <Input
+                  id="analyticsEndpoint"
+                  value={settings.analytics.endpoint}
+                  onChange={(e) => updateSettings('analytics', 'endpoint', e.target.value)}
+                  placeholder="/api/analytics/collect"
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="analyticsEnabled"
+                  checked={settings.analytics.endpointEnabled}
+                  onCheckedChange={(checked) => updateSettings('analytics', 'endpointEnabled', checked)}
+                />
+                <Label htmlFor="analyticsEnabled">Enable Analytics Endpoint</Label>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Appearance Settings */}
+        <TabsContent value="appearance" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Palette className="w-5 h-5 mr-2" />
+                Brand Colors
+              </CardTitle>
+              <CardDescription>
+                Customize your brand colors
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="primaryColor">Primary Color</Label>
+                  <div className="flex space-x-2">
+                    <Input
+                      id="primaryColor"
+                      value={settings.brandColors.primary}
+                      onChange={(e) => updateSettings('brandColors', 'primary', e.target.value)}
+                      placeholder="#ea580c"
+                    />
+                    <div 
+                      className="w-10 h-10 rounded border"
+                      style={{ backgroundColor: settings.brandColors.primary }}
+                    />
                   </div>
-                  <Button onClick={() => setExportDialog(true)} className="w-full">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export Settings
-                  </Button>
                 </div>
-                
-                <div className="p-4 border rounded-lg">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <Upload className="w-8 h-8 text-green-500" />
-                    <div>
-                      <h3 className="font-medium">Import Settings</h3>
-                      <p className="text-sm text-gray-600">Upload settings from JSON file</p>
-                    </div>
+                <div>
+                  <Label htmlFor="secondaryColor">Secondary Color</Label>
+                  <div className="flex space-x-2">
+                    <Input
+                      id="secondaryColor"
+                      value={settings.brandColors.secondary}
+                      onChange={(e) => updateSettings('brandColors', 'secondary', e.target.value)}
+                      placeholder="#f59e0b"
+                    />
+                    <div 
+                      className="w-10 h-10 rounded border"
+                      style={{ backgroundColor: settings.brandColors.secondary }}
+                    />
                   </div>
-                  <Button onClick={() => setImportDialog(true)} className="w-full">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Import Settings
-                  </Button>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* SEO Settings */}
+        <TabsContent value="seo" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <FileText className="w-5 h-5 mr-2" />
+                Default SEO Settings
+              </CardTitle>
+              <CardDescription>
+                Default SEO settings for your website
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="seoTitle">Default SEO Title</Label>
+                <Input
+                  id="seoTitle"
+                  value={settings.defaultSEO.title}
+                  onChange={(e) => updateSettings('defaultSEO', 'title', e.target.value)}
+                  placeholder="Your website title"
+                />
+              </div>
+              <div>
+                <Label htmlFor="seoDescription">Default SEO Description</Label>
+                <Textarea
+                  id="seoDescription"
+                  value={settings.defaultSEO.description}
+                  onChange={(e) => updateSettings('defaultSEO', 'description', e.target.value)}
+                  placeholder="Your website description"
+                  rows={3}
+                />
+              </div>
+              <div>
+                <Label htmlFor="seoKeywords">Default Keywords</Label>
+                <Input
+                  id="seoKeywords"
+                  value={settings.defaultSEO.keywords}
+                  onChange={(e) => updateSettings('defaultSEO', 'keywords', e.target.value)}
+                  placeholder="keyword1, keyword2, keyword3"
+                />
+              </div>
+              <div>
+                <Label htmlFor="ogImage">Default OG Image</Label>
+                <Input
+                  id="ogImage"
+                  value={settings.defaultSEO.ogImage}
+                  onChange={(e) => updateSettings('defaultSEO', 'ogImage', e.target.value)}
+                  placeholder="/assets/og-image.jpg"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Contact Settings */}
+        <TabsContent value="contact" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Mail className="w-5 h-5 mr-2" />
+                Contact Information
+              </CardTitle>
+              <CardDescription>
+                Your contact details
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="contactEmail">Email</Label>
+                <Input
+                  id="contactEmail"
+                  type="email"
+                  value={settings.contact.email}
+                  onChange={(e) => updateSettings('contact', 'email', e.target.value)}
+                  placeholder="contact@example.com"
+                />
+              </div>
+              <div>
+                <Label htmlFor="contactPhone">Phone</Label>
+                <Input
+                  id="contactPhone"
+                  value={settings.contact.phone}
+                  onChange={(e) => updateSettings('contact', 'phone', e.target.value)}
+                  placeholder="+1 (555) 123-4567"
+                />
+              </div>
+              <div>
+                <Label htmlFor="contactAddress">Address</Label>
+                <Textarea
+                  id="contactAddress"
+                  value={settings.contact.address}
+                  onChange={(e) => updateSettings('contact', 'address', e.target.value)}
+                  placeholder="Your business address"
+                  rows={3}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Social Settings */}
+        <TabsContent value="social" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Link className="w-5 h-5 mr-2" />
+                Social Media Links
+              </CardTitle>
+              <CardDescription>
+                Your social media profiles
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="twitter" className="flex items-center">
+                    <Twitter className="w-4 h-4 mr-2" />
+                    Twitter
+                  </Label>
+                  <Input
+                    id="twitter"
+                    value={settings.social.twitter}
+                    onChange={(e) => updateSettings('social', 'twitter', e.target.value)}
+                    placeholder="https://twitter.com/username"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="facebook" className="flex items-center">
+                    <Facebook className="w-4 h-4 mr-2" />
+                    Facebook
+                  </Label>
+                  <Input
+                    id="facebook"
+                    value={settings.social.facebook}
+                    onChange={(e) => updateSettings('social', 'facebook', e.target.value)}
+                    placeholder="https://facebook.com/username"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="instagram" className="flex items-center">
+                    <Instagram className="w-4 h-4 mr-2" />
+                    Instagram
+                  </Label>
+                  <Input
+                    id="instagram"
+                    value={settings.social.instagram}
+                    onChange={(e) => updateSettings('social', 'instagram', e.target.value)}
+                    placeholder="https://instagram.com/username"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="youtube" className="flex items-center">
+                    <Youtube className="w-4 h-4 mr-2" />
+                    YouTube
+                  </Label>
+                  <Input
+                    id="youtube"
+                    value={settings.social.youtube}
+                    onChange={(e) => updateSettings('social', 'youtube', e.target.value)}
+                    placeholder="https://youtube.com/channel/username"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Features Settings */}
+        <TabsContent value="features" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Shield className="w-5 h-5 mr-2" />
+                Feature Toggles
+              </CardTitle>
+              <CardDescription>
+                Enable or disable website features
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="registration">User Registration</Label>
+                  <p className="text-sm text-gray-600">Allow new users to register</p>
+                </div>
+                <Switch
+                  id="registration"
+                  checked={settings.features.registrationEnabled}
+                  onCheckedChange={(checked) => updateSettings('features', 'registrationEnabled', checked)}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="comments">Comments</Label>
+                  <p className="text-sm text-gray-600">Enable comments on content</p>
+                </div>
+                <Switch
+                  id="comments"
+                  checked={settings.features.commentsEnabled}
+                  onCheckedChange={(checked) => updateSettings('features', 'commentsEnabled', checked)}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="ratings">Ratings</Label>
+                  <p className="text-sm text-gray-600">Allow users to rate content</p>
+                </div>
+                <Switch
+                  id="ratings"
+                  checked={settings.features.ratingsEnabled}
+                  onCheckedChange={(checked) => updateSettings('features', 'ratingsEnabled', checked)}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="certificates">Certificates</Label>
+                  <p className="text-sm text-gray-600">Issue completion certificates</p>
+                </div>
+                <Switch
+                  id="certificates"
+                  checked={settings.features.certificatesEnabled}
+                  onCheckedChange={(checked) => updateSettings('features', 'certificatesEnabled', checked)}
+                />
               </div>
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
-
-      {/* Export Dialog */}
-      <Dialog open={exportDialog} onOpenChange={setExportDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Export Settings</DialogTitle>
-            <DialogDescription>
-              Download all your CMS settings as a JSON file
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-medium text-blue-900 mb-2">What will be exported:</h4>
-              <ul className="text-sm text-blue-800 space-y-1">
-                <li>• General system settings</li>
-                <li>• Workflow configurations</li>
-                <li>• Backup settings</li>
-                <li>• Security preferences</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="flex justify-end space-x-2">
-            <Button variant="outline" onClick={() => setExportDialog(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleExportSettings}>
-              <Download className="w-4 h-4 mr-2" />
-              Export
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Import Dialog */}
-      <Dialog open={importDialog} onOpenChange={setImportDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Import Settings</DialogTitle>
-            <DialogDescription>
-              Upload a JSON file to restore your CMS settings
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4">
-            <div className="bg-yellow-50 p-4 rounded-lg">
-              <div className="flex items-center space-x-2 text-yellow-800">
-                <AlertTriangle className="w-4 h-4" />
-                <span className="font-medium">Warning</span>
-              </div>
-              <p className="text-sm text-yellow-700 mt-1">
-                Importing settings will overwrite your current configuration. Make sure to export your current settings first.
-              </p>
-            </div>
-            
-            <div>
-              <Label htmlFor="import-file">Select JSON File</Label>
-              <Input
-                id="import-file"
-                type="file"
-                accept=".json"
-                onChange={handleImportSettings}
-                className="mt-2"
-              />
-            </div>
-          </div>
-          
-          <div className="flex justify-end space-x-2">
-            <Button variant="outline" onClick={() => setImportDialog(false)}>
-              Cancel
-            </Button>
-            <Button disabled>
-              <Upload className="w-4 h-4 mr-2" />
-              Import
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   )
 }

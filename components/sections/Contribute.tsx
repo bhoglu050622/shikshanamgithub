@@ -52,7 +52,7 @@ const contributionOptions = [
       {
         text: 'Choose a Project',
         icon: Target,
-        color: 'bg-accent hover:bg-accent/90'
+        color: 'bg-secondary hover:bg-secondary/90'
       },
       {
         text: 'Become a Patron',
@@ -266,7 +266,7 @@ export default function Contribute() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h3 className="font-serif text-2xl font-bold text-foreground text-center mb-8">
+          <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground text-center mb-6">
             Current Projects You Can Support
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -278,20 +278,20 @@ export default function Contribute() {
                 transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02, y: -3 }}
-                className="bg-card rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border"
+                className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-border"
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-5">
                   <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                     {project.category}
                   </span>
                   <span className="text-xs text-muted-foreground">{project.daysLeft} days left</span>
                 </div>
                 
-                <h4 className="font-bold text-foreground mb-2 text-lg">{project.title}</h4>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.description}</p>
+                <h4 className="font-bold text-foreground mb-3 text-xl">{project.title}</h4>
+                <p className="text-muted-foreground text-base mb-4 leading-relaxed">{project.description}</p>
                 
                 {/* Progress Bar */}
-                <div className="mb-4">
+                <div className="mb-5">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="text-muted-foreground">Progress</span>
                     <span className="text-foreground font-medium">{project.progress}%</span>
@@ -305,7 +305,7 @@ export default function Contribute() {
                 </div>
                 
                 {/* Funding Info */}
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-center mb-5">
                   <div>
                     <div className="text-xs text-muted-foreground">Raised</div>
                     <div className="font-bold text-foreground">{project.raised}</div>
@@ -319,7 +319,7 @@ export default function Contribute() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-primary w-full py-3 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300"
+                  className="btn-primary w-full py-4 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 text-base"
                 >
                   Support This Project
                 </motion.button>

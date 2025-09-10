@@ -167,7 +167,7 @@ export default function FAQ() {
           className="text-center"
         >
           <div className="bg-gradient-to-r from-secondary to-accent rounded-3xl p-8 text-primary-foreground max-w-3xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold mb-4">
+            <h3 className="font-serif text-2xl font-bold mb-4 text-white">
               Still have questions?
             </h3>
             <p className="text-primary-foreground/90 mb-6 text-lg">
@@ -178,7 +178,7 @@ export default function FAQ() {
                 href="mailto:support@shikshanam.in"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-card text-secondary px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                className="bg-white text-foreground px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>Email Support</span>
@@ -187,13 +187,13 @@ export default function FAQ() {
                 href="tel:+919910032165"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-card text-card px-8 py-3 rounded-2xl font-semibold hover:bg-card hover:text-secondary transition-all duration-300 flex items-center justify-center space-x-2"
+                className="border-2 border-white text-white px-8 py-3 rounded-2xl font-semibold hover:bg-white hover:text-foreground transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <Phone className="w-5 h-5" />
                 <span>Call Us</span>
               </motion.a>
             </div>
-            <div className="mt-4 text-primary-foreground/80 text-sm">
+            <div className="mt-4 text-white text-sm">
               <p>Monday to Saturday 11AM – 6PM</p>
               <p>Phone: +91-9910032165</p>
             </div>

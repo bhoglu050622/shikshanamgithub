@@ -6,14 +6,15 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { graphyClient } from '@/lib/api/graphy-client';
+import { checkRateLimit, getClientIP, validateRequestBody, sanitizeObject } from '@/lib/security';
 
-// Simple admin authentication (in production, use proper JWT or API key auth)
+// Enhanced admin authentication with security checks
 function validateAdminAuth(request: NextRequest): boolean {
   const authHeader = request.headers.get('authorization');
   const apiKey = request.headers.get('x-admin-api-key');
   
   // Check for admin API key
-  if (apiKey === process.env.ADMIN_API_KEY) {
+  if (apiKey && apiKey === process.env.ADMIN_API_KEY) {
     return true;
   }
   
@@ -29,6 +30,20 @@ function validateAdminAuth(request: NextRequest): boolean {
 
 export async function POST(request: NextRequest) {
   try {
+    // Get client IP for rate limiting
+    const clientIP = getClientIP(request);
+
+    // Check rate limit for admin endpoints
+    if (!checkRateLimit(clientIP, 'API')) {
+      return NextResponse.json(
+        { 
+          error: 'Rate limit exceeded',
+          message: 'Too many requests. Please try again later.'
+        },
+        { status: 429 }
+      );
+    }
+
     // Validate admin authentication
     if (!validateAdminAuth(request)) {
       return NextResponse.json(
@@ -40,20 +55,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse request body
+    // Parse and validate request body
     const body = await request.json();
-    const { transactionId, amount, reason, adminNotes } = body;
-
+    const sanitizedBody = sanitizeObject(body);
+    
     // Validate required fields
-    if (!transactionId) {
+    const validation = validateRequestBody(sanitizedBody, ['transactionId', 'amount', 'reason']);
+    if (!validation.isValid) {
       return NextResponse.json(
         { 
-          error: 'Missing required fields',
-          message: 'transactionId is required'
+          error: 'Validation failed',
+          message: 'Invalid request data',
+          details: validation.errors
         },
         { status: 400 }
       );
     }
+
+    const { transactionId, amount, reason, adminNotes } = sanitizedBody;
 
     // Validate transactionId format
     if (typeof transactionId !== 'string') {

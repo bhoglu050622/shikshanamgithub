@@ -31,6 +31,8 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     /Failed to refresh token/,
     /token.*refresh/,
     /refresh.*token/,
+    /TokenRefreshError/,
+    /REFRESH_FAILED/,
     /was preloaded using link preload but not used/,
     /preload.*not used/
   ];

@@ -68,7 +68,7 @@ export default function Schools() {
   const isInView = useInView(ref, { once: true })
 
   return (
-    <section id="schools" className="section-padding bg-background relative overflow-hidden">
+    <section id="schools" className="py-8 sm:py-12 md:py-16 bg-background relative overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10">
         <motion.div
@@ -151,21 +151,29 @@ export default function Schools() {
         {/* Schools Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {schools.map((school, index) => (
-            <motion.div
+            <Link 
               key={school.title}
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -10,
-                rotateY: 5,
-                boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
+              href={school.href} 
+              className="no-underline block h-full"
+              onClick={(e) => {
+                console.log('Navigating to:', school.href);
+                // Ensure the navigation happens
+                e.stopPropagation();
               }}
-              className="group cursor-pointer relative overflow-hidden"
             >
-              <Link href={school.href} className="no-underline">
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -10,
+                  rotateY: 5,
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
+                }}
+                className="group relative overflow-hidden h-full"
+              >
                 <div className={`bg-gradient-to-br ${school.color} hover:${school.hoverColor} rounded-3xl p-8 text-white transition-all duration-500 shadow-xl hover:shadow-2xl relative overflow-hidden h-full`}>
                   {/* Enhanced Background Pattern */}
                   <motion.div 
@@ -223,7 +231,7 @@ export default function Schools() {
                       </motion.div>
                       <div className="flex-1">
                         <motion.h3 
-                          className="text-xl font-bold mb-2"
+                          className="text-xl font-bold mb-2 text-white"
                           whileHover={{ scale: 1.05 }}
                           transition={{ duration: 0.2 }}
                         >
@@ -274,8 +282,8 @@ export default function Schools() {
                     </motion.div>
                   </div>
                 </div>
-              </Link>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

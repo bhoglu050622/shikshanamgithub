@@ -8,44 +8,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { dashboardService } from '@/lib/dashboard/dashboard-service';
 import { DASHBOARD_CONFIG } from '@/lib/config/dashboard';
 import { getServerAuthCookie, validateAuthData } from '@/lib/server-cookies';
-
-// Rate limiting store (in production, use Redis)
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
-
-function checkRateLimit(identifier: string): boolean {
-  const now = Date.now();
-  const windowMs = DASHBOARD_CONFIG.RATE_LIMIT.WINDOW_MS;
-  const maxRequests = DASHBOARD_CONFIG.RATE_LIMIT.MAX_REQUESTS;
-
-  const current = rateLimitStore.get(identifier);
-  
-  if (!current || now > current.resetTime) {
-    rateLimitStore.set(identifier, {
-      count: 1,
-      resetTime: now + windowMs,
-    });
-    return true;
-  }
-
-  if (current.count >= maxRequests) {
-    return false;
-  }
-
-  current.count++;
-  return true;
-}
+import { checkRateLimit, getClientIP } from '@/lib/security';
 
 export async function GET(request: NextRequest) {
   const startTime = Date.now();
   
   try {
     // Get client IP for rate limiting
-    const clientIP = request.headers.get('x-forwarded-for') || 
-      request.headers.get('x-real-ip') || 
-      'unknown';
+    const clientIP = getClientIP(request);
 
     // Check rate limit
-    if (!checkRateLimit(clientIP)) {
+    if (!checkRateLimit(clientIP, 'DASHBOARD')) {
       return NextResponse.json(
         { 
           error: 'Rate limit exceeded',
