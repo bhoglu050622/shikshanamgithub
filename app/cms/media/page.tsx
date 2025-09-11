@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import Image from 'next/image'
 import { useAuth } from '@/cms/context/AuthContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -8,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { 
-  Image, 
+  Image as ImageIcon, 
   Upload, 
   Search, 
   Filter, 
@@ -140,7 +141,7 @@ export default function MediaPage() {
   }
 
   const getFileIcon = (type: string, mimeType: string) => {
-    if (type === 'image') return <Image className="w-4 h-4" />
+    if (type === 'image') return <ImageIcon className="w-4 h-4" />
     if (type === 'video') return <Video className="w-4 h-4" />
     if (type === 'audio') return <Music className="w-4 h-4" />
     if (mimeType.includes('pdf')) return <FileText className="w-4 h-4" />
@@ -249,7 +250,7 @@ export default function MediaPage() {
       ) : mediaFiles.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <Image className="w-12 h-12 text-gray-400 mb-4" />
+            <ImageIcon className="w-12 h-12 text-gray-400 mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No media files found</h3>
             <p className="text-gray-600 text-center mb-4">
               {search || typeFilter !== 'all' 
@@ -273,13 +274,14 @@ export default function MediaPage() {
               <CardContent className="p-4">
                 {viewMode === 'grid' ? (
                   <>
-                    <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center mb-3">
+                    <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center mb-3 relative">
                       {file.type === 'image' && file.thumbnailUrl ? (
-                        <img 
+                        <Image 
                           src={file.thumbnailUrl} 
                           alt={file.alt || file.originalName || 'Media thumbnail'}
-                          className="w-full h-full object-cover rounded-lg"
-                          loading="lazy"
+                          fill
+                          className="object-cover rounded-lg"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       ) : (
                         <div className="text-gray-400">
@@ -303,13 +305,14 @@ export default function MediaPage() {
                   </>
                 ) : (
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center relative">
                       {file.type === 'image' && file.thumbnailUrl ? (
-                        <img 
+                        <Image 
                           src={file.thumbnailUrl} 
                           alt={file.alt || file.originalName || 'Media thumbnail'}
-                          className="w-full h-full object-cover rounded-lg"
-                          loading="lazy"
+                          fill
+                          className="object-cover rounded-lg"
+                          sizes="48px"
                         />
                       ) : (
                         <div className="text-gray-400">

@@ -36,19 +36,26 @@ interface PreviewResponse {
   [key: string]: PreviewChange
 }
 
+// Type guard to check if an object is a valid PreviewChange
+const isValidPreviewChange = (change: unknown): change is PreviewChange => {
+  return (
+    change !== null &&
+    typeof change === 'object' &&
+    'value' in change &&
+    'type' in change &&
+    typeof (change as any).value === 'string' &&
+    typeof (change as any).type === 'string'
+  )
+}
+
 // Validation helper for preview data
-export const validatePreviewData = (data: any): data is PreviewResponse => {
+export const validatePreviewData = (data: unknown): data is PreviewResponse => {
   if (!data || typeof data !== 'object') {
     return false
   }
   
   // Check if it has at least one valid change
-  const hasValidChanges = Object.values(data).some(change => 
-    change && 
-    typeof change === 'object' && 
-    typeof change.value === 'string' &&
-    typeof change.type === 'string'
-  )
+  const hasValidChanges = Object.values(data).some(isValidPreviewChange)
   
   return hasValidChanges
 }
