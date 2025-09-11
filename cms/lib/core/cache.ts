@@ -179,13 +179,6 @@ export class CacheManager {
     lessonCache.set(key, data)
   }
 
-  static invalidateLesson(user: AuthUser, id: string) {
-    const key = generateCacheKey('lesson', user, id)
-    lessonCache.delete(key)
-    // Also invalidate lessons list cache
-    const lessonsKey = generateCacheKey('lessons', user, {})
-    lessonCache.delete(lessonsKey)
-  }
 
   static getLessonsByCourse(user: AuthUser, courseId: string) {
     const key = generateCacheKey('lessons:course', user, courseId)
