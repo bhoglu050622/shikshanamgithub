@@ -3,6 +3,12 @@
  * Provides offline caching and performance optimization
  */
 
+// Check if we're in a service worker context
+if (typeof self === 'undefined') {
+  // If not in service worker context (e.g., during build), exit early
+  throw new Error('Service worker code should only run in service worker context');
+}
+
 const CACHE_NAME = 'shikshanam-v1.0.0';
 const STATIC_CACHE_NAME = 'shikshanam-static-v1.0.0';
 const DYNAMIC_CACHE_NAME = 'shikshanam-dynamic-v1.0.0';

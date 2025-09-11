@@ -201,8 +201,12 @@ export class ServiceWorkerManager {
 // Create singleton instance
 export const serviceWorkerManager = new ServiceWorkerManager();
 
-// Auto-register service worker in browser environment
-if (typeof window !== 'undefined') {
+// Auto-register service worker in browser environment only
+// Only execute in browser environment, not during build
+if (typeof window !== 'undefined' && 
+    typeof navigator !== 'undefined' && 
+    'serviceWorker' in navigator &&
+    typeof document !== 'undefined') {
   // In development, unregister any existing service workers to prevent conflicts
   if (process.env.NODE_ENV === 'development') {
     navigator.serviceWorker.getRegistrations().then((registrations) => {
