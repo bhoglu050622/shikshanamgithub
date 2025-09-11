@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 
+// Set global self for server-side builds
+if (typeof global !== 'undefined' && typeof self === 'undefined') {
+  global.self = global;
+}
+
 const nextConfig = {
   outputFileTracingRoot: __dirname,
   images: {
@@ -48,10 +53,16 @@ const nextConfig = {
   compress: true,
   generateEtags: true,
   webpack: (config, { isServer, dev }) => {
+    // Set global self for server-side builds
+    if (isServer && typeof global !== 'undefined') {
+      global.self = global;
+    }
+    
     // ensure deterministic ids
     config.optimization = config.optimization || {};
     config.optimization.moduleIds = 'deterministic';
     config.optimization.chunkIds = 'deterministic';
+    
     
     // Optimize build configuration
     config.resolve.alias = {
@@ -75,8 +86,18 @@ const nextConfig = {
         sessionStorage: false,
       };
       
-      // Define browser globals as undefined on server
+      // Provide a global polyfill for self in server environment
       config.plugins = config.plugins || [];
+      config.plugins.push(
+        new (require('webpack')).ProvidePlugin({
+          'self': 'global',
+        })
+      );
+      
+      
+      
+      
+      // Define browser globals as undefined on server
       config.plugins.push(
         new (require('webpack')).DefinePlugin({
           'typeof self': JSON.stringify('undefined'),
