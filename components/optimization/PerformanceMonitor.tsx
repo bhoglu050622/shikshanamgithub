@@ -6,6 +6,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { debounce } from '@/lib/performance-utils';
 
 interface PerformanceMetrics {
   fcp: number | null; // First Contentful Paint
@@ -39,7 +40,8 @@ export default function PerformanceMonitor({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const collectMetrics = async () => {
+    // Debounce metric collection to avoid excessive calls
+    const debouncedCollectMetrics = debounce(async () => {
       const newMetrics: PerformanceMetrics = {
         fcp: null,
         lcp: null,
@@ -135,20 +137,20 @@ export default function PerformanceMonitor({
       if (reportToAnalytics) {
         reportMetrics(newMetrics);
       }
-    };
+    }, 1000); // Debounce by 1 second
 
     // Collect metrics after page load
     if (document.readyState === 'complete') {
-      collectMetrics();
+      debouncedCollectMetrics();
     } else {
-      window.addEventListener('load', collectMetrics);
+      window.addEventListener('load', debouncedCollectMetrics);
     }
 
-    // Collect metrics periodically
-    const interval = setInterval(collectMetrics, 30000); // Every 30 seconds
+    // Collect metrics periodically (less frequently)
+    const interval = setInterval(debouncedCollectMetrics, 60000); // Every 60 seconds
 
     return () => {
-      window.removeEventListener('load', collectMetrics);
+      window.removeEventListener('load', debouncedCollectMetrics);
       clearInterval(interval);
     };
   }, [onMetricsUpdate, reportToAnalytics, logToConsole]);
@@ -166,21 +168,6 @@ export default function PerformanceMonitor({
         if (metrics.ttfb) gtag('event', 'web_vitals', { name: 'TTFB', value: Math.round(metrics.ttfb) });
       }
 
-      // Report to custom analytics endpoint
-      fetch('/api/analytics/performance', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          metrics,
-          timestamp: Date.now(),
-          url: window.location.href,
-          userAgent: navigator.userAgent
-        })
-      }).catch(error => {
-        console.warn('Failed to report performance metrics:', error);
-      });
     } catch (error) {
       console.warn('Error reporting performance metrics:', error);
     }

@@ -5,11 +5,22 @@ if (typeof global !== 'undefined' && typeof self === 'undefined') {
   global.self = global;
 }
 
+// Additional polyfill for Node.js environment
+if (typeof globalThis !== 'undefined' && typeof globalThis.self === 'undefined') {
+  globalThis.self = globalThis;
+}
+
 const nextConfig = {
   outputFileTracingRoot: __dirname,
-  // Disable image optimization to reduce memory usage
+  
+  // Enable image optimization with proper configuration
   images: {
-    unoptimized: true,
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -41,17 +52,27 @@ const nextConfig = {
       },
     ],
   },
-  // Disable experimental features that consume memory
+  
+  // Enable performance optimizations
   experimental: {
-    // optimizePackageImports: ['framer-motion', 'lucide-react'],
+    optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
+  
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  
   poweredByHeader: false,
   compress: true,
   generateEtags: true,
-  // Disable static optimization to reduce memory usage
   trailingSlash: false,
   webpack: (config, { isServer, dev }) => {
     // Set global self for server-side builds
@@ -59,30 +80,59 @@ const nextConfig = {
       global.self = global;
     }
     
-    // ensure deterministic ids and optimize for memory
+    // Optimize build configuration
     config.optimization = config.optimization || {};
     config.optimization.moduleIds = 'deterministic';
     config.optimization.chunkIds = 'deterministic';
-    
-    // Reduce memory usage during build
     config.optimization.usedExports = true;
     config.optimization.sideEffects = false;
     
-    // Limit parallel processing to reduce memory usage
-    config.parallelism = 1;
+    // Enable parallel processing for better performance
+    config.parallelism = Math.max(1, require('os').cpus().length - 1);
     
-    
-    // Optimize build configuration
+    // Optimize resolve configuration
     config.resolve.alias = {
       ...config.resolve.alias,
     };
     
-    // Optimize for memory usage in production builds
-    if (isServer) {
-      config.optimization = {
-        ...config.optimization,
-        minimize: false, // Disable minification to reduce memory usage
-        splitChunks: false, // Disable code splitting to reduce memory usage
+    // Enable proper code splitting and minification in production
+    if (!dev) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 10,
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            priority: 5,
+            reuseExistingChunk: true,
+          },
+          // Separate large libraries
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer-motion',
+            chunks: 'all',
+            priority: 20,
+          },
+          three: {
+            test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
+            name: 'three',
+            chunks: 'all',
+            priority: 20,
+          },
+          radix: {
+            test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
+            name: 'radix-ui',
+            chunks: 'all',
+            priority: 15,
+          },
+        },
       };
     }
     
@@ -94,7 +144,6 @@ const nextConfig = {
         net: false,
         tls: false,
         // Prevent browser-only globals from being accessed on server
-        self: false,
         window: false,
         navigator: false,
         document: false,
@@ -108,6 +157,14 @@ const nextConfig = {
       config.plugins.push(
         new (require('webpack')).DefinePlugin({
           'self': 'global',
+          'global.self': 'global',
+        })
+      );
+      
+      // Add global self polyfill for server-side
+      config.plugins.push(
+        new (require('webpack')).ProvidePlugin({
+          self: 'global',
         })
       );
       

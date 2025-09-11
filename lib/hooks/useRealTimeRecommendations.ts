@@ -201,19 +201,7 @@ export function useRecommendationTracking() {
     recommendationId?: string
   ) => {
     try {
-      await fetch('/api/analytics/recommendation-interaction', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          productId,
-          action,
-          recommendationId,
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      // Track recommendation interaction (analytics removed)
     } catch (error) {
       console.error('Error tracking recommendation interaction:', error);
     }

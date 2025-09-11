@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { jwtAuth } from '@/lib/auth/jwt';
 
 // Public paths that should not require authentication
 const PUBLIC_PATHS = [
@@ -46,7 +47,7 @@ const PUBLIC_PAGES = [
   '/auth/logout',
 ];
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Allow Next.js internals and static assets - CRITICAL for build
@@ -76,12 +77,11 @@ export function middleware(req: NextRequest) {
   }
 
   // For API routes that require authentication
-  if (pathname.startsWith('/api/')) {
-    // Check for authentication token or session cookie
-    const authHeader = req.headers.get('authorization');
-    const sessionCookie = req.cookies.get('session')?.value;
+  if (pathname.startsWith('/api/') && !PUBLIC_API_PATHS.some(p => pathname === p || pathname.startsWith(p))) {
+    // Check for authentication token
+    const user = await jwtAuth.getUserFromRequest(req);
     
-    if (!authHeader?.startsWith('Bearer ') && !sessionCookie) {
+    if (!user) {
       return NextResponse.json(
         { error: 'Authentication required' },
         { status: 401 }
@@ -92,13 +92,12 @@ export function middleware(req: NextRequest) {
   // For protected pages (dashboard, cms, etc.)
   if (pathname.startsWith('/dashboard') || 
       pathname.startsWith('/cms') || 
-      pathname.startsWith('/analytics-dashboard') ||
       pathname.startsWith('/account') ||
       pathname.startsWith('/me')) {
     
-    const sessionCookie = req.cookies.get('session')?.value;
+    const user = await jwtAuth.getUserFromRequest(req);
     
-    if (!sessionCookie) {
+    if (!user) {
       // Redirect to login page
       const loginUrl = new URL('/auth/login', req.url);
       loginUrl.searchParams.set('redirect', pathname);

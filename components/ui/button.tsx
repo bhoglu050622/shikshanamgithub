@@ -4,7 +4,6 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { trackEvent, type AnalyticsEvent } from '@/lib/analytics'
 
 // Button variant types
 export type ButtonVariant = 
@@ -27,10 +26,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   icon?: React.ReactNode
   iconPosition?: 'left' | 'right'
   fullWidth?: boolean
-  analytics?: {
-    event: AnalyticsEvent
-    properties?: Record<string, any>
-  }
   children: React.ReactNode
 }
 
@@ -45,7 +40,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     icon,
     iconPosition = 'left',
     fullWidth = false,
-    analytics,
     className,
     children,
     disabled,
@@ -96,11 +90,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className
     )
 
-    // Handle click with analytics
+    // Handle click
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (analytics) {
-        trackEvent(analytics.event, analytics.properties)
-      }
       if (onClick) {
         onClick(e)
       }
@@ -190,10 +181,6 @@ export const CTAButton = {
     <Button
       variant="primary"
       href={enrolled ? `/courses/${courseId}/learn` : `/courses/${courseId}/enroll`}
-      analytics={{
-        event: enrolled ? 'start_learning_click' : 'enroll_click',
-        properties: { course_id: courseId }
-      }}
       {...props}
     >
       {enrolled ? 'Start Learning' : 'Enroll Now'}
@@ -205,10 +192,6 @@ export const CTAButton = {
     <Button
       variant="primary"
       href={purchased ? `/packages/${packageId}` : `/packages/${packageId}/buy`}
-      analytics={{
-        event: purchased ? 'view_package_click' : 'buy_now_click',
-        properties: { package_id: packageId }
-      }}
       {...props}
     >
       {purchased ? 'View Package' : 'Buy Now'}
@@ -220,10 +203,6 @@ export const CTAButton = {
     <Button
       variant="outline"
       href={`/courses/${courseId}`}
-      analytics={{
-        event: 'course_view_click',
-        properties: { course_id: courseId }
-      }}
       {...props}
     >
       View Course
@@ -235,10 +214,6 @@ export const CTAButton = {
     <Button
       variant="ghost"
       href={`/courses/${courseId}/syllabus`}
-      analytics={{
-        event: 'syllabus_view_click',
-        properties: { course_id: courseId }
-      }}
       {...props}
     >
       View Syllabus
@@ -249,10 +224,6 @@ export const CTAButton = {
   Wishlist: ({ courseId, inWishlist, ...props }: { courseId: string; inWishlist?: boolean } & Omit<ButtonProps, 'children'>) => (
     <Button
       variant="ghost"
-      analytics={{
-        event: inWishlist ? 'remove_wishlist_click' : 'add_wishlist_click',
-        properties: { course_id: courseId }
-      }}
       {...props}
     >
       {inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
@@ -264,9 +235,6 @@ export const CTAButton = {
     <Button
       variant="outline"
       href="/contact"
-      analytics={{
-        event: 'contact_click'
-      }}
       {...props}
     >
       Contact Us
@@ -278,9 +246,6 @@ export const CTAButton = {
     <Button
       variant="primary"
       href="/auth/login"
-      analytics={{
-        event: 'login_click'
-      }}
       {...props}
     >
       Login

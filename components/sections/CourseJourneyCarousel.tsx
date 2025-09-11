@@ -135,7 +135,7 @@ const journeySteps: JourneyStep[] = [
     color: "from-indigo-500 to-indigo-600",
     duration: "Ongoing",
     activities: [
-      "Progress tracking and analytics",
+      "Progress tracking and insights",
       "Milestone celebrations",
       "Transformation documentation",
       "Certification and recognition"

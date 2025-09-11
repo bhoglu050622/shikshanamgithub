@@ -40,7 +40,6 @@ import ActivityShowcase from './ActivityShowcase'
 import FoundersMission from './FoundersMission'
 import CommunityCTA from './CommunityCTA'
 import EnhancedFooter from './EnhancedFooter'
-import { useAnalytics } from '@/lib/analytics'
 
 // Data for the page
 const sanskritQuotes = [
@@ -206,8 +205,6 @@ export default function SchoolOfSelfHelpPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   const [currentCourse, setCurrentCourse] = useState(0)
   
-  // Initialize analytics
-  const analytics = useAnalytics()
 
   // Rotate Sanskrit quotes every 8 seconds
   useEffect(() => {
@@ -217,29 +214,18 @@ export default function SchoolOfSelfHelpPage() {
     return () => clearInterval(interval)
   }, [])
 
-  // Track page view on mount
-  useEffect(() => {
-    analytics.pageView('/schools/self-help', 'School of Self-Help')
-  }, [analytics])
 
   // Analytics handlers
   const handleExploreTracks = () => {
-    analytics.track('hero_explore_tracks', { page: 'self-help' })
+    // Navigate to tracks
   }
 
   const handleTakeTest = () => {
-    analytics.track('hero_take_test', { page: 'self-help' })
+    // Navigate to test
   }
 
   const handleCourseClick = (course: any) => {
-    analytics.track('course_click', {
-      id: course.id || course.title.toLowerCase().replace(/\s+/g, '-'),
-      title: course.title,
-      category: course.category || 'Self-Help',
-      level: course.level,
-      price: course.price,
-      duration: course.duration
-    })
+    // Navigate to course
   }
 
   const handleStepChange = (step: number) => {
@@ -251,15 +237,11 @@ export default function SchoolOfSelfHelpPage() {
       'Transformation Report'
     ]
     
-    analytics.journey(`step_${step + 1}`, {
-      number: step + 1,
-      title: stepTitles[step] || `Step ${step + 1}`,
-      totalSteps: 5
-    })
+    // Handle journey step
   }
 
   const handleJourneyComplete = () => {
-    analytics.track('journey_completion', { totalSteps: 5 })
+    // Handle journey completion
   }
 
   return (
@@ -285,68 +267,90 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Meet Gurus Section */}
       <MeetGurus 
-        onGuruClick={(guru) => analytics.track('guru_view', {
-          id: guru.name.toLowerCase().replace(/\s+/g, '-'),
-          name: guru.name,
-          specialty: guru.specialty
-        })}
-        onViewProfile={(guru) => analytics.track('guru_view', {
-          id: guru.name.toLowerCase().replace(/\s+/g, '-'),
-          name: guru.name,
-          specialty: guru.specialty
-        })}
+        onGuruClick={(guru) => {
+          // analytics.track('guru_view', {
+          //   id: guru.name.toLowerCase().replace(/\s+/g, '-'),
+          //   name: guru.name,
+          //   specialty: guru.specialty
+          // });
+        }}
+        onViewProfile={(guru) => {
+          // analytics.track('guru_view', {
+          //   id: guru.name.toLowerCase().replace(/\s+/g, '-'),
+          //   name: guru.name,
+          //   specialty: guru.specialty
+          // });
+        }}
       />
 
       {/* Enhanced Featured Courses Section */}
       <FeaturedCoursesSlider 
-        onCourseClick={(course) => analytics.track('course_click', {
-          id: course.id,
-          title: course.title,
-          category: course.category,
-          level: course.level,
-          price: course.price,
-          duration: course.duration
-        })}
-        onEnrollClick={(course) => analytics.track('course_enrollment', {
-          id: course.id,
-          title: course.title,
-          category: course.category,
-          level: course.level,
-          price: course.price
-        })}
+        onCourseClick={(course) => {
+          // analytics.track('course_click', {
+          //   id: course.id,
+          //   title: course.title,
+          //   category: course.category,
+          //   level: course.level,
+          //   price: course.price,
+          //   duration: course.duration
+          // });
+        }}
+        onEnrollClick={(course) => {
+          // analytics.track('course_enrollment', {
+          //   id: course.id,
+          //   title: course.title,
+          //   category: course.category,
+          //   level: course.level,
+          //   price: course.price
+          // });
+        }}
       />
 
       {/* Enhanced Activity Showcase Section */}
       <ActivityShowcase 
-        onTestimonialClick={(testimonial) => analytics.track('testimonial_click', {
-          id: testimonial.id,
-          author: testimonial.name
-        })}
-        onVideoPlay={(testimonial) => analytics.track('video_play', {
-          id: testimonial.id,
-          author: testimonial.name,
-          duration: parseInt(testimonial.duration.replace(':', '')) * 1000 // Convert to milliseconds
-        })}
+        onTestimonialClick={(testimonial) => {
+          // analytics.track('testimonial_click', {
+          //   id: testimonial.id,
+          //   author: testimonial.name
+          // });
+        }}
+        onVideoPlay={(testimonial) => {
+          // analytics.track('video_play', {
+          //   id: testimonial.id,
+          //   author: testimonial.name,
+          //   duration: parseInt(testimonial.duration.replace(':', '')) * 1000 // Convert to milliseconds
+          // });
+        }}
       />
 
       {/* Enhanced Founders Mission Section */}
       <FoundersMission 
-        onFounderClick={(founder) => analytics.track('founder_view', {
-          name: founder.name,
-          role: founder.role
-        })}
-        onMissionLearnMore={() => analytics.track('mission_learn_more')}
+        onFounderClick={(founder) => {
+          // analytics.track('founder_view', {
+          //   name: founder.name,
+          //   role: founder.role
+          // });
+        }}
+        onMissionLearnMore={() => {
+          // analytics.track('mission_learn_more');
+        }}
       />
 
       {/* Enhanced Community CTA Section */}
       <CommunityCTA 
-        onJoinCommunity={(platform) => analytics.track('community_join', { platform })}
-        onSubscribeNewsletter={() => analytics.track('newsletter_subscription', { email: 'user@example.com' })}
-        onViewEvents={() => analytics.track('event_view', {
-          title: 'All Events',
-          date: new Date().toISOString(),
-          type: 'view_all'
-        })}
+        onJoinCommunity={(platform) => {
+          // analytics.track('community_join', { platform });
+        }}
+        onSubscribeNewsletter={() => {
+          // analytics.track('newsletter_subscription', { email: 'user@example.com' });
+        }}
+        onViewEvents={() => {
+          // analytics.track('event_view', {
+          //   title: 'All Events',
+          //   date: new Date().toISOString(),
+          //   type: 'view_all'
+          // });
+        }}
       />
 
       {/* FAQs Section */}
@@ -474,8 +478,12 @@ export default function SchoolOfSelfHelpPage() {
 
       {/* Enhanced Footer */}
       <EnhancedFooter 
-        onNewsletterSubscribe={(email) => analytics.track('newsletter_subscription', { email })}
-        onSocialClick={(platform) => analytics.track('social_click', { platform })}
+        onNewsletterSubscribe={(email) => {
+          // analytics.track('newsletter_subscription', { email });
+        }}
+        onSocialClick={(platform) => {
+          // analytics.track('social_click', { platform });
+        }}
       />
     </>
   )

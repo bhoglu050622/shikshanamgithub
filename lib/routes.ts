@@ -86,7 +86,6 @@ export const generateRoutes = {
     wishlist: '/api/wishlist',
     enroll: (courseId: string) => `/api/courses/${courseId}/enroll`,
     purchase: (packageId: string) => `/api/packages/${packageId}/purchase`,
-    analytics: '/api/analytics',
   }
 } as const
 

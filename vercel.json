@@ -1,6 +1,6 @@
 {
-  "buildCommand": "NODE_OPTIONS='--max-old-space-size=6144 --max-semi-space-size=128' npm run build",
-  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci --prefer-offline",
   "framework": "nextjs",
   "functions": {
     "app/api/**/*.ts": {
@@ -9,7 +9,15 @@
   },
   "build": {
     "env": {
-      "NODE_OPTIONS": "--max-old-space-size=6144 --max-semi-space-size=128"
+      "NODE_OPTIONS": "--max-old-space-size=4096 --max-semi-space-size=64",
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "NEXT_WEBPACK_USEPERSISTENTCACHE": "1"
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/health-check",
+      "schedule": "0 */6 * * *"
+    }
+  ]
 }

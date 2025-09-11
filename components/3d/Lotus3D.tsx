@@ -1,9 +1,10 @@
 'use client'
 
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Mesh, Vector3 } from 'three'
 import { useTheme } from '@/lib/theme'
+import dynamic from 'next/dynamic'
 
 function LotusPetal({ position, rotation, color }: { position: [number, number, number], rotation: [number, number, number], color: string }) {
   const meshRef = useRef<Mesh>(null)
@@ -108,14 +109,20 @@ function LotusGroup() {
   )
 }
 
-export default function Lotus3D({ className = '' }: { className?: string }) {
+// Loading component for 3D canvas
+function Lotus3DLoading({ className = '' }: { className?: string }) {
+  return (
+    <div className={`w-32 h-32 ${className}`}>
+      <div className="w-16 h-16 border-4 border-saffron-200 border-t-saffron-600 rounded-full animate-spin mx-auto mt-8"></div>
+    </div>
+  )
+}
+
+// Main 3D component with error boundary
+function Lotus3DCanvas({ className = '' }: { className?: string }) {
   // Don't render during SSR to avoid hydration mismatch
   if (typeof window === 'undefined') {
-    return (
-      <div className={`w-32 h-32 ${className}`}>
-        <div className="w-16 h-16 border-4 border-saffron-200 border-t-saffron-600 rounded-full animate-spin mx-auto mt-8"></div>
-      </div>
-    )
+    return <Lotus3DLoading className={className} />
   }
 
   // Additional safety check for React reconciler
@@ -126,20 +133,25 @@ export default function Lotus3D({ className = '' }: { className?: string }) {
           camera={{ position: [0, 0, 5], fov: 50 }}
           style={{ background: 'transparent' }}
           gl={{ antialias: true, alpha: true }}
+          dpr={[1, 2]} // Limit device pixel ratio for performance
         >
-          <ambientLight intensity={0.6} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -5]} intensity={0.5} />
-          <LotusGroup />
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.6} />
+            <directionalLight position={[10, 10, 5]} intensity={1} />
+            <pointLight position={[-10, -10, -5]} intensity={0.5} />
+            <LotusGroup />
+          </Suspense>
         </Canvas>
       </div>
     )
   } catch (error) {
     console.error('Lotus3D render error:', error)
-    return (
-      <div className={`w-32 h-32 ${className}`}>
-        <div className="w-16 h-16 border-4 border-saffron-200 border-t-saffron-600 rounded-full animate-spin mx-auto mt-8"></div>
-      </div>
-    )
+    return <Lotus3DLoading className={className} />
   }
 }
+
+// Export with dynamic loading and error boundary
+export default dynamic(() => Promise.resolve(Lotus3DCanvas), {
+  loading: () => <Lotus3DLoading />,
+  ssr: false,
+})

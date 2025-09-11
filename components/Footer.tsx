@@ -2,7 +2,6 @@
 
 import { BookOpen, Mail, Phone, MapPin, MessageCircle, Instagram, Twitter, Youtube, Heart, ArrowRight } from 'lucide-react'
 import { ROUTES, NAVIGATION_GROUPS } from '@/lib/routes'
-import { trackEvent } from '@/lib/analytics'
 
 const footerLinks = {
   'Learning': [
@@ -173,11 +172,6 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      onClick={() => trackEvent('footer_link_click', { 
-                        link_name: link.name, 
-                        link_href: link.href,
-                        section: category
-                      })}
                       className="text-white hover:text-temple-gold transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
                     >
                       {link.name}
@@ -250,28 +244,24 @@ export default function Footer() {
           >
             <a 
               href={ROUTES.PRIVACY} 
-              onClick={() => trackEvent('footer_legal_click', { link: 'privacy' })}
               className="hover:text-temple-gold transition-colors duration-200"
             >
               Privacy Policy
             </a>
             <a 
               href={ROUTES.TERMS} 
-              onClick={() => trackEvent('footer_legal_click', { link: 'terms' })}
               className="hover:text-temple-gold transition-colors duration-200"
             >
               Terms of Service
             </a>
             <a 
               href="#cookies" 
-              onClick={() => trackEvent('footer_legal_click', { link: 'cookies' })}
               className="hover:text-temple-gold transition-colors duration-200"
             >
               Cookie Policy
             </a>
             <a 
               href={ROUTES.ACCESSIBILITY} 
-              onClick={() => trackEvent('footer_legal_click', { link: 'accessibility' })}
               className="hover:text-temple-gold transition-colors duration-200"
             >
               Accessibility

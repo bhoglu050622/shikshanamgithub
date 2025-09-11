@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Sun, Moon } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
-import { trackEvent } from '@/lib/analytics'
 
 export default function ThemeToggle() {
   const { theme, setTheme, actualTheme } = useTheme()
@@ -20,11 +19,6 @@ export default function ThemeToggle() {
           key={value}
           onClick={() => {
             setTheme(value)
-            trackEvent('theme_toggle', { 
-              from_theme: theme, 
-              to_theme: value,
-              actual_theme: actualTheme
-            })
           }}
           className={`
             relative flex items-center space-x-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200

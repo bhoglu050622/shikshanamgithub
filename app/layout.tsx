@@ -3,14 +3,13 @@ import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_D
 import './globals.css'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
-import AnalyticsInitializer from '@/components/AnalyticsInitializer'
 import ClientServiceWorker from '@/components/ClientServiceWorker'
-import '@/lib/analytics-tracker' // Initialize analytics tracker
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/theme'
 import { AuthProvider } from '@/lib/auth-context'
-import { initAnalytics } from '@/lib/analytics'
+import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
+import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
 import '@/lib/console-filter'
 
 const inter = Inter({ 
@@ -145,16 +144,18 @@ export default function RootLayout({
         <ErrorBoundary>
           <ThemeProvider>
             <AuthProvider>
-              <PerformanceMonitor />
-              <AnalyticsInitializer />
-              <ClientServiceWorker />
-              <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
-                <Header />
-                <main id="main-content" className="w-full" role="main">
-                  {children}
-                </main>
-                <Footer />
-              </div>
+              <AccessibilityProvider>
+                <PerformanceMonitor />
+                <ClientServiceWorker />
+                <AccessibilityToolbar />
+                <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
+                  <Header />
+                  <main id="main-content" className="w-full" role="main">
+                    {children}
+                  </main>
+                  <Footer />
+                </div>
+              </AccessibilityProvider>
             </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>

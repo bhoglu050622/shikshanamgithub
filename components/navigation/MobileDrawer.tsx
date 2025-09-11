@@ -16,7 +16,6 @@ import {
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/theme'
 import { useAuth } from '@/lib/auth-context'
-import { trackEvent } from '@/lib/analytics'
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -118,16 +117,6 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                     <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
                       {isLoggedIn && user ? (
                         <div className="space-y-1">
-                          <motion.a
-                            href="/dashboard"
-                            onClick={handleLinkClick}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 group"
-                          >
-                            <LayoutDashboard className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                            <span className="font-medium text-blue-600 dark:text-blue-400">My Dashboard</span>
-                          </motion.a>
                           <button
                             onClick={() => {
                               logout()
@@ -170,12 +159,6 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                         key={value}
                         onClick={() => {
                           setTheme(value)
-                          trackEvent('theme_toggle', { 
-                            from_theme: theme, 
-                            to_theme: value,
-                            actual_theme: actualTheme,
-                            from: 'mobile_drawer'
-                          })
                         }}
                         className={cn(
                           "flex-1 flex items-center justify-center space-x-1 px-2 py-2 rounded-md text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 tap-target",

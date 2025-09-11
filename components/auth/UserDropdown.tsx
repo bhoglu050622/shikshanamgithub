@@ -46,12 +46,6 @@ export default function UserDropdown({ user, onLogout }: UserDropdownProps) {
       description: 'Access your courses and progress',
       external: true
     },
-    {
-      icon: Compass,
-      label: 'My Personalized Journey',
-      href: '/dashboard',
-      description: 'Your customized learning path'
-    }
   ]
 
   return (

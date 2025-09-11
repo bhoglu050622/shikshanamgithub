@@ -21,7 +21,6 @@ self.addEventListener('fetch', (event) => {
     url.pathname === '/manifest.webmanifest' ||
     url.pathname.startsWith('/api/auth') ||
     url.pathname.startsWith('/api/cms') ||
-    url.pathname.startsWith('/api/analytics') ||
     url.pathname.startsWith('/api/dashboard')
   ) {
     // Let the network handle auth-protected requests

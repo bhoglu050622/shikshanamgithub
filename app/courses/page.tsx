@@ -54,7 +54,6 @@ import {
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import Button, { CTAButton } from '@/components/ui/button'
 import { ROUTES, generateRoutes } from '@/lib/routes'
-import { trackEvent } from '@/lib/analytics'
 import Link from 'next/link'
 
 // Course categories based on Shikshanam's actual course offerings
@@ -476,12 +475,7 @@ export default function CoursesPage() {
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value)
-                        if (e.target.value.length > 2) {
-                          trackEvent('search_query', { 
-                            query: e.target.value,
-                            page: 'courses'
-                          })
-                        }
+                        // Handle search query
                       }}
                       className="w-full pl-12 pr-4 py-3 border border-wisdom-200 rounded-xl focus:ring-2 focus:ring-saffron-500 focus:border-transparent transition-all duration-200"
                     />
@@ -735,10 +729,9 @@ export default function CoursesPage() {
                               variant="outline"
                               fullWidth
                               size="md"
-                              onClick={() => trackEvent('get_notified_click', { 
-                                course_name: course.title,
-                                course_type: course.type
-                              })}
+                              onClick={() => {
+                                // Handle get notified click
+                              }}
                             >
                               Get Notified
                             </Button>
@@ -820,10 +813,6 @@ export default function CoursesPage() {
                 size="lg"
                 href={ROUTES.COURSES}
                 icon={<ArrowRight className="w-6 h-6" />}
-                analytics={{
-                  event: 'browse_all_courses_click',
-                  properties: { from: 'courses_page_bottom' }
-                }}
               >
                 Browse All Courses
               </Button>

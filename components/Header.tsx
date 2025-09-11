@@ -14,7 +14,6 @@ import { useAuth } from '@/lib/auth-context'
 import { topLevelNavItems } from '@/lib/navigation-data'
 import Button, { CTAButton } from './ui/button'
 import { ROUTES } from '@/lib/routes'
-import { trackEvent } from '@/lib/analytics'
 import { shouldHideThemeToggle } from '@/lib/config/theme-exclusions'
 import { usePathname } from 'next/navigation'
 
@@ -51,7 +50,6 @@ export default function Header() {
             href={ROUTES.HOME}
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3 flex-shrink-0"
-            onClick={() => trackEvent('home_click', { from: 'header_logo' })}
           >
             <div className="w-12 h-12 bg-gradient-to-br from-golden-olive via-deep-maroon to-copper-orange rounded-2xl flex items-center justify-center shadow-lg">
               <BookOpen className="w-7 h-7 text-white" />
@@ -78,11 +76,6 @@ export default function Header() {
                       setActiveGroupId(newActiveDropdown && item.groupId ? item.groupId : null)
                       setIsMegaMenuOpen(newActiveDropdown !== null)
                     } else {
-                      trackEvent('nav_click', { 
-                        nav_item: item.name, 
-                        nav_href: item.href,
-                        from: 'header_desktop'
-                      })
                       // Navigate to the target href for non-dropdown items
                       router.push(item.href)
                     }
@@ -112,7 +105,6 @@ export default function Header() {
               whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setIsSearchOpen(!isSearchOpen)
-                trackEvent('search_click', { from: 'header_desktop' })
               }}
               className="p-2 rounded-xl hover:bg-premium-accent-primary/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target"
               aria-label="Search"

@@ -121,7 +121,6 @@ export const navigationGroups: NavigationGroup[] = [
         links: [
           { name: 'All Tools', href: '/tools', icon: Keyboard, description: 'Complete toolkit for Sanskrit' },
           { name: 'Practice Tests', href: '/practice/sanskrit', icon: FileText, description: 'Test your knowledge' },
-          { name: 'Progress Tracker', href: '/dashboard', icon: Star, description: 'Track your learning journey' },
         ]
       }
     ]

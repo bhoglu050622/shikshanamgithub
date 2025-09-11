@@ -17,7 +17,7 @@ const appFeatures = [
   {
     icon: Star,
     title: 'Progress Tracking',
-    description: 'Monitor your learning journey with detailed analytics'
+    description: 'Monitor your learning journey with detailed progress tracking'
   },
   {
     icon: Globe,

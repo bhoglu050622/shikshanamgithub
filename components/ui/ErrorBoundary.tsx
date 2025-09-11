@@ -59,7 +59,7 @@ export class ErrorBoundary extends Component<Props, State> {
       this.props.onError(error, errorInfo);
     }
 
-    // Log error to analytics/monitoring service
+    // Log error to monitoring service
     this.logError(error, errorInfo);
   }
 
@@ -76,14 +76,8 @@ export class ErrorBoundary extends Component<Props, State> {
 
     // Send to error tracking service
     if (typeof window !== 'undefined') {
-      fetch('/api/analytics/error', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(errorData),
-      }).catch(console.error);
+      // Send to error tracking service (analytics removed)
+      console.error('Error occurred:', errorData);
     }
   };
 
