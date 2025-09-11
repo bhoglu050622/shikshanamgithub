@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   outputFileTracingRoot: __dirname,
   images: {
@@ -57,8 +58,15 @@ const nextConfig = {
       ...config.resolve.alias,
     };
     
-    // Note: React reconciler error should be fixed by clean install
-    // All React packages are using version 18.3.1 consistently
+    // Handle server-side configuration
+    if (isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
     
     // Handle Chrome extension messaging issues
     if (!isServer) {

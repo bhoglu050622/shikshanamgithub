@@ -11,7 +11,6 @@ import { ThemeProvider } from '@/lib/theme'
 import { AuthProvider } from '@/lib/auth-context'
 import { initAnalytics } from '@/lib/analytics'
 import '@/lib/console-filter'
-import ClientServiceWorker from '@/components/ClientServiceWorker'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -147,7 +146,6 @@ export default function RootLayout({
             <AuthProvider>
               <PerformanceMonitor />
               <AnalyticsInitializer />
-              <ClientServiceWorker />
               <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
                 <Header />
                 <main id="main-content" className="w-full" role="main">
