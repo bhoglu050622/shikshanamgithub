@@ -69,6 +69,15 @@ const nextConfig = {
       ...config.resolve.alias,
     };
     
+    // Temporarily disable some optimizations to debug the issue
+    if (isServer) {
+      config.optimization = {
+        ...config.optimization,
+        minimize: false,
+        splitChunks: false,
+      };
+    }
+    
     // Handle server-side configuration
     if (isServer) {
       config.resolve.fallback = {
@@ -86,29 +95,14 @@ const nextConfig = {
         sessionStorage: false,
       };
       
-      // Provide a global polyfill for self in server environment
+      // Handle self references in webpack chunks
       config.plugins = config.plugins || [];
       config.plugins.push(
-        new (require('webpack')).ProvidePlugin({
+        new (require('webpack')).DefinePlugin({
           'self': 'global',
         })
       );
       
-      
-      
-      
-      // Define browser globals as undefined on server
-      config.plugins.push(
-        new (require('webpack')).DefinePlugin({
-          'typeof self': JSON.stringify('undefined'),
-          'typeof window': JSON.stringify('undefined'),
-          'typeof navigator': JSON.stringify('undefined'),
-          'typeof document': JSON.stringify('undefined'),
-          'typeof screen': JSON.stringify('undefined'),
-          'typeof localStorage': JSON.stringify('undefined'),
-          'typeof sessionStorage': JSON.stringify('undefined'),
-        })
-      );
     }
     
     // Handle Chrome extension messaging issues
@@ -121,19 +115,19 @@ const nextConfig = {
       };
     }
     
-    // Production optimizations
-    if (!dev) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      };
-    }
+    // Production optimizations - temporarily disabled to debug
+    // if (!dev) {
+    //   config.optimization.splitChunks = {
+    //     chunks: 'all',
+    //     cacheGroups: {
+    //       vendor: {
+    //         test: /[\\/]node_modules[\\/]/,
+    //         name: 'vendors',
+    //         chunks: 'all',
+    //       },
+    //     },
+    //   };
+    // }
     
     // Ignore Chrome extension warnings
     config.ignoreWarnings = [
