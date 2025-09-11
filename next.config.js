@@ -7,7 +7,9 @@ if (typeof global !== 'undefined' && typeof self === 'undefined') {
 
 const nextConfig = {
   outputFileTracingRoot: __dirname,
+  // Disable image optimization to reduce memory usage
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -38,30 +40,36 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
       },
     ],
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
   },
-  // experimental: {
-  //   optimizePackageImports: ['framer-motion', 'lucide-react'],
-  // },
+  // Disable experimental features that consume memory
+  experimental: {
+    // optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   poweredByHeader: false,
   compress: true,
   generateEtags: true,
+  // Disable static optimization to reduce memory usage
+  trailingSlash: false,
   webpack: (config, { isServer, dev }) => {
     // Set global self for server-side builds
     if (isServer && typeof global !== 'undefined') {
       global.self = global;
     }
     
-    // ensure deterministic ids
+    // ensure deterministic ids and optimize for memory
     config.optimization = config.optimization || {};
     config.optimization.moduleIds = 'deterministic';
     config.optimization.chunkIds = 'deterministic';
+    
+    // Reduce memory usage during build
+    config.optimization.usedExports = true;
+    config.optimization.sideEffects = false;
+    
+    // Limit parallel processing to reduce memory usage
+    config.parallelism = 1;
     
     
     // Optimize build configuration
@@ -69,12 +77,12 @@ const nextConfig = {
       ...config.resolve.alias,
     };
     
-    // Temporarily disable some optimizations to debug the issue
+    // Optimize for memory usage in production builds
     if (isServer) {
       config.optimization = {
         ...config.optimization,
-        minimize: false,
-        splitChunks: false,
+        minimize: false, // Disable minification to reduce memory usage
+        splitChunks: false, // Disable code splitting to reduce memory usage
       };
     }
     
@@ -115,19 +123,7 @@ const nextConfig = {
       };
     }
     
-    // Production optimizations - temporarily disabled to debug
-    // if (!dev) {
-    //   config.optimization.splitChunks = {
-    //     chunks: 'all',
-    //     cacheGroups: {
-    //       vendor: {
-    //         test: /[\\/]node_modules[\\/]/,
-    //         name: 'vendors',
-    //         chunks: 'all',
-    //       },
-    //     },
-    //   };
-    // }
+    // Production optimizations disabled to reduce memory usage
     
     // Ignore Chrome extension warnings
     config.ignoreWarnings = [

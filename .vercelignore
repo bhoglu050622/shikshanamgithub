@@ -1,0 +1,30 @@
+# Development files
+.env.local
+.env.development
+.env.test
+
+# Test files
+__tests__/
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+
+# Documentation
+*.md
+!README.md
+
+# Development tools
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+# Build artifacts (will be regenerated)
+.next/
+out/
+dist/
+
+# Cache directories
+node_modules/.cache/
+.cache/

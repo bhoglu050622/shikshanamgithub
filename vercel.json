@@ -1,0 +1,15 @@
+{
+  "buildCommand": "NODE_OPTIONS='--max-old-space-size=6144 --max-semi-space-size=128' npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=6144 --max-semi-space-size=128"
+    }
+  }
+}
