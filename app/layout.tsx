@@ -4,6 +4,7 @@ import './globals.css'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import AnalyticsInitializer from '@/components/AnalyticsInitializer'
+import ServiceWorkerManager from '@/components/ServiceWorkerManager'
 import '@/lib/analytics-tracker' // Initialize analytics tracker
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -146,6 +147,7 @@ export default function RootLayout({
             <AuthProvider>
               <PerformanceMonitor />
               <AnalyticsInitializer />
+              <ServiceWorkerManager />
               <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
                 <Header />
                 <main id="main-content" className="w-full" role="main">

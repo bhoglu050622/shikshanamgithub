@@ -3,9 +3,9 @@
  * Provides offline caching and performance optimization
  */
 
-const CACHE_NAME = 'shikshanam-v1.0.0';
-const STATIC_CACHE_NAME = 'shikshanam-static-v1.0.0';
-const DYNAMIC_CACHE_NAME = 'shikshanam-dynamic-v1.0.0';
+const CACHE_NAME = 'shikshanam-v1.1.0';
+const STATIC_CACHE_NAME = 'shikshanam-static-v1.1.0';
+const DYNAMIC_CACHE_NAME = 'shikshanam-dynamic-v1.1.0';
 
 // Static assets to cache immediately
 const STATIC_ASSETS = [
@@ -245,64 +245,37 @@ async function handleOtherRequest(request) {
   }
 }
 
-// Background sync for offline actions
+// Background sync for offline actions - DISABLED to prevent auth issues
+// Service Worker no longer performs background API calls to avoid authentication issues
+// Instead, use clients.postMessage() to communicate with the main thread
 self.addEventListener('sync', (event) => {
-  if (event.tag === 'background-sync') {
-    event.waitUntil(doBackgroundSync());
-  }
+  console.log('Service Worker: Background sync requested but disabled for security');
+  // Notify clients that sync was requested but handled by main thread
+  self.clients.matchAll().then(clients =>
+    clients.forEach(client => client.postMessage({ 
+      type: 'BACKGROUND_SYNC_REQUESTED',
+      tag: event.tag 
+    }))
+  );
 });
 
-async function doBackgroundSync() {
-  console.log('Service Worker: Performing background sync');
+// Message handling for communication with main thread
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
   
-  try {
-    // Sync any pending offline actions
-    const pendingActions = await getPendingActions();
-    
-    for (const action of pendingActions) {
-      await syncAction(action);
-    }
-    
-    console.log('Service Worker: Background sync completed');
-  } catch (error) {
-    console.error('Service Worker: Background sync failed', error);
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: CACHE_NAME });
   }
-}
-
-// Get pending actions from IndexedDB
-async function getPendingActions() {
-  // This would typically read from IndexedDB
-  // For now, return empty array
-  return [];
-}
-
-// Sync individual action
-async function syncAction(action) {
-  try {
-    const response = await fetch(action.url, {
-      method: action.method,
-      headers: {
-        ...action.headers,
-        'Cache-Control': 'no-cache'
-      },
-      body: action.body,
-      credentials: 'include' // Include authentication cookies
+  
+  if (event.data && event.data.type === 'UNREGISTER_SW') {
+    // Unregister this service worker
+    self.registration.unregister().then(() => {
+      console.log('Service Worker: Unregistered successfully');
     });
-    
-    if (response.ok) {
-      // Remove from pending actions
-      await removePendingAction(action.id);
-    }
-  } catch (error) {
-    console.error('Service Worker: Failed to sync action', error);
   }
-}
-
-// Remove pending action from IndexedDB
-async function removePendingAction(actionId) {
-  // This would typically remove from IndexedDB
-  console.log('Service Worker: Removing pending action', actionId);
-}
+});
 
 // Push notification handling
 self.addEventListener('push', (event) => {
@@ -346,15 +319,5 @@ self.addEventListener('notificationclick', (event) => {
   }
 });
 
-// Message handling for communication with main thread
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-  
-  if (event.data && event.data.type === 'GET_VERSION') {
-    event.ports[0].postMessage({ version: CACHE_NAME });
-  }
-});
 
 console.log('Service Worker: Loaded successfully');
