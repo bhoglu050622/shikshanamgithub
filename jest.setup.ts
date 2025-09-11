@@ -7,41 +7,33 @@ const mockFn = () => (() => {});
 const mockAsyncFn = () => (() => Promise.resolve());
 const mockFetchFn = () => (() => Promise.resolve(new Response()));
 
-// Safe jest mock function
-const createMockFn = () => {
-  if (typeof (globalThis as any).jest !== 'undefined') {
-    return (globalThis as any).jest.fn();
-  }
-  return () => {};
-};
-if (typeof (globalThis as any).jest !== 'undefined') {
-  (globalThis as any).jest.mock('next/navigation', () => ({
-    useRouter: () => ({
-      push: mockFn(),
-      replace: mockFn(),
-      prefetch: mockFn(),
-      back: mockFn(),
-      forward: mockFn(),
-      refresh: mockFn(),
-    }),
-    useSearchParams: () => ({
-      get: mockFn(),
-    }),
-    usePathname: () => '/',
-  }));
+// Mock Next.js navigation
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    back: jest.fn(),
+    forward: jest.fn(),
+    refresh: jest.fn(),
+  }),
+  useSearchParams: () => ({
+    get: jest.fn(),
+  }),
+  usePathname: () => '/',
+}));
 
-  // Mock Next.js image
-  (globalThis as any).jest.mock('next/image', () => ({
-    __esModule: true,
-    default: (props: any) => {
-      // eslint-disable-next-line @next/next/no-img-element
-      return React.createElement('img', props);
-    },
-  }));
+// Mock Next.js image
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: any) => {
+    // eslint-disable-next-line @next/next/no-img-element
+    return React.createElement('img', props);
+  },
+}));
 
-  // Mock fetch
-  global.fetch = mockFetchFn();
-}
+// Mock fetch
+global.fetch = jest.fn(() => Promise.resolve(new Response()));
 
 // Mock window.matchMedia
 if (typeof window !== 'undefined') {
