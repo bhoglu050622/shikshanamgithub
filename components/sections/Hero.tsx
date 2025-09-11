@@ -5,7 +5,7 @@ import { BookOpen, Sparkles, Flower, Users, Award } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
 import { useScrollAnimations, useStaggeredAnimations } from '@/lib/hooks/useProgressiveAnimations'
-import { EditableText, EditableButton, EditableColor } from '../cms/QuickEditWrapper'
+// CMS components removed - using regular elements instead
 
 
 const quickStats = [
@@ -91,13 +91,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              <EditableText
-                page="homepage"
-                component="Hero"
-                element="title-prefix"
-                defaultValue="Welcome to"
-                className="inline"
-              />
+              <span className="inline">Welcome to</span>
               {' '}
               <motion.span 
                 className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
@@ -111,13 +105,7 @@ export default function Hero() {
                 }}
                 style={{ backgroundSize: '200% 200%' }}
               >
-                <EditableText
-                  page="homepage"
-                  component="Hero"
-                  element="title-brand"
-                  defaultValue="Shikshanam"
-                  className="inline"
-                />
+                <span className="inline">Shikshanam</span>
               </motion.span>
             </motion.h1>
           </StaggerItem>
@@ -134,13 +122,7 @@ export default function Hero() {
                 animate={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <EditableText
-                  page="homepage"
-                  component="Hero"
-                  element="subtitle"
-                  defaultValue="Where AI meets Ancient India"
-                  className="inline"
-                />
+                <span className="inline">Where AI meets Ancient India</span>
               </motion.span>
             </motion.p>
           </StaggerItem>
@@ -198,13 +180,7 @@ export default function Hero() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                <EditableText
-                  page="homepage"
-                  component="Hero"
-                  element="question"
-                  defaultValue="What do you seek?"
-                  className="inline"
-                />
+                <span className="inline">What do you seek?</span>
               </motion.span>
             </motion.h2>
           </StaggerItem>
@@ -246,13 +222,7 @@ export default function Hero() {
                   animate={{ textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <EditableText
-                    page="homepage"
-                    component="Hero"
-                    element="cta-primary"
-                    defaultValue="School of Sanskrit"
-                    className="inline"
-                  />
+                  <span className="inline">School of Sanskrit</span>
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
@@ -301,13 +271,7 @@ export default function Hero() {
                   animate={{ textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 >
-                  <EditableText
-                    page="homepage"
-                    component="Hero"
-                    element="cta-secondary"
-                    defaultValue="School of Darshan"
-                    className="inline"
-                  />
+                  <span className="inline">School of Darshan</span>
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
@@ -356,13 +320,7 @@ export default function Hero() {
                   animate={{ textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
-                  <EditableText
-                    page="homepage"
-                    component="Hero"
-                    element="cta-tertiary"
-                    defaultValue="School of Life Skills"
-                    className="inline"
-                  />
+                  <span className="inline">School of Life Skills</span>
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"

@@ -1,12 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { SEOManager } from '@/cms/lib/seo'
 
 // GET /api/robots - Generate and return robots.txt
 export async function GET(request: NextRequest) {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://shikshanam.com'
     
-    const robotsTxt = SEOManager.generateRobotsTxt(baseUrl)
+    const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${baseUrl}/api/sitemap
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /cms/
+`
 
     return new NextResponse(robotsTxt, {
       status: 200,
