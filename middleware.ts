@@ -9,6 +9,7 @@ const PUBLIC_PATHS = [
   '/robots.txt',
   '/sitemap.xml',
   '/offline',
+  '/offline.html',
   '/api/health-check',
   '/api/robots',
   '/api/sitemap',
@@ -48,17 +49,18 @@ const PUBLIC_PAGES = [
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Allow Next.js internals and static assets
+  // Allow Next.js internals and static assets - CRITICAL for build
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/static') ||
     pathname.startsWith('/assets') ||
-    pathname.startsWith('/icons')
+    pathname.startsWith('/icons') ||
+    pathname.startsWith('/public')
   ) {
     return NextResponse.next();
   }
 
-  // Allow public paths - CRITICAL: manifest.webmanifest must be excluded from auth
+  // Allow public paths - CRITICAL: manifest.webmanifest and sw.js must be excluded from auth
   if (PUBLIC_PATHS.some(p => pathname === p || pathname.startsWith(p))) {
     return NextResponse.next();
   }
