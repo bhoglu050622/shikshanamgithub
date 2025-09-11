@@ -1,0 +1,517 @@
+/**
+ * Mobile Optimization Styles
+ * Comprehensive mobile-specific CSS for touch interactions and responsive design
+ */
+
+/* ============================================================================
+   MOBILE NAVIGATION STYLES
+   ============================================================================ */
+
+.mobile-nav-toggle {
+  @apply fixed top-4 right-4 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg;
+  @apply border border-gray-200 dark:border-gray-700;
+  @apply text-gray-700 dark:text-gray-300;
+  @apply transition-all duration-200 ease-in-out;
+  @apply touch-manipulation;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mobile-nav-toggle:active {
+  @apply scale-95 bg-gray-100 dark:bg-gray-700;
+}
+
+.mobile-nav-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 z-40;
+  @apply transition-opacity duration-300 ease-in-out;
+}
+
+.mobile-nav-drawer {
+  @apply fixed top-0 right-0 h-full w-80 max-w-[85vw] z-50;
+  @apply bg-white dark:bg-gray-900 shadow-xl;
+  @apply transform transition-transform duration-300 ease-in-out;
+  @apply overflow-y-auto;
+  transform: translateX(100%);
+}
+
+.mobile-nav-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  @apply flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700;
+}
+
+.mobile-nav-title {
+  @apply text-lg font-semibold text-gray-900 dark:text-gray-100;
+}
+
+.mobile-nav-close {
+  @apply p-2 text-gray-500 dark:text-gray-400;
+  @apply hover:text-gray-700 dark:hover:text-gray-200;
+  @apply transition-colors duration-200;
+  @apply touch-manipulation;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mobile-nav-content {
+  @apply p-4 space-y-2;
+}
+
+.mobile-nav-item {
+  @apply w-full;
+}
+
+.mobile-nav-item-button {
+  @apply w-full flex items-center justify-between p-3 rounded-lg;
+  @apply text-left text-gray-700 dark:text-gray-300;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+  @apply transition-colors duration-200;
+  @apply touch-manipulation;
+  min-height: 44px;
+}
+
+.mobile-nav-item-button.active {
+  @apply bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300;
+}
+
+.mobile-nav-item-content {
+  @apply flex items-center space-x-3;
+}
+
+.mobile-nav-item-icon {
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.mobile-nav-item-label {
+  @apply font-medium;
+}
+
+.mobile-nav-item-badge {
+  @apply ml-2 px-2 py-1 text-xs bg-orange-500 text-white rounded-full;
+}
+
+.mobile-nav-item-arrow {
+  @apply text-gray-400 dark:text-gray-500;
+}
+
+.mobile-nav-submenu {
+  @apply ml-4 mt-2 space-y-1;
+}
+
+.mobile-nav-submenu-item {
+  @apply w-full p-2 text-sm text-gray-600 dark:text-gray-400;
+  @apply hover:text-gray-800 dark:hover:text-gray-200;
+  @apply hover:bg-gray-50 dark:hover:bg-gray-800;
+  @apply rounded-md transition-colors duration-200;
+  @apply touch-manipulation;
+  min-height: 40px;
+}
+
+.mobile-nav-footer {
+  @apply p-4 border-t border-gray-200 dark:border-gray-700;
+  @apply flex items-center justify-around;
+}
+
+.mobile-nav-action {
+  @apply p-3 text-gray-500 dark:text-gray-400;
+  @apply hover:text-gray-700 dark:hover:text-gray-200;
+  @apply transition-colors duration-200;
+  @apply touch-manipulation;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* ============================================================================
+   BOTTOM TAB NAVIGATION STYLES
+   ============================================================================ */
+
+.bottom-tab-navigation {
+  @apply fixed bottom-0 left-0 right-0 z-40;
+  @apply bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700;
+  @apply flex items-center justify-around;
+  @apply safe-area-pb;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.bottom-tab-item {
+  @apply flex flex-col items-center justify-center p-2;
+  @apply text-gray-500 dark:text-gray-400;
+  @apply transition-colors duration-200;
+  @apply touch-manipulation;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.bottom-tab-item.active {
+  @apply text-orange-600 dark:text-orange-400;
+}
+
+.bottom-tab-icon {
+  @apply mb-1;
+}
+
+.bottom-tab-label {
+  @apply text-xs font-medium;
+}
+
+.bottom-tab-badge {
+  @apply absolute -top-1 -right-1 px-1.5 py-0.5 text-xs;
+  @apply bg-orange-500 text-white rounded-full;
+  @apply min-w-[18px] h-[18px] flex items-center justify-center;
+}
+
+/* ============================================================================
+   FLOATING ACTION BUTTON STYLES
+   ============================================================================ */
+
+.floating-action-button {
+  @apply fixed z-50 w-14 h-14 rounded-full;
+  @apply bg-orange-500 hover:bg-orange-600;
+  @apply text-white shadow-lg;
+  @apply flex items-center justify-center;
+  @apply transition-all duration-200 ease-in-out;
+  @apply touch-manipulation;
+  @apply focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2;
+}
+
+.floating-action-button.bottom-right {
+  @apply bottom-6 right-6;
+}
+
+.floating-action-button.bottom-left {
+  @apply bottom-6 left-6;
+}
+
+.floating-action-button.top-right {
+  @apply top-6 right-6;
+}
+
+.floating-action-button.top-left {
+  @apply top-6 left-6;
+}
+
+.floating-action-button:active {
+  @apply scale-95;
+}
+
+/* ============================================================================
+   TOUCH FEEDBACK STYLES
+   ============================================================================ */
+
+.touch-feedback-tap {
+  @apply transform scale-95 transition-transform duration-150 ease-in-out;
+}
+
+.touch-feedback-long-press {
+  @apply transform scale-105 transition-transform duration-150 ease-in-out;
+}
+
+/* ============================================================================
+   MOBILE OPTIMIZED IMAGE STYLES
+   ============================================================================ */
+
+.mobile-optimized-image-container {
+  @apply relative overflow-hidden;
+}
+
+.mobile-optimized-image {
+  @apply transition-opacity duration-300 ease-in-out;
+}
+
+.mobile-optimized-image.loading {
+  @apply opacity-0;
+}
+
+.mobile-optimized-image.loaded {
+  @apply opacity-100;
+}
+
+.mobile-image-loading-overlay {
+  @apply absolute inset-0 flex items-center justify-center;
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.mobile-image-error {
+  @apply absolute inset-0 flex flex-col items-center justify-center;
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400;
+}
+
+.error-icon {
+  @apply text-2xl mb-2;
+}
+
+.error-text {
+  @apply text-sm;
+}
+
+.loading-spinner {
+  @apply w-6 h-6 border-2 border-gray-300 border-t-orange-500 rounded-full;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE GRID STYLES
+   ============================================================================ */
+
+.responsive-image-gallery {
+  @apply w-full;
+}
+
+.gallery-item {
+  @apply relative overflow-hidden rounded-lg;
+}
+
+.gallery-image {
+  @apply w-full h-full object-cover;
+}
+
+.gallery-caption {
+  @apply absolute bottom-0 left-0 right-0 p-3;
+  @apply bg-gradient-to-t from-black/70 to-transparent;
+  @apply text-white text-sm;
+}
+
+/* ============================================================================
+   MOBILE FORM STYLES
+   ============================================================================ */
+
+.mobile-input {
+  @apply w-full px-4 py-3 text-base;
+  @apply border border-gray-300 dark:border-gray-600 rounded-lg;
+  @apply bg-white dark:bg-gray-800;
+  @apply text-gray-900 dark:text-gray-100;
+  @apply focus:outline-none focus:ring-2 focus:ring-orange-500;
+  @apply transition-colors duration-200;
+  min-height: 44px;
+}
+
+.mobile-input:focus {
+  @apply border-orange-500;
+}
+
+.mobile-button {
+  @apply w-full py-3 px-6 text-base font-medium;
+  @apply bg-orange-500 hover:bg-orange-600;
+  @apply text-white rounded-lg;
+  @apply transition-colors duration-200;
+  @apply touch-manipulation;
+  min-height: 44px;
+}
+
+.mobile-button:active {
+  @apply transform scale-95;
+}
+
+.mobile-button.secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-800;
+}
+
+.mobile-button.outline {
+  @apply bg-transparent border-2 border-orange-500 text-orange-500;
+  @apply hover:bg-orange-500 hover:text-white;
+}
+
+/* ============================================================================
+   MOBILE CARD STYLES
+   ============================================================================ */
+
+.mobile-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm;
+  @apply border border-gray-200 dark:border-gray-700;
+  @apply transition-all duration-200 ease-in-out;
+  @apply touch-manipulation;
+}
+
+.mobile-card:active {
+  @apply transform scale-98 shadow-md;
+}
+
+.mobile-card.elevated {
+  @apply shadow-lg;
+}
+
+.mobile-card.outlined {
+  @apply border-2 border-gray-300 dark:border-gray-600;
+}
+
+.mobile-card.filled {
+  @apply bg-gray-50 dark:bg-gray-700;
+}
+
+/* ============================================================================
+   MOBILE MODAL STYLES
+   ============================================================================ */
+
+.mobile-modal-overlay {
+  @apply fixed inset-0 z-50 bg-black bg-opacity-50;
+  @apply flex items-end sm:items-center justify-center;
+  @apply p-4;
+}
+
+.mobile-modal {
+  @apply w-full max-w-md bg-white dark:bg-gray-800 rounded-t-lg sm:rounded-lg;
+  @apply shadow-xl;
+  @apply transform transition-transform duration-300 ease-in-out;
+}
+
+.mobile-modal-header {
+  @apply flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700;
+}
+
+.mobile-modal-title {
+  @apply text-lg font-semibold text-gray-900 dark:text-gray-100;
+}
+
+.mobile-modal-close {
+  @apply p-2 text-gray-500 dark:text-gray-400;
+  @apply hover:text-gray-700 dark:hover:text-gray-200;
+  @apply transition-colors duration-200;
+  @apply touch-manipulation;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.mobile-modal-content {
+  @apply p-4;
+}
+
+.mobile-modal-footer {
+  @apply p-4 border-t border-gray-200 dark:border-gray-700;
+  @apply flex items-center justify-end space-x-3;
+}
+
+/* ============================================================================
+   MOBILE UTILITIES
+   ============================================================================ */
+
+.safe-area-pt {
+  padding-top: max(16px, env(safe-area-inset-top));
+}
+
+.safe-area-pb {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.safe-area-pl {
+  padding-left: max(16px, env(safe-area-inset-left));
+}
+
+.safe-area-pr {
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+.no-touch-callout {
+  -webkit-touch-callout: none;
+}
+
+.no-touch-highlight {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================================
+   MOBILE BREAKPOINTS
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .mobile-nav-drawer {
+    @apply w-full max-w-none;
+  }
+  
+  .bottom-tab-navigation {
+    @apply px-2;
+  }
+  
+  .floating-action-button {
+    @apply w-12 h-12;
+  }
+  
+  .floating-action-button.bottom-right {
+    @apply bottom-4 right-4;
+  }
+  
+  .floating-action-button.bottom-left {
+    @apply bottom-4 left-4;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-toggle {
+    @apply top-3 right-3 p-2;
+  }
+  
+  .mobile-nav-drawer {
+    @apply w-full;
+  }
+  
+  .bottom-tab-item {
+    @apply p-1;
+  }
+  
+  .bottom-tab-label {
+    @apply text-xs;
+  }
+}
+
+/* ============================================================================
+   DARK MODE MOBILE STYLES
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  .mobile-nav-toggle {
+    @apply bg-gray-800 border-gray-700 text-gray-300;
+  }
+  
+  .mobile-nav-drawer {
+    @apply bg-gray-900;
+  }
+  
+  .bottom-tab-navigation {
+    @apply bg-gray-900 border-gray-700;
+  }
+}
+
+/* ============================================================================
+   REDUCED MOTION STYLES
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-drawer,
+  .mobile-optimized-image,
+  .mobile-card,
+  .floating-action-button {
+    @apply transition-none;
+  }
+  
+  .loading-spinner {
+    animation: none;
+  }
+}
+
+/* ============================================================================
+   HIGH CONTRAST STYLES
+   ============================================================================ */
+
+@media (prefers-contrast: high) {
+  .mobile-nav-toggle,
+  .mobile-nav-drawer,
+  .bottom-tab-navigation,
+  .mobile-card {
+    @apply border-2 border-gray-900 dark:border-gray-100;
+  }
+  
+  .mobile-button {
+    @apply border-2 border-orange-600;
+  }
+}

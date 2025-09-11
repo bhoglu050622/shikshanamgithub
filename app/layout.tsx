@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display } from 'next/font/google'
 import './globals.css'
+import './mobile.css'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import ClientServiceWorker from '@/components/ClientServiceWorker'
@@ -11,6 +12,7 @@ import { AuthProvider } from '@/lib/auth-context'
 import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
 import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
 import { SEOProvider } from '@/lib/seo'
+import { MobileNavigation } from '@/components/mobile/MobileNavigation'
 import '@/lib/console-filter'
 
 const inter = Inter({ 
@@ -152,10 +154,11 @@ export default function RootLayout({
                 <AccessibilityToolbar />
                 <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
                   <Header />
-                  <main id="main-content" className="w-full" role="main">
+                  <main id="main-content" className="w-full pb-20" role="main">
                     {children}
                   </main>
                   <Footer />
+                  <MobileNavigation />
                 </div>
                 </AccessibilityProvider>
               </AuthProvider>
