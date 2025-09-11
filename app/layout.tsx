@@ -13,6 +13,7 @@ import { AccessibilityProvider } from '@/components/accessibility/AccessibilityP
 import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
 import { SEOProvider } from '@/lib/seo'
 import { MobileNavigation } from '@/components/mobile/MobileNavigation'
+import { AnalyticsProvider } from '@/lib/analytics'
 import '@/lib/console-filter'
 
 const inter = Inter({ 
@@ -145,10 +146,18 @@ export default function RootLayout({
         </a>
         
         <ErrorBoundary>
-          <SEOProvider>
-            <ThemeProvider>
-              <AuthProvider>
-                <AccessibilityProvider>
+          <AnalyticsProvider config={{
+            googleAnalytics: {
+              measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
+              anonymizeIp: true,
+              respectDnt: true,
+            },
+            debug: process.env.NODE_ENV === 'development',
+          }}>
+            <SEOProvider>
+              <ThemeProvider>
+                <AuthProvider>
+                  <AccessibilityProvider>
                   <PerformanceMonitor />
                 <ClientServiceWorker />
                 <AccessibilityToolbar />
@@ -160,10 +169,11 @@ export default function RootLayout({
                   <Footer />
                   <MobileNavigation />
                 </div>
-                </AccessibilityProvider>
-              </AuthProvider>
-            </ThemeProvider>
-          </SEOProvider>
+                  </AccessibilityProvider>
+                </AuthProvider>
+              </ThemeProvider>
+            </SEOProvider>
+          </AnalyticsProvider>
         </ErrorBoundary>
       </body>
     </html>
