@@ -66,118 +66,31 @@ export default function QuickEditPage() {
   const [livePreviewToken, setLivePreviewToken] = useState<string | null>(null)
   const [liveChanges, setLiveChanges] = useState<LivePreviewChanges>({})
 
-  // Mock data for demonstration
+  // Load real data from API
   useEffect(() => {
-    const mockItems: QuickEditItem[] = [
-      {
-        id: '1',
-        key: 'homepage.hero.title',
-        type: 'TEXT',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'title',
-        value: 'Welcome to Shikshanam',
-        defaultValue: 'Welcome to Shikshanam',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '2',
-        key: 'homepage.hero.subtitle',
-        type: 'TEXT',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'subtitle',
-        value: 'Where AI meets Ancient India',
-        defaultValue: 'Where AI meets Ancient India',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '3',
-        key: 'homepage.hero.cta.primary',
-        type: 'BUTTON_LABEL',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'cta-primary',
-        value: 'School of Sanskrit',
-        defaultValue: 'School of Sanskrit',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '4',
-        key: 'homepage.hero.cta.primary.color',
-        type: 'BUTTON_COLOR',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'cta-primary-color',
-        value: '#3B82F6',
-        defaultValue: '#3B82F6',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '5',
-        key: 'homepage.hero.cta.secondary',
-        type: 'BUTTON_LABEL',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'cta-secondary',
-        value: 'School of Darshan',
-        defaultValue: 'School of Darshan',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '6',
-        key: 'homepage.hero.cta.secondary.color',
-        type: 'BUTTON_COLOR',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'cta-secondary-color',
-        value: '#8B4513',
-        defaultValue: '#8B4513',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '7',
-        key: 'homepage.hero.cta.tertiary',
-        type: 'BUTTON_LABEL',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'cta-tertiary',
-        value: 'School of Life Skills',
-        defaultValue: 'School of Life Skills',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      },
-      {
-        id: '8',
-        key: 'homepage.hero.cta.tertiary.color',
-        type: 'BUTTON_COLOR',
-        page: 'homepage',
-        component: 'Hero',
-        element: 'cta-tertiary-color',
-        value: '#FF8C00',
-        defaultValue: '#FF8C00',
-        isActive: true,
-        createdAt: '2024-01-15T10:30:00Z',
-        updatedAt: '2024-01-15T10:30:00Z'
-      }
-    ]
-
-    setItems(mockItems)
-    setFilteredItems(mockItems)
+    loadQuickEditItems()
   }, [])
+
+  const loadQuickEditItems = async () => {
+    try {
+      const response = await fetch('/api/cms/quick-edit')
+      if (response.ok) {
+        const data = await response.json()
+        setItems(data)
+        setFilteredItems(data)
+      } else {
+        console.error('Failed to load quick edit items:', response.statusText)
+        // Fallback to empty array if API fails
+        setItems([])
+        setFilteredItems([])
+      }
+    } catch (error) {
+      console.error('Error loading quick edit items:', error)
+      // Fallback to empty array if API fails
+      setItems([])
+      setFilteredItems([])
+    }
+  }
 
   // Filter items based on search and selection
   useEffect(() => {
@@ -215,27 +128,46 @@ export default function QuickEditPage() {
 
     setSaving(true)
     
-    // Simulate API call
-    setTimeout(() => {
-      setItems(prev => prev.map(item => 
-        item.id === editingItem.id 
-          ? { ...item, value: editValue, updatedAt: new Date().toISOString() }
-          : item
-      ))
-      
-      // Add to live changes
-      setLiveChanges(prev => ({
-        ...prev,
-        [editingItem.key]: {
-          value: editValue,
-          type: editingItem.type
-        }
-      }))
+    try {
+      const response = await fetch(`/api/cms/quick-edit/${editingItem.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          value: editValue
+        })
+      })
 
-      setEditingItem(null)
-      setEditValue('')
+      if (response.ok) {
+        // Update local state
+        setItems(prev => prev.map(item => 
+          item.id === editingItem.id 
+            ? { ...item, value: editValue, updatedAt: new Date().toISOString() }
+            : item
+        ))
+        
+        // Add to live changes
+        setLiveChanges(prev => ({
+          ...prev,
+          [editingItem.key]: {
+            value: editValue,
+            type: editingItem.type
+          }
+        }))
+
+        setEditingItem(null)
+        setEditValue('')
+      } else {
+        console.error('Failed to save quick edit item:', response.statusText)
+        alert('Failed to save changes. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error saving quick edit item:', error)
+      alert('Error saving changes. Please try again.')
+    } finally {
       setSaving(false)
-    }, 1000)
+    }
   }
 
   const handleReset = () => {
@@ -244,9 +176,29 @@ export default function QuickEditPage() {
   }
 
   const handleCreateLivePreview = async () => {
-    // Simulate creating live preview token
-    const token = 'preview_' + Math.random().toString(36).substr(2, 9)
-    setLivePreviewToken(token)
+    try {
+      const response = await fetch('/api/cms/quick-edit/live-preview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          page: selectedPage,
+          changes: liveChanges
+        })
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setLivePreviewToken(data.token)
+      } else {
+        console.error('Failed to create live preview:', response.statusText)
+        alert('Failed to create live preview. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error creating live preview:', error)
+      alert('Error creating live preview. Please try again.')
+    }
   }
 
   const getTypeIcon = (type: string) => {

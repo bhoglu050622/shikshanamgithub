@@ -11,7 +11,62 @@ export async function GET(request: NextRequest) {
   try {
     // Development bypass or fallback when database is not available
     if (process.env.NODE_ENV === 'development' || !process.env.DATABASE_URL) {
-      return NextResponse.json([])
+      // Return sample data for development/testing
+      const sampleItems = [
+        {
+          id: '1',
+          key: 'homepage.hero.title',
+          type: 'TEXT',
+          page: 'homepage',
+          component: 'Hero',
+          element: 'title',
+          value: 'Welcome to Shikshanam',
+          defaultValue: 'Welcome to Shikshanam',
+          isActive: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '2',
+          key: 'homepage.hero.subtitle',
+          type: 'TEXT',
+          page: 'homepage',
+          component: 'Hero',
+          element: 'subtitle',
+          value: 'Where AI meets Ancient India',
+          defaultValue: 'Where AI meets Ancient India',
+          isActive: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '3',
+          key: 'homepage.hero.cta.primary',
+          type: 'BUTTON_LABEL',
+          page: 'homepage',
+          component: 'Hero',
+          element: 'cta-primary',
+          value: 'School of Sanskrit',
+          defaultValue: 'School of Sanskrit',
+          isActive: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        },
+        {
+          id: '4',
+          key: 'homepage.hero.cta.primary.color',
+          type: 'BUTTON_COLOR',
+          page: 'homepage',
+          component: 'Hero',
+          element: 'cta-primary-color',
+          value: '#3B82F6',
+          defaultValue: '#3B82F6',
+          isActive: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        }
+      ]
+      return NextResponse.json(sampleItems)
     }
     
     const user = await requireAuth(UserRole.VIEWER)(request)

@@ -22,13 +22,21 @@ import {
   TrendingUp,
   Eye,
   Edit,
-  Send
+  Send,
+  Zap
 } from 'lucide-react'
 
 export default function CMSDashboard() {
   const { user } = useAuth()
 
   const quickActions = [
+    {
+      title: 'Quick Edit',
+      description: 'Edit text, colors, and buttons instantly',
+      icon: Zap,
+      href: '/cms/quick-edit',
+      color: 'bg-yellow-500 hover:bg-yellow-600'
+    },
     {
       title: 'Create Content',
       description: 'Start writing a new article or page',
@@ -259,6 +267,14 @@ export default function CMSDashboard() {
               <div className="text-left">
                 <div className="font-medium">Content Management</div>
                 <div className="text-xs text-gray-500">Manage all content types</div>
+              </div>
+            </a>
+            
+            <a href="/cms/quick-edit" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <Zap className="w-5 h-5" />
+              <div className="text-left">
+                <div className="font-medium">Quick Edit</div>
+                <div className="text-xs text-gray-500">Edit text, colors, and buttons instantly</div>
               </div>
             </a>
             
