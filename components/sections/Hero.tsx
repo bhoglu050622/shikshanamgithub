@@ -5,6 +5,7 @@ import { BookOpen, Sparkles, Flower, Users, Award } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
 import { useScrollAnimations, useStaggeredAnimations } from '@/lib/hooks/useProgressiveAnimations'
+import { EditableText, EditableButton, EditableColor } from '../cms/QuickEditWrapper'
 
 
 const quickStats = [
@@ -85,12 +86,19 @@ export default function Hero() {
           <StaggerItem>
             <motion.h1 
               ref={titleRef} 
-              className="text-mobile-hero text-foreground mb-6 sm:mb-8 text-shadow-sm"
+              className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
             >
-              Welcome to{' '}
+              <EditableText
+                page="homepage"
+                component="Hero"
+                element="title-prefix"
+                defaultValue="Welcome to"
+                className="inline"
+              />
+              {' '}
               <motion.span 
                 className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
                 animate={{ 
@@ -103,7 +111,13 @@ export default function Hero() {
                 }}
                 style={{ backgroundSize: '200% 200%' }}
               >
-                Shikshanam
+                <EditableText
+                  page="homepage"
+                  component="Hero"
+                  element="title-brand"
+                  defaultValue="Shikshanam"
+                  className="inline"
+                />
               </motion.span>
             </motion.h1>
           </StaggerItem>
@@ -111,7 +125,7 @@ export default function Hero() {
           <StaggerItem>
             <motion.p 
               ref={subtitleRef} 
-              className="text-mobile-subheading text-muted-foreground mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
+              className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -120,7 +134,13 @@ export default function Hero() {
                 animate={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                Where AI meets Ancient India
+                <EditableText
+                  page="homepage"
+                  component="Hero"
+                  element="subtitle"
+                  defaultValue="Where AI meets Ancient India"
+                  className="inline"
+                />
               </motion.span>
             </motion.p>
           </StaggerItem>
@@ -136,7 +156,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
                     whileHover={{ scale: 1.05, y: -5 }}
-                    className="flex items-center space-x-2 sm:space-x-3 text-foreground cursor-pointer"
+                    className="flex items-center space-x-2 sm:space-x-3 text-high-contrast cursor-pointer"
                   >
                     <motion.div 
                       className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-primary/90 rounded-lg sm:rounded-xl flex items-center justify-center"
@@ -147,13 +167,13 @@ export default function Hero() {
                     </motion.div>
                     <div>
                       <motion.div 
-                        className="text-base sm:text-lg font-bold text-foreground"
+                        className="text-base sm:text-lg font-bold text-high-contrast"
                         animate={{ scale: [1, 1.05, 1] }}
                         transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
                       >
                         {stat.value}
                       </motion.div>
-                      <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
+                      <div className="text-xs sm:text-sm text-high-contrast opacity-80">{stat.label}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -166,7 +186,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="text-2xl sm:text-3xl md:text-4xl font-serif text-foreground mb-12 sm:mb-16 text-shadow-sm"
+              className="text-2xl sm:text-3xl md:text-4xl font-serif text-high-contrast mb-12 sm:mb-16 text-shadow-sm"
             >
               <motion.span
                 animate={{ 
@@ -178,7 +198,13 @@ export default function Hero() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                What do you seek?
+                <EditableText
+                  page="homepage"
+                  component="Hero"
+                  element="question"
+                  defaultValue="What do you seek?"
+                  className="inline"
+                />
               </motion.span>
             </motion.h2>
           </StaggerItem>
@@ -197,7 +223,21 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const schoolsSection = document.getElementById('schools');
-                  schoolsSection?.scrollIntoView({ behavior: 'smooth' });
+                  if (schoolsSection) {
+                    schoolsSection.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start',
+                      inline: 'nearest'
+                    });
+                    // Add temporary highlight effect
+                    schoolsSection.style.transition = 'box-shadow 0.3s ease';
+                    schoolsSection.style.boxShadow = '0 0 20px rgba(45, 67, 50, 0.5)';
+                    setTimeout(() => {
+                      schoolsSection.style.boxShadow = '';
+                    }, 2000);
+                  } else {
+                    console.warn('Schools section not found');
+                  }
                 }}
                 className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 text-primary-foreground px-6 md:px-8 py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/20 hover:border-primary/40 relative overflow-hidden cursor-pointer no-underline w-full md:w-auto"
               >
@@ -206,7 +246,13 @@ export default function Hero() {
                   animate={{ textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  School of Sanskrit
+                  <EditableText
+                    page="homepage"
+                    component="Hero"
+                    element="cta-primary"
+                    defaultValue="School of Sanskrit"
+                    className="inline"
+                  />
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
@@ -232,7 +278,21 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const schoolsSection = document.getElementById('schools');
-                  schoolsSection?.scrollIntoView({ behavior: 'smooth' });
+                  if (schoolsSection) {
+                    schoolsSection.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start',
+                      inline: 'nearest'
+                    });
+                    // Add temporary highlight effect
+                    schoolsSection.style.transition = 'box-shadow 0.3s ease';
+                    schoolsSection.style.boxShadow = '0 0 20px rgba(45, 67, 50, 0.5)';
+                    setTimeout(() => {
+                      schoolsSection.style.boxShadow = '';
+                    }, 2000);
+                  } else {
+                    console.warn('Schools section not found');
+                  }
                 }}
                 className="group bg-gradient-to-r from-secondary to-secondary/90 hover:from-secondary/90 hover:to-secondary/80 text-secondary-foreground px-6 md:px-8 py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-secondary/20 hover:border-secondary/40 relative overflow-hidden cursor-pointer no-underline w-full md:w-auto"
               >
@@ -241,7 +301,13 @@ export default function Hero() {
                   animate={{ textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 >
-                  School of Darshan
+                  <EditableText
+                    page="homepage"
+                    component="Hero"
+                    element="cta-secondary"
+                    defaultValue="School of Darshan"
+                    className="inline"
+                  />
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
@@ -267,7 +333,21 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const schoolsSection = document.getElementById('schools');
-                  schoolsSection?.scrollIntoView({ behavior: 'smooth' });
+                  if (schoolsSection) {
+                    schoolsSection.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start',
+                      inline: 'nearest'
+                    });
+                    // Add temporary highlight effect
+                    schoolsSection.style.transition = 'box-shadow 0.3s ease';
+                    schoolsSection.style.boxShadow = '0 0 20px rgba(45, 67, 50, 0.5)';
+                    setTimeout(() => {
+                      schoolsSection.style.boxShadow = '';
+                    }, 2000);
+                  } else {
+                    console.warn('Schools section not found');
+                  }
                 }}
                 className="group bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80 text-accent-foreground px-6 md:px-8 py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-accent/20 hover:border-accent/40 relative overflow-hidden cursor-pointer no-underline w-full md:w-auto"
               >
@@ -276,7 +356,13 @@ export default function Hero() {
                   animate={{ textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
-                  School of Life Skills
+                  <EditableText
+                    page="homepage"
+                    component="Hero"
+                    element="cta-tertiary"
+                    defaultValue="School of Life Skills"
+                    className="inline"
+                  />
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"

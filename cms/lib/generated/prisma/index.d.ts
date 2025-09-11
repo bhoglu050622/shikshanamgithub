@@ -94,6 +94,26 @@ export type Redirect = $Result.DefaultSelection<Prisma.$RedirectPayload>
  */
 export type ContentSection = $Result.DefaultSelection<Prisma.$ContentSectionPayload>
 /**
+ * Model QuickEditItem
+ * 
+ */
+export type QuickEditItem = $Result.DefaultSelection<Prisma.$QuickEditItemPayload>
+/**
+ * Model QuickEditRevision
+ * 
+ */
+export type QuickEditRevision = $Result.DefaultSelection<Prisma.$QuickEditRevisionPayload>
+/**
+ * Model ThemeSetting
+ * 
+ */
+export type ThemeSetting = $Result.DefaultSelection<Prisma.$ThemeSettingPayload>
+/**
+ * Model LivePreviewToken
+ * 
+ */
+export type LivePreviewToken = $Result.DefaultSelection<Prisma.$LivePreviewTokenPayload>
+/**
  * Model AuditLog
  * 
  */
@@ -164,6 +184,22 @@ export const PackageType: {
 
 export type PackageType = (typeof PackageType)[keyof typeof PackageType]
 
+
+export const QuickEditType: {
+  TEXT: 'TEXT',
+  COLOR: 'COLOR',
+  BUTTON_LABEL: 'BUTTON_LABEL',
+  BUTTON_COLOR: 'BUTTON_COLOR',
+  BACKGROUND_COLOR: 'BACKGROUND_COLOR',
+  FONT_SIZE: 'FONT_SIZE',
+  FONT_WEIGHT: 'FONT_WEIGHT',
+  SPACING: 'SPACING',
+  BORDER_RADIUS: 'BORDER_RADIUS',
+  SHADOW: 'SHADOW'
+};
+
+export type QuickEditType = (typeof QuickEditType)[keyof typeof QuickEditType]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -189,6 +225,10 @@ export const CourseLevel: typeof $Enums.CourseLevel
 export type PackageType = $Enums.PackageType
 
 export const PackageType: typeof $Enums.PackageType
+
+export type QuickEditType = $Enums.QuickEditType
+
+export const QuickEditType: typeof $Enums.QuickEditType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -467,6 +507,46 @@ export class PrismaClient<
     * ```
     */
   get contentSection(): Prisma.ContentSectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quickEditItem`: Exposes CRUD operations for the **QuickEditItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuickEditItems
+    * const quickEditItems = await prisma.quickEditItem.findMany()
+    * ```
+    */
+  get quickEditItem(): Prisma.QuickEditItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quickEditRevision`: Exposes CRUD operations for the **QuickEditRevision** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QuickEditRevisions
+    * const quickEditRevisions = await prisma.quickEditRevision.findMany()
+    * ```
+    */
+  get quickEditRevision(): Prisma.QuickEditRevisionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.themeSetting`: Exposes CRUD operations for the **ThemeSetting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ThemeSettings
+    * const themeSettings = await prisma.themeSetting.findMany()
+    * ```
+    */
+  get themeSetting(): Prisma.ThemeSettingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.livePreviewToken`: Exposes CRUD operations for the **LivePreviewToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LivePreviewTokens
+    * const livePreviewTokens = await prisma.livePreviewToken.findMany()
+    * ```
+    */
+  get livePreviewToken(): Prisma.LivePreviewTokenDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.auditLog`: Exposes CRUD operations for the **AuditLog** model.
@@ -933,6 +1013,10 @@ export namespace Prisma {
     Snippet: 'Snippet',
     Redirect: 'Redirect',
     ContentSection: 'ContentSection',
+    QuickEditItem: 'QuickEditItem',
+    QuickEditRevision: 'QuickEditRevision',
+    ThemeSetting: 'ThemeSetting',
+    LivePreviewToken: 'LivePreviewToken',
     AuditLog: 'AuditLog'
   };
 
@@ -952,7 +1036,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "refreshToken" | "course" | "lesson" | "package" | "packageCourse" | "blogPost" | "page" | "author" | "media" | "seoMeta" | "revision" | "settings" | "snippet" | "redirect" | "contentSection" | "auditLog"
+      modelProps: "user" | "refreshToken" | "course" | "lesson" | "package" | "packageCourse" | "blogPost" | "page" | "author" | "media" | "seoMeta" | "revision" | "settings" | "snippet" | "redirect" | "contentSection" | "quickEditItem" | "quickEditRevision" | "themeSetting" | "livePreviewToken" | "auditLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2140,6 +2224,302 @@ export namespace Prisma {
           }
         }
       }
+      QuickEditItem: {
+        payload: Prisma.$QuickEditItemPayload<ExtArgs>
+        fields: Prisma.QuickEditItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuickEditItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuickEditItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>
+          }
+          findFirst: {
+            args: Prisma.QuickEditItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuickEditItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>
+          }
+          findMany: {
+            args: Prisma.QuickEditItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>[]
+          }
+          create: {
+            args: Prisma.QuickEditItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>
+          }
+          createMany: {
+            args: Prisma.QuickEditItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuickEditItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>[]
+          }
+          delete: {
+            args: Prisma.QuickEditItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>
+          }
+          update: {
+            args: Prisma.QuickEditItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuickEditItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuickEditItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuickEditItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuickEditItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditItemPayload>
+          }
+          aggregate: {
+            args: Prisma.QuickEditItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuickEditItem>
+          }
+          groupBy: {
+            args: Prisma.QuickEditItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuickEditItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuickEditItemCountArgs<ExtArgs>
+            result: $Utils.Optional<QuickEditItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      QuickEditRevision: {
+        payload: Prisma.$QuickEditRevisionPayload<ExtArgs>
+        fields: Prisma.QuickEditRevisionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QuickEditRevisionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QuickEditRevisionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>
+          }
+          findFirst: {
+            args: Prisma.QuickEditRevisionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QuickEditRevisionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>
+          }
+          findMany: {
+            args: Prisma.QuickEditRevisionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>[]
+          }
+          create: {
+            args: Prisma.QuickEditRevisionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>
+          }
+          createMany: {
+            args: Prisma.QuickEditRevisionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QuickEditRevisionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>[]
+          }
+          delete: {
+            args: Prisma.QuickEditRevisionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>
+          }
+          update: {
+            args: Prisma.QuickEditRevisionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>
+          }
+          deleteMany: {
+            args: Prisma.QuickEditRevisionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QuickEditRevisionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QuickEditRevisionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>[]
+          }
+          upsert: {
+            args: Prisma.QuickEditRevisionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QuickEditRevisionPayload>
+          }
+          aggregate: {
+            args: Prisma.QuickEditRevisionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuickEditRevision>
+          }
+          groupBy: {
+            args: Prisma.QuickEditRevisionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuickEditRevisionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QuickEditRevisionCountArgs<ExtArgs>
+            result: $Utils.Optional<QuickEditRevisionCountAggregateOutputType> | number
+          }
+        }
+      }
+      ThemeSetting: {
+        payload: Prisma.$ThemeSettingPayload<ExtArgs>
+        fields: Prisma.ThemeSettingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ThemeSettingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ThemeSettingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>
+          }
+          findFirst: {
+            args: Prisma.ThemeSettingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ThemeSettingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>
+          }
+          findMany: {
+            args: Prisma.ThemeSettingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>[]
+          }
+          create: {
+            args: Prisma.ThemeSettingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>
+          }
+          createMany: {
+            args: Prisma.ThemeSettingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ThemeSettingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>[]
+          }
+          delete: {
+            args: Prisma.ThemeSettingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>
+          }
+          update: {
+            args: Prisma.ThemeSettingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>
+          }
+          deleteMany: {
+            args: Prisma.ThemeSettingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ThemeSettingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ThemeSettingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>[]
+          }
+          upsert: {
+            args: Prisma.ThemeSettingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ThemeSettingPayload>
+          }
+          aggregate: {
+            args: Prisma.ThemeSettingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateThemeSetting>
+          }
+          groupBy: {
+            args: Prisma.ThemeSettingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ThemeSettingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ThemeSettingCountArgs<ExtArgs>
+            result: $Utils.Optional<ThemeSettingCountAggregateOutputType> | number
+          }
+        }
+      }
+      LivePreviewToken: {
+        payload: Prisma.$LivePreviewTokenPayload<ExtArgs>
+        fields: Prisma.LivePreviewTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LivePreviewTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LivePreviewTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.LivePreviewTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LivePreviewTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>
+          }
+          findMany: {
+            args: Prisma.LivePreviewTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>[]
+          }
+          create: {
+            args: Prisma.LivePreviewTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>
+          }
+          createMany: {
+            args: Prisma.LivePreviewTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LivePreviewTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.LivePreviewTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>
+          }
+          update: {
+            args: Prisma.LivePreviewTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.LivePreviewTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LivePreviewTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LivePreviewTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.LivePreviewTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LivePreviewTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.LivePreviewTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLivePreviewToken>
+          }
+          groupBy: {
+            args: Prisma.LivePreviewTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LivePreviewTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LivePreviewTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<LivePreviewTokenCountAggregateOutputType> | number
+          }
+        }
+      }
       AuditLog: {
         payload: Prisma.$AuditLogPayload<ExtArgs>
         fields: Prisma.AuditLogFieldRefs
@@ -2322,6 +2702,10 @@ export namespace Prisma {
     snippet?: SnippetOmit
     redirect?: RedirectOmit
     contentSection?: ContentSectionOmit
+    quickEditItem?: QuickEditItemOmit
+    quickEditRevision?: QuickEditRevisionOmit
+    themeSetting?: ThemeSettingOmit
+    livePreviewToken?: LivePreviewTokenOmit
     auditLog?: AuditLogOmit
   }
 
@@ -2414,6 +2798,10 @@ export namespace Prisma {
     reviewedRevisions: number
     publishedRevisions: number
     refreshTokens: number
+    quickEditItems: number
+    quickEditRevisions: number
+    themeSettings: number
+    livePreviewTokens: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2428,6 +2816,10 @@ export namespace Prisma {
     reviewedRevisions?: boolean | UserCountOutputTypeCountReviewedRevisionsArgs
     publishedRevisions?: boolean | UserCountOutputTypeCountPublishedRevisionsArgs
     refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
+    quickEditItems?: boolean | UserCountOutputTypeCountQuickEditItemsArgs
+    quickEditRevisions?: boolean | UserCountOutputTypeCountQuickEditRevisionsArgs
+    themeSettings?: boolean | UserCountOutputTypeCountThemeSettingsArgs
+    livePreviewTokens?: boolean | UserCountOutputTypeCountLivePreviewTokensArgs
   }
 
   // Custom InputTypes
@@ -2516,6 +2908,34 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRefreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RefreshTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountQuickEditItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuickEditItemWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountQuickEditRevisionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuickEditRevisionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountThemeSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThemeSettingWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLivePreviewTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LivePreviewTokenWhereInput
   }
 
 
@@ -2618,6 +3038,37 @@ export namespace Prisma {
    */
   export type AuthorCountOutputTypeCountBlogPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BlogPostWhereInput
+  }
+
+
+  /**
+   * Count Type QuickEditItemCountOutputType
+   */
+
+  export type QuickEditItemCountOutputType = {
+    revisions: number
+  }
+
+  export type QuickEditItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    revisions?: boolean | QuickEditItemCountOutputTypeCountRevisionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * QuickEditItemCountOutputType without action
+   */
+  export type QuickEditItemCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItemCountOutputType
+     */
+    select?: QuickEditItemCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * QuickEditItemCountOutputType without action
+   */
+  export type QuickEditItemCountOutputTypeCountRevisionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuickEditRevisionWhereInput
   }
 
 
@@ -2833,6 +3284,10 @@ export namespace Prisma {
     reviewedRevisions?: boolean | User$reviewedRevisionsArgs<ExtArgs>
     publishedRevisions?: boolean | User$publishedRevisionsArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    quickEditItems?: boolean | User$quickEditItemsArgs<ExtArgs>
+    quickEditRevisions?: boolean | User$quickEditRevisionsArgs<ExtArgs>
+    themeSettings?: boolean | User$themeSettingsArgs<ExtArgs>
+    livePreviewTokens?: boolean | User$livePreviewTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2886,6 +3341,10 @@ export namespace Prisma {
     reviewedRevisions?: boolean | User$reviewedRevisionsArgs<ExtArgs>
     publishedRevisions?: boolean | User$publishedRevisionsArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    quickEditItems?: boolean | User$quickEditItemsArgs<ExtArgs>
+    quickEditRevisions?: boolean | User$quickEditRevisionsArgs<ExtArgs>
+    themeSettings?: boolean | User$themeSettingsArgs<ExtArgs>
+    livePreviewTokens?: boolean | User$livePreviewTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2906,6 +3365,10 @@ export namespace Prisma {
       reviewedRevisions: Prisma.$RevisionPayload<ExtArgs>[]
       publishedRevisions: Prisma.$RevisionPayload<ExtArgs>[]
       refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
+      quickEditItems: Prisma.$QuickEditItemPayload<ExtArgs>[]
+      quickEditRevisions: Prisma.$QuickEditRevisionPayload<ExtArgs>[]
+      themeSettings: Prisma.$ThemeSettingPayload<ExtArgs>[]
+      livePreviewTokens: Prisma.$LivePreviewTokenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3323,6 +3786,10 @@ export namespace Prisma {
     reviewedRevisions<T extends User$reviewedRevisionsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewedRevisionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     publishedRevisions<T extends User$publishedRevisionsArgs<ExtArgs> = {}>(args?: Subset<T, User$publishedRevisionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     refreshTokens<T extends User$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quickEditItems<T extends User$quickEditItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$quickEditItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quickEditRevisions<T extends User$quickEditRevisionsArgs<ExtArgs> = {}>(args?: Subset<T, User$quickEditRevisionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    themeSettings<T extends User$themeSettingsArgs<ExtArgs> = {}>(args?: Subset<T, User$themeSettingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    livePreviewTokens<T extends User$livePreviewTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$livePreviewTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4029,6 +4496,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.quickEditItems
+   */
+  export type User$quickEditItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    where?: QuickEditItemWhereInput
+    orderBy?: QuickEditItemOrderByWithRelationInput | QuickEditItemOrderByWithRelationInput[]
+    cursor?: QuickEditItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuickEditItemScalarFieldEnum | QuickEditItemScalarFieldEnum[]
+  }
+
+  /**
+   * User.quickEditRevisions
+   */
+  export type User$quickEditRevisionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    where?: QuickEditRevisionWhereInput
+    orderBy?: QuickEditRevisionOrderByWithRelationInput | QuickEditRevisionOrderByWithRelationInput[]
+    cursor?: QuickEditRevisionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuickEditRevisionScalarFieldEnum | QuickEditRevisionScalarFieldEnum[]
+  }
+
+  /**
+   * User.themeSettings
+   */
+  export type User$themeSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    where?: ThemeSettingWhereInput
+    orderBy?: ThemeSettingOrderByWithRelationInput | ThemeSettingOrderByWithRelationInput[]
+    cursor?: ThemeSettingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ThemeSettingScalarFieldEnum | ThemeSettingScalarFieldEnum[]
+  }
+
+  /**
+   * User.livePreviewTokens
+   */
+  export type User$livePreviewTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    where?: LivePreviewTokenWhereInput
+    orderBy?: LivePreviewTokenOrderByWithRelationInput | LivePreviewTokenOrderByWithRelationInput[]
+    cursor?: LivePreviewTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LivePreviewTokenScalarFieldEnum | LivePreviewTokenScalarFieldEnum[]
   }
 
   /**
@@ -21242,6 +21805,4476 @@ export namespace Prisma {
 
 
   /**
+   * Model QuickEditItem
+   */
+
+  export type AggregateQuickEditItem = {
+    _count: QuickEditItemCountAggregateOutputType | null
+    _min: QuickEditItemMinAggregateOutputType | null
+    _max: QuickEditItemMaxAggregateOutputType | null
+  }
+
+  export type QuickEditItemMinAggregateOutputType = {
+    id: string | null
+    key: string | null
+    type: $Enums.QuickEditType | null
+    page: string | null
+    component: string | null
+    element: string | null
+    value: string | null
+    defaultValue: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type QuickEditItemMaxAggregateOutputType = {
+    id: string | null
+    key: string | null
+    type: $Enums.QuickEditType | null
+    page: string | null
+    component: string | null
+    element: string | null
+    value: string | null
+    defaultValue: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type QuickEditItemCountAggregateOutputType = {
+    id: number
+    key: number
+    type: number
+    page: number
+    component: number
+    element: number
+    value: number
+    defaultValue: number
+    isActive: number
+    metadata: number
+    createdAt: number
+    updatedAt: number
+    createdById: number
+    _all: number
+  }
+
+
+  export type QuickEditItemMinAggregateInputType = {
+    id?: true
+    key?: true
+    type?: true
+    page?: true
+    component?: true
+    element?: true
+    value?: true
+    defaultValue?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type QuickEditItemMaxAggregateInputType = {
+    id?: true
+    key?: true
+    type?: true
+    page?: true
+    component?: true
+    element?: true
+    value?: true
+    defaultValue?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type QuickEditItemCountAggregateInputType = {
+    id?: true
+    key?: true
+    type?: true
+    page?: true
+    component?: true
+    element?: true
+    value?: true
+    defaultValue?: true
+    isActive?: true
+    metadata?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+    _all?: true
+  }
+
+  export type QuickEditItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuickEditItem to aggregate.
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditItems to fetch.
+     */
+    orderBy?: QuickEditItemOrderByWithRelationInput | QuickEditItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuickEditItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuickEditItems
+    **/
+    _count?: true | QuickEditItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuickEditItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuickEditItemMaxAggregateInputType
+  }
+
+  export type GetQuickEditItemAggregateType<T extends QuickEditItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuickEditItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuickEditItem[P]>
+      : GetScalarType<T[P], AggregateQuickEditItem[P]>
+  }
+
+
+
+
+  export type QuickEditItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuickEditItemWhereInput
+    orderBy?: QuickEditItemOrderByWithAggregationInput | QuickEditItemOrderByWithAggregationInput[]
+    by: QuickEditItemScalarFieldEnum[] | QuickEditItemScalarFieldEnum
+    having?: QuickEditItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuickEditItemCountAggregateInputType | true
+    _min?: QuickEditItemMinAggregateInputType
+    _max?: QuickEditItemMaxAggregateInputType
+  }
+
+  export type QuickEditItemGroupByOutputType = {
+    id: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive: boolean
+    metadata: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    createdById: string
+    _count: QuickEditItemCountAggregateOutputType | null
+    _min: QuickEditItemMinAggregateOutputType | null
+    _max: QuickEditItemMaxAggregateOutputType | null
+  }
+
+  type GetQuickEditItemGroupByPayload<T extends QuickEditItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuickEditItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuickEditItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuickEditItemGroupByOutputType[P]>
+            : GetScalarType<T[P], QuickEditItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuickEditItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    type?: boolean
+    page?: boolean
+    component?: boolean
+    element?: boolean
+    value?: boolean
+    defaultValue?: boolean
+    isActive?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    revisions?: boolean | QuickEditItem$revisionsArgs<ExtArgs>
+    _count?: boolean | QuickEditItemCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quickEditItem"]>
+
+  export type QuickEditItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    type?: boolean
+    page?: boolean
+    component?: boolean
+    element?: boolean
+    value?: boolean
+    defaultValue?: boolean
+    isActive?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quickEditItem"]>
+
+  export type QuickEditItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    type?: boolean
+    page?: boolean
+    component?: boolean
+    element?: boolean
+    value?: boolean
+    defaultValue?: boolean
+    isActive?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quickEditItem"]>
+
+  export type QuickEditItemSelectScalar = {
+    id?: boolean
+    key?: boolean
+    type?: boolean
+    page?: boolean
+    component?: boolean
+    element?: boolean
+    value?: boolean
+    defaultValue?: boolean
+    isActive?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+  }
+
+  export type QuickEditItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "type" | "page" | "component" | "element" | "value" | "defaultValue" | "isActive" | "metadata" | "createdAt" | "updatedAt" | "createdById", ExtArgs["result"]["quickEditItem"]>
+  export type QuickEditItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+    revisions?: boolean | QuickEditItem$revisionsArgs<ExtArgs>
+    _count?: boolean | QuickEditItemCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type QuickEditItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type QuickEditItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $QuickEditItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuickEditItem"
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+      revisions: Prisma.$QuickEditRevisionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      key: string
+      type: $Enums.QuickEditType
+      page: string
+      component: string
+      element: string
+      value: string
+      defaultValue: string
+      isActive: boolean
+      metadata: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+      createdById: string
+    }, ExtArgs["result"]["quickEditItem"]>
+    composites: {}
+  }
+
+  type QuickEditItemGetPayload<S extends boolean | null | undefined | QuickEditItemDefaultArgs> = $Result.GetResult<Prisma.$QuickEditItemPayload, S>
+
+  type QuickEditItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuickEditItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuickEditItemCountAggregateInputType | true
+    }
+
+  export interface QuickEditItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuickEditItem'], meta: { name: 'QuickEditItem' } }
+    /**
+     * Find zero or one QuickEditItem that matches the filter.
+     * @param {QuickEditItemFindUniqueArgs} args - Arguments to find a QuickEditItem
+     * @example
+     * // Get one QuickEditItem
+     * const quickEditItem = await prisma.quickEditItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuickEditItemFindUniqueArgs>(args: SelectSubset<T, QuickEditItemFindUniqueArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuickEditItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuickEditItemFindUniqueOrThrowArgs} args - Arguments to find a QuickEditItem
+     * @example
+     * // Get one QuickEditItem
+     * const quickEditItem = await prisma.quickEditItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuickEditItemFindUniqueOrThrowArgs>(args: SelectSubset<T, QuickEditItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuickEditItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemFindFirstArgs} args - Arguments to find a QuickEditItem
+     * @example
+     * // Get one QuickEditItem
+     * const quickEditItem = await prisma.quickEditItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuickEditItemFindFirstArgs>(args?: SelectSubset<T, QuickEditItemFindFirstArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuickEditItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemFindFirstOrThrowArgs} args - Arguments to find a QuickEditItem
+     * @example
+     * // Get one QuickEditItem
+     * const quickEditItem = await prisma.quickEditItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuickEditItemFindFirstOrThrowArgs>(args?: SelectSubset<T, QuickEditItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuickEditItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuickEditItems
+     * const quickEditItems = await prisma.quickEditItem.findMany()
+     * 
+     * // Get first 10 QuickEditItems
+     * const quickEditItems = await prisma.quickEditItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quickEditItemWithIdOnly = await prisma.quickEditItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuickEditItemFindManyArgs>(args?: SelectSubset<T, QuickEditItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuickEditItem.
+     * @param {QuickEditItemCreateArgs} args - Arguments to create a QuickEditItem.
+     * @example
+     * // Create one QuickEditItem
+     * const QuickEditItem = await prisma.quickEditItem.create({
+     *   data: {
+     *     // ... data to create a QuickEditItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuickEditItemCreateArgs>(args: SelectSubset<T, QuickEditItemCreateArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuickEditItems.
+     * @param {QuickEditItemCreateManyArgs} args - Arguments to create many QuickEditItems.
+     * @example
+     * // Create many QuickEditItems
+     * const quickEditItem = await prisma.quickEditItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuickEditItemCreateManyArgs>(args?: SelectSubset<T, QuickEditItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuickEditItems and returns the data saved in the database.
+     * @param {QuickEditItemCreateManyAndReturnArgs} args - Arguments to create many QuickEditItems.
+     * @example
+     * // Create many QuickEditItems
+     * const quickEditItem = await prisma.quickEditItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuickEditItems and only return the `id`
+     * const quickEditItemWithIdOnly = await prisma.quickEditItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuickEditItemCreateManyAndReturnArgs>(args?: SelectSubset<T, QuickEditItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuickEditItem.
+     * @param {QuickEditItemDeleteArgs} args - Arguments to delete one QuickEditItem.
+     * @example
+     * // Delete one QuickEditItem
+     * const QuickEditItem = await prisma.quickEditItem.delete({
+     *   where: {
+     *     // ... filter to delete one QuickEditItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuickEditItemDeleteArgs>(args: SelectSubset<T, QuickEditItemDeleteArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuickEditItem.
+     * @param {QuickEditItemUpdateArgs} args - Arguments to update one QuickEditItem.
+     * @example
+     * // Update one QuickEditItem
+     * const quickEditItem = await prisma.quickEditItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuickEditItemUpdateArgs>(args: SelectSubset<T, QuickEditItemUpdateArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuickEditItems.
+     * @param {QuickEditItemDeleteManyArgs} args - Arguments to filter QuickEditItems to delete.
+     * @example
+     * // Delete a few QuickEditItems
+     * const { count } = await prisma.quickEditItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuickEditItemDeleteManyArgs>(args?: SelectSubset<T, QuickEditItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuickEditItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuickEditItems
+     * const quickEditItem = await prisma.quickEditItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuickEditItemUpdateManyArgs>(args: SelectSubset<T, QuickEditItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuickEditItems and returns the data updated in the database.
+     * @param {QuickEditItemUpdateManyAndReturnArgs} args - Arguments to update many QuickEditItems.
+     * @example
+     * // Update many QuickEditItems
+     * const quickEditItem = await prisma.quickEditItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuickEditItems and only return the `id`
+     * const quickEditItemWithIdOnly = await prisma.quickEditItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuickEditItemUpdateManyAndReturnArgs>(args: SelectSubset<T, QuickEditItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuickEditItem.
+     * @param {QuickEditItemUpsertArgs} args - Arguments to update or create a QuickEditItem.
+     * @example
+     * // Update or create a QuickEditItem
+     * const quickEditItem = await prisma.quickEditItem.upsert({
+     *   create: {
+     *     // ... data to create a QuickEditItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuickEditItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuickEditItemUpsertArgs>(args: SelectSubset<T, QuickEditItemUpsertArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuickEditItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemCountArgs} args - Arguments to filter QuickEditItems to count.
+     * @example
+     * // Count the number of QuickEditItems
+     * const count = await prisma.quickEditItem.count({
+     *   where: {
+     *     // ... the filter for the QuickEditItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuickEditItemCountArgs>(
+      args?: Subset<T, QuickEditItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuickEditItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuickEditItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuickEditItemAggregateArgs>(args: Subset<T, QuickEditItemAggregateArgs>): Prisma.PrismaPromise<GetQuickEditItemAggregateType<T>>
+
+    /**
+     * Group by QuickEditItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuickEditItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuickEditItemGroupByArgs['orderBy'] }
+        : { orderBy?: QuickEditItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuickEditItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuickEditItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuickEditItem model
+   */
+  readonly fields: QuickEditItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuickEditItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuickEditItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    revisions<T extends QuickEditItem$revisionsArgs<ExtArgs> = {}>(args?: Subset<T, QuickEditItem$revisionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuickEditItem model
+   */
+  interface QuickEditItemFieldRefs {
+    readonly id: FieldRef<"QuickEditItem", 'String'>
+    readonly key: FieldRef<"QuickEditItem", 'String'>
+    readonly type: FieldRef<"QuickEditItem", 'QuickEditType'>
+    readonly page: FieldRef<"QuickEditItem", 'String'>
+    readonly component: FieldRef<"QuickEditItem", 'String'>
+    readonly element: FieldRef<"QuickEditItem", 'String'>
+    readonly value: FieldRef<"QuickEditItem", 'String'>
+    readonly defaultValue: FieldRef<"QuickEditItem", 'String'>
+    readonly isActive: FieldRef<"QuickEditItem", 'Boolean'>
+    readonly metadata: FieldRef<"QuickEditItem", 'Json'>
+    readonly createdAt: FieldRef<"QuickEditItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"QuickEditItem", 'DateTime'>
+    readonly createdById: FieldRef<"QuickEditItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuickEditItem findUnique
+   */
+  export type QuickEditItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditItem to fetch.
+     */
+    where: QuickEditItemWhereUniqueInput
+  }
+
+  /**
+   * QuickEditItem findUniqueOrThrow
+   */
+  export type QuickEditItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditItem to fetch.
+     */
+    where: QuickEditItemWhereUniqueInput
+  }
+
+  /**
+   * QuickEditItem findFirst
+   */
+  export type QuickEditItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditItem to fetch.
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditItems to fetch.
+     */
+    orderBy?: QuickEditItemOrderByWithRelationInput | QuickEditItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuickEditItems.
+     */
+    cursor?: QuickEditItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuickEditItems.
+     */
+    distinct?: QuickEditItemScalarFieldEnum | QuickEditItemScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditItem findFirstOrThrow
+   */
+  export type QuickEditItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditItem to fetch.
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditItems to fetch.
+     */
+    orderBy?: QuickEditItemOrderByWithRelationInput | QuickEditItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuickEditItems.
+     */
+    cursor?: QuickEditItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuickEditItems.
+     */
+    distinct?: QuickEditItemScalarFieldEnum | QuickEditItemScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditItem findMany
+   */
+  export type QuickEditItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditItems to fetch.
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditItems to fetch.
+     */
+    orderBy?: QuickEditItemOrderByWithRelationInput | QuickEditItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuickEditItems.
+     */
+    cursor?: QuickEditItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditItems.
+     */
+    skip?: number
+    distinct?: QuickEditItemScalarFieldEnum | QuickEditItemScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditItem create
+   */
+  export type QuickEditItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QuickEditItem.
+     */
+    data: XOR<QuickEditItemCreateInput, QuickEditItemUncheckedCreateInput>
+  }
+
+  /**
+   * QuickEditItem createMany
+   */
+  export type QuickEditItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuickEditItems.
+     */
+    data: QuickEditItemCreateManyInput | QuickEditItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuickEditItem createManyAndReturn
+   */
+  export type QuickEditItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuickEditItems.
+     */
+    data: QuickEditItemCreateManyInput | QuickEditItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuickEditItem update
+   */
+  export type QuickEditItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QuickEditItem.
+     */
+    data: XOR<QuickEditItemUpdateInput, QuickEditItemUncheckedUpdateInput>
+    /**
+     * Choose, which QuickEditItem to update.
+     */
+    where: QuickEditItemWhereUniqueInput
+  }
+
+  /**
+   * QuickEditItem updateMany
+   */
+  export type QuickEditItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuickEditItems.
+     */
+    data: XOR<QuickEditItemUpdateManyMutationInput, QuickEditItemUncheckedUpdateManyInput>
+    /**
+     * Filter which QuickEditItems to update
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * Limit how many QuickEditItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuickEditItem updateManyAndReturn
+   */
+  export type QuickEditItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * The data used to update QuickEditItems.
+     */
+    data: XOR<QuickEditItemUpdateManyMutationInput, QuickEditItemUncheckedUpdateManyInput>
+    /**
+     * Filter which QuickEditItems to update
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * Limit how many QuickEditItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuickEditItem upsert
+   */
+  export type QuickEditItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QuickEditItem to update in case it exists.
+     */
+    where: QuickEditItemWhereUniqueInput
+    /**
+     * In case the QuickEditItem found by the `where` argument doesn't exist, create a new QuickEditItem with this data.
+     */
+    create: XOR<QuickEditItemCreateInput, QuickEditItemUncheckedCreateInput>
+    /**
+     * In case the QuickEditItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuickEditItemUpdateInput, QuickEditItemUncheckedUpdateInput>
+  }
+
+  /**
+   * QuickEditItem delete
+   */
+  export type QuickEditItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+    /**
+     * Filter which QuickEditItem to delete.
+     */
+    where: QuickEditItemWhereUniqueInput
+  }
+
+  /**
+   * QuickEditItem deleteMany
+   */
+  export type QuickEditItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuickEditItems to delete
+     */
+    where?: QuickEditItemWhereInput
+    /**
+     * Limit how many QuickEditItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuickEditItem.revisions
+   */
+  export type QuickEditItem$revisionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    where?: QuickEditRevisionWhereInput
+    orderBy?: QuickEditRevisionOrderByWithRelationInput | QuickEditRevisionOrderByWithRelationInput[]
+    cursor?: QuickEditRevisionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuickEditRevisionScalarFieldEnum | QuickEditRevisionScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditItem without action
+   */
+  export type QuickEditItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditItem
+     */
+    select?: QuickEditItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditItem
+     */
+    omit?: QuickEditItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QuickEditRevision
+   */
+
+  export type AggregateQuickEditRevision = {
+    _count: QuickEditRevisionCountAggregateOutputType | null
+    _min: QuickEditRevisionMinAggregateOutputType | null
+    _max: QuickEditRevisionMaxAggregateOutputType | null
+  }
+
+  export type QuickEditRevisionMinAggregateOutputType = {
+    id: string | null
+    itemId: string | null
+    value: string | null
+    changeType: string | null
+    createdAt: Date | null
+    createdById: string | null
+  }
+
+  export type QuickEditRevisionMaxAggregateOutputType = {
+    id: string | null
+    itemId: string | null
+    value: string | null
+    changeType: string | null
+    createdAt: Date | null
+    createdById: string | null
+  }
+
+  export type QuickEditRevisionCountAggregateOutputType = {
+    id: number
+    itemId: number
+    value: number
+    changeType: number
+    createdAt: number
+    createdById: number
+    _all: number
+  }
+
+
+  export type QuickEditRevisionMinAggregateInputType = {
+    id?: true
+    itemId?: true
+    value?: true
+    changeType?: true
+    createdAt?: true
+    createdById?: true
+  }
+
+  export type QuickEditRevisionMaxAggregateInputType = {
+    id?: true
+    itemId?: true
+    value?: true
+    changeType?: true
+    createdAt?: true
+    createdById?: true
+  }
+
+  export type QuickEditRevisionCountAggregateInputType = {
+    id?: true
+    itemId?: true
+    value?: true
+    changeType?: true
+    createdAt?: true
+    createdById?: true
+    _all?: true
+  }
+
+  export type QuickEditRevisionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuickEditRevision to aggregate.
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditRevisions to fetch.
+     */
+    orderBy?: QuickEditRevisionOrderByWithRelationInput | QuickEditRevisionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QuickEditRevisionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditRevisions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditRevisions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QuickEditRevisions
+    **/
+    _count?: true | QuickEditRevisionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuickEditRevisionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuickEditRevisionMaxAggregateInputType
+  }
+
+  export type GetQuickEditRevisionAggregateType<T extends QuickEditRevisionAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuickEditRevision]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuickEditRevision[P]>
+      : GetScalarType<T[P], AggregateQuickEditRevision[P]>
+  }
+
+
+
+
+  export type QuickEditRevisionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuickEditRevisionWhereInput
+    orderBy?: QuickEditRevisionOrderByWithAggregationInput | QuickEditRevisionOrderByWithAggregationInput[]
+    by: QuickEditRevisionScalarFieldEnum[] | QuickEditRevisionScalarFieldEnum
+    having?: QuickEditRevisionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuickEditRevisionCountAggregateInputType | true
+    _min?: QuickEditRevisionMinAggregateInputType
+    _max?: QuickEditRevisionMaxAggregateInputType
+  }
+
+  export type QuickEditRevisionGroupByOutputType = {
+    id: string
+    itemId: string
+    value: string
+    changeType: string
+    createdAt: Date
+    createdById: string
+    _count: QuickEditRevisionCountAggregateOutputType | null
+    _min: QuickEditRevisionMinAggregateOutputType | null
+    _max: QuickEditRevisionMaxAggregateOutputType | null
+  }
+
+  type GetQuickEditRevisionGroupByPayload<T extends QuickEditRevisionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuickEditRevisionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuickEditRevisionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuickEditRevisionGroupByOutputType[P]>
+            : GetScalarType<T[P], QuickEditRevisionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QuickEditRevisionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemId?: boolean
+    value?: boolean
+    changeType?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+    item?: boolean | QuickEditItemDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quickEditRevision"]>
+
+  export type QuickEditRevisionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemId?: boolean
+    value?: boolean
+    changeType?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+    item?: boolean | QuickEditItemDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quickEditRevision"]>
+
+  export type QuickEditRevisionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    itemId?: boolean
+    value?: boolean
+    changeType?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+    item?: boolean | QuickEditItemDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quickEditRevision"]>
+
+  export type QuickEditRevisionSelectScalar = {
+    id?: boolean
+    itemId?: boolean
+    value?: boolean
+    changeType?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+  }
+
+  export type QuickEditRevisionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "itemId" | "value" | "changeType" | "createdAt" | "createdById", ExtArgs["result"]["quickEditRevision"]>
+  export type QuickEditRevisionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item?: boolean | QuickEditItemDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type QuickEditRevisionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item?: boolean | QuickEditItemDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type QuickEditRevisionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    item?: boolean | QuickEditItemDefaultArgs<ExtArgs>
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $QuickEditRevisionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QuickEditRevision"
+    objects: {
+      item: Prisma.$QuickEditItemPayload<ExtArgs>
+      creator: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      itemId: string
+      value: string
+      changeType: string
+      createdAt: Date
+      createdById: string
+    }, ExtArgs["result"]["quickEditRevision"]>
+    composites: {}
+  }
+
+  type QuickEditRevisionGetPayload<S extends boolean | null | undefined | QuickEditRevisionDefaultArgs> = $Result.GetResult<Prisma.$QuickEditRevisionPayload, S>
+
+  type QuickEditRevisionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QuickEditRevisionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuickEditRevisionCountAggregateInputType | true
+    }
+
+  export interface QuickEditRevisionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QuickEditRevision'], meta: { name: 'QuickEditRevision' } }
+    /**
+     * Find zero or one QuickEditRevision that matches the filter.
+     * @param {QuickEditRevisionFindUniqueArgs} args - Arguments to find a QuickEditRevision
+     * @example
+     * // Get one QuickEditRevision
+     * const quickEditRevision = await prisma.quickEditRevision.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QuickEditRevisionFindUniqueArgs>(args: SelectSubset<T, QuickEditRevisionFindUniqueArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QuickEditRevision that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QuickEditRevisionFindUniqueOrThrowArgs} args - Arguments to find a QuickEditRevision
+     * @example
+     * // Get one QuickEditRevision
+     * const quickEditRevision = await prisma.quickEditRevision.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QuickEditRevisionFindUniqueOrThrowArgs>(args: SelectSubset<T, QuickEditRevisionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuickEditRevision that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionFindFirstArgs} args - Arguments to find a QuickEditRevision
+     * @example
+     * // Get one QuickEditRevision
+     * const quickEditRevision = await prisma.quickEditRevision.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QuickEditRevisionFindFirstArgs>(args?: SelectSubset<T, QuickEditRevisionFindFirstArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QuickEditRevision that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionFindFirstOrThrowArgs} args - Arguments to find a QuickEditRevision
+     * @example
+     * // Get one QuickEditRevision
+     * const quickEditRevision = await prisma.quickEditRevision.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QuickEditRevisionFindFirstOrThrowArgs>(args?: SelectSubset<T, QuickEditRevisionFindFirstOrThrowArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QuickEditRevisions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QuickEditRevisions
+     * const quickEditRevisions = await prisma.quickEditRevision.findMany()
+     * 
+     * // Get first 10 QuickEditRevisions
+     * const quickEditRevisions = await prisma.quickEditRevision.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quickEditRevisionWithIdOnly = await prisma.quickEditRevision.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QuickEditRevisionFindManyArgs>(args?: SelectSubset<T, QuickEditRevisionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QuickEditRevision.
+     * @param {QuickEditRevisionCreateArgs} args - Arguments to create a QuickEditRevision.
+     * @example
+     * // Create one QuickEditRevision
+     * const QuickEditRevision = await prisma.quickEditRevision.create({
+     *   data: {
+     *     // ... data to create a QuickEditRevision
+     *   }
+     * })
+     * 
+     */
+    create<T extends QuickEditRevisionCreateArgs>(args: SelectSubset<T, QuickEditRevisionCreateArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QuickEditRevisions.
+     * @param {QuickEditRevisionCreateManyArgs} args - Arguments to create many QuickEditRevisions.
+     * @example
+     * // Create many QuickEditRevisions
+     * const quickEditRevision = await prisma.quickEditRevision.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QuickEditRevisionCreateManyArgs>(args?: SelectSubset<T, QuickEditRevisionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QuickEditRevisions and returns the data saved in the database.
+     * @param {QuickEditRevisionCreateManyAndReturnArgs} args - Arguments to create many QuickEditRevisions.
+     * @example
+     * // Create many QuickEditRevisions
+     * const quickEditRevision = await prisma.quickEditRevision.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QuickEditRevisions and only return the `id`
+     * const quickEditRevisionWithIdOnly = await prisma.quickEditRevision.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QuickEditRevisionCreateManyAndReturnArgs>(args?: SelectSubset<T, QuickEditRevisionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QuickEditRevision.
+     * @param {QuickEditRevisionDeleteArgs} args - Arguments to delete one QuickEditRevision.
+     * @example
+     * // Delete one QuickEditRevision
+     * const QuickEditRevision = await prisma.quickEditRevision.delete({
+     *   where: {
+     *     // ... filter to delete one QuickEditRevision
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QuickEditRevisionDeleteArgs>(args: SelectSubset<T, QuickEditRevisionDeleteArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QuickEditRevision.
+     * @param {QuickEditRevisionUpdateArgs} args - Arguments to update one QuickEditRevision.
+     * @example
+     * // Update one QuickEditRevision
+     * const quickEditRevision = await prisma.quickEditRevision.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QuickEditRevisionUpdateArgs>(args: SelectSubset<T, QuickEditRevisionUpdateArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QuickEditRevisions.
+     * @param {QuickEditRevisionDeleteManyArgs} args - Arguments to filter QuickEditRevisions to delete.
+     * @example
+     * // Delete a few QuickEditRevisions
+     * const { count } = await prisma.quickEditRevision.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QuickEditRevisionDeleteManyArgs>(args?: SelectSubset<T, QuickEditRevisionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuickEditRevisions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QuickEditRevisions
+     * const quickEditRevision = await prisma.quickEditRevision.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QuickEditRevisionUpdateManyArgs>(args: SelectSubset<T, QuickEditRevisionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QuickEditRevisions and returns the data updated in the database.
+     * @param {QuickEditRevisionUpdateManyAndReturnArgs} args - Arguments to update many QuickEditRevisions.
+     * @example
+     * // Update many QuickEditRevisions
+     * const quickEditRevision = await prisma.quickEditRevision.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QuickEditRevisions and only return the `id`
+     * const quickEditRevisionWithIdOnly = await prisma.quickEditRevision.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QuickEditRevisionUpdateManyAndReturnArgs>(args: SelectSubset<T, QuickEditRevisionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QuickEditRevision.
+     * @param {QuickEditRevisionUpsertArgs} args - Arguments to update or create a QuickEditRevision.
+     * @example
+     * // Update or create a QuickEditRevision
+     * const quickEditRevision = await prisma.quickEditRevision.upsert({
+     *   create: {
+     *     // ... data to create a QuickEditRevision
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QuickEditRevision we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QuickEditRevisionUpsertArgs>(args: SelectSubset<T, QuickEditRevisionUpsertArgs<ExtArgs>>): Prisma__QuickEditRevisionClient<$Result.GetResult<Prisma.$QuickEditRevisionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QuickEditRevisions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionCountArgs} args - Arguments to filter QuickEditRevisions to count.
+     * @example
+     * // Count the number of QuickEditRevisions
+     * const count = await prisma.quickEditRevision.count({
+     *   where: {
+     *     // ... the filter for the QuickEditRevisions we want to count
+     *   }
+     * })
+    **/
+    count<T extends QuickEditRevisionCountArgs>(
+      args?: Subset<T, QuickEditRevisionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuickEditRevisionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QuickEditRevision.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuickEditRevisionAggregateArgs>(args: Subset<T, QuickEditRevisionAggregateArgs>): Prisma.PrismaPromise<GetQuickEditRevisionAggregateType<T>>
+
+    /**
+     * Group by QuickEditRevision.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuickEditRevisionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QuickEditRevisionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QuickEditRevisionGroupByArgs['orderBy'] }
+        : { orderBy?: QuickEditRevisionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QuickEditRevisionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuickEditRevisionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QuickEditRevision model
+   */
+  readonly fields: QuickEditRevisionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QuickEditRevision.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QuickEditRevisionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    item<T extends QuickEditItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuickEditItemDefaultArgs<ExtArgs>>): Prisma__QuickEditItemClient<$Result.GetResult<Prisma.$QuickEditItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QuickEditRevision model
+   */
+  interface QuickEditRevisionFieldRefs {
+    readonly id: FieldRef<"QuickEditRevision", 'String'>
+    readonly itemId: FieldRef<"QuickEditRevision", 'String'>
+    readonly value: FieldRef<"QuickEditRevision", 'String'>
+    readonly changeType: FieldRef<"QuickEditRevision", 'String'>
+    readonly createdAt: FieldRef<"QuickEditRevision", 'DateTime'>
+    readonly createdById: FieldRef<"QuickEditRevision", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QuickEditRevision findUnique
+   */
+  export type QuickEditRevisionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditRevision to fetch.
+     */
+    where: QuickEditRevisionWhereUniqueInput
+  }
+
+  /**
+   * QuickEditRevision findUniqueOrThrow
+   */
+  export type QuickEditRevisionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditRevision to fetch.
+     */
+    where: QuickEditRevisionWhereUniqueInput
+  }
+
+  /**
+   * QuickEditRevision findFirst
+   */
+  export type QuickEditRevisionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditRevision to fetch.
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditRevisions to fetch.
+     */
+    orderBy?: QuickEditRevisionOrderByWithRelationInput | QuickEditRevisionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuickEditRevisions.
+     */
+    cursor?: QuickEditRevisionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditRevisions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditRevisions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuickEditRevisions.
+     */
+    distinct?: QuickEditRevisionScalarFieldEnum | QuickEditRevisionScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditRevision findFirstOrThrow
+   */
+  export type QuickEditRevisionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditRevision to fetch.
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditRevisions to fetch.
+     */
+    orderBy?: QuickEditRevisionOrderByWithRelationInput | QuickEditRevisionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QuickEditRevisions.
+     */
+    cursor?: QuickEditRevisionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditRevisions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditRevisions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QuickEditRevisions.
+     */
+    distinct?: QuickEditRevisionScalarFieldEnum | QuickEditRevisionScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditRevision findMany
+   */
+  export type QuickEditRevisionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * Filter, which QuickEditRevisions to fetch.
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QuickEditRevisions to fetch.
+     */
+    orderBy?: QuickEditRevisionOrderByWithRelationInput | QuickEditRevisionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QuickEditRevisions.
+     */
+    cursor?: QuickEditRevisionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QuickEditRevisions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QuickEditRevisions.
+     */
+    skip?: number
+    distinct?: QuickEditRevisionScalarFieldEnum | QuickEditRevisionScalarFieldEnum[]
+  }
+
+  /**
+   * QuickEditRevision create
+   */
+  export type QuickEditRevisionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QuickEditRevision.
+     */
+    data: XOR<QuickEditRevisionCreateInput, QuickEditRevisionUncheckedCreateInput>
+  }
+
+  /**
+   * QuickEditRevision createMany
+   */
+  export type QuickEditRevisionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QuickEditRevisions.
+     */
+    data: QuickEditRevisionCreateManyInput | QuickEditRevisionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QuickEditRevision createManyAndReturn
+   */
+  export type QuickEditRevisionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * The data used to create many QuickEditRevisions.
+     */
+    data: QuickEditRevisionCreateManyInput | QuickEditRevisionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuickEditRevision update
+   */
+  export type QuickEditRevisionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QuickEditRevision.
+     */
+    data: XOR<QuickEditRevisionUpdateInput, QuickEditRevisionUncheckedUpdateInput>
+    /**
+     * Choose, which QuickEditRevision to update.
+     */
+    where: QuickEditRevisionWhereUniqueInput
+  }
+
+  /**
+   * QuickEditRevision updateMany
+   */
+  export type QuickEditRevisionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QuickEditRevisions.
+     */
+    data: XOR<QuickEditRevisionUpdateManyMutationInput, QuickEditRevisionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuickEditRevisions to update
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * Limit how many QuickEditRevisions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuickEditRevision updateManyAndReturn
+   */
+  export type QuickEditRevisionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * The data used to update QuickEditRevisions.
+     */
+    data: XOR<QuickEditRevisionUpdateManyMutationInput, QuickEditRevisionUncheckedUpdateManyInput>
+    /**
+     * Filter which QuickEditRevisions to update
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * Limit how many QuickEditRevisions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QuickEditRevision upsert
+   */
+  export type QuickEditRevisionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QuickEditRevision to update in case it exists.
+     */
+    where: QuickEditRevisionWhereUniqueInput
+    /**
+     * In case the QuickEditRevision found by the `where` argument doesn't exist, create a new QuickEditRevision with this data.
+     */
+    create: XOR<QuickEditRevisionCreateInput, QuickEditRevisionUncheckedCreateInput>
+    /**
+     * In case the QuickEditRevision was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QuickEditRevisionUpdateInput, QuickEditRevisionUncheckedUpdateInput>
+  }
+
+  /**
+   * QuickEditRevision delete
+   */
+  export type QuickEditRevisionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+    /**
+     * Filter which QuickEditRevision to delete.
+     */
+    where: QuickEditRevisionWhereUniqueInput
+  }
+
+  /**
+   * QuickEditRevision deleteMany
+   */
+  export type QuickEditRevisionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QuickEditRevisions to delete
+     */
+    where?: QuickEditRevisionWhereInput
+    /**
+     * Limit how many QuickEditRevisions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QuickEditRevision without action
+   */
+  export type QuickEditRevisionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuickEditRevision
+     */
+    select?: QuickEditRevisionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuickEditRevision
+     */
+    omit?: QuickEditRevisionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuickEditRevisionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ThemeSetting
+   */
+
+  export type AggregateThemeSetting = {
+    _count: ThemeSettingCountAggregateOutputType | null
+    _min: ThemeSettingMinAggregateOutputType | null
+    _max: ThemeSettingMaxAggregateOutputType | null
+  }
+
+  export type ThemeSettingMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    category: string | null
+    value: string | null
+    cssVariable: string | null
+    description: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type ThemeSettingMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    category: string | null
+    value: string | null
+    cssVariable: string | null
+    description: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type ThemeSettingCountAggregateOutputType = {
+    id: number
+    name: number
+    category: number
+    value: number
+    cssVariable: number
+    description: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    createdById: number
+    _all: number
+  }
+
+
+  export type ThemeSettingMinAggregateInputType = {
+    id?: true
+    name?: true
+    category?: true
+    value?: true
+    cssVariable?: true
+    description?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type ThemeSettingMaxAggregateInputType = {
+    id?: true
+    name?: true
+    category?: true
+    value?: true
+    cssVariable?: true
+    description?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type ThemeSettingCountAggregateInputType = {
+    id?: true
+    name?: true
+    category?: true
+    value?: true
+    cssVariable?: true
+    description?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+    _all?: true
+  }
+
+  export type ThemeSettingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThemeSetting to aggregate.
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThemeSettings to fetch.
+     */
+    orderBy?: ThemeSettingOrderByWithRelationInput | ThemeSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ThemeSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThemeSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThemeSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ThemeSettings
+    **/
+    _count?: true | ThemeSettingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ThemeSettingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ThemeSettingMaxAggregateInputType
+  }
+
+  export type GetThemeSettingAggregateType<T extends ThemeSettingAggregateArgs> = {
+        [P in keyof T & keyof AggregateThemeSetting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateThemeSetting[P]>
+      : GetScalarType<T[P], AggregateThemeSetting[P]>
+  }
+
+
+
+
+  export type ThemeSettingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ThemeSettingWhereInput
+    orderBy?: ThemeSettingOrderByWithAggregationInput | ThemeSettingOrderByWithAggregationInput[]
+    by: ThemeSettingScalarFieldEnum[] | ThemeSettingScalarFieldEnum
+    having?: ThemeSettingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ThemeSettingCountAggregateInputType | true
+    _min?: ThemeSettingMinAggregateInputType
+    _max?: ThemeSettingMaxAggregateInputType
+  }
+
+  export type ThemeSettingGroupByOutputType = {
+    id: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: string
+    _count: ThemeSettingCountAggregateOutputType | null
+    _min: ThemeSettingMinAggregateOutputType | null
+    _max: ThemeSettingMaxAggregateOutputType | null
+  }
+
+  type GetThemeSettingGroupByPayload<T extends ThemeSettingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ThemeSettingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ThemeSettingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ThemeSettingGroupByOutputType[P]>
+            : GetScalarType<T[P], ThemeSettingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ThemeSettingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    category?: boolean
+    value?: boolean
+    cssVariable?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["themeSetting"]>
+
+  export type ThemeSettingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    category?: boolean
+    value?: boolean
+    cssVariable?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["themeSetting"]>
+
+  export type ThemeSettingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    category?: boolean
+    value?: boolean
+    cssVariable?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["themeSetting"]>
+
+  export type ThemeSettingSelectScalar = {
+    id?: boolean
+    name?: boolean
+    category?: boolean
+    value?: boolean
+    cssVariable?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+  }
+
+  export type ThemeSettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "category" | "value" | "cssVariable" | "description" | "isActive" | "createdAt" | "updatedAt" | "createdById", ExtArgs["result"]["themeSetting"]>
+  export type ThemeSettingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ThemeSettingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ThemeSettingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ThemeSettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ThemeSetting"
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      category: string
+      value: string
+      cssVariable: string
+      description: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+      createdById: string
+    }, ExtArgs["result"]["themeSetting"]>
+    composites: {}
+  }
+
+  type ThemeSettingGetPayload<S extends boolean | null | undefined | ThemeSettingDefaultArgs> = $Result.GetResult<Prisma.$ThemeSettingPayload, S>
+
+  type ThemeSettingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ThemeSettingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ThemeSettingCountAggregateInputType | true
+    }
+
+  export interface ThemeSettingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ThemeSetting'], meta: { name: 'ThemeSetting' } }
+    /**
+     * Find zero or one ThemeSetting that matches the filter.
+     * @param {ThemeSettingFindUniqueArgs} args - Arguments to find a ThemeSetting
+     * @example
+     * // Get one ThemeSetting
+     * const themeSetting = await prisma.themeSetting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ThemeSettingFindUniqueArgs>(args: SelectSubset<T, ThemeSettingFindUniqueArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ThemeSetting that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ThemeSettingFindUniqueOrThrowArgs} args - Arguments to find a ThemeSetting
+     * @example
+     * // Get one ThemeSetting
+     * const themeSetting = await prisma.themeSetting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ThemeSettingFindUniqueOrThrowArgs>(args: SelectSubset<T, ThemeSettingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThemeSetting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingFindFirstArgs} args - Arguments to find a ThemeSetting
+     * @example
+     * // Get one ThemeSetting
+     * const themeSetting = await prisma.themeSetting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ThemeSettingFindFirstArgs>(args?: SelectSubset<T, ThemeSettingFindFirstArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ThemeSetting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingFindFirstOrThrowArgs} args - Arguments to find a ThemeSetting
+     * @example
+     * // Get one ThemeSetting
+     * const themeSetting = await prisma.themeSetting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ThemeSettingFindFirstOrThrowArgs>(args?: SelectSubset<T, ThemeSettingFindFirstOrThrowArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ThemeSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ThemeSettings
+     * const themeSettings = await prisma.themeSetting.findMany()
+     * 
+     * // Get first 10 ThemeSettings
+     * const themeSettings = await prisma.themeSetting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const themeSettingWithIdOnly = await prisma.themeSetting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ThemeSettingFindManyArgs>(args?: SelectSubset<T, ThemeSettingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ThemeSetting.
+     * @param {ThemeSettingCreateArgs} args - Arguments to create a ThemeSetting.
+     * @example
+     * // Create one ThemeSetting
+     * const ThemeSetting = await prisma.themeSetting.create({
+     *   data: {
+     *     // ... data to create a ThemeSetting
+     *   }
+     * })
+     * 
+     */
+    create<T extends ThemeSettingCreateArgs>(args: SelectSubset<T, ThemeSettingCreateArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ThemeSettings.
+     * @param {ThemeSettingCreateManyArgs} args - Arguments to create many ThemeSettings.
+     * @example
+     * // Create many ThemeSettings
+     * const themeSetting = await prisma.themeSetting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ThemeSettingCreateManyArgs>(args?: SelectSubset<T, ThemeSettingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ThemeSettings and returns the data saved in the database.
+     * @param {ThemeSettingCreateManyAndReturnArgs} args - Arguments to create many ThemeSettings.
+     * @example
+     * // Create many ThemeSettings
+     * const themeSetting = await prisma.themeSetting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ThemeSettings and only return the `id`
+     * const themeSettingWithIdOnly = await prisma.themeSetting.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ThemeSettingCreateManyAndReturnArgs>(args?: SelectSubset<T, ThemeSettingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ThemeSetting.
+     * @param {ThemeSettingDeleteArgs} args - Arguments to delete one ThemeSetting.
+     * @example
+     * // Delete one ThemeSetting
+     * const ThemeSetting = await prisma.themeSetting.delete({
+     *   where: {
+     *     // ... filter to delete one ThemeSetting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ThemeSettingDeleteArgs>(args: SelectSubset<T, ThemeSettingDeleteArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ThemeSetting.
+     * @param {ThemeSettingUpdateArgs} args - Arguments to update one ThemeSetting.
+     * @example
+     * // Update one ThemeSetting
+     * const themeSetting = await prisma.themeSetting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ThemeSettingUpdateArgs>(args: SelectSubset<T, ThemeSettingUpdateArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ThemeSettings.
+     * @param {ThemeSettingDeleteManyArgs} args - Arguments to filter ThemeSettings to delete.
+     * @example
+     * // Delete a few ThemeSettings
+     * const { count } = await prisma.themeSetting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ThemeSettingDeleteManyArgs>(args?: SelectSubset<T, ThemeSettingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThemeSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ThemeSettings
+     * const themeSetting = await prisma.themeSetting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ThemeSettingUpdateManyArgs>(args: SelectSubset<T, ThemeSettingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ThemeSettings and returns the data updated in the database.
+     * @param {ThemeSettingUpdateManyAndReturnArgs} args - Arguments to update many ThemeSettings.
+     * @example
+     * // Update many ThemeSettings
+     * const themeSetting = await prisma.themeSetting.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ThemeSettings and only return the `id`
+     * const themeSettingWithIdOnly = await prisma.themeSetting.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ThemeSettingUpdateManyAndReturnArgs>(args: SelectSubset<T, ThemeSettingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ThemeSetting.
+     * @param {ThemeSettingUpsertArgs} args - Arguments to update or create a ThemeSetting.
+     * @example
+     * // Update or create a ThemeSetting
+     * const themeSetting = await prisma.themeSetting.upsert({
+     *   create: {
+     *     // ... data to create a ThemeSetting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ThemeSetting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ThemeSettingUpsertArgs>(args: SelectSubset<T, ThemeSettingUpsertArgs<ExtArgs>>): Prisma__ThemeSettingClient<$Result.GetResult<Prisma.$ThemeSettingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ThemeSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingCountArgs} args - Arguments to filter ThemeSettings to count.
+     * @example
+     * // Count the number of ThemeSettings
+     * const count = await prisma.themeSetting.count({
+     *   where: {
+     *     // ... the filter for the ThemeSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends ThemeSettingCountArgs>(
+      args?: Subset<T, ThemeSettingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ThemeSettingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ThemeSetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ThemeSettingAggregateArgs>(args: Subset<T, ThemeSettingAggregateArgs>): Prisma.PrismaPromise<GetThemeSettingAggregateType<T>>
+
+    /**
+     * Group by ThemeSetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ThemeSettingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ThemeSettingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ThemeSettingGroupByArgs['orderBy'] }
+        : { orderBy?: ThemeSettingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ThemeSettingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetThemeSettingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ThemeSetting model
+   */
+  readonly fields: ThemeSettingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ThemeSetting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ThemeSettingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ThemeSetting model
+   */
+  interface ThemeSettingFieldRefs {
+    readonly id: FieldRef<"ThemeSetting", 'String'>
+    readonly name: FieldRef<"ThemeSetting", 'String'>
+    readonly category: FieldRef<"ThemeSetting", 'String'>
+    readonly value: FieldRef<"ThemeSetting", 'String'>
+    readonly cssVariable: FieldRef<"ThemeSetting", 'String'>
+    readonly description: FieldRef<"ThemeSetting", 'String'>
+    readonly isActive: FieldRef<"ThemeSetting", 'Boolean'>
+    readonly createdAt: FieldRef<"ThemeSetting", 'DateTime'>
+    readonly updatedAt: FieldRef<"ThemeSetting", 'DateTime'>
+    readonly createdById: FieldRef<"ThemeSetting", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ThemeSetting findUnique
+   */
+  export type ThemeSettingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which ThemeSetting to fetch.
+     */
+    where: ThemeSettingWhereUniqueInput
+  }
+
+  /**
+   * ThemeSetting findUniqueOrThrow
+   */
+  export type ThemeSettingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which ThemeSetting to fetch.
+     */
+    where: ThemeSettingWhereUniqueInput
+  }
+
+  /**
+   * ThemeSetting findFirst
+   */
+  export type ThemeSettingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which ThemeSetting to fetch.
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThemeSettings to fetch.
+     */
+    orderBy?: ThemeSettingOrderByWithRelationInput | ThemeSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThemeSettings.
+     */
+    cursor?: ThemeSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThemeSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThemeSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThemeSettings.
+     */
+    distinct?: ThemeSettingScalarFieldEnum | ThemeSettingScalarFieldEnum[]
+  }
+
+  /**
+   * ThemeSetting findFirstOrThrow
+   */
+  export type ThemeSettingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which ThemeSetting to fetch.
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThemeSettings to fetch.
+     */
+    orderBy?: ThemeSettingOrderByWithRelationInput | ThemeSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ThemeSettings.
+     */
+    cursor?: ThemeSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThemeSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThemeSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ThemeSettings.
+     */
+    distinct?: ThemeSettingScalarFieldEnum | ThemeSettingScalarFieldEnum[]
+  }
+
+  /**
+   * ThemeSetting findMany
+   */
+  export type ThemeSettingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * Filter, which ThemeSettings to fetch.
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ThemeSettings to fetch.
+     */
+    orderBy?: ThemeSettingOrderByWithRelationInput | ThemeSettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ThemeSettings.
+     */
+    cursor?: ThemeSettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ThemeSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ThemeSettings.
+     */
+    skip?: number
+    distinct?: ThemeSettingScalarFieldEnum | ThemeSettingScalarFieldEnum[]
+  }
+
+  /**
+   * ThemeSetting create
+   */
+  export type ThemeSettingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ThemeSetting.
+     */
+    data: XOR<ThemeSettingCreateInput, ThemeSettingUncheckedCreateInput>
+  }
+
+  /**
+   * ThemeSetting createMany
+   */
+  export type ThemeSettingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ThemeSettings.
+     */
+    data: ThemeSettingCreateManyInput | ThemeSettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ThemeSetting createManyAndReturn
+   */
+  export type ThemeSettingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * The data used to create many ThemeSettings.
+     */
+    data: ThemeSettingCreateManyInput | ThemeSettingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThemeSetting update
+   */
+  export type ThemeSettingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ThemeSetting.
+     */
+    data: XOR<ThemeSettingUpdateInput, ThemeSettingUncheckedUpdateInput>
+    /**
+     * Choose, which ThemeSetting to update.
+     */
+    where: ThemeSettingWhereUniqueInput
+  }
+
+  /**
+   * ThemeSetting updateMany
+   */
+  export type ThemeSettingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ThemeSettings.
+     */
+    data: XOR<ThemeSettingUpdateManyMutationInput, ThemeSettingUncheckedUpdateManyInput>
+    /**
+     * Filter which ThemeSettings to update
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * Limit how many ThemeSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThemeSetting updateManyAndReturn
+   */
+  export type ThemeSettingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * The data used to update ThemeSettings.
+     */
+    data: XOR<ThemeSettingUpdateManyMutationInput, ThemeSettingUncheckedUpdateManyInput>
+    /**
+     * Filter which ThemeSettings to update
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * Limit how many ThemeSettings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ThemeSetting upsert
+   */
+  export type ThemeSettingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ThemeSetting to update in case it exists.
+     */
+    where: ThemeSettingWhereUniqueInput
+    /**
+     * In case the ThemeSetting found by the `where` argument doesn't exist, create a new ThemeSetting with this data.
+     */
+    create: XOR<ThemeSettingCreateInput, ThemeSettingUncheckedCreateInput>
+    /**
+     * In case the ThemeSetting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ThemeSettingUpdateInput, ThemeSettingUncheckedUpdateInput>
+  }
+
+  /**
+   * ThemeSetting delete
+   */
+  export type ThemeSettingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+    /**
+     * Filter which ThemeSetting to delete.
+     */
+    where: ThemeSettingWhereUniqueInput
+  }
+
+  /**
+   * ThemeSetting deleteMany
+   */
+  export type ThemeSettingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ThemeSettings to delete
+     */
+    where?: ThemeSettingWhereInput
+    /**
+     * Limit how many ThemeSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ThemeSetting without action
+   */
+  export type ThemeSettingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ThemeSetting
+     */
+    select?: ThemeSettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ThemeSetting
+     */
+    omit?: ThemeSettingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ThemeSettingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LivePreviewToken
+   */
+
+  export type AggregateLivePreviewToken = {
+    _count: LivePreviewTokenCountAggregateOutputType | null
+    _min: LivePreviewTokenMinAggregateOutputType | null
+    _max: LivePreviewTokenMaxAggregateOutputType | null
+  }
+
+  export type LivePreviewTokenMinAggregateOutputType = {
+    id: string | null
+    token: string | null
+    page: string | null
+    expiresAt: Date | null
+    createdAt: Date | null
+    createdById: string | null
+  }
+
+  export type LivePreviewTokenMaxAggregateOutputType = {
+    id: string | null
+    token: string | null
+    page: string | null
+    expiresAt: Date | null
+    createdAt: Date | null
+    createdById: string | null
+  }
+
+  export type LivePreviewTokenCountAggregateOutputType = {
+    id: number
+    token: number
+    page: number
+    changes: number
+    expiresAt: number
+    createdAt: number
+    createdById: number
+    _all: number
+  }
+
+
+  export type LivePreviewTokenMinAggregateInputType = {
+    id?: true
+    token?: true
+    page?: true
+    expiresAt?: true
+    createdAt?: true
+    createdById?: true
+  }
+
+  export type LivePreviewTokenMaxAggregateInputType = {
+    id?: true
+    token?: true
+    page?: true
+    expiresAt?: true
+    createdAt?: true
+    createdById?: true
+  }
+
+  export type LivePreviewTokenCountAggregateInputType = {
+    id?: true
+    token?: true
+    page?: true
+    changes?: true
+    expiresAt?: true
+    createdAt?: true
+    createdById?: true
+    _all?: true
+  }
+
+  export type LivePreviewTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LivePreviewToken to aggregate.
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LivePreviewTokens to fetch.
+     */
+    orderBy?: LivePreviewTokenOrderByWithRelationInput | LivePreviewTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LivePreviewTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LivePreviewTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LivePreviewTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LivePreviewTokens
+    **/
+    _count?: true | LivePreviewTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LivePreviewTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LivePreviewTokenMaxAggregateInputType
+  }
+
+  export type GetLivePreviewTokenAggregateType<T extends LivePreviewTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateLivePreviewToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLivePreviewToken[P]>
+      : GetScalarType<T[P], AggregateLivePreviewToken[P]>
+  }
+
+
+
+
+  export type LivePreviewTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LivePreviewTokenWhereInput
+    orderBy?: LivePreviewTokenOrderByWithAggregationInput | LivePreviewTokenOrderByWithAggregationInput[]
+    by: LivePreviewTokenScalarFieldEnum[] | LivePreviewTokenScalarFieldEnum
+    having?: LivePreviewTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LivePreviewTokenCountAggregateInputType | true
+    _min?: LivePreviewTokenMinAggregateInputType
+    _max?: LivePreviewTokenMaxAggregateInputType
+  }
+
+  export type LivePreviewTokenGroupByOutputType = {
+    id: string
+    token: string
+    page: string
+    changes: JsonValue
+    expiresAt: Date
+    createdAt: Date
+    createdById: string
+    _count: LivePreviewTokenCountAggregateOutputType | null
+    _min: LivePreviewTokenMinAggregateOutputType | null
+    _max: LivePreviewTokenMaxAggregateOutputType | null
+  }
+
+  type GetLivePreviewTokenGroupByPayload<T extends LivePreviewTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LivePreviewTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LivePreviewTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LivePreviewTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], LivePreviewTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LivePreviewTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    page?: boolean
+    changes?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["livePreviewToken"]>
+
+  export type LivePreviewTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    page?: boolean
+    changes?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["livePreviewToken"]>
+
+  export type LivePreviewTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    page?: boolean
+    changes?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["livePreviewToken"]>
+
+  export type LivePreviewTokenSelectScalar = {
+    id?: boolean
+    token?: boolean
+    page?: boolean
+    changes?: boolean
+    expiresAt?: boolean
+    createdAt?: boolean
+    createdById?: boolean
+  }
+
+  export type LivePreviewTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "token" | "page" | "changes" | "expiresAt" | "createdAt" | "createdById", ExtArgs["result"]["livePreviewToken"]>
+  export type LivePreviewTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LivePreviewTokenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LivePreviewTokenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LivePreviewTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LivePreviewToken"
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      token: string
+      page: string
+      changes: Prisma.JsonValue
+      expiresAt: Date
+      createdAt: Date
+      createdById: string
+    }, ExtArgs["result"]["livePreviewToken"]>
+    composites: {}
+  }
+
+  type LivePreviewTokenGetPayload<S extends boolean | null | undefined | LivePreviewTokenDefaultArgs> = $Result.GetResult<Prisma.$LivePreviewTokenPayload, S>
+
+  type LivePreviewTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LivePreviewTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LivePreviewTokenCountAggregateInputType | true
+    }
+
+  export interface LivePreviewTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LivePreviewToken'], meta: { name: 'LivePreviewToken' } }
+    /**
+     * Find zero or one LivePreviewToken that matches the filter.
+     * @param {LivePreviewTokenFindUniqueArgs} args - Arguments to find a LivePreviewToken
+     * @example
+     * // Get one LivePreviewToken
+     * const livePreviewToken = await prisma.livePreviewToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LivePreviewTokenFindUniqueArgs>(args: SelectSubset<T, LivePreviewTokenFindUniqueArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LivePreviewToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LivePreviewTokenFindUniqueOrThrowArgs} args - Arguments to find a LivePreviewToken
+     * @example
+     * // Get one LivePreviewToken
+     * const livePreviewToken = await prisma.livePreviewToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LivePreviewTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, LivePreviewTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LivePreviewToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenFindFirstArgs} args - Arguments to find a LivePreviewToken
+     * @example
+     * // Get one LivePreviewToken
+     * const livePreviewToken = await prisma.livePreviewToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LivePreviewTokenFindFirstArgs>(args?: SelectSubset<T, LivePreviewTokenFindFirstArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LivePreviewToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenFindFirstOrThrowArgs} args - Arguments to find a LivePreviewToken
+     * @example
+     * // Get one LivePreviewToken
+     * const livePreviewToken = await prisma.livePreviewToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LivePreviewTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, LivePreviewTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LivePreviewTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LivePreviewTokens
+     * const livePreviewTokens = await prisma.livePreviewToken.findMany()
+     * 
+     * // Get first 10 LivePreviewTokens
+     * const livePreviewTokens = await prisma.livePreviewToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const livePreviewTokenWithIdOnly = await prisma.livePreviewToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LivePreviewTokenFindManyArgs>(args?: SelectSubset<T, LivePreviewTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LivePreviewToken.
+     * @param {LivePreviewTokenCreateArgs} args - Arguments to create a LivePreviewToken.
+     * @example
+     * // Create one LivePreviewToken
+     * const LivePreviewToken = await prisma.livePreviewToken.create({
+     *   data: {
+     *     // ... data to create a LivePreviewToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends LivePreviewTokenCreateArgs>(args: SelectSubset<T, LivePreviewTokenCreateArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LivePreviewTokens.
+     * @param {LivePreviewTokenCreateManyArgs} args - Arguments to create many LivePreviewTokens.
+     * @example
+     * // Create many LivePreviewTokens
+     * const livePreviewToken = await prisma.livePreviewToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LivePreviewTokenCreateManyArgs>(args?: SelectSubset<T, LivePreviewTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LivePreviewTokens and returns the data saved in the database.
+     * @param {LivePreviewTokenCreateManyAndReturnArgs} args - Arguments to create many LivePreviewTokens.
+     * @example
+     * // Create many LivePreviewTokens
+     * const livePreviewToken = await prisma.livePreviewToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LivePreviewTokens and only return the `id`
+     * const livePreviewTokenWithIdOnly = await prisma.livePreviewToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LivePreviewTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, LivePreviewTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LivePreviewToken.
+     * @param {LivePreviewTokenDeleteArgs} args - Arguments to delete one LivePreviewToken.
+     * @example
+     * // Delete one LivePreviewToken
+     * const LivePreviewToken = await prisma.livePreviewToken.delete({
+     *   where: {
+     *     // ... filter to delete one LivePreviewToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LivePreviewTokenDeleteArgs>(args: SelectSubset<T, LivePreviewTokenDeleteArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LivePreviewToken.
+     * @param {LivePreviewTokenUpdateArgs} args - Arguments to update one LivePreviewToken.
+     * @example
+     * // Update one LivePreviewToken
+     * const livePreviewToken = await prisma.livePreviewToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LivePreviewTokenUpdateArgs>(args: SelectSubset<T, LivePreviewTokenUpdateArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LivePreviewTokens.
+     * @param {LivePreviewTokenDeleteManyArgs} args - Arguments to filter LivePreviewTokens to delete.
+     * @example
+     * // Delete a few LivePreviewTokens
+     * const { count } = await prisma.livePreviewToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LivePreviewTokenDeleteManyArgs>(args?: SelectSubset<T, LivePreviewTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LivePreviewTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LivePreviewTokens
+     * const livePreviewToken = await prisma.livePreviewToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LivePreviewTokenUpdateManyArgs>(args: SelectSubset<T, LivePreviewTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LivePreviewTokens and returns the data updated in the database.
+     * @param {LivePreviewTokenUpdateManyAndReturnArgs} args - Arguments to update many LivePreviewTokens.
+     * @example
+     * // Update many LivePreviewTokens
+     * const livePreviewToken = await prisma.livePreviewToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LivePreviewTokens and only return the `id`
+     * const livePreviewTokenWithIdOnly = await prisma.livePreviewToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LivePreviewTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, LivePreviewTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LivePreviewToken.
+     * @param {LivePreviewTokenUpsertArgs} args - Arguments to update or create a LivePreviewToken.
+     * @example
+     * // Update or create a LivePreviewToken
+     * const livePreviewToken = await prisma.livePreviewToken.upsert({
+     *   create: {
+     *     // ... data to create a LivePreviewToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LivePreviewToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LivePreviewTokenUpsertArgs>(args: SelectSubset<T, LivePreviewTokenUpsertArgs<ExtArgs>>): Prisma__LivePreviewTokenClient<$Result.GetResult<Prisma.$LivePreviewTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LivePreviewTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenCountArgs} args - Arguments to filter LivePreviewTokens to count.
+     * @example
+     * // Count the number of LivePreviewTokens
+     * const count = await prisma.livePreviewToken.count({
+     *   where: {
+     *     // ... the filter for the LivePreviewTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends LivePreviewTokenCountArgs>(
+      args?: Subset<T, LivePreviewTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LivePreviewTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LivePreviewToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LivePreviewTokenAggregateArgs>(args: Subset<T, LivePreviewTokenAggregateArgs>): Prisma.PrismaPromise<GetLivePreviewTokenAggregateType<T>>
+
+    /**
+     * Group by LivePreviewToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LivePreviewTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LivePreviewTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LivePreviewTokenGroupByArgs['orderBy'] }
+        : { orderBy?: LivePreviewTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LivePreviewTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLivePreviewTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LivePreviewToken model
+   */
+  readonly fields: LivePreviewTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LivePreviewToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LivePreviewTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LivePreviewToken model
+   */
+  interface LivePreviewTokenFieldRefs {
+    readonly id: FieldRef<"LivePreviewToken", 'String'>
+    readonly token: FieldRef<"LivePreviewToken", 'String'>
+    readonly page: FieldRef<"LivePreviewToken", 'String'>
+    readonly changes: FieldRef<"LivePreviewToken", 'Json'>
+    readonly expiresAt: FieldRef<"LivePreviewToken", 'DateTime'>
+    readonly createdAt: FieldRef<"LivePreviewToken", 'DateTime'>
+    readonly createdById: FieldRef<"LivePreviewToken", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LivePreviewToken findUnique
+   */
+  export type LivePreviewTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which LivePreviewToken to fetch.
+     */
+    where: LivePreviewTokenWhereUniqueInput
+  }
+
+  /**
+   * LivePreviewToken findUniqueOrThrow
+   */
+  export type LivePreviewTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which LivePreviewToken to fetch.
+     */
+    where: LivePreviewTokenWhereUniqueInput
+  }
+
+  /**
+   * LivePreviewToken findFirst
+   */
+  export type LivePreviewTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which LivePreviewToken to fetch.
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LivePreviewTokens to fetch.
+     */
+    orderBy?: LivePreviewTokenOrderByWithRelationInput | LivePreviewTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LivePreviewTokens.
+     */
+    cursor?: LivePreviewTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LivePreviewTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LivePreviewTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LivePreviewTokens.
+     */
+    distinct?: LivePreviewTokenScalarFieldEnum | LivePreviewTokenScalarFieldEnum[]
+  }
+
+  /**
+   * LivePreviewToken findFirstOrThrow
+   */
+  export type LivePreviewTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which LivePreviewToken to fetch.
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LivePreviewTokens to fetch.
+     */
+    orderBy?: LivePreviewTokenOrderByWithRelationInput | LivePreviewTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LivePreviewTokens.
+     */
+    cursor?: LivePreviewTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LivePreviewTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LivePreviewTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LivePreviewTokens.
+     */
+    distinct?: LivePreviewTokenScalarFieldEnum | LivePreviewTokenScalarFieldEnum[]
+  }
+
+  /**
+   * LivePreviewToken findMany
+   */
+  export type LivePreviewTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which LivePreviewTokens to fetch.
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LivePreviewTokens to fetch.
+     */
+    orderBy?: LivePreviewTokenOrderByWithRelationInput | LivePreviewTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LivePreviewTokens.
+     */
+    cursor?: LivePreviewTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LivePreviewTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LivePreviewTokens.
+     */
+    skip?: number
+    distinct?: LivePreviewTokenScalarFieldEnum | LivePreviewTokenScalarFieldEnum[]
+  }
+
+  /**
+   * LivePreviewToken create
+   */
+  export type LivePreviewTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LivePreviewToken.
+     */
+    data: XOR<LivePreviewTokenCreateInput, LivePreviewTokenUncheckedCreateInput>
+  }
+
+  /**
+   * LivePreviewToken createMany
+   */
+  export type LivePreviewTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LivePreviewTokens.
+     */
+    data: LivePreviewTokenCreateManyInput | LivePreviewTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LivePreviewToken createManyAndReturn
+   */
+  export type LivePreviewTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many LivePreviewTokens.
+     */
+    data: LivePreviewTokenCreateManyInput | LivePreviewTokenCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LivePreviewToken update
+   */
+  export type LivePreviewTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LivePreviewToken.
+     */
+    data: XOR<LivePreviewTokenUpdateInput, LivePreviewTokenUncheckedUpdateInput>
+    /**
+     * Choose, which LivePreviewToken to update.
+     */
+    where: LivePreviewTokenWhereUniqueInput
+  }
+
+  /**
+   * LivePreviewToken updateMany
+   */
+  export type LivePreviewTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LivePreviewTokens.
+     */
+    data: XOR<LivePreviewTokenUpdateManyMutationInput, LivePreviewTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which LivePreviewTokens to update
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * Limit how many LivePreviewTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LivePreviewToken updateManyAndReturn
+   */
+  export type LivePreviewTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update LivePreviewTokens.
+     */
+    data: XOR<LivePreviewTokenUpdateManyMutationInput, LivePreviewTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which LivePreviewTokens to update
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * Limit how many LivePreviewTokens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LivePreviewToken upsert
+   */
+  export type LivePreviewTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LivePreviewToken to update in case it exists.
+     */
+    where: LivePreviewTokenWhereUniqueInput
+    /**
+     * In case the LivePreviewToken found by the `where` argument doesn't exist, create a new LivePreviewToken with this data.
+     */
+    create: XOR<LivePreviewTokenCreateInput, LivePreviewTokenUncheckedCreateInput>
+    /**
+     * In case the LivePreviewToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LivePreviewTokenUpdateInput, LivePreviewTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * LivePreviewToken delete
+   */
+  export type LivePreviewTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+    /**
+     * Filter which LivePreviewToken to delete.
+     */
+    where: LivePreviewTokenWhereUniqueInput
+  }
+
+  /**
+   * LivePreviewToken deleteMany
+   */
+  export type LivePreviewTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LivePreviewTokens to delete
+     */
+    where?: LivePreviewTokenWhereInput
+    /**
+     * Limit how many LivePreviewTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LivePreviewToken without action
+   */
+  export type LivePreviewTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LivePreviewToken
+     */
+    select?: LivePreviewTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LivePreviewToken
+     */
+    omit?: LivePreviewTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LivePreviewTokenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model AuditLog
    */
 
@@ -22614,6 +27647,66 @@ export namespace Prisma {
   export type ContentSectionScalarFieldEnum = (typeof ContentSectionScalarFieldEnum)[keyof typeof ContentSectionScalarFieldEnum]
 
 
+  export const QuickEditItemScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    type: 'type',
+    page: 'page',
+    component: 'component',
+    element: 'element',
+    value: 'value',
+    defaultValue: 'defaultValue',
+    isActive: 'isActive',
+    metadata: 'metadata',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    createdById: 'createdById'
+  };
+
+  export type QuickEditItemScalarFieldEnum = (typeof QuickEditItemScalarFieldEnum)[keyof typeof QuickEditItemScalarFieldEnum]
+
+
+  export const QuickEditRevisionScalarFieldEnum: {
+    id: 'id',
+    itemId: 'itemId',
+    value: 'value',
+    changeType: 'changeType',
+    createdAt: 'createdAt',
+    createdById: 'createdById'
+  };
+
+  export type QuickEditRevisionScalarFieldEnum = (typeof QuickEditRevisionScalarFieldEnum)[keyof typeof QuickEditRevisionScalarFieldEnum]
+
+
+  export const ThemeSettingScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    category: 'category',
+    value: 'value',
+    cssVariable: 'cssVariable',
+    description: 'description',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    createdById: 'createdById'
+  };
+
+  export type ThemeSettingScalarFieldEnum = (typeof ThemeSettingScalarFieldEnum)[keyof typeof ThemeSettingScalarFieldEnum]
+
+
+  export const LivePreviewTokenScalarFieldEnum: {
+    id: 'id',
+    token: 'token',
+    page: 'page',
+    changes: 'changes',
+    expiresAt: 'expiresAt',
+    createdAt: 'createdAt',
+    createdById: 'createdById'
+  };
+
+  export type LivePreviewTokenScalarFieldEnum = (typeof LivePreviewTokenScalarFieldEnum)[keyof typeof LivePreviewTokenScalarFieldEnum]
+
+
   export const AuditLogScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -22844,6 +27937,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'QuickEditType'
+   */
+  export type EnumQuickEditTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuickEditType'>
+    
+
+
+  /**
+   * Reference to a field of type 'QuickEditType[]'
+   */
+  export type ListEnumQuickEditTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuickEditType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -22885,6 +27992,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionListRelationFilter
     publishedRevisions?: RevisionListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
+    quickEditItems?: QuickEditItemListRelationFilter
+    quickEditRevisions?: QuickEditRevisionListRelationFilter
+    themeSettings?: ThemeSettingListRelationFilter
+    livePreviewTokens?: LivePreviewTokenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -22909,6 +28020,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionOrderByRelationAggregateInput
     publishedRevisions?: RevisionOrderByRelationAggregateInput
     refreshTokens?: RefreshTokenOrderByRelationAggregateInput
+    quickEditItems?: QuickEditItemOrderByRelationAggregateInput
+    quickEditRevisions?: QuickEditRevisionOrderByRelationAggregateInput
+    themeSettings?: ThemeSettingOrderByRelationAggregateInput
+    livePreviewTokens?: LivePreviewTokenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -22936,6 +28051,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionListRelationFilter
     publishedRevisions?: RevisionListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
+    quickEditItems?: QuickEditItemListRelationFilter
+    quickEditRevisions?: QuickEditRevisionListRelationFilter
+    themeSettings?: ThemeSettingListRelationFilter
+    livePreviewTokens?: LivePreviewTokenListRelationFilter
   }, "id" | "username" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -24211,6 +29330,312 @@ export namespace Prisma {
     createdById?: StringWithAggregatesFilter<"ContentSection"> | string
   }
 
+  export type QuickEditItemWhereInput = {
+    AND?: QuickEditItemWhereInput | QuickEditItemWhereInput[]
+    OR?: QuickEditItemWhereInput[]
+    NOT?: QuickEditItemWhereInput | QuickEditItemWhereInput[]
+    id?: StringFilter<"QuickEditItem"> | string
+    key?: StringFilter<"QuickEditItem"> | string
+    type?: EnumQuickEditTypeFilter<"QuickEditItem"> | $Enums.QuickEditType
+    page?: StringFilter<"QuickEditItem"> | string
+    component?: StringFilter<"QuickEditItem"> | string
+    element?: StringFilter<"QuickEditItem"> | string
+    value?: StringFilter<"QuickEditItem"> | string
+    defaultValue?: StringFilter<"QuickEditItem"> | string
+    isActive?: BoolFilter<"QuickEditItem"> | boolean
+    metadata?: JsonNullableFilter<"QuickEditItem">
+    createdAt?: DateTimeFilter<"QuickEditItem"> | Date | string
+    updatedAt?: DateTimeFilter<"QuickEditItem"> | Date | string
+    createdById?: StringFilter<"QuickEditItem"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    revisions?: QuickEditRevisionListRelationFilter
+  }
+
+  export type QuickEditItemOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    type?: SortOrder
+    page?: SortOrder
+    component?: SortOrder
+    element?: SortOrder
+    value?: SortOrder
+    defaultValue?: SortOrder
+    isActive?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+    creator?: UserOrderByWithRelationInput
+    revisions?: QuickEditRevisionOrderByRelationAggregateInput
+  }
+
+  export type QuickEditItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    key?: string
+    AND?: QuickEditItemWhereInput | QuickEditItemWhereInput[]
+    OR?: QuickEditItemWhereInput[]
+    NOT?: QuickEditItemWhereInput | QuickEditItemWhereInput[]
+    type?: EnumQuickEditTypeFilter<"QuickEditItem"> | $Enums.QuickEditType
+    page?: StringFilter<"QuickEditItem"> | string
+    component?: StringFilter<"QuickEditItem"> | string
+    element?: StringFilter<"QuickEditItem"> | string
+    value?: StringFilter<"QuickEditItem"> | string
+    defaultValue?: StringFilter<"QuickEditItem"> | string
+    isActive?: BoolFilter<"QuickEditItem"> | boolean
+    metadata?: JsonNullableFilter<"QuickEditItem">
+    createdAt?: DateTimeFilter<"QuickEditItem"> | Date | string
+    updatedAt?: DateTimeFilter<"QuickEditItem"> | Date | string
+    createdById?: StringFilter<"QuickEditItem"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+    revisions?: QuickEditRevisionListRelationFilter
+  }, "id" | "key">
+
+  export type QuickEditItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    type?: SortOrder
+    page?: SortOrder
+    component?: SortOrder
+    element?: SortOrder
+    value?: SortOrder
+    defaultValue?: SortOrder
+    isActive?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+    _count?: QuickEditItemCountOrderByAggregateInput
+    _max?: QuickEditItemMaxOrderByAggregateInput
+    _min?: QuickEditItemMinOrderByAggregateInput
+  }
+
+  export type QuickEditItemScalarWhereWithAggregatesInput = {
+    AND?: QuickEditItemScalarWhereWithAggregatesInput | QuickEditItemScalarWhereWithAggregatesInput[]
+    OR?: QuickEditItemScalarWhereWithAggregatesInput[]
+    NOT?: QuickEditItemScalarWhereWithAggregatesInput | QuickEditItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    key?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    type?: EnumQuickEditTypeWithAggregatesFilter<"QuickEditItem"> | $Enums.QuickEditType
+    page?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    component?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    element?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    value?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    defaultValue?: StringWithAggregatesFilter<"QuickEditItem"> | string
+    isActive?: BoolWithAggregatesFilter<"QuickEditItem"> | boolean
+    metadata?: JsonNullableWithAggregatesFilter<"QuickEditItem">
+    createdAt?: DateTimeWithAggregatesFilter<"QuickEditItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"QuickEditItem"> | Date | string
+    createdById?: StringWithAggregatesFilter<"QuickEditItem"> | string
+  }
+
+  export type QuickEditRevisionWhereInput = {
+    AND?: QuickEditRevisionWhereInput | QuickEditRevisionWhereInput[]
+    OR?: QuickEditRevisionWhereInput[]
+    NOT?: QuickEditRevisionWhereInput | QuickEditRevisionWhereInput[]
+    id?: StringFilter<"QuickEditRevision"> | string
+    itemId?: StringFilter<"QuickEditRevision"> | string
+    value?: StringFilter<"QuickEditRevision"> | string
+    changeType?: StringFilter<"QuickEditRevision"> | string
+    createdAt?: DateTimeFilter<"QuickEditRevision"> | Date | string
+    createdById?: StringFilter<"QuickEditRevision"> | string
+    item?: XOR<QuickEditItemScalarRelationFilter, QuickEditItemWhereInput>
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type QuickEditRevisionOrderByWithRelationInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    value?: SortOrder
+    changeType?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+    item?: QuickEditItemOrderByWithRelationInput
+    creator?: UserOrderByWithRelationInput
+  }
+
+  export type QuickEditRevisionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QuickEditRevisionWhereInput | QuickEditRevisionWhereInput[]
+    OR?: QuickEditRevisionWhereInput[]
+    NOT?: QuickEditRevisionWhereInput | QuickEditRevisionWhereInput[]
+    itemId?: StringFilter<"QuickEditRevision"> | string
+    value?: StringFilter<"QuickEditRevision"> | string
+    changeType?: StringFilter<"QuickEditRevision"> | string
+    createdAt?: DateTimeFilter<"QuickEditRevision"> | Date | string
+    createdById?: StringFilter<"QuickEditRevision"> | string
+    item?: XOR<QuickEditItemScalarRelationFilter, QuickEditItemWhereInput>
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type QuickEditRevisionOrderByWithAggregationInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    value?: SortOrder
+    changeType?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+    _count?: QuickEditRevisionCountOrderByAggregateInput
+    _max?: QuickEditRevisionMaxOrderByAggregateInput
+    _min?: QuickEditRevisionMinOrderByAggregateInput
+  }
+
+  export type QuickEditRevisionScalarWhereWithAggregatesInput = {
+    AND?: QuickEditRevisionScalarWhereWithAggregatesInput | QuickEditRevisionScalarWhereWithAggregatesInput[]
+    OR?: QuickEditRevisionScalarWhereWithAggregatesInput[]
+    NOT?: QuickEditRevisionScalarWhereWithAggregatesInput | QuickEditRevisionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QuickEditRevision"> | string
+    itemId?: StringWithAggregatesFilter<"QuickEditRevision"> | string
+    value?: StringWithAggregatesFilter<"QuickEditRevision"> | string
+    changeType?: StringWithAggregatesFilter<"QuickEditRevision"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"QuickEditRevision"> | Date | string
+    createdById?: StringWithAggregatesFilter<"QuickEditRevision"> | string
+  }
+
+  export type ThemeSettingWhereInput = {
+    AND?: ThemeSettingWhereInput | ThemeSettingWhereInput[]
+    OR?: ThemeSettingWhereInput[]
+    NOT?: ThemeSettingWhereInput | ThemeSettingWhereInput[]
+    id?: StringFilter<"ThemeSetting"> | string
+    name?: StringFilter<"ThemeSetting"> | string
+    category?: StringFilter<"ThemeSetting"> | string
+    value?: StringFilter<"ThemeSetting"> | string
+    cssVariable?: StringFilter<"ThemeSetting"> | string
+    description?: StringNullableFilter<"ThemeSetting"> | string | null
+    isActive?: BoolFilter<"ThemeSetting"> | boolean
+    createdAt?: DateTimeFilter<"ThemeSetting"> | Date | string
+    updatedAt?: DateTimeFilter<"ThemeSetting"> | Date | string
+    createdById?: StringFilter<"ThemeSetting"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ThemeSettingOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    value?: SortOrder
+    cssVariable?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+    creator?: UserOrderByWithRelationInput
+  }
+
+  export type ThemeSettingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: ThemeSettingWhereInput | ThemeSettingWhereInput[]
+    OR?: ThemeSettingWhereInput[]
+    NOT?: ThemeSettingWhereInput | ThemeSettingWhereInput[]
+    category?: StringFilter<"ThemeSetting"> | string
+    value?: StringFilter<"ThemeSetting"> | string
+    cssVariable?: StringFilter<"ThemeSetting"> | string
+    description?: StringNullableFilter<"ThemeSetting"> | string | null
+    isActive?: BoolFilter<"ThemeSetting"> | boolean
+    createdAt?: DateTimeFilter<"ThemeSetting"> | Date | string
+    updatedAt?: DateTimeFilter<"ThemeSetting"> | Date | string
+    createdById?: StringFilter<"ThemeSetting"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "name">
+
+  export type ThemeSettingOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    value?: SortOrder
+    cssVariable?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+    _count?: ThemeSettingCountOrderByAggregateInput
+    _max?: ThemeSettingMaxOrderByAggregateInput
+    _min?: ThemeSettingMinOrderByAggregateInput
+  }
+
+  export type ThemeSettingScalarWhereWithAggregatesInput = {
+    AND?: ThemeSettingScalarWhereWithAggregatesInput | ThemeSettingScalarWhereWithAggregatesInput[]
+    OR?: ThemeSettingScalarWhereWithAggregatesInput[]
+    NOT?: ThemeSettingScalarWhereWithAggregatesInput | ThemeSettingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ThemeSetting"> | string
+    name?: StringWithAggregatesFilter<"ThemeSetting"> | string
+    category?: StringWithAggregatesFilter<"ThemeSetting"> | string
+    value?: StringWithAggregatesFilter<"ThemeSetting"> | string
+    cssVariable?: StringWithAggregatesFilter<"ThemeSetting"> | string
+    description?: StringNullableWithAggregatesFilter<"ThemeSetting"> | string | null
+    isActive?: BoolWithAggregatesFilter<"ThemeSetting"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ThemeSetting"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ThemeSetting"> | Date | string
+    createdById?: StringWithAggregatesFilter<"ThemeSetting"> | string
+  }
+
+  export type LivePreviewTokenWhereInput = {
+    AND?: LivePreviewTokenWhereInput | LivePreviewTokenWhereInput[]
+    OR?: LivePreviewTokenWhereInput[]
+    NOT?: LivePreviewTokenWhereInput | LivePreviewTokenWhereInput[]
+    id?: StringFilter<"LivePreviewToken"> | string
+    token?: StringFilter<"LivePreviewToken"> | string
+    page?: StringFilter<"LivePreviewToken"> | string
+    changes?: JsonFilter<"LivePreviewToken">
+    expiresAt?: DateTimeFilter<"LivePreviewToken"> | Date | string
+    createdAt?: DateTimeFilter<"LivePreviewToken"> | Date | string
+    createdById?: StringFilter<"LivePreviewToken"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type LivePreviewTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    page?: SortOrder
+    changes?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+    creator?: UserOrderByWithRelationInput
+  }
+
+  export type LivePreviewTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    AND?: LivePreviewTokenWhereInput | LivePreviewTokenWhereInput[]
+    OR?: LivePreviewTokenWhereInput[]
+    NOT?: LivePreviewTokenWhereInput | LivePreviewTokenWhereInput[]
+    page?: StringFilter<"LivePreviewToken"> | string
+    changes?: JsonFilter<"LivePreviewToken">
+    expiresAt?: DateTimeFilter<"LivePreviewToken"> | Date | string
+    createdAt?: DateTimeFilter<"LivePreviewToken"> | Date | string
+    createdById?: StringFilter<"LivePreviewToken"> | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "token">
+
+  export type LivePreviewTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    page?: SortOrder
+    changes?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+    _count?: LivePreviewTokenCountOrderByAggregateInput
+    _max?: LivePreviewTokenMaxOrderByAggregateInput
+    _min?: LivePreviewTokenMinOrderByAggregateInput
+  }
+
+  export type LivePreviewTokenScalarWhereWithAggregatesInput = {
+    AND?: LivePreviewTokenScalarWhereWithAggregatesInput | LivePreviewTokenScalarWhereWithAggregatesInput[]
+    OR?: LivePreviewTokenScalarWhereWithAggregatesInput[]
+    NOT?: LivePreviewTokenScalarWhereWithAggregatesInput | LivePreviewTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LivePreviewToken"> | string
+    token?: StringWithAggregatesFilter<"LivePreviewToken"> | string
+    page?: StringWithAggregatesFilter<"LivePreviewToken"> | string
+    changes?: JsonWithAggregatesFilter<"LivePreviewToken">
+    expiresAt?: DateTimeWithAggregatesFilter<"LivePreviewToken"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"LivePreviewToken"> | Date | string
+    createdById?: StringWithAggregatesFilter<"LivePreviewToken"> | string
+  }
+
   export type AuditLogWhereInput = {
     AND?: AuditLogWhereInput | AuditLogWhereInput[]
     OR?: AuditLogWhereInput[]
@@ -24308,6 +29733,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -24332,6 +29761,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUpdateInput = {
@@ -24356,6 +29789,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -24380,6 +29817,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -25782,6 +31223,341 @@ export namespace Prisma {
     createdById?: StringFieldUpdateOperationsInput | string
   }
 
+  export type QuickEditItemCreateInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutQuickEditItemsInput
+    revisions?: QuickEditRevisionCreateNestedManyWithoutItemInput
+  }
+
+  export type QuickEditItemUncheckedCreateInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+    revisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutItemInput
+  }
+
+  export type QuickEditItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutQuickEditItemsNestedInput
+    revisions?: QuickEditRevisionUpdateManyWithoutItemNestedInput
+  }
+
+  export type QuickEditItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+    revisions?: QuickEditRevisionUncheckedUpdateManyWithoutItemNestedInput
+  }
+
+  export type QuickEditItemCreateManyInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+  }
+
+  export type QuickEditItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuickEditItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuickEditRevisionCreateInput = {
+    id?: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    item: QuickEditItemCreateNestedOneWithoutRevisionsInput
+    creator: UserCreateNestedOneWithoutQuickEditRevisionsInput
+  }
+
+  export type QuickEditRevisionUncheckedCreateInput = {
+    id?: string
+    itemId: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    createdById: string
+  }
+
+  export type QuickEditRevisionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item?: QuickEditItemUpdateOneRequiredWithoutRevisionsNestedInput
+    creator?: UserUpdateOneRequiredWithoutQuickEditRevisionsNestedInput
+  }
+
+  export type QuickEditRevisionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuickEditRevisionCreateManyInput = {
+    id?: string
+    itemId: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    createdById: string
+  }
+
+  export type QuickEditRevisionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuickEditRevisionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ThemeSettingCreateInput = {
+    id?: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutThemeSettingsInput
+  }
+
+  export type ThemeSettingUncheckedCreateInput = {
+    id?: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+  }
+
+  export type ThemeSettingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutThemeSettingsNestedInput
+  }
+
+  export type ThemeSettingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ThemeSettingCreateManyInput = {
+    id?: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+  }
+
+  export type ThemeSettingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThemeSettingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LivePreviewTokenCreateInput = {
+    id?: string
+    token: string
+    page: string
+    changes: JsonNullValueInput | InputJsonValue
+    expiresAt: Date | string
+    createdAt?: Date | string
+    creator: UserCreateNestedOneWithoutLivePreviewTokensInput
+  }
+
+  export type LivePreviewTokenUncheckedCreateInput = {
+    id?: string
+    token: string
+    page: string
+    changes: JsonNullValueInput | InputJsonValue
+    expiresAt: Date | string
+    createdAt?: Date | string
+    createdById: string
+  }
+
+  export type LivePreviewTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutLivePreviewTokensNestedInput
+  }
+
+  export type LivePreviewTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LivePreviewTokenCreateManyInput = {
+    id?: string
+    token: string
+    page: string
+    changes: JsonNullValueInput | InputJsonValue
+    expiresAt: Date | string
+    createdAt?: Date | string
+    createdById: string
+  }
+
+  export type LivePreviewTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LivePreviewTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
   export type AuditLogCreateInput = {
     id?: string
     action: string
@@ -25988,6 +31764,30 @@ export namespace Prisma {
     none?: RefreshTokenWhereInput
   }
 
+  export type QuickEditItemListRelationFilter = {
+    every?: QuickEditItemWhereInput
+    some?: QuickEditItemWhereInput
+    none?: QuickEditItemWhereInput
+  }
+
+  export type QuickEditRevisionListRelationFilter = {
+    every?: QuickEditRevisionWhereInput
+    some?: QuickEditRevisionWhereInput
+    none?: QuickEditRevisionWhereInput
+  }
+
+  export type ThemeSettingListRelationFilter = {
+    every?: ThemeSettingWhereInput
+    some?: ThemeSettingWhereInput
+    none?: ThemeSettingWhereInput
+  }
+
+  export type LivePreviewTokenListRelationFilter = {
+    every?: LivePreviewTokenWhereInput
+    some?: LivePreviewTokenWhereInput
+    none?: LivePreviewTokenWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -26026,6 +31826,22 @@ export namespace Prisma {
   }
 
   export type RefreshTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuickEditItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QuickEditRevisionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ThemeSettingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LivePreviewTokenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27132,6 +32948,168 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type EnumQuickEditTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.QuickEditType | EnumQuickEditTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQuickEditTypeFilter<$PrismaModel> | $Enums.QuickEditType
+  }
+
+  export type QuickEditItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    type?: SortOrder
+    page?: SortOrder
+    component?: SortOrder
+    element?: SortOrder
+    value?: SortOrder
+    defaultValue?: SortOrder
+    isActive?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type QuickEditItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    type?: SortOrder
+    page?: SortOrder
+    component?: SortOrder
+    element?: SortOrder
+    value?: SortOrder
+    defaultValue?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type QuickEditItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    type?: SortOrder
+    page?: SortOrder
+    component?: SortOrder
+    element?: SortOrder
+    value?: SortOrder
+    defaultValue?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type EnumQuickEditTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.QuickEditType | EnumQuickEditTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQuickEditTypeWithAggregatesFilter<$PrismaModel> | $Enums.QuickEditType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumQuickEditTypeFilter<$PrismaModel>
+    _max?: NestedEnumQuickEditTypeFilter<$PrismaModel>
+  }
+
+  export type QuickEditItemScalarRelationFilter = {
+    is?: QuickEditItemWhereInput
+    isNot?: QuickEditItemWhereInput
+  }
+
+  export type QuickEditRevisionCountOrderByAggregateInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    value?: SortOrder
+    changeType?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type QuickEditRevisionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    value?: SortOrder
+    changeType?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type QuickEditRevisionMinOrderByAggregateInput = {
+    id?: SortOrder
+    itemId?: SortOrder
+    value?: SortOrder
+    changeType?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type ThemeSettingCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    value?: SortOrder
+    cssVariable?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type ThemeSettingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    value?: SortOrder
+    cssVariable?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type ThemeSettingMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    value?: SortOrder
+    cssVariable?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type LivePreviewTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    page?: SortOrder
+    changes?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type LivePreviewTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    page?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type LivePreviewTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    page?: SortOrder
+    expiresAt?: SortOrder
+    createdAt?: SortOrder
+    createdById?: SortOrder
+  }
+
   export type AuditLogCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -27249,6 +33227,34 @@ export namespace Prisma {
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
+  export type QuickEditItemCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<QuickEditItemCreateWithoutCreatorInput, QuickEditItemUncheckedCreateWithoutCreatorInput> | QuickEditItemCreateWithoutCreatorInput[] | QuickEditItemUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditItemCreateOrConnectWithoutCreatorInput | QuickEditItemCreateOrConnectWithoutCreatorInput[]
+    createMany?: QuickEditItemCreateManyCreatorInputEnvelope
+    connect?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+  }
+
+  export type QuickEditRevisionCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutCreatorInput, QuickEditRevisionUncheckedCreateWithoutCreatorInput> | QuickEditRevisionCreateWithoutCreatorInput[] | QuickEditRevisionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutCreatorInput | QuickEditRevisionCreateOrConnectWithoutCreatorInput[]
+    createMany?: QuickEditRevisionCreateManyCreatorInputEnvelope
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+  }
+
+  export type ThemeSettingCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ThemeSettingCreateWithoutCreatorInput, ThemeSettingUncheckedCreateWithoutCreatorInput> | ThemeSettingCreateWithoutCreatorInput[] | ThemeSettingUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ThemeSettingCreateOrConnectWithoutCreatorInput | ThemeSettingCreateOrConnectWithoutCreatorInput[]
+    createMany?: ThemeSettingCreateManyCreatorInputEnvelope
+    connect?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+  }
+
+  export type LivePreviewTokenCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<LivePreviewTokenCreateWithoutCreatorInput, LivePreviewTokenUncheckedCreateWithoutCreatorInput> | LivePreviewTokenCreateWithoutCreatorInput[] | LivePreviewTokenUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LivePreviewTokenCreateOrConnectWithoutCreatorInput | LivePreviewTokenCreateOrConnectWithoutCreatorInput[]
+    createMany?: LivePreviewTokenCreateManyCreatorInputEnvelope
+    connect?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+  }
+
   export type CourseUncheckedCreateNestedManyWithoutCreatorInput = {
     create?: XOR<CourseCreateWithoutCreatorInput, CourseUncheckedCreateWithoutCreatorInput> | CourseCreateWithoutCreatorInput[] | CourseUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutCreatorInput | CourseCreateOrConnectWithoutCreatorInput[]
@@ -27330,6 +33336,34 @@ export namespace Prisma {
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
     createMany?: RefreshTokenCreateManyUserInputEnvelope
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
+  export type QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<QuickEditItemCreateWithoutCreatorInput, QuickEditItemUncheckedCreateWithoutCreatorInput> | QuickEditItemCreateWithoutCreatorInput[] | QuickEditItemUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditItemCreateOrConnectWithoutCreatorInput | QuickEditItemCreateOrConnectWithoutCreatorInput[]
+    createMany?: QuickEditItemCreateManyCreatorInputEnvelope
+    connect?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+  }
+
+  export type QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutCreatorInput, QuickEditRevisionUncheckedCreateWithoutCreatorInput> | QuickEditRevisionCreateWithoutCreatorInput[] | QuickEditRevisionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutCreatorInput | QuickEditRevisionCreateOrConnectWithoutCreatorInput[]
+    createMany?: QuickEditRevisionCreateManyCreatorInputEnvelope
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+  }
+
+  export type ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ThemeSettingCreateWithoutCreatorInput, ThemeSettingUncheckedCreateWithoutCreatorInput> | ThemeSettingCreateWithoutCreatorInput[] | ThemeSettingUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ThemeSettingCreateOrConnectWithoutCreatorInput | ThemeSettingCreateOrConnectWithoutCreatorInput[]
+    createMany?: ThemeSettingCreateManyCreatorInputEnvelope
+    connect?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+  }
+
+  export type LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<LivePreviewTokenCreateWithoutCreatorInput, LivePreviewTokenUncheckedCreateWithoutCreatorInput> | LivePreviewTokenCreateWithoutCreatorInput[] | LivePreviewTokenUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LivePreviewTokenCreateOrConnectWithoutCreatorInput | LivePreviewTokenCreateOrConnectWithoutCreatorInput[]
+    createMany?: LivePreviewTokenCreateManyCreatorInputEnvelope
+    connect?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -27520,6 +33554,62 @@ export namespace Prisma {
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
+  export type QuickEditItemUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<QuickEditItemCreateWithoutCreatorInput, QuickEditItemUncheckedCreateWithoutCreatorInput> | QuickEditItemCreateWithoutCreatorInput[] | QuickEditItemUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditItemCreateOrConnectWithoutCreatorInput | QuickEditItemCreateOrConnectWithoutCreatorInput[]
+    upsert?: QuickEditItemUpsertWithWhereUniqueWithoutCreatorInput | QuickEditItemUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: QuickEditItemCreateManyCreatorInputEnvelope
+    set?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    disconnect?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    delete?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    connect?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    update?: QuickEditItemUpdateWithWhereUniqueWithoutCreatorInput | QuickEditItemUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: QuickEditItemUpdateManyWithWhereWithoutCreatorInput | QuickEditItemUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: QuickEditItemScalarWhereInput | QuickEditItemScalarWhereInput[]
+  }
+
+  export type QuickEditRevisionUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutCreatorInput, QuickEditRevisionUncheckedCreateWithoutCreatorInput> | QuickEditRevisionCreateWithoutCreatorInput[] | QuickEditRevisionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutCreatorInput | QuickEditRevisionCreateOrConnectWithoutCreatorInput[]
+    upsert?: QuickEditRevisionUpsertWithWhereUniqueWithoutCreatorInput | QuickEditRevisionUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: QuickEditRevisionCreateManyCreatorInputEnvelope
+    set?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    disconnect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    delete?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    update?: QuickEditRevisionUpdateWithWhereUniqueWithoutCreatorInput | QuickEditRevisionUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: QuickEditRevisionUpdateManyWithWhereWithoutCreatorInput | QuickEditRevisionUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: QuickEditRevisionScalarWhereInput | QuickEditRevisionScalarWhereInput[]
+  }
+
+  export type ThemeSettingUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ThemeSettingCreateWithoutCreatorInput, ThemeSettingUncheckedCreateWithoutCreatorInput> | ThemeSettingCreateWithoutCreatorInput[] | ThemeSettingUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ThemeSettingCreateOrConnectWithoutCreatorInput | ThemeSettingCreateOrConnectWithoutCreatorInput[]
+    upsert?: ThemeSettingUpsertWithWhereUniqueWithoutCreatorInput | ThemeSettingUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ThemeSettingCreateManyCreatorInputEnvelope
+    set?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    disconnect?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    delete?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    connect?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    update?: ThemeSettingUpdateWithWhereUniqueWithoutCreatorInput | ThemeSettingUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ThemeSettingUpdateManyWithWhereWithoutCreatorInput | ThemeSettingUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ThemeSettingScalarWhereInput | ThemeSettingScalarWhereInput[]
+  }
+
+  export type LivePreviewTokenUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<LivePreviewTokenCreateWithoutCreatorInput, LivePreviewTokenUncheckedCreateWithoutCreatorInput> | LivePreviewTokenCreateWithoutCreatorInput[] | LivePreviewTokenUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LivePreviewTokenCreateOrConnectWithoutCreatorInput | LivePreviewTokenCreateOrConnectWithoutCreatorInput[]
+    upsert?: LivePreviewTokenUpsertWithWhereUniqueWithoutCreatorInput | LivePreviewTokenUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: LivePreviewTokenCreateManyCreatorInputEnvelope
+    set?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    disconnect?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    delete?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    connect?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    update?: LivePreviewTokenUpdateWithWhereUniqueWithoutCreatorInput | LivePreviewTokenUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: LivePreviewTokenUpdateManyWithWhereWithoutCreatorInput | LivePreviewTokenUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: LivePreviewTokenScalarWhereInput | LivePreviewTokenScalarWhereInput[]
+  }
+
   export type CourseUncheckedUpdateManyWithoutCreatorNestedInput = {
     create?: XOR<CourseCreateWithoutCreatorInput, CourseUncheckedCreateWithoutCreatorInput> | CourseCreateWithoutCreatorInput[] | CourseUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutCreatorInput | CourseCreateOrConnectWithoutCreatorInput[]
@@ -27682,6 +33772,62 @@ export namespace Prisma {
     update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
+  export type QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<QuickEditItemCreateWithoutCreatorInput, QuickEditItemUncheckedCreateWithoutCreatorInput> | QuickEditItemCreateWithoutCreatorInput[] | QuickEditItemUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditItemCreateOrConnectWithoutCreatorInput | QuickEditItemCreateOrConnectWithoutCreatorInput[]
+    upsert?: QuickEditItemUpsertWithWhereUniqueWithoutCreatorInput | QuickEditItemUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: QuickEditItemCreateManyCreatorInputEnvelope
+    set?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    disconnect?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    delete?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    connect?: QuickEditItemWhereUniqueInput | QuickEditItemWhereUniqueInput[]
+    update?: QuickEditItemUpdateWithWhereUniqueWithoutCreatorInput | QuickEditItemUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: QuickEditItemUpdateManyWithWhereWithoutCreatorInput | QuickEditItemUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: QuickEditItemScalarWhereInput | QuickEditItemScalarWhereInput[]
+  }
+
+  export type QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutCreatorInput, QuickEditRevisionUncheckedCreateWithoutCreatorInput> | QuickEditRevisionCreateWithoutCreatorInput[] | QuickEditRevisionUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutCreatorInput | QuickEditRevisionCreateOrConnectWithoutCreatorInput[]
+    upsert?: QuickEditRevisionUpsertWithWhereUniqueWithoutCreatorInput | QuickEditRevisionUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: QuickEditRevisionCreateManyCreatorInputEnvelope
+    set?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    disconnect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    delete?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    update?: QuickEditRevisionUpdateWithWhereUniqueWithoutCreatorInput | QuickEditRevisionUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: QuickEditRevisionUpdateManyWithWhereWithoutCreatorInput | QuickEditRevisionUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: QuickEditRevisionScalarWhereInput | QuickEditRevisionScalarWhereInput[]
+  }
+
+  export type ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ThemeSettingCreateWithoutCreatorInput, ThemeSettingUncheckedCreateWithoutCreatorInput> | ThemeSettingCreateWithoutCreatorInput[] | ThemeSettingUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ThemeSettingCreateOrConnectWithoutCreatorInput | ThemeSettingCreateOrConnectWithoutCreatorInput[]
+    upsert?: ThemeSettingUpsertWithWhereUniqueWithoutCreatorInput | ThemeSettingUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ThemeSettingCreateManyCreatorInputEnvelope
+    set?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    disconnect?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    delete?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    connect?: ThemeSettingWhereUniqueInput | ThemeSettingWhereUniqueInput[]
+    update?: ThemeSettingUpdateWithWhereUniqueWithoutCreatorInput | ThemeSettingUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ThemeSettingUpdateManyWithWhereWithoutCreatorInput | ThemeSettingUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ThemeSettingScalarWhereInput | ThemeSettingScalarWhereInput[]
+  }
+
+  export type LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<LivePreviewTokenCreateWithoutCreatorInput, LivePreviewTokenUncheckedCreateWithoutCreatorInput> | LivePreviewTokenCreateWithoutCreatorInput[] | LivePreviewTokenUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: LivePreviewTokenCreateOrConnectWithoutCreatorInput | LivePreviewTokenCreateOrConnectWithoutCreatorInput[]
+    upsert?: LivePreviewTokenUpsertWithWhereUniqueWithoutCreatorInput | LivePreviewTokenUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: LivePreviewTokenCreateManyCreatorInputEnvelope
+    set?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    disconnect?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    delete?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    connect?: LivePreviewTokenWhereUniqueInput | LivePreviewTokenWhereUniqueInput[]
+    update?: LivePreviewTokenUpdateWithWhereUniqueWithoutCreatorInput | LivePreviewTokenUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: LivePreviewTokenUpdateManyWithWhereWithoutCreatorInput | LivePreviewTokenUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: LivePreviewTokenScalarWhereInput | LivePreviewTokenScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutRefreshTokensInput = {
@@ -28368,6 +34514,122 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreatedSectionsInput, UserUpdateWithoutCreatedSectionsInput>, UserUncheckedUpdateWithoutCreatedSectionsInput>
   }
 
+  export type UserCreateNestedOneWithoutQuickEditItemsInput = {
+    create?: XOR<UserCreateWithoutQuickEditItemsInput, UserUncheckedCreateWithoutQuickEditItemsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutQuickEditItemsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type QuickEditRevisionCreateNestedManyWithoutItemInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutItemInput, QuickEditRevisionUncheckedCreateWithoutItemInput> | QuickEditRevisionCreateWithoutItemInput[] | QuickEditRevisionUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutItemInput | QuickEditRevisionCreateOrConnectWithoutItemInput[]
+    createMany?: QuickEditRevisionCreateManyItemInputEnvelope
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+  }
+
+  export type QuickEditRevisionUncheckedCreateNestedManyWithoutItemInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutItemInput, QuickEditRevisionUncheckedCreateWithoutItemInput> | QuickEditRevisionCreateWithoutItemInput[] | QuickEditRevisionUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutItemInput | QuickEditRevisionCreateOrConnectWithoutItemInput[]
+    createMany?: QuickEditRevisionCreateManyItemInputEnvelope
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+  }
+
+  export type EnumQuickEditTypeFieldUpdateOperationsInput = {
+    set?: $Enums.QuickEditType
+  }
+
+  export type UserUpdateOneRequiredWithoutQuickEditItemsNestedInput = {
+    create?: XOR<UserCreateWithoutQuickEditItemsInput, UserUncheckedCreateWithoutQuickEditItemsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutQuickEditItemsInput
+    upsert?: UserUpsertWithoutQuickEditItemsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutQuickEditItemsInput, UserUpdateWithoutQuickEditItemsInput>, UserUncheckedUpdateWithoutQuickEditItemsInput>
+  }
+
+  export type QuickEditRevisionUpdateManyWithoutItemNestedInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutItemInput, QuickEditRevisionUncheckedCreateWithoutItemInput> | QuickEditRevisionCreateWithoutItemInput[] | QuickEditRevisionUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutItemInput | QuickEditRevisionCreateOrConnectWithoutItemInput[]
+    upsert?: QuickEditRevisionUpsertWithWhereUniqueWithoutItemInput | QuickEditRevisionUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: QuickEditRevisionCreateManyItemInputEnvelope
+    set?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    disconnect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    delete?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    update?: QuickEditRevisionUpdateWithWhereUniqueWithoutItemInput | QuickEditRevisionUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: QuickEditRevisionUpdateManyWithWhereWithoutItemInput | QuickEditRevisionUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: QuickEditRevisionScalarWhereInput | QuickEditRevisionScalarWhereInput[]
+  }
+
+  export type QuickEditRevisionUncheckedUpdateManyWithoutItemNestedInput = {
+    create?: XOR<QuickEditRevisionCreateWithoutItemInput, QuickEditRevisionUncheckedCreateWithoutItemInput> | QuickEditRevisionCreateWithoutItemInput[] | QuickEditRevisionUncheckedCreateWithoutItemInput[]
+    connectOrCreate?: QuickEditRevisionCreateOrConnectWithoutItemInput | QuickEditRevisionCreateOrConnectWithoutItemInput[]
+    upsert?: QuickEditRevisionUpsertWithWhereUniqueWithoutItemInput | QuickEditRevisionUpsertWithWhereUniqueWithoutItemInput[]
+    createMany?: QuickEditRevisionCreateManyItemInputEnvelope
+    set?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    disconnect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    delete?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    connect?: QuickEditRevisionWhereUniqueInput | QuickEditRevisionWhereUniqueInput[]
+    update?: QuickEditRevisionUpdateWithWhereUniqueWithoutItemInput | QuickEditRevisionUpdateWithWhereUniqueWithoutItemInput[]
+    updateMany?: QuickEditRevisionUpdateManyWithWhereWithoutItemInput | QuickEditRevisionUpdateManyWithWhereWithoutItemInput[]
+    deleteMany?: QuickEditRevisionScalarWhereInput | QuickEditRevisionScalarWhereInput[]
+  }
+
+  export type QuickEditItemCreateNestedOneWithoutRevisionsInput = {
+    create?: XOR<QuickEditItemCreateWithoutRevisionsInput, QuickEditItemUncheckedCreateWithoutRevisionsInput>
+    connectOrCreate?: QuickEditItemCreateOrConnectWithoutRevisionsInput
+    connect?: QuickEditItemWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutQuickEditRevisionsInput = {
+    create?: XOR<UserCreateWithoutQuickEditRevisionsInput, UserUncheckedCreateWithoutQuickEditRevisionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutQuickEditRevisionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type QuickEditItemUpdateOneRequiredWithoutRevisionsNestedInput = {
+    create?: XOR<QuickEditItemCreateWithoutRevisionsInput, QuickEditItemUncheckedCreateWithoutRevisionsInput>
+    connectOrCreate?: QuickEditItemCreateOrConnectWithoutRevisionsInput
+    upsert?: QuickEditItemUpsertWithoutRevisionsInput
+    connect?: QuickEditItemWhereUniqueInput
+    update?: XOR<XOR<QuickEditItemUpdateToOneWithWhereWithoutRevisionsInput, QuickEditItemUpdateWithoutRevisionsInput>, QuickEditItemUncheckedUpdateWithoutRevisionsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutQuickEditRevisionsNestedInput = {
+    create?: XOR<UserCreateWithoutQuickEditRevisionsInput, UserUncheckedCreateWithoutQuickEditRevisionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutQuickEditRevisionsInput
+    upsert?: UserUpsertWithoutQuickEditRevisionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutQuickEditRevisionsInput, UserUpdateWithoutQuickEditRevisionsInput>, UserUncheckedUpdateWithoutQuickEditRevisionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutThemeSettingsInput = {
+    create?: XOR<UserCreateWithoutThemeSettingsInput, UserUncheckedCreateWithoutThemeSettingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutThemeSettingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutThemeSettingsNestedInput = {
+    create?: XOR<UserCreateWithoutThemeSettingsInput, UserUncheckedCreateWithoutThemeSettingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutThemeSettingsInput
+    upsert?: UserUpsertWithoutThemeSettingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutThemeSettingsInput, UserUpdateWithoutThemeSettingsInput>, UserUncheckedUpdateWithoutThemeSettingsInput>
+  }
+
+  export type UserCreateNestedOneWithoutLivePreviewTokensInput = {
+    create?: XOR<UserCreateWithoutLivePreviewTokensInput, UserUncheckedCreateWithoutLivePreviewTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLivePreviewTokensInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutLivePreviewTokensNestedInput = {
+    create?: XOR<UserCreateWithoutLivePreviewTokensInput, UserUncheckedCreateWithoutLivePreviewTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLivePreviewTokensInput
+    upsert?: UserUpsertWithoutLivePreviewTokensInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLivePreviewTokensInput, UserUpdateWithoutLivePreviewTokensInput>, UserUncheckedUpdateWithoutLivePreviewTokensInput>
+  }
+
   export type UserCreateNestedOneWithoutAuditLogsInput = {
     create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
@@ -28783,6 +35045,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRevisionStatusFilter<$PrismaModel>
     _max?: NestedEnumRevisionStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumQuickEditTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.QuickEditType | EnumQuickEditTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQuickEditTypeFilter<$PrismaModel> | $Enums.QuickEditType
+  }
+
+  export type NestedEnumQuickEditTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.QuickEditType | EnumQuickEditTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QuickEditType[] | ListEnumQuickEditTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQuickEditTypeWithAggregatesFilter<$PrismaModel> | $Enums.QuickEditType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumQuickEditTypeFilter<$PrismaModel>
+    _max?: NestedEnumQuickEditTypeFilter<$PrismaModel>
   }
 
   export type CourseCreateWithoutCreatorInput = {
@@ -29248,6 +35527,136 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type QuickEditItemCreateWithoutCreatorInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    revisions?: QuickEditRevisionCreateNestedManyWithoutItemInput
+  }
+
+  export type QuickEditItemUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    revisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutItemInput
+  }
+
+  export type QuickEditItemCreateOrConnectWithoutCreatorInput = {
+    where: QuickEditItemWhereUniqueInput
+    create: XOR<QuickEditItemCreateWithoutCreatorInput, QuickEditItemUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type QuickEditItemCreateManyCreatorInputEnvelope = {
+    data: QuickEditItemCreateManyCreatorInput | QuickEditItemCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type QuickEditRevisionCreateWithoutCreatorInput = {
+    id?: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    item: QuickEditItemCreateNestedOneWithoutRevisionsInput
+  }
+
+  export type QuickEditRevisionUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    itemId: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+  }
+
+  export type QuickEditRevisionCreateOrConnectWithoutCreatorInput = {
+    where: QuickEditRevisionWhereUniqueInput
+    create: XOR<QuickEditRevisionCreateWithoutCreatorInput, QuickEditRevisionUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type QuickEditRevisionCreateManyCreatorInputEnvelope = {
+    data: QuickEditRevisionCreateManyCreatorInput | QuickEditRevisionCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ThemeSettingCreateWithoutCreatorInput = {
+    id?: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThemeSettingUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ThemeSettingCreateOrConnectWithoutCreatorInput = {
+    where: ThemeSettingWhereUniqueInput
+    create: XOR<ThemeSettingCreateWithoutCreatorInput, ThemeSettingUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ThemeSettingCreateManyCreatorInputEnvelope = {
+    data: ThemeSettingCreateManyCreatorInput | ThemeSettingCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LivePreviewTokenCreateWithoutCreatorInput = {
+    id?: string
+    token: string
+    page: string
+    changes: JsonNullValueInput | InputJsonValue
+    expiresAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LivePreviewTokenUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    token: string
+    page: string
+    changes: JsonNullValueInput | InputJsonValue
+    expiresAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LivePreviewTokenCreateOrConnectWithoutCreatorInput = {
+    where: LivePreviewTokenWhereUniqueInput
+    create: XOR<LivePreviewTokenCreateWithoutCreatorInput, LivePreviewTokenUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type LivePreviewTokenCreateManyCreatorInputEnvelope = {
+    data: LivePreviewTokenCreateManyCreatorInput | LivePreviewTokenCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CourseUpsertWithWhereUniqueWithoutCreatorInput = {
     where: CourseWhereUniqueInput
     update: XOR<CourseUpdateWithoutCreatorInput, CourseUncheckedUpdateWithoutCreatorInput>
@@ -29616,6 +36025,130 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
   }
 
+  export type QuickEditItemUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: QuickEditItemWhereUniqueInput
+    update: XOR<QuickEditItemUpdateWithoutCreatorInput, QuickEditItemUncheckedUpdateWithoutCreatorInput>
+    create: XOR<QuickEditItemCreateWithoutCreatorInput, QuickEditItemUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type QuickEditItemUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: QuickEditItemWhereUniqueInput
+    data: XOR<QuickEditItemUpdateWithoutCreatorInput, QuickEditItemUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type QuickEditItemUpdateManyWithWhereWithoutCreatorInput = {
+    where: QuickEditItemScalarWhereInput
+    data: XOR<QuickEditItemUpdateManyMutationInput, QuickEditItemUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type QuickEditItemScalarWhereInput = {
+    AND?: QuickEditItemScalarWhereInput | QuickEditItemScalarWhereInput[]
+    OR?: QuickEditItemScalarWhereInput[]
+    NOT?: QuickEditItemScalarWhereInput | QuickEditItemScalarWhereInput[]
+    id?: StringFilter<"QuickEditItem"> | string
+    key?: StringFilter<"QuickEditItem"> | string
+    type?: EnumQuickEditTypeFilter<"QuickEditItem"> | $Enums.QuickEditType
+    page?: StringFilter<"QuickEditItem"> | string
+    component?: StringFilter<"QuickEditItem"> | string
+    element?: StringFilter<"QuickEditItem"> | string
+    value?: StringFilter<"QuickEditItem"> | string
+    defaultValue?: StringFilter<"QuickEditItem"> | string
+    isActive?: BoolFilter<"QuickEditItem"> | boolean
+    metadata?: JsonNullableFilter<"QuickEditItem">
+    createdAt?: DateTimeFilter<"QuickEditItem"> | Date | string
+    updatedAt?: DateTimeFilter<"QuickEditItem"> | Date | string
+    createdById?: StringFilter<"QuickEditItem"> | string
+  }
+
+  export type QuickEditRevisionUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: QuickEditRevisionWhereUniqueInput
+    update: XOR<QuickEditRevisionUpdateWithoutCreatorInput, QuickEditRevisionUncheckedUpdateWithoutCreatorInput>
+    create: XOR<QuickEditRevisionCreateWithoutCreatorInput, QuickEditRevisionUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type QuickEditRevisionUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: QuickEditRevisionWhereUniqueInput
+    data: XOR<QuickEditRevisionUpdateWithoutCreatorInput, QuickEditRevisionUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type QuickEditRevisionUpdateManyWithWhereWithoutCreatorInput = {
+    where: QuickEditRevisionScalarWhereInput
+    data: XOR<QuickEditRevisionUpdateManyMutationInput, QuickEditRevisionUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type QuickEditRevisionScalarWhereInput = {
+    AND?: QuickEditRevisionScalarWhereInput | QuickEditRevisionScalarWhereInput[]
+    OR?: QuickEditRevisionScalarWhereInput[]
+    NOT?: QuickEditRevisionScalarWhereInput | QuickEditRevisionScalarWhereInput[]
+    id?: StringFilter<"QuickEditRevision"> | string
+    itemId?: StringFilter<"QuickEditRevision"> | string
+    value?: StringFilter<"QuickEditRevision"> | string
+    changeType?: StringFilter<"QuickEditRevision"> | string
+    createdAt?: DateTimeFilter<"QuickEditRevision"> | Date | string
+    createdById?: StringFilter<"QuickEditRevision"> | string
+  }
+
+  export type ThemeSettingUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: ThemeSettingWhereUniqueInput
+    update: XOR<ThemeSettingUpdateWithoutCreatorInput, ThemeSettingUncheckedUpdateWithoutCreatorInput>
+    create: XOR<ThemeSettingCreateWithoutCreatorInput, ThemeSettingUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ThemeSettingUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: ThemeSettingWhereUniqueInput
+    data: XOR<ThemeSettingUpdateWithoutCreatorInput, ThemeSettingUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type ThemeSettingUpdateManyWithWhereWithoutCreatorInput = {
+    where: ThemeSettingScalarWhereInput
+    data: XOR<ThemeSettingUpdateManyMutationInput, ThemeSettingUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type ThemeSettingScalarWhereInput = {
+    AND?: ThemeSettingScalarWhereInput | ThemeSettingScalarWhereInput[]
+    OR?: ThemeSettingScalarWhereInput[]
+    NOT?: ThemeSettingScalarWhereInput | ThemeSettingScalarWhereInput[]
+    id?: StringFilter<"ThemeSetting"> | string
+    name?: StringFilter<"ThemeSetting"> | string
+    category?: StringFilter<"ThemeSetting"> | string
+    value?: StringFilter<"ThemeSetting"> | string
+    cssVariable?: StringFilter<"ThemeSetting"> | string
+    description?: StringNullableFilter<"ThemeSetting"> | string | null
+    isActive?: BoolFilter<"ThemeSetting"> | boolean
+    createdAt?: DateTimeFilter<"ThemeSetting"> | Date | string
+    updatedAt?: DateTimeFilter<"ThemeSetting"> | Date | string
+    createdById?: StringFilter<"ThemeSetting"> | string
+  }
+
+  export type LivePreviewTokenUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: LivePreviewTokenWhereUniqueInput
+    update: XOR<LivePreviewTokenUpdateWithoutCreatorInput, LivePreviewTokenUncheckedUpdateWithoutCreatorInput>
+    create: XOR<LivePreviewTokenCreateWithoutCreatorInput, LivePreviewTokenUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type LivePreviewTokenUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: LivePreviewTokenWhereUniqueInput
+    data: XOR<LivePreviewTokenUpdateWithoutCreatorInput, LivePreviewTokenUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type LivePreviewTokenUpdateManyWithWhereWithoutCreatorInput = {
+    where: LivePreviewTokenScalarWhereInput
+    data: XOR<LivePreviewTokenUpdateManyMutationInput, LivePreviewTokenUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type LivePreviewTokenScalarWhereInput = {
+    AND?: LivePreviewTokenScalarWhereInput | LivePreviewTokenScalarWhereInput[]
+    OR?: LivePreviewTokenScalarWhereInput[]
+    NOT?: LivePreviewTokenScalarWhereInput | LivePreviewTokenScalarWhereInput[]
+    id?: StringFilter<"LivePreviewToken"> | string
+    token?: StringFilter<"LivePreviewToken"> | string
+    page?: StringFilter<"LivePreviewToken"> | string
+    changes?: JsonFilter<"LivePreviewToken">
+    expiresAt?: DateTimeFilter<"LivePreviewToken"> | Date | string
+    createdAt?: DateTimeFilter<"LivePreviewToken"> | Date | string
+    createdById?: StringFilter<"LivePreviewToken"> | string
+  }
+
   export type UserCreateWithoutRefreshTokensInput = {
     id?: string
     username: string
@@ -29637,6 +36170,10 @@ export namespace Prisma {
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -29660,6 +36197,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -29699,6 +36240,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -29722,6 +36267,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutCreatedCoursesInput = {
@@ -29745,6 +36294,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedCoursesInput = {
@@ -29768,6 +36321,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedCoursesInput = {
@@ -29906,6 +36463,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedCoursesInput = {
@@ -29929,6 +36490,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type LessonUpsertWithWhereUniqueWithoutCourseInput = {
@@ -30038,6 +36603,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedLessonsInput = {
@@ -30061,6 +36630,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedLessonsInput = {
@@ -30155,6 +36728,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedLessonsInput = {
@@ -30178,6 +36755,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type CourseUpsertWithoutLessonsInput = {
@@ -30262,6 +36843,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedPackagesInput = {
@@ -30285,6 +36870,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedPackagesInput = {
@@ -30383,6 +36972,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedPackagesInput = {
@@ -30406,6 +36999,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type PackageCourseUpsertWithWhereUniqueWithoutPackageInput = {
@@ -30686,6 +37283,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedBlogPostsInput = {
@@ -30709,6 +37310,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedBlogPostsInput = {
@@ -30812,6 +37417,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedBlogPostsInput = {
@@ -30835,6 +37444,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type AuthorUpsertWithoutBlogPostsInput = {
@@ -30934,6 +37547,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedPagesInput = {
@@ -30957,6 +37574,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedPagesInput = {
@@ -31035,6 +37656,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedPagesInput = {
@@ -31058,6 +37683,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type SeoMetaUpsertWithoutPageInput = {
@@ -31126,6 +37755,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutAuthorProfileInput = {
@@ -31149,6 +37782,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutAuthorProfileInput = {
@@ -31232,6 +37869,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthorProfileInput = {
@@ -31255,6 +37896,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type BlogPostUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -31638,6 +38283,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedRevisionsInput = {
@@ -31661,6 +38310,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedRevisionsInput = {
@@ -31689,6 +38342,10 @@ export namespace Prisma {
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutReviewedRevisionsInput = {
@@ -31712,6 +38369,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutReviewedRevisionsInput = {
@@ -31740,6 +38401,10 @@ export namespace Prisma {
     createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutPublishedRevisionsInput = {
@@ -31763,6 +38428,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutPublishedRevisionsInput = {
@@ -31802,6 +38471,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedRevisionsInput = {
@@ -31825,6 +38498,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUpsertWithoutReviewedRevisionsInput = {
@@ -31859,6 +38536,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewedRevisionsInput = {
@@ -31882,6 +38563,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUpsertWithoutPublishedRevisionsInput = {
@@ -31916,6 +38601,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPublishedRevisionsInput = {
@@ -31939,6 +38628,10 @@ export namespace Prisma {
     createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutCreatedSectionsInput = {
@@ -31962,6 +38655,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutCreatedSectionsInput = {
@@ -31985,6 +38682,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutCreatedSectionsInput = {
@@ -32024,6 +38725,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedSectionsInput = {
@@ -32047,6 +38752,628 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserCreateWithoutQuickEditItemsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
+    createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutQuickEditItemsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseUncheckedCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
+    createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutQuickEditItemsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutQuickEditItemsInput, UserUncheckedCreateWithoutQuickEditItemsInput>
+  }
+
+  export type QuickEditRevisionCreateWithoutItemInput = {
+    id?: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    creator: UserCreateNestedOneWithoutQuickEditRevisionsInput
+  }
+
+  export type QuickEditRevisionUncheckedCreateWithoutItemInput = {
+    id?: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    createdById: string
+  }
+
+  export type QuickEditRevisionCreateOrConnectWithoutItemInput = {
+    where: QuickEditRevisionWhereUniqueInput
+    create: XOR<QuickEditRevisionCreateWithoutItemInput, QuickEditRevisionUncheckedCreateWithoutItemInput>
+  }
+
+  export type QuickEditRevisionCreateManyItemInputEnvelope = {
+    data: QuickEditRevisionCreateManyItemInput | QuickEditRevisionCreateManyItemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutQuickEditItemsInput = {
+    update: XOR<UserUpdateWithoutQuickEditItemsInput, UserUncheckedUpdateWithoutQuickEditItemsInput>
+    create: XOR<UserCreateWithoutQuickEditItemsInput, UserUncheckedCreateWithoutQuickEditItemsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutQuickEditItemsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutQuickEditItemsInput, UserUncheckedUpdateWithoutQuickEditItemsInput>
+  }
+
+  export type UserUpdateWithoutQuickEditItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutQuickEditItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUncheckedUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type QuickEditRevisionUpsertWithWhereUniqueWithoutItemInput = {
+    where: QuickEditRevisionWhereUniqueInput
+    update: XOR<QuickEditRevisionUpdateWithoutItemInput, QuickEditRevisionUncheckedUpdateWithoutItemInput>
+    create: XOR<QuickEditRevisionCreateWithoutItemInput, QuickEditRevisionUncheckedCreateWithoutItemInput>
+  }
+
+  export type QuickEditRevisionUpdateWithWhereUniqueWithoutItemInput = {
+    where: QuickEditRevisionWhereUniqueInput
+    data: XOR<QuickEditRevisionUpdateWithoutItemInput, QuickEditRevisionUncheckedUpdateWithoutItemInput>
+  }
+
+  export type QuickEditRevisionUpdateManyWithWhereWithoutItemInput = {
+    where: QuickEditRevisionScalarWhereInput
+    data: XOR<QuickEditRevisionUpdateManyMutationInput, QuickEditRevisionUncheckedUpdateManyWithoutItemInput>
+  }
+
+  export type QuickEditItemCreateWithoutRevisionsInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutQuickEditItemsInput
+  }
+
+  export type QuickEditItemUncheckedCreateWithoutRevisionsInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById: string
+  }
+
+  export type QuickEditItemCreateOrConnectWithoutRevisionsInput = {
+    where: QuickEditItemWhereUniqueInput
+    create: XOR<QuickEditItemCreateWithoutRevisionsInput, QuickEditItemUncheckedCreateWithoutRevisionsInput>
+  }
+
+  export type UserCreateWithoutQuickEditRevisionsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
+    createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutQuickEditRevisionsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseUncheckedCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
+    createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutQuickEditRevisionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutQuickEditRevisionsInput, UserUncheckedCreateWithoutQuickEditRevisionsInput>
+  }
+
+  export type QuickEditItemUpsertWithoutRevisionsInput = {
+    update: XOR<QuickEditItemUpdateWithoutRevisionsInput, QuickEditItemUncheckedUpdateWithoutRevisionsInput>
+    create: XOR<QuickEditItemCreateWithoutRevisionsInput, QuickEditItemUncheckedCreateWithoutRevisionsInput>
+    where?: QuickEditItemWhereInput
+  }
+
+  export type QuickEditItemUpdateToOneWithWhereWithoutRevisionsInput = {
+    where?: QuickEditItemWhereInput
+    data: XOR<QuickEditItemUpdateWithoutRevisionsInput, QuickEditItemUncheckedUpdateWithoutRevisionsInput>
+  }
+
+  export type QuickEditItemUpdateWithoutRevisionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutQuickEditItemsNestedInput
+  }
+
+  export type QuickEditItemUncheckedUpdateWithoutRevisionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUpsertWithoutQuickEditRevisionsInput = {
+    update: XOR<UserUpdateWithoutQuickEditRevisionsInput, UserUncheckedUpdateWithoutQuickEditRevisionsInput>
+    create: XOR<UserCreateWithoutQuickEditRevisionsInput, UserUncheckedCreateWithoutQuickEditRevisionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutQuickEditRevisionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutQuickEditRevisionsInput, UserUncheckedUpdateWithoutQuickEditRevisionsInput>
+  }
+
+  export type UserUpdateWithoutQuickEditRevisionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutQuickEditRevisionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUncheckedUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserCreateWithoutThemeSettingsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
+    createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutThemeSettingsInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseUncheckedCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
+    createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutThemeSettingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutThemeSettingsInput, UserUncheckedCreateWithoutThemeSettingsInput>
+  }
+
+  export type UserUpsertWithoutThemeSettingsInput = {
+    update: XOR<UserUpdateWithoutThemeSettingsInput, UserUncheckedUpdateWithoutThemeSettingsInput>
+    create: XOR<UserCreateWithoutThemeSettingsInput, UserUncheckedCreateWithoutThemeSettingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutThemeSettingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutThemeSettingsInput, UserUncheckedUpdateWithoutThemeSettingsInput>
+  }
+
+  export type UserUpdateWithoutThemeSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutThemeSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUncheckedUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserCreateWithoutLivePreviewTokensInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostCreateNestedManyWithoutCreatorInput
+    createdPages?: PageCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutLivePreviewTokensInput = {
+    id?: string
+    username: string
+    email?: string | null
+    passwordHash: string
+    role?: $Enums.UserRole
+    isActive?: boolean
+    lastLogin?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdCourses?: CourseUncheckedCreateNestedManyWithoutCreatorInput
+    createdLessons?: LessonUncheckedCreateNestedManyWithoutCreatorInput
+    createdPackages?: PackageUncheckedCreateNestedManyWithoutCreatorInput
+    createdBlogPosts?: BlogPostUncheckedCreateNestedManyWithoutCreatorInput
+    createdPages?: PageUncheckedCreateNestedManyWithoutCreatorInput
+    createdSections?: ContentSectionUncheckedCreateNestedManyWithoutCreatorInput
+    authorProfile?: AuthorUncheckedCreateNestedOneWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    createdRevisions?: RevisionUncheckedCreateNestedManyWithoutCreatorInput
+    reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
+    publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutLivePreviewTokensInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLivePreviewTokensInput, UserUncheckedCreateWithoutLivePreviewTokensInput>
+  }
+
+  export type UserUpsertWithoutLivePreviewTokensInput = {
+    update: XOR<UserUpdateWithoutLivePreviewTokensInput, UserUncheckedUpdateWithoutLivePreviewTokensInput>
+    create: XOR<UserCreateWithoutLivePreviewTokensInput, UserUncheckedCreateWithoutLivePreviewTokensInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLivePreviewTokensInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLivePreviewTokensInput, UserUncheckedUpdateWithoutLivePreviewTokensInput>
+  }
+
+  export type UserUpdateWithoutLivePreviewTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLivePreviewTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdCourses?: CourseUncheckedUpdateManyWithoutCreatorNestedInput
+    createdLessons?: LessonUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPackages?: PackageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdBlogPosts?: BlogPostUncheckedUpdateManyWithoutCreatorNestedInput
+    createdPages?: PageUncheckedUpdateManyWithoutCreatorNestedInput
+    createdSections?: ContentSectionUncheckedUpdateManyWithoutCreatorNestedInput
+    authorProfile?: AuthorUncheckedUpdateOneWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    createdRevisions?: RevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
+    publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutAuditLogsInput = {
@@ -32070,6 +39397,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -32093,6 +39424,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedCreateNestedManyWithoutReviewerInput
     publishedRevisions?: RevisionUncheckedCreateNestedManyWithoutPublisherInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    quickEditItems?: QuickEditItemUncheckedCreateNestedManyWithoutCreatorInput
+    quickEditRevisions?: QuickEditRevisionUncheckedCreateNestedManyWithoutCreatorInput
+    themeSettings?: ThemeSettingUncheckedCreateNestedManyWithoutCreatorInput
+    livePreviewTokens?: LivePreviewTokenUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -32132,6 +39467,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -32155,6 +39494,10 @@ export namespace Prisma {
     reviewedRevisions?: RevisionUncheckedUpdateManyWithoutReviewerNestedInput
     publishedRevisions?: RevisionUncheckedUpdateManyWithoutPublisherNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    quickEditItems?: QuickEditItemUncheckedUpdateManyWithoutCreatorNestedInput
+    quickEditRevisions?: QuickEditRevisionUncheckedUpdateManyWithoutCreatorNestedInput
+    themeSettings?: ThemeSettingUncheckedUpdateManyWithoutCreatorNestedInput
+    livePreviewTokens?: LivePreviewTokenUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type CourseCreateManyCreatorInput = {
@@ -32310,6 +39653,50 @@ export namespace Prisma {
   export type RefreshTokenCreateManyUserInput = {
     id?: string
     token: string
+    expiresAt: Date | string
+    createdAt?: Date | string
+  }
+
+  export type QuickEditItemCreateManyCreatorInput = {
+    id?: string
+    key: string
+    type: $Enums.QuickEditType
+    page: string
+    component: string
+    element: string
+    value: string
+    defaultValue: string
+    isActive?: boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QuickEditRevisionCreateManyCreatorInput = {
+    id?: string
+    itemId: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+  }
+
+  export type ThemeSettingCreateManyCreatorInput = {
+    id?: string
+    name: string
+    category: string
+    value: string
+    cssVariable: string
+    description?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LivePreviewTokenCreateManyCreatorInput = {
+    id?: string
+    token: string
+    page: string
+    changes: JsonNullValueInput | InputJsonValue
     expiresAt: Date | string
     createdAt?: Date | string
   }
@@ -32799,6 +40186,140 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type QuickEditItemUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revisions?: QuickEditRevisionUpdateManyWithoutItemNestedInput
+  }
+
+  export type QuickEditItemUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revisions?: QuickEditRevisionUncheckedUpdateManyWithoutItemNestedInput
+  }
+
+  export type QuickEditItemUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    type?: EnumQuickEditTypeFieldUpdateOperationsInput | $Enums.QuickEditType
+    page?: StringFieldUpdateOperationsInput | string
+    component?: StringFieldUpdateOperationsInput | string
+    element?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    defaultValue?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuickEditRevisionUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    item?: QuickEditItemUpdateOneRequiredWithoutRevisionsNestedInput
+  }
+
+  export type QuickEditRevisionUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuickEditRevisionUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    itemId?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThemeSettingUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThemeSettingUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ThemeSettingUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    cssVariable?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LivePreviewTokenUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LivePreviewTokenUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LivePreviewTokenUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    changes?: JsonNullValueInput | InputJsonValue
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LessonCreateManyCourseInput = {
     id?: string
     title: string
@@ -32962,6 +40483,38 @@ export namespace Prisma {
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuickEditRevisionCreateManyItemInput = {
+    id?: string
+    value: string
+    changeType: string
+    createdAt?: Date | string
+    createdById: string
+  }
+
+  export type QuickEditRevisionUpdateWithoutItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutQuickEditRevisionsNestedInput
+  }
+
+  export type QuickEditRevisionUncheckedUpdateWithoutItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QuickEditRevisionUncheckedUpdateManyWithoutItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    changeType?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdById?: StringFieldUpdateOperationsInput | string
   }
 

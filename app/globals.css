@@ -122,26 +122,26 @@
 
 @layer base {
   :root {
-    /* Premium Design System - Light Mode */
+    /* Premium Design System - Light Mode (Enhanced Contrast) */
     --background: 0 0% 100%; /* Pure white for premium feel */
-    --foreground: 0 0% 8%; /* Deep charcoal for premium text */
+    --foreground: 0 0% 4%; /* Near black for maximum contrast */
     --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 0 0% 8%; /* Deep charcoal text on cards */
+    --card-foreground: 0 0% 4%; /* Near black text on cards */
     --popover: 0 0% 100%; /* Pure white popovers */
-    --popover-foreground: 0 0% 8%; /* Deep charcoal text */
-    --primary: 45 67% 50%; /* Premium golden olive */
+    --popover-foreground: 0 0% 4%; /* Near black text */
+    --primary: 45 67% 45%; /* Darker golden olive for better contrast */
     --primary-foreground: 0 0% 100%; /* White text on primary */
-    --secondary: 0 30% 20%; /* Deep maroon secondary */
+    --secondary: 0 30% 15%; /* Darker deep maroon for better contrast */
     --secondary-foreground: 0 0% 100%; /* White text on secondary */
     --muted: 0 0% 96%; /* Light gray for muted elements */
-    --muted-foreground: 0 0% 45%; /* Medium gray text */
-    --accent: 20 80% 50%; /* Copper orange accent */
+    --muted-foreground: 0 0% 35%; /* Darker gray text for better contrast */
+    --accent: 20 80% 45%; /* Darker copper orange for better contrast */
     --accent-foreground: 0 0% 100%; /* White text on accent */
     --destructive: 0 74% 50%; /* Red for destructive actions */
     --destructive-foreground: 0 0% 100%; /* White text */
-    --border: 0 0% 90%; /* Light border */
+    --border: 0 0% 85%; /* Darker border for better visibility */
     --input: 0 0% 96%; /* Light input background */
-    --ring: 45 67% 50%; /* Golden olive focus ring */
+    --ring: 45 67% 45%; /* Darker golden olive focus ring */
     --radius: 0.75rem; /* 12px */
     
     /* Premium Design System Core Colors - Light Mode */
@@ -261,38 +261,38 @@
   }
 
   .dark {
-    /* Premium Design System - Dark Mode */
-    --background: 0 0% 9%; /* Deep charcoal background */
-    --foreground: 0 0% 95%; /* Near white text */
-    --card: 0 0% 12%; /* Dark card background */
-    --card-foreground: 0 0% 95%; /* Near white text on cards */
-    --popover: 0 0% 12%; /* Dark popover background */
-    --popover-foreground: 0 0% 95%; /* Near white text */
-    --primary: 45 67% 75%; /* Lighter golden olive for dark mode */
-    --primary-foreground: 0 0% 9%; /* Dark text on primary */
-    --secondary: 0 30% 40%; /* Lighter deep maroon */
-    --secondary-foreground: 0 0% 95%; /* Near white text */
-    --muted: 0 0% 20%; /* Dark muted background */
-    --muted-foreground: 0 0% 65%; /* Medium gray text */
-    --accent: 20 80% 70%; /* Lighter copper orange */
-    --accent-foreground: 0 0% 9%; /* Dark text on accent */
-    --destructive: 0 72% 51%; /* Red for destructive actions */
-    --destructive-foreground: 0 0% 95%; /* Near white text */
-    --border: 0 0% 20%; /* Dark border */
-    --input: 0 0% 20%; /* Dark input background */
-    --ring: 45 67% 75%; /* Lighter golden olive focus ring */
+    /* Premium Design System - Dark Mode with High Contrast */
+    --background: 0 0% 5%; /* Very dark background for maximum contrast */
+    --foreground: 0 0% 98%; /* Near white text for maximum readability */
+    --card: 0 0% 8%; /* Dark card background with better contrast */
+    --card-foreground: 0 0% 98%; /* Near white text on cards */
+    --popover: 0 0% 8%; /* Dark popover background */
+    --popover-foreground: 0 0% 98%; /* Near white text */
+    --primary: 45 67% 80%; /* Brighter golden olive for better visibility */
+    --primary-foreground: 0 0% 5%; /* Very dark text on primary */
+    --secondary: 0 30% 50%; /* Lighter deep maroon for better contrast */
+    --secondary-foreground: 0 0% 98%; /* Near white text */
+    --muted: 0 0% 15%; /* Darker muted background */
+    --muted-foreground: 0 0% 80%; /* Lighter gray text for better readability */
+    --accent: 20 80% 75%; /* Brighter copper orange */
+    --accent-foreground: 0 0% 5%; /* Very dark text on accent */
+    --destructive: 0 72% 65%; /* Brighter red for better visibility */
+    --destructive-foreground: 0 0% 98%; /* Near white text */
+    --border: 0 0% 18%; /* Darker border for better definition */
+    --input: 0 0% 12%; /* Darker input background */
+    --ring: 45 67% 80%; /* Brighter golden olive focus ring */
     
-    /* Premium Design System Core Colors - Dark Mode */
-    --premium-bg-primary: 0 0% 9%; /* Deep charcoal background */
-    --premium-bg-secondary: 0 0% 12%; /* Dark secondary background */
-    --premium-text-primary: 0 0% 95%; /* Near white primary text */
-    --premium-text-secondary: 0 0% 80%; /* Light gray secondary text */
-    --premium-border: 0 0% 20%; /* Dark borders */
-    --premium-accent-primary: 45 67% 75%; /* Lighter golden olive */
-    --premium-accent-secondary: 0 30% 40%; /* Lighter deep maroon */
-    --premium-success: 142 70% 54%; /* Green for success */
-    --premium-warning: 38 92% 58%; /* Orange for warnings */
-    --premium-error: 0 72% 51%; /* Red for errors */
+    /* Premium Design System Core Colors - Dark Mode with High Contrast */
+    --premium-bg-primary: 0 0% 5%; /* Very dark background for maximum contrast */
+    --premium-bg-secondary: 0 0% 8%; /* Dark secondary background with better contrast */
+    --premium-text-primary: 0 0% 98%; /* Near white primary text for maximum readability */
+    --premium-text-secondary: 0 0% 85%; /* Lighter gray secondary text for better readability */
+    --premium-border: 0 0% 18%; /* Darker borders for better definition */
+    --premium-accent-primary: 45 67% 80%; /* Brighter golden olive for better visibility */
+    --premium-accent-secondary: 0 30% 50%; /* Lighter deep maroon for better contrast */
+    --premium-success: 142 70% 65%; /* Brighter green for better visibility */
+    --premium-warning: 38 92% 70%; /* Brighter orange for better visibility */
+    --premium-error: 0 72% 65%; /* Brighter red for better visibility */
     
     /* School of Sanskrit Color System - Dark Mode */
     /* 1. Teal (primary card color) - brighter */
@@ -2037,11 +2037,12 @@
   
   /* Card System with School of Sanskrit Colors */
   .card-sanskrit {
-    background-color: hsl(var(--teal-primary));
+    background: linear-gradient(135deg, hsl(var(--teal-primary)) 0%, hsl(var(--deep-maroon)) 100%);
     border-radius: 1.25rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
     color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
   
   .card-sanskrit:hover {
@@ -2050,12 +2051,13 @@
   }
   
   .card-sanskrit-back {
-    background-color: white;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border: 2px solid hsl(var(--teal-primary));
     border-radius: 1.25rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
-    color: hsl(var(--dark-text));
+    color: #1e293b;
+    font-weight: 600;
   }
   
   .card-sanskrit-back:hover {
@@ -2412,6 +2414,123 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* High Contrast Utility Classes for Accessibility */
+@layer utilities {
+  /* High contrast text colors */
+  .text-high-contrast {
+    @apply text-foreground;
+  }
+  
+  .text-high-contrast-light {
+    color: hsl(0 0% 5%); /* Very dark text for light backgrounds */
+  }
+  
+  .text-high-contrast-dark {
+    color: hsl(0 0% 98%); /* Near white text for dark backgrounds */
+  }
+  
+  /* High contrast background colors */
+  .bg-high-contrast {
+    @apply bg-background;
+  }
+  
+  .bg-high-contrast-light {
+    background-color: hsl(0 0% 100%); /* Pure white background */
+  }
+  
+  .bg-high-contrast-dark {
+    background-color: hsl(0 0% 5%); /* Very dark background */
+  }
+  
+  /* High contrast borders */
+  .border-high-contrast {
+    @apply border-border;
+  }
+  
+  .border-high-contrast-light {
+    border-color: hsl(0 0% 20%); /* Dark borders for light theme */
+  }
+  
+  .border-high-contrast-dark {
+    border-color: hsl(0 0% 80%); /* Light borders for dark theme */
+  }
+  
+  /* High contrast focus states */
+  .focus-high-contrast:focus {
+    outline: 2px solid hsl(45 67% 50%);
+    outline-offset: 2px;
+  }
+  
+  .focus-high-contrast-light:focus {
+    outline: 2px solid hsl(0 0% 20%);
+    outline-offset: 2px;
+  }
+  
+  .focus-high-contrast-dark:focus {
+    outline: 2px solid hsl(0 0% 80%);
+    outline-offset: 2px;
+  }
+  
+  /* High contrast links */
+  .link-high-contrast {
+    color: hsl(45 67% 50%);
+    text-decoration: underline;
+  }
+  
+  .link-high-contrast:hover {
+    color: hsl(45 67% 40%);
+  }
+  
+  .link-high-contrast-light {
+    color: hsl(0 0% 20%);
+    text-decoration: underline;
+  }
+  
+  .link-high-contrast-light:hover {
+    color: hsl(0 0% 10%);
+  }
+  
+  .link-high-contrast-dark {
+    color: hsl(0 0% 90%);
+    text-decoration: underline;
+  }
+  
+  .link-high-contrast-dark:hover {
+    color: hsl(0 0% 100%);
+  }
+  
+  /* High contrast buttons */
+  .btn-high-contrast {
+    @apply bg-primary text-primary-foreground border-2 border-primary;
+  }
+  
+  .btn-high-contrast:hover {
+    @apply bg-primary/90;
+  }
+  
+  .btn-high-contrast-light {
+    background-color: hsl(0 0% 20%);
+    color: hsl(0 0% 100%);
+    border: 2px solid hsl(0 0% 20%);
+  }
+  
+  .btn-high-contrast-light:hover {
+    background-color: hsl(0 0% 10%);
+    border-color: hsl(0 0% 10%);
+  }
+  
+  .btn-high-contrast-dark {
+    background-color: hsl(0 0% 90%);
+    color: hsl(0 0% 5%);
+    border: 2px solid hsl(0 0% 90%);
+  }
+  
+  .btn-high-contrast-dark:hover {
+    background-color: hsl(0 0% 100%);
+    border-color: hsl(0 0% 100%);
   }
 }
 

@@ -60,7 +60,7 @@ export default function Header() {
               <span className="font-display text-2xl font-bold bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent tracking-wide">
                 शिक्षणम्
               </span>
-              <span className="font-display text-sm font-medium text-golden-olive tracking-wider">
+              <span className="font-display text-sm font-medium text-high-contrast tracking-wider">
                 Shikshanam
               </span>
             </div>
@@ -89,7 +89,7 @@ export default function Header() {
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="premium-nav-item font-medium flex items-center space-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-3 py-2"
+                  className="premium-nav-item font-medium flex items-center space-x-1 text-high-contrast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-3 py-2"
                 >
                   <item.icon className="w-4 h-4" />
                   <span>{item.name}</span>
@@ -117,7 +117,7 @@ export default function Header() {
               className="p-2 rounded-xl hover:bg-premium-accent-primary/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 premium-text-primary" />
+              <Search className="w-5 h-5 text-high-contrast" />
             </motion.button>
 
             {/* Theme Toggle - Hidden on excluded pages */}

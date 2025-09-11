@@ -36,6 +36,10 @@ model User {
   reviewedRevisions Revision[]    @relation("RevisionReviewer")
   publishedRevisions Revision[]   @relation("RevisionPublisher")
   refreshTokens     RefreshToken[]
+  quickEditItems    QuickEditItem[] @relation("QuickEditCreator")
+  quickEditRevisions QuickEditRevision[] @relation("QuickEditRevisionCreator")
+  themeSettings     ThemeSetting[] @relation("ThemeSettingCreator")
+  livePreviewTokens LivePreviewToken[] @relation("LivePreviewCreator")
 
   @@map("users")
 }
@@ -328,6 +332,79 @@ model ContentSection {
   @@map("content_sections")
 }
 
+// Quick Edit System for Text, Colors, and Buttons
+model QuickEditItem {
+  id          String   @id @default(cuid())
+  key         String   @unique // Unique identifier for the editable item
+  type        QuickEditType
+  page        String   // Page path (e.g., "/", "/about", "/courses")
+  component   String   // Component name (e.g., "Hero", "Footer", "Header")
+  element     String   // Element identifier within component
+  value       String   // Current value (text, color, etc.)
+  defaultValue String  // Default/fallback value
+  isActive    Boolean  @default(true)
+  metadata    Json?    // Additional metadata (CSS classes, validation rules, etc.)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String
+
+  // Relations
+  creator     User     @relation("QuickEditCreator", fields: [createdById], references: [id])
+  revisions   QuickEditRevision[]
+
+  @@map("quick_edit_items")
+}
+
+model QuickEditRevision {
+  id          String   @id @default(cuid())
+  itemId      String
+  value       String   // Previous value
+  changeType  String   // "text", "color", "button_label", etc.
+  createdAt   DateTime @default(now())
+  createdById String
+
+  // Relations
+  item        QuickEditItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  creator     User          @relation("QuickEditRevisionCreator", fields: [createdById], references: [id])
+
+  @@map("quick_edit_revisions")
+}
+
+// Theme and Color Management
+model ThemeSetting {
+  id          String   @id @default(cuid())
+  name        String   @unique // e.g., "primary", "secondary", "accent"
+  category    String   // e.g., "colors", "typography", "spacing"
+  value       String   // CSS value (e.g., "#3B82F6", "16px", "1.5rem")
+  cssVariable String   // CSS custom property name (e.g., "--color-primary")
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String
+
+  // Relations
+  creator     User     @relation("ThemeSettingCreator", fields: [createdById], references: [id])
+
+  @@map("theme_settings")
+}
+
+// Live Preview Tokens for instant preview
+model LivePreviewToken {
+  id          String   @id @default(cuid())
+  token       String   @unique
+  page        String   // Page being previewed
+  changes     Json     // Pending changes
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  createdById String
+
+  // Relations
+  creator     User     @relation("LivePreviewCreator", fields: [createdById], references: [id])
+
+  @@map("live_preview_tokens")
+}
+
 // Audit & Analytics
 model AuditLog {
   id        String   @id @default(cuid())
@@ -378,4 +455,17 @@ enum PackageType {
   FREE
   PREMIUM
   PRO_MAX
+}
+
+enum QuickEditType {
+  TEXT
+  COLOR
+  BUTTON_LABEL
+  BUTTON_COLOR
+  BACKGROUND_COLOR
+  FONT_SIZE
+  FONT_WEIGHT
+  SPACING
+  BORDER_RADIUS
+  SHADOW
 }

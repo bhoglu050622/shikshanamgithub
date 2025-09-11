@@ -101,6 +101,16 @@ export function verifyRefreshToken(token: string): { userId: string } {
 export async function getUserFromRequest(request: NextRequest): Promise<AuthUser> {
   const authHeader = request.headers.get('authorization')
   
+  // Development bypass - allow access without authentication in development
+  if (process.env.NODE_ENV === 'development' && !authHeader) {
+    return {
+      id: 'dev-user',
+      username: 'developer',
+      role: 'ADMIN' as UserRole,
+      email: 'dev@shikshanam.com',
+    }
+  }
+  
   if (!authHeader?.startsWith('Bearer ')) {
     throw new AuthError('No authorization header', 401)
   }

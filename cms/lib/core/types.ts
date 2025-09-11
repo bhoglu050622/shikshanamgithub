@@ -317,7 +317,7 @@ export interface UpdatePackageData extends Partial<CreatePackageData> {
 // Real-time event types
 export interface CMSEvent {
   type: 'create' | 'update' | 'delete' | 'publish' | 'unpublish' | 'status_change'
-  entity: 'course' | 'lesson' | 'package' | 'blog' | 'page' | 'user' | 'media' | 'section'
+  entity: 'course' | 'lesson' | 'package' | 'blog' | 'page' | 'user' | 'media' | 'section' | 'quick_edit' | 'live_preview'
   entityId: string
   data?: any
   timestamp: Date

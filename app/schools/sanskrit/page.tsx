@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import SchoolOfSanskritPage from '@/components/sections/SchoolOfSanskritPage'
 
 export const metadata: Metadata = {
-  title: 'School of Sanskrit - Shikshanam | Learn Sanskrit Online',
-  description: 'Master Sanskrit through structured learning paths, live classes, and AI-powered practice. Join our School of Sanskrit for grammar, conversation, and spiritual wisdom.',
+  title: 'Unlock the Language of the Gods - Shikshanam | Learn Sanskrit Online',
+  description: 'Master Sanskrit through structured learning paths, live classes, and AI-powered practice. Unlock the Language of the Gods for grammar, conversation, and spiritual wisdom.',
   keywords: 'Sanskrit learning, Sanskrit grammar, Sanskrit conversation, Devanagari, Vedic knowledge, Sanskrit courses, Sanskrit teachers',
   openGraph: {
-    title: 'School of Sanskrit - Shikshanam',
+    title: 'Unlock the Language of the Gods - Shikshanam',
     description: 'Master Sanskrit through structured learning paths, live classes, and AI-powered practice.',
     url: 'https://shikshanam.com/schools/sanskrit',
     images: [
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
         url: '/og-sanskrit-school.jpg',
         width: 1200,
         height: 630,
-        alt: 'School of Sanskrit - Shikshanam',
+        alt: 'Unlock the Language of the Gods - Shikshanam',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'School of Sanskrit - Shikshanam',
+    title: 'Unlock the Language of the Gods - Shikshanam',
     description: 'Master Sanskrit through structured learning paths, live classes, and AI-powered practice.',
     images: ['/og-sanskrit-school.jpg'],
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Course",
-  "name": "School of Sanskrit",
+  "name": "Unlock the Language of the Gods",
   "description": "Comprehensive Sanskrit learning program covering grammar, conversation, and spiritual wisdom",
   "provider": {
     "@type": "EducationalOrganization",
@@ -84,7 +84,7 @@ const breadcrumbData = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "School of Sanskrit",
+      "name": "Unlock the Language of the Gods",
       "item": "https://shikshanam.com/schools/sanskrit"
     }
   ]

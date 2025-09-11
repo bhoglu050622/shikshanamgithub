@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Volume2, VolumeX, Star, Trophy, Sparkles, CheckCircle, RotateCcw } from 'lucide-react'
+import { Star, Trophy, Sparkles, CheckCircle, RotateCcw } from 'lucide-react'
 
 // Enhanced flashcards data with additional properties
 const flashcardsData = [
@@ -132,26 +132,11 @@ interface FlashcardProps {
 }
 
 function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: FlashcardProps) {
-  const [isPlaying, setIsPlaying] = useState(false)
   const [showCelebration, setShowCelebration] = useState(false)
 
   const handleFlip = () => {
     onFlip()
-    if (!isFlipped && !isCompleted) {
-      // Mark as completed when first flipped
-      setTimeout(() => {
-        onComplete()
-        setShowCelebration(true)
-        setTimeout(() => setShowCelebration(false), 2000)
-      }, 500)
-    }
-  }
-
-  const playAudio = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setIsPlaying(true)
-    // Simulate audio playback
-    setTimeout(() => setIsPlaying(false), 2000)
+    // Remove automatic completion - cards should only complete when user clicks the checkmark
   }
 
   return (
@@ -218,34 +203,19 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
             <div className="card-sanskrit w-full h-full flex flex-col justify-between p-6 relative overflow-hidden">
               {/* Category Badge */}
               <div className="absolute top-3 left-3">
-                <span className="bg-golden-olive/20 text-deep-maroon px-2 py-1 rounded-full text-xs font-medium">
+                <span className="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-medium">
                   {card.category}
                 </span>
               </div>
 
-              {/* Audio Button */}
-              <div className="absolute top-3 right-3">
-                <motion.button
-                  onClick={playAudio}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 bg-golden-olive/20 text-deep-maroon rounded-full flex items-center justify-center hover:bg-golden-olive/30 transition-colors"
-                >
-                  {isPlaying ? (
-                    <VolumeX className="w-4 h-4" />
-                  ) : (
-                    <Volume2 className="w-4 h-4" />
-                  )}
-                </motion.button>
-              </div>
 
               {/* Main Content */}
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-lg font-semibold leading-relaxed text-dark-text mb-2">
+                  <div className="text-lg font-semibold leading-relaxed text-white mb-2">
                     {card.english}
                   </div>
-                  <div className="text-sm text-muted-gray">
+                  <div className="text-sm text-white/80">
                     Tap to reveal Sanskrit
                   </div>
                 </div>
@@ -253,8 +223,8 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
 
               {/* XP Indicator */}
               <div className="flex items-center justify-center space-x-1">
-                <Star className="w-4 h-4 text-yellow-500" />
-                <span className="text-sm font-medium text-yellow-600">{card.xp} XP</span>
+                <Star className="w-4 h-4 text-yellow-300" />
+                <span className="text-sm font-medium text-yellow-200">{card.xp} XP</span>
               </div>
             </div>
           </div>
@@ -266,8 +236,8 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
               <div className="absolute top-3 left-3">
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                   card.difficulty === 'beginner' 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-orange-100 text-orange-700'
+                    ? 'bg-green-200 text-green-800' 
+                    : 'bg-orange-200 text-orange-800'
                 }`}>
                   {card.difficulty}
                 </span>
@@ -282,7 +252,7 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
                   }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 bg-white/20 text-white rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                  className="w-8 h-8 bg-slate-200/80 text-slate-700 rounded-full flex items-center justify-center hover:bg-slate-300/80 transition-colors"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </motion.button>
@@ -290,17 +260,37 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
 
               {/* Main Content */}
               <div className="flex-1 flex flex-col items-center justify-center text-center">
-                <div className="text-2xl font-bold mb-3 font-devanagari text-white">
+                <div className="text-2xl font-bold mb-3 font-devanagari text-slate-800">
                   {card.sanskrit}
                 </div>
-                <div className="text-sm text-white/80 mb-2">
+                <div className="text-sm text-slate-600 mb-2">
                   {card.transliteration}
                 </div>
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-slate-500">
                   {card.english}
                 </div>
               </div>
 
+              {/* Manual Completion Button */}
+              {!isCompleted && (
+                <div className="flex items-center justify-center">
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onComplete()
+                      setShowCelebration(true)
+                      setTimeout(() => setShowCelebration(false), 2000)
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Got it!</span>
+                  </motion.button>
+                </div>
+              )}
+              
               {/* Completion Status */}
               {isCompleted && (
                 <div className="flex items-center justify-center space-x-1">
@@ -317,46 +307,77 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
 }
 
 export default function FlashcardGrid() {
-  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
-  const [completedCards, setCompletedCards] = useState<Set<number>>(new Set())
+  const [currentCards, setCurrentCards] = useState<number[]>([0, 1, 2]) // Track current 3 card indices
+  const [flippedCardId, setFlippedCardId] = useState<number | null>(null) // Track which card is currently flipped
+  const [usedCardIds, setUsedCardIds] = useState<Set<number>>(new Set([0, 1, 2])) // Track which cards have been used
   const [totalXP, setTotalXP] = useState(0)
   const [showLevelUp, setShowLevelUp] = useState(false)
 
+  // Function to get a random unused card
+  const getRandomUnusedCard = () => {
+    const availableCards = flashcardsData.filter((_, index) => !usedCardIds.has(index))
+    if (availableCards.length === 0) {
+      // If all cards have been used, reset the used cards set
+      setUsedCardIds(new Set())
+      return Math.floor(Math.random() * flashcardsData.length)
+    }
+    const randomIndex = Math.floor(Math.random() * availableCards.length)
+    return flashcardsData.findIndex(card => card.id === availableCards[randomIndex].id)
+  }
+
   const handleFlip = (cardId: number) => {
-    setFlippedCards(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(cardId)) {
-        newSet.delete(cardId)
-      } else {
-        newSet.add(cardId)
+    if (flippedCardId === cardId) {
+      // If clicking the same card, do nothing - keep it flipped
+      return
+    } else {
+      // If clicking a different card
+      if (flippedCardId !== null) {
+        // Replace the previously flipped card with a new random card
+        const newCardIndex = getRandomUnusedCard()
+        const currentCardIndex = currentCards.findIndex(index => flashcardsData[index].id === flippedCardId)
+        
+        if (currentCardIndex !== -1) {
+          const newCurrentCards = [...currentCards]
+          newCurrentCards[currentCardIndex] = newCardIndex
+          setCurrentCards(newCurrentCards)
+          setUsedCardIds(prev => new Set([...prev, newCardIndex]))
+        }
       }
-      return newSet
-    })
+      setFlippedCardId(cardId)
+    }
   }
 
   const handleComplete = (cardId: number) => {
-    if (!completedCards.has(cardId)) {
-      const card = flashcardsData.find(c => c.id === cardId)
-      if (card) {
-        setCompletedCards(prev => new Set([...prev, cardId]))
-        setTotalXP(prev => {
-          const newXP = prev + (card.xp || 0)
-          // Check for level up (every 100 XP)
-          if (Math.floor(newXP / 100) > Math.floor(prev / 100)) {
-            setShowLevelUp(true)
-            setTimeout(() => setShowLevelUp(false), 3000)
-          }
-          return newXP
-        })
+    const card = flashcardsData.find(c => c.id === cardId)
+    if (card) {
+      setTotalXP(prev => {
+        const newXP = prev + (card.xp || 0)
+        // Check for level up (every 100 XP)
+        if (Math.floor(newXP / 100) > Math.floor(prev / 100)) {
+          setShowLevelUp(true)
+          setTimeout(() => setShowLevelUp(false), 3000)
+        }
+        return newXP
+      })
+      
+      // Replace the completed card with a new random card
+      const newCardIndex = getRandomUnusedCard()
+      const currentCardIndex = currentCards.findIndex(index => flashcardsData[index].id === cardId)
+      
+      if (currentCardIndex !== -1) {
+        const newCurrentCards = [...currentCards]
+        newCurrentCards[currentCardIndex] = newCardIndex
+        setCurrentCards(newCurrentCards)
+        setUsedCardIds(prev => new Set([...prev, newCardIndex]))
+        setFlippedCardId(null) // Reset flipped state
       }
     }
   }
 
-  const progress = (completedCards.size / flashcardsData.length) * 100
   const currentLevel = Math.floor(totalXP / 100) + 1
 
   return (
-    <section className="section-padding bg-parchment-ivory relative overflow-hidden">
+    <section className="pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 bg-parchment-ivory relative overflow-hidden">
       {/* Level Up Animation */}
       <AnimatePresence>
         {showLevelUp && (
@@ -399,7 +420,8 @@ export default function FlashcardGrid() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center space-x-4 bg-white/80 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg border border-golden-olive/20 mb-6">
+{/* Progress indicator hidden */}
+          {/* <div className="inline-flex items-center space-x-4 bg-white/80 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg border border-golden-olive/20 mb-6">
             <div className="flex items-center space-x-2">
               <Trophy className="w-6 h-6 text-yellow-500" />
               <span className="font-bold text-lg">Level {currentLevel}</span>
@@ -414,7 +436,7 @@ export default function FlashcardGrid() {
               <CheckCircle className="w-5 h-5 text-green-500" />
               <span className="font-semibold">{completedCards.size}/{flashcardsData.length}</span>
             </div>
-          </div>
+          </div> */}
 
           <h2 className="text-display text-dark-text mb-4">
             Play & Learn
@@ -424,68 +446,41 @@ export default function FlashcardGrid() {
             then practice with audio and quizzes.
           </p>
 
-          {/* Progress Bar */}
-          <div className="max-w-md mx-auto">
-            <div className="flex justify-between text-sm text-muted-gray mb-2">
-              <span>Progress</span>
-              <span>{Math.round(progress)}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="h-full bg-gradient-to-r from-golden-olive to-deep-maroon rounded-full"
-              />
-            </div>
-          </div>
         </motion.div>
 
-        {/* Enhanced Flashcard Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {flashcardsData.map((card, index) => (
-            <Flashcard
-              key={card.id}
-              card={card}
-              index={index}
-              isFlipped={flippedCards.has(card.id)}
-              isCompleted={completedCards.has(card.id)}
-              onFlip={() => handleFlip(card.id)}
-              onComplete={() => handleComplete(card.id)}
-            />
-          ))}
+        {/* Dynamic 3-Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {currentCards.map((cardIndex, index) => {
+            const card = flashcardsData[cardIndex]
+            return (
+              <Flashcard
+                key={`${card.id}-${cardIndex}-${index}`} // Unique key for dynamic cards
+                card={card}
+                index={index}
+                isFlipped={flippedCardId === card.id}
+                isCompleted={false} // No completion state in dynamic mode
+                onFlip={() => handleFlip(card.id)}
+                onComplete={() => handleComplete(card.id)}
+              />
+            )
+          })}
         </div>
 
-        {/* Completion Celebration */}
-        {completedCards.size === flashcardsData.length && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mt-12 text-center"
-          >
-            <div className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-6 rounded-3xl shadow-2xl inline-block">
-              <div className="flex items-center space-x-3">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  <Trophy className="w-8 h-8" />
-                </motion.div>
-                <div>
-                  <h3 className="text-2xl font-bold">Congratulations!</h3>
-                  <p className="text-lg opacity-90">You've completed all flashcards!</p>
-                </div>
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  <Trophy className="w-8 h-8" />
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
-        )}
+        {/* Dynamic Learning Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="text-center mt-12"
+        >
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl px-8 py-6 shadow-lg border border-golden-olive/20 max-w-2xl mx-auto">
+            <Sparkles className="w-12 h-12 text-golden-olive mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-dark-text mb-2">Keep Learning!</h3>
+            <p className="text-muted-gray">
+              Click any card to reveal the answer. When you click another card, the previous one will reshuffle with a new question!
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

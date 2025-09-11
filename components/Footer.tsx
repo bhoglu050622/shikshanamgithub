@@ -140,7 +140,7 @@ export default function Footer() {
                 Shikshanam
               </span>
             </div>
-            <p className="text-white/90 mb-6 leading-relaxed">
+            <p className="text-white mb-6 leading-relaxed">
               Preserving and sharing ancient Indian wisdom with the modern world. Join us in this noble mission of cultural preservation and spiritual growth.
             </p>
             
@@ -150,10 +150,11 @@ export default function Footer() {
                 <a
                   key={index}
                   href={contact.href}
-                  className="flex items-center space-x-3 text-sand-beige hover:text-temple-gold transition-colors duration-200"
+                  className="flex items-center space-x-3 text-white hover:text-temple-gold transition-colors duration-200"
+                  style={{ color: '#ffffff' }}
                 >
                   <contact.icon className="w-4 h-4 text-temple-gold" />
-                  <span className="text-sm">{contact.text}</span>
+                  <span className="text-sm font-medium" style={{ color: '#ffffff' }}>{contact.text}</span>
                 </a>
               ))}
             </div>
@@ -164,7 +165,7 @@ export default function Footer() {
             <div
               key={category}
             >
-              <h3 className="font-semibold text-sand-beige mb-4">{category}</h3>
+              <h3 className="font-semibold text-white mb-4">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link, linkIndex) => (
                   <div
@@ -177,7 +178,7 @@ export default function Footer() {
                         link_href: link.href,
                         section: category
                       })}
-                      className="text-white/80 hover:text-white transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
+                      className="text-white hover:text-temple-gold transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
                     >
                       {link.name}
                     </a>
@@ -196,7 +197,7 @@ export default function Footer() {
             <h3 className="font-serif text-2xl font-bold text-white mb-4">
               Stay Updated with Ancient Wisdom
             </h3>
-            <p className="text-sand-beige mb-6">
+            <p className="text-white mb-6">
               Get weekly insights, course updates, and spiritual wisdom delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -220,7 +221,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <div
-              className="text-sand-beige text-sm"
+              className="text-white text-sm"
             >
               © 2024 Shikshanam. All rights reserved. Made with{' '}
               <Heart className="w-4 h-4 text-temple-gold inline" /> in India.
@@ -234,7 +235,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`w-10 h-10 bg-sand-beige/10 rounded-2xl flex items-center justify-center text-sand-beige hover:text-temple-gold transition-all duration-200 hover:bg-sand-beige/20`}
+                  className={`w-10 h-10 bg-sand-beige/10 rounded-2xl flex items-center justify-center text-white hover:text-temple-gold transition-all duration-200 hover:bg-sand-beige/20`}
                   title={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -245,33 +246,33 @@ export default function Footer() {
 
           {/* Additional Links */}
           <div
-            className="flex flex-wrap justify-center gap-6 mt-6 text-sand-beige text-sm"
+            className="flex flex-wrap justify-center gap-6 mt-6 text-white text-sm"
           >
             <a 
               href={ROUTES.PRIVACY} 
               onClick={() => trackEvent('footer_legal_click', { link: 'privacy' })}
-              className="hover:text-parchment-ivory transition-colors duration-200"
+              className="hover:text-temple-gold transition-colors duration-200"
             >
               Privacy Policy
             </a>
             <a 
               href={ROUTES.TERMS} 
               onClick={() => trackEvent('footer_legal_click', { link: 'terms' })}
-              className="hover:text-parchment-ivory transition-colors duration-200"
+              className="hover:text-temple-gold transition-colors duration-200"
             >
               Terms of Service
             </a>
             <a 
               href="#cookies" 
               onClick={() => trackEvent('footer_legal_click', { link: 'cookies' })}
-              className="hover:text-parchment-ivory transition-colors duration-200"
+              className="hover:text-temple-gold transition-colors duration-200"
             >
               Cookie Policy
             </a>
             <a 
               href={ROUTES.ACCESSIBILITY} 
               onClick={() => trackEvent('footer_legal_click', { link: 'accessibility' })}
-              className="hover:text-parchment-ivory transition-colors duration-200"
+              className="hover:text-temple-gold transition-colors duration-200"
             >
               Accessibility
             </a>

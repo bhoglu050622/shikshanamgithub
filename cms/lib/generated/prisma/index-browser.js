@@ -325,6 +325,54 @@ exports.Prisma.ContentSectionScalarFieldEnum = {
   createdById: 'createdById'
 };
 
+exports.Prisma.QuickEditItemScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  type: 'type',
+  page: 'page',
+  component: 'component',
+  element: 'element',
+  value: 'value',
+  defaultValue: 'defaultValue',
+  isActive: 'isActive',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdById: 'createdById'
+};
+
+exports.Prisma.QuickEditRevisionScalarFieldEnum = {
+  id: 'id',
+  itemId: 'itemId',
+  value: 'value',
+  changeType: 'changeType',
+  createdAt: 'createdAt',
+  createdById: 'createdById'
+};
+
+exports.Prisma.ThemeSettingScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  category: 'category',
+  value: 'value',
+  cssVariable: 'cssVariable',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdById: 'createdById'
+};
+
+exports.Prisma.LivePreviewTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  page: 'page',
+  changes: 'changes',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  createdById: 'createdById'
+};
+
 exports.Prisma.AuditLogScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -410,6 +458,19 @@ exports.RevisionStatus = exports.$Enums.RevisionStatus = {
   PUBLISHED: 'PUBLISHED'
 };
 
+exports.QuickEditType = exports.$Enums.QuickEditType = {
+  TEXT: 'TEXT',
+  COLOR: 'COLOR',
+  BUTTON_LABEL: 'BUTTON_LABEL',
+  BUTTON_COLOR: 'BUTTON_COLOR',
+  BACKGROUND_COLOR: 'BACKGROUND_COLOR',
+  FONT_SIZE: 'FONT_SIZE',
+  FONT_WEIGHT: 'FONT_WEIGHT',
+  SPACING: 'SPACING',
+  BORDER_RADIUS: 'BORDER_RADIUS',
+  SHADOW: 'SHADOW'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
@@ -427,6 +488,10 @@ exports.Prisma.ModelName = {
   Snippet: 'Snippet',
   Redirect: 'Redirect',
   ContentSection: 'ContentSection',
+  QuickEditItem: 'QuickEditItem',
+  QuickEditRevision: 'QuickEditRevision',
+  ThemeSetting: 'ThemeSetting',
+  LivePreviewToken: 'LivePreviewToken',
   AuditLog: 'AuditLog'
 };
 
