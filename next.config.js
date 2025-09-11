@@ -65,7 +65,29 @@ const nextConfig = {
         fs: false,
         net: false,
         tls: false,
+        // Prevent browser-only globals from being accessed on server
+        self: false,
+        window: false,
+        navigator: false,
+        document: false,
+        screen: false,
+        localStorage: false,
+        sessionStorage: false,
       };
+      
+      // Define browser globals as undefined on server
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new (require('webpack')).DefinePlugin({
+          'typeof self': JSON.stringify('undefined'),
+          'typeof window': JSON.stringify('undefined'),
+          'typeof navigator': JSON.stringify('undefined'),
+          'typeof document': JSON.stringify('undefined'),
+          'typeof screen': JSON.stringify('undefined'),
+          'typeof localStorage': JSON.stringify('undefined'),
+          'typeof sessionStorage': JSON.stringify('undefined'),
+        })
+      );
     }
     
     // Handle Chrome extension messaging issues

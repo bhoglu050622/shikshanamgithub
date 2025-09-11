@@ -224,7 +224,7 @@ export const trackEvent = (
     } catch (error) {
       // Fallback to old endpoint if tracker fails
       if (config.endpoint) {
-        if (navigator.sendBeacon) {
+        if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
           navigator.sendBeacon(
             config.endpoint,
             JSON.stringify(eventData)
@@ -287,7 +287,7 @@ const getEventCategory = (event: AnalyticsEvent): string => {
 export const trackPageView = (url: string, title?: string) => {
   trackEvent('page_view' as AnalyticsEvent, {
     page_url: url,
-    page_title: title || document.title,
+    page_title: title || (typeof document !== 'undefined' ? document.title : ''),
   })
 }
 

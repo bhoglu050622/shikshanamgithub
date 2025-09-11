@@ -49,7 +49,9 @@ export function setCookie(name: string, value: string, options: CookieOptions = 
 
   cookieString += `; samesite=${sameSite}`
 
-  document.cookie = cookieString
+  if (typeof document !== 'undefined') {
+    document.cookie = cookieString
+  }
 }
 
 export function getCookie(name: string): string | null {
@@ -78,7 +80,9 @@ export function deleteCookie(name: string, options: Pick<CookieOptions, 'path' |
     cookieString += `; domain=${domain}`
   }
   
-  document.cookie = cookieString
+  if (typeof document !== 'undefined') {
+    document.cookie = cookieString
+  }
 }
 
 // Authentication specific cookie functions

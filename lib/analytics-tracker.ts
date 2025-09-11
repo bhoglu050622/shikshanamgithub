@@ -87,6 +87,9 @@ class AnalyticsTracker {
   }
 
   private isOptedOut(): boolean {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return false
+    
     // Check Do Not Track
     if (navigator.doNotTrack === '1') return true
     
@@ -170,14 +173,14 @@ class AnalyticsTracker {
     return {
       event_type: this.mapOldEventType(oldEvent.event || oldEvent.type),
       timestamp: oldEvent.timestamp || oldEvent.properties?.timestamp || new Date().toISOString(),
-      url: oldEvent.properties?.page_url || window.location.href,
-      title: oldEvent.properties?.page_title || document.title,
-      referrer: oldEvent.properties?.referrer || document.referrer,
-      user_agent: navigator.userAgent,
-      language: navigator.language,
+      url: oldEvent.properties?.page_url || (typeof window !== 'undefined' ? window.location.href : ''),
+      title: oldEvent.properties?.page_title || (typeof document !== 'undefined' ? document.title : ''),
+      referrer: oldEvent.properties?.referrer || (typeof document !== 'undefined' ? document.referrer : ''),
+      user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+      language: typeof navigator !== 'undefined' ? navigator.language : '',
       visitor_id: this.visitorId,
       session_id: this.sessionId,
-      screen: `${screen.width}x${screen.height}`,
+      screen: typeof screen !== 'undefined' ? `${screen.width}x${screen.height}` : '',
       additional: oldEvent.properties || {},
       client_generated: true,
       client_version: '1.0.0'
@@ -239,14 +242,14 @@ class AnalyticsTracker {
     const event: QueuedEvent = {
       event_type: eventType,
       timestamp: new Date().toISOString(),
-      url: window.location.href,
-      title: document.title,
-      referrer: document.referrer || undefined,
-      user_agent: navigator.userAgent,
-      language: navigator.language,
+      url: typeof window !== 'undefined' ? window.location.href : '',
+      title: typeof document !== 'undefined' ? document.title : '',
+      referrer: typeof document !== 'undefined' ? document.referrer || undefined : undefined,
+      user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+      language: typeof navigator !== 'undefined' ? navigator.language : '',
       visitor_id: this.visitorId,
       session_id: this.sessionId,
-      screen: `${screen.width}x${screen.height}`,
+      screen: typeof screen !== 'undefined' ? `${screen.width}x${screen.height}` : '',
       client_generated: true,
       client_version: '1.0.0',
       ...options
@@ -318,20 +321,20 @@ class AnalyticsTracker {
         queue.push({
           event_type: 'session_end',
           timestamp: new Date().toISOString(),
-          url: window.location.href,
-          title: document.title,
-          user_agent: navigator.userAgent,
-          language: navigator.language,
+          url: typeof window !== 'undefined' ? window.location.href : '',
+          title: typeof document !== 'undefined' ? document.title : '',
+          user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+          language: typeof navigator !== 'undefined' ? navigator.language : '',
           visitor_id: this.visitorId,
           session_id: this.sessionId,
-          screen: `${screen.width}x${screen.height}`,
+          screen: typeof screen !== 'undefined' ? `${screen.width}x${screen.height}` : '',
           client_generated: true,
           client_version: '1.0.0',
           additional: { session_end_time: new Date().toISOString() }
         })
 
         // Use sendBeacon for reliable sending on page unload
-        if (navigator.sendBeacon) {
+        if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
           navigator.sendBeacon(
             ANALYTICS_CONFIG.ENDPOINT,
             JSON.stringify({ events: queue })
@@ -341,15 +344,19 @@ class AnalyticsTracker {
       }
     }
 
-    window.addEventListener('beforeunload', sendFinalBatch)
-    window.addEventListener('pagehide', sendFinalBatch)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('beforeunload', sendFinalBatch)
+      window.addEventListener('pagehide', sendFinalBatch)
+    }
     
     // Also handle visibility change for mobile
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') {
-        sendFinalBatch()
-      }
-    })
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          sendFinalBatch()
+        }
+      })
+    }
   }
 
   private setupActivityTracking() {
@@ -366,16 +373,18 @@ class AnalyticsTracker {
       }, 30000) // Throttle to every 30 seconds
     }
 
-    activityEvents.forEach(event => {
-      document.addEventListener(event, trackActivity, { passive: true })
-    })
+    if (typeof document !== 'undefined') {
+      activityEvents.forEach(event => {
+        document.addEventListener(event, trackActivity, { passive: true })
+      })
+    }
   }
 
   // Public methods
   public trackPageView(url?: string, title?: string) {
     this.queueEvent('pageview', {
-      url: url || window.location.href,
-      title: title || document.title,
+      url: url || (typeof window !== 'undefined' ? window.location.href : ''),
+      title: title || (typeof document !== 'undefined' ? document.title : ''),
     })
   }
 
