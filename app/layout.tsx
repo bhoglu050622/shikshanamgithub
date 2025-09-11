@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/lib/theme'
 import { AuthProvider } from '@/lib/auth-context'
 import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
 import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
+import { SEOProvider } from '@/lib/seo'
 import '@/lib/console-filter'
 
 const inter = Inter({ 
@@ -142,10 +143,11 @@ export default function RootLayout({
         </a>
         
         <ErrorBoundary>
-          <ThemeProvider>
-            <AuthProvider>
-              <AccessibilityProvider>
-                <PerformanceMonitor />
+          <SEOProvider>
+            <ThemeProvider>
+              <AuthProvider>
+                <AccessibilityProvider>
+                  <PerformanceMonitor />
                 <ClientServiceWorker />
                 <AccessibilityToolbar />
                 <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
@@ -155,9 +157,10 @@ export default function RootLayout({
                   </main>
                   <Footer />
                 </div>
-              </AccessibilityProvider>
-            </AuthProvider>
-          </ThemeProvider>
+                </AccessibilityProvider>
+              </AuthProvider>
+            </ThemeProvider>
+          </SEOProvider>
         </ErrorBoundary>
       </body>
     </html>
