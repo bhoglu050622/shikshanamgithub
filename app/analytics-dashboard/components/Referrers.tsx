@@ -31,7 +31,8 @@ export default function Referrers({ dateRange, onExport }: ReferrersProps) {
       setIsLoading(true)
       try {
         const response = await fetch(
-          `/api/analytics/agg/referrers?start=${dateRange.start}&end=${dateRange.end}&limit=10`
+          `/api/analytics/agg/referrers?start=${dateRange.start}&end=${dateRange.end}&limit=10`,
+          { credentials: 'include' }
         )
         
         if (response.ok) {

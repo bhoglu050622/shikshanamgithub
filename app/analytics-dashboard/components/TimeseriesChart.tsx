@@ -42,7 +42,8 @@ export default function TimeseriesChart({ dateRange, compareMode }: TimeseriesCh
         const interval = daysDiff <= 7 ? 'hour' : 'day'
   
         const response = await fetch(
-          `/api/analytics/agg/timeseries?metric=${selectedMetric}&interval=${interval}&start=${dateRange.start}&end=${dateRange.end}`
+          `/api/analytics/agg/timeseries?metric=${selectedMetric}&interval=${interval}&start=${dateRange.start}&end=${dateRange.end}`,
+          { credentials: 'include' }
         )
         
         if (response.ok) {

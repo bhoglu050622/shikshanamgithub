@@ -86,7 +86,9 @@ export default function AnalyticsDashboard() {
     setIsLoading(true)
     try {
       // Fetch totals
-      const totalsResponse = await fetch(`/api/analytics/agg/totals?start=${dateRange.start}&end=${dateRange.end}&compare=${compareMode}`)
+      const totalsResponse = await fetch(`/api/analytics/agg/totals?start=${dateRange.start}&end=${dateRange.end}&compare=${compareMode}`, {
+        credentials: 'include'
+      })
       if (totalsResponse.ok) {
         const totalsData = await totalsResponse.json()
         setTotals(totalsData)
@@ -130,7 +132,9 @@ export default function AnalyticsDashboard() {
 
   const exportData = async (type: 'pages' | 'referrers' | 'events') => {
     try {
-      const response = await fetch(`/api/analytics/export/csv?start=${dateRange.start}&end=${dateRange.end}&type=${type}`)
+      const response = await fetch(`/api/analytics/export/csv?start=${dateRange.start}&end=${dateRange.end}&type=${type}`, {
+        credentials: 'include'
+      })
       if (response.ok) {
         const blob = await response.blob()
         const url = window.URL.createObjectURL(blob)
@@ -203,6 +207,7 @@ export default function AnalyticsDashboard() {
                       const response = await fetch('/api/analytics/generate-sample', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
                         body: JSON.stringify({ days: 30 })
                       })
                       if (response.ok) {

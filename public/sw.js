@@ -88,6 +88,20 @@ self.addEventListener('fetch', (event) => {
       return;
     }
 
+    // Don't intercept API or GraphQL auth requests or manifest
+    if (
+      url.pathname.startsWith('/api') ||
+      url.pathname.includes('/graphql') ||
+      url.pathname === '/manifest.webmanifest' ||
+      url.pathname === '/sw.js' ||
+      url.pathname.startsWith('/api/auth') ||
+      url.pathname.startsWith('/api/cms') ||
+      url.pathname.startsWith('/api/analytics') ||
+      url.pathname.startsWith('/api/dashboard')
+    ) {
+      return; // allow them to go to network (no event.respondWith)
+    }
+
     // Skip GraphQL queries that might be from extensions
     if (request.url.includes('demoableFeatures') || 
         request.url.includes('teamsEntitlements') ||
@@ -98,8 +112,6 @@ self.addEventListener('fetch', (event) => {
     // Handle different types of requests
     if (isStaticAsset(request)) {
       event.respondWith(handleStaticAsset(request));
-    } else if (isAPIRequest(request)) {
-      event.respondWith(handleAPIRequest(request));
     } else if (isPageRequest(request)) {
       event.respondWith(handlePageRequest(request));
     } else {
@@ -118,11 +130,11 @@ function isStaticAsset(request) {
   return url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/);
 }
 
-// Check if request is for API
-function isAPIRequest(request) {
-  const url = new URL(request.url);
-  return url.pathname.startsWith('/api/');
-}
+// Check if request is for API (no longer used since we don't intercept API calls)
+// function isAPIRequest(request) {
+//   const url = new URL(request.url);
+//   return url.pathname.startsWith('/api/');
+// }
 
 // Check if request is for a page
 function isPageRequest(request) {
@@ -153,46 +165,10 @@ async function handleStaticAsset(request) {
   }
 }
 
-// Handle API requests - network first with cache fallback
-async function handleAPIRequest(request) {
-  try {
-    // Create a new request with credentials included to ensure authentication cookies are sent
-    const authenticatedRequest = new Request(request, {
-      credentials: 'include',
-      headers: {
-        ...Object.fromEntries(request.headers.entries()),
-        // Ensure cookies are included for authentication
-        'Cache-Control': 'no-cache'
-      }
-    });
-    
-    const networkResponse = await fetch(authenticatedRequest);
-    
-    if (networkResponse.ok) {
-      const cache = await caches.open(DYNAMIC_CACHE_NAME);
-      cache.put(request, networkResponse.clone());
-    }
-    
-    return networkResponse;
-  } catch (error) {
-    console.log('Service Worker: Network failed, trying cache for API request');
-    
-    const cache = await caches.open(DYNAMIC_CACHE_NAME);
-    const cachedResponse = await cache.match(request);
-    
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-    
-    return new Response(JSON.stringify({ 
-      error: 'Offline', 
-      message: 'This data is not available offline' 
-    }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
-}
+// Handle API requests - no longer used since we don't intercept API calls
+// async function handleAPIRequest(request) {
+//   // This function is no longer used
+// }
 
 // Handle page requests - network first with cache fallback
 async function handlePageRequest(request) {
@@ -207,6 +183,15 @@ async function handlePageRequest(request) {
     });
     
     const networkResponse = await fetch(authenticatedRequest);
+    
+    // Handle 401 responses gracefully
+    if (networkResponse.status === 401) {
+      // Notify clients about invalid session
+      self.clients.matchAll().then(clients =>
+        clients.forEach(client => client.postMessage({ type: 'INVALID_SESSION' }))
+      );
+      return networkResponse; // Let the browser handle the 401
+    }
     
     if (networkResponse.ok) {
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
@@ -242,7 +227,18 @@ async function handleOtherRequest(request) {
       }
     });
     
-    return await fetch(authenticatedRequest);
+    const networkResponse = await fetch(authenticatedRequest);
+    
+    // Handle 401 responses gracefully
+    if (networkResponse.status === 401) {
+      // Notify clients about invalid session
+      self.clients.matchAll().then(clients =>
+        clients.forEach(client => client.postMessage({ type: 'INVALID_SESSION' }))
+      );
+      return networkResponse; // Let the browser handle the 401
+    }
+    
+    return networkResponse;
   } catch (error) {
     console.error('Service Worker: Network error for other request', error);
     return new Response('Resource not available', { status: 503 });

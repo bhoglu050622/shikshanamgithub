@@ -47,7 +47,9 @@ export default function SimpleDashboardPage() {
     setError(null);
     
     try {
-      const response = await fetch(`/api/dashboard/by-email?email=${encodeURIComponent(email)}`);
+      const response = await fetch(`/api/dashboard/by-email?email=${encodeURIComponent(email)}`, {
+        credentials: 'include'
+      });
       const result = await response.json();
       
       if (result.success) {

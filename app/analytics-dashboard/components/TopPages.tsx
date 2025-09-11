@@ -34,7 +34,8 @@ export default function TopPages({ dateRange, onExport, expanded = false }: TopP
       try {
         const limit = expanded ? 50 : 10
         const response = await fetch(
-          `/api/analytics/agg/top-pages?start=${dateRange.start}&end=${dateRange.end}&limit=${limit}`
+          `/api/analytics/agg/top-pages?start=${dateRange.start}&end=${dateRange.end}&limit=${limit}`,
+          { credentials: 'include' }
         )
         
         if (response.ok) {
