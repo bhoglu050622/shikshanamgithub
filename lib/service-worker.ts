@@ -201,32 +201,5 @@ export class ServiceWorkerManager {
 // Create singleton instance
 export const serviceWorkerManager = new ServiceWorkerManager();
 
-// Auto-register service worker in browser environment only
-// Only execute in browser environment, not during build
-if (typeof window !== 'undefined' && 
-    typeof navigator !== 'undefined' && 
-    'serviceWorker' in navigator &&
-    typeof document !== 'undefined') {
-  // In development, unregister any existing service workers to prevent conflicts
-  if (process.env.NODE_ENV === 'development') {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      registrations.forEach((registration) => {
-        registration.unregister();
-      });
-    });
-  } else {
-    // Register service worker when DOM is loaded
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        serviceWorkerManager.register();
-      });
-    } else {
-      serviceWorkerManager.register();
-    }
-
-    // Check for updates every hour
-    setInterval(() => {
-      serviceWorkerManager.checkForUpdates();
-    }, 60 * 60 * 1000);
-  }
-}
+// Note: Service worker registration is now handled by ClientServiceWorker component
+// This prevents server-side execution during build process

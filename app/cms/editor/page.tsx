@@ -357,6 +357,7 @@ export default function EditorPage() {
                       <Link className="w-4 h-4" />
                     </Button>
                     <Button variant="outline" size="sm">
+                      {/* eslint-disable-next-line jsx-a11y/alt-text */}
                       <Image className="w-4 h-4" />
                     </Button>
                     <div className="w-px h-6 bg-gray-300"></div>

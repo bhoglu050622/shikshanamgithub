@@ -287,6 +287,7 @@ export default function CMSDashboard() {
             </a>
             
             <a href="/cms/media" className="h-auto p-4 flex items-center space-x-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              {/* eslint-disable-next-line jsx-a11y/alt-text */}
               <Image className="w-5 h-5" />
               <div className="text-left">
                 <div className="font-medium">Media Library</div>
