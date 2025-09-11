@@ -29,9 +29,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     // Update status to published
     const updateData = {
-      status: 'PUBLISHED' as const,
-      publishedAt: new Date(),
-      scheduledPublishAt: null
+      status: 'PUBLISHED' as const
     }
 
     let updatedItem

@@ -123,7 +123,7 @@ npm run dev
 ### 4. Access the CMS
 - **CMS Login**: http://localhost:3000/cms/login
 - **Username**: `shikshanam`
-- **Password**: `amanaman`
+- **Password**: `admin123`
 
 ## 🔐 Security Features
 
@@ -195,7 +195,7 @@ DATABASE_URL="postgresql://user@localhost:5432/shikshanam_cms"
 JWT_SECRET="your-secret-key"
 JWT_REFRESH_SECRET="your-refresh-secret"
 BOOTSTRAP_ADMIN_USERNAME="shikshanam"
-BOOTSTRAP_ADMIN_PASSWORD="amanaman"
+BOOTSTRAP_ADMIN_PASSWORD="admin123"
 ANALYTICS_ENDPOINT="/api/analytics/collect"
 ANALYTICS_LOCALSTORAGE_KEY="analytics_queue_v1"
 ```

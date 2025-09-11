@@ -418,6 +418,61 @@ export class CourseService extends BaseService {
 
 // Lesson Service
 export class LessonService extends BaseService {
+  async getAll(options: any = {}, user: AuthUser): Promise<PaginatedResponse<CMSLesson>> {
+    await this.requireAuth(user, UserRole.VIEWER)
+
+    const {
+      page = 1,
+      limit = 10,
+      status,
+      search,
+      courseId,
+      isPreview,
+      creatorId,
+    } = options
+
+    const where: any = {}
+
+    if (status) where.status = status
+    if (courseId) where.courseId = courseId
+    if (isPreview !== undefined) where.isPreview = isPreview
+    if (creatorId) where.createdById = creatorId
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { content: { contains: search, mode: 'insensitive' } },
+      ]
+    }
+
+    const [lessons, total] = await Promise.all([
+      prisma.lesson.findMany({
+        where,
+        include: {
+          creator: {
+            select: { id: true, username: true, role: true },
+          },
+          course: {
+            select: { id: true, title: true, slug: true },
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+      prisma.lesson.count({ where }),
+    ])
+
+    return {
+      data: lessons as CMSLesson[],
+      pagination: {
+        page,
+        limit,
+        total,
+        pages: Math.ceil(total / limit),
+      },
+    }
+  }
+
   async getByCourseId(courseId: string, user: AuthUser): Promise<CMSLesson[]> {
     await this.requireAuth(user, UserRole.VIEWER)
 
