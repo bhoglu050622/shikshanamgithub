@@ -159,7 +159,7 @@ export default function StruggleSection() {
         }
         
         .accordion-item:hover .see-more-text {
-          text-decoration: underline;
+          text-decoration: none;
         }
         
         @media (max-width: 768px) {

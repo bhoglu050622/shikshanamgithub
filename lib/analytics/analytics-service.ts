@@ -31,10 +31,11 @@ export class AnalyticsService {
 
   constructor(config: AnalyticsConfig) {
     this.config = config;
-    this.sessionId = this.generateSessionId();
-    this.sessionStartTime = Date.now();
-    this.deviceInfo = this.detectDevice();
-    this.pageInfo = this.getPageInfo();
+    // Initialize with safe defaults for SSR
+    this.sessionId = '';
+    this.sessionStartTime = 0;
+    this.deviceInfo = this.getDefaultDeviceInfo();
+    this.pageInfo = this.getDefaultPageInfo();
   }
 
   // ============================================================================
@@ -44,7 +45,16 @@ export class AnalyticsService {
   public async initialize(): Promise<void> {
     if (this.isInitialized) return;
 
+    // Only initialize client-side to avoid hydration mismatches
+    if (typeof window === 'undefined') return;
+
     try {
+      // Initialize client-side specific data
+      this.sessionId = this.generateSessionId();
+      this.sessionStartTime = typeof window !== 'undefined' ? Date.now() : 0;
+      this.deviceInfo = this.detectDevice();
+      this.pageInfo = this.getPageInfo();
+      
       // Initialize tracking
       await this.initializeTracking();
       
@@ -122,7 +132,7 @@ export class AnalyticsService {
       label,
       value,
       properties,
-      timestamp: Date.now(),
+      timestamp: typeof window !== 'undefined' ? Date.now() : 0,
       sessionId: this.sessionId,
       userId: this.userId,
       deviceInfo: this.deviceInfo,
@@ -175,7 +185,7 @@ export class AnalyticsService {
       value,
       userId: this.userId,
       sessionId: this.sessionId,
-      timestamp: Date.now(),
+      timestamp: typeof window !== 'undefined' ? Date.now() : 0,
       properties,
     };
 
@@ -205,7 +215,7 @@ export class AnalyticsService {
       category: 'javascript_error',
       userId: this.userId,
       sessionId: this.sessionId,
-      timestamp: Date.now(),
+      timestamp: typeof window !== 'undefined' ? Date.now() : 0,
       url: window.location.href,
       userAgent: navigator.userAgent,
       deviceInfo: this.deviceInfo,
@@ -343,8 +353,9 @@ export class AnalyticsService {
     if ('PerformanceObserver' in window) {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
+          const inputEntry = entry as any;
           this.trackPerformance({
-            firstInputDelay: entry.processingStart - entry.startTime,
+            firstInputDelay: inputEntry.processingStart - inputEntry.startTime,
           } as PerformanceMetrics);
         }
       });
@@ -356,8 +367,9 @@ export class AnalyticsService {
       let clsValue = 0;
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value;
+          const clsEntry = entry as any;
+          if (!clsEntry.hadRecentInput) {
+            clsValue += clsEntry.value;
           }
         }
         this.trackPerformance({
@@ -616,6 +628,33 @@ export class AnalyticsService {
 
   private generateErrorId(): string {
     return `error_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
+
+  private getDefaultDeviceInfo(): DeviceInfo {
+    return {
+      type: 'desktop',
+      os: 'unknown',
+      browser: 'unknown',
+      version: 'unknown',
+      screenResolution: 'unknown',
+      language: 'en',
+      timezone: 'UTC',
+      userAgent: 'unknown',
+    };
+  }
+
+  private getDefaultPageInfo(): PageInfo {
+    return {
+      url: '',
+      title: '',
+      referrer: '',
+      path: '',
+      loadTime: 0,
+      viewport: {
+        width: 0,
+        height: 0,
+      },
+    };
   }
 
   private detectDevice(): DeviceInfo {

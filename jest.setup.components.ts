@@ -14,7 +14,7 @@ configure({
 });
 
 // Polyfills for Node.js environment
-global.TextEncoder = TextEncoder;
+global.TextEncoder = TextEncoder as any;
 global.TextDecoder = TextDecoder as any;
 
 // Mock Next.js router

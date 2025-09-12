@@ -81,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'text-premium-accent-primary hover:bg-premium-accent-primary/10 hover:scale-[1.02] active:scale-[0.98] bg-transparent': variant === 'ghost',
         
         // Link - Text only with premium accent
-        'text-premium-accent-primary hover:text-premium-accent-primary/80 underline-offset-4 hover:underline p-0 h-auto bg-transparent': variant === 'link',
+        'text-premium-accent-primary hover:text-premium-accent-primary/80 p-0 h-auto bg-transparent': variant === 'link',
         
         // Destructive - Premium error styling
         'bg-premium-error hover:bg-premium-error/90 text-white shadow-[0_4px_14px_rgba(220,38,38,0.1)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.15)] hover:scale-[1.02] active:scale-[0.98]': variant === 'destructive',

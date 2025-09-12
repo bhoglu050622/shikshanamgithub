@@ -33,6 +33,16 @@
   .no-underline {
     text-decoration: none !important;
   }
+
+  /* Global rule to remove all underlines from the entire website */
+  a, 
+  a:hover, 
+  a:focus, 
+  a:visited,
+  .underline,
+  [class*="underline"] {
+    text-decoration: none !important;
+  }
   
   /* Cool animation utilities */
   .animate-float {
@@ -551,7 +561,7 @@
   
   a:hover {
     color: hsl(var(--premium-accent-secondary));
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   /* Small text with enhanced readability */
@@ -1393,7 +1403,7 @@
   
   /* Accessible link styles */
   .link-accessible {
-    @apply underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:rounded;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:rounded;
   }
   
   /* Color contrast improvements */
@@ -2488,7 +2498,7 @@
   /* High contrast links */
   .link-high-contrast {
     color: hsl(45 67% 50%);
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   .link-high-contrast:hover {
@@ -2497,7 +2507,7 @@
   
   .link-high-contrast-light {
     color: hsl(0 0% 20%);
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   .link-high-contrast-light:hover {
@@ -2506,7 +2516,7 @@
   
   .link-high-contrast-dark {
     color: hsl(0 0% 90%);
-    text-decoration: underline;
+    text-decoration: none;
   }
   
   .link-high-contrast-dark:hover {
@@ -2677,7 +2687,7 @@
 /* Ensure proper color contrast for links */
 a:not(.btn):not(.button) {
   color: #0066cc;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not(.btn):not(.button):hover {
@@ -2699,7 +2709,7 @@ a:not(.btn):not(.button):visited {
 /* High contrast mode adjustments */
 .high-contrast a:not(.btn):not(.button) {
   color: #ffff00;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .high-contrast a:not(.btn):not(.button):hover {

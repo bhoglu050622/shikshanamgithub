@@ -19,7 +19,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     setIsLoading(true)
     try {
       // Redirect to Google OAuth
-      window.location.href = '/api/auth/google'
+      if (typeof window !== 'undefined') {
+        window.location.href = '/api/auth/google'
+      }
     } catch (error) {
       console.error('Google login error:', error)
       setIsLoading(false)
@@ -86,11 +88,11 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         <div className="text-center mt-6">
           <p className="text-sm premium-text-secondary">
             By continuing, you agree to our{' '}
-            <a href="/terms" className="text-premium-accent-primary hover:text-premium-accent-primary/80 underline">
+            <a href="/terms" className="text-premium-accent-primary hover:text-premium-accent-primary/80">
               Terms of Service
             </a>{' '}
             and{' '}
-            <a href="/privacy" className="text-premium-accent-primary hover:text-premium-accent-primary/80 underline">
+            <a href="/privacy" className="text-premium-accent-primary hover:text-premium-accent-primary/80">
               Privacy Policy
             </a>
           </p>

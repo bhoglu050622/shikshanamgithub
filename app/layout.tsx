@@ -2,19 +2,20 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import './mobile.css'
-import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
+// Temporarily disabled heavy components to troubleshoot
+// import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'
-import ClientServiceWorker from '@/components/ClientServiceWorker'
+// import ClientServiceWorker from '@/components/ClientServiceWorker'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/theme'
 import { AuthProvider } from '@/lib/auth-context'
-import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
-import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
-import { SEOProvider } from '@/lib/seo'
+// import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
+// import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
+// import { SEOProvider } from '@/lib/seo'
 import { MobileNavigation } from '@/components/mobile/MobileNavigation'
-import { AnalyticsProvider } from '@/lib/analytics'
-import '@/lib/console-filter'
+// import { AnalyticsProvider } from '@/lib/analytics'
+// import '@/lib/console-filter'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -146,21 +147,21 @@ export default function RootLayout({
         </a>
         
         <ErrorBoundary>
-          <AnalyticsProvider config={{
+          {/* <AnalyticsProvider config={{
             googleAnalytics: {
               measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
               anonymizeIp: true,
               respectDnt: true,
             },
             debug: process.env.NODE_ENV === 'development',
-          }}>
-            <SEOProvider>
+          }}> */}
+            {/* <SEOProvider> */}
               <ThemeProvider>
                 <AuthProvider>
-                  <AccessibilityProvider>
-                  <PerformanceMonitor />
-                <ClientServiceWorker />
-                <AccessibilityToolbar />
+                  {/* <AccessibilityProvider> */}
+                  {/* <PerformanceMonitor /> */}
+                {/* <ClientServiceWorker /> */}
+                {/* <AccessibilityToolbar /> */}
                 <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
                   <Header />
                   <main id="main-content" className="w-full pb-20" role="main">
@@ -169,11 +170,11 @@ export default function RootLayout({
                   <Footer />
                   <MobileNavigation />
                 </div>
-                  </AccessibilityProvider>
+                  {/* </AccessibilityProvider> */}
                 </AuthProvider>
               </ThemeProvider>
-            </SEOProvider>
-          </AnalyticsProvider>
+            {/* </SEOProvider> */}
+          {/* </AnalyticsProvider> */}
         </ErrorBoundary>
       </body>
     </html>

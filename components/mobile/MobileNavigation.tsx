@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import { 
   MobileNavigationConfig, 
-  MobileNavigationItem,
+  type MobileNavigationItem,
   DeviceInfo 
 } from '@/lib/mobile/types';
 import { detectDevice, isMobileBreakpoint } from '@/lib/mobile/device-detection';
@@ -325,7 +325,7 @@ function MobileNavigationItem({
               key={child.id}
               onClick={() => onItemClick(child)}
               className="mobile-nav-submenu-item"
-              aria-current={child.href === window.location.pathname ? 'page' : undefined}
+              aria-current={typeof window !== 'undefined' && child.href === window.location.pathname ? 'page' : undefined}
             >
               {child.label}
             </button>

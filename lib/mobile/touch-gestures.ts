@@ -310,7 +310,7 @@ export function useTouchGestures(
   element: HTMLElement | null,
   handlers: GestureHandler,
   config: Partial<GestureConfig> = {}
-): void {
+): (() => void) | void {
   if (typeof window === 'undefined' || !element) return;
 
   const recognizer = new TouchGestureRecognizer(config, handlers);

@@ -38,6 +38,8 @@
     "__tests__/**/*",
     "**/*.test.*",
     "**/*.spec.*",
-    "stories/**/*"
+    "stories/**/*",
+    "jest.setup.*",
+    "jest.config.*"
   ]
 }

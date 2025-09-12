@@ -376,15 +376,14 @@ export interface ErrorAggregation {
   affectedUsers: number;
   affectedSessions: number;
   resolved: boolean;
-  trends: ErrorTrend[];
+  trends: Array<{
+    period: string;
+    errors: number;
+    change: number;
+  }>;
 }
 
-export interface ErrorTrend {
-  date: string;
-  count: number;
-  users: number;
-  sessions: number;
-}
+// ErrorTrend interface removed - using inline type above
 
 // ============================================================================
 // BUSINESS INTELLIGENCE
@@ -407,7 +406,11 @@ export interface RevenueMetrics {
   revenuePerUser: number;
   churnRate: number;
   growthRate: number;
-  trends: RevenueTrend[];
+  trends: Array<{
+    period: string;
+    revenue: number;
+    change: number;
+  }>;
 }
 
 export interface UserMetrics {
@@ -419,7 +422,11 @@ export interface UserMetrics {
   userRetentionRate: number;
   averageSessionDuration: number;
   sessionsPerUser: number;
-  trends: UserTrend[];
+  trends: Array<{
+    period: string;
+    users: number;
+    change: number;
+  }>;
 }
 
 export interface ContentMetrics {
@@ -428,8 +435,18 @@ export interface ContentMetrics {
   totalEnrollments: number;
   completionRate: number;
   averageRating: number;
-  popularCourses: ContentPopularity[];
-  contentPerformance: ContentPerformance[];
+  popularCourses: Array<{
+    courseId: string;
+    title: string;
+    enrollments: number;
+    rating: number;
+  }>;
+  contentPerformance: Array<{
+    contentId: string;
+    title: string;
+    views: number;
+    completionRate: number;
+  }>;
 }
 
 export interface EngagementMetrics {
@@ -448,17 +465,32 @@ export interface ConversionMetrics {
   conversionRate: number;
   conversionValue: number;
   costPerConversion: number;
-  conversionFunnel: ConversionFunnelStep[];
-  topConvertingSources: ConversionSource[];
+  conversionFunnel: Array<{
+    step: string;
+    users: number;
+    conversionRate: number;
+  }>;
+  topConvertingSources: Array<{
+    source: string;
+    conversions: number;
+    conversionRate: number;
+  }>;
 }
 
 export interface RetentionMetrics {
   day1Retention: number;
   day7Retention: number;
   day30Retention: number;
-  cohortRetention: CohortRetention[];
+  cohortRetention: Array<{
+    cohort: string;
+    retention: number;
+  }>;
   userLifetime: number;
-  churnPrediction: ChurnPrediction[];
+  churnPrediction: Array<{
+    userId: string;
+    churnProbability: number;
+    riskLevel: 'low' | 'medium' | 'high';
+  }>;
 }
 
 // ============================================================================
@@ -470,8 +502,23 @@ export interface Dashboard {
   name: string;
   description: string;
   widgets: DashboardWidget[];
-  layout: DashboardLayout;
-  filters: DashboardFilter[];
+  layout: {
+    columns: number;
+    rows: number;
+    widgets: Array<{
+      id: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    }>;
+  };
+  filters: Array<{
+    id: string;
+    name: string;
+    type: 'select' | 'date' | 'text';
+    options?: string[];
+  }>;
   refreshInterval: number;
   isPublic: boolean;
   createdAt: number;

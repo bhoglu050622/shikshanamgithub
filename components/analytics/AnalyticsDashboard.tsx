@@ -37,7 +37,7 @@ export function AnalyticsDashboard({
 }: AnalyticsDashboardProps) {
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const { getSessionId, getUserId } = useAnalytics();
 
   useEffect(() => {
@@ -90,7 +90,7 @@ export function AnalyticsDashboard({
         <h2 className="dashboard-title">Analytics Dashboard</h2>
         <div className="dashboard-info">
           <span className="last-updated">
-            Last updated: {lastUpdated.toLocaleTimeString()}
+            Last updated: {lastUpdated ? lastUpdated.toLocaleTimeString() : 'Never'}
           </span>
           {showRealTime && (
             <span className="real-time-indicator">
@@ -113,14 +113,14 @@ export function AnalyticsDashboard({
           />
           <MetricCard
             title="Revenue"
-            value={`$${metrics.revenue.total.toLocaleString()}`}
+            value={`$${typeof window !== 'undefined' ? metrics.revenue.total.toLocaleString() : metrics.revenue.total.toString()}`}
             change={metrics.revenue.change}
             icon={<DollarSign size={24} />}
             color="green"
           />
           <MetricCard
             title="Page Views"
-            value={metrics.engagement.pageViews.toLocaleString()}
+            value={typeof window !== 'undefined' ? metrics.engagement.pageViews.toLocaleString() : metrics.engagement.pageViews.toString()}
             change={metrics.engagement.pageViewsChange}
             icon={<Eye size={24} />}
             color="purple"
@@ -275,7 +275,7 @@ function TableChart({ data }: TableChartProps) {
           {data.map((item, index) => (
             <tr key={index}>
               <td className="table-label">{item.label}</td>
-              <td className="table-value">{item.value.toLocaleString()}</td>
+              <td className="table-value">{typeof window !== 'undefined' ? item.value.toLocaleString() : item.value.toString()}</td>
               <td className={`table-change ${item.change && item.change >= 0 ? 'positive' : 'negative'}`}>
                 {item.change && item.change >= 0 ? '↗' : '↘'} {item.change ? Math.abs(item.change) : 0}%
               </td>
@@ -304,7 +304,7 @@ function FunnelChart({ data }: FunnelChartProps) {
         <div key={index} className="funnel-step">
           <div className="funnel-step-header">
             <span className="step-name">{item.step}</span>
-            <span className="step-users">{item.users.toLocaleString()}</span>
+            <span className="step-users">{typeof window !== 'undefined' ? item.users.toLocaleString() : item.users.toString()}</span>
           </div>
           <div className="funnel-bar">
             <div 
@@ -527,9 +527,9 @@ async function fetchAnalyticsMetrics(): Promise<DashboardMetrics> {
       activeUsers: 45,
       currentPageViews: 123,
       recentEvents: [
-        { type: 'page_view', user: 'User123', action: 'Viewed Course', timestamp: Date.now() - 1000 },
-        { type: 'click', user: 'User456', action: 'Clicked Enroll', timestamp: Date.now() - 2000 },
-        { type: 'conversion', user: 'User789', action: 'Completed Lesson', timestamp: Date.now() - 3000 },
+        { type: 'page_view', user: 'User123', action: 'Viewed Course', timestamp: 1704067200000 },
+        { type: 'click', user: 'User456', action: 'Clicked Enroll', timestamp: 1704067199000 },
+        { type: 'conversion', user: 'User789', action: 'Completed Lesson', timestamp: 1704067198000 },
       ],
     },
     performance: {

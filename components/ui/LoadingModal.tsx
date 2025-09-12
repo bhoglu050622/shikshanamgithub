@@ -4,9 +4,15 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 
-// Dynamically import motion components to prevent hydration issues
-const MotionDiv = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion.div })), { ssr: false })
-const MotionPresence = dynamic(() => import('framer-motion').then(mod => ({ default: mod.AnimatePresence })), { ssr: false })
+// Temporarily disabled framer-motion dynamic imports to troubleshoot
+// const MotionDiv = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion.div })), { ssr: false })
+// const MotionPresence = dynamic(() => import('framer-motion').then(mod => ({ default: mod.AnimatePresence })), { ssr: false })
+
+// Simple fallback components
+const MotionDiv = ({ children, className, style, ...props }: any) => (
+  <div className={className} style={style} {...props}>{children}</div>
+)
+const MotionPresence = ({ children }: any) => <>{children}</>
 
 interface LoadingModalProps {
   isVisible: boolean

@@ -53,17 +53,17 @@ const nextConfig = {
     ],
   },
   
-  // Enable performance optimizations
+  // Temporarily disabled experimental optimizations to troubleshoot
   experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
+    // optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
+    // turbo: {
+    //   rules: {
+    //     '*.svg': {
+    //       loaders: ['@svgr/webpack'],
+    //       as: '*.js',
+    //     },
+    //   },
+    // },
   },
   
   compiler: {
@@ -84,57 +84,56 @@ const nextConfig = {
     config.optimization = config.optimization || {};
     config.optimization.moduleIds = 'deterministic';
     config.optimization.chunkIds = 'deterministic';
-    config.optimization.usedExports = true;
-    config.optimization.sideEffects = false;
+    // Removed usedExports and sideEffects as they conflict with Next.js caching
     
-    // Enable parallel processing for better performance
-    config.parallelism = Math.max(1, require('os').cpus().length - 1);
+    // Temporarily disabled parallel processing to troubleshoot
+    // config.parallelism = Math.max(1, require('os').cpus().length - 1);
     
     // Optimize resolve configuration
     config.resolve.alias = {
       ...config.resolve.alias,
     };
     
-    // Enable proper code splitting and minification in production
-    if (!dev) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            priority: 10,
-          },
-          common: {
-            name: 'common',
-            minChunks: 2,
-            chunks: 'all',
-            priority: 5,
-            reuseExistingChunk: true,
-          },
-          // Separate large libraries
-          framerMotion: {
-            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-            name: 'framer-motion',
-            chunks: 'all',
-            priority: 20,
-          },
-          three: {
-            test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
-            name: 'three',
-            chunks: 'all',
-            priority: 20,
-          },
-          radix: {
-            test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-            name: 'radix-ui',
-            chunks: 'all',
-            priority: 15,
-          },
-        },
-      };
-    }
+    // Temporarily disabled complex code splitting to troubleshoot
+    // if (!dev) {
+    //   config.optimization.splitChunks = {
+    //     chunks: 'all',
+    //     cacheGroups: {
+    //       vendor: {
+    //         test: /[\\/]node_modules[\\/]/,
+    //         name: 'vendors',
+    //         chunks: 'all',
+    //         priority: 10,
+    //       },
+    //       common: {
+    //         name: 'common',
+    //         minChunks: 2,
+    //         chunks: 'all',
+    //         priority: 5,
+    //         reuseExistingChunk: true,
+    //       },
+    //       // Separate large libraries
+    //       framerMotion: {
+    //         test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+    //         name: 'framer-motion',
+    //         chunks: 'all',
+    //         priority: 20,
+    //       },
+    //       three: {
+    //         test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
+    //         name: 'three',
+    //         chunks: 'all',
+    //         priority: 20,
+    //       },
+    //       radix: {
+    //         test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
+    //         name: 'radix-ui',
+    //         chunks: 'all',
+    //         priority: 15,
+    //       },
+    //     },
+    //   };
+    // }
     
     // Handle server-side configuration
     if (isServer) {

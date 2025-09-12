@@ -331,7 +331,7 @@
 }
 
 .mobile-card:active {
-  @apply transform scale-98 shadow-md;
+  @apply transform scale-95 shadow-md;
 }
 
 .mobile-card.elevated {

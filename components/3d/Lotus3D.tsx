@@ -150,8 +150,13 @@ function Lotus3DCanvas({ className = '' }: { className?: string }) {
   }
 }
 
-// Export with dynamic loading and error boundary
-export default dynamic(() => Promise.resolve(Lotus3DCanvas), {
-  loading: () => <Lotus3DLoading />,
-  ssr: false,
-})
+// Temporarily disabled dynamic import to troubleshoot
+// export default dynamic(() => Promise.resolve(Lotus3DCanvas), {
+//   loading: () => <Lotus3DLoading />,
+//   ssr: false,
+// })
+
+// Simple fallback component
+export default function Lotus3D({ className = '' }: { className?: string }) {
+  return <Lotus3DLoading className={className} />
+}

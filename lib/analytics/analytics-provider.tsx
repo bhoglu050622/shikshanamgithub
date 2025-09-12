@@ -5,7 +5,8 @@
 
 'use client';
 
-import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import * as React from 'react';
+import { createContext, useContext, useEffect, ReactNode } from 'react';
 import { AnalyticsService, AnalyticsConfig } from './analytics-service';
 import { AnalyticsEvent, PerformanceMetrics, ConversionEvent } from './types';
 
@@ -367,12 +368,10 @@ export function usePerformanceTracking() {
   const trackApiCall = React.useCallback(
     (endpoint: string, duration: number, status: number) => {
       trackPerformance({
-        customMetrics: {
-          api_call_duration: duration,
-          api_call_status: status,
-          api_endpoint: endpoint,
-        },
-      } as PerformanceMetrics);
+        apiEndpoint: endpoint,
+        apiCallDuration: duration,
+        apiCallStatus: status,
+      } as any);
     },
     [trackPerformance]
   );
@@ -380,12 +379,31 @@ export function usePerformanceTracking() {
   const trackImageLoad = React.useCallback(
     (imageUrl: string, loadTime: number, size: number) => {
       trackPerformance({
+        // Provide all required PerformanceMetrics fields with reasonable defaults
+        firstContentfulPaint: 0,
+        largestContentfulPaint: 0,
+        firstInputDelay: 0,
+        cumulativeLayoutShift: 0,
+        timeToInteractive: 0,
+        totalBlockingTime: 0,
+        speedIndex: 0,
+        domContentLoaded: 0,
+        loadComplete: 0,
+        timeToFirstByte: 0,
+        resourceLoadTime: 0,
         imageLoadTime: loadTime,
+        scriptLoadTime: 0,
+        styleLoadTime: 0,
+        networkLatency: 0,
+        bandwidth: 0,
+        connectionType: '',
+        memoryUsage: 0,
+        memoryLimit: 0,
+        heapSize: 0,
         customMetrics: {
-          image_url: imageUrl,
           image_size: size,
         },
-      } as PerformanceMetrics);
+      });
     },
     [trackPerformance]
   );

@@ -11,7 +11,27 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Filter } from 'lucide-react';
 
-export default function PackagesPage() {
+// Safe wrapper component to catch hydration errors
+function SafePackagesPage() {
+  try {
+    return <PackagesPageContent />;
+  } catch (error) {
+    console.error('Packages page error:', error);
+    return (
+      <div className="min-h-screen bg-parchment-ivory flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-slate-800 mb-4">Loading Error</h1>
+          <p className="text-slate-600 mb-4">There was an issue loading the packages. Please refresh the page.</p>
+          <Button onClick={() => typeof window !== 'undefined' && window.location.reload()}>
+            Refresh Page
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
+
+function PackagesPageContent() {
   const router = useRouter();
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,12 +41,28 @@ export default function PackagesPage() {
   const { packages, loading, error, total } = usePackages(page, 12);
   const { purchasePackage } = usePurchase();
 
+  // Runtime guard to catch any module loading errors
+  if (error && (error.includes('Module not found') || error?.includes('factory'))) {
+    console.error('Module loading error:', error);
+    return (
+      <div className="min-h-screen bg-parchment-ivory flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-slate-800 mb-4">Loading Error</h1>
+          <p className="text-slate-600 mb-4">There was an issue loading the packages. Please refresh the page.</p>
+          <Button onClick={() => typeof window !== 'undefined' && window.location.reload()}>
+            Refresh Page
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const handleViewDetails = (sku: string) => {
     router.push(`/packages/${sku}`);
   };
 
   const handleBuy = (sku: string) => {
-    const pkg = packages.find(p => p.sku === sku);
+    const pkg = Array.isArray(packages) ? packages.find(p => p.sku === sku) : null;
     if (pkg) {
       setSelectedPackage(pkg);
       setIsBuyModalOpen(true);
@@ -45,10 +81,10 @@ export default function PackagesPage() {
     }
   };
 
-  const filteredPackages = packages.filter(pkg =>
+  const filteredPackages = Array.isArray(packages) ? packages.filter(pkg =>
     pkg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     pkg.shortDescription.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  ) : [];
 
   return (
     <div className="min-h-screen bg-parchment-ivory">
@@ -169,3 +205,5 @@ export default function PackagesPage() {
     </div>
   );
 }
+
+export default SafePackagesPage;

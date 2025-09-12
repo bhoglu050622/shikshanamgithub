@@ -16,6 +16,7 @@ const quickStats = [
 
 export default function Hero() {
   const [isClient, setIsClient] = useState(false)
+  const [mounted, setMounted] = useState(false)
   
   // Progressive animations
   const titleRef = useScrollAnimations('fadeIn', { delay: 200 })
@@ -25,6 +26,7 @@ export default function Hero() {
 
   useEffect(() => {
     setIsClient(true)
+    setMounted(true)
   }, [])
 
   return (
@@ -33,98 +35,128 @@ export default function Hero() {
         <StaggerContainer className="space-y-readable">
           <StaggerItem>
             <div className="flex justify-center mb-8">
-              <motion.div 
-                className="flex items-center space-x-4 text-golden-olive"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 360],
-                    scale: [1, 1.2, 1]
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
+              {mounted ? (
+                <motion.div 
+                  className="flex items-center space-x-4 text-golden-olive"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <Sparkles className="w-6 h-6 animate-glow" />
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, 360],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Sparkles className="w-6 h-6 animate-glow" />
+                  </motion.div>
+                  <motion.div
+                    animate={{ 
+                      y: [-5, 5, -5],
+                      rotate: [0, 10, -10, 0]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Flower className="w-8 h-8 animate-pulse-slow" />
+                  </motion.div>
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, -360],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5
+                    }}
+                  >
+                    <Sparkles className="w-6 h-6 animate-glow" />
+                  </motion.div>
                 </motion.div>
-                <motion.div
+              ) : (
+                <div className="flex items-center space-x-4 text-golden-olive">
+                  <Sparkles className="w-6 h-6 animate-glow" />
+                  <Flower className="w-8 h-8 animate-pulse-slow" />
+                  <Sparkles className="w-6 h-6 animate-glow" />
+                </div>
+              )}
+            </div>
+          </StaggerItem>
+
+          <StaggerItem>
+            {mounted ? (
+              <motion.h1 
+                ref={titleRef} 
+                className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+              >
+                <span className="inline">Welcome to</span>
+                {' '}
+                <motion.span 
+                  className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
                   animate={{ 
-                    y: [-5, 5, -5],
-                    rotate: [0, 10, -10, 0]
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                   }}
                   transition={{ 
                     duration: 3,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
+                  style={{ backgroundSize: '200% 200%' }}
                 >
-                  <Flower className="w-8 h-8 animate-pulse-slow" />
-                </motion.div>
-                <motion.div
-                  animate={{ 
-                    rotate: [0, -360],
-                    scale: [1, 1.2, 1]
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                >
-                  <Sparkles className="w-6 h-6 animate-glow" />
-                </motion.div>
-              </motion.div>
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
-            <motion.h1 
-              ref={titleRef} 
-              className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-            >
-              <span className="inline">Welcome to</span>
-              {' '}
-              <motion.span 
-                className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                style={{ backgroundSize: '200% 200%' }}
+                  <span className="inline">Shikshanam</span>
+                </motion.span>
+              </motion.h1>
+            ) : (
+              <h1 
+                ref={titleRef} 
+                className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
               >
-                <span className="inline">Shikshanam</span>
-              </motion.span>
-            </motion.h1>
+                <span className="inline">Welcome to</span>
+                {' '}
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  <span className="inline">Shikshanam</span>
+                </span>
+              </h1>
+            )}
           </StaggerItem>
 
           <StaggerItem>
-            <motion.p 
-              ref={subtitleRef} 
-              className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <motion.span
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            {mounted ? (
+              <motion.p 
+                ref={subtitleRef} 
+                className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <motion.span
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <span className="inline">Where AI meets Ancient India</span>
+                </motion.span>
+              </motion.p>
+            ) : (
+              <p 
+                ref={subtitleRef} 
+                className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
               >
                 <span className="inline">Where AI meets Ancient India</span>
-              </motion.span>
-            </motion.p>
+              </p>
+            )}
           </StaggerItem>
 
           {/* Quick Stats */}

@@ -15,6 +15,9 @@ export * from './analytics-provider';
 // Re-export commonly used items
 export {
   AnalyticsService,
+} from './analytics-service';
+
+export type {
   AnalyticsConfig,
 } from './analytics-service';
 
