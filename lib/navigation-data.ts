@@ -46,44 +46,46 @@ export interface NavigationGroup {
 
 export const navigationGroups: NavigationGroup[] = [
   {
-    id: 'learn',
-    title: 'Learn',
-    icon: BookOpen,
+    id: 'courses',
+    title: 'Courses',
+    icon: GraduationCap,
     featured: {
-      title: 'Dharma Path',
-      description: 'Begin your sacred journey of self-discovery',
-      href: '/dharma-path',
-      thumbnail: '/images/dharma-path-thumb.jpg',
-      badge: 'New'
+      title: 'Sanskrit Bhasha Pragya',
+      description: 'Master the ancient language of Sanskrit',
+      href: '/courses/sanskrit-course',
+      thumbnail: '/images/sanskrit-course-thumb.jpg',
+      badge: 'Popular'
     },
     columns: [
       {
-        title: 'Schools',
+        title: 'All Courses',
         links: [
-          { name: 'School of Sanskrit', href: '/schools/sanskrit', icon: BookOpen, description: 'Master the ancient language' },
-          { name: 'School of Darshanas', href: '/schools/darshana', icon: Lightbulb, description: 'Explore Indian philosophy' },
-          { name: 'School of Self-help', href: '/schools/self-help', icon: Users, description: 'Ancient wisdom for modern living' },
+          { name: 'All Courses', href: '/courses', icon: BookOpen, description: 'Browse complete course catalog' },
+          { name: 'Free Courses', href: '/courses', icon: Star, description: 'Access free learning content' },
+          { name: 'Sanskrit Bhasha Pragya', href: '/courses/sanskrit-course', icon: BookOpen, description: 'Comprehensive Sanskrit course' },
+          { name: 'Yoga Darshan', href: '/courses/yoga-darshan', icon: Play, description: 'Philosophy of Yoga' },
+          { name: 'Isha Upanishad', href: '/courses/isha-upanishad', icon: Lightbulb, description: 'Ancient wisdom teachings' },
+          { name: 'Prashna Upanishad', href: '/courses/prashna-upanishad', icon: FileText, description: 'Question-based learning' },
         ]
       },
       {
-        title: 'Learning Paths',
+        title: 'Philosophy Courses',
         links: [
-          { name: 'Dharma Path', href: '/dharma-path', icon: Sparkles, description: 'Sacred journey of self-discovery' },
-          { name: 'Guṇa Profiler', href: '/guna-profiler', icon: Star, description: 'Discover your Vedic personality type' },
-          { name: 'Learning Packages', href: '/packages', icon: Package, description: 'Comprehensive course bundles' },
-          { name: 'Live Classes', href: '/courses/sanskrit-live-class', icon: Video, description: 'Interactive sessions with gurus' },
-          { name: 'Self-Paced Courses', href: '/courses', icon: BookOpen, description: 'Learn at your own pace' },
-          { name: 'Beginner Path', href: '/schools/sanskrit', icon: Play, description: 'Start your Sanskrit journey' },
-          { name: 'Advanced Studies', href: '/schools/darshana', icon: GraduationCap, description: 'Deep philosophical exploration' },
+          { name: 'Advaita Vedanta', href: '/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka', icon: Lightbulb, description: 'Non-dual philosophy' },
+          { name: 'Samkhya Darshan', href: '/courses/samkhya-darshan', icon: BookOpen, description: 'Ancient analytical philosophy' },
+          { name: 'Nyaya Darshan', href: '/courses/nyaya-darshan', icon: FileText, description: 'Logic and reasoning' },
+          { name: 'Vaisheshik Darshan', href: '/courses/vaisheshik-darshan', icon: Star, description: 'Atomistic philosophy' },
+          { name: 'Kashmir Shaivism', href: '/courses/kashmir-shaivism', icon: Sparkles, description: 'Tantric philosophy' },
+          { name: 'Tantra Darshan', href: '/courses/tantra-darshan', icon: Play, description: 'Esoteric teachings' },
         ]
       },
       {
-        title: 'Quick Access',
+        title: 'Specialized Learning',
         links: [
-          { name: 'All Schools', href: '/schools', icon: GraduationCap, description: 'Browse all learning areas' },
-          { name: 'Learning Packages', href: '/packages', icon: Package, description: 'Comprehensive course bundles' },
-          { name: 'Course Catalog', href: '/courses', icon: BookMarked, description: 'Complete course listing' },
-          { name: 'Learning Resources', href: '/help', icon: FileText, description: 'Study materials & guides' },
+          { name: 'Sanskrit Live Class', href: '/courses/sanskrit-live-class', icon: Video, description: 'Interactive live sessions' },
+          { name: 'Emotional Intelligence', href: '/courses/emotional-intelligence-with-samkhya-darshan', icon: UserCheck, description: 'Wisdom for modern life' },
+          { name: 'Yoga Advanced', href: '/courses/yoga-advanced', icon: GraduationCap, description: 'Advanced yoga studies' },
+          { name: 'Learning Packages', href: '/packages', icon: Package, description: 'Comprehensive bundles' },
         ]
       }
     ]
@@ -126,40 +128,40 @@ export const navigationGroups: NavigationGroup[] = [
     ]
   },
   {
-    id: 'community',
-    title: 'Community',
-    icon: Users,
+    id: 'wisdom',
+    title: 'Wisdom',
+    icon: Lightbulb,
     featured: {
-      title: 'Meet Our Gurus',
-      description: 'Learn from experienced Sanskrit scholars',
-      href: '/gurus',
-      thumbnail: '/images/gurus-thumb.jpg',
+      title: 'Ancient Wisdom for Modern Life',
+      description: 'Explore timeless teachings and insights',
+      href: '/wisdom',
+      thumbnail: '/images/wisdom-thumb.jpg',
       badge: 'Featured'
     },
     columns: [
       {
-        title: 'Gurus & Teachers',
-        links: [
-          { name: 'Meera Patel', href: '/gurus/meera-patel', icon: UserCheck, description: 'Sanskrit Grammar Expert' },
-          { name: 'Priya Sharma', href: '/gurus/priya-sharma', icon: UserCheck, description: 'Vedanta Philosophy' },
-          { name: 'Rajesh Kumar', href: '/gurus/rajesh-kumar', icon: UserCheck, description: 'Classical Literature' },
-          { name: 'All Gurus', href: '/gurus', icon: Users, description: 'Meet all our teachers' },
-        ]
-      },
-      {
-        title: 'Knowledge Hub',
+        title: 'Wisdom Content',
         links: [
           { name: 'Wisdom', href: '/wisdom', icon: Lightbulb, description: 'Articles & insights' },
-          { name: 'Student Stories', href: '/about', icon: MessageSquare, description: 'Success stories & testimonials' },
-          { name: 'Community Forum', href: '/contact', icon: Users, description: 'Connect with fellow learners' },
+          { name: 'English Articles', href: '/wisdom', icon: FileText, description: 'Wisdom in English' },
+          { name: 'Hindi Articles', href: '/wisdom', icon: BookOpen, description: 'Wisdom in Hindi' },
+          { name: 'Blog', href: '/blog', icon: MessageSquare, description: 'Latest blog posts' },
         ]
       },
       {
-        title: 'Events',
+        title: 'Knowledge Sources',
         links: [
-          { name: 'Live Sessions', href: '/courses/sanskrit-live-class', icon: Video, description: 'Upcoming live classes' },
-          { name: 'Workshops', href: '/courses', icon: Lightbulb, description: 'Special learning events' },
-          { name: 'Study Groups', href: '/contact', icon: Users, description: 'Join study communities' },
+          { name: 'Sanskrit Blog', href: '/blogs/sanskrit', icon: BookOpen, description: 'Sanskrit language insights' },
+          { name: 'Philosophy Articles', href: '/wisdom', icon: Lightbulb, description: 'Deep philosophical discussions' },
+          { name: 'Spiritual Guidance', href: '/wisdom', icon: Star, description: 'Spiritual teachings' },
+        ]
+      },
+      {
+        title: 'Learning Resources',
+        links: [
+          { name: 'Study Materials', href: '/help', icon: FileText, description: 'Educational resources' },
+          { name: 'Reference Guides', href: '/glossaries/sanskrit', icon: BookMarked, description: 'Sanskrit glossary' },
+          { name: 'Practice Tools', href: '/tools', icon: Keyboard, description: 'Learning tools' },
         ]
       }
     ]
@@ -188,6 +190,7 @@ export const navigationGroups: NavigationGroup[] = [
         title: 'About Shikshanam',
         links: [
           { name: 'About Us', href: '/about', icon: Info, description: 'Our mission and vision' },
+          { name: 'Career', href: '/career', icon: Users, description: 'Join our team' },
           { name: 'Our Story', href: '/about', icon: BookOpen, description: 'How we started' },
           { name: 'Team', href: '/gurus', icon: Users, description: 'Meet our team' },
         ]
@@ -198,17 +201,19 @@ export const navigationGroups: NavigationGroup[] = [
           { name: 'FAQs', href: '/help', icon: HelpCircle, description: 'Frequently asked questions' },
           { name: 'Learning Guide', href: '/help', icon: BookOpen, description: 'How to get started' },
           { name: 'Feedback', href: '/contact', icon: MessageSquare, description: 'Share your thoughts' },
+          { name: 'Accessibility', href: '/accessibility', icon: Info, description: 'Accessibility information' },
         ]
       }
     ]
   }
 ]
 
-// Top-level navigation items for header
+// Top-level navigation items for header - Based on crawled website navigation
 export const topLevelNavItems = [
-  { name: 'Learn', href: '/courses', icon: BookOpen, hasDropdown: true, groupId: 'learn' },
-  { name: 'Packages', href: '/packages', icon: Package, hasDropdown: false },
-  { name: 'Practice', href: '/practice/sanskrit', icon: Play, hasDropdown: true, groupId: 'practice' },
-  { name: 'Community', href: '/gurus', icon: Users, hasDropdown: true, groupId: 'community' },
-  { name: 'Support', href: '/help', icon: HelpCircle, hasDropdown: true, groupId: 'support' },
+  { name: 'Home', href: '/', icon: BookOpen, hasDropdown: false },
+  { name: 'Personality Test', href: '/guna-profiler', icon: UserCheck, hasDropdown: false },
+  { name: 'Courses', href: '/courses', icon: GraduationCap, hasDropdown: true, groupId: 'courses' },
+  { name: 'Wisdom', href: '/wisdom', icon: Lightbulb, hasDropdown: true, groupId: 'wisdom' },
+  { name: 'About Us', href: '/about', icon: Info, hasDropdown: false },
+  { name: 'Contact', href: '/contact', icon: MessageSquare, hasDropdown: false },
 ]

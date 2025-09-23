@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection';
-import CountdownHeader from './components/CountdownHeader';
 import QuizPopup from './components/QuizPopup';
 import QuizSection from './components/QuizSection';
 import InfoSection from './components/InfoSection';
@@ -13,6 +12,7 @@ import SyllabusSection from './components/SyllabusSection';
 import QuizInvitationSection from './components/QuizInvitationSection';
 import FoundersMissionSection from './components/FoundersMissionSection';
 import ShlokaSection from './components/ShlokaSection';
+import PricingSection from './components/PricingSection';
 import './kashmir-shaivism-landing.css';
 
 export default function KashmirShaivismPage() {
@@ -31,62 +31,27 @@ export default function KashmirShaivismPage() {
 
   return (
     <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden">
-      <CountdownHeader />
       <HeroSection onShowPopup={() => setShowPopup(true)} />
       
-      <section className="section-padding">
-        <div className="container-custom">
-          <QuizSection />
-        </div>
-      </section>
+      <QuizSection />
       
-      <section className="section-padding bg-white/50">
-        <div className="container-custom">
-          <InfoSection />
-        </div>
-      </section>
+      <InfoSection />
       
-      <section className="section-padding">
-        <div className="container-custom">
-          <StatsSection />
-        </div>
-      </section>
+      <StatsSection />
       
-      <section className="section-padding bg-white/50">
-        <div className="container-custom">
-          <TeacherSection />
-        </div>
-      </section>
+      <TeacherSection />
       
-      <section className="section-padding">
-        <div className="container-custom">
-          <BonusFeaturesSection />
-        </div>
-      </section>
+      <BonusFeaturesSection />
       
-      <section className="section-padding bg-white/50">
-        <div className="container-custom">
-          <SyllabusSection />
-        </div>
-      </section>
+      <SyllabusSection />
       
-      <section className="section-padding">
-        <div className="container-custom">
-          <QuizInvitationSection />
-        </div>
-      </section>
+      <QuizInvitationSection />
       
-      <section className="section-padding bg-white/50">
-        <div className="container-custom">
-          <FoundersMissionSection />
-        </div>
-      </section>
+      <FoundersMissionSection />
       
-      <section className="section-padding">
-        <div className="container-custom">
-          <ShlokaSection />
-        </div>
-      </section>
+      <ShlokaSection />
+      
+      <PricingSection />
       
       <QuizPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
     </div>

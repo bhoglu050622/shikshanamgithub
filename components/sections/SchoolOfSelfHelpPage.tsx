@@ -324,17 +324,7 @@ export default function SchoolOfSelfHelpPage() {
       />
 
       {/* Enhanced Founders Mission Section */}
-      <FoundersMission 
-        onFounderClick={(founder) => {
-          // analytics.track('founder_view', {
-          //   name: founder.name,
-          //   role: founder.role
-          // });
-        }}
-        onMissionLearnMore={() => {
-          // analytics.track('mission_learn_more');
-        }}
-      />
+      <FoundersMission />
 
       {/* Enhanced Community CTA Section */}
       <CommunityCTA 

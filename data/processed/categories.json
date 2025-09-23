@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sanskrit-language",
+    "name": "Sanskrit Language",
+    "description": "Learn the ancient language of Sanskrit from basics to advanced levels",
+    "icon": "📚",
+    "color": "saffron",
+    "courseCount": 2
+  },
+  {
+    "id": "philosophy-psychology",
+    "name": "Philosophy & Psychology",
+    "description": "Explore ancient wisdom for modern emotional intelligence",
+    "icon": "🧠",
+    "color": "peacock-green",
+    "courseCount": 1
+  },
+  {
+    "id": "vedanta-philosophy",
+    "name": "Vedanta Philosophy",
+    "description": "Deep dive into the philosophy of non-dualism",
+    "icon": "🕉️",
+    "color": "deep-indigo",
+    "courseCount": 1
+  },
+  {
+    "id": "yoga-philosophy",
+    "name": "Yoga Philosophy",
+    "description": "Study Patanjali Yoga Sutras and practical applications",
+    "icon": "🧘",
+    "color": "lotus-pink",
+    "courseCount": 1
+  },
+  {
+    "id": "shaiva-philosophy",
+    "name": "Shaiva Philosophy",
+    "description": "Explore Kashmir Shaivism and related philosophies",
+    "icon": "🔥",
+    "color": "copper-orange",
+    "courseCount": 1
+  },
+  {
+    "id": "upanishads",
+    "name": "Upanishads",
+    "description": "Study the profound wisdom of ancient Upanishads",
+    "icon": "📖",
+    "color": "soft-gold",
+    "courseCount": 2
+  }
+]

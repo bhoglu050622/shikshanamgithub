@@ -424,7 +424,6 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
   const handleViewProfile = (guru: Guru) => {
     onViewProfile?.(guru)
     // In a real app, this would navigate to the guru's profile page
-    console.log('Navigate to profile:', guru.profile)
   }
 
   return (

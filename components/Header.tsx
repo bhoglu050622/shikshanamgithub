@@ -8,9 +8,6 @@ import { cn } from '@/lib/utils'
 import ThemeToggle from './ThemeToggle'
 import MegaMenu from './navigation/MegaMenu'
 import MobileDrawer from './navigation/MobileDrawer'
-import LoginModal from './auth/LoginModal'
-import UserDropdown from './auth/UserDropdown'
-import { useAuth } from '@/lib/auth-context'
 import { topLevelNavItems } from '@/lib/navigation-data'
 import Button, { CTAButton } from './ui/button'
 import { ROUTES } from '@/lib/routes'
@@ -24,9 +21,6 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
-  
-  const { isLoggedIn, user, isInitialized, logout } = useAuth()
   const pathname = usePathname()
   const router = useRouter()
   const hideThemeToggle = shouldHideThemeToggle(pathname)
@@ -69,15 +63,26 @@ export default function Header() {
             {topLevelNavItems.map((item) => (
               <div key={item.name} className="relative">
                 <motion.button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     if (item.hasDropdown) {
                       const newActiveDropdown = activeDropdown === item.name ? null : item.name
                       setActiveDropdown(newActiveDropdown)
                       setActiveGroupId(newActiveDropdown && item.groupId ? item.groupId : null)
                       setIsMegaMenuOpen(newActiveDropdown !== null)
                     } else {
+                      // Close any open menus first
+                      setIsMegaMenuOpen(false)
+                      setActiveDropdown(null)
+                      setActiveGroupId(null)
                       // Navigate to the target href for non-dropdown items
-                      router.push(item.href)
+                      try {
+                        router.push(item.href)
+                      } catch (error) {
+                        console.error('Navigation error:', error)
+                        // Fallback to window.location
+                        window.location.href = item.href
+                      }
                     }
                   }}
                   whileHover={{ scale: 1.05 }}
@@ -115,17 +120,15 @@ export default function Header() {
             {/* Theme Toggle - Hidden on excluded pages */}
             {!hideThemeToggle && <ThemeToggle />}
 
-            {/* Login Button or User Dropdown */}
-            {isInitialized && isLoggedIn && user ? (
-              <UserDropdown user={user} onLogout={logout} />
-            ) : isInitialized ? (
-              <CTAButton.Login
-                onClick={() => setIsLoginModalOpen(true)}
-                size="md"
-              />
-            ) : (
-              <div className="w-20 h-10 bg-premium-border rounded-xl animate-pulse" />
-            )}
+            {/* Login Button - Placeholder for future auth implementation */}
+            <Button
+              variant="primary"
+              size="md"
+              className="flex items-center space-x-2"
+            >
+              <LogIn className="w-4 h-4" />
+              <span>Login</span>
+            </Button>
           </div>
 
           {/* Mobile Controls */}
@@ -178,11 +181,6 @@ export default function Header() {
           onClose={() => setIsMenuOpen(false)} 
         />
 
-        {/* Login Modal */}
-        <LoginModal 
-          isOpen={isLoginModalOpen} 
-          onClose={() => setIsLoginModalOpen(false)} 
-        />
       </div>
     </motion.header>
   )

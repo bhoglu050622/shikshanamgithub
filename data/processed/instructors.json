@@ -1,0 +1,123 @@
+[
+  {
+    "id": "vishal-chaurasia",
+    "name": "Vishal Chaurasia",
+    "title": "Founder & Lead Instructor",
+    "bio": "IIT Patna graduate with a background in top PSU. Transitioned to focus on disseminating ancient Indian knowledge and has a significant online presence through the Hyper Quest channel.",
+    "image": "/images/instructors/vishal-chaurasia.jpg",
+    "qualifications": [
+      "IIT Patna Graduate",
+      "Former PSU Executive",
+      "Ancient Indian Philosophy Expert",
+      "Hyper Quest Channel Creator"
+    ],
+    "specializations": [
+      "Sanskrit Language",
+      "Vedanta Philosophy",
+      "Yoga Darshan",
+      "Samkhya Philosophy",
+      "Upanishads"
+    ],
+    "social": {
+      "youtube": "https://youtube.com/@hyperquest",
+      "linkedin": "#",
+      "twitter": "#"
+    }
+  },
+  {
+    "id": "dr-rajesh-kumar",
+    "name": "Dr. Rajesh Kumar",
+    "title": "Sanskrit Scholar & Course Instructor",
+    "bio": "PhD in Sanskrit Literature with 12+ years of experience in Gurukul tradition. Gold medalist in MA Sanskrit and nationally awarded for his contributions to Sanskrit education.",
+    "image": "/images/instructors/dr-rajesh-kumar.jpg",
+    "qualifications": [
+      "PhD in Sanskrit Literature",
+      "MA Sanskrit (Gold Medalist)",
+      "BA Sanskrit (First Class)",
+      "Gurukul Traditional Training"
+    ],
+    "specializations": [
+      "Sanskrit Grammar",
+      "Classical Literature",
+      "Vedic Studies",
+      "Traditional Teaching Methods"
+    ],
+    "social": {
+      "youtube": "#",
+      "linkedin": "#",
+      "twitter": "#"
+    }
+  },
+  {
+    "id": "acharya-jamwant-ji",
+    "name": "Acharya Jamwant Ji",
+    "title": "Master of Sānkhya Philosophy",
+    "bio": "Traditional scholar with 10+ years of teaching experience, specializing in Sānkhya philosophy and emotional intelligence. Author of 2 books and mentor to 500+ disciples.",
+    "image": "/images/instructors/acharya-jamwant-ji.jpg",
+    "qualifications": [
+      "Traditional Gurukul Education",
+      "Sānkhya Philosophy Expert",
+      "Emotional Intelligence Specialist",
+      "Published Author"
+    ],
+    "specializations": [
+      "Sānkhya Philosophy",
+      "Emotional Intelligence",
+      "Traditional Wisdom",
+      "Guṇa Theory"
+    ],
+    "social": {
+      "youtube": "#",
+      "linkedin": "#",
+      "twitter": "#"
+    }
+  },
+  {
+    "id": "priya-sharma",
+    "name": "Dr. Priya Sharma",
+    "title": "Vedanta Philosophy Expert",
+    "bio": "Renowned scholar of Vedanta philosophy with 15+ years of experience. Helps students understand the profound wisdom of ancient Indian thought and its practical applications.",
+    "image": "/images/instructors/priya-sharma.jpg",
+    "qualifications": [
+      "PhD in Indian Philosophy",
+      "MA in Sanskrit Literature",
+      "Vedanta Philosophy Specialist",
+      "15+ Years Teaching Experience"
+    ],
+    "specializations": [
+      "Vedanta Philosophy",
+      "Upanishads",
+      "Spiritual Philosophy",
+      "Advaita Vedanta"
+    ],
+    "social": {
+      "youtube": "#",
+      "linkedin": "#",
+      "twitter": "#"
+    }
+  },
+  {
+    "id": "meera-patel",
+    "name": "Meera Patel",
+    "title": "Sanskrit Grammar Expert",
+    "bio": "With over 15 years of experience in Sanskrit grammar and literature, Meera brings deep knowledge and patient teaching to help students master the fundamentals.",
+    "image": "/images/instructors/meera-patel.jpg",
+    "qualifications": [
+      "MA Sanskrit Literature",
+      "Traditional Grammar Training",
+      "15+ Years Experience",
+      "Student Success Specialist"
+    ],
+    "specializations": [
+      "Sanskrit Grammar",
+      "Classical Literature",
+      "Vedic Studies",
+      "Language Fundamentals"
+    ],
+    "social": {
+      "youtube": "#",
+      "linkedin": "#",
+      "twitter": "#"
+    }
+  }
+]

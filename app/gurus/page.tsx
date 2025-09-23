@@ -1,40 +1,24 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import instructorsData from '@/data/processed/instructors.json'
 
 export const metadata: Metadata = {
   title: 'Meet Our Gurus - Shikshanam',
   description: 'Learn from experienced Sanskrit scholars and spiritual teachers who guide your learning journey.',
 }
 
-const gurus = [
-  {
-    name: 'Meera Patel',
-    title: 'Sanskrit Grammar Expert',
-    description: 'With over 15 years of experience in Sanskrit grammar and literature, Meera brings deep knowledge and patient teaching to help students master the fundamentals.',
-    href: '/gurus/meera-patel',
-    image: '/images/gurus/meera-patel.jpg',
-    specialties: ['Sanskrit Grammar', 'Classical Literature', 'Vedic Studies'],
-    experience: '15+ years'
-  },
-  {
-    name: 'Priya Sharma',
-    title: 'Vedanta Philosophy',
-    description: 'A renowned scholar of Vedanta philosophy, Priya helps students understand the profound wisdom of ancient Indian thought and its practical applications.',
-    href: '/gurus/priya-sharma',
-    image: '/images/gurus/priya-sharma.jpg',
-    specialties: ['Vedanta', 'Upanishads', 'Spiritual Philosophy'],
-    experience: '12+ years'
-  },
-  {
-    name: 'Rajesh Kumar',
-    title: 'Classical Literature',
-    description: 'An expert in classical Sanskrit literature, Rajesh brings to life the beauty and wisdom of ancient texts through engaging storytelling and analysis.',
-    href: '/gurus/rajesh-kumar',
-    image: '/images/gurus/rajesh-kumar.jpg',
-    specialties: ['Classical Literature', 'Poetry', 'Epic Studies'],
-    experience: '18+ years'
-  }
-]
+// Transform instructor data to match the expected format
+const gurus = instructorsData.map((instructor) => ({
+  name: instructor.name,
+  title: instructor.title,
+  description: instructor.bio,
+  href: `/gurus/${instructor.id}`,
+  image: instructor.image,
+  specialties: instructor.specializations,
+  experience: '10+ years',
+  qualifications: instructor.qualifications,
+  social: instructor.social
+}))
 
 export default function GurusPage() {
   return (
@@ -81,6 +65,27 @@ export default function GurusPage() {
                       ))}
                     </div>
                   </div>
+                  
+                  {guru.qualifications && (
+                    <div className="mb-4">
+                      <p className="text-sm font-medium text-gray-700 mb-2">Qualifications:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {guru.qualifications.slice(0, 2).map((qualification) => (
+                          <span
+                            key={qualification}
+                            className="px-3 py-1 bg-peacock-green-50 text-peacock-green-700 text-xs rounded-full"
+                          >
+                            {qualification}
+                          </span>
+                        ))}
+                        {guru.qualifications.length > 2 && (
+                          <span className="px-3 py-1 bg-gray-50 text-gray-600 text-xs rounded-full">
+                            +{guru.qualifications.length - 2} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
                   
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">Experience: {guru.experience}</span>

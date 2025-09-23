@@ -7,27 +7,30 @@ import { Users, BookOpen, Cpu, Sparkles, Zap, Brain } from 'lucide-react'
 const stats = [
   {
     number: 50,
-    label: 'Certified Gurus',
+    label: 'Gurus',
     icon: Users,
-    color: 'from-golden-olive to-golden-olive/90',
+    color: 'from-cyan-500 to-cyan-400',
     suffix: '+',
-    description: 'Expert teachers guiding your journey'
+    description: 'Expert teachers guiding your journey',
+    glowColor: 'rgba(6, 182, 212, 0.6)'
   },
   {
     number: 2500,
-    label: 'Active Shishyas',
+    label: 'Shishyas',
     icon: BookOpen,
-    color: 'from-deep-maroon to-deep-maroon/90',
+    color: 'from-purple-500 to-purple-400',
     suffix: '+',
-    description: 'Students learning ancient wisdom'
+    description: 'Students learning ancient wisdom',
+    glowColor: 'rgba(139, 92, 246, 0.6)'
   },
   {
     number: 100,
     label: 'AI Tools',
     icon: Cpu,
-    color: 'from-copper-orange to-copper-orange/90',
+    color: 'from-pink-500 to-pink-400',
     suffix: '+',
-    description: 'Intelligent learning assistants'
+    description: 'Intelligent learning assistants',
+    glowColor: 'rgba(236, 72, 153, 0.6)'
   }
 ]
 
@@ -159,11 +162,11 @@ export default function TriangularNumbers() {
           </p> */}
         </motion.div>
 
-        {/* Triangular Layout */}
-        <div className="relative max-w-4xl mx-auto">
+        {/* Enhanced Triangular Layout */}
+        <div className="relative max-w-5xl mx-auto">
           {/* Central Triangle Container */}
-          <div className="relative w-full h-96 flex items-center justify-center">
-            {/* Triangle Background */}
+          <div className="relative w-full h-[500px] flex items-center justify-center">
+            {/* Multiple Triangle Layers with Enhanced Animation */}
             <motion.div
               className="absolute inset-0"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -173,42 +176,112 @@ export default function TriangularNumbers() {
             >
               <svg
                 className="w-full h-full"
-                viewBox="0 0 400 400"
+                viewBox="0 0 500 500"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {/* Outer Triangle */}
+                {/* Outer Triangle with Pulsing Effect */}
                 <motion.path
-                  d="M200 50 L350 300 L50 300 Z"
+                  d="M250 60 L420 360 L80 360 Z"
                   stroke="url(#triangleGradient)"
-                  strokeWidth="2"
+                  strokeWidth="3"
                   fill="none"
                   initial={{ pathLength: 0 }}
-                  animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                  transition={{ duration: 2, delay: 0.5 }}
-                />
-                {/* Inner Triangle */}
-                <motion.path
-                  d="M200 100 L300 250 L100 250 Z"
-                  stroke="url(#innerTriangleGradient)"
-                  strokeWidth="1"
-                  fill="none"
-                  initial={{ pathLength: 0 }}
-                  animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                  transition={{ duration: 2, delay: 0.8 }}
-                />
-                {/* Center Triangle */}
-                <motion.path
-                  d="M200 150 L250 200 L150 200 Z"
-                  stroke="url(#centerTriangleGradient)"
-                  strokeWidth="1"
-                  fill="none"
-                  initial={{ pathLength: 0 }}
-                  animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                  transition={{ duration: 2, delay: 1.1 }}
+                  animate={isInView ? { 
+                    pathLength: 1,
+                    strokeWidth: [3, 4, 3],
+                  } : { pathLength: 0 }}
+                  transition={{ 
+                    pathLength: { duration: 2, delay: 0.5 },
+                    strokeWidth: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                  }}
                 />
                 
-                {/* Gradient Definitions */}
+                {/* Middle Triangle */}
+                <motion.path
+                  d="M250 120 L360 300 L140 300 Z"
+                  stroke="url(#innerTriangleGradient)"
+                  strokeWidth="2"
+                  fill="rgba(139, 92, 246, 0.1)"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { 
+                    pathLength: 1,
+                    fillOpacity: [0.1, 0.2, 0.1]
+                  } : { pathLength: 0 }}
+                  transition={{ 
+                    pathLength: { duration: 2, delay: 0.8 },
+                    fillOpacity: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                  }}
+                />
+                
+                {/* Inner Triangle */}
+                <motion.path
+                  d="M250 180 L310 260 L190 260 Z"
+                  stroke="url(#centerTriangleGradient)"
+                  strokeWidth="2"
+                  fill="rgba(236, 72, 153, 0.1)"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { 
+                    pathLength: 1,
+                    fillOpacity: [0.1, 0.15, 0.1]
+                  } : { pathLength: 0 }}
+                  transition={{ 
+                    pathLength: { duration: 2, delay: 1.1 },
+                    fillOpacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }
+                  }}
+                />
+
+                {/* Energy Lines connecting vertices */}
+                <motion.line
+                  x1="250" y1="60" x2="250" y2="250"
+                  stroke="url(#energyLineGradient)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { 
+                    pathLength: [0, 1, 0],
+                    opacity: [0, 1, 0]
+                  } : {}}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    delay: 2,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.line
+                  x1="420" y1="360" x2="250" y2="250"
+                  stroke="url(#energyLineGradient2)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { 
+                    pathLength: [0, 1, 0],
+                    opacity: [0, 1, 0]
+                  } : {}}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    delay: 2.5,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.line
+                  x1="80" y1="360" x2="250" y2="250"
+                  stroke="url(#energyLineGradient3)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { 
+                    pathLength: [0, 1, 0],
+                    opacity: [0, 1, 0]
+                  } : {}}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    delay: 3,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Enhanced Gradient Definitions */}
                 <defs>
                   <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#06b6d4" />
@@ -225,16 +298,31 @@ export default function TriangularNumbers() {
                     <stop offset="50%" stopColor="#06b6d4" />
                     <stop offset="100%" stopColor="#8b5cf6" />
                   </linearGradient>
+                  <linearGradient id="energyLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#06b6d4" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="energyLineGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#8b5cf6" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="energyLineGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ec4899" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#ec4899" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#ec4899" stopOpacity="0" />
+                  </linearGradient>
                 </defs>
               </svg>
             </motion.div>
 
-            {/* Stats positioned at triangle vertices */}
+            {/* Enhanced Stats positioned at triangle vertices */}
             {stats.map((stat, index) => {
               const positions = [
-                { top: '10%', left: '50%', transform: 'translateX(-50%)' }, // Top
-                { bottom: '10%', left: '15%', transform: 'translateX(-50%)' }, // Bottom Left
-                { bottom: '10%', right: '15%', transform: 'translateX(50%)' }, // Bottom Right
+                { top: '5%', left: '50%', transform: 'translateX(-50%)' }, // Top - Gurus
+                { bottom: '5%', left: '12%', transform: 'translateX(-50%)' }, // Bottom Left - Shishyas
+                { bottom: '5%', right: '12%', transform: 'translateX(50%)' }, // Bottom Right - AI Tools
               ]
               
               return (
@@ -246,75 +334,279 @@ export default function TriangularNumbers() {
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.5 + index * 0.2 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileHover={{ scale: 1.15, y: -8 }}
                 >
-                  {/* Glowing Icon Container */}
+                  {/* Enhanced Glowing Icon Container */}
                   <motion.div
-                    className={`w-20 h-20 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl relative overflow-hidden`}
+                    className={`w-24 h-24 bg-gradient-to-br ${stat.color} rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-2xl relative overflow-hidden`}
                     whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8 }}
+                    animate={{
+                      boxShadow: [
+                        `0 0 20px ${stat.glowColor}`,
+                        `0 0 30px ${stat.glowColor}`,
+                        `0 0 20px ${stat.glowColor}`,
+                      ],
+                    }}
                   >
-                    <stat.icon className="w-10 h-10 text-white z-10" />
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-white/20 rounded-2xl blur-sm"></div>
-                    {/* Animated border */}
+                    <stat.icon className="w-12 h-12 text-white z-10" />
+                    
+                    {/* Multi-layer glow effects */}
+                    <div className="absolute inset-0 bg-white/20 rounded-3xl blur-sm"></div>
+                    <div className="absolute inset-0 bg-white/10 rounded-3xl blur-md"></div>
+                    
+                    {/* Animated border rings */}
                     <motion.div
-                      className="absolute inset-0 rounded-2xl border-2 border-cyan-400/50"
+                      className="absolute inset-0 rounded-3xl border-2 border-cyan-400/50"
                       animate={{
-                        boxShadow: [
-                          '0 0 20px rgba(6, 182, 212, 0.5)',
-                          '0 0 40px rgba(139, 92, 246, 0.5)',
-                          '0 0 20px rgba(6, 182, 212, 0.5)',
-                        ],
+                        rotate: [0, 360],
+                        borderColor: ['rgba(6, 182, 212, 0.5)', 'rgba(139, 92, 246, 0.5)', 'rgba(236, 72, 153, 0.5)', 'rgba(6, 182, 212, 0.5)'],
                       }}
                       transition={{
-                        duration: 2,
+                        rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                        borderColor: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                      }}
+                    />
+                    <motion.div
+                      className="absolute inset-2 rounded-2xl border border-white/30"
+                      animate={{
+                        rotate: [360, 0],
+                        opacity: [0.3, 0.8, 0.3],
+                      }}
+                      transition={{
+                        rotate: { duration: 6, repeat: Infinity, ease: "linear" },
+                        opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                      }}
+                    />
+
+                    {/* Simplified particle effects */}
+                    {Array.from({ length: 2 }).map((_, particleIndex) => (
+                      <motion.div
+                        key={`particle-${index}-${particleIndex}`}
+                        className="absolute w-1 h-1 bg-white rounded-full"
+                        style={{
+                          left: `${30 + particleIndex * 30}%`,
+                          top: `${30 + particleIndex * 30}%`,
+                        }}
+                        animate={{
+                          opacity: [0, 1, 0],
+                          scale: [0, 1, 0],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          delay: particleIndex * 0.5,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    ))}
+                  </motion.div>
+                  
+                  {/* Enhanced Number with Holographic Effect */}
+                  <motion.div 
+                    className="text-cyan-400 mb-2 relative"
+                    animate={{
+                      textShadow: [
+                        '0 0 10px rgba(6, 182, 212, 0.5)',
+                        '0 0 20px rgba(139, 92, 246, 0.5)',
+                        '0 0 10px rgba(236, 72, 153, 0.5)',
+                        '0 0 10px rgba(6, 182, 212, 0.5)',
+                      ],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <AnimatedCounter value={stat.number} suffix={stat.suffix} />
+                    
+                    {/* Holographic overlay */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      animate={{
+                        x: ['-100%', '100%'],
+                        opacity: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 3,
                         repeat: Infinity,
+                        delay: index * 0.5,
+                        ease: "easeInOut",
                       }}
                     />
                   </motion.div>
                   
-                  {/* Number */}
-                  <div className="text-cyan-400 mb-2">
-                    <AnimatedCounter value={stat.number} suffix={stat.suffix} />
-                  </div>
-                  
-                  {/* Label */}
-                  <div className="text-white font-semibold text-lg mb-1">
+                  {/* Enhanced Label */}
+                  <motion.div 
+                    className="text-white font-bold text-xl mb-2"
+                    animate={{
+                      color: ['#ffffff', '#06b6d4', '#8b5cf6', '#ec4899', '#ffffff'],
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      delay: index * 0.3,
+                      ease: "easeInOut",
+                    }}
+                  >
                     {stat.label}
-                  </div>
+                  </motion.div>
                   
-                  {/* Description */}
-                  <div className="text-gray-400 text-sm max-w-32">
+                  {/* Enhanced Description */}
+                  <div className="text-gray-300 text-sm max-w-40 leading-tight">
                     {stat.description}
                   </div>
+
+                  {/* Connection lines to center */}
+                  <motion.div
+                    className="absolute w-px bg-gradient-to-b from-cyan-400/50 to-transparent"
+                    style={{
+                      height: '60px',
+                      left: '50%',
+                      [index === 0 ? 'bottom' : 'top']: '-60px',
+                      transform: 'translateX(-50%)',
+                    }}
+                    initial={{ scaleY: 0 }}
+                    animate={isInView ? { 
+                      scaleY: [0, 1, 0],
+                      opacity: [0, 1, 0]
+                    } : {}}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: 3 + index * 0.5,
+                      ease: "easeInOut",
+                    }}
+                  />
                 </motion.div>
               )
             })}
 
-            {/* Central AI Brain Icon */}
+            {/* Enhanced Central AI Brain Icon */}
             <motion.div
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              animate={{
-                rotate: [0, 360],
-              }}
               transition={{
                 duration: 1,
                 delay: 2,
-                rotate: {
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                },
               }}
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl">
-                <Brain className="w-8 h-8 text-white" />
-              </div>
+              <motion.div
+                className="w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-500 to-cyan-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden"
+                animate={{
+                  rotate: [0, 360],
+                  boxShadow: [
+                    '0 0 30px rgba(139, 92, 246, 0.5)',
+                    '0 0 50px rgba(236, 72, 153, 0.7)',
+                    '0 0 30px rgba(6, 182, 212, 0.5)',
+                    '0 0 30px rgba(139, 92, 246, 0.5)',
+                  ],
+                }}
+                transition={{
+                  rotate: {
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                  boxShadow: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }}
+              >
+                <Brain className="w-10 h-10 text-white z-10" />
+                
+                {/* Pulsing core */}
+                <motion.div
+                  className="absolute inset-2 bg-white/20 rounded-full"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.2, 0.5, 0.2],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                
+                {/* Rotating rings */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-white/30 rounded-full"
+                  animate={{
+                    rotate: [0, -360],
+                    borderColor: ['rgba(255,255,255,0.3)', 'rgba(6,182,212,0.6)', 'rgba(255,255,255,0.3)'],
+                  }}
+                  transition={{
+                    rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                    borderColor: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                />
+                <motion.div
+                  className="absolute inset-1 border border-white/20 rounded-full"
+                  animate={{
+                    rotate: [360, 0],
+                    borderColor: ['rgba(255,255,255,0.2)', 'rgba(236,72,153,0.5)', 'rgba(255,255,255,0.2)'],
+                  }}
+                  transition={{
+                    rotate: { duration: 6, repeat: Infinity, ease: "linear" },
+                    borderColor: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                />
+
+                {/* Data streams */}
+                {Array.from({ length: 8 }).map((_, streamIndex) => (
+                  <motion.div
+                    key={`stream-${streamIndex}`}
+                    className="absolute w-0.5 h-8 bg-gradient-to-t from-cyan-400 to-transparent"
+                    style={{
+                      left: '50%',
+                      top: '50%',
+                      transformOrigin: 'bottom center',
+                      transform: `translateX(-50%) translateY(-100%) rotate(${streamIndex * 45}deg)`,
+                    }}
+                    animate={{
+                      scaleY: [0, 1, 0],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: streamIndex * 0.2,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </motion.div>
             </motion.div>
+
+            {/* Floating data particles around the center */}
+            {Array.from({ length: 6 }).map((_, particleIndex) => (
+              <motion.div
+                key={`floating-particle-${particleIndex}`}
+                className="absolute w-1.5 h-1.5 bg-cyan-400 rounded-full"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                }}
+                animate={{
+                  x: [0, Math.cos(particleIndex * 60 * Math.PI / 180) * 60],
+                  y: [0, Math.sin(particleIndex * 60 * Math.PI / 180) * 60],
+                  opacity: [0, 0.8, 0],
+                  scale: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  delay: particleIndex * 0.4,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
           </div>
         </div>
 

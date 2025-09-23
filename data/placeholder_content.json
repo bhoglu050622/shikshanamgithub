@@ -1,0 +1,92 @@
+{
+  "images": {
+    "hero": {
+      "main": "/api/placeholder/1200/600",
+      "background": "/api/placeholder/1920/1080",
+      "overlay": "/api/placeholder/1200/400"
+    },
+    "courses": {
+      "sanskrit": "/api/placeholder/400/300",
+      "philosophy": "/api/placeholder/400/300",
+      "yoga": "/api/placeholder/400/300",
+      "upanishad": "/api/placeholder/400/300",
+      "shaivism": "/api/placeholder/400/300",
+      "vedanta": "/api/placeholder/400/300"
+    },
+    "instructors": {
+      "vishal": "/api/placeholder/300/300",
+      "rajesh": "/api/placeholder/300/300",
+      "priya": "/api/placeholder/300/300",
+      "jamwant": "/api/placeholder/300/300",
+      "meera": "/api/placeholder/300/300"
+    },
+    "testimonials": {
+      "student1": "/api/placeholder/150/150",
+      "student2": "/api/placeholder/150/150",
+      "student3": "/api/placeholder/150/150",
+      "student4": "/api/placeholder/150/150",
+      "student5": "/api/placeholder/150/150",
+      "student6": "/api/placeholder/150/150"
+    },
+    "blog": {
+      "featured": "/api/placeholder/600/400",
+      "regular": "/api/placeholder/400/250",
+      "thumbnail": "/api/placeholder/200/150"
+    },
+    "icons": {
+      "sanskrit": "/api/placeholder/64/64",
+      "philosophy": "/api/placeholder/64/64",
+      "yoga": "/api/placeholder/64/64",
+      "meditation": "/api/placeholder/64/64",
+      "book": "/api/placeholder/64/64",
+      "lotus": "/api/placeholder/64/64"
+    }
+  },
+  "videos": {
+    "intro": "/api/placeholder/video/intro.mp4",
+    "course_preview": "/api/placeholder/video/preview.mp4",
+    "testimonial": "/api/placeholder/video/testimonial.mp4",
+    "demo": "/api/placeholder/video/demo.mp4"
+  },
+  "text": {
+    "hero": {
+      "title": "Discover Ancient Wisdom for Modern Life",
+      "subtitle": "Explore the profound teachings of Indian philosophy, Sanskrit language, and spiritual practices that have guided humanity for millennia.",
+      "cta": "Start Your Journey"
+    },
+    "courses": {
+      "title": "Choose Your Path to Wisdom",
+      "subtitle": "From Sanskrit language to profound philosophy, discover courses that transform your understanding of ancient Indian wisdom.",
+      "cta": "Explore Courses"
+    },
+    "testimonials": {
+      "title": "What Our Students Say",
+      "subtitle": "Join thousands of learners who have transformed their understanding of ancient Indian wisdom",
+      "cta": "Read More Stories"
+    },
+    "instructors": {
+      "title": "Learn from Expert Gurus",
+      "subtitle": "Our instructors bring decades of experience in traditional Indian knowledge systems",
+      "cta": "Meet Our Gurus"
+    },
+    "blog": {
+      "title": "Wisdom & Insights",
+      "subtitle": "Deep dive into ancient wisdom, modern applications, and spiritual insights",
+      "cta": "Read Articles"
+    }
+  },
+  "placeholders": {
+    "course_description": "This comprehensive course explores the fundamental principles and practical applications of ancient Indian wisdom. Through structured learning modules, interactive sessions, and expert guidance, you'll gain deep insights into timeless teachings that remain relevant in modern life.",
+    "instructor_bio": "With over 15 years of experience in traditional Indian knowledge systems, this instructor brings authentic wisdom and practical insights to every lesson. Their deep understanding of ancient texts and modern applications makes complex concepts accessible to learners of all levels.",
+    "testimonial": "This course has been a life-changing experience. The way complex concepts are explained makes ancient wisdom accessible to modern learners. I've gained deep insights that I never thought possible.",
+    "blog_excerpt": "Discover the profound wisdom hidden in ancient texts and learn how to apply these timeless teachings to modern challenges. This comprehensive guide explores the deeper meanings behind traditional practices and their relevance in contemporary life.",
+    "faq_answer": "This is a comprehensive answer that addresses the most common questions about our courses, learning methodology, and support systems. We provide detailed information to help you make an informed decision about your learning journey.",
+    "course_benefit": "Gain practical skills and deep understanding that you can apply immediately in your personal and professional life. This course provides both theoretical knowledge and hands-on experience.",
+    "learning_outcome": "By the end of this course, you will have a solid foundation in the subject matter, practical skills for real-world application, and a deeper appreciation for the wisdom of ancient traditions."
+  },
+  "metadata": {
+    "lastUpdated": "2024-11-15T10:00:00Z",
+    "version": "1.0",
+    "description": "Comprehensive placeholder content for Shikshanam website development"
+  }
+}

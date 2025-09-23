@@ -92,7 +92,7 @@ export default function SanskritCoursePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationLd)
+          __html: JSON.stringify(organizationLd())
         }}
       />
       <script
@@ -104,7 +104,10 @@ export default function SanskritCoursePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(instructorLd)
+          __html: JSON.stringify(instructorLd({
+            name: "Sanskrit Expert",
+            title: "Senior Instructor"
+          }))
         }}
       />
 

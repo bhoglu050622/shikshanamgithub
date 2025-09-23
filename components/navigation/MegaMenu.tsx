@@ -228,6 +228,7 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                                   <motion.a
                                     key={linkIndex}
                                     href={link.href}
+                                    onClick={onClose}
                                     whileHover={{ x: 4 }}
                                     className="block p-3 rounded-xl hover:bg-saffron-50 dark:hover:bg-wisdom-800 transition-all duration-200 group"
                                   >

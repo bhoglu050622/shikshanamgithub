@@ -134,37 +134,37 @@
   :root {
     /* Premium Design System - Light Mode (Enhanced Contrast) */
     --background: 0 0% 100%; /* Pure white for premium feel */
-    --foreground: 0 0% 4%; /* Near black for maximum contrast */
+    --foreground: 0 0% 8%; /* Very dark text for maximum contrast */
     --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 0 0% 4%; /* Near black text on cards */
+    --card-foreground: 0 0% 8%; /* Very dark text on cards */
     --popover: 0 0% 100%; /* Pure white popovers */
-    --popover-foreground: 0 0% 4%; /* Near black text */
-    --primary: 45 67% 45%; /* Darker golden olive for better contrast */
+    --popover-foreground: 0 0% 8%; /* Very dark text */
+    --primary: 45 67% 40%; /* Darker golden olive for better contrast */
     --primary-foreground: 0 0% 100%; /* White text on primary */
-    --secondary: 0 30% 15%; /* Darker deep maroon for better contrast */
+    --secondary: 0 30% 12%; /* Darker deep maroon for better contrast */
     --secondary-foreground: 0 0% 100%; /* White text on secondary */
     --muted: 0 0% 96%; /* Light gray for muted elements */
-    --muted-foreground: 0 0% 35%; /* Darker gray text for better contrast */
-    --accent: 20 80% 45%; /* Darker copper orange for better contrast */
+    --muted-foreground: 0 0% 30%; /* Darker gray text for better contrast */
+    --accent: 20 80% 40%; /* Darker copper orange for better contrast */
     --accent-foreground: 0 0% 100%; /* White text on accent */
     --destructive: 0 74% 50%; /* Red for destructive actions */
     --destructive-foreground: 0 0% 100%; /* White text */
-    --border: 0 0% 85%; /* Darker border for better visibility */
+    --border: 0 0% 80%; /* Darker border for better visibility */
     --input: 0 0% 96%; /* Light input background */
-    --ring: 45 67% 45%; /* Darker golden olive focus ring */
+    --ring: 45 67% 40%; /* Darker golden olive focus ring */
     --radius: 0.75rem; /* 12px */
     
     /* Premium Design System Core Colors - Light Mode */
     --premium-bg-primary: 0 0% 100%; /* Pure white background */
     --premium-bg-secondary: 0 0% 98%; /* Off-white secondary background */
     --premium-text-primary: 0 0% 8%; /* Deep charcoal primary text */
-    --premium-text-secondary: 0 0% 25%; /* Dark gray secondary text */
-    --premium-border: 0 0% 90%; /* Light gray borders */
-    --premium-accent-primary: 45 67% 50%; /* Golden olive primary accent */
-    --premium-accent-secondary: 0 30% 20%; /* Deep maroon secondary accent */
-    --premium-success: 142 71% 45%; /* Green for success */
-    --premium-warning: 38 92% 50%; /* Orange for warnings */
-    --premium-error: 0 74% 50%; /* Red for errors */
+    --premium-text-secondary: 0 0% 20%; /* Darker gray secondary text for better contrast */
+    --premium-border: 0 0% 85%; /* Darker gray borders for better visibility */
+    --premium-accent-primary: 45 67% 40%; /* Darker golden olive primary accent */
+    --premium-accent-secondary: 0 30% 15%; /* Darker deep maroon secondary accent */
+    --premium-success: 142 71% 40%; /* Darker green for success */
+    --premium-warning: 38 92% 45%; /* Darker orange for warnings */
+    --premium-error: 0 74% 45%; /* Darker red for errors */
     
     /* School of Sanskrit Color System - Light Mode */
     /* 1. Teal (primary card color) */
@@ -235,16 +235,16 @@
     
     /* Enhanced Text Colors for Better Contrast */
     --text-primary: 0 0% 8%;
-    --text-secondary: 0 0% 25%;
-    --text-tertiary: 0 0% 45%;
-    --text-accent: 45 67% 40%;
-    --text-muted: 0 0% 60%;
+    --text-secondary: 0 0% 20%;
+    --text-tertiary: 0 0% 35%;
+    --text-accent: 45 67% 35%;
+    --text-muted: 0 0% 50%;
     
     /* Brand Color System - Light Mode */
-    --brand-primary: 45 67% 50%; /* golden-olive */
-    --brand-secondary: 0 30% 20%; /* deep-maroon */
-    --brand-accent: 20 80% 50%; /* copper-orange */
-    --brand-gold: 45 100% 45%; /* temple-gold */
+    --brand-primary: 45 67% 40%; /* darker golden-olive for better contrast */
+    --brand-secondary: 0 30% 15%; /* darker deep-maroon for better contrast */
+    --brand-accent: 20 80% 40%; /* darker copper-orange for better contrast */
+    --brand-gold: 45 100% 40%; /* darker temple-gold for better contrast */
     
     /* Background System - Light Mode */
     --bg-primary: 45 33% 98%; /* parchment-ivory */
@@ -727,11 +727,11 @@
   
   /* Layout System */
   .section-padding {
-    @apply py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24;
+    @apply py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20;
   }
   
   .container-custom {
-    @apply w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    @apply w-full max-w-screen-2xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12;
   }
   
   /* Responsive container for main content */
@@ -741,6 +741,40 @@
   
   .grid-12 {
     @apply grid grid-cols-12 gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+  
+  /* Responsive spacing utilities */
+  .spacing-xs {
+    @apply space-y-2 sm:space-y-3;
+  }
+  
+  .spacing-sm {
+    @apply space-y-3 sm:space-y-4;
+  }
+  
+  .spacing-md {
+    @apply space-y-4 sm:space-y-6;
+  }
+  
+  .spacing-lg {
+    @apply space-y-6 sm:space-y-8;
+  }
+  
+  .spacing-xl {
+    @apply space-y-8 sm:space-y-12;
+  }
+  
+  /* Responsive gap utilities */
+  .gap-responsive {
+    @apply gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+  
+  .gap-responsive-sm {
+    @apply gap-2 sm:gap-3 md:gap-4;
+  }
+  
+  .gap-responsive-lg {
+    @apply gap-4 sm:gap-6 md:gap-8 lg:gap-12;
   }
   
   /* Enhanced Mobile-first responsive utilities */
@@ -1426,6 +1460,31 @@
   
   .text-high-contrast-aaa {
     color: #000000;
+  }
+  
+  /* Enhanced light theme contrast utilities */
+  .text-light-contrast-primary {
+    color: hsl(0 0% 8%);
+  }
+  
+  .text-light-contrast-secondary {
+    color: hsl(0 0% 20%);
+  }
+  
+  .text-light-contrast-tertiary {
+    color: hsl(0 0% 35%);
+  }
+  
+  .bg-light-contrast-primary {
+    background-color: hsl(0 0% 100%);
+  }
+  
+  .bg-light-contrast-secondary {
+    background-color: hsl(0 0% 98%);
+  }
+  
+  .border-light-contrast {
+    border-color: hsl(0 0% 80%);
   }
   
   /* Accessible background colors */

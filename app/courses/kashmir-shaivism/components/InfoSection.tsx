@@ -76,7 +76,7 @@ export default function InfoSection() {
 
   return (
     <div id="kashmir-info-section-rethemed" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Section Headline */}
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-playfair text-main">

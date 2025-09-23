@@ -9,7 +9,6 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/theme'
-import { AuthProvider } from '@/lib/auth-context'
 // import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
 // import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
 // import { SEOProvider } from '@/lib/seo'
@@ -147,34 +146,16 @@ export default function RootLayout({
         </a>
         
         <ErrorBoundary>
-          {/* <AnalyticsProvider config={{
-            googleAnalytics: {
-              measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
-              anonymizeIp: true,
-              respectDnt: true,
-            },
-            debug: process.env.NODE_ENV === 'development',
-          }}> */}
-            {/* <SEOProvider> */}
-              <ThemeProvider>
-                <AuthProvider>
-                  {/* <AccessibilityProvider> */}
-                  {/* <PerformanceMonitor /> */}
-                {/* <ClientServiceWorker /> */}
-                {/* <AccessibilityToolbar /> */}
-                <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
-                  <Header />
-                  <main id="main-content" className="w-full pb-20" role="main">
-                    {children}
-                  </main>
-                  <Footer />
-                  <MobileNavigation />
-                </div>
-                  {/* </AccessibilityProvider> */}
-                </AuthProvider>
-              </ThemeProvider>
-            {/* </SEOProvider> */}
-          {/* </AnalyticsProvider> */}
+          <ThemeProvider>
+            <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
+              <Header />
+              <main id="main-content" className="w-full pb-20" role="main">
+                {children}
+              </main>
+              <Footer />
+              <MobileNavigation />
+            </div>
+          </ThemeProvider>
         </ErrorBoundary>
       </body>
     </html>

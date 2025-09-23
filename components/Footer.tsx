@@ -43,8 +43,8 @@ const socialLinks = [
 
 const contactInfo = [
   { icon: Mail, text: 'hello@shikshanam.com', href: 'mailto:hello@shikshanam.com' },
-  { icon: Phone, text: '+91 98765 43210', href: 'tel:+919876543210' },
-  { icon: MapPin, text: 'Mumbai, Maharashtra, India', href: '#location' }
+  { icon: Phone, text: '+91-9910032165', href: 'tel:+919910032165' },
+  { icon: MapPin, text: 'Monday to Saturday 11AM – 6PM', href: '#hours' }
 ]
 
 
@@ -164,7 +164,7 @@ export default function Footer() {
             <div
               key={category}
             >
-              <h3 className="font-semibold text-white mb-4">{category}</h3>
+              <h3 className="font-semibold text-white mb-4" style={{ color: '#ffffff' }}>{category}</h3>
               <ul className="space-y-2">
                 {links.map((link, linkIndex) => (
                   <div
@@ -173,6 +173,7 @@ export default function Footer() {
                     <a
                       href={link.href}
                       className="text-white hover:text-temple-gold transition-colors duration-200 text-sm hover:translate-x-1 inline-block"
+                      style={{ color: '#ffffff' }}
                     >
                       {link.name}
                     </a>

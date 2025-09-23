@@ -1,303 +1,294 @@
-import { useState, useEffect, useCallback } from 'react';
-import { 
-  Package, 
-  PackagesResponse, 
-  PackageResponse, 
-  UserPackage, 
-  UserPackagesResponse,
-  Session,
-  SessionsResponse,
-  PurchaseRequest,
-  PurchaseResponse,
-  UpgradeSuggestionResponse,
-  CartItem
-} from '@/lib/types/packages';
+import { useState, useEffect } from 'react'
+import { UserPackage, PurchaseRequest } from '@/lib/types/packages'
 
-// Base API URL - adjust based on your backend
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
-
-// Custom hook for fetching packages list
-export function usePackages(page = 1, limit = 12) {
-  const [packages, setPackages] = useState<Package[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [total, setTotal] = useState(0);
-
-  const fetchPackages = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`${API_BASE}/packages?page=${page}&limit=${limit}`);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch packages: ${response.statusText}`);
+// Mock package data - replace with your content management system
+const mockPackages = [
+  {
+    id: '1',
+    sku: 'sanskrit-basics',
+    name: 'Sanskrit Basics Package',
+    shortDescription: 'Complete introduction to Sanskrit language and grammar',
+    longDescription: 'A comprehensive course covering Sanskrit fundamentals, grammar, and pronunciation with interactive lessons and expert guidance.',
+    description: 'Complete introduction to Sanskrit language and grammar',
+    price: 99,
+    priceInr: 7999,
+    currency: 'USD',
+    features: [
+      'Interactive lessons',
+      'Grammar exercises',
+      'Pronunciation guide',
+      'Certificate of completion'
+    ],
+    image: '/assets/sanskrit-basics.jpg',
+    thumbnailUrl: '/assets/sanskrit-basics.jpg',
+    category: 'sanskrit',
+    level: 'beginner',
+    duration: '3 months',
+    instructor: 'Dr. Priya Sharma',
+    livePassCount: 5,
+    mentorHours: 3,
+    certificateIncluded: true,
+    includedCourses: [
+      {
+        id: '1',
+        title: 'Sanskrit Fundamentals',
+        duration: '2 hours',
+        link: '/courses/sanskrit-fundamentals'
+      },
+      {
+        id: '2',
+        title: 'Grammar Basics',
+        duration: '3 hours',
+        link: '/courses/grammar-basics'
       }
-      
-      const data: PackagesResponse = await response.json();
-      setPackages(data.packages);
-      setTotal(data.total);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch packages';
-      setError(errorMessage);
-      console.error('Error fetching packages:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [page, limit]);
+    ]
+  },
+  {
+    id: '2',
+    sku: 'philosophy-foundations',
+    name: 'Philosophy Foundations',
+    shortDescription: 'Explore the six classical schools of Indian philosophy',
+    longDescription: 'Deep dive into the six classical schools of Indian philosophy with expert guidance and interactive discussions.',
+    description: 'Explore the six classical schools of Indian philosophy',
+    price: 149,
+    priceInr: 11999,
+    currency: 'USD',
+    features: [
+      'Six Darshanas overview',
+      'Interactive discussions',
+      'Reading materials',
+      'Live Q&A sessions'
+    ],
+    image: '/assets/philosophy-foundations.jpg',
+    thumbnailUrl: '/assets/philosophy-foundations.jpg',
+    category: 'philosophy',
+    level: 'intermediate',
+    duration: '6 months',
+    instructor: 'Prof. Rajesh Kumar',
+    livePassCount: 8,
+    mentorHours: 5,
+    certificateIncluded: true,
+    includedCourses: [
+      {
+        id: '3',
+        title: 'Introduction to Darshanas',
+        duration: '4 hours',
+        link: '/courses/darshanas-intro'
+      }
+    ]
+  },
+  {
+    id: '3',
+    sku: 'self-help-wisdom',
+    name: 'Self-Help Through Ancient Wisdom',
+    shortDescription: 'Apply timeless Indian teachings to modern life',
+    longDescription: 'Transform your life using ancient Indian wisdom and practical techniques for modern living.',
+    description: 'Apply timeless Indian teachings to modern life',
+    price: 79,
+    priceInr: 6399,
+    currency: 'USD',
+    features: [
+      'Practical exercises',
+      'Meditation techniques',
+      'Life coaching sessions',
+      'Community support'
+    ],
+    image: '/assets/self-help-wisdom.jpg',
+    thumbnailUrl: '/assets/self-help-wisdom.jpg',
+    category: 'self-help',
+    level: 'beginner',
+    duration: '2 months',
+    instructor: 'Swami Ananda',
+    livePassCount: 3,
+    mentorHours: 2,
+    certificateIncluded: true,
+    includedCourses: [
+      {
+        id: '4',
+        title: 'Ancient Wisdom for Modern Life',
+        duration: '3 hours',
+        link: '/courses/ancient-wisdom-modern'
+      }
+    ]
+  }
+]
+
+export interface Package {
+  id: string
+  sku: string
+  name: string
+  shortDescription: string
+  longDescription: string
+  description: string
+  price: number
+  priceInr: number
+  currency: string
+  features: string[]
+  image: string
+  thumbnailUrl?: string
+  category: string
+  level: string
+  duration: string
+  instructor: string
+  livePassCount?: number
+  mentorHours?: number
+  certificateIncluded: boolean
+  includedCourses: Array<{
+    id: string
+    title: string
+    duration: string
+    thumbnailUrl?: string
+    link: string
+  }>
+}
+
+export function usePackages(page = 1, limit = 12) {
+  const [packages, setPackages] = useState<Package[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetchPackages();
-  }, [fetchPackages]);
+    // Simulate API call
+    const fetchPackages = async () => {
+      try {
+        setLoading(true)
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 500))
+        setPackages(mockPackages)
+        setError(null)
+      } catch (err) {
+        setError('Failed to fetch packages')
+        console.error('Error fetching packages:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPackages()
+  }, [page, limit])
+
+  const getPackageBySku = (sku: string): Package | undefined => {
+    return packages.find(pkg => pkg.sku === sku)
+  }
+
+  const getPackagesByCategory = (category: string): Package[] => {
+    return packages.filter(pkg => pkg.category === category)
+  }
 
   return {
     packages,
     loading,
     error,
-    total,
-    refetch: fetchPackages
-  };
+    total: mockPackages.length,
+    getPackageBySku,
+    getPackagesByCategory
+  }
 }
 
-// Custom hook for fetching a single package
-export function usePackage(sku: string) {
-  const [packageData, setPackageData] = useState<Package | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchPackage = useCallback(async () => {
-    if (!sku) return;
-    
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`${API_BASE}/packages/${sku}`);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch package: ${response.statusText}`);
+// Additional hooks for compatibility
+export function useUserPackages(userId?: string) {
+  const { packages, loading, error } = usePackages()
+  
+  // Convert Package objects to UserPackage objects
+  const userPackages: UserPackage[] = packages.map(pkg => ({
+    sku: pkg.sku,
+    name: pkg.name,
+    accessExpiresAt: undefined, // Lifetime access
+    status: 'active' as const,
+    progress: Math.floor(Math.random() * 100), // Mock progress
+    availableMentorHours: pkg.category === 'sanskrit' ? 5 : 3,
+    certificateStatus: 'issued' as const,
+    includedCourses: [
+      {
+        id: '1',
+        title: 'Introduction Course',
+        duration: '2 hours',
+        link: `/courses/${pkg.sku}-intro`
       }
-      
-      const data: PackageResponse = await response.json();
-      setPackageData(data.package);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch package';
-      setError(errorMessage);
-      console.error('Error fetching package:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [sku]);
+    ]
+  }))
+  
+  return {
+    packages: userPackages,
+    loading,
+    error
+  }
+}
 
-  useEffect(() => {
-    fetchPackage();
-  }, [fetchPackage]);
-
+export function usePackage(sku: string) {
+  const { getPackageBySku, loading, error } = usePackages()
+  const packageData = getPackageBySku(sku)
+  
   return {
     package: packageData,
     loading,
-    error,
-    refetch: fetchPackage
-  };
+    error
+  }
 }
 
-// Custom hook for fetching user's packages
-export function useUserPackages(userId?: string) {
-  const [packages, setPackages] = useState<UserPackage[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchUserPackages = useCallback(async () => {
-    if (!userId) return;
-    
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`${API_BASE}/user/${userId}/packages`);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch user packages: ${response.statusText}`);
-      }
-      
-      const data: UserPackagesResponse = await response.json();
-      setPackages(data.packages);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch user packages';
-      setError(errorMessage);
-      console.error('Error fetching user packages:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [userId]);
-
-  useEffect(() => {
-    fetchUserPackages();
-  }, [fetchUserPackages]);
-
-  return {
-    packages,
-    loading,
-    error,
-    refetch: fetchUserPackages
-  };
+interface LiveSession {
+  id: string;
+  date: string;
+  seatRemaining: number;
+  maxSeats: number;
+  title: string;
+  description: string;
 }
 
-// Custom hook for fetching live sessions
-export function useLiveSessions(packageSku: string) {
-  const [sessions, setSessions] = useState<Session[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchSessions = useCallback(async () => {
-    if (!packageSku) return;
-    
+export function useLiveSessions(sku?: string) {
+  const [sessions, setSessions] = useState<LiveSession[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  
+  const fetchSessions = async () => {
+    setLoading(true)
     try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`${API_BASE}/packages/${packageSku}/sessions`);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch sessions: ${response.statusText}`);
-      }
-      
-      const data: SessionsResponse = await response.json();
-      setSessions(data.sessions);
+      // Mock sessions data
+      await new Promise(resolve => setTimeout(resolve, 500))
+      setSessions([
+        {
+          id: '1',
+          date: '2024-02-15T10:00:00Z',
+          seatRemaining: 5,
+          maxSeats: 20,
+          title: 'Live Sanskrit Session',
+          description: 'Interactive Sanskrit learning session'
+        }
+      ])
+      setError(null)
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch sessions';
-      setError(errorMessage);
-      console.error('Error fetching sessions:', err);
+      setError('Failed to fetch sessions')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [packageSku]);
-
+  }
+  
   return {
     sessions,
     loading,
     error,
     fetchSessions
-  };
+  }
 }
 
-// Custom hook for purchase operations
 export function usePurchase() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const purchasePackage = useCallback(async (request: PurchaseRequest): Promise<PurchaseResponse> => {
+  const [loading, setLoading] = useState(false)
+  
+  const purchasePackage = async (request: PurchaseRequest) => {
+    setLoading(true)
     try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`${API_BASE}/packages/${request.sku}/purchase`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-      });
-      
-      const data: PurchaseResponse = await response.json();
-      
-      if (!response.ok) {
-        if (response.status === 422) {
-          // Validation errors
-          return data;
-        }
-        throw new Error(data.error || `Purchase failed: ${response.statusText}`);
-      }
-      
-      return data;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Purchase failed';
-      setError(errorMessage);
-      console.error('Error purchasing package:', err);
-      throw err;
+      // Mock purchase process
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      console.log('Package purchased:', request.sku)
+    } catch (error) {
+      console.error('Purchase failed:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, []);
-
-  const claimLiveSeat = useCallback(async (packageSku: string, sessionId: string): Promise<boolean> => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`${API_BASE}/packages/${packageSku}/claim-live`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ sessionId }),
-      });
-      
-      if (response.status === 409) {
-        // Seats exhausted
-        return false;
-      }
-      
-      if (!response.ok) {
-        throw new Error(`Failed to claim seat: ${response.statusText}`);
-      }
-      
-      return true;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to claim seat';
-      setError(errorMessage);
-      console.error('Error claiming seat:', err);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
+  }
+  
   return {
     purchasePackage,
-    claimLiveSeat,
-    loading,
-    error
-  };
-}
-
-// Custom hook for upgrade suggestions
-export function useUpgradeSuggestion(cartItems: CartItem[]) {
-  const [upgradeOffer, setUpgradeOffer] = useState<UpgradeSuggestionResponse | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const fetchUpgradeSuggestion = useCallback(async () => {
-    if (!cartItems.length) return;
-    
-    try {
-      setLoading(true);
-      
-      const response = await fetch(`${API_BASE}/cart/upgrade-suggestion`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cartItems }),
-      });
-      
-      if (response.ok) {
-        const data: UpgradeSuggestionResponse = await response.json();
-        setUpgradeOffer(data);
-      }
-    } catch (err) {
-      console.error('Error fetching upgrade suggestion:', err);
-    } finally {
-      setLoading(false);
-    }
-  }, [cartItems]);
-
-  useEffect(() => {
-    fetchUpgradeSuggestion();
-  }, [fetchUpgradeSuggestion]);
-
-  return {
-    upgradeOffer,
-    loading,
-    refetch: fetchUpgradeSuggestion
-  };
+    loading
+  }
 }

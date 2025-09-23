@@ -112,7 +112,6 @@ export default function CommunityCTA({ onJoinCommunity, onSubscribeNewsletter, o
       setIsSubscribed(true)
       onSubscribeNewsletter?.()
       // In a real app, this would make an API call
-      console.log('Newsletter subscription:', email)
     }
   }
 

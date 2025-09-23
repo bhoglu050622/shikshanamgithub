@@ -1,0 +1,99 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Priya Sharma",
+      "role": "Sanskrit Student",
+      "location": "Mumbai, India",
+      "rating": 5,
+      "text": "The Sanskrit course has been a life-changing experience. The way the concepts are explained makes ancient wisdom accessible to modern learners. I've gained deep insights into Indian philosophy that I never thought possible.",
+      "course": "Sanskrit Live Class",
+      "image": "/assets/testimonials/priya-sharma.jpg",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Rajesh Kumar",
+      "role": "Software Engineer",
+      "location": "Bangalore, India",
+      "rating": 5,
+      "text": "As someone with no background in Sanskrit, I was amazed at how quickly I could understand the language. The structured approach and expert guidance made learning enjoyable and effective.",
+      "course": "Online Sanskrit Course",
+      "image": "/assets/testimonials/rajesh-kumar.jpg",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Anita Patel",
+      "role": "Teacher",
+      "location": "Delhi, India",
+      "rating": 5,
+      "text": "The Emotional Intelligence course based on Samkhya philosophy has transformed how I approach life's challenges. The ancient wisdom applied to modern situations is truly remarkable.",
+      "course": "Emotional Intelligence with Samkhya Darshan",
+      "image": "/assets/testimonials/anita-patel.jpg",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "name": "Dr. Suresh Mehta",
+      "role": "Professor",
+      "location": "Pune, India",
+      "rating": 5,
+      "text": "The depth of knowledge and the clarity of explanation in the Advaita Vedanta course is exceptional. It's rare to find such authentic teaching of ancient Indian philosophy online.",
+      "course": "Advaita Vedanta Darshan",
+      "image": "/assets/testimonials/suresh-mehta.jpg",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "Meera Singh",
+      "role": "Yoga Practitioner",
+      "location": "Rishikesh, India",
+      "rating": 5,
+      "text": "The Yoga Darshan course has deepened my understanding of Patanjali's Yoga Sutras. The practical applications combined with philosophical insights have enhanced both my practice and teaching.",
+      "course": "Yoga Darshan Course",
+      "image": "/assets/testimonials/meera-singh.jpg",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "name": "Arjun Nair",
+      "role": "Business Owner",
+      "location": "Kochi, India",
+      "rating": 5,
+      "text": "Learning about Kashmir Shaivism has opened new dimensions in my spiritual journey. The course content is comprehensive and the instructor's expertise is evident in every lesson.",
+      "course": "Kashmir Shaivism",
+      "image": "/assets/testimonials/arjun-nair.jpg",
+      "featured": false
+    },
+    {
+      "id": 7,
+      "name": "Dr. Kavita Joshi",
+      "role": "Psychologist",
+      "location": "Ahmedabad, India",
+      "rating": 5,
+      "text": "The integration of ancient Indian wisdom with modern psychology in these courses is brilliant. It has enriched my professional practice and personal growth significantly.",
+      "course": "Multiple Courses",
+      "image": "/assets/testimonials/kavita-joshi.jpg",
+      "featured": true
+    },
+    {
+      "id": 8,
+      "name": "Vikram Reddy",
+      "role": "IT Professional",
+      "location": "Hyderabad, India",
+      "rating": 5,
+      "text": "The Upanishad courses have given me profound insights into the nature of existence. The way complex concepts are broken down makes them accessible to anyone willing to learn.",
+      "course": "Isha Upanishad Course",
+      "image": "/assets/testimonials/vikram-reddy.jpg",
+      "featured": false
+    }
+  ],
+  "stats": {
+    "totalTestimonials": 8,
+    "averageRating": 5.0,
+    "featuredCount": 4,
+    "totalStudents": 100000,
+    "satisfactionRate": 98
+  }
+}

@@ -264,7 +264,62 @@ module.exports = {
   			'text-secondary': 'hsl(var(--text-secondary))',
   			'text-tertiary': 'hsl(var(--text-tertiary))',
   			'text-accent': 'hsl(var(--text-accent))',
-  			'text-muted': 'hsl(var(--text-muted))'
+  			'text-muted': 'hsl(var(--text-muted))',
+  			
+  			// New Modern Color Scheme
+  			'blog': {
+  				'primary': {
+  					'50': '#fef7ed',
+  					'100': '#fdedd3',
+  					'200': '#fbd9a5',
+  					'300': '#f8c16d',
+  					'400': '#f5a532',
+  					'500': '#e8911a',
+  					'600': '#d17a0f',
+  					'700': '#b05e0c',
+  					'800': '#8f4a0f',
+  					'900': '#763d10',
+				},
+				'secondary': {
+  					'50': '#f8fafc',
+  					'100': '#f1f5f9',
+  					'200': '#e2e8f0',
+  					'300': '#cbd5e1',
+  					'400': '#94a3b8',
+  					'500': '#64748b',
+  					'600': '#475569',
+  					'700': '#334155',
+  					'800': '#1e293b',
+  					'900': '#0f172a',
+				},
+				'accent': {
+  					'saffron': '#ff6b35',
+  					'maroon': '#8b1538',
+  					'emerald': '#10b981',
+  					'indigo': '#6366f1',
+  					'rose': '#f43f5e',
+  					'amber': '#f59e0b',
+				},
+				'background': {
+  					'primary': '#fefefe',
+  					'secondary': '#f8fafc',
+  					'tertiary': '#f1f5f9',
+  					'dark': '#0f172a',
+  					'dark-secondary': '#1e293b',
+				},
+				'text': {
+  					'primary': '#0f172a',
+  					'secondary': '#475569',
+  					'tertiary': '#64748b',
+  					'inverse': '#f8fafc',
+  					'muted': '#94a3b8',
+				},
+				'border': {
+  					'light': '#e2e8f0',
+  					'medium': '#cbd5e1',
+  					'dark': '#94a3b8',
+				}
+  			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
