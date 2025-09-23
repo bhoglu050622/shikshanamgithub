@@ -33,7 +33,7 @@ export default function QuizSection() {
 
   return (
     <div id="shaiva-quiz-section" ref={sectionRef}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight fade-in-up-on-scroll">
             Have You Been Feeling Any of This Lately?

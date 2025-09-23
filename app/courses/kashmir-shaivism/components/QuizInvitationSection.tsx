@@ -29,7 +29,7 @@ export default function QuizInvitationSection() {
 
   return (
     <div id="kashmir-quiz-section-standalone">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
         <div className="mb-8 flex justify-center animate-on-scroll">
           <div className="w-20 h-20 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center animate-fast-pulse">
             <svg className="w-12 h-12 text-amber-400" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">

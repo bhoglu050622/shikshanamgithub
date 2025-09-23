@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function PricingSection() {
   const observerRef = useRef<IntersectionObserver | null>(null);
-  const [timeLeft, setTimeLeft] = useState({ hours: '00', minutes: '00', seconds: '00' });
 
   useEffect(() => {
     // Intersection Observer for animations
@@ -28,44 +27,6 @@ export default function PricingSection() {
     };
   }, []);
 
-  useEffect(() => {
-    // Countdown Timer Logic
-    const updateCountdown = () => {
-      const now = new Date();
-      let targetTime = new Date(now);
-      targetTime.setHours(21, 0, 0, 0);
-
-      // If the current time is past 9 PM, set the target to 9 PM of the next day
-      if (now.getTime() > targetTime.getTime()) {
-        targetTime.setDate(targetTime.getDate() + 1);
-      }
-
-      const totalSeconds = (targetTime.getTime() - now.getTime()) / 1000;
-
-      if (totalSeconds < 0) {
-        setTimeLeft({ hours: '00', minutes: '00', seconds: '00' });
-        return;
-      }
-
-      // Calculate hours, minutes, and seconds remaining
-      const hours = Math.floor(totalSeconds / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = Math.floor(totalSeconds % 60);
-
-      // Format numbers to always have two digits
-      setTimeLeft({
-        hours: String(hours).padStart(2, '0'),
-        minutes: String(minutes).padStart(2, '0'),
-        seconds: String(seconds).padStart(2, '0')
-      });
-    };
-
-    // Update immediately and then every second
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div id="kashmir-pricing-section">
@@ -92,26 +53,6 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Countdown Timer */}
-        <div className="countdown-container animate-on-scroll">
-          <h3 className="countdown-title">
-            Limited Time <span className="text-accent">Offer Ends In:</span>
-          </h3>
-          <div className="countdown-timer">
-            <div className="timer-block">
-              <span className="timer-value">{timeLeft.hours}</span>
-              <span className="timer-label">Hours</span>
-            </div>
-            <div className="timer-block">
-              <span className="timer-value">{timeLeft.minutes}</span>
-              <span className="timer-label">Minutes</span>
-            </div>
-            <div className="timer-block">
-              <span className="timer-value">{timeLeft.seconds}</span>
-              <span className="timer-label">Seconds</span>
-            </div>
-          </div>
-        </div>
 
         <div className="pricing-grid">
           {/* Card 1: Ultimate Bundle */}

@@ -4,14 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { 
-  Award, 
-  Trophy, 
-  Star, 
-  Medal, 
-  Crown, 
-  Shield, 
-  Target, 
-  Zap,
   Quote, 
   Play, 
   Pause, 
@@ -22,44 +14,10 @@ import {
   Heart,
   Share2,
   MessageCircle,
-  ArrowRight
+  Star
 } from 'lucide-react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
 
-const recognitions = [
-  {
-    icon: Award,
-    title: 'Best Sanskrit Learning Platform',
-    organization: 'Indian Education Awards 2024',
-    year: '2024',
-    description: 'Recognized for excellence in traditional language education',
-    color: 'from-golden-olive to-golden-olive/90'
-  },
-  {
-    icon: Trophy,
-    title: 'Innovation in Education',
-    organization: 'Global EdTech Summit',
-    year: '2024',
-    description: 'Awarded for bridging ancient wisdom with modern technology',
-    color: 'from-deep-maroon to-deep-maroon/90'
-  },
-  {
-    icon: Star,
-    title: 'Top Rated Learning Platform',
-    organization: 'Student Choice Awards',
-    year: '2024',
-    description: 'Highest student satisfaction rating of 4.9/5',
-    color: 'from-copper-orange to-copper-orange/90'
-  },
-  {
-    icon: Medal,
-    title: 'Cultural Heritage Preservation',
-    organization: 'UNESCO Heritage Foundation',
-    year: '2023',
-    description: 'Recognized for preserving and promoting Sanskrit literature',
-    color: 'from-temple-gold to-temple-gold/90'
-  }
-]
 
 const testimonials = [
   {
@@ -176,109 +134,29 @@ export default function RecognitionTestimonials() {
       <div className="container-custom">
         <StaggerContainer className="text-center mb-16">
           <StaggerItem>
-            <div className="flex justify-center mb-6">
-              <div className="flex items-center space-x-2 text-golden-olive">
-                <Award className="w-6 h-6" />
-                <span className="text-sm font-semibold tracking-wide uppercase">Trust & Recognition</span>
-                <Award className="w-6 h-6" />
-              </div>
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
             <h2 className="text-display text-dark-olive mb-6">
-              Why Learners{' '}
               <span className="bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent">
-                Trust Shikshanam
+                Student Stories
               </span>
             </h2>
           </StaggerItem>
 
           <StaggerItem>
             <p className="text-subheading text-deep-maroon max-w-4xl mx-auto">
-              Recognized globally for excellence in preserving and teaching ancient Indian wisdom. 
-              See what our award-winning platform and satisfied students have to say.
+              Real transformations from our students who have embraced ancient wisdom. 
+              See how their lives have changed through our courses.
             </p>
           </StaggerItem>
         </StaggerContainer>
 
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-          {/* Recognition Section */}
+        {/* Student Stories Section - Center Aligned */}
+        <div ref={ref} className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="space-y-6"
-          >
-            <h3 className="text-2xl font-bold text-dark-olive mb-8 text-center lg:text-left">
-              Awards & Recognition
-            </h3>
-            
-            <div className="space-y-4">
-              {recognitions.map((recognition, index) => (
-                <motion.div
-                  key={recognition.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
-                  whileHover={{ scale: 1.02, x: 10 }}
-                  className="card-premium p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer"
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${recognition.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <recognition.icon className="w-6 h-6 text-white" />
-                    </div>
-                    
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-xs font-semibold text-golden-olive bg-golden-olive/10 px-2 py-1 rounded-full">
-                          {recognition.year}
-                        </span>
-                        <h4 className="font-bold text-dark-olive group-hover:text-golden-olive transition-colors duration-300">
-                          {recognition.title}
-                        </h4>
-                      </div>
-                      
-                      <p className="text-golden-olive font-semibold text-sm mb-2">
-                        {recognition.organization}
-                      </p>
-                      
-                      <p className="text-deep-maroon text-sm leading-relaxed">
-                        {recognition.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="text-center lg:text-left"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-outline flex items-center space-x-2 px-6 py-3 mx-auto lg:mx-0"
-              >
-                <span>View All Awards</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-          </motion.div>
-
-          {/* Testimonials Section - Instagram Reel Style */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
             className="relative"
           >
-            <h3 className="text-2xl font-bold text-dark-olive mb-8 text-center lg:text-left">
-              Student Stories
-            </h3>
             
             <div className="relative">
               <AnimatePresence mode="wait">
@@ -463,52 +341,6 @@ export default function RecognitionTestimonials() {
           </motion.div>
         </div>
 
-        {/* Call to Action */}
-        <StaggerItem>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="text-center mt-16"
-          >
-            <div className="card-premium p-8 max-w-4xl mx-auto">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-golden-olive to-golden-olive/90 rounded-2xl flex items-center justify-center">
-                  <Trophy className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              
-              <h3 className="text-2xl font-bold text-dark-olive mb-4">
-                Join Our Award-Winning Community
-              </h3>
-              
-              <p className="text-deep-maroon mb-8 max-w-2xl mx-auto">
-                Experience the same quality education that has earned us recognition from prestigious organizations worldwide. 
-                Start your journey with confidence and become our next success story.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-shikshanam-primary flex items-center space-x-3 px-8 py-4"
-                >
-                  <Award className="w-5 h-5" />
-                  <span>Start Learning</span>
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-shikshanam-outline flex items-center space-x-3 px-8 py-4"
-                >
-                  <Star className="w-5 h-5" />
-                  <span>View All Testimonials</span>
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-        </StaggerItem>
       </div>
     </section>
   )

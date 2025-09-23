@@ -333,7 +333,9 @@
     background-color: #211f25 !important;
     background-image: radial-gradient(ellipse at center, #45403d 0%, #211f25 80%) !important;
     overflow-x: hidden !important;
-    padding: 2rem 1rem; 
+    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* --- Shared Styles for Quiz Section --- */
@@ -413,6 +415,8 @@
     background-color: #211f25 !important;
     background-image: radial-gradient(ellipse at center, #45403d 0%, #211f25 80%) !important;
     font-family: 'Inter', sans-serif !important;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* --- Masonry Gallery Styles --- */
@@ -589,8 +593,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1rem; 
-    padding-top: 7rem; /* Added padding to avoid overlap with header */
+    padding: 4rem 1rem;
     min-height: 100vh;
     overflow: hidden; /* Add overflow hidden to the main container */
     --cosmic-gold: #facc15;
@@ -707,19 +710,247 @@
 
 #kashmir-shaivism-hero-scoped .content-item { opacity: 0; }
 
-/* Countdown Header Styles */
-.countdown-header {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* --- Pricing Section Styles --- */
+#kashmir-pricing-section {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #211f25 !important;
+    background-image: radial-gradient(ellipse at center, #45403d 0%, #211f25 80%) !important;
+    color: #e5e7eb !important;
+    padding: 4rem 1rem 8rem 1rem;
+    box-sizing: border-box;
     width: 100%;
-    z-index: 99999;
-    background-color: #facc15;
-    color: black;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#kashmir-pricing-section .pricing-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
     text-align: center;
-    padding: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    font-family: var(--font-inter), sans-serif;
+}
+
+#kashmir-pricing-section .main-heading {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f3f4f6 !important;
+}
+
+#kashmir-pricing-section .main-heading .text-accent {
+    color: #f59e0b !important;
+}
+
+#kashmir-pricing-section .sub-heading {
+    font-size: 1.1rem;
+    color: #9ca3af !important;
+    max-width: 600px;
+    margin-top: -1rem;
+}
+
+#kashmir-pricing-section .social-proof {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+#kashmir-pricing-section .proof-item {
+    text-align: center;
+}
+
+#kashmir-pricing-section .proof-number {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f59e0b !important;
+    margin: 0;
+}
+
+#kashmir-pricing-section .proof-label {
+    color: #9ca3af !important;
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0 0;
+}
+
+#kashmir-pricing-section .star {
+    color: #f59e0b !important;
+}
+
+#kashmir-pricing-section .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+#kashmir-pricing-section .pricing-card {
+    background: rgba(41, 37, 49, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+#kashmir-pricing-section .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+#kashmir-pricing-section .pricing-card.highlighted {
+    border-color: rgba(245, 158, 11, 0.6);
+    transform: scale(1.05);
+}
+
+#kashmir-pricing-section .highlight-tag {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f59e0b;
+    color: #111827;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#kashmir-pricing-section .tag-combo-deal {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+#kashmir-pricing-section .tag-best-value {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+#kashmir-pricing-section .card-title {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f3f4f6 !important;
+    margin: 1rem 0 0.5rem 0;
+}
+
+#kashmir-pricing-section .card-subtitle {
+    color: #9ca3af !important;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#kashmir-pricing-section .price-container {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+#kashmir-pricing-section .card-price {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f59e0b !important;
+    margin: 0;
+}
+
+#kashmir-pricing-section .original-price {
+    color: #6b7280 !important;
+    text-decoration: line-through;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+#kashmir-pricing-section .save-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+#kashmir-pricing-section .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+#kashmir-pricing-section .features-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: #e5e7eb !important;
+}
+
+#kashmir-pricing-section .features-list li svg {
+    width: 20px;
+    height: 20px;
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+#kashmir-pricing-section .enroll-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+#kashmir-pricing-section .btn-primary {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #111827 !important;
+}
+
+#kashmir-pricing-section .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+}
+
+#kashmir-pricing-section .btn-secondary {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    color: #ffffff !important;
+}
+
+#kashmir-pricing-section .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(107, 114, 128, 0.3);
+}
+
+#kashmir-pricing-section .animate-on-scroll {
+    opacity: 0;
+}
+
+#kashmir-pricing-section .animate-on-scroll.is-visible {
+    animation: fadeInUp-themed 0.8s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+    #kashmir-pricing-section .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #kashmir-pricing-section .social-proof {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    #kashmir-pricing-section .main-heading {
+        font-size: 2rem;
+    }
 }
 
 /* Quiz Popup Styles */
@@ -776,6 +1007,8 @@
     padding: 5rem 1.5rem;
     color: #d1d5db;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #shaiva-quiz-section h2 {
@@ -850,6 +1083,8 @@
     padding: 4rem 1rem;
     position: relative;
     z-index: 5;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #kashmir-info-section-rethemed .font-playfair { 

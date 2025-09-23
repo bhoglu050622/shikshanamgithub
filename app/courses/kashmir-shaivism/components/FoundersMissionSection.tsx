@@ -54,7 +54,7 @@ export default function FoundersMissionSection() {
 
   return (
     <div id="founders-mission-section" className="bg-gray-900">
-      <div className="container mx-auto p-4 md:p-8">
+      <div className="w-full p-4 md:p-8">
         <section>
           {/* Heading Section */}
           <div className="text-center py-8 mb-8 md:mb-12 animate-on-scroll">

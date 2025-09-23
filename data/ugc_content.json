@@ -1,0 +1,246 @@
+{
+  "userReviews": [
+    {
+      "id": 1,
+      "name": "Ananya Sharma",
+      "role": "Sanskrit Student",
+      "location": "Mumbai, India",
+      "rating": 5,
+      "text": "Shikshanam has transformed my understanding of Sanskrit. The live classes are incredibly engaging, and Vishal Sir's teaching style makes complex concepts easy to grasp. Highly recommended!",
+      "course": "Sanskrit Live Class",
+      "image": "/assets/testimonials/ananya-sharma.jpg",
+      "featured": true,
+      "date": "2024-11-15",
+      "verified": true
+    },
+    {
+      "id": 2,
+      "name": "Rajesh Kumar",
+      "role": "Software Engineer",
+      "location": "Bangalore, India",
+      "rating": 5,
+      "text": "As someone with no background in Sanskrit, I was amazed at how quickly I could understand the language. The structured approach and expert guidance made learning enjoyable and effective.",
+      "course": "Online Sanskrit Course",
+      "image": "/assets/testimonials/rajesh-kumar.jpg",
+      "featured": true,
+      "date": "2024-11-10",
+      "verified": true
+    },
+    {
+      "id": 3,
+      "name": "Dr. Priya Patel",
+      "role": "Professor of Philosophy",
+      "location": "Delhi, India",
+      "rating": 5,
+      "text": "The Emotional Intelligence course based on Samkhya philosophy has transformed how I approach life's challenges. The ancient wisdom applied to modern situations is truly remarkable.",
+      "course": "Emotional Intelligence with Samkhya Darshan",
+      "image": "/assets/testimonials/priya-patel.jpg",
+      "featured": true,
+      "date": "2024-11-08",
+      "verified": true
+    },
+    {
+      "id": 4,
+      "name": "Suresh Mehta",
+      "role": "Business Owner",
+      "location": "Pune, India",
+      "rating": 5,
+      "text": "The depth of knowledge and the clarity of explanation in the Advaita Vedanta course is exceptional. It's rare to find such authentic teaching of ancient Indian philosophy online.",
+      "course": "Advaita Vedanta Darshan",
+      "image": "/assets/testimonials/suresh-mehta.jpg",
+      "featured": false,
+      "date": "2024-11-05",
+      "verified": true
+    },
+    {
+      "id": 5,
+      "name": "Meera Singh",
+      "role": "Yoga Practitioner",
+      "location": "Rishikesh, India",
+      "rating": 5,
+      "text": "The Yoga Darshan course has deepened my understanding of Patanjali's Yoga Sutras. The practical applications combined with philosophical insights have enhanced both my practice and teaching.",
+      "course": "Yoga Darshan Course",
+      "image": "/assets/testimonials/meera-singh.jpg",
+      "featured": false,
+      "date": "2024-11-03",
+      "verified": true
+    },
+    {
+      "id": 6,
+      "name": "Arjun Nair",
+      "role": "IT Professional",
+      "location": "Kochi, India",
+      "rating": 5,
+      "text": "Learning about Kashmir Shaivism has opened new dimensions in my spiritual journey. The course content is comprehensive and the instructor's expertise is evident in every lesson.",
+      "course": "Kashmir Shaivism",
+      "image": "/assets/testimonials/arjun-nair.jpg",
+      "featured": false,
+      "date": "2024-11-01",
+      "verified": true
+    },
+    {
+      "id": 7,
+      "name": "Dr. Kavita Joshi",
+      "role": "Psychologist",
+      "location": "Ahmedabad, India",
+      "rating": 5,
+      "text": "The integration of ancient Indian wisdom with modern psychology in these courses is brilliant. It has enriched my professional practice and personal growth significantly.",
+      "course": "Multiple Courses",
+      "image": "/assets/testimonials/kavita-joshi.jpg",
+      "featured": true,
+      "date": "2024-10-28",
+      "verified": true
+    },
+    {
+      "id": 8,
+      "name": "Vikram Reddy",
+      "role": "Engineer",
+      "location": "Hyderabad, India",
+      "rating": 5,
+      "text": "The Upanishad courses have given me profound insights into the nature of existence. The way complex concepts are broken down makes them accessible to anyone willing to learn.",
+      "course": "Isha Upanishad Course",
+      "image": "/assets/testimonials/vikram-reddy.jpg",
+      "featured": false,
+      "date": "2024-10-25",
+      "verified": true
+    },
+    {
+      "id": 9,
+      "name": "Sunita Agarwal",
+      "role": "Teacher",
+      "location": "Jaipur, India",
+      "rating": 5,
+      "text": "The Sanskrit course has helped me connect with my cultural roots. The interactive sessions and community support make learning enjoyable and meaningful.",
+      "course": "Sanskrit Live Class",
+      "image": "/assets/testimonials/sunita-agarwal.jpg",
+      "featured": false,
+      "date": "2024-10-22",
+      "verified": true
+    },
+    {
+      "id": 10,
+      "name": "Amit Kumar",
+      "role": "Student",
+      "location": "Kolkata, India",
+      "rating": 5,
+      "text": "The Samkhya philosophy course has given me a new perspective on life. The practical applications of ancient wisdom in modern life are truly transformative.",
+      "course": "Emotional Intelligence with Samkhya Darshan",
+      "image": "/assets/testimonials/amit-kumar.jpg",
+      "featured": false,
+      "date": "2024-10-20",
+      "verified": true
+    }
+  ],
+  "studentStories": [
+    {
+      "id": 1,
+      "name": "Priya Sharma",
+      "age": 28,
+      "profession": "Software Engineer",
+      "location": "Mumbai",
+      "story": "I started learning Sanskrit to connect with my cultural heritage. Through Shikshanam's courses, I not only learned the language but also discovered profound philosophical insights that have transformed my worldview.",
+      "transformation": "From cultural curiosity to spiritual awakening",
+      "course": "Sanskrit Live Class",
+      "image": "/assets/stories/priya-sharma-story.jpg",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Rajesh Kumar",
+      "age": 35,
+      "profession": "Business Owner",
+      "location": "Bangalore",
+      "story": "As a busy entrepreneur, I was skeptical about online learning. But Shikshanam's structured approach and expert guidance made it possible for me to learn Sanskrit while managing my business.",
+      "transformation": "From skeptic to Sanskrit enthusiast",
+      "course": "Online Sanskrit Course",
+      "image": "/assets/stories/rajesh-kumar-story.jpg",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Anita Patel",
+      "age": 42,
+      "profession": "Teacher",
+      "location": "Delhi",
+      "story": "The Emotional Intelligence course based on Samkhya philosophy has revolutionized my teaching approach. I now incorporate ancient wisdom into my modern classroom, creating a more holistic learning environment.",
+      "transformation": "From traditional teacher to wisdom-based educator",
+      "course": "Emotional Intelligence with Samkhya Darshan",
+      "image": "/assets/stories/anita-patel-story.jpg",
+      "featured": true
+    }
+  ],
+  "communityPosts": [
+    {
+      "id": 1,
+      "author": "SanskritSeeker",
+      "content": "Just completed the first module of Sanskrit Live Class! The way Vishal Sir explains complex grammar rules is simply amazing. Can't wait for the next session! 🙏",
+      "likes": 45,
+      "comments": 12,
+      "timestamp": "2024-11-15T10:30:00Z",
+      "course": "Sanskrit Live Class"
+    },
+    {
+      "id": 2,
+      "author": "WisdomWalker",
+      "content": "The Samkhya philosophy course has opened my eyes to the deeper meaning of emotions. Learning to apply ancient wisdom to modern challenges is truly transformative!",
+      "likes": 38,
+      "comments": 8,
+      "timestamp": "2024-11-14T15:45:00Z",
+      "course": "Emotional Intelligence with Samkhya Darshan"
+    },
+    {
+      "id": 3,
+      "author": "VedantaVoyager",
+      "content": "The Advaita Vedanta course is mind-blowing! The way complex philosophical concepts are broken down makes them accessible to everyone. Highly recommended!",
+      "likes": 52,
+      "comments": 15,
+      "timestamp": "2024-11-13T09:20:00Z",
+      "course": "Advaita Vedanta Darshan"
+    },
+    {
+      "id": 4,
+      "author": "YogaYogi",
+      "content": "Patanjali's Yoga Sutras have never been clearer! The practical applications in this course have enhanced both my practice and understanding. Namaste! 🧘‍♀️",
+      "likes": 41,
+      "comments": 10,
+      "timestamp": "2024-11-12T14:15:00Z",
+      "course": "Yoga Darshan Course"
+    }
+  ],
+  "achievements": [
+    {
+      "id": 1,
+      "student": "Priya Sharma",
+      "achievement": "Completed Sanskrit Live Class with 95% score",
+      "date": "2024-11-15",
+      "course": "Sanskrit Live Class",
+      "image": "/assets/achievements/sanskrit-completion.jpg"
+    },
+    {
+      "id": 2,
+      "student": "Rajesh Kumar",
+      "achievement": "Mastered Samkhya Philosophy concepts",
+      "date": "2024-11-10",
+      "course": "Emotional Intelligence with Samkhya Darshan",
+      "image": "/assets/achievements/samkhya-mastery.jpg"
+    },
+    {
+      "id": 3,
+      "student": "Anita Patel",
+      "achievement": "Achieved Yoga Darshan certification",
+      "date": "2024-11-08",
+      "course": "Yoga Darshan Course",
+      "image": "/assets/achievements/yoga-certification.jpg"
+    }
+  ],
+  "stats": {
+    "totalStudents": 100000,
+    "totalCourses": 15,
+    "averageRating": 4.9,
+    "completionRate": 87,
+    "satisfactionRate": 98,
+    "communityMembers": 25000,
+    "totalHours": 5000,
+    "countries": 45
+  }
+}

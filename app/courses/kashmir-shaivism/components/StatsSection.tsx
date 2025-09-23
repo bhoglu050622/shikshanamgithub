@@ -112,7 +112,7 @@ export default function StatsSection() {
         </defs>
       </svg>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Main Info Card */}
         <div className="info-card text-center p-8 md:p-12 mb-12 content-item">
           <div className="mb-6">

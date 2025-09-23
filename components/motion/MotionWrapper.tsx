@@ -2,6 +2,7 @@
 
 import { motion, MotionProps } from 'framer-motion'
 import { ReactNode, useState, useEffect } from 'react'
+import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 
 interface MotionWrapperProps extends MotionProps {
   children: ReactNode
@@ -42,11 +43,7 @@ export default function MotionWrapper({
   className = '',
   ...props 
 }: MotionWrapperProps) {
-  const [mounted, setMounted] = useState(false)
-  
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useHydrationSafeAnimation()
   
   const variantConfig = motionVariants[variant]
   
@@ -85,11 +82,7 @@ export function StaggerContainer({
   className?: string
   staggerDelay?: number 
 }) {
-  const [mounted, setMounted] = useState(false)
-  
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useHydrationSafeAnimation()
   
   // Prevent hydration mismatch by not rendering motion until mounted
   if (!mounted) {
@@ -122,11 +115,7 @@ export function StaggerItem({
   children: ReactNode
   className?: string 
 }) {
-  const [mounted, setMounted] = useState(false)
-  
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useHydrationSafeAnimation()
   
   // Prevent hydration mismatch by not rendering motion until mounted
   if (!mounted) {

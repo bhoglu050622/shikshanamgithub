@@ -25,8 +25,24 @@ import {
   type MobileNavigationItem,
   DeviceInfo 
 } from '@/lib/mobile/types';
-import { detectDevice, isMobileBreakpoint } from '@/lib/mobile/device-detection';
-import { useTouchGestures, hapticFeedback, visualFeedback } from '@/lib/mobile/touch-gestures';
+// Mobile detection and touch gestures - simplified for frontend-only version
+const detectDevice = () => ({ 
+  isMobile: true, 
+  isTablet: false, 
+  isDesktop: false,
+  screenWidth: typeof window !== 'undefined' ? window.innerWidth : 768,
+  screenHeight: typeof window !== 'undefined' ? window.innerHeight : 1024,
+  userAgent: typeof window !== 'undefined' ? navigator.userAgent : 'mobile',
+  devicePixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 1,
+  browser: typeof window !== 'undefined' ? 
+    (navigator.userAgent.includes('Chrome') ? 'chrome' : 
+     navigator.userAgent.includes('Firefox') ? 'firefox' : 
+     navigator.userAgent.includes('Safari') ? 'safari' : 'unknown') : 'unknown'
+});
+const isMobileBreakpoint = () => true;
+const useTouchGestures = () => ({});
+const hapticFeedback = () => {};
+const visualFeedback = () => {};
 
 // ============================================================================
 // MOBILE NAVIGATION COMPONENT
@@ -46,18 +62,19 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
   const navRef = useRef<HTMLDivElement>(null);
 
   const defaultConfig: MobileNavigationConfig = {
+    theme: 'system',
     items: [
       {
         id: 'home',
         label: 'Home',
         href: '/',
-        icon: 'Home',
+        icon: Home,
       },
       {
         id: 'courses',
         label: 'Courses',
         href: '/courses',
-        icon: 'BookOpen',
+        icon: BookOpen,
         children: [
           { id: 'sanskrit', label: 'Sanskrit', href: '/schools/sanskrit' },
           { id: 'darshana', label: 'Darshana', href: '/schools/darshana' },
@@ -68,13 +85,13 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
         id: 'gurus',
         label: 'Gurus',
         href: '/gurus',
-        icon: 'Users',
+        icon: Users,
       },
       {
         id: 'tools',
         label: 'Tools',
         href: '/tools',
-        icon: 'Settings',
+        icon: Settings,
       },
     ],
     showHomeButton: true,
@@ -97,19 +114,12 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
     setIsOpen(false);
   }, [pathname]);
 
-  // Handle touch gestures
-  useTouchGestures(navRef.current, {
-    onSwipe: (direction) => {
-      if (direction === 'left' && isOpen) {
-        setIsOpen(false);
-        hapticFeedback('light');
-      }
-    },
-  });
+  // Handle touch gestures - simplified for frontend-only version
+  useTouchGestures();
 
   const toggleNavigation = () => {
     setIsOpen(!isOpen);
-    hapticFeedback('medium');
+    hapticFeedback();
   };
 
   const handleItemClick = (item: MobileNavigationItem) => {
@@ -118,7 +128,7 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
     } else {
       router.push(item.href);
       setIsOpen(false);
-      hapticFeedback('light');
+      hapticFeedback();
     }
   };
 
@@ -132,7 +142,7 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
       }
       return newSet;
     });
-    hapticFeedback('light');
+    hapticFeedback();
   };
 
   const getIcon = (iconName: string) => {
@@ -157,7 +167,7 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
     return false;
   };
 
-  if (!deviceInfo || !isMobileBreakpoint(deviceInfo.screenWidth)) {
+  if (!deviceInfo || !isMobileBreakpoint()) {
     return null;
   }
 
@@ -301,7 +311,7 @@ function MobileNavigationItem({
         <div className="mobile-nav-item-content">
           {item.icon && (
             <span className="mobile-nav-item-icon">
-              {getIcon(item.icon)}
+              <item.icon className="w-5 h-5" />
             </span>
           )}
           <span className="mobile-nav-item-label">{item.label}</span>
@@ -351,7 +361,7 @@ export function BottomTabNavigation({ items, className = '' }: BottomTabNavigati
 
   const handleItemClick = (item: MobileNavigationItem) => {
     router.push(item.href);
-    hapticFeedback('light');
+    hapticFeedback();
   };
 
   const getIcon = (iconName: string) => {
@@ -387,7 +397,7 @@ export function BottomTabNavigation({ items, className = '' }: BottomTabNavigati
           aria-label={item.label}
         >
           <span className="bottom-tab-icon">
-            {getIcon(item.icon || 'Home')}
+            {item.icon ? <item.icon className="w-5 h-5" /> : <Home className="w-5 h-5" />}
           </span>
           <span className="bottom-tab-label">{item.label}</span>
           {item.badge && (
@@ -422,7 +432,7 @@ export function FloatingActionButton({
 }: FloatingActionButtonProps) {
   const handleClick = () => {
     onClick();
-    hapticFeedback('medium');
+    hapticFeedback();
   };
 
   return (

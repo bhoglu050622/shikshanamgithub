@@ -1,0 +1,185 @@
+{
+  "crawlDate": "2025-09-20T13:23:28.002Z",
+  "totalPages": 26,
+  "totalCourses": 6,
+  "totalLinks": 1030,
+  "totalImages": 506,
+  "totalForms": 15,
+  "pages": [
+    {
+      "url": "https://shikshanam.in/",
+      "title": "Shikshanam_Home - Shikshanam | Learn Sanskrit OnlineHindi Diwas Sale Countdown",
+      "h1Count": 3,
+      "paragraphCount": 39,
+      "imageCount": 47
+    },
+    {
+      "url": "https://shikshanam.in/guna-profiler/",
+      "title": "Guna Profiler - Shikshanam | Learn Sanskrit OnlineGuna Profiler",
+      "h1Count": 1,
+      "paragraphCount": 6,
+      "imageCount": 2
+    },
+    {
+      "url": "https://shikshanam.in/courses/",
+      "title": "Courses - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 1,
+      "paragraphCount": 5,
+      "imageCount": 8
+    },
+    {
+      "url": "https://shikshanam.in/free-courses/",
+      "title": "Free Courses - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 4,
+      "imageCount": 12
+    },
+    {
+      "url": "https://shikshanam.in/category/blog/",
+      "title": "Blog Archives - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 28,
+      "imageCount": 8
+    },
+    {
+      "url": "https://shikshanam.in/category/blog/english/",
+      "title": "English Archives - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 23,
+      "imageCount": 8
+    },
+    {
+      "url": "https://shikshanam.in/category/blog/hindi/",
+      "title": "Hindi Archives - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 29,
+      "imageCount": 8
+    },
+    {
+      "url": "https://shikshanam.in/about-us/",
+      "title": "About Us - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 1,
+      "paragraphCount": 12,
+      "imageCount": 24
+    },
+    {
+      "url": "https://shikshanam.in/contact/",
+      "title": "Contact - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 2,
+      "paragraphCount": 7,
+      "imageCount": 2
+    },
+    {
+      "url": "https://shikshanam.in/career/",
+      "title": "Career - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 6,
+      "imageCount": 2
+    },
+    {
+      "url": "https://courses.shikshanam.in/t/u/activecourses",
+      "title": "",
+      "h1Count": 0,
+      "paragraphCount": 0,
+      "imageCount": 0
+    },
+    {
+      "url": "https://shikshanam.in/sanskrit-live-class/",
+      "title": "Sanskrit Live Class - Shikshanam | Learn Sanskrit OnlineSankhya Wisdom Hero Section with Pop-upInteractive Sanskrit FlashcardsSanskrit Course InfoSanskrit Quiz AppMaster Teachers SectionBonus Features with RibbonsCourse CurriculumInteractive Masonry GalleryEmotional Mastery Classes PricingShloka Section",
+      "h1Count": 6,
+      "paragraphCount": 63,
+      "imageCount": 27
+    },
+    {
+      "url": "https://shikshanam.in/shikshanam-sacred-path/",
+      "title": "shikshanam sacred path - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 1,
+      "paragraphCount": 6,
+      "imageCount": 2
+    },
+    {
+      "url": "https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/",
+      "title": "Emotional Intelligence with Samkhya Darshan - Shikshanam | Learn Sanskrit OnlineSankhya Wisdom Hero Section with Pop-upStruggle Section - AccordionEQ Course InfoMaster Teachers SectionCreator Review SectionBonus Features with RibbonsSwipeable Video GallerySpiritual Self ComponentGuna ProfilerInteractive Masonry GalleryCourse CurriculumEmotional Mastery Classes PricingShloka Section",
+      "h1Count": 4,
+      "paragraphCount": 67,
+      "imageCount": 38
+    },
+    {
+      "url": "https://courses.shikshanam.in/single-checkout/6758231cc08a807a50aac8d4?pid=p1",
+      "title": "",
+      "h1Count": 0,
+      "paragraphCount": 0,
+      "imageCount": 0
+    },
+    {
+      "url": "https://shikshanam.in/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka/",
+      "title": "Advaita Vedanta Darshan: A Journey Through Drig Drishya Viveka - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 33,
+      "imageCount": 47
+    },
+    {
+      "url": "https://shikshanam.in/online-sanskrit-course/",
+      "title": "Sanskrit - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 40,
+      "imageCount": 48
+    },
+    {
+      "url": "https://shikshanam.in/yoga-darshan-course/",
+      "title": "Patanjali Yoga Darshan Course - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 34,
+      "imageCount": 46
+    },
+    {
+      "url": "https://shikshanam.in/kashmir-shaivism/",
+      "title": "Kashmir Shaivism - Shikshanam | Learn Sanskrit OnlineKashmir Shaiva DarshanAnimated Quiz SectionKashmir Shaiva Darshan - Info SectionKashmir Shaiva Darshan - Info SectionMeet Your Teacher - Kashmir Shaiva DarshanExclusive Bonus Features - Kashmir Shaiva DarshanSyllabus - Kashmir Shaiva DarshanKashmir Shaiva Darshan - Quiz SectionInteractive Masonry GalleryChoose Your Sacred Path - Kashmir Shaiva DarshanShloka Section",
+      "h1Count": 1,
+      "paragraphCount": 65,
+      "imageCount": 27
+    },
+    {
+      "url": "https://shikshanam.in/advaita-shaiva-darshan-course/",
+      "title": "Advaita Shaiva Darshan - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 1,
+      "paragraphCount": 38,
+      "imageCount": 48
+    },
+    {
+      "url": "https://courses.shikshanam.in/single-checkout/6700f323b6e40105f97a57ed?pid=p1",
+      "title": "प्राचीन तंत्र दर्शन : Decoding the principles of Tantra",
+      "h1Count": 4,
+      "paragraphCount": 15,
+      "imageCount": 2
+    },
+    {
+      "url": "https://courses.shikshanam.in/courses/Reset-Your-Emotions-Through-Ancient-S%C4%81%E1%B9%85khya-Wisdom-685fc82c33a41a470d5fdf1f",
+      "title": "Reset Your Emotions Through Ancient Sāṅkhya Wisdom",
+      "h1Count": 1,
+      "paragraphCount": 4,
+      "imageCount": 2
+    },
+    {
+      "url": "https://courses.shikshanam.in/single-checkout/65b208cbe4b0c73c831991ed?pid=p1",
+      "title": "Tatvabodha: Yoga Darshan  Live Class",
+      "h1Count": 4,
+      "paragraphCount": 10,
+      "imageCount": 2
+    },
+    {
+      "url": "https://shikshanam.in/isha-upanishad-course/",
+      "title": "Isha Upanishad Course - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 34,
+      "imageCount": 48
+    },
+    {
+      "url": "https://shikshanam.in/all-courses/prashna-upanishad-course/",
+      "title": "Prashna Upanishad Course - Shikshanam | Learn Sanskrit Online",
+      "h1Count": 0,
+      "paragraphCount": 34,
+      "imageCount": 48
+    }
+  ]
+}

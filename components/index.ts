@@ -17,9 +17,7 @@ export { default as Header } from './Header';
 export { default as Footer } from './Footer';
 export { default as ErrorBoundary } from './ErrorBoundary';
 
-// Auth Components
-export { default as LoginModal } from './auth/LoginModal';
-export { default as UserDropdown } from './auth/UserDropdown';
+// Auth Components - Removed for frontend-only version
 
 // Navigation Components
 export { default as MegaMenu } from './navigation/MegaMenu';
@@ -55,4 +53,3 @@ export { default as ThemeToggle } from './ThemeToggle';
 
 // Other Components
 export { default as ClientServiceWorker } from './ClientServiceWorker';
-export { default as OAuthHandler } from './OAuthHandler';

@@ -15,7 +15,6 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/theme'
-import { useAuth } from '@/lib/auth-context'
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -58,7 +57,6 @@ const mobileNavItems = [
 
 export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
   const { theme, setTheme, actualTheme } = useTheme()
-  const { isLoggedIn, user, isInitialized, logout } = useAuth()
 
   const handleLinkClick = () => {
     onClose()
@@ -112,34 +110,17 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                     ))}
                   </nav>
 
-                  {/* User Authentication Section */}
-                  {isInitialized && (
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
-                      {isLoggedIn && user ? (
-                        <div className="space-y-1">
-                          <button
-                            onClick={() => {
-                              logout()
-                              onClose()
-                            }}
-                            className="w-full text-left p-3 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                          >
-                            Sign Out
-                          </button>
-                        </div>
-                      ) : (
-                        <motion.a
-                          href="/?login=true"
-                          onClick={handleLinkClick}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="flex items-center justify-center space-x-2 p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 font-medium"
-                        >
-                          <span>Sign In</span>
-                        </motion.a>
-                      )}
-                    </div>
-                  )}
+                  {/* User Authentication Section - Placeholder for future auth implementation */}
+                  <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
+                    <motion.button
+                      onClick={handleLinkClick}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center justify-center space-x-2 p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 font-medium w-full"
+                    >
+                      <span>Sign In</span>
+                    </motion.button>
+                  </div>
                 </div>
               </div>
 

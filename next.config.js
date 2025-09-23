@@ -13,6 +13,33 @@ if (typeof globalThis !== 'undefined' && typeof globalThis.self === 'undefined')
 const nextConfig = {
   outputFileTracingRoot: __dirname,
   
+  // Server external packages (moved from experimental)
+  serverExternalPackages: ['@supabase/supabase-js'],
+  
+  // Turbopack configuration (moved from experimental)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+  
+  // Fast reload optimizations
+  onDemandEntries: {
+    // period (in ms) where the server will keep pages in the buffer
+    maxInactiveAge: 25 * 1000,
+    // number of pages that should be kept simultaneously without being disposed
+    pagesBufferLength: 2,
+  },
+  
+  // Enable fast refresh
+  reactStrictMode: true,
+  
+  // Optimize development server
+  // swcMinify: true, // Deprecated in Next.js 15
+  
   // Enable image optimization with proper configuration
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -53,17 +80,20 @@ const nextConfig = {
     ],
   },
   
-  // Temporarily disabled experimental optimizations to troubleshoot
+  // Fast reload experimental optimizations
   experimental: {
-    // optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
-    // turbo: {
-    //   rules: {
-    //     '*.svg': {
-    //       loaders: ['@svgr/webpack'],
-    //       as: '*.js',
-    //     },
-    //   },
-    // },
+    // Enable fast refresh optimizations
+    optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
+    
+    // Enable faster builds
+    webpackBuildWorker: true,
+    
+    // Enable faster compilation
+    // esmExternals: 'loose', // Not recommended to modify
+    
+    // Optimize server components - moved to top level
+    
+    // Enable faster hot reloading - moved to turbopack config
   },
   
   compiler: {
@@ -80,14 +110,25 @@ const nextConfig = {
       global.self = global;
     }
     
-    // Optimize build configuration
-    config.optimization = config.optimization || {};
-    config.optimization.moduleIds = 'deterministic';
-    config.optimization.chunkIds = 'deterministic';
-    // Removed usedExports and sideEffects as they conflict with Next.js caching
-    
-    // Temporarily disabled parallel processing to troubleshoot
-    // config.parallelism = Math.max(1, require('os').cpus().length - 1);
+    // Fast reload optimizations
+    if (dev) {
+      // Enable faster development builds
+      config.optimization = config.optimization || {};
+      config.optimization.moduleIds = 'named';
+      config.optimization.chunkIds = 'named';
+      
+      // Enable parallel processing for faster builds
+      config.parallelism = Math.max(1, require('os').cpus().length - 1);
+      
+      // Optimize resolve for faster module resolution
+      config.resolve.symlinks = false;
+      config.resolve.cacheWithContext = false;
+    } else {
+      // Production optimizations
+      config.optimization = config.optimization || {};
+      config.optimization.moduleIds = 'deterministic';
+      config.optimization.chunkIds = 'deterministic';
+    }
     
     // Optimize resolve configuration
     config.resolve.alias = {

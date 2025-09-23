@@ -393,24 +393,24 @@ export default function CoursesPage() {
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30">
         {/* Background Ornaments */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-saffron-200/20 via-deep-teal-200/15 to-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-deep-teal-200/20 via-indigo-200/15 to-saffron-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000"></div>
+          <div className="absolute top-20 left-4 sm:left-10 w-60 sm:w-80 h-60 sm:h-80 bg-gradient-to-br from-saffron-200/20 via-deep-teal-200/15 to-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle"></div>
+          <div className="absolute top-40 right-4 sm:right-10 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-deep-teal-200/20 via-indigo-200/15 to-saffron-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000"></div>
         </div>
         
         <div className="container-custom relative z-10">
           <StaggerContainer className="text-center">
             <StaggerItem>
-              <div className="flex justify-center mb-8">
-                <div className="flex items-center space-x-4 text-saffron-500">
-                  <Sparkles className="w-6 h-6 animate-pulse" />
-                  <BookOpen className="w-8 h-8 animate-bounce" />
-                  <Sparkles className="w-6 h-6 animate-pulse" />
+              <div className="flex justify-center mb-6 sm:mb-8">
+                <div className="flex items-center space-x-3 sm:space-x-4 text-saffron-500">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
+                  <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 animate-bounce" />
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
                 </div>
               </div>
             </StaggerItem>
 
             <StaggerItem>
-              <h1 className="text-hero text-high-contrast mb-8">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-high-contrast mb-6 sm:mb-8 leading-tight">
                 Shikshanam{' '}
                 <span className="bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 bg-clip-text text-transparent">
                   Course Collection
@@ -419,7 +419,7 @@ export default function CoursesPage() {
             </StaggerItem>
 
             <StaggerItem>
-              <p className="text-subheading text-medium-contrast mb-8 max-w-4xl mx-auto">
+              <p className="text-lg sm:text-xl text-medium-contrast mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
                 Explore our comprehensive collection of courses in Sanskrit, Indian philosophy, Upanishads, and practical wisdom. 
                 From free introductory courses to complete mastery bundles, find your perfect learning path.
               </p>
@@ -427,22 +427,22 @@ export default function CoursesPage() {
 
             {/* Stats */}
             <StaggerItem>
-              <div className="flex justify-center mb-12">
-                <div className="flex flex-wrap justify-center gap-8">
+              <div className="flex justify-center mb-8 sm:mb-12">
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8">
                   {stats.map((stat, index) => (
                     <motion.div
                       key={`stat-${stat.label}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
-                      className="flex items-center space-x-3 text-medium-contrast"
+                      className="flex items-center space-x-2 sm:space-x-3 text-medium-contrast"
                     >
-                      <div className="w-10 h-10 bg-gradient-to-br from-saffron-500 to-saffron-600 rounded-xl flex items-center justify-center">
-                        <stat.icon className="w-5 h-5 text-white" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-saffron-500 to-saffron-600 rounded-lg sm:rounded-xl flex items-center justify-center">
+                        <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                       <div>
-                        <div className="text-lg font-bold text-high-contrast">{stat.number}</div>
-                        <div className="text-sm text-wisdom-500">{stat.label}</div>
+                        <div className="text-base sm:text-lg font-bold text-high-contrast">{stat.number}</div>
+                        <div className="text-xs sm:text-sm text-wisdom-500">{stat.label}</div>
                       </div>
                     </motion.div>
                   ))}
@@ -463,12 +463,12 @@ export default function CoursesPage() {
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-            <div className="card-premium p-8">
-              <div className="flex flex-col lg:flex-row gap-6">
+            <div className="card-premium p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
                 {/* Search Bar */}
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-wisdom-400 w-5 h-5" />
+                    <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-wisdom-400 w-4 h-4 sm:w-5 sm:h-5" />
                     <input
                       type="text"
                       placeholder="Search courses..."
@@ -477,7 +477,7 @@ export default function CoursesPage() {
                         setSearchQuery(e.target.value)
                         // Handle search query
                       }}
-                      className="w-full pl-12 pr-4 py-3 border border-wisdom-200 rounded-xl focus:ring-2 focus:ring-saffron-500 focus:border-transparent transition-all duration-200"
+                      className="w-full pl-10 sm:pl-12 pr-4 py-2.5 sm:py-3 border border-wisdom-200 rounded-xl focus:ring-2 focus:ring-saffron-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -487,10 +487,10 @@ export default function CoursesPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center space-x-2 px-6 py-3 bg-saffron-100 text-saffron-700 rounded-xl hover:bg-saffron-200 transition-colors"
+                  className="flex items-center space-x-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-saffron-100 text-saffron-700 rounded-xl hover:bg-saffron-200 transition-colors text-sm sm:text-base"
                 >
-                  <Filter className="w-5 h-5" />
-                  <span>Filters</span>
+                  <Filter className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="hidden sm:inline">Filters</span>
                   {showFilters ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </motion.button>
               </div>
@@ -616,7 +616,7 @@ export default function CoursesPage() {
                 </div>
 
                 {/* Course Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                   {category.courses.map((course, courseIndex) => (
                     <motion.div
                       key={course.title}
@@ -624,25 +624,25 @@ export default function CoursesPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: courseIndex * 0.1 }}
                       viewport={{ once: true }}
-                      whileHover={{ y: -8, scale: 1.02 }}
+                      whileHover={{ y: -4, scale: 1.02 }}
                       className="group cursor-pointer"
                     >
                       <Link href={course.link || '#'} className="block">
-                        <div className="card-premium p-6 h-full relative overflow-hidden">
+                        <div className="card-premium p-4 sm:p-6 h-full relative overflow-hidden">
                         {/* Status Badge */}
-                        <div className="absolute top-4 right-4">
+                        <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                           {course.status === 'upcoming' && (
-                            <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">
+                            <span className="bg-orange-100 text-orange-700 px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
                               Upcoming
                             </span>
                           )}
                           {course.status === 'available' && course.type.toLowerCase().includes('free') && (
-                            <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                            <span className="bg-green-100 text-green-700 px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
                               Free
                             </span>
                           )}
                           {course.status === 'available' && !course.type.toLowerCase().includes('free') && (
-                            <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+                            <span className="bg-blue-100 text-blue-700 px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
                               Available
                             </span>
                           )}

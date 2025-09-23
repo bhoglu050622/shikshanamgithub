@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { BookOpen, Clock, Users, ChevronLeft, ChevronRight, Play, Calendar, Star, ArrowRight } from 'lucide-react'
 import { useState, useRef } from 'react'
 import Image from 'next/image'
+import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 
 // Sample course data - in a real app, this would come from an API
 const liveClasses = [
@@ -96,13 +97,15 @@ const selfPacedCourses = [
 
 // Course Card Component
 function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced' }) {
+  const mounted = useHydrationSafeAnimation()
+  
   const handleClick = () => {
     window.open(course.link, '_blank', 'noopener,noreferrer')
   }
 
   return (
     <motion.div
-      whileHover={{ scale: 1.02, y: -5 }}
+      whileHover={mounted ? { scale: 1.02, y: -5 } : {}}
       className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0"
       onClick={handleClick}
     >
@@ -251,6 +254,8 @@ function CourseCarousel({ courses, type, title }: { courses: any[], type: 'live'
 }
 
 export default function AlignYourself() {
+  const mounted = useHydrationSafeAnimation()
+  
   return (
     <section id="align-yourself" className="section-padding bg-background relative overflow-hidden">
       {/* Background Animation - Shooting Stars & Diya Lamps */}
@@ -273,9 +278,9 @@ export default function AlignYourself() {
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={mounted ? { duration: 0.8 } : { duration: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -292,9 +297,9 @@ export default function AlignYourself() {
 
         {/* Course Carousels */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={mounted ? { duration: 0.8, delay: 0.2 } : { duration: 0 }}
           viewport={{ once: true }}
           className="mb-16 flex flex-col items-center space-y-8"
         >
