@@ -7,7 +7,6 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import CommunityPostsSection from '@/components/sections/CommunityPostsSection'
 import FoundersMission from '@/components/sections/FoundersMission'
 import Contribute from '@/components/sections/Contribute'
-import Community from '@/components/sections/Community'
 import DownloadAppNew from '@/components/sections/DownloadAppNew'
 import FAQ from '@/components/sections/FAQ'
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
       <CommunityPostsSection />
       <FoundersMission />
       <Contribute />
-      <Community />
       <DownloadAppNew />
       <FAQ />
     </>
