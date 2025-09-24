@@ -9,11 +9,7 @@ import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation
 // CMS components removed - using regular elements instead
 
 
-const quickStats = [
-  { icon: Users, label: 'Active Students', value: '100,000+' },
-  { icon: Award, label: 'Certified Gurus', value: '15+' },
-  { icon: BookOpen, label: 'Courses', value: '25+' },
-]
+
 
 export default function Hero() {
   const mounted = useHydrationSafeAnimation()
@@ -151,41 +147,7 @@ export default function Hero() {
             )}
           </StaggerItem>
 
-          {/* Quick Stats */}
-          <StaggerItem>
-            <div ref={statsRef} className="flex justify-center mb-8 sm:mb-12">
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8">
-                {quickStats.map((stat, index) => (
-                  <motion.div
-                    key={`quick-stat-${stat.label}`}
-                    initial={mounted ? { opacity: 0, y: 20, scale: 0.8 } : false}
-                    animate={mounted ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
-                    transition={mounted ? { delay: 0.3 + index * 0.1, duration: 0.6 } : { duration: 0 }}
-                    whileHover={mounted ? { scale: 1.05, y: -5 } : {}}
-                    className="flex items-center space-x-2 sm:space-x-3 text-high-contrast cursor-pointer"
-                  >
-                    <motion.div 
-                      className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-primary/90 rounded-lg sm:rounded-xl flex items-center justify-center"
-                      whileHover={mounted ? { rotate: 360 } : {}}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
-                    </motion.div>
-                    <div>
-                      <motion.div 
-                        className="text-base sm:text-lg font-bold text-high-contrast"
-                        animate={mounted ? { scale: [1, 1.02, 1] } : { scale: 1 }}
-                        transition={mounted ? { duration: 3, repeat: Infinity, delay: index * 0.3 } : { duration: 0 }}
-                      >
-                        {stat.value}
-                      </motion.div>
-                      <div className="text-xs sm:text-sm text-high-contrast opacity-80">{stat.label}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </StaggerItem>
+          {/* Quick Stats removed as requested */}
 
           <StaggerItem>
             <motion.h2 
