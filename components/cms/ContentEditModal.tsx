@@ -77,6 +77,21 @@ export default function ContentEditModal({
     }
   }, [isOpen, contentType]);
 
+  // Trigger layout refresh for Code Editor after mount
+  useEffect(() => {
+    if (isOpen && activeTab === 'code') {
+      // Force layout recalculation for Code Editor
+      const timer = setTimeout(() => {
+        const textarea = document.querySelector('textarea[placeholder="Enter JSON content..."]') as HTMLTextAreaElement;
+        if (textarea) {
+          textarea.style.height = 'auto';
+          textarea.style.height = textarea.scrollHeight + 'px';
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, activeTab]);
+
   const loadContent = async () => {
     setLoading(true);
     try {
@@ -599,9 +614,9 @@ export default function ContentEditModal({
                   </TabsList>
                 </div>
 
-                <TabsContent value="visual" className="flex-1 flex flex-col p-6">
-                  <div className="flex flex-col">
-                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex flex-col">
+                <TabsContent value="visual" className="flex-1 flex flex-col p-6" style={{ minHeight: '100%' }}>
+                  <div className="flex flex-col flex-1" style={{ minHeight: '100%' }}>
+                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex flex-col flex-1" style={{ minHeight: '100%' }}>
                       <div className="flex-shrink-0 mb-6">
                         <TabsList className="bg-white p-1 rounded-xl border border-gray-200 shadow-sm overflow-x-auto">
                           {contentType.sections.map(section => (
@@ -616,10 +631,10 @@ export default function ContentEditModal({
                         </TabsList>
                       </div>
                       
-                      <div className="overflow-y-auto overflow-x-hidden bg-white rounded-xl border border-gray-200 shadow-sm" style={{ maxHeight: 'calc(100vh - 250px)' }}>
+                      <div className="flex-1 overflow-y-auto overflow-x-hidden bg-white rounded-xl border border-gray-200 shadow-sm" style={{ minHeight: '100%' }}>
                         {contentType.sections.map(section => (
-                          <TabsContent key={section} value={section} className="mt-0 p-8">
-                            <div className="w-full">
+                          <TabsContent key={section} value={section} className="mt-0 p-8" style={{ minHeight: '100%' }}>
+                            <div className="w-full flex-1" style={{ minHeight: '100%' }}>
                               {getSectionEditor(section)}
                             </div>
                           </TabsContent>
@@ -629,8 +644,8 @@ export default function ContentEditModal({
                   </div>
                 </TabsContent>
 
-                <TabsContent value="code" className="flex-1 flex flex-col min-h-0 p-6">
-                  <div className="flex-1 flex flex-col min-h-0 bg-white rounded-xl border border-gray-200 shadow-sm">
+                <TabsContent value="code" className="flex-1 flex flex-col p-6">
+                  <div className="flex-1 flex flex-col bg-white rounded-xl border border-gray-200 shadow-sm" style={{ minHeight: '100%' }}>
                     <div className="flex-shrink-0 p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 rounded-t-xl">
                       <div className="flex items-center space-x-3">
                         <div className="p-2 bg-blue-100 rounded-lg">
@@ -644,9 +659,9 @@ export default function ContentEditModal({
                         </div>
                       </div>
                     </div>
-                    <div className="p-6">
+                    <div className="flex-1 p-6" style={{ minHeight: '100%' }}>
                       <textarea
-                        className="w-full font-mono text-sm border border-gray-300 rounded-lg p-6 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"
+                        className="w-full h-full font-mono text-sm border border-gray-300 rounded-lg p-6 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"
                         value={JSON.stringify(content, null, 2)}
                         onChange={(e) => {
                           try {
@@ -658,8 +673,8 @@ export default function ContentEditModal({
                         }}
                         placeholder="Enter JSON content..."
                         style={{ 
-                          minHeight: 'calc(100vh - 300px)',
-                          height: 'calc(100vh - 300px)'
+                          minHeight: '100%',
+                          height: '100%'
                         }}
                       />
                     </div>
