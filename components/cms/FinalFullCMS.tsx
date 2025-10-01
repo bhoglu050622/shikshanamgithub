@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import ContentEditModal from './ContentEditModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { RefreshCcw } from 'lucide-react';
+import { RefreshCcw, ExternalLink } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface ContentTypeStatus {
   id: string;
@@ -19,8 +19,7 @@ interface ContentTypeStatus {
 }
 
 export default function FinalFullCMS() {
-  const [selectedContent, setSelectedContent] = useState<ContentTypeStatus | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const contentTypes: ContentTypeStatus[] = [
     // Main Pages
@@ -293,9 +292,8 @@ export default function FinalFullCMS() {
   const categories = Array.from(new Set(contentTypes.map(c => c.category)));
 
   const handleEditClick = (content: ContentTypeStatus) => {
-    console.log('FinalFullCMS: Opening edit modal for:', content);
-    setSelectedContent(content);
-    setIsModalOpen(true);
+    console.log('FinalFullCMS: Opening edit page for:', content);
+    router.push(`/cms/edit/${content.id}`);
   };
 
   const handleRefresh = () => {
@@ -357,17 +355,6 @@ export default function FinalFullCMS() {
           </div>
         ))}
 
-        {selectedContent && (
-          <ContentEditModal
-            isOpen={isModalOpen}
-            onClose={() => {
-              setIsModalOpen(false);
-              setSelectedContent(null);
-            }}
-            contentType={selectedContent}
-            onRefresh={handleRefresh}
-          />
-        )}
 
         <div className="mt-8 p-4 bg-green-100 rounded-lg">
           <p className="text-green-800">✅ CMS is working! All content types are displayed and ready for editing.</p>
