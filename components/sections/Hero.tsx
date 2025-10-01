@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
 import { useScrollAnimations, useStaggeredAnimations } from '@/lib/hooks/useProgressiveAnimations'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
+import { API_CONFIG, logApiCall } from '@/lib/config/api'
 
 interface HeroData {
   title: string
@@ -25,7 +26,10 @@ export default function Hero() {
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
-        const response = await fetch('/api/cms/content')
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        logApiCall(apiUrl, 'GET')
+        
+        const response = await fetch(apiUrl)
         const result = await response.json()
         if (result.success && result.data.hero) {
           setHeroData(result.data.hero)
