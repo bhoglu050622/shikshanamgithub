@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const CONTENT_FILE_PATH = path.join(process.cwd(), 'data', 'homepage-content.json');
+const IS_PRODUCTION = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
 
 // Default content structure
 const defaultContent: HomepageContent = {
@@ -161,6 +162,7 @@ const defaultContent: HomepageContent = {
 export class ContentManager {
   private static instance: ContentManager;
   private content: HomepageContent;
+  private static inMemoryStorage: HomepageContent | null = null;
 
   private constructor() {
     this.content = this.loadContent();
@@ -174,6 +176,16 @@ export class ContentManager {
   }
 
   private loadContent(): HomepageContent {
+    // In production, use in-memory storage
+    if (IS_PRODUCTION) {
+      if (ContentManager.inMemoryStorage) {
+        return ContentManager.inMemoryStorage;
+      }
+      ContentManager.inMemoryStorage = defaultContent;
+      return defaultContent;
+    }
+
+    // In development, use filesystem
     try {
       if (fs.existsSync(CONTENT_FILE_PATH)) {
         const fileContent = fs.readFileSync(CONTENT_FILE_PATH, 'utf8');
@@ -194,12 +206,24 @@ export class ContentManager {
 
   public updateContent(newContent: HomepageContent): void {
     this.content = newContent;
-    this.saveContent(newContent);
+    
+    // In production, update in-memory storage
+    if (IS_PRODUCTION) {
+      ContentManager.inMemoryStorage = newContent;
+    } else {
+      this.saveContent(newContent);
+    }
   }
 
   public updateSection(section: keyof HomepageContent, data: any): void {
     this.content[section] = { ...this.content[section], ...data };
-    this.saveContent(this.content);
+    
+    // In production, update in-memory storage
+    if (IS_PRODUCTION) {
+      ContentManager.inMemoryStorage = this.content;
+    } else {
+      this.saveContent(this.content);
+    }
   }
 
   private saveContent(content: HomepageContent): void {
@@ -218,13 +242,26 @@ export class ContentManager {
   }
 
   public resetToDefault(): void {
-    this.updateContent(defaultContent);
+    this.content = defaultContent;
+    
+    // In production, update in-memory storage
+    if (IS_PRODUCTION) {
+      ContentManager.inMemoryStorage = defaultContent;
+    } else {
+      this.saveContent(defaultContent);
+    }
   }
 }
 
 // Generic content manager functions for different content types
 export async function readContent<T>(filename: string): Promise<T> {
   try {
+    // In production, return default content for now
+    if (IS_PRODUCTION) {
+      console.warn(`Production mode: Cannot read file ${filename}, returning default content`);
+      return {} as T;
+    }
+
     const filePath = path.join(process.cwd(), 'data', filename);
     if (fs.existsSync(filePath)) {
       const fileContent = fs.readFileSync(filePath, 'utf8');
@@ -239,6 +276,12 @@ export async function readContent<T>(filename: string): Promise<T> {
 
 export async function writeContent<T>(filename: string, content: T): Promise<void> {
   try {
+    // In production, skip filesystem writes
+    if (IS_PRODUCTION) {
+      console.warn(`Production mode: Cannot write file ${filename}, content not persisted`);
+      return;
+    }
+
     const filePath = path.join(process.cwd(), 'data', filename);
     
     // Ensure data directory exists
