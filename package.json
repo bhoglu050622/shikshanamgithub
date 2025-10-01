@@ -17,7 +17,8 @@
     "build:clean": "npm run clean && npm install && npm run build",
     "devtools": "react-devtools",
     "type-check": "tsc --noEmit",
-    "preview": "npm run build && npm run start"
+    "preview": "npm run build && npm run start",
+    "performance-check": "node scripts/performance-check.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
