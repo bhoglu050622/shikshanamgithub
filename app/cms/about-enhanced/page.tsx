@@ -87,7 +87,7 @@ function AboutCMSContent() {
             </div>
             <div className="flex items-center space-x-3">
               <Button 
-                variant={previewMode ? "outline" : "default"}
+                variant={previewMode ? "outline" : "primary"}
                 onClick={() => setPreviewMode(!previewMode)}
                 className="flex items-center space-x-2"
               >
