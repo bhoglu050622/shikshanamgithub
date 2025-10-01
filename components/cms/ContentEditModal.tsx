@@ -446,12 +446,12 @@ export default function ContentEditModal({
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="max-w-7xl h-[90vh] flex flex-col overflow-hidden z-[9999]"
+        className="max-w-[95vw] w-[95vw] h-[95vh] flex flex-col overflow-hidden z-[9999]"
         style={{
           display: 'flex',
           flexDirection: 'column',
-          maxHeight: '90vh',
-          height: '90vh',
+          maxHeight: '95vh',
+          height: '95vh',
           overflow: 'hidden',
           position: 'fixed',
           zIndex: 9999,
@@ -460,26 +460,35 @@ export default function ContentEditModal({
           transform: 'translate(-50%, -50%)',
           backgroundColor: 'white',
           border: '1px solid #e2e8f0',
-          borderRadius: '0.75rem',
+          borderRadius: '1rem',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
         }}
       >
-        <DialogHeader className="flex-shrink-0">
+        <DialogHeader className="flex-shrink-0 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200 px-6 py-4">
           <div className="flex items-center justify-between">
-            <div>
-              <DialogTitle className="text-2xl font-bold text-slate-800">
-                Edit {contentType.name}
-              </DialogTitle>
-              <DialogDescription className="text-slate-600">
-                {contentType.description}
-              </DialogDescription>
+            <div className="flex items-center space-x-4">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <Edit className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <DialogTitle className="text-2xl font-bold text-gray-900">
+                  Edit {contentType.name}
+                </DialogTitle>
+                <DialogDescription className="text-gray-600 mt-1">
+                  {contentType.description}
+                </DialogDescription>
+              </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Badge className={contentType.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}>
+            <div className="flex items-center space-x-3">
+              <Badge className={`px-3 py-1 rounded-full text-sm font-medium ${
+                contentType.status === 'active' 
+                  ? 'bg-green-100 text-green-800 border border-green-200' 
+                  : 'bg-yellow-100 text-yellow-800 border border-yellow-200'
+              }`}>
                 {contentType.status}
               </Badge>
-              <Button variant="ghost" size="sm" onClick={onClose}>
-                <X className="w-4 h-4" />
+              <Button variant="ghost" size="sm" onClick={onClose} className="hover:bg-gray-100 rounded-lg">
+                <X className="w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -504,42 +513,47 @@ export default function ContentEditModal({
         )}
 
         {/* Action Buttons */}
-        <div className="flex-shrink-0 flex items-center justify-between mb-4 px-1">
-          <div className="flex items-center space-x-3">
-            <Button 
-              onClick={saveContent} 
-              disabled={saving || !content}
-              className="bg-saffron-600 hover:bg-saffron-700 text-white px-4 py-2"
-            >
-              <Save className="w-4 h-4 mr-2" />
-              {saving ? 'Saving...' : 'Save Changes'}
-            </Button>
-            <Button 
-              onClick={resetContent} 
-              disabled={saving || !content}
-              variant="outline"
-              className="px-4 py-2"
-            >
-              <RotateCcw className="w-4 h-4 mr-2" />
-              Reset
-            </Button>
-            <Button 
-              onClick={previewSite} 
-              variant="outline"
-              className="px-4 py-2"
-            >
-              <Eye className="w-4 h-4 mr-2" />
-              Preview
-            </Button>
-            <Button 
-              onClick={loadContent} 
-              disabled={loading}
-              variant="outline"
-              className="px-4 py-2"
-            >
-              <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-              Refresh
-            </Button>
+        <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Button 
+                onClick={saveContent} 
+                disabled={saving || !content}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2.5 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                <Save className="w-4 h-4 mr-2" />
+                {saving ? 'Saving...' : 'Save Changes'}
+              </Button>
+              <Button 
+                onClick={resetContent} 
+                disabled={saving || !content}
+                variant="outline"
+                className="px-6 py-2.5 rounded-lg font-medium border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              >
+                <RotateCcw className="w-4 h-4 mr-2" />
+                Reset
+              </Button>
+              <Button 
+                onClick={previewSite} 
+                variant="outline"
+                className="px-6 py-2.5 rounded-lg font-medium border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              >
+                <Eye className="w-4 h-4 mr-2" />
+                Preview
+              </Button>
+              <Button 
+                onClick={loadContent} 
+                disabled={loading}
+                variant="outline"
+                className="px-6 py-2.5 rounded-lg font-medium border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              >
+                <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+            </div>
+            <div className="text-sm text-gray-500">
+              Last updated: {content ? new Date().toLocaleTimeString() : 'Never'}
+            </div>
           </div>
         </div>
 
@@ -566,31 +580,45 @@ export default function ContentEditModal({
             <div className="h-full flex flex-col p-4 min-h-0">
               {/* Editor Mode Tabs */}
               <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
-                <TabsList className="flex-shrink-0 mb-4 bg-gray-100 p-1 rounded-lg">
-                  <TabsTrigger value="visual" className="flex items-center space-x-2 px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                    <Palette className="w-4 h-4" />
-                    <span>Visual Editor</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="code" className="flex items-center space-x-2 px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                    <Code className="w-4 h-4" />
-                    <span>Code Editor</span>
-                  </TabsTrigger>
-                </TabsList>
+                <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-4">
+                  <TabsList className="bg-gray-100 p-1 rounded-xl w-fit">
+                    <TabsTrigger 
+                      value="visual" 
+                      className="flex items-center space-x-2 px-6 py-3 data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:text-blue-600 rounded-lg font-medium transition-all duration-200"
+                    >
+                      <Palette className="w-4 h-4" />
+                      <span>Visual Editor</span>
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="code" 
+                      className="flex items-center space-x-2 px-6 py-3 data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:text-blue-600 rounded-lg font-medium transition-all duration-200"
+                    >
+                      <Code className="w-4 h-4" />
+                      <span>Code Editor</span>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
 
-                <TabsContent value="visual" className="flex-1 flex flex-col min-h-0">
+                <TabsContent value="visual" className="flex-1 flex flex-col min-h-0 p-6">
                   <div className="flex-1 flex flex-col min-h-0">
                     <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col min-h-0">
-                      <TabsList className="flex-shrink-0 overflow-x-auto mb-4 bg-white p-1 rounded-lg border">
-                        {contentType.sections.map(section => (
-                          <TabsTrigger key={section} value={section} className="whitespace-nowrap px-3 py-2 text-sm data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200">
-                            {section.charAt(0).toUpperCase() + section.slice(1)}
-                          </TabsTrigger>
-                        ))}
-                      </TabsList>
+                      <div className="flex-shrink-0 mb-6">
+                        <TabsList className="bg-white p-1 rounded-xl border border-gray-200 shadow-sm overflow-x-auto">
+                          {contentType.sections.map(section => (
+                            <TabsTrigger 
+                              key={section} 
+                              value={section} 
+                              className="whitespace-nowrap px-4 py-2.5 text-sm font-medium data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200 rounded-lg transition-all duration-200 hover:bg-gray-50"
+                            >
+                              {section.charAt(0).toUpperCase() + section.slice(1)}
+                            </TabsTrigger>
+                          ))}
+                        </TabsList>
+                      </div>
                       
-                      <div className="overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 300px)' }}>
+                      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0 bg-white rounded-xl border border-gray-200 shadow-sm">
                         {contentType.sections.map(section => (
-                          <TabsContent key={section} value={section} className="mt-0 p-6 bg-white rounded-lg border">
+                          <TabsContent key={section} value={section} className="mt-0 p-8">
                             <div className="w-full">
                               {getSectionEditor(section)}
                             </div>
@@ -601,17 +629,24 @@ export default function ContentEditModal({
                   </div>
                 </TabsContent>
 
-                <TabsContent value="code" className="flex-1 flex flex-col">
-                  <div className="flex-1 flex flex-col">
-                    <div className="flex-shrink-0 p-4 border-b bg-gray-50 rounded-t-lg">
-                      <h3 className="text-lg font-semibold text-gray-900">Raw Content (JSON)</h3>
-                      <p className="text-sm text-gray-600 mt-1">
-                        Edit the raw JSON content directly. Be careful with syntax.
-                      </p>
+                <TabsContent value="code" className="flex-1 flex flex-col min-h-0 p-6">
+                  <div className="flex-1 flex flex-col min-h-0 bg-white rounded-xl border border-gray-200 shadow-sm">
+                    <div className="flex-shrink-0 p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 rounded-t-xl">
+                      <div className="flex items-center space-x-3">
+                        <div className="p-2 bg-blue-100 rounded-lg">
+                          <Code className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">Raw Content (JSON)</h3>
+                          <p className="text-sm text-gray-600 mt-1">
+                            Edit the raw JSON content directly. Be careful with syntax.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1 p-4 bg-white">
+                    <div className="flex-1 p-6 min-h-0">
                       <textarea
-                        className="w-full h-full font-mono text-sm border border-gray-300 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"
+                        className="w-full h-full font-mono text-sm border border-gray-300 rounded-lg p-6 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"
                         value={JSON.stringify(content, null, 2)}
                         onChange={(e) => {
                           try {
@@ -623,8 +658,8 @@ export default function ContentEditModal({
                         }}
                         placeholder="Enter JSON content..."
                         style={{ 
-                          height: '500px',
-                          minHeight: '500px'
+                          minHeight: 'calc(100vh - 400px)',
+                          height: 'calc(100vh - 400px)'
                         }}
                       />
                     </div>
