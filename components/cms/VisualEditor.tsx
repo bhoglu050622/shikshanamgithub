@@ -192,7 +192,7 @@ export default function VisualEditor({ content, onChange, section }: VisualEdito
         </div>
         <div className="flex items-center space-x-2">
           <Button
-            variant={previewMode ? "outline" : "default"}
+            variant={previewMode ? "outline" : "primary"}
             size="sm"
             onClick={() => setPreviewMode(!previewMode)}
             className={previewMode ? "" : "bg-saffron-600 hover:bg-saffron-700 text-white"}

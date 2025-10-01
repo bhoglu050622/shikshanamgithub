@@ -183,7 +183,7 @@ export default function LivePreview({
 
             {/* Auto Refresh Toggle */}
             <Button
-              variant={isAutoRefresh ? 'default' : 'outline'}
+              variant={isAutoRefresh ? 'primary' : 'outline'}
               size="sm"
               onClick={() => setIsAutoRefresh(!isAutoRefresh)}
               className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white"
