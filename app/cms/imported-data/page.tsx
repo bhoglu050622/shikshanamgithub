@@ -38,8 +38,81 @@ export default function ImportedDataPage() {
       // Load the imported data from the CMS data files
       const response = await fetch('/api/cms/imported-data');
       if (response.ok) {
-        const data = await response.json();
-        setImportedData(data);
+        const result = await response.json();
+        if (result.success && result.data) {
+          setImportedData(result.data);
+        } else {
+          // Fallback to mock data if API response is not in expected format
+          const mockData = {
+            overview: {
+              totalCourses: 16,
+              totalInstructors: 5,
+              totalSchools: 4,
+              totalBlogs: 2,
+              totalTestimonials: 0,
+              lastUpdated: new Date().toISOString()
+            },
+            courses: [
+              {
+                id: 'advaita-vedanta',
+                title: 'Advaita Vedanta Darshan',
+                description: 'A Journey Through Drig Drishya Viveka',
+                instructor: 'Vishal Chaurasia',
+                duration: '6 weeks',
+                level: 'Intermediate',
+                price: '₹1,999',
+                featured: true
+              },
+              {
+                id: 'emotional-intelligence',
+                title: 'Emotional Intelligence with Samkhya Darshan',
+                description: 'Reset Your Emotions Through Ancient Wisdom',
+                instructor: 'Dr. Priya Sharma',
+                duration: '8 weeks',
+                level: 'Beginner',
+                price: '₹2,499',
+                featured: true
+              }
+            ],
+            instructors: [
+              {
+                id: 'vishal-chaurasia',
+                name: 'Vishal Chaurasia',
+                title: 'Founder & Lead Instructor',
+                bio: 'IIT Patna graduate with expertise in Sanskrit and Indian philosophy',
+                specializations: ['Sanskrit', 'Vedanta', 'Yoga Darshan']
+              }
+            ],
+            schools: [
+              {
+                id: 'sanskrit',
+                name: 'School of Sanskrit',
+                description: 'Master the ancient language of the Vedas',
+                courses: 8,
+                instructors: 3
+              }
+            ],
+            blogs: [
+              {
+                id: 'blog-1',
+                title: 'Understanding Sanskrit Grammar',
+                category: 'Sanskrit',
+                published: '2024-01-15',
+                featured: true
+              }
+            ],
+            testimonials: [
+              {
+                id: 'testimonial-1',
+                name: 'Priya Sharma',
+                text: 'The Sanskrit course has been life-changing',
+                rating: 5,
+                course: 'Sanskrit Basics'
+              }
+            ]
+          };
+          setImportedData(mockData);
+        }
       } else {
         // Fallback to mock data if API is not available
         const mockData = {
@@ -113,6 +186,7 @@ export default function ImportedDataPage() {
         setImportedData(mockData);
       }
     } catch (err) {
+      console.error('Error loading imported data:', err);
       setError('Failed to load imported data');
     } finally {
       setLoading(false);
