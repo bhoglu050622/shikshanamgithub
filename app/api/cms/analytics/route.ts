@@ -100,7 +100,13 @@ function getContentTypeData() {
 // Get recent activity from file system
 function getRecentActivity() {
   const dataDir = path.join(process.cwd(), 'data');
-  const activities = [];
+  const activities: Array<{
+    id: string;
+    action: string;
+    contentType?: string;
+    timestamp: string;
+    user: string;
+  }> = [];
   
   try {
     const files = fs.readdirSync(dataDir);
