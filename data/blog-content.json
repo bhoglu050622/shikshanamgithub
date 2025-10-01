@@ -1,0 +1,60 @@
+{
+  "hero": {
+    "title": "Blog Posts",
+    "subtitle": "Insights, Wisdom, and Learning",
+    "description": "Explore our collection of articles, insights, and educational content."
+  },
+  "posts": [],
+  "categories": [
+    {
+      "id": "philosophy",
+      "name": "Philosophy",
+      "description": "Ancient wisdom and philosophical insights"
+    },
+    {
+      "id": "sanskrit",
+      "name": "Sanskrit",
+      "description": "Sanskrit language and literature"
+    },
+    {
+      "id": "courses",
+      "name": "Courses",
+      "description": "Course updates and information"
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "description": "Workshops and events"
+    }
+  ],
+  "tags": [
+    {
+      "id": "vedanta",
+      "name": "Vedanta",
+      "color": "#3B82F6"
+    },
+    {
+      "id": "yoga",
+      "name": "Yoga",
+      "color": "#10B981"
+    },
+    {
+      "id": "sanskrit",
+      "name": "Sanskrit",
+      "color": "#F59E0B"
+    },
+    {
+      "id": "philosophy",
+      "name": "Philosophy",
+      "color": "#8B5CF6"
+    }
+  ],
+  "authors": [
+    {
+      "id": "swami-ananda",
+      "name": "Swami Ananda",
+      "bio": "Spiritual teacher and Sanskrit scholar",
+      "avatar": "/assets/swami-ananda.jpg"
+    }
+  ]
+}

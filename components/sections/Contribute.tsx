@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
+import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 import { BookOpen, Heart, Users, Globe, ArrowRight, Star, Award, Target, Lightbulb, Shield } from 'lucide-react'
 
 const contributionOptions = [
@@ -99,13 +101,15 @@ const currentProjects = [
 ]
 
 export default function Contribute() {
+  const mounted = useHydrationSafeAnimation()
+
   return (
     <section id="contribute" className="section-padding bg-background relative overflow-hidden">
       {/* Background Animation - 3D Donation Box & Pen Writing */}
       <div className="absolute inset-0 -z-10">
         {/* 3D Donation Box Animation */}
         <div className="absolute top-20 right-20 opacity-20">
-          <motion.div
+          <MotionDiv
             animate={{ 
               rotateY: [0, 360],
               scale: [1, 1.1, 1]
@@ -120,12 +124,12 @@ export default function Contribute() {
             <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-accent/80 rounded-full"></div>
             <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-accent/60 rounded-full"></div>
             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-14 h-1 bg-accent/60 rounded-full"></div>
-          </motion.div>
+          </MotionDiv>
         </div>
         
         {/* Pen Writing Animation */}
         <div className="absolute top-40 left-20 opacity-15">
-          <motion.div
+          <MotionDiv
             animate={{ 
               rotate: [0, 5, -5, 0],
               x: [0, 20, 0]
@@ -139,12 +143,12 @@ export default function Contribute() {
           >
             <div className="absolute -top-2 left-0 w-1 h-4 bg-secondary rounded-full"></div>
             <div className="absolute -top-1 left-1 w-1 h-2 bg-secondary/80 rounded-full"></div>
-          </motion.div>
+          </MotionDiv>
         </div>
         
         {/* Floating Mantra Text */}
         <div className="absolute bottom-20 right-20 opacity-10">
-          <motion.div
+          <MotionDiv
             animate={{ 
               opacity: [0.1, 0.3, 0.1],
               y: [0, -10, 0]
@@ -157,7 +161,7 @@ export default function Contribute() {
             className="text-2xl font-display text-primary"
           >
             दानं परमं धर्मः
-          </motion.div>
+          </MotionDiv>
         </div>
         
         {/* Subtle gradient overlays */}
@@ -167,10 +171,10 @@ export default function Contribute() {
       
       <div className="container-custom relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+        <MotionDiv
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={mounted ? { duration: 0.8 } : { duration: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -183,18 +187,18 @@ export default function Contribute() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Be part of this movement — share knowledge, guide as a Guru, or support a project.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         {/* Contribution Options Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto mb-16">
           {contributionOptions.map((option, index) => (
-            <motion.div
+            <MotionDiv
               key={option.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              initial={mounted ? { opacity: 0, y: 30 } : false}
+              whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+              transition={mounted ? { duration: 0.8, delay: index * 0.2 } : { duration: 0 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
+              whileHover={mounted ? { scale: 1.02, y: -5 } : {}}
               className="group"
             >
               <div className={`bg-gradient-to-br ${option.color} hover:${option.hoverColor} rounded-3xl p-8 text-primary-foreground transition-all duration-300 shadow-xl hover:shadow-2xl h-full`}>
@@ -215,9 +219,9 @@ export default function Contribute() {
                     {option.features.map((feature, featureIndex) => (
                       <motion.li
                         key={featureIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 + featureIndex * 0.1 }}
+                        initial={mounted ? { opacity: 0, x: -20 } : false}
+                        whileInView={mounted ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+                        transition={mounted ? { duration: 0.5, delay: 0.3 + featureIndex * 0.1 } : { duration: 0 }}
                         viewport={{ once: true }}
                         className="flex items-center space-x-2 text-primary-foreground/90"
                       >
@@ -243,8 +247,8 @@ export default function Contribute() {
                   {option.ctaButtons.map((button, buttonIndex) => (
                     <motion.button
                       key={button.text}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={mounted ? { scale: 1.05 } : {}}
+                      whileTap={mounted ? { scale: 0.95 } : {}}
                       className={`w-full ${button.color} text-white py-3 px-6 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 group-hover:shadow-lg`}
                     >
                       <button.icon className="w-5 h-5" />
@@ -254,15 +258,15 @@ export default function Contribute() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
         {/* Current Projects Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+        <MotionDiv
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={mounted ? { duration: 0.8, delay: 0.4 } : { duration: 0 }}
           viewport={{ once: true }}
           className="mb-16"
         >
@@ -271,13 +275,13 @@ export default function Contribute() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {currentProjects.map((project, index) => (
-              <motion.div
+              <MotionDiv
                 key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                initial={mounted ? { opacity: 0, y: 30 } : false}
+                whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                transition={mounted ? { duration: 0.6, delay: 0.5 + index * 0.1 } : { duration: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.02, y: -3 }}
+                whileHover={mounted ? { scale: 1.02, y: -3 } : {}}
                 className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-border"
               >
                 <div className="flex items-center justify-between mb-5">
@@ -317,16 +321,16 @@ export default function Contribute() {
                 </div>
                 
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={mounted ? { scale: 1.05 } : {}}
+                  whileTap={mounted ? { scale: 0.95 } : {}}
                   className="btn-primary w-full py-4 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 text-base"
                 >
                   Support This Project
                 </motion.button>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.div>
+        </MotionDiv>
 
       </div>
     </section>

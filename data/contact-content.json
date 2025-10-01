@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team"
+  },
+  "form": {
+    "title": "Send us a Message",
+    "subtitle": "We'd love to hear from you",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true
+      },
+      {
+        "id": "subject",
+        "label": "Subject",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "message",
+        "label": "Message",
+        "type": "textarea",
+        "required": true
+      }
+    ],
+    "submitText": "Send Message"
+  },
+  "info": {
+    "title": "Get in Touch",
+    "items": [
+      {
+        "id": "email",
+        "title": "Email",
+        "value": "hello@shikshanam.com",
+        "icon": "mail"
+      },
+      {
+        "id": "phone",
+        "title": "Phone",
+        "value": "+91-9910032165",
+        "icon": "phone"
+      },
+      {
+        "id": "hours",
+        "title": "Hours",
+        "value": "Monday to Saturday 11AM – 6PM",
+        "icon": "clock"
+      }
+    ]
+  },
+  "quickHelp": {
+    "title": "Quick Help",
+    "subtitle": "Find answers to common questions",
+    "items": [
+      {
+        "id": "faq",
+        "title": "Frequently Asked Questions",
+        "description": "Find answers to common questions",
+        "link": "/faq"
+      },
+      {
+        "id": "support",
+        "title": "Technical Support",
+        "description": "Get help with technical issues",
+        "link": "/support"
+      },
+      {
+        "id": "courses",
+        "title": "Course Information",
+        "description": "Learn about our courses",
+        "link": "/courses"
+      }
+    ]
+  }
+}

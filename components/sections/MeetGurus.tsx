@@ -1,7 +1,8 @@
 'use client'
 
-import { motion, useReducedMotion, useInView } from 'framer-motion'
+import { useReducedMotion, useInView } from 'framer-motion'
 import { useState, useRef } from 'react'
+import { MotionDiv, MotionH2, MotionP, MotionSpan, MotionButton } from '@/components/motion/MotionWrapper'
 import { 
   User, 
   ExternalLink, 
@@ -139,7 +140,7 @@ const GuruCard = ({
   const [isHovered, setIsHovered] = useState(false)
   
   return (
-    <motion.div
+    <MotionDiv
       initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
       whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -153,7 +154,7 @@ const GuruCard = ({
       <div className="bg-card p-6 text-center group-hover:shadow-2xl transition-all duration-300 h-full">
         {/* Guru Avatar */}
         <div className="relative w-32 h-32 mx-auto mb-6">
-          <motion.div 
+          <MotionDiv 
             className="w-32 h-32 bg-gradient-to-br from-primary/80 to-primary rounded-full flex items-center justify-center relative overflow-hidden"
             animate={shouldReduceMotion ? {} : {
               rotate: isHovered ? 5 : 0,
@@ -163,7 +164,7 @@ const GuruCard = ({
             <User className="w-16 h-16 text-primary-foreground" />
             
             {/* Halo glow effect */}
-            <motion.div 
+            <MotionDiv 
               className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/30 to-primary/50 blur-sm"
               animate={shouldReduceMotion ? {} : {
                 scale: isHovered ? 1.2 : 1,
@@ -176,7 +177,7 @@ const GuruCard = ({
             <div className={`absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r ${guru.color} rounded-full flex items-center justify-center shadow-lg`}>
               <guru.icon className="w-5 h-5 text-primary-foreground" />
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
         
         {/* Guru Info */}
@@ -224,10 +225,10 @@ const GuruCard = ({
         </div>
         
         {/* CTA Button */}
-        <motion.button
+        <MotionButton
           whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
           whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent) => {
             e.stopPropagation()
             onViewProfile?.(guru)
           }}
@@ -235,9 +236,9 @@ const GuruCard = ({
         >
           <span>View Profile</span>
           <ExternalLink className="w-4 h-4" />
-        </motion.button>
+        </MotionButton>
       </div>
-    </motion.div>
+    </MotionDiv>
   )
 }
 
@@ -256,19 +257,19 @@ const GuruModal = ({
   if (!guru || !isOpen) return null
   
   return (
-    <motion.div
+    <MotionDiv
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
       initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
       animate={shouldReduceMotion ? {} : { opacity: 1 }}
       exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
       onClick={onClose}
     >
-      <motion.div
+      <MotionDiv
         className="bg-card rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
         initial={shouldReduceMotion ? { scale: 1 } : { scale: 0.9, opacity: 0 }}
         animate={shouldReduceMotion ? {} : { scale: 1, opacity: 1 }}
         exit={shouldReduceMotion ? { scale: 1 } : { scale: 0.9, opacity: 0 }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
@@ -393,7 +394,7 @@ const GuruModal = ({
         
         {/* CTA */}
         <div className="flex justify-end mt-8">
-          <motion.button
+          <MotionButton
             whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
             whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
             className="btn-primary flex items-center space-x-2"
@@ -401,10 +402,10 @@ const GuruModal = ({
           >
             <span>Close</span>
             <ExternalLink className="w-4 h-4 text-primary-foreground" />
-          </motion.button>
+          </MotionButton>
         </div>
-      </motion.div>
-    </motion.div>
+      </MotionDiv>
+    </MotionDiv>
   )
 }
 
@@ -430,7 +431,7 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
     <section className="py-8 sm:py-12 md:py-16 relative overflow-hidden" aria-labelledby="gurus-title">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10">
-        <motion.div
+        <MotionDiv
           animate={{ 
             rotate: 360,
             scale: [1, 1.1, 1]
@@ -442,7 +443,7 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
           }}
           className="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full mix-blend-multiply filter blur-3xl"
         />
-        <motion.div
+        <MotionDiv
           animate={{ 
             rotate: -360,
             scale: [1, 1.2, 1]
@@ -457,14 +458,14 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
       </div>
 
       <div className="container-custom">
-        <motion.div
+        <MotionDiv
           ref={ref}
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <MotionH2 
             id="gurus-title" 
             className="text-display text-foreground mb-4"
             animate={isInView ? {
@@ -477,7 +478,7 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             Meet Your{' '}
-            <motion.span
+            <MotionSpan
               className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
               animate={isInView ? {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
@@ -490,23 +491,23 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
               style={{ backgroundSize: '200% 200%' }}
             >
               Gurus
-            </motion.span>
-          </motion.h2>
-          <motion.p 
+            </MotionSpan>
+          </MotionH2>
+          <MotionP 
             className="text-body text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <motion.span
+            <MotionSpan
               animate={isInView ? { opacity: [0.7, 1, 0.7] } : {}}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               Learn from scholars, practitioners, and mentors who have dedicated their lives to 
               understanding and teaching ancient Indian wisdom for modern application.
-            </motion.span>
-          </motion.p>
-        </motion.div>
+            </MotionSpan>
+          </MotionP>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {gurus.map((guru, index) => (
@@ -521,21 +522,21 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        <MotionDiv
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
           whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <motion.p 
+          <MotionP 
             className="text-muted-foreground mb-6"
             animate={isInView ? { opacity: [0.7, 1, 0.7] } : {}}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             Ready to learn from these exceptional teachers?
-          </motion.p>
-          <motion.button
+          </MotionP>
+          <MotionButton
             whileHover={shouldReduceMotion ? {} : { 
               scale: 1.05, 
               y: -2,
@@ -544,20 +545,20 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
             whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
             className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto no-underline"
           >
-            <motion.span
+            <MotionSpan
               animate={{ textShadow: ['0 0 0px rgba(218, 165, 32, 0)', '0 0 10px rgba(218, 165, 32, 0.5)', '0 0 0px rgba(218, 165, 32, 0)'] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               View All Gurus
-            </motion.span>
-            <motion.div
+            </MotionSpan>
+            <MotionDiv
               whileHover={{ rotate: 45, scale: 1.2 }}
               transition={{ duration: 0.2 }}
             >
               <ExternalLink className="w-5 h-5" />
-            </motion.div>
-          </motion.button>
-        </motion.div>
+            </MotionDiv>
+          </MotionButton>
+        </MotionDiv>
       </div>
 
       {/* Guru Modal */}

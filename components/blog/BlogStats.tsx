@@ -1,4 +1,7 @@
+'use client'
+
 import { BookOpen, Users, Tag, Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface BlogStatsProps {
   stats: {
@@ -14,7 +17,15 @@ interface BlogStatsProps {
 }
 
 export default function BlogStats({ stats, className = '' }: BlogStatsProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const formatDate = (dateString: string) => {
+    if (!mounted) return 'Loading...';
+    
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',

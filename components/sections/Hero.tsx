@@ -6,13 +6,39 @@ import { useEffect, useState } from 'react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
 import { useScrollAnimations, useStaggeredAnimations } from '@/lib/hooks/useProgressiveAnimations'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
-// CMS components removed - using regular elements instead
 
-
-
+interface HeroData {
+  title: string
+  subtitle: string
+  ctaButtons: {
+    sanskrit: { text: string; link: string }
+    darshan: { text: string; link: string }
+    lifeSkills: { text: string; link: string }
+  }
+}
 
 export default function Hero() {
   const mounted = useHydrationSafeAnimation()
+  const [heroData, setHeroData] = useState<HeroData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const response = await fetch('/api/cms/content')
+        const result = await response.json()
+        if (result.success && result.data.hero) {
+          setHeroData(result.data.hero)
+        }
+      } catch (error) {
+        console.error('Failed to fetch hero data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchHeroData()
+  }, [])
   
   // Progressive animations
   const titleRef = useScrollAnimations('fadeIn', { delay: 200 })
@@ -20,6 +46,7 @@ export default function Hero() {
   const statsRef = useStaggeredAnimations('fadeIn', 150, { delay: 600 })
   const ctaRef = useStaggeredAnimations('scaleIn', 200, { delay: 800 })
 
+  
   return (
     <section id="home" className="section-padding relative min-h-screen flex items-center bg-background transition-colors duration-300">
       <div className="container-custom text-center relative z-20">
@@ -82,7 +109,11 @@ export default function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            {mounted ? (
+            {loading ? (
+              <div className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm">
+                <div className="animate-pulse bg-gray-300 h-12 w-96 mx-auto rounded"></div>
+              </div>
+            ) : mounted ? (
               <motion.h1 
                 ref={titleRef} 
                 className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
@@ -90,39 +121,24 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                <span className="inline">Welcome to</span>
-                {' '}
-                <motion.span 
-                  className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
-                  animate={{ 
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  style={{ backgroundSize: '200% 200%' }}
-                >
-                  <span className="inline">Shikshanam</span>
-                </motion.span>
+                {heroData?.title || "Welcome to Shikshanam"}
               </motion.h1>
             ) : (
               <h1 
                 ref={titleRef} 
                 className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
               >
-                <span className="inline">Welcome to</span>
-                {' '}
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                  <span className="inline">Shikshanam</span>
-                </span>
+                {heroData?.title || "Welcome to Shikshanam"}
               </h1>
             )}
           </StaggerItem>
 
           <StaggerItem>
-            {mounted ? (
+            {loading ? (
+              <div className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable">
+                <div className="animate-pulse bg-gray-300 h-6 w-80 mx-auto rounded"></div>
+              </div>
+            ) : mounted ? (
               <motion.p 
                 ref={subtitleRef} 
                 className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
@@ -134,7 +150,7 @@ export default function Hero() {
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <span className="inline">Where AI meets Ancient India</span>
+                  <span className="inline">{heroData?.subtitle || "Where AI meets Ancient India"}</span>
                 </motion.span>
               </motion.p>
             ) : (
@@ -142,7 +158,7 @@ export default function Hero() {
                 ref={subtitleRef} 
                 className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
               >
-                <span className="inline">Where AI meets Ancient India</span>
+                <span className="inline">{heroData?.subtitle || "Where AI meets Ancient India"}</span>
               </p>
             )}
           </StaggerItem>
@@ -206,7 +222,7 @@ export default function Hero() {
                   animate={mounted ? { textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] } : { textShadow: '0 0 0px rgba(255,255,255,0)' }}
                   transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0 }}
                 >
-                  <span className="inline">School of Sanskrit</span>
+                  <span className="inline">{heroData?.ctaButtons?.sanskrit?.text || "School of Sanskrit"}</span>
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
@@ -253,7 +269,7 @@ export default function Hero() {
                   animate={mounted ? { textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] } : { textShadow: '0 0 0px rgba(255,255,255,0)' }}
                   transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 } : { duration: 0 }}
                 >
-                  <span className="inline">School of Darshan</span>
+                  <span className="inline">{heroData?.ctaButtons?.darshan?.text || "School of Darshan"}</span>
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
@@ -300,7 +316,7 @@ export default function Hero() {
                   animate={mounted ? { textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] } : { textShadow: '0 0 0px rgba(255,255,255,0)' }}
                   transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 } : { duration: 0 }}
                 >
-                  <span className="inline">School of Life Skills</span>
+                  <span className="inline">{heroData?.ctaButtons?.lifeSkills?.text || "School of Life Skills"}</span>
                 </motion.span>
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"

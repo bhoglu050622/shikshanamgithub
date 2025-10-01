@@ -235,22 +235,27 @@ export default function AIClockWidget() {
   const [time, setTime] = useState('14:30')
   const [sanskritPhrase, setSanskritPhrase] = useState<{ phrase: string; transliteration: string; meaning: string } | null>(null)
   const [isRevealed, setIsRevealed] = useState(false)
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [currentTime, setCurrentTime] = useState<Date | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true)
+    const now = new Date()
+    setCurrentTime(now)
+    const timeString = now.toTimeString().slice(0, 5)
+    setTime(timeString)
+  }, [])
 
   // Update current time every second
   useEffect(() => {
+    if (!mounted) return
+    
     const timer = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
     return () => clearInterval(timer)
-  }, [])
-
-  // Set initial time to current time
-  useEffect(() => {
-    const now = new Date()
-    const timeString = now.toTimeString().slice(0, 5)
-    setTime(timeString)
-  }, [])
+  }, [mounted])
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
@@ -267,6 +272,8 @@ export default function AIClockWidget() {
 
 
   const useCurrentTime = () => {
+    if (!mounted) return
+    
     const now = new Date()
     const timeString = now.toTimeString().slice(0, 5)
     setTime(timeString)
@@ -305,11 +312,11 @@ export default function AIClockWidget() {
               <div className="mb-4">
                 <div className="text-sm text-muted-gray mb-2">Current Time:</div>
                 <div className="text-2xl font-bold text-teal-primary">
-                  {currentTime.toLocaleTimeString('en-US', { 
+                  {currentTime ? currentTime.toLocaleTimeString('en-US', { 
                     hour12: false, 
                     hour: '2-digit', 
                     minute: '2-digit' 
-                  })}
+                  }) : 'Loading...'}
                 </div>
                 <div className="text-xs text-muted-gray mt-1">
                   Processing: {time} (24-hour format)

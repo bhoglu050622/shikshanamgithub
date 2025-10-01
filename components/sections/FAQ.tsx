@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
+import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, HelpCircle, MessageCircle, Phone } from 'lucide-react'
 
@@ -77,7 +78,7 @@ export default function FAQ() {
       
       <div className="container-custom relative z-10">
         {/* Section Header */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -98,12 +99,12 @@ export default function FAQ() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Find answers to common questions about our courses, platform, and learning experience.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         {/* FAQ Items */}
         <div className="max-w-4xl mx-auto mb-16">
           {faqs.map((faq, index) => (
-            <motion.div
+            <MotionDiv
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +122,7 @@ export default function FAQ() {
                   <h3 className="font-semibold text-foreground text-lg pr-4">
                     {faq.question}
                   </h3>
-                  <motion.div
+                  <MotionDiv
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                     className="flex-shrink-0"
@@ -131,12 +132,12 @@ export default function FAQ() {
                     ) : (
                       <ChevronDown className="w-6 h-6 text-primary" />
                     )}
-                  </motion.div>
+                  </MotionDiv>
                 </motion.button>
                 
                 <AnimatePresence>
                   {openIndex === index && (
-                    <motion.div
+                    <MotionDiv
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -150,16 +151,16 @@ export default function FAQ() {
                           </p>
                         </div>
                       </div>
-                    </motion.div>
+                    </MotionDiv>
                   )}
                 </AnimatePresence>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -198,7 +199,7 @@ export default function FAQ() {
               <p>Phone: +91-9910032165</p>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   )

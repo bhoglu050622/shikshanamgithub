@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "title": "About Shikshanam - E2E TESTED",
+    "subtitle": "Preserving Ancient Wisdom for Modern Times"
+  },
+  "alignYourself": {},
+  "schools": {},
+  "meetGurus": {},
+  "studentStories": {},
+  "testimonials": {},
+  "communityPosts": {},
+  "foundersMission": {},
+  "contribute": {},
+  "downloadApp": {},
+  "faq": {},
+  "mission": {
+    "title": "Our Mission",
+    "description": "Shikshanam was born from a deep reverence for India's ancient knowledge systems. We believe that the wisdom of Sanskrit, Darshanas, and traditional self-help practices holds the key to personal growth and spiritual development in the modern world. Our mission is to make this profound knowledge accessible to everyone, regardless of their background or location, through carefully crafted courses, interactive tools, and expert guidance.",
+    "vision": {
+      "title": "Our Vision",
+      "description": "To create a global community of learners who embrace ancient wisdom for modern living, fostering personal growth, cultural understanding, and spiritual development."
+    }
+  },
+  "offerings": {
+    "title": "What We Offer",
+    "items": [
+      {
+        "id": "sanskrit",
+        "title": "Sanskrit Learning",
+        "description": "Comprehensive courses from beginner to advanced levels"
+      },
+      {
+        "id": "darshan",
+        "title": "Darshan Studies",
+        "description": "Deep exploration of Indian philosophical systems"
+      },
+      {
+        "id": "self-help",
+        "title": "Self-Help Wisdom",
+        "description": "Ancient practices for modern personal development"
+      }
+    ]
+  },
+  "values": {
+    "title": "Our Values",
+    "items": [
+      {
+        "id": "authenticity",
+        "title": "Authenticity",
+        "description": "We maintain the highest standards of accuracy and respect for traditional knowledge"
+      },
+      {
+        "id": "accessibility",
+        "title": "Accessibility",
+        "description": "Making ancient wisdom accessible to learners worldwide"
+      },
+      {
+        "id": "community",
+        "title": "Community",
+        "description": "Building a supportive learning community for all students"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Join Our Mission",
+    "subtitle": "Be part of preserving and sharing ancient wisdom",
+    "buttonText": "Get Started",
+    "buttonLink": "/courses"
+  }
+}

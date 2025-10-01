@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link';
 import { BlogPost } from '@/lib/blog-data';
 import { Calendar, Clock, User, Tag } from 'lucide-react';
 import BlogImage from './BlogImage';
+import { useState, useEffect } from 'react';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -10,7 +13,15 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, featured = false, className = '' }: BlogCardProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const formatDate = (dateString: string) => {
+    if (!mounted) return 'Loading...';
+    
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',

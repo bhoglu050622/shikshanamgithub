@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import MotionWrapper, { MotionDiv, MotionButton } from '@/components/motion/MotionWrapper'
 import { Heart, MessageCircle, Share, Clock, Users } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import ugcData from '@/data/ugc_content.json'
@@ -29,6 +30,11 @@ export default function CommunityPostsSection({
   const posts = ugcData.communityPosts.slice(0, maxPosts)
 
   const formatTimestamp = (timestamp: string) => {
+    // Use hydration-safe approach - only format on client
+    if (!mounted) {
+      return 'Loading...'
+    }
+    
     const date = new Date(timestamp)
     const now = new Date()
     const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
@@ -46,7 +52,7 @@ export default function CommunityPostsSection({
         {/* Header */}
         {showHeader && (
           <div className="text-center mb-12 sm:mb-16">
-            <motion.div
+            <MotionDiv
               initial={mounted ? { opacity: 0, y: 20 } : false}
               whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               transition={mounted ? { duration: 0.6 } : { duration: 0 }}
@@ -58,12 +64,12 @@ export default function CommunityPostsSection({
               <p className="text-lg sm:text-xl text-light-contrast-secondary max-w-3xl mx-auto leading-relaxed">
                 Join the conversation! See what our community is sharing about their learning journey.
               </p>
-            </motion.div>
+            </MotionDiv>
           </div>
         )}
 
         {/* Community Stats */}
-        <motion.div
+        <MotionDiv
           initial={mounted ? { opacity: 0, y: 20 } : false}
           whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={mounted ? { duration: 0.6, delay: 0.1 } : { duration: 0 }}
@@ -72,13 +78,13 @@ export default function CommunityPostsSection({
         >
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-saffron-600 mb-1">
-              {ugcData.stats.communityMembers.toLocaleString()}
+              {ugcData.stats.communityMembers.toLocaleString('en-US')}
             </div>
             <div className="text-sm text-light-contrast-secondary">Community Members</div>
           </div>
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-saffron-600 mb-1">
-              {ugcData.stats.totalHours.toLocaleString()}+
+              {ugcData.stats.totalHours.toLocaleString('en-US')}+
             </div>
             <div className="text-sm text-light-contrast-secondary">Learning Hours</div>
           </div>
@@ -94,12 +100,12 @@ export default function CommunityPostsSection({
             </div>
             <div className="text-sm text-light-contrast-secondary">Completion Rate</div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {posts.map((post, index) => (
-            <motion.div
+            <MotionDiv
               key={post.id}
               initial={mounted ? { opacity: 0, y: 30 } : false}
               whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
@@ -158,12 +164,12 @@ export default function CommunityPostsSection({
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
         {/* Join Community CTA */}
-        <motion.div
+        <MotionDiv
           initial={mounted ? { opacity: 0, y: 20 } : false}
           whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={mounted ? { duration: 0.6, delay: 0.4 } : { duration: 0 }}
@@ -180,15 +186,15 @@ export default function CommunityPostsSection({
             <p className="text-light-contrast-secondary mb-6 max-w-2xl mx-auto">
               Connect with fellow learners, share your insights, and get support on your journey through ancient wisdom.
             </p>
-            <motion.button
+            <MotionButton
               whileHover={mounted ? { scale: 1.05 } : {}}
               whileTap={mounted ? { scale: 0.95 } : {}}
               className="bg-gradient-to-r from-saffron-600 to-golden-olive text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Join Community
-            </motion.button>
+            </MotionButton>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   )
