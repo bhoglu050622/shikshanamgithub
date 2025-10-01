@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Welcome to Shikshanam Aman",
+    "title": "Welcome to Shikshanam Singham",
     "subtitle": "Where AI meets Ancient India",
     "ctaButtons": {
       "sanskrit": {
@@ -12,7 +12,7 @@
         "link": "#school-of-darshan"
       },
       "lifeSkills": {
-        "text": "School of Life Skills",
+        "text": "School of Life",
         "link": "#school-of-life-skills"
       }
     }
@@ -43,7 +43,7 @@
         "title": "Vedic Mathematics Masterclass",
         "instructor": "Guru Rajesh Kumar",
         "thumbnail": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center",
-        "duration": "2 hours",
+        "duration": "20 hours",
         "date": "2024-01-15",
         "time": "7:00 PM IST",
         "price": "₹299",
