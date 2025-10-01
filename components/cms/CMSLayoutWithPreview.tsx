@@ -98,7 +98,7 @@ export default function CMSLayoutWithPreview({
                 {/* Preview Controls */}
                 <div className="flex items-center space-x-2 border-r border-gray-200 pr-3 mr-3">
                   <Button
-                    variant={showPreview ? "default" : "outline"}
+                    variant={showPreview ? "primary" : "outline"}
                     onClick={togglePreview}
                     size="sm"
                     className="flex items-center space-x-2 transition-all duration-200 hover:scale-105"
