@@ -95,16 +95,25 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
       }
 
       // Load content from API
-      const response = await fetch(`/api/cms/${contentType.id}`);
+      const response = await fetch(`/api/cms/${contentType.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // Add cache control to prevent stale data
+        cache: 'no-cache'
+      });
+      
       if (response.ok) {
         const result = await response.json();
-        if (result.success) {
+        if (result.success && result.data) {
           setContent(result.data);
         } else {
           // Use default content if API fails
           setContent(contentConfig.defaultContent);
         }
       } else {
+        console.warn(`API call failed for ${contentType.id}, using default content`);
         // Use default content if API fails
         setContent(contentConfig.defaultContent);
       }
@@ -131,17 +140,27 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(content),
+        cache: 'no-cache'
       });
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Content saved successfully!' });
-        setTimeout(() => setMessage(null), 3000);
+        const result = await response.json();
+        if (result.success) {
+          setMessage({ type: 'success', text: 'Content saved successfully!' });
+          setTimeout(() => setMessage(null), 3000);
+        } else {
+          throw new Error(result.message || 'Failed to save content');
+        }
       } else {
-        throw new Error('Failed to save content');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP ${response.status}: Failed to save content`);
       }
     } catch (error) {
       console.error('Error saving content:', error);
-      setMessage({ type: 'error', text: 'Failed to save content' });
+      setMessage({ 
+        type: 'error', 
+        text: error instanceof Error ? error.message : 'Failed to save content' 
+      });
     } finally {
       setSaving(false);
     }
