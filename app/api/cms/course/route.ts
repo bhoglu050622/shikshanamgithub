@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
-import path from 'next/server';
+import path from 'path';
 
 // Generic course content structure
 const getDefaultCourseContent = (courseId: string) => ({
