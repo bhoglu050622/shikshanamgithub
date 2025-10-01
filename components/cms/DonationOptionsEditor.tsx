@@ -33,7 +33,12 @@ export default function DonationOptionsEditor({ content, onChange }: DonationOpt
   const safeContent = {
     title: content?.title || '',
     subtitle: content?.subtitle || '',
-    options: content?.options || []
+    options: content?.options || [],
+    customAmount: content?.customAmount || {
+      enabled: false,
+      placeholder: 'Enter custom amount',
+      minAmount: '₹100'
+    }
   };
   const updateField = (field: string, value: string) => {
     onChange({
