@@ -22,25 +22,7 @@ import {
   Info
 } from 'lucide-react';
 
-import { 
-  UniversalCMSProvider, 
-  UniversalCMS,
-  CMSCard,
-  CMSButton,
-  CMSText,
-  CMSAdminPanel
-} from '@/components/cms/UniversalCMS';
-
-const sections = [
-  { id: 'overview', name: 'Data Overview', icon: Database, description: 'Summary of all imported data' },
-  { id: 'courses', name: 'Courses', icon: BookOpen, description: 'All course data and content' },
-  { id: 'instructors', name: 'Instructors', icon: Users, description: 'Teacher and instructor profiles' },
-  { id: 'schools', name: 'Schools', icon: School, description: 'School pages and content' },
-  { id: 'blogs', name: 'Blogs', icon: FileText, description: 'Blog posts and articles' },
-  { id: 'testimonials', name: 'Testimonials', icon: MessageCircle, description: 'User testimonials and reviews' }
-];
-
-function ImportedDataContent() {
+export default function ImportedDataPage() {
   const [importedData, setImportedData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,78 +35,83 @@ function ImportedDataContent() {
   const loadImportedData = async () => {
     try {
       setLoading(true);
-      // In a real implementation, this would fetch from the API
-      // For now, we'll simulate the data structure
-      const mockData = {
-        overview: {
-          totalCourses: 25,
-          totalInstructors: 8,
-          totalSchools: 3,
-          totalBlogs: 15,
-          totalTestimonials: 12,
-          lastUpdated: new Date().toISOString()
-        },
-        courses: [
-          {
-            id: 'advaita-vedanta',
-            title: 'Advaita Vedanta Darshan',
-            description: 'A Journey Through Drig Drishya Viveka',
-            instructor: 'Vishal Chaurasia',
-            duration: '6 weeks',
-            level: 'Intermediate',
-            price: '₹1,999',
-            featured: true
+      // Load the imported data from the CMS data files
+      const response = await fetch('/api/cms/imported-data');
+      if (response.ok) {
+        const data = await response.json();
+        setImportedData(data);
+      } else {
+        // Fallback to mock data if API is not available
+        const mockData = {
+          overview: {
+            totalCourses: 16,
+            totalInstructors: 5,
+            totalSchools: 4,
+            totalBlogs: 2,
+            totalTestimonials: 0,
+            lastUpdated: new Date().toISOString()
           },
-          {
-            id: 'emotional-intelligence',
-            title: 'Emotional Intelligence with Samkhya Darshan',
-            description: 'Reset Your Emotions Through Ancient Wisdom',
-            instructor: 'Dr. Priya Sharma',
-            duration: '8 weeks',
-            level: 'Beginner',
-            price: '₹2,499',
-            featured: true
-          }
-        ],
-        instructors: [
-          {
-            id: 'vishal-chaurasia',
-            name: 'Vishal Chaurasia',
-            title: 'Founder & Lead Instructor',
-            bio: 'IIT Patna graduate with expertise in Sanskrit and Indian philosophy',
-            specializations: ['Sanskrit', 'Vedanta', 'Yoga Darshan']
-          }
-        ],
-        schools: [
-          {
-            id: 'sanskrit',
-            name: 'School of Sanskrit',
-            description: 'Master the ancient language of the Vedas',
-            courses: 8,
-            instructors: 3
-          }
-        ],
-        blogs: [
-          {
-            id: 'blog-1',
-            title: 'Understanding Sanskrit Grammar',
-            category: 'Sanskrit',
-            published: '2024-01-15',
-            featured: true
-          }
-        ],
-        testimonials: [
-          {
-            id: 'testimonial-1',
-            name: 'Priya Sharma',
-            text: 'The Sanskrit course has been life-changing',
-            rating: 5,
-            course: 'Sanskrit Basics'
-          }
-        ]
-      };
-      
-      setImportedData(mockData);
+          courses: [
+            {
+              id: 'advaita-vedanta',
+              title: 'Advaita Vedanta Darshan',
+              description: 'A Journey Through Drig Drishya Viveka',
+              instructor: 'Vishal Chaurasia',
+              duration: '6 weeks',
+              level: 'Intermediate',
+              price: '₹1,999',
+              featured: true
+            },
+            {
+              id: 'emotional-intelligence',
+              title: 'Emotional Intelligence with Samkhya Darshan',
+              description: 'Reset Your Emotions Through Ancient Wisdom',
+              instructor: 'Dr. Priya Sharma',
+              duration: '8 weeks',
+              level: 'Beginner',
+              price: '₹2,499',
+              featured: true
+            }
+          ],
+          instructors: [
+            {
+              id: 'vishal-chaurasia',
+              name: 'Vishal Chaurasia',
+              title: 'Founder & Lead Instructor',
+              bio: 'IIT Patna graduate with expertise in Sanskrit and Indian philosophy',
+              specializations: ['Sanskrit', 'Vedanta', 'Yoga Darshan']
+            }
+          ],
+          schools: [
+            {
+              id: 'sanskrit',
+              name: 'School of Sanskrit',
+              description: 'Master the ancient language of the Vedas',
+              courses: 8,
+              instructors: 3
+            }
+          ],
+          blogs: [
+            {
+              id: 'blog-1',
+              title: 'Understanding Sanskrit Grammar',
+              category: 'Sanskrit',
+              published: '2024-01-15',
+              featured: true
+            }
+          ],
+          testimonials: [
+            {
+              id: 'testimonial-1',
+              name: 'Priya Sharma',
+              text: 'The Sanskrit course has been life-changing',
+              rating: 5,
+              course: 'Sanskrit Basics'
+            }
+          ]
+        };
+        setImportedData(mockData);
+      }
     } catch (err) {
       setError('Failed to load imported data');
     } finally {
@@ -148,7 +135,7 @@ function ImportedDataContent() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <CMSText variant="secondary">Loading imported data...</CMSText>
+          <p className="text-gray-600">Loading imported data...</p>
         </div>
       </div>
     );
@@ -157,95 +144,88 @@ function ImportedDataContent() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <CMSCard className="max-w-md">
+        <Card className="max-w-md">
           <div className="p-6 text-center">
             <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <CMSText variant="primary" as="h2" className="text-xl font-semibold mb-2">
-              Error Loading Data
-            </CMSText>
-            <CMSText variant="secondary" className="mb-4">{error}</CMSText>
-            <CMSButton onClick={loadImportedData}>
-              Try Again
-            </CMSButton>
+            <h2 className="text-xl font-semibold mb-2">Error Loading Data</h2>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <Button onClick={loadImportedData}>Try Again</Button>
           </div>
-        </CMSCard>
+        </Card>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* CMS Admin Panel */}
-      <CMSAdminPanel 
-        pageId="imported-data"
-        pageTitle="Imported Data Management"
-        sections={sections}
-      />
+      {/* Header */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-2">
+              <Database className="w-6 h-6 text-blue-600" />
+              <h1 className="text-2xl font-bold text-gray-900">Imported Data Management</h1>
+            </div>
+            <div className="flex space-x-2">
+              <Button variant="default" onClick={runDataImport}>
+                <RefreshCw className="w-4 h-4 mr-2" />
+                Re-import Data
+              </Button>
+              <Button variant="outline">
+                <Download className="w-4 h-4 mr-2" />
+                Export Data
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      {/* Main CMS Interface */}
-      <UniversalCMS
-        pageId="imported-data"
-        pageTitle="Imported Data Management"
-        sections={sections}
-        onUpdate={() => {}}
-      >
-        {/* Data Overview */}
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
           {/* Import Status */}
-          <CMSCard elementId="import-status" className="p-6">
+          <Card className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
                 <Database className="w-6 h-6 text-blue-600" />
-                <CMSText variant="primary" as="h2" className="text-2xl font-bold">
-                  Data Import Status
-                </CMSText>
-              </div>
-              <div className="flex space-x-2">
-                <CMSButton variant="primary" onClick={runDataImport}>
-                  <RefreshCw className="w-4 h-4 mr-2" />
-                  Re-import Data
-                </CMSButton>
-                <CMSButton variant="secondary">
-                  <Download className="w-4 h-4 mr-2" />
-                  Export Data
-                </CMSButton>
+                <h2 className="text-2xl font-bold">Data Import Status</h2>
               </div>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <CMSCard elementId="courses-count" className="text-center p-4">
+              <Card className="text-center p-4">
                 <BookOpen className="w-8 h-8 mx-auto mb-2 text-blue-600" />
-                <CMSText variant="accent" as="h3" className="text-2xl font-bold">
+                <h3 className="text-2xl font-bold text-blue-600">
                   {importedData?.overview?.totalCourses || 0}
-                </CMSText>
-                <CMSText variant="secondary">Courses</CMSText>
-              </CMSCard>
+                </h3>
+                <p className="text-gray-600">Courses</p>
+              </Card>
               
-              <CMSCard elementId="instructors-count" className="text-center p-4">
+              <Card className="text-center p-4">
                 <Users className="w-8 h-8 mx-auto mb-2 text-green-600" />
-                <CMSText variant="accent" as="h3" className="text-2xl font-bold">
+                <h3 className="text-2xl font-bold text-green-600">
                   {importedData?.overview?.totalInstructors || 0}
-                </CMSText>
-                <CMSText variant="secondary">Instructors</CMSText>
-              </CMSCard>
+                </h3>
+                <p className="text-gray-600">Instructors</p>
+              </Card>
               
-              <CMSCard elementId="schools-count" className="text-center p-4">
+              <Card className="text-center p-4">
                 <School className="w-8 h-8 mx-auto mb-2 text-purple-600" />
-                <CMSText variant="accent" as="h3" className="text-2xl font-bold">
+                <h3 className="text-2xl font-bold text-purple-600">
                   {importedData?.overview?.totalSchools || 0}
-                </CMSText>
-                <CMSText variant="secondary">Schools</CMSText>
-              </CMSCard>
+                </h3>
+                <p className="text-gray-600">Schools</p>
+              </Card>
               
-              <CMSCard elementId="blogs-count" className="text-center p-4">
+              <Card className="text-center p-4">
                 <FileText className="w-8 h-8 mx-auto mb-2 text-orange-600" />
-                <CMSText variant="accent" as="h3" className="text-2xl font-bold">
+                <h3 className="text-2xl font-bold text-orange-600">
                   {importedData?.overview?.totalBlogs || 0}
-                </CMSText>
-                <CMSText variant="secondary">Blog Posts</CMSText>
-              </CMSCard>
+                </h3>
+                <p className="text-gray-600">Blog Posts</p>
+              </Card>
             </div>
-          </CMSCard>
+          </Card>
 
           {/* Data Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -260,60 +240,52 @@ function ImportedDataContent() {
 
             {/* Overview Tab */}
             <TabsContent value="overview" className="mt-6">
-              <CMSCard elementId="overview-content" className="p-6">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Data Import Overview
-                </CMSText>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Data Import Overview</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-green-50 rounded">
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
-                      <CMSText variant="primary">Courses Data</CMSText>
+                      <span className="font-medium">Courses Data</span>
                     </div>
                     <Badge variant="secondary">Imported</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-green-50 rounded">
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
-                      <CMSText variant="primary">Instructors Data</CMSText>
+                      <span className="font-medium">Instructors Data</span>
                     </div>
                     <Badge variant="secondary">Imported</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-green-50 rounded">
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
-                      <CMSText variant="primary">Schools Data</CMSText>
+                      <span className="font-medium">Schools Data</span>
                     </div>
                     <Badge variant="secondary">Imported</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-yellow-50 rounded">
                     <div className="flex items-center space-x-2">
                       <AlertCircle className="w-5 h-5 text-yellow-600" />
-                      <CMSText variant="primary">Blog Data</CMSText>
+                      <span className="font-medium">Blog Data</span>
                     </div>
                     <Badge variant="outline">Partial</Badge>
                   </div>
                 </div>
-              </CMSCard>
+              </Card>
             </TabsContent>
 
             {/* Courses Tab */}
             <TabsContent value="courses" className="mt-6">
-              <CMSCard elementId="courses-content" className="p-6">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Imported Courses
-                </CMSText>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Imported Courses</h3>
                 <div className="space-y-4">
                   {importedData?.courses?.map((course: any, index: number) => (
-                    <CMSCard key={index} elementId={`course-${index}`} className="p-4">
+                    <Card key={index} className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <CMSText variant="primary" as="h4" className="font-semibold">
-                            {course.title}
-                          </CMSText>
-                          <CMSText variant="secondary" className="text-sm">
-                            {course.description}
-                          </CMSText>
+                          <h4 className="font-semibold">{course.title}</h4>
+                          <p className="text-gray-600 text-sm">{course.description}</p>
                           <div className="flex items-center space-x-4 mt-2">
                             <Badge variant="outline">{course.level}</Badge>
                             <Badge variant="outline">{course.duration}</Badge>
@@ -322,129 +294,103 @@ function ImportedDataContent() {
                         </div>
                         <div className="flex items-center space-x-2">
                           {course.featured && <Badge variant="secondary">Featured</Badge>}
-                          <CMSButton variant="outline" size="sm">
+                          <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
-                          </CMSButton>
+                          </Button>
                         </div>
                       </div>
-                    </CMSCard>
+                    </Card>
                   ))}
                 </div>
-              </CMSCard>
+              </Card>
             </TabsContent>
 
             {/* Instructors Tab */}
             <TabsContent value="instructors" className="mt-6">
-              <CMSCard elementId="instructors-content" className="p-6">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Imported Instructors
-                </CMSText>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Imported Instructors</h3>
                 <div className="space-y-4">
                   {importedData?.instructors?.map((instructor: any, index: number) => (
-                    <CMSCard key={index} elementId={`instructor-${index}`} className="p-4">
+                    <Card key={index} className="p-4">
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                           <Users className="w-6 h-6 text-gray-400" />
                         </div>
                         <div className="flex-1">
-                          <CMSText variant="primary" as="h4" className="font-semibold">
-                            {instructor.name}
-                          </CMSText>
-                          <CMSText variant="accent" className="text-sm">
-                            {instructor.title}
-                          </CMSText>
-                          <CMSText variant="secondary" className="text-sm">
-                            {instructor.bio}
-                          </CMSText>
+                          <h4 className="font-semibold">{instructor.name}</h4>
+                          <p className="text-blue-600 text-sm">{instructor.title}</p>
+                          <p className="text-gray-600 text-sm">{instructor.bio}</p>
                         </div>
-                        <CMSButton variant="outline" size="sm">
+                        <Button variant="outline" size="sm">
                           <Eye className="w-4 h-4" />
-                        </CMSButton>
+                        </Button>
                       </div>
-                    </CMSCard>
+                    </Card>
                   ))}
                 </div>
-              </CMSCard>
+              </Card>
             </TabsContent>
 
             {/* Schools Tab */}
             <TabsContent value="schools" className="mt-6">
-              <CMSCard elementId="schools-content" className="p-6">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Imported Schools
-                </CMSText>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Imported Schools</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {importedData?.schools?.map((school: any, index: number) => (
-                    <CMSCard key={index} elementId={`school-${index}`} className="p-4">
+                    <Card key={index} className="p-4">
                       <School className="w-8 h-8 text-blue-600 mb-3" />
-                      <CMSText variant="primary" as="h4" className="font-semibold mb-2">
-                        {school.name}
-                      </CMSText>
-                      <CMSText variant="secondary" className="text-sm mb-3">
-                        {school.description}
-                      </CMSText>
+                      <h4 className="font-semibold mb-2">{school.name}</h4>
+                      <p className="text-gray-600 text-sm mb-3">{school.description}</p>
                       <div className="flex items-center justify-between text-sm">
                         <span>{school.courses} courses</span>
                         <span>{school.instructors} instructors</span>
                       </div>
-                    </CMSCard>
+                    </Card>
                   ))}
                 </div>
-              </CMSCard>
+              </Card>
             </TabsContent>
 
             {/* Blogs Tab */}
             <TabsContent value="blogs" className="mt-6">
-              <CMSCard elementId="blogs-content" className="p-6">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Imported Blog Posts
-                </CMSText>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Imported Blog Posts</h3>
                 <div className="space-y-4">
                   {importedData?.blogs?.map((blog: any, index: number) => (
-                    <CMSCard key={index} elementId={`blog-${index}`} className="p-4">
+                    <Card key={index} className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <CMSText variant="primary" as="h4" className="font-semibold">
-                            {blog.title}
-                          </CMSText>
+                          <h4 className="font-semibold">{blog.title}</h4>
                           <div className="flex items-center space-x-2 mt-1">
                             <Badge variant="outline">{blog.category}</Badge>
-                            <CMSText variant="secondary" className="text-sm">
-                              {blog.published}
-                            </CMSText>
+                            <span className="text-gray-600 text-sm">{blog.published}</span>
                           </div>
                         </div>
                         <div className="flex items-center space-x-2">
                           {blog.featured && <Badge variant="secondary">Featured</Badge>}
-                          <CMSButton variant="outline" size="sm">
+                          <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4" />
-                          </CMSButton>
+                          </Button>
                         </div>
                       </div>
-                    </CMSCard>
+                    </Card>
                   ))}
                 </div>
-              </CMSCard>
+              </Card>
             </TabsContent>
 
             {/* Testimonials Tab */}
             <TabsContent value="testimonials" className="mt-6">
-              <CMSCard elementId="testimonials-content" className="p-6">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Imported Testimonials
-                </CMSText>
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Imported Testimonials</h3>
                 <div className="space-y-4">
                   {importedData?.testimonials?.map((testimonial: any, index: number) => (
-                    <CMSCard key={index} elementId={`testimonial-${index}`} className="p-4">
+                    <Card key={index} className="p-4">
                       <div className="flex items-start space-x-3">
                         <div className="flex-1">
-                          <CMSText variant="secondary" className="italic mb-2">
-                            "{testimonial.text}"
-                          </CMSText>
+                          <p className="text-gray-600 italic mb-2">"{testimonial.text}"</p>
                           <div className="flex items-center justify-between">
-                            <CMSText variant="primary" className="font-semibold">
-                              - {testimonial.name}
-                            </CMSText>
+                            <span className="font-semibold">- {testimonial.name}</span>
                             <div className="flex items-center space-x-2">
                               <div className="flex">
                                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -456,22 +402,14 @@ function ImportedDataContent() {
                           </div>
                         </div>
                       </div>
-                    </CMSCard>
+                    </Card>
                   ))}
                 </div>
-              </CMSCard>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>
-      </UniversalCMS>
+      </div>
     </div>
-  );
-}
-
-export default function ImportedDataPage() {
-  return (
-    <UniversalCMSProvider pageId="imported-data">
-      <ImportedDataContent />
-    </UniversalCMSProvider>
   );
 }
