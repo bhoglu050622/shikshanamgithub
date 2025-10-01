@@ -321,6 +321,63 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
   },
 
+  // Missing Courses - Added from actual course directories
+  nyayaVaisheshikaCourse: {
+    id: 'nyaya-vaisheshika-course',
+    name: 'Nyaya-Vaisheshika Course',
+    description: 'Nyaya-Vaisheshika - Logic and Particularity in Indian Philosophy',
+    apiEndpoint: '/api/cms/nyaya-vaisheshika-course',
+    cmsPath: '/cms/nyaya-vaisheshika-course',
+    frontendPath: '/courses/nyaya-vaisheshika',
+    type: 'CourseContent',
+    status: 'active',
+    category: 'education',
+    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
+    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
+  },
+
+  emotionalIntelligenceCourse: {
+    id: 'emotional-intelligence-course',
+    name: 'Emotional Intelligence Course',
+    description: 'Emotional Intelligence with Samkhya Darshan',
+    apiEndpoint: '/api/cms/emotional-intelligence-course',
+    cmsPath: '/cms/emotional-intelligence-course',
+    frontendPath: '/courses/emotional-intelligence-with-samkhya-darshan',
+    type: 'CourseContent',
+    status: 'active',
+    category: 'education',
+    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
+    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
+  },
+
+  kashmirShaivismCourse: {
+    id: 'kashmir-shaivism-course',
+    name: 'Kashmir Shaivism Course',
+    description: 'Kashmir Shaivism - The Philosophy of Recognition',
+    apiEndpoint: '/api/cms/kashmir-shaivism-course',
+    cmsPath: '/cms/kashmir-shaivism-course',
+    frontendPath: '/courses/kashmir-shaivism',
+    type: 'CourseContent',
+    status: 'active',
+    category: 'education',
+    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
+    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
+  },
+
+  sanskritLiveClassCourse: {
+    id: 'sanskrit-live-class-course',
+    name: 'Sanskrit Live Class Course',
+    description: 'Interactive Sanskrit Learning with Live Classes',
+    apiEndpoint: '/api/cms/sanskrit-live-class-course',
+    cmsPath: '/cms/sanskrit-live-class-course',
+    frontendPath: '/courses/sanskrit-live-class',
+    type: 'CourseContent',
+    status: 'active',
+    category: 'education',
+    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
+    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
+  },
+
   // Packages
   sanskritDarshanUpanishadBundle: {
     id: 'sanskrit-darshan-upanishad-bundle',
