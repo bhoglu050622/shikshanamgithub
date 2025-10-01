@@ -1,0 +1,823 @@
+{
+  "hero": {
+    "title": "Welcome to Shikshanam",
+    "subtitle": "Where AI meets Ancient India",
+    "description": "Preserving and sharing ancient Indian wisdom with the modern world"
+  },
+  "featuredCourses": [
+    {
+      "id": "featured-6",
+      "title": "प्राचीन तंत्र दर्शन : Decoding the principles of Tantra",
+      "description": "प्राचीन तंत्र दर्शन : Decoding the principles of Tantra",
+      "category": "Featured",
+      "type": "featured",
+      "featured": true,
+      "url": "https://shikshanam.in",
+      "source": "homepage"
+    },
+    {
+      "id": "featured-7",
+      "title": "Free Class: Reset Your Emotions Through Ancient Sāṅkhya Wisdom",
+      "description": "Free Class: Reset Your Emotions Through Ancient Sāṅkhya Wisdom",
+      "category": "Featured",
+      "type": "featured",
+      "featured": true,
+      "url": "https://shikshanam.in",
+      "source": "homepage"
+    },
+    {
+      "id": "featured-8",
+      "title": "Tatvabodha 2: Samadhi and Sadhana Pada in Yoga Darshan",
+      "description": "Tatvabodha 2: Samadhi and Sadhana Pada in Yoga Darshan",
+      "category": "Featured",
+      "type": "featured",
+      "featured": true,
+      "url": "https://shikshanam.in",
+      "source": "homepage"
+    },
+    {
+      "id": "sanskrit-live-class",
+      "title": "Sanskrit Live Class",
+      "description": "Practice Sanskrit LIVE in a Private Circle with interactive learning",
+      "category": "Sanskrit Language",
+      "type": "live",
+      "featured": true,
+      "url": "https://shikshanam.in/sanskrit-live-class/",
+      "instructor": "Vishal Chaurasia",
+      "duration": "12 weeks",
+      "level": "Beginner to Intermediate",
+      "price": "₹2,999",
+      "originalPrice": "₹4,999",
+      "discount": "40%",
+      "image": "/images/courses/sanskrit-live.jpg",
+      "tags": [
+        "Live Classes",
+        "Interactive",
+        "Beginner Friendly"
+      ],
+      "syllabus": [
+        "Introduction to Sanskrit Script",
+        "Basic Grammar and Vocabulary",
+        "Reading and Writing Practice",
+        "Conversational Sanskrit",
+        "Advanced Grammar Concepts",
+        "Classical Texts Reading"
+      ],
+      "benefits": [
+        "Live interaction with expert teachers",
+        "Small batch size for personalized attention",
+        "Interactive flashcards and quizzes",
+        "Certificate of completion",
+        "Lifetime access to recordings"
+      ]
+    },
+    {
+      "id": "emotional-intelligence-samkhya",
+      "title": "Emotional Intelligence with Sāṅkhya Darśana",
+      "description": "Master your emotions through ancient Sāṅkhya wisdom and modern psychology",
+      "category": "Philosophy & Psychology",
+      "type": "self-paced",
+      "featured": true,
+      "url": "https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/",
+      "instructor": "Vishal Chaurasia",
+      "duration": "8 weeks",
+      "level": "Intermediate",
+      "price": "₹1,999",
+      "originalPrice": "₹3,999",
+      "discount": "50%",
+      "image": "/images/courses/emotional-intelligence.jpg",
+      "tags": [
+        "Psychology",
+        "Ancient Wisdom",
+        "Self-Development"
+      ],
+      "syllabus": [
+        "Introduction to Sāṅkhya Philosophy",
+        "Understanding Prakriti and Purusha",
+        "The Three Gunas Theory",
+        "Emotional Regulation Techniques",
+        "Modern Psychology Integration",
+        "Practical Application Exercises"
+      ],
+      "benefits": [
+        "Understand the root causes of emotions",
+        "Learn ancient techniques for emotional mastery",
+        "Practical exercises for daily life",
+        "Guna Profiler assessment included",
+        "Community support and discussions"
+      ]
+    },
+    {
+      "id": "yoga-darshan-course",
+      "title": "Patanjali Yoga Darshan Course",
+      "description": "Complete study of Patanjali Yoga Sutras with practical applications",
+      "category": "Yoga Philosophy",
+      "type": "self-paced",
+      "featured": true,
+      "url": "https://shikshanam.in/yoga-darshan-course/",
+      "instructor": "Vishal Chaurasia",
+      "duration": "12 weeks",
+      "level": "Intermediate",
+      "price": "₹1,799",
+      "originalPrice": "₹3,599",
+      "discount": "50%",
+      "image": "/images/courses/yoga-darshan.jpg",
+      "tags": [
+        "Yoga",
+        "Patanjali",
+        "Philosophy"
+      ],
+      "syllabus": [
+        "Introduction to Yoga Darshan",
+        "The Eight Limbs of Yoga",
+        "Yama and Niyama",
+        "Asana and Pranayama",
+        "Pratyahara and Dharana",
+        "Dhyana and Samadhi"
+      ],
+      "benefits": [
+        "Complete understanding of Yoga philosophy",
+        "Practical application of Yoga principles",
+        "Meditation and breathing techniques",
+        "Modern relevance of ancient wisdom",
+        "Lifetime access to course materials"
+      ]
+    }
+  ],
+  "liveClasses": [
+    {
+      "id": "sanskrit-live-class",
+      "title": "Sanskrit Live Class",
+      "description": "Practice Sanskrit LIVE in a Private Circle with interactive learning",
+      "category": "Sanskrit Language",
+      "type": "live",
+      "featured": true,
+      "url": "https://shikshanam.in/sanskrit-live-class/",
+      "instructor": "Vishal Chaurasia",
+      "duration": "12 weeks",
+      "level": "Beginner to Intermediate",
+      "price": "₹2,999",
+      "originalPrice": "₹4,999",
+      "discount": "40%",
+      "image": "/images/courses/sanskrit-live.jpg",
+      "tags": [
+        "Live Classes",
+        "Interactive",
+        "Beginner Friendly"
+      ],
+      "syllabus": [
+        "Introduction to Sanskrit Script",
+        "Basic Grammar and Vocabulary",
+        "Reading and Writing Practice",
+        "Conversational Sanskrit",
+        "Advanced Grammar Concepts",
+        "Classical Texts Reading"
+      ],
+      "benefits": [
+        "Live interaction with expert teachers",
+        "Small batch size for personalized attention",
+        "Interactive flashcards and quizzes",
+        "Certificate of completion",
+        "Lifetime access to recordings"
+      ]
+    }
+  ],
+  "selfPacedCourses": [
+    {
+      "id": "course-2",
+      "title": "Practice Sanskrit LIVE in a Private Circle",
+      "description": "82\nSeats left",
+      "category": "General",
+      "type": "self-paced",
+      "featured": false,
+      "url": "https://shikshanam.in/courses/",
+      "instructor": "Vishal Chaurasia",
+      "duration": "82",
+      "level": "Intermediate",
+      "price": "HomePersonality TestCoursesAll CoursesFree CoursesWisdomEnglishHindiAbout UsContactCareer\nHomePersonality TestCoursesAll CoursesFree CoursesWisdomEnglishHindiAbout UsContactCareer\n\n\nLog In\n\n  .font-playfair { font-family: 'Playfair Display', serif !important; }\n  .font-poppins { font-family: 'Poppins', sans-serif !important; }\nPractice Sanskrit LIVE in a Private Circle\n82\nSeats left\n\nEnroll Now\n function initSanskritBanner(){const seatTrigger=document.getElementById('seat-countdown-trigger');if(!seatTrigger)return;const seatCountElement=document.getElementById('seat-count');const initialSeats=82;const seatsPerDayReduction=5;const minSeats=20;const startDate=new Date('2025-08-20');const now=new Date();startDate.setHours(0,0,0,0);now.setHours(0,0,0,0);const elapsedMilliseconds=now-startDate;const elapsedDays=Math.floor(elapsedMilliseconds/(1000*60*60*24));const seatsDeducted=elapsedDays*seatsPerDayReduction;let seatsLeft=initialSeats-seatsDeducted;seatsLeft=Math.max(seatsLeft,minSeats);seatCountElement.textContent=seatsLeft;let hoverCount=0;const maxHovers=5;seatTrigger.addEventListener('mouseover',()=>{let currentSeatsOnDisplay=parseInt(seatCountElement.textContent,10);hoverCount++;if(currentSeatsOnDisplay>minSeats&&hoverCount<=maxHovers){currentSeatsOnDisplay--;seatCountElement.textContent=currentSeatsOnDisplay;seatCountElement.classList.add('text-orange-500');setTimeout(()=>{seatCountElement.classList.remove('text-orange-500');seatCountElement.classList.add('text-gray-900')},500)}})}\nif(typeof window.sanskritBannerInitialized==='undefined'){document.addEventListener('DOMContentLiteSpeedLoaded',initSanskritBanner);window.sanskritBannerInitialized=!0} Learn Sanskrit & Indian Wisdom Online in Hindi.Unsure where to start? We’ll guide you in under a minute.\n\n\nFind your perfect course\n\n@media only screen and (max-width: 2399px) {\n\t\t\t\t\t.elementor-element.elementor-element-4827abf .eael-filterable-gallery-item-wrap {\n\t\t\t\t\t        width: 33.333333333333%;\n\t\t\t\t\t    }\n\t\t\t\t\t}@media only screen and (max-width: 1024px) {\n\t\t\t\t\t.elementor-element.elementor-element-4827abf  .eael-filterable-gallery-item-wrap {\n\t\t\t\t\t        width: 50%;\n\t\t\t\t\t    }\n\t\t\t\t\t}@media only screen and (max-width: 767px) {\n\t\t\t\t\t.elementor-element.elementor-element-4827abf  .eael-filterable-gallery-item-wrap {\n\t\t\t\t\t        width: 100%;\n\t\t\t\t\t    }\n\t\t\t\t\t}All CoursesNew CoursesFree CoursesUpanishadsDarshanPackagesBOOKSDurgāsaptashatī Recitation - Live Class!Free Stotra Chanting: स्तोत्र पारायण प्रशिक्षण सत्र [रुद्राष्टकम्]Learn & Speak with a Sanskrit Teacher – Live!Emotional Intelligence with Sāṅkhya DarśanaChanakya's Code: Dominate Negotiation & Business Tactics!संस्कृत भाषा प्रज्ञा: Online Sanskrit Course in Hindi for Beginners\n\n\n\nLoad More                    \n\nWelcome to Shikshanam! Explore ancient Indian wisdom and philosophies with us. Join our courses to uncover timeless teachings, now tailored for modern seekers.Popular CoursesSanskrit Bhasha PragyaYoga DarshanIsha UpanishadPrashna UpanishadContact InfoHeadquarters\nDelhi\nPhone\n+91-9910032165\nEmail\nsupport@shikshanam.inCopyright © 2025 Shikshanam | Learn Sanskrit OnlinePowered by Hyperfinity Creations Private Limited",
+      "originalPrice": "HomePersonality TestCoursesAll CoursesFree CoursesWisdomEnglishHindiAbout UsContactCareer\nHomePersonality TestCoursesAll CoursesFree CoursesWisdomEnglishHindiAbout UsContactCareer\n\n\nLog In\n\n  .font-playfair { font-family: 'Playfair Display', serif !important; }\n  .font-poppins { font-family: 'Poppins', sans-serif !important; }\nPractice Sanskrit LIVE in a Private Circle\n82\nSeats left\n\nEnroll Now\n function initSanskritBanner(){const seatTrigger=document.getElementById('seat-countdown-trigger');if(!seatTrigger)return;const seatCountElement=document.getElementById('seat-count');const initialSeats=82;const seatsPerDayReduction=5;const minSeats=20;const startDate=new Date('2025-08-20');const now=new Date();startDate.setHours(0,0,0,0);now.setHours(0,0,0,0);const elapsedMilliseconds=now-startDate;const elapsedDays=Math.floor(elapsedMilliseconds/(1000*60*60*24));const seatsDeducted=elapsedDays*seatsPerDayReduction;let seatsLeft=initialSeats-seatsDeducted;seatsLeft=Math.max(seatsLeft,minSeats);seatCountElement.textContent=seatsLeft;let hoverCount=0;const maxHovers=5;seatTrigger.addEventListener('mouseover',()=>{let currentSeatsOnDisplay=parseInt(seatCountElement.textContent,10);hoverCount++;if(currentSeatsOnDisplay>minSeats&&hoverCount<=maxHovers){currentSeatsOnDisplay--;seatCountElement.textContent=currentSeatsOnDisplay;seatCountElement.classList.add('text-orange-500');setTimeout(()=>{seatCountElement.classList.remove('text-orange-500');seatCountElement.classList.add('text-gray-900')},500)}})}\nif(typeof window.sanskritBannerInitialized==='undefined'){document.addEventListener('DOMContentLiteSpeedLoaded',initSanskritBanner);window.sanskritBannerInitialized=!0} Learn Sanskrit & Indian Wisdom Online in Hindi.Unsure where to start? We’ll guide you in under a minute.\n\n\nFind your perfect course\n\n@media only screen and (max-width: 2399px) {\n\t\t\t\t\t.elementor-element.elementor-element-4827abf .eael-filterable-gallery-item-wrap {\n\t\t\t\t\t        width: 33.333333333333%;\n\t\t\t\t\t    }\n\t\t\t\t\t}@media only screen and (max-width: 1024px) {\n\t\t\t\t\t.elementor-element.elementor-element-4827abf  .eael-filterable-gallery-item-wrap {\n\t\t\t\t\t        width: 50%;\n\t\t\t\t\t    }\n\t\t\t\t\t}@media only screen and (max-width: 767px) {\n\t\t\t\t\t.elementor-element.elementor-element-4827abf  .eael-filterable-gallery-item-wrap {\n\t\t\t\t\t        width: 100%;\n\t\t\t\t\t    }\n\t\t\t\t\t}All CoursesNew CoursesFree CoursesUpanishadsDarshanPackagesBOOKSDurgāsaptashatī Recitation - Live Class!Free Stotra Chanting: स्तोत्र पारायण प्रशिक्षण सत्र [रुद्राष्टकम्]Learn & Speak with a Sanskrit Teacher – Live!Emotional Intelligence with Sāṅkhya DarśanaChanakya's Code: Dominate Negotiation & Business Tactics!संस्कृत भाषा प्रज्ञा: Online Sanskrit Course in Hindi for Beginners\n\n\n\nLoad More                    \n\nWelcome to Shikshanam! Explore ancient Indian wisdom and philosophies with us. Join our courses to uncover timeless teachings, now tailored for modern seekers.Popular CoursesSanskrit Bhasha PragyaYoga DarshanIsha UpanishadPrashna UpanishadContact InfoHeadquarters\nDelhi\nPhone\n+91-9910032165\nEmail\nsupport@shikshanam.inCopyright © 2025 Shikshanam | Learn Sanskrit OnlinePowered by Hyperfinity Creations Private Limited",
+      "discount": "50%",
+      "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDciIGhlaWdodD0iMjY5IiB2aWV3Qm94PSIwIDAgODA3IDI2OSI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgc3R5bGU9ImZpbGw6I2NmZDRkYjtmaWxsLW9wYWNpdHk6IDAuMTsiLz48L3N2Zz4=",
+      "tags": [
+        "Sanskrit"
+      ],
+      "syllabus": [],
+      "benefits": [],
+      "source": "crawled"
+    },
+    {
+      "id": "course-10",
+      "title": "Untitled Course",
+      "description": "",
+      "category": "General",
+      "type": "self-paced",
+      "featured": false,
+      "url": "https://courses.shikshanam.in/t/u/activecourses",
+      "instructor": "Vishal Chaurasia",
+      "duration": "8 weeks",
+      "level": "Intermediate",
+      "price": "₹1,999",
+      "originalPrice": "₹3,999",
+      "discount": "50%",
+      "image": "/images/courses/default.jpg",
+      "tags": [],
+      "syllabus": [],
+      "benefits": [],
+      "source": "crawled"
+    },
+    {
+      "id": "course-14",
+      "title": "Untitled Course",
+      "description": "",
+      "category": "General",
+      "type": "self-paced",
+      "featured": false,
+      "url": "https://courses.shikshanam.in/single-checkout/6758231cc08a807a50aac8d4?pid=p1",
+      "instructor": "Vishal Chaurasia",
+      "duration": "8 weeks",
+      "level": "Intermediate",
+      "price": "₹1,999",
+      "originalPrice": "₹3,999",
+      "discount": "50%",
+      "image": "/images/courses/default.jpg",
+      "tags": [],
+      "syllabus": [],
+      "benefits": [],
+      "source": "crawled"
+    }
+  ],
+  "schools": [
+    {
+      "hero": {
+        "title": "School of Sanskrit",
+        "subtitle": "Ancient Manuscript",
+        "description": "Master the ancient language that holds the key to Vedic wisdom, classical literature, and spiritual texts.",
+        "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop",
+        "ctaButtons": {
+          "primary": {
+            "text": "Start Learning",
+            "link": "/courses/sanskrit"
+          },
+          "secondary": {
+            "text": "Learn More",
+            "link": "/about/sanskrit"
+          }
+        },
+        "features": [
+          {
+            "id": "ancient-wisdom",
+            "icon": "book",
+            "title": "Ancient Wisdom",
+            "description": "Access thousands of years of Vedic knowledge and spiritual texts"
+          },
+          {
+            "id": "structured-learning",
+            "icon": "users",
+            "title": "Structured Learning",
+            "description": "Step-by-step progression from beginner to advanced levels"
+          },
+          {
+            "id": "expert-guidance",
+            "icon": "sparkles",
+            "title": "Expert Guidance",
+            "description": "Learn from renowned Sanskrit scholars and traditional teachers"
+          }
+        ]
+      },
+      "playLearn": {
+        "title": "Play & Learn",
+        "subtitle": "Interactive Sanskrit Learning",
+        "features": [
+          {
+            "id": "games",
+            "title": "Learning Games",
+            "description": "Fun and engaging games to learn Sanskrit vocabulary and grammar",
+            "icon": "gamepad"
+          },
+          {
+            "id": "quizzes",
+            "title": "Interactive Quizzes",
+            "description": "Test your knowledge with interactive quizzes and assessments",
+            "icon": "help-circle"
+          },
+          {
+            "id": "pronunciation",
+            "title": "Pronunciation Practice",
+            "description": "Perfect your Sanskrit pronunciation with audio guides",
+            "icon": "volume-2"
+          }
+        ]
+      },
+      "sequentialPath": {
+        "title": "Your Sequential Path",
+        "subtitle": "Structured learning journey from beginner to advanced",
+        "levels": [
+          {
+            "id": "beginner",
+            "title": "Beginner Level",
+            "description": "Learn the basics of Sanskrit alphabet, pronunciation, and simple words",
+            "duration": "3 months",
+            "lessons": 12
+          },
+          {
+            "id": "intermediate",
+            "title": "Intermediate Level",
+            "description": "Master grammar rules, sentence construction, and reading simple texts",
+            "duration": "6 months",
+            "lessons": 24
+          },
+          {
+            "id": "advanced",
+            "title": "Advanced Level",
+            "description": "Read classical texts, understand complex grammar, and compose in Sanskrit",
+            "duration": "12 months",
+            "lessons": 48
+          }
+        ]
+      },
+      "meetGurus": {
+        "title": "Meet Your Sanskrit Gurus",
+        "subtitle": "Learn from expert Sanskrit scholars and teachers",
+        "gurus": [
+          {
+            "id": "guru-1",
+            "name": "Dr. Sanskrit Sharma",
+            "title": "Professor of Sanskrit Literature",
+            "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+            "description": "30+ years of experience in Sanskrit teaching and research",
+            "specialization": "Classical Sanskrit Literature"
+          },
+          {
+            "id": "guru-2",
+            "name": "Prof. Vedic Kumar",
+            "title": "Vedic Studies Expert",
+            "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+            "description": "Specialist in Vedic Sanskrit and ancient texts",
+            "specialization": "Vedic Sanskrit and Mantras"
+          }
+        ]
+      },
+      "aiClock": {
+        "title": "AI Sanskrit Clock",
+        "subtitle": "Practice Sanskrit anytime with our AI-powered learning tool",
+        "features": [
+          {
+            "id": "daily-practice",
+            "title": "Daily Practice",
+            "description": "Get daily Sanskrit exercises tailored to your level"
+          },
+          {
+            "id": "instant-feedback",
+            "title": "Instant Feedback",
+            "description": "Receive immediate feedback on your pronunciation and grammar"
+          },
+          {
+            "id": "progress-tracking",
+            "title": "Progress Tracking",
+            "description": "Track your learning progress and identify areas for improvement"
+          }
+        ]
+      },
+      "resources": {
+        "title": "Resources & Treasury",
+        "subtitle": "Access our comprehensive collection of Sanskrit learning materials",
+        "categories": [
+          {
+            "id": "textbooks",
+            "title": "Digital Textbooks",
+            "description": "Comprehensive Sanskrit textbooks for all levels",
+            "count": "25+ books"
+          },
+          {
+            "id": "audio",
+            "title": "Audio Resources",
+            "description": "Pronunciation guides and audio lessons",
+            "count": "100+ audio files"
+          },
+          {
+            "id": "videos",
+            "title": "Video Lessons",
+            "description": "Step-by-step video tutorials",
+            "count": "200+ videos"
+          },
+          {
+            "id": "exercises",
+            "title": "Practice Exercises",
+            "description": "Interactive exercises and worksheets",
+            "count": "500+ exercises"
+          }
+        ]
+      }
+    },
+    {
+      "hero": {
+        "title": "School of Darshana",
+        "subtitle": "Temple Meditation",
+        "description": "Explore the six classical schools of Indian philosophy and discover the nature of reality, consciousness, and existence.",
+        "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+      },
+      "sixSchools": {
+        "title": "Six Schools, One Wisdom",
+        "subtitle": "Discover the classical schools of Indian philosophy",
+        "schools": [
+          {
+            "id": "nyaya",
+            "name": "Nyaya",
+            "description": "The school of logic and reasoning",
+            "icon": "brain",
+            "color": "blue"
+          },
+          {
+            "id": "vaisheshika",
+            "name": "Vaisheshika",
+            "description": "The school of atomism and metaphysics",
+            "icon": "atom",
+            "color": "green"
+          },
+          {
+            "id": "samkhya",
+            "name": "Samkhya",
+            "description": "The school of enumeration and dualism",
+            "icon": "layers",
+            "color": "purple"
+          },
+          {
+            "id": "yoga",
+            "name": "Yoga",
+            "description": "The school of practice and meditation",
+            "icon": "lotus",
+            "color": "orange"
+          },
+          {
+            "id": "mimamsa",
+            "name": "Mimamsa",
+            "description": "The school of ritual and interpretation",
+            "icon": "book-open",
+            "color": "red"
+          },
+          {
+            "id": "vedanta",
+            "name": "Vedanta",
+            "description": "The school of non-dualism and ultimate reality",
+            "icon": "infinity",
+            "color": "gold"
+          }
+        ]
+      },
+      "learningPath": {
+        "title": "Your Journey to Wisdom",
+        "subtitle": "Structured learning path through Indian philosophy",
+        "stages": [
+          {
+            "id": "foundation",
+            "title": "Foundation",
+            "description": "Learn the basic concepts and terminology",
+            "duration": "2 months",
+            "topics": [
+              "Basic Concepts",
+              "Terminology",
+              "Historical Context"
+            ]
+          },
+          {
+            "id": "exploration",
+            "title": "Exploration",
+            "description": "Deep dive into each school of philosophy",
+            "duration": "6 months",
+            "topics": [
+              "Nyaya & Vaisheshika",
+              "Samkhya & Yoga",
+              "Mimamsa & Vedanta"
+            ]
+          },
+          {
+            "id": "integration",
+            "title": "Integration",
+            "description": "Synthesize knowledge and apply to modern life",
+            "duration": "4 months",
+            "topics": [
+              "Comparative Study",
+              "Modern Applications",
+              "Personal Practice"
+            ]
+          }
+        ]
+      },
+      "mission": {
+        "title": "Our Mission",
+        "subtitle": "Making ancient philosophy accessible to modern learners",
+        "description": "We believe that the wisdom of Indian philosophy is not just historical knowledge, but living wisdom that can transform your understanding of reality, consciousness, and existence. Our mission is to make these profound teachings accessible through clear explanations, practical applications, and expert guidance.",
+        "goals": [
+          "Demystify complex philosophical concepts",
+          "Show practical applications in modern life",
+          "Provide authentic teaching from qualified scholars",
+          "Create a supportive learning community"
+        ]
+      },
+      "app": {
+        "title": "Learn Anywhere, Anytime",
+        "subtitle": "Access your philosophical studies on the go",
+        "features": [
+          {
+            "id": "offline",
+            "title": "Offline Learning",
+            "description": "Download lessons and study without internet"
+          },
+          {
+            "id": "meditation",
+            "title": "Guided Meditations",
+            "description": "Practice meditation techniques from each school"
+          },
+          {
+            "id": "notes",
+            "title": "Digital Notebook",
+            "description": "Take notes and organize your philosophical insights"
+          }
+        ]
+      },
+      "community": {
+        "title": "Join Our Global Community",
+        "subtitle": "Connect with fellow seekers of wisdom",
+        "benefits": [
+          "Discussion forums for each school of philosophy",
+          "Monthly live sessions with scholars",
+          "Study groups and peer learning",
+          "Access to exclusive philosophical texts"
+        ]
+      }
+    },
+    {
+      "hero": {
+        "title": "School of Life Skills",
+        "subtitle": "Lotus & Sunrise",
+        "description": "Discover practical wisdom from ancient texts to transform your life, relationships, and personal growth.",
+        "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+      },
+      "courses": {
+        "title": "Transform Your Life",
+        "subtitle": "Practical courses based on ancient wisdom",
+        "courses": [
+          {
+            "id": "emotional-intelligence",
+            "title": "Emotional Intelligence with Samkhya Philosophy",
+            "description": "Learn to master your emotions using ancient Samkhya wisdom",
+            "duration": "8 weeks",
+            "price": "₹2,999",
+            "rating": 4.9,
+            "students": 1500
+          },
+          {
+            "id": "stress-management",
+            "title": "Stress Management through Yoga Philosophy",
+            "description": "Ancient techniques for modern stress relief",
+            "duration": "6 weeks",
+            "price": "₹1,999",
+            "rating": 4.8,
+            "students": 1200
+          },
+          {
+            "id": "purpose-meaning",
+            "title": "Finding Purpose through Vedanta",
+            "description": "Discover your life's purpose using Vedantic wisdom",
+            "duration": "10 weeks",
+            "price": "₹3,499",
+            "rating": 4.9,
+            "students": 800
+          }
+        ]
+      },
+      "benefits": {
+        "title": "Why Choose Ancient Wisdom?",
+        "subtitle": "Timeless solutions for modern challenges",
+        "benefits": [
+          {
+            "id": "proven",
+            "title": "Time-Tested Wisdom",
+            "description": "Solutions that have worked for thousands of years"
+          },
+          {
+            "id": "holistic",
+            "title": "Holistic Approach",
+            "description": "Addresses mind, body, and spirit together"
+          },
+          {
+            "id": "practical",
+            "title": "Practical Application",
+            "description": "Easy-to-implement techniques for daily life"
+          },
+          {
+            "id": "authentic",
+            "title": "Authentic Teaching",
+            "description": "Learn from qualified teachers and practitioners"
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Success Stories",
+        "subtitle": "Real transformations from our students",
+        "testimonials": [
+          {
+            "id": "testimonial-1",
+            "name": "Priya Sharma",
+            "role": "Software Engineer",
+            "content": "The Emotional Intelligence course has completely transformed how I handle workplace stress and relationships. The ancient wisdom is surprisingly relevant to modern challenges.",
+            "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+            "rating": 5
+          },
+          {
+            "id": "testimonial-2",
+            "name": "Rajesh Kumar",
+            "role": "Business Owner",
+            "content": "Learning about purpose through Vedanta has given me clarity about my business direction. The ancient texts offer profound insights for modern entrepreneurship.",
+            "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+            "rating": 5
+          },
+          {
+            "id": "testimonial-3",
+            "name": "Anita Patel",
+            "role": "Teacher",
+            "content": "The stress management techniques from Yoga philosophy have helped me become a better teacher and a more balanced person. Highly recommended!",
+            "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+            "rating": 5
+          }
+        ]
+      },
+      "cta": {
+        "title": "Start Your Transformation Journey",
+        "subtitle": "Join thousands who have transformed their lives with ancient wisdom",
+        "buttonText": "Begin Your Journey",
+        "buttonLink": "/courses"
+      }
+    },
+    {
+      "hero": {
+        "title": "Choose Your School!",
+        "subtitle": "From Language to Philosophy to Life, Begin your Quest!"
+      },
+      "schools": {
+        "title": "Our Schools",
+        "subtitle": "Explore our three main learning paths",
+        "schools": [
+          {
+            "id": "sanskrit",
+            "name": "School of Sanskrit",
+            "subtitle": "Ancient Manuscript",
+            "description": "Master the ancient language that holds the key to Vedic wisdom, classical literature, and spiritual texts.",
+            "icon": "📜",
+            "link": "/schools/sanskrit",
+            "color": "primary",
+            "whatYoullLearn": "Grammar, Communication, Shloka-Path, Live Q&A",
+            "cta": "Join Sanskrit School"
+          },
+          {
+            "id": "darshan",
+            "name": "School of Darshana",
+            "subtitle": "Temple Meditation",
+            "description": "Explore the six classical schools of Indian philosophy and discover the nature of reality, consciousness, and existence.",
+            "icon": "🕉",
+            "link": "/schools/darshana",
+            "color": "secondary",
+            "whatYoullLearn": "Nyaya and Vaisheshika, Samkhya and Yoga, Mimamsa and Vedanta",
+            "cta": "Join Darshan School"
+          },
+          {
+            "id": "life-skills",
+            "name": "School of Life Skills",
+            "subtitle": "Lotus & Sunrise",
+            "description": "Discover practical wisdom from ancient texts to transform your life, relationships, and personal growth.",
+            "icon": "🌱",
+            "link": "/schools/self-help",
+            "color": "accent",
+            "whatYoullLearn": "Entrepreneurship, Emotional Intelligence, Stress-Management, Purpose and Meaning",
+            "cta": "Join Life Skills School"
+          }
+        ]
+      }
+    }
+  ],
+  "instructors": [
+    {
+      "id": "vishal-chaurasia",
+      "name": "Vishal Chaurasia",
+      "title": "Founder & Lead Instructor",
+      "bio": "IIT Patna graduate with a background in top PSU. Transitioned to focus on disseminating ancient Indian knowledge and has a significant online presence through the Hyper Quest channel.",
+      "image": "/images/instructors/vishal-chaurasia.jpg",
+      "qualifications": [
+        "IIT Patna Graduate",
+        "Former PSU Executive",
+        "Ancient Indian Philosophy Expert",
+        "Hyper Quest Channel Creator"
+      ],
+      "specializations": [
+        "Sanskrit Language",
+        "Vedanta Philosophy",
+        "Yoga Darshan",
+        "Samkhya Philosophy",
+        "Upanishads"
+      ],
+      "social": {
+        "youtube": "https://youtube.com/@hyperquest",
+        "linkedin": "#",
+        "twitter": "#"
+      }
+    },
+    {
+      "id": "dr-rajesh-kumar",
+      "name": "Dr. Rajesh Kumar",
+      "title": "Sanskrit Scholar & Course Instructor",
+      "bio": "PhD in Sanskrit Literature with 12+ years of experience in Gurukul tradition. Gold medalist in MA Sanskrit and nationally awarded for his contributions to Sanskrit education.",
+      "image": "/images/instructors/dr-rajesh-kumar.jpg",
+      "qualifications": [
+        "PhD in Sanskrit Literature",
+        "MA Sanskrit (Gold Medalist)",
+        "BA Sanskrit (First Class)",
+        "Gurukul Traditional Training"
+      ],
+      "specializations": [
+        "Sanskrit Grammar",
+        "Classical Literature",
+        "Vedic Studies",
+        "Traditional Teaching Methods"
+      ],
+      "social": {
+        "youtube": "#",
+        "linkedin": "#",
+        "twitter": "#"
+      }
+    },
+    {
+      "id": "acharya-jamwant-ji",
+      "name": "Acharya Jamwant Ji",
+      "title": "Master of Sānkhya Philosophy",
+      "bio": "Traditional scholar with 10+ years of teaching experience, specializing in Sānkhya philosophy and emotional intelligence. Author of 2 books and mentor to 500+ disciples.",
+      "image": "/images/instructors/acharya-jamwant-ji.jpg",
+      "qualifications": [
+        "Traditional Gurukul Education",
+        "Sānkhya Philosophy Expert",
+        "Emotional Intelligence Specialist",
+        "Published Author"
+      ],
+      "specializations": [
+        "Sānkhya Philosophy",
+        "Emotional Intelligence",
+        "Traditional Wisdom",
+        "Guṇa Theory"
+      ],
+      "social": {
+        "youtube": "#",
+        "linkedin": "#",
+        "twitter": "#"
+      }
+    },
+    {
+      "id": "priya-sharma",
+      "name": "Dr. Priya Sharma",
+      "title": "Vedanta Philosophy Expert",
+      "bio": "Renowned scholar of Vedanta philosophy with 15+ years of experience. Helps students understand the profound wisdom of ancient Indian thought and its practical applications.",
+      "image": "/images/instructors/priya-sharma.jpg",
+      "qualifications": [
+        "PhD in Indian Philosophy",
+        "MA in Sanskrit Literature",
+        "Vedanta Philosophy Specialist",
+        "15+ Years Teaching Experience"
+      ],
+      "specializations": [
+        "Vedanta Philosophy",
+        "Upanishads",
+        "Spiritual Philosophy",
+        "Advaita Vedanta"
+      ],
+      "social": {
+        "youtube": "#",
+        "linkedin": "#",
+        "twitter": "#"
+      }
+    },
+    {
+      "id": "meera-patel",
+      "name": "Meera Patel",
+      "title": "Sanskrit Grammar Expert",
+      "bio": "With over 15 years of experience in Sanskrit grammar and literature, Meera brings deep knowledge and patient teaching to help students master the fundamentals.",
+      "image": "/images/instructors/meera-patel.jpg",
+      "qualifications": [
+        "MA Sanskrit Literature",
+        "Traditional Grammar Training",
+        "15+ Years Experience",
+        "Student Success Specialist"
+      ],
+      "specializations": [
+        "Sanskrit Grammar",
+        "Classical Literature",
+        "Vedic Studies",
+        "Language Fundamentals"
+      ],
+      "social": {
+        "youtube": "#",
+        "linkedin": "#",
+        "twitter": "#"
+      }
+    }
+  ],
+  "testimonials": [],
+  "communityPosts": []
+}
