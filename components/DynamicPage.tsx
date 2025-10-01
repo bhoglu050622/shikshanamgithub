@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import Link from 'next/link'
 
 interface Section {
   id: string
@@ -177,12 +178,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-destructive mb-4">Page Not Found</h1>
           <p className="text-muted-foreground mb-6">{error}</p>
-          <a
+          <Link
             href="/"
             className="inline-block bg-premium-accent-primary text-white px-6 py-3 rounded-lg hover:bg-premium-accent-primary/90 transition-colors"
           >
             Go Home
-          </a>
+          </Link>
         </div>
       </div>
     )
@@ -194,12 +195,12 @@ export default function DynamicPage({ slug }: DynamicPageProps) {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-destructive mb-4">Page Not Found</h1>
           <p className="text-muted-foreground mb-6">The page you're looking for doesn't exist.</p>
-          <a
+          <Link
             href="/"
             className="inline-block bg-premium-accent-primary text-white px-6 py-3 rounded-lg hover:bg-premium-accent-primary/90 transition-colors"
           >
             Go Home
-          </a>
+          </Link>
         </div>
       </div>
     )
