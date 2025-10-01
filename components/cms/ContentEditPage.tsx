@@ -193,8 +193,62 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
       onChange: (data: any) => updateSectionContent(section, data)
     };
 
-    // Use UniversalEditor for all sections - it can handle any content type
-    return <UniversalEditor sectionName={section} {...editorProps} />;
+    // Use specific editors where available, UniversalEditor as fallback
+    switch (contentType.id) {
+      case 'homepage':
+        switch (section) {
+          case 'hero': return <HeroEditor {...editorProps} />;
+          case 'alignYourself': return <AlignYourselfEditor {...editorProps} />;
+          case 'schools': return <SchoolsEditor {...editorProps} />;
+          case 'meetGurus': return <MeetGurusEditor {...editorProps} />;
+          case 'studentStories': return <StudentStoriesEditor {...editorProps} />;
+          case 'testimonials': return <TestimonialsEditor {...editorProps} />;
+          case 'communityPosts': return <CommunityPostsEditor {...editorProps} />;
+          case 'foundersMission': return <FoundersMissionEditor {...editorProps} />;
+          case 'contribute': return <ContributeEditor {...editorProps} />;
+          case 'downloadApp': return <DownloadAppEditor {...editorProps} />;
+          case 'faq': return <FAQEditor {...editorProps} />;
+          default: return <UniversalEditor sectionName={section} {...editorProps} />;
+        }
+      case 'about':
+        switch (section) {
+          case 'hero': return <AboutHeroEditor {...editorProps} />;
+          case 'mission': return <AboutMissionEditor {...editorProps} />;
+          case 'values': return <AboutValuesEditor {...editorProps} />;
+          case 'offerings': return <AboutOfferingsEditor {...editorProps} />;
+          case 'cta': return <AboutCTAEditor {...editorProps} />;
+          default: return <UniversalEditor sectionName={section} {...editorProps} />;
+        }
+      case 'contact':
+        switch (section) {
+          case 'hero': return <ContactHeroEditor {...editorProps} />;
+          case 'form': return <ContactFormEditor {...editorProps} />;
+          case 'info': return <ContactInfoEditor {...editorProps} />;
+          case 'quickHelp': return <ContactQuickHelpEditor {...editorProps} />;
+          default: return <UniversalEditor sectionName={section} {...editorProps} />;
+        }
+      case 'donation':
+        switch (section) {
+          case 'hero': return <DonationHeroEditor {...editorProps} />;
+          case 'impact': return <DonationImpactEditor {...editorProps} />;
+          case 'causes': return <DonationCausesEditor {...editorProps} />;
+          case 'options': return <DonationOptionsEditor {...editorProps} />;
+          case 'testimonials': return <DonationTestimonialsEditor {...editorProps} />;
+          case 'faq': return <DonationFAQEditor {...editorProps} />;
+          case 'cta': return <DonationCTAEditor {...editorProps} />;
+          default: return <UniversalEditor sectionName={section} {...editorProps} />;
+        }
+      case 'schools':
+        switch (section) {
+          case 'hero': return <SchoolsHeroEditor {...editorProps} />;
+          case 'list': return <SchoolsListEditor {...editorProps} />;
+          case 'cta': return <SchoolsCTAEditor {...editorProps} />;
+          default: return <UniversalEditor sectionName={section} {...editorProps} />;
+        }
+      default:
+        // For all other content types (courses, etc.), use UniversalEditor
+        return <UniversalEditor sectionName={section} {...editorProps} />;
+    }
   };
 
   if (loading) {
