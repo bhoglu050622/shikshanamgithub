@@ -1,0 +1,144 @@
+{
+  "hero": {
+    "title": "Sanskrit + Darshan + Upanishad Bundle",
+    "subtitle": "Complete Learning Journey",
+    "description": "Master Sanskrit language, explore the six Darshanas, and dive deep into Upanishadic wisdom in this comprehensive 7-course bundle.",
+    "image": "/assets/sanskrit-darshan-upanishad-bundle-hero.jpg",
+    "ctaText": "Get This Bundle",
+    "ctaLink": "/courses/sanskrit-darshan-upanishad-bundle"
+  },
+  "courses": {
+    "title": "Included Courses",
+    "description": "This comprehensive bundle includes 7 complete courses for a complete learning journey.",
+    "courseList": [
+      {
+        "id": "sanskrit-course",
+        "title": "Complete Sanskrit Course",
+        "description": "Master Sanskrit language from basics to advanced level",
+        "duration": "12 weeks",
+        "level": "All Levels"
+      },
+      {
+        "id": "nyaya-darshan",
+        "title": "Nyaya Darshan",
+        "description": "Logic and reasoning in Indian philosophy",
+        "duration": "6 weeks",
+        "level": "Intermediate"
+      },
+      {
+        "id": "vaisheshik-darshan",
+        "title": "Vaisheshik Darshan",
+        "description": "Philosophy of particularity and atomism",
+        "duration": "6 weeks",
+        "level": "Intermediate"
+      },
+      {
+        "id": "samkhya-darshan",
+        "title": "Samkhya Darshan",
+        "description": "Philosophy of numbers and categories",
+        "duration": "8 weeks",
+        "level": "Intermediate"
+      },
+      {
+        "id": "yoga-darshan",
+        "title": "Yoga Darshan",
+        "description": "Philosophy of union and practice",
+        "duration": "8 weeks",
+        "level": "All Levels"
+      },
+      {
+        "id": "isha-upanishad",
+        "title": "Isha Upanishad",
+        "description": "Ancient wisdom for modern life",
+        "duration": "6 weeks",
+        "level": "All Levels"
+      },
+      {
+        "id": "prashna-upanishad",
+        "title": "Prashna Upanishad",
+        "description": "The questions of life and existence",
+        "duration": "6 weeks",
+        "level": "All Levels"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Bundle Pricing",
+    "description": "Get all 7 courses at a special bundle price with massive savings.",
+    "price": 7399,
+    "originalPrice": 12000,
+    "savings": 4601,
+    "features": [
+      "7 Complete Courses",
+      "Sanskrit Language Mastery",
+      "All 6 Darshanas",
+      "Upanishadic Wisdom",
+      "Certificate of Completion",
+      "Lifetime Access",
+      "Live Q&A Sessions",
+      "Downloadable Materials"
+    ],
+    "ctaText": "Get This Bundle",
+    "ctaLink": "/courses/sanskrit-darshan-upanishad-bundle"
+  },
+  "benefits": {
+    "title": "Bundle Benefits",
+    "description": "Why choose this comprehensive bundle?",
+    "benefits": [
+      "Complete Sanskrit language mastery",
+      "Deep understanding of all six Darshanas",
+      "Upanishadic wisdom and insights",
+      "Comprehensive philosophical education",
+      "Cultural and spiritual enrichment",
+      "Academic and personal growth",
+      "Certificate of completion",
+      "Lifetime access to all materials"
+    ]
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "Hear from students who have completed this comprehensive bundle.",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Dr. Sarah Johnson",
+        "role": "Philosophy Professor",
+        "content": "This bundle provided me with a complete understanding of Indian philosophy. The Sanskrit component was particularly valuable.",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Arjun Patel",
+        "role": "Spiritual Seeker",
+        "content": "The combination of Sanskrit, Darshanas, and Upanishads created a transformative learning experience.",
+        "rating": 5
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Common questions about the Sanskrit + Darshan + Upanishad bundle.",
+    "questions": [
+      {
+        "id": "faq-1",
+        "question": "How long does it take to complete the entire bundle?",
+        "answer": "The bundle is self-paced and typically takes 6-8 months to complete all courses with regular study."
+      },
+      {
+        "id": "faq-2",
+        "question": "Do I need prior knowledge of Sanskrit?",
+        "answer": "No prior knowledge is required. The Sanskrit course starts from basics and takes you to advanced level."
+      },
+      {
+        "id": "faq-3",
+        "question": "Can I take individual courses instead of the bundle?",
+        "answer": "Yes, all courses are available individually, but the bundle offers significant savings and a structured learning path."
+      },
+      {
+        "id": "faq-4",
+        "question": "Will I get certificates for each course?",
+        "answer": "Yes, you will receive a certificate of completion for each course and a master certificate for completing the entire bundle."
+      }
+    ]
+  }
+}

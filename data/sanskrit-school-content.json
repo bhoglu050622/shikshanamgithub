@@ -1,0 +1,162 @@
+{
+  "hero": {
+    "title": "School of Sanskrit",
+    "subtitle": "Ancient Manuscript",
+    "description": "Master the ancient language that holds the key to Vedic wisdom, classical literature, and spiritual texts.",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop",
+    "ctaButtons": {
+      "primary": {
+        "text": "Start Learning",
+        "link": "/courses/sanskrit"
+      },
+      "secondary": {
+        "text": "Learn More",
+        "link": "/about/sanskrit"
+      }
+    },
+    "features": [
+      {
+        "id": "ancient-wisdom",
+        "icon": "book",
+        "title": "Ancient Wisdom",
+        "description": "Access thousands of years of Vedic knowledge and spiritual texts"
+      },
+      {
+        "id": "structured-learning",
+        "icon": "users",
+        "title": "Structured Learning",
+        "description": "Step-by-step progression from beginner to advanced levels"
+      },
+      {
+        "id": "expert-guidance",
+        "icon": "sparkles",
+        "title": "Expert Guidance",
+        "description": "Learn from renowned Sanskrit scholars and traditional teachers"
+      }
+    ]
+  },
+  "playLearn": {
+    "title": "Play & Learn",
+    "subtitle": "Interactive Sanskrit Learning",
+    "features": [
+      {
+        "id": "games",
+        "title": "Learning Games",
+        "description": "Fun and engaging games to learn Sanskrit vocabulary and grammar",
+        "icon": "gamepad"
+      },
+      {
+        "id": "quizzes",
+        "title": "Interactive Quizzes",
+        "description": "Test your knowledge with interactive quizzes and assessments",
+        "icon": "help-circle"
+      },
+      {
+        "id": "pronunciation",
+        "title": "Pronunciation Practice",
+        "description": "Perfect your Sanskrit pronunciation with audio guides",
+        "icon": "volume-2"
+      }
+    ]
+  },
+  "sequentialPath": {
+    "title": "Your Sequential Path",
+    "subtitle": "Structured learning journey from beginner to advanced",
+    "levels": [
+      {
+        "id": "beginner",
+        "title": "Beginner Level",
+        "description": "Learn the basics of Sanskrit alphabet, pronunciation, and simple words",
+        "duration": "3 months",
+        "lessons": 12
+      },
+      {
+        "id": "intermediate",
+        "title": "Intermediate Level",
+        "description": "Master grammar rules, sentence construction, and reading simple texts",
+        "duration": "6 months",
+        "lessons": 24
+      },
+      {
+        "id": "advanced",
+        "title": "Advanced Level",
+        "description": "Read classical texts, understand complex grammar, and compose in Sanskrit",
+        "duration": "12 months",
+        "lessons": 48
+      }
+    ]
+  },
+  "meetGurus": {
+    "title": "Meet Your Sanskrit Gurus",
+    "subtitle": "Learn from expert Sanskrit scholars and teachers",
+    "gurus": [
+      {
+        "id": "guru-1",
+        "name": "Dr. Sanskrit Sharma",
+        "title": "Professor of Sanskrit Literature",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+        "description": "30+ years of experience in Sanskrit teaching and research",
+        "specialization": "Classical Sanskrit Literature"
+      },
+      {
+        "id": "guru-2",
+        "name": "Prof. Vedic Kumar",
+        "title": "Vedic Studies Expert",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+        "description": "Specialist in Vedic Sanskrit and ancient texts",
+        "specialization": "Vedic Sanskrit and Mantras"
+      }
+    ]
+  },
+  "aiClock": {
+    "title": "AI Sanskrit Clock",
+    "subtitle": "Practice Sanskrit anytime with our AI-powered learning tool",
+    "features": [
+      {
+        "id": "daily-practice",
+        "title": "Daily Practice",
+        "description": "Get daily Sanskrit exercises tailored to your level"
+      },
+      {
+        "id": "instant-feedback",
+        "title": "Instant Feedback",
+        "description": "Receive immediate feedback on your pronunciation and grammar"
+      },
+      {
+        "id": "progress-tracking",
+        "title": "Progress Tracking",
+        "description": "Track your learning progress and identify areas for improvement"
+      }
+    ]
+  },
+  "resources": {
+    "title": "Resources & Treasury",
+    "subtitle": "Access our comprehensive collection of Sanskrit learning materials",
+    "categories": [
+      {
+        "id": "textbooks",
+        "title": "Digital Textbooks",
+        "description": "Comprehensive Sanskrit textbooks for all levels",
+        "count": "25+ books"
+      },
+      {
+        "id": "audio",
+        "title": "Audio Resources",
+        "description": "Pronunciation guides and audio lessons",
+        "count": "100+ audio files"
+      },
+      {
+        "id": "videos",
+        "title": "Video Lessons",
+        "description": "Step-by-step video tutorials",
+        "count": "200+ videos"
+      },
+      {
+        "id": "exercises",
+        "title": "Practice Exercises",
+        "description": "Interactive exercises and worksheets",
+        "count": "500+ exercises"
+      }
+    ]
+  }
+}

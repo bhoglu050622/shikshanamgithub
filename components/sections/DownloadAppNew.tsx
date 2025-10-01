@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
 import { Download, Smartphone, Play, Apple, Globe, Star, Users, BookOpen, ArrowRight } from 'lucide-react'
 
 const appFeatures = [
@@ -44,7 +45,7 @@ export default function DownloadApp() {
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -64,7 +65,7 @@ export default function DownloadApp() {
             {/* App Features */}
             <div className="space-y-4 mb-8">
               {appFeatures.map((feature, index) => (
-                <motion.div
+                <MotionDiv
                   key={feature.title}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -79,14 +80,14 @@ export default function DownloadApp() {
                     <h4 className="font-semibold text-foreground mb-1">{feature.title}</h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
                   </div>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
 
             {/* App Stats */}
             <div className="grid grid-cols-3 gap-6 mb-8">
               {appStats.map((stat, index) => (
-                <motion.div
+                <MotionDiv
                   key={stat.label}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -96,7 +97,7 @@ export default function DownloadApp() {
                 >
                   <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
 
@@ -140,10 +141,10 @@ export default function DownloadApp() {
                 <ArrowRight className="w-4 h-4" />
               </motion.button>
             </div>
-          </motion.div>
+          </MotionDiv>
 
           {/* Right Content - 3D Rotating Phone Mockup */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -151,7 +152,7 @@ export default function DownloadApp() {
             className="relative flex justify-center mt-8"
           >
             {/* 3D Rotating Phone Mockup */}
-            <motion.div 
+            <MotionDiv 
               className="relative"
               animate={{ 
                 rotateY: [0, 10, -10, 0],
@@ -235,7 +236,7 @@ export default function DownloadApp() {
               </div>
 
               {/* Floating Elements */}
-              <motion.div
+              <MotionDiv
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute -top-4 -right-4 bg-card rounded-2xl p-3 shadow-lg"
@@ -244,9 +245,9 @@ export default function DownloadApp() {
                   <div className="text-lg font-bold text-primary">4.8★</div>
                   <div className="text-xs text-muted-foreground">Rating</div>
                 </div>
-              </motion.div>
+              </MotionDiv>
 
-              <motion.div
+              <MotionDiv
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
                 className="absolute -bottom-4 -left-4 bg-card rounded-2xl p-3 shadow-lg"
@@ -255,13 +256,13 @@ export default function DownloadApp() {
                   <div className="text-lg font-bold text-accent">50K+</div>
                   <div className="text-xs text-muted-foreground">Downloads</div>
                 </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </MotionDiv>
+            </MotionDiv>
+          </MotionDiv>
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -284,7 +285,7 @@ export default function DownloadApp() {
               <span>Download Now</span>
             </motion.button>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   )

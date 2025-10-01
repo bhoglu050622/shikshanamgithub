@@ -1,0 +1,103 @@
+{
+  "hero": {
+    "title": "School of Life Skills",
+    "subtitle": "Lotus & Sunrise",
+    "description": "Discover practical wisdom from ancient texts to transform your life, relationships, and personal growth.",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+  },
+  "courses": {
+    "title": "Transform Your Life",
+    "subtitle": "Practical courses based on ancient wisdom",
+    "courses": [
+      {
+        "id": "emotional-intelligence",
+        "title": "Emotional Intelligence with Samkhya Philosophy",
+        "description": "Learn to master your emotions using ancient Samkhya wisdom",
+        "duration": "8 weeks",
+        "price": "₹2,999",
+        "rating": 4.9,
+        "students": 1500
+      },
+      {
+        "id": "stress-management",
+        "title": "Stress Management through Yoga Philosophy",
+        "description": "Ancient techniques for modern stress relief",
+        "duration": "6 weeks",
+        "price": "₹1,999",
+        "rating": 4.8,
+        "students": 1200
+      },
+      {
+        "id": "purpose-meaning",
+        "title": "Finding Purpose through Vedanta",
+        "description": "Discover your life's purpose using Vedantic wisdom",
+        "duration": "10 weeks",
+        "price": "₹3,499",
+        "rating": 4.9,
+        "students": 800
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Why Choose Ancient Wisdom?",
+    "subtitle": "Timeless solutions for modern challenges",
+    "benefits": [
+      {
+        "id": "proven",
+        "title": "Time-Tested Wisdom",
+        "description": "Solutions that have worked for thousands of years"
+      },
+      {
+        "id": "holistic",
+        "title": "Holistic Approach",
+        "description": "Addresses mind, body, and spirit together"
+      },
+      {
+        "id": "practical",
+        "title": "Practical Application",
+        "description": "Easy-to-implement techniques for daily life"
+      },
+      {
+        "id": "authentic",
+        "title": "Authentic Teaching",
+        "description": "Learn from qualified teachers and practitioners"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Success Stories",
+    "subtitle": "Real transformations from our students",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Priya Sharma",
+        "role": "Software Engineer",
+        "content": "The Emotional Intelligence course has completely transformed how I handle workplace stress and relationships. The ancient wisdom is surprisingly relevant to modern challenges.",
+        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Rajesh Kumar",
+        "role": "Business Owner",
+        "content": "Learning about purpose through Vedanta has given me clarity about my business direction. The ancient texts offer profound insights for modern entrepreneurship.",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-3",
+        "name": "Anita Patel",
+        "role": "Teacher",
+        "content": "The stress management techniques from Yoga philosophy have helped me become a better teacher and a more balanced person. Highly recommended!",
+        "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+        "rating": 5
+      }
+    ]
+  },
+  "cta": {
+    "title": "Start Your Transformation Journey",
+    "subtitle": "Join thousands who have transformed their lives with ancient wisdom",
+    "buttonText": "Begin Your Journey",
+    "buttonLink": "/courses"
+  }
+}

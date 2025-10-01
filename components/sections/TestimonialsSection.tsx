@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
 import { Star, Quote, ChevronLeft, ChevronRight, Users, Award, TrendingUp } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -82,7 +83,7 @@ export default function TestimonialsSection({
       <div className="container-custom">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -94,12 +95,12 @@ export default function TestimonialsSection({
             <p className="text-lg sm:text-xl text-light-contrast-secondary max-w-3xl mx-auto leading-relaxed">
               Join thousands of learners who have transformed their understanding of ancient Indian wisdom
             </p>
-          </motion.div>
+          </MotionDiv>
         </div>
 
         {/* Stats Section */}
         {showStats && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -111,7 +112,7 @@ export default function TestimonialsSection({
                 <Users className="w-6 h-6 text-golden-olive" />
               </div>
               <div className="text-2xl sm:text-3xl font-bold text-premium-text">
-                {ugcData.stats.totalStudents.toLocaleString()}+
+                {ugcData.stats.totalStudents.toLocaleString('en-US')}+
               </div>
               <div className="text-sm text-sand-beige">Students</div>
             </div>
@@ -138,15 +139,15 @@ export default function TestimonialsSection({
                 <TrendingUp className="w-6 h-6 text-golden-olive" />
               </div>
               <div className="text-2xl sm:text-3xl font-bold text-premium-text">
-                {ugcData.stats.communityMembers.toLocaleString()}
+                {ugcData.stats.communityMembers.toLocaleString('en-US')}
               </div>
               <div className="text-sm text-sand-beige">Reviews</div>
             </div>
-          </motion.div>
+          </MotionDiv>
         )}
 
         {/* Testimonials Carousel */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -155,7 +156,7 @@ export default function TestimonialsSection({
         >
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
             <AnimatePresence mode="wait">
-              <motion.div
+              <MotionDiv
                 key={currentIndex}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -216,7 +217,7 @@ export default function TestimonialsSection({
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </MotionDiv>
             </AnimatePresence>
           </div>
 
@@ -253,10 +254,10 @@ export default function TestimonialsSection({
               <ChevronRight className="w-5 h-5" />
             </Button>
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* All Testimonials Grid */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -269,7 +270,7 @@ export default function TestimonialsSection({
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.slice(1).map((testimonial, index) => (
-              <motion.div
+              <MotionDiv
                 key={testimonial.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -301,10 +302,10 @@ export default function TestimonialsSection({
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   )

@@ -1,0 +1,154 @@
+{
+  "hero": {
+    "title": "Support Ancient Wisdom Aman",
+    "subtitle": "Help us preserve and share the timeless knowledge of our ancestors",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+  },
+  "impact": {
+    "title": "Your Impact",
+    "subtitle": "See how your donations make a difference Aman",
+    "stats": [
+      {
+        "id": "students",
+        "number": "15,000+",
+        "label": "Students Helped",
+        "description": "Learners who have benefited from our programs"
+      },
+      {
+        "id": "courses",
+        "number": "500+",
+        "label": "Courses Created",
+        "description": "Educational content developed and shared"
+      },
+      {
+        "id": "teachers",
+        "number": "100+",
+        "label": "Teachers Supported",
+        "description": "Educators who share ancient wisdom"
+      },
+      {
+        "id": "countries",
+        "number": "50+",
+        "label": "Countries Reached",
+        "description": "Global reach of our educational mission"
+      }
+    ]
+  },
+  "causes": {
+    "title": "Support Our Causes",
+    "subtitle": "Choose how you want to make an impact",
+    "causes": [
+      {
+        "id": "scholarships",
+        "title": "Student Scholarships",
+        "description": "Help deserving students access quality education in ancient wisdom",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+        "targetAmount": "₹50,00,000",
+        "currentAmount": "₹32,50,000",
+        "progress": 65
+      },
+      {
+        "id": "manuscripts",
+        "title": "Manuscript Preservation",
+        "description": "Digitize and preserve ancient Sanskrit manuscripts for future generations",
+        "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop",
+        "targetAmount": "₹25,00,000",
+        "currentAmount": "₹18,75,000",
+        "progress": 75
+      },
+      {
+        "id": "teacher-training",
+        "title": "Teacher Training Programs",
+        "description": "Train educators to teach ancient wisdom effectively",
+        "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop",
+        "targetAmount": "₹30,00,000",
+        "currentAmount": "₹12,00,000",
+        "progress": 40
+      }
+    ]
+  },
+  "donationOptions": {
+    "title": "Choose Your Donation Amount",
+    "subtitle": "Every contribution helps us preserve and share ancient wisdom",
+    "amounts": [
+      {
+        "id": "small",
+        "amount": "₹500",
+        "description": "Supports one student for a month",
+        "popular": false
+      },
+      {
+        "id": "medium",
+        "amount": "₹1,000",
+        "description": "Helps digitize 10 manuscript pages",
+        "popular": true
+      },
+      {
+        "id": "large",
+        "amount": "₹5,000",
+        "description": "Sponsors a teacher training session",
+        "popular": false
+      },
+      {
+        "id": "custom",
+        "amount": "Custom",
+        "description": "Enter your own amount",
+        "popular": false
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Supporters Say",
+    "subtitle": "Hear from those who have supported our mission",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Dr. Rajesh Kumar",
+        "role": "Professor of Sanskrit",
+        "content": "Supporting Shikshanam has been one of the most meaningful investments I've made. Seeing how they're preserving ancient wisdom for future generations is truly inspiring.",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+        "amount": "₹50,000"
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Priya Sharma",
+        "role": "Alumni & Supporter",
+        "content": "As someone who benefited from Shikshanam's courses, I'm proud to give back. The impact they're making in preserving our cultural heritage is remarkable.",
+        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+        "amount": "₹25,000"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Common questions about donations and impact",
+    "questions": [
+      {
+        "id": "1",
+        "question": "How is my donation used?",
+        "answer": "Your donations are used to support student scholarships, preserve ancient manuscripts, train teachers, and develop educational content. We maintain transparency in all our financial operations."
+      },
+      {
+        "id": "2",
+        "question": "Is my donation tax-deductible?",
+        "answer": "Yes, donations to Shikshanam are tax-deductible under Section 80G of the Income Tax Act. You will receive a receipt for your donation."
+      },
+      {
+        "id": "3",
+        "question": "Can I choose where my donation goes?",
+        "answer": "Yes, you can specify which cause you'd like to support when making your donation. You can choose from scholarships, manuscript preservation, or teacher training."
+      },
+      {
+        "id": "4",
+        "question": "How can I track the impact of my donation?",
+        "answer": "We provide regular updates on our website and through email newsletters about how donations are being used and the impact they're creating."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Make a Difference?",
+    "subtitle": "Join thousands of supporters in preserving ancient wisdom for future generations",
+    "buttonText": "Donate Now",
+    "buttonLink": "#donation-form"
+  }
+}

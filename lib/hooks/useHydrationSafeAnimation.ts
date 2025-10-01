@@ -18,14 +18,13 @@ export function useHydrationSafeAnimation() {
  * Helper function to create hydration-safe motion props
  */
 export function createHydrationSafeMotionProps(
+  mounted: boolean,
   initial: any,
   animate: any,
   transition: any = { duration: 0 },
   whileHover: any = {},
   whileTap: any = {}
 ) {
-  const mounted = useHydrationSafeAnimation();
-
   return {
     initial: mounted ? initial : false,
     animate: mounted ? animate : { opacity: 1, scale: 1, x: 0, y: 0 },
@@ -39,12 +38,11 @@ export function createHydrationSafeMotionProps(
  * Helper function for staggered animations that are hydration-safe
  */
 export function createHydrationSafeStaggerProps(
+  mounted: boolean,
   baseProps: any,
   index: number = 0,
   staggerDelay: number = 0.1
 ) {
-  const mounted = useHydrationSafeAnimation();
-
   return {
     ...baseProps,
     transition: mounted 

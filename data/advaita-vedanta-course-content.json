@@ -1,0 +1,116 @@
+{
+  "hero": {
+    "title": "Advaita Vedanta Darshan",
+    "subtitle": "A Journey Through Drig Drishya Viveka",
+    "description": "Explore the profound philosophy of Advaita Vedanta through the classical text Drig Drishya Viveka, understanding the nature of reality and consciousness.",
+    "image": "/assets/advaita-vedanta-hero.jpg",
+    "ctaText": "Enroll Now",
+    "ctaLink": "/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka"
+  },
+  "syllabus": {
+    "title": "Course Syllabus",
+    "description": "Comprehensive study of Advaita Vedanta through Drig Drishya Viveka",
+    "modules": [
+      {
+        "id": "introduction",
+        "title": "Introduction to Advaita Vedanta",
+        "description": "Understanding the basic principles of non-dualistic philosophy",
+        "duration": "2 hours",
+        "topics": [
+          "Nature of Reality",
+          "Consciousness vs Matter",
+          "The Seer and the Seen"
+        ]
+      },
+      {
+        "id": "drishya-viveka",
+        "title": "Drishya Viveka - Analysis of the Seen",
+        "description": "Deep dive into the classical text and its teachings",
+        "duration": "4 hours",
+        "topics": [
+          "Text Analysis",
+          "Key Concepts",
+          "Practical Applications"
+        ]
+      },
+      {
+        "id": "practical-application",
+        "title": "Practical Application",
+        "description": "How to apply Advaita principles in daily life",
+        "duration": "3 hours",
+        "topics": [
+          "Meditation Techniques",
+          "Self-Inquiry",
+          "Daily Practice"
+        ]
+      }
+    ]
+  },
+  "outcomes": {
+    "title": "What You Will Learn",
+    "description": "By the end of this course, you will have a comprehensive understanding of Advaita Vedanta philosophy.",
+    "benefits": [
+      "Deep understanding of Advaita Vedanta philosophy",
+      "Knowledge of Drig Drishya Viveka text",
+      "Practical techniques for self-inquiry",
+      "Understanding of consciousness and reality",
+      "Tools for spiritual growth and self-realization"
+    ]
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "Hear from students who have completed this transformative course.",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Priya Sharma",
+        "role": "Yoga Teacher",
+        "content": "This course completely transformed my understanding of reality. The teachings are profound yet practical.",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Rajesh Kumar",
+        "role": "Software Engineer",
+        "content": "The depth of knowledge shared in this course is incredible. Highly recommended for anyone seeking spiritual growth.",
+        "rating": 5
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Course Pricing",
+    "description": "Invest in your spiritual journey with this comprehensive course.",
+    "price": 2999,
+    "originalPrice": 4999,
+    "features": [
+      "Complete video lectures",
+      "Downloadable study materials",
+      "Live Q&A sessions",
+      "Certificate of completion",
+      "Lifetime access"
+    ],
+    "ctaText": "Enroll Now",
+    "ctaLink": "/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Common questions about the Advaita Vedanta course.",
+    "questions": [
+      {
+        "id": "faq-1",
+        "question": "Do I need prior knowledge of Sanskrit?",
+        "answer": "No prior knowledge of Sanskrit is required. All texts will be explained in English with transliterations."
+      },
+      {
+        "id": "faq-2",
+        "question": "How long is the course?",
+        "answer": "The course is self-paced and can be completed in 4-6 weeks with regular study."
+      },
+      {
+        "id": "faq-3",
+        "question": "Will I get a certificate?",
+        "answer": "Yes, upon successful completion of the course, you will receive a certificate of completion."
+      }
+    ]
+  }
+}

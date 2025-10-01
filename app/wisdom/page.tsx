@@ -169,7 +169,9 @@ export default async function WisdomPage({ searchParams }: { searchParams: Promi
       </div>
 
       {/* Filters */}
-      <WisdomPageClient categories={categories} />
+      <Suspense fallback={<div className="h-12 bg-sand-beige/20 rounded-xl w-64 mx-auto animate-pulse" />}>
+        <WisdomPageClient categories={categories} />
+      </Suspense>
 
       {/* Content */}
       <Suspense fallback={<LoadingSkeleton />}>
