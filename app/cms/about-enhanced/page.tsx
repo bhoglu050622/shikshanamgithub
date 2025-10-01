@@ -9,29 +9,25 @@ import {
   Heart,
   Globe,
   Lightbulb,
-  Shield
+  Shield,
+  RefreshCw,
+  Save,
+  Eye,
+  Settings
 } from 'lucide-react';
 
-import { 
-  UniversalCMSProvider, 
-  UniversalCMS,
-  CMSCard,
-  CMSButton,
-  CMSLink,
-  CMSText,
-  CMSImage,
-  CMSAdminPanel
-} from '@/components/cms/UniversalCMS';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCMSContent } from '@/lib/cms/hooks';
 
 const sections = [
   { id: 'hero', name: 'Hero Section', icon: Users, description: 'Main about page introduction' },
   { id: 'mission', name: 'Mission & Vision', icon: Target, description: 'Our mission and vision statements' },
   { id: 'values', name: 'Our Values', icon: Heart, description: 'Core values and principles' },
-  { id: 'team', name: 'Our Team', icon: Users, description: 'Team members and leadership' },
-  { id: 'story', name: 'Our Story', icon: BookOpen, description: 'How we started and our journey' },
-  { id: 'achievements', name: 'Achievements', icon: Award, description: 'Key milestones and accomplishments' },
-  { id: 'impact', name: 'Impact', icon: Globe, description: 'Our global impact and reach' }
+  { id: 'offerings', name: 'What We Offer', icon: BookOpen, description: 'Our educational offerings' },
+  { id: 'cta', name: 'Call to Action', icon: Globe, description: 'Final call to action section' }
 ];
 
 function AboutCMSContent() {
@@ -43,7 +39,7 @@ function AboutCMSContent() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <CMSText variant="secondary">Loading about content...</CMSText>
+          <p className="text-muted-foreground">Loading about content...</p>
         </div>
       </div>
     );
@@ -52,227 +48,154 @@ function AboutCMSContent() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <CMSCard className="max-w-md">
+        <Card className="max-w-md">
           <div className="p-6 text-center">
             <div className="text-red-500 mb-4">
               <Users className="w-12 h-12 mx-auto" />
             </div>
-            <CMSText variant="primary" as="h2" className="text-xl font-semibold mb-2">
+            <h2 className="text-xl font-semibold mb-2 text-red-600">
               Error Loading Content
-            </CMSText>
-            <CMSText variant="secondary" className="mb-4">{error}</CMSText>
-            <CMSButton onClick={() => window.location.reload()}>
+            </h2>
+            <p className="text-muted-foreground mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>
               Try Again
-            </CMSButton>
+            </Button>
           </div>
-        </CMSCard>
+        </Card>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* CMS Admin Panel */}
-      <CMSAdminPanel 
-        pageId="about"
-        pageTitle="About Page"
-        sections={sections}
-      />
-
-      {/* Main CMS Interface */}
-      <UniversalCMS
-        pageId="about"
-        pageTitle="About Page"
-        sections={sections}
-        onUpdate={updateContent}
-      >
-        {/* Preview Content */}
-        <div className="space-y-8">
-          {/* Hero Section */}
-          <CMSCard elementId="hero" className="text-center py-16">
-            <CMSText variant="primary" as="h1" className="text-4xl font-bold mb-4">
-              {content?.hero?.title || 'About Shikshanam'}
-            </CMSText>
-            <CMSText variant="secondary" className="text-xl mb-8 max-w-3xl mx-auto">
-              {content?.hero?.subtitle || 'Preserving and sharing ancient Indian wisdom with the modern world through innovative technology and authentic teaching.'}
-            </CMSText>
-            <div className="flex justify-center space-x-4">
-              <CMSButton variant="primary" elementId="hero-learn">
-                Learn More
-              </CMSButton>
-              <CMSButton variant="secondary" elementId="hero-contact">
-                Contact Us
-              </CMSButton>
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <Users className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  About Page CMS
+                </h1>
+                <p className="text-gray-600 mt-1">
+                  Manage your about page content
+                </p>
+              </div>
             </div>
-          </CMSCard>
-
-          {/* Mission & Vision */}
-          <CMSCard elementId="mission" className="py-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <CMSCard elementId="mission-card" className="p-8">
-                <Target className="w-12 h-12 text-blue-600 mb-4" />
-                <CMSText variant="primary" as="h2" className="text-2xl font-bold mb-4">
-                  {content?.mission?.title || 'Our Mission'}
-                </CMSText>
-                <CMSText variant="secondary">
-                  {content?.mission?.description || 'To make ancient Indian wisdom accessible to everyone through modern technology, authentic teaching, and innovative learning methods.'}
-                </CMSText>
-              </CMSCard>
-              <CMSCard elementId="vision-card" className="p-8">
-                <Lightbulb className="w-12 h-12 text-yellow-600 mb-4" />
-                <CMSText variant="primary" as="h2" className="text-2xl font-bold mb-4">
-                  {content?.vision?.title || 'Our Vision'}
-                </CMSText>
-                <CMSText variant="secondary">
-                  {content?.vision?.description || 'A world where ancient wisdom and modern knowledge work together to create a more enlightened and compassionate society.'}
-                </CMSText>
-              </CMSCard>
+            <div className="flex items-center space-x-3">
+              <Button 
+                variant={previewMode ? "outline" : "default"}
+                onClick={() => setPreviewMode(!previewMode)}
+                className="flex items-center space-x-2"
+              >
+                <Eye className="w-4 h-4" />
+                <span>{previewMode ? 'Edit Mode' : 'Preview Mode'}</span>
+              </Button>
+              <Button 
+                onClick={() => updateContent(content)}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                <Save className="w-4 h-4 mr-2" />
+                Save Changes
+              </Button>
             </div>
-          </CMSCard>
-
-          {/* Values */}
-          <CMSCard elementId="values" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.values?.title || 'Our Core Values'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { icon: BookOpen, title: 'Authenticity', description: 'Preserving the original teachings and traditions' },
-                { icon: Heart, title: 'Compassion', description: 'Serving humanity with love and understanding' },
-                { icon: Shield, title: 'Integrity', description: 'Maintaining the highest ethical standards' },
-                { icon: Globe, title: 'Inclusivity', description: 'Making wisdom accessible to all' },
-                { icon: Lightbulb, title: 'Innovation', description: 'Using technology to enhance learning' },
-                { icon: Award, title: 'Excellence', description: 'Striving for the highest quality in everything' }
-              ].map((value, index) => (
-                <CMSCard key={index} elementId={`value-${index}`} className="text-center p-6">
-                  <value.icon className="w-12 h-12 mx-auto mb-4 text-blue-600" />
-                  <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-2">
-                    {value.title}
-                  </CMSText>
-                  <CMSText variant="secondary">
-                    {value.description}
-                  </CMSText>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* Team */}
-          <CMSCard elementId="team" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.team?.title || 'Meet Our Team'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { name: 'Dr. Priya Sharma', role: 'Founder & CEO', description: 'PhD in Sanskrit Literature' },
-                { name: 'Rajesh Kumar', role: 'Head of Technology', description: '20+ years in EdTech' },
-                { name: 'Meera Patel', role: 'Content Director', description: 'Sanskrit Scholar & Teacher' }
-              ].map((member, index) => (
-                <CMSCard key={index} elementId={`team-${index}`} className="text-center p-6">
-                  <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="w-12 h-12 text-gray-400" />
-                  </div>
-                  <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-1">
-                    {member.name}
-                  </CMSText>
-                  <CMSText variant="accent" className="mb-2">
-                    {member.role}
-                  </CMSText>
-                  <CMSText variant="secondary" className="text-sm">
-                    {member.description}
-                  </CMSText>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* Our Story */}
-          <CMSCard elementId="story" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.story?.title || 'Our Story'}
-            </CMSText>
-            <div className="max-w-4xl mx-auto">
-              <CMSText variant="secondary" className="text-lg leading-relaxed mb-6">
-                {content?.story?.description || 'Shikshanam was born from a simple yet profound realization: the ancient wisdom of India holds timeless truths that can guide us in our modern lives. Founded in 2020, we began as a small team of Sanskrit scholars and technology enthusiasts who believed that the gap between ancient wisdom and modern learning could be bridged.'}
-              </CMSText>
-              <CMSText variant="secondary" className="text-lg leading-relaxed">
-                {content?.story?.journey || 'Today, we serve thousands of learners worldwide, offering authentic Sanskrit education, philosophical insights, and practical wisdom that transforms lives. Our journey continues as we explore new ways to make ancient knowledge accessible to the digital generation.'}
-              </CMSText>
-            </div>
-          </CMSCard>
-
-          {/* Achievements */}
-          <CMSCard elementId="achievements" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.achievements?.title || 'Our Achievements'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { number: '10,000+', label: 'Students Taught' },
-                { number: '50+', label: 'Courses Created' },
-                { number: '25+', label: 'Countries Reached' },
-                { number: '98%', label: 'Satisfaction Rate' }
-              ].map((achievement, index) => (
-                <CMSCard key={index} elementId={`achievement-${index}`} className="text-center p-6">
-                  <CMSText variant="accent" as="h3" className="text-3xl font-bold mb-2">
-                    {achievement.number}
-                  </CMSText>
-                  <CMSText variant="secondary">
-                    {achievement.label}
-                  </CMSText>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* Impact */}
-          <CMSCard elementId="impact" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.impact?.title || 'Our Global Impact'}
-            </CMSText>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <CMSCard elementId="impact-stats" className="p-8">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  By the Numbers
-                </CMSText>
-                <div className="space-y-4">
-                  <div className="flex justify-between">
-                    <CMSText variant="secondary">Students Worldwide</CMSText>
-                    <CMSText variant="accent" className="font-semibold">10,000+</CMSText>
-                  </div>
-                  <div className="flex justify-between">
-                    <CMSText variant="secondary">Courses Completed</CMSText>
-                    <CMSText variant="accent" className="font-semibold">25,000+</CMSText>
-                  </div>
-                  <div className="flex justify-between">
-                    <CMSText variant="secondary">Languages Supported</CMSText>
-                    <CMSText variant="accent" className="font-semibold">8</CMSText>
-                  </div>
-                </div>
-              </CMSCard>
-              <CMSCard elementId="impact-stories" className="p-8">
-                <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-4">
-                  Success Stories
-                </CMSText>
-                <CMSText variant="secondary" className="mb-4">
-                  "Shikshanam helped me connect with my cultural roots while living abroad. The Sanskrit course was life-changing."
-                </CMSText>
-                <CMSText variant="accent" className="font-semibold">
-                  - Priya, Software Engineer in Canada
-                </CMSText>
-              </CMSCard>
-            </div>
-          </CMSCard>
+          </div>
         </div>
-      </UniversalCMS>
+      </div>
+
+      {/* Content Editor */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <Tabs defaultValue="hero" className="w-full">
+          <TabsList className="grid w-full grid-cols-5">
+            {sections.map(section => (
+              <TabsTrigger key={section.id} value={section.id} className="flex items-center space-x-2">
+                <section.icon className="w-4 h-4" />
+                <span>{section.name}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {sections.map(section => (
+            <TabsContent key={section.id} value={section.id} className="mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <section.icon className="w-5 h-5" />
+                    <span>{section.name}</span>
+                  </CardTitle>
+                  <p className="text-muted-foreground">{section.description}</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Title
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        value={content?.[section.id]?.title || ''}
+                        onChange={(e) => {
+                          const newContent = { ...content };
+                          if (!newContent[section.id]) newContent[section.id] = {};
+                          newContent[section.id].title = e.target.value;
+                          updateContent(newContent);
+                        }}
+                        placeholder={`Enter ${section.name} title...`}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Description
+                      </label>
+                      <textarea
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        rows={4}
+                        value={content?.[section.id]?.description || ''}
+                        onChange={(e) => {
+                          const newContent = { ...content };
+                          if (!newContent[section.id]) newContent[section.id] = {};
+                          newContent[section.id].description = e.target.value;
+                          updateContent(newContent);
+                        }}
+                        placeholder={`Enter ${section.name} description...`}
+                      />
+                    </div>
+                    {section.id === 'hero' && (
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Image URL
+                        </label>
+                        <input
+                          type="url"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          value={content?.[section.id]?.imageUrl || ''}
+                          onChange={(e) => {
+                            const newContent = { ...content };
+                            if (!newContent[section.id]) newContent[section.id] = {};
+                            newContent[section.id].imageUrl = e.target.value;
+                            updateContent(newContent);
+                          }}
+                          placeholder="Enter image URL..."
+                        />
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
     </div>
   );
 }
 
 export default function AboutCMSEnhanced() {
   return (
-    <UniversalCMSProvider pageId="about">
-      <AboutCMSContent />
-    </UniversalCMSProvider>
+    <AboutCMSContent />
   );
 }

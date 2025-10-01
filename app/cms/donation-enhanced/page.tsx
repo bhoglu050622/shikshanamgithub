@@ -9,19 +9,17 @@ import {
   HelpCircle, 
   MessageCircle,
   Gift,
-  TrendingUp
+  TrendingUp,
+  RefreshCw,
+  Save,
+  Eye,
+  Settings
 } from 'lucide-react';
 
-import { 
-  UniversalCMSProvider, 
-  UniversalCMS,
-  CMSCard,
-  CMSButton,
-  CMSLink,
-  CMSText,
-  CMSImage,
-  CMSAdminPanel
-} from '@/components/cms/UniversalCMS';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCMSContent } from '@/lib/cms/hooks';
 
 const sections = [
@@ -43,7 +41,7 @@ function DonationCMSContent() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <CMSText variant="secondary">Loading donation content...</CMSText>
+          <p className="text-muted-foreground">Loading donation content...</p>
         </div>
       </div>
     );
@@ -52,202 +50,173 @@ function DonationCMSContent() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <CMSCard className="max-w-md">
+        <Card className="max-w-md">
           <div className="p-6 text-center">
             <div className="text-red-500 mb-4">
               <Heart className="w-12 h-12 mx-auto" />
             </div>
-            <CMSText variant="primary" as="h2" className="text-xl font-semibold mb-2">
+            <h2 className="text-xl font-semibold mb-2 text-red-600">
               Error Loading Content
-            </CMSText>
-            <CMSText variant="secondary" className="mb-4">{error}</CMSText>
-            <CMSButton onClick={() => window.location.reload()}>
+            </h2>
+            <p className="text-muted-foreground mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>
               Try Again
-            </CMSButton>
+            </Button>
           </div>
-        </CMSCard>
+        </Card>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* CMS Admin Panel */}
-      <CMSAdminPanel 
-        pageId="donation"
-        pageTitle="Donation Page"
-        sections={sections}
-      />
-
-      {/* Main CMS Interface */}
-      <UniversalCMS
-        pageId="donation"
-        pageTitle="Donation Page"
-        sections={sections}
-        onUpdate={updateContent}
-      >
-        {/* Preview Content */}
-        <div className="space-y-8">
-          {/* Hero Section */}
-          <CMSCard elementId="hero" className="text-center py-16">
-            <CMSText variant="primary" as="h1" className="text-4xl font-bold mb-4">
-              {content?.hero?.title || 'Support Our Mission'}
-            </CMSText>
-            <CMSText variant="secondary" className="text-xl mb-8">
-              {content?.hero?.subtitle || 'Help us preserve and share ancient Indian wisdom'}
-            </CMSText>
-            <div className="flex justify-center space-x-4">
-              <CMSButton variant="primary" elementId="hero-cta">
-                Donate Now
-              </CMSButton>
-              <CMSButton variant="secondary" elementId="hero-learn">
-                Learn More
-              </CMSButton>
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="p-2 bg-red-100 rounded-lg">
+                <Heart className="w-6 h-6 text-red-600" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Donation Page CMS
+                </h1>
+                <p className="text-gray-600 mt-1">
+                  Manage your donation page content
+                </p>
+              </div>
             </div>
-          </CMSCard>
-
-          {/* Impact Section */}
-          <CMSCard elementId="impact" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.impact?.title || 'Your Impact'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[1, 2, 3].map((item) => (
-                <CMSCard key={item} elementId={`impact-${item}`} className="text-center p-6">
-                  <CMSText variant="accent" as="h3" className="text-2xl font-bold mb-2">
-                    {item === 1 ? '₹50L+' : item === 2 ? '2000+' : '25+'}
-                  </CMSText>
-                  <CMSText variant="secondary">
-                    {item === 1 ? 'Raised' : item === 2 ? 'Supporters' : 'Projects'}
-                  </CMSText>
-                </CMSCard>
-              ))}
+            <div className="flex items-center space-x-3">
+              <Button 
+                variant={previewMode ? "outline" : "default"}
+                onClick={() => setPreviewMode(!previewMode)}
+                className="flex items-center space-x-2"
+              >
+                <Eye className="w-4 h-4" />
+                <span>{previewMode ? 'Edit Mode' : 'Preview Mode'}</span>
+              </Button>
+              <Button 
+                onClick={() => updateContent(content)}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                <Save className="w-4 h-4 mr-2" />
+                Save Changes
+              </Button>
             </div>
-          </CMSCard>
-
-          {/* Causes Section */}
-          <CMSCard elementId="causes" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.causes?.title || 'Support Our Causes'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { title: 'Sanskrit Preservation', description: 'Digitize ancient manuscripts' },
-                { title: 'Teacher Training', description: 'Train rural teachers' },
-                { title: 'Mobile Learning', description: 'Develop learning apps' }
-              ].map((cause, index) => (
-                <CMSCard key={index} elementId={`cause-${index}`} className="p-6">
-                  <CMSText variant="primary" as="h3" className="text-xl font-semibold mb-2">
-                    {cause.title}
-                  </CMSText>
-                  <CMSText variant="secondary" className="mb-4">
-                    {cause.description}
-                  </CMSText>
-                  <CMSButton variant="primary" elementId={`cause-btn-${index}`}>
-                    Support This Cause
-                  </CMSButton>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* Donation Options */}
-          <CMSCard elementId="options" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.options?.title || 'Choose Your Donation'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { amount: '₹500', description: 'Support one student' },
-                { amount: '₹1,000', description: 'Fund one course' },
-                { amount: '₹5,000', description: 'Preserve one manuscript' }
-              ].map((option, index) => (
-                <CMSCard key={index} elementId={`option-${index}`} className="text-center p-6">
-                  <CMSText variant="accent" as="h3" className="text-3xl font-bold mb-2">
-                    {option.amount}
-                  </CMSText>
-                  <CMSText variant="secondary" className="mb-4">
-                    {option.description}
-                  </CMSText>
-                  <CMSButton variant="primary" elementId={`option-btn-${index}`}>
-                    Donate {option.amount}
-                  </CMSButton>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* Testimonials */}
-          <CMSCard elementId="testimonials" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.testimonials?.title || 'What Our Donors Say'}
-            </CMSText>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { name: 'Priya Sharma', quote: 'Supporting Sanskrit preservation has been incredibly rewarding.' },
-                { name: 'Rajesh Kumar', quote: 'The impact of my donation is visible in the community.' }
-              ].map((testimonial, index) => (
-                <CMSCard key={index} elementId={`testimonial-${index}`} className="p-6">
-                  <CMSText variant="secondary" className="mb-4 italic">
-                    "{testimonial.quote}"
-                  </CMSText>
-                  <CMSText variant="primary" className="font-semibold">
-                    - {testimonial.name}
-                  </CMSText>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* FAQ */}
-          <CMSCard elementId="faq" className="py-12">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold text-center mb-8">
-              {content?.faq?.title || 'Frequently Asked Questions'}
-            </CMSText>
-            <div className="space-y-4">
-              {[
-                { question: 'How is my donation used?', answer: 'Your donation directly funds our preservation and education programs.' },
-                { question: 'Is my donation tax-deductible?', answer: 'Yes, we are a registered non-profit organization.' }
-              ].map((faq, index) => (
-                <CMSCard key={index} elementId={`faq-${index}`} className="p-6">
-                  <CMSText variant="primary" as="h3" className="font-semibold mb-2">
-                    {faq.question}
-                  </CMSText>
-                  <CMSText variant="secondary">
-                    {faq.answer}
-                  </CMSText>
-                </CMSCard>
-              ))}
-            </div>
-          </CMSCard>
-
-          {/* Final CTA */}
-          <CMSCard elementId="cta" className="text-center py-16">
-            <CMSText variant="primary" as="h2" className="text-3xl font-bold mb-4">
-              {content?.cta?.title || 'Ready to Make a Difference?'}
-            </CMSText>
-            <CMSText variant="secondary" className="text-xl mb-8">
-              {content?.cta?.subtitle || 'Join thousands of supporters in preserving ancient wisdom'}
-            </CMSText>
-            <div className="flex justify-center space-x-4">
-              <CMSButton variant="primary" elementId="cta-donate">
-                Donate Now
-              </CMSButton>
-              <CMSLink href="/contact" elementId="cta-contact">
-                Contact Us
-              </CMSLink>
-            </div>
-          </CMSCard>
+          </div>
         </div>
-      </UniversalCMS>
+      </div>
+
+      {/* Content Editor */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <Tabs defaultValue="hero" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
+            {sections.map(section => (
+              <TabsTrigger key={section.id} value={section.id} className="flex items-center space-x-2">
+                <section.icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{section.name}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {sections.map(section => (
+            <TabsContent key={section.id} value={section.id} className="mt-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <section.icon className="w-5 h-5" />
+                    <span>{section.name}</span>
+                  </CardTitle>
+                  <p className="text-muted-foreground">{section.description}</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Title
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        value={content?.[section.id]?.title || ''}
+                        onChange={(e) => {
+                          const newContent = { ...content };
+                          if (!newContent[section.id]) newContent[section.id] = {};
+                          newContent[section.id].title = e.target.value;
+                          updateContent(newContent);
+                        }}
+                        placeholder={`Enter ${section.name} title...`}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Description
+                      </label>
+                      <textarea
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        rows={4}
+                        value={content?.[section.id]?.description || ''}
+                        onChange={(e) => {
+                          const newContent = { ...content };
+                          if (!newContent[section.id]) newContent[section.id] = {};
+                          newContent[section.id].description = e.target.value;
+                          updateContent(newContent);
+                        }}
+                        placeholder={`Enter ${section.name} description...`}
+                      />
+                    </div>
+                    {section.id === 'hero' && (
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Image URL
+                        </label>
+                        <input
+                          type="url"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                          value={content?.[section.id]?.imageUrl || ''}
+                          onChange={(e) => {
+                            const newContent = { ...content };
+                            if (!newContent[section.id]) newContent[section.id] = {};
+                            newContent[section.id].imageUrl = e.target.value;
+                            updateContent(newContent);
+                          }}
+                          placeholder="Enter image URL..."
+                        />
+                      </div>
+                    )}
+                    {section.id === 'options' && (
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Donation Amounts (comma-separated)
+                        </label>
+                        <input
+                          type="text"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                          value={content?.[section.id]?.amounts || ''}
+                          onChange={(e) => {
+                            const newContent = { ...content };
+                            if (!newContent[section.id]) newContent[section.id] = {};
+                            newContent[section.id].amounts = e.target.value;
+                            updateContent(newContent);
+                          }}
+                          placeholder="e.g., 25, 50, 100, 250"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
     </div>
   );
 }
 
 export default function DonationCMSEnhanced() {
   return (
-    <UniversalCMSProvider pageId="donation">
-      <DonationCMSContent />
-    </UniversalCMSProvider>
+    <DonationCMSContent />
   );
 }
