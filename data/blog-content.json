@@ -4,50 +4,29 @@
     "subtitle": "Insights, Wisdom, and Learning",
     "description": "Explore our collection of articles, insights, and educational content."
   },
-  "posts": [],
-  "categories": [
+  "posts": [
     {
-      "id": "philosophy",
-      "name": "Philosophy",
-      "description": "Ancient wisdom and philosophical insights"
-    },
-    {
-      "id": "sanskrit",
-      "name": "Sanskrit",
-      "description": "Sanskrit language and literature"
-    },
-    {
-      "id": "courses",
-      "name": "Courses",
-      "description": "Course updates and information"
-    },
-    {
-      "id": "events",
-      "name": "Events",
-      "description": "Workshops and events"
+      "id": "test-post-1",
+      "title": "Test Blog Post",
+      "content": "Test blog content",
+      "author": "Test Author",
+      "date": "2024-01-15",
+      "tags": [
+        "test",
+        "blog"
+      ],
+      "status": "published"
     }
   ],
+  "categories": [
+    "Philosophy",
+    "Sanskrit",
+    "Education"
+  ],
   "tags": [
-    {
-      "id": "vedanta",
-      "name": "Vedanta",
-      "color": "#3B82F6"
-    },
-    {
-      "id": "yoga",
-      "name": "Yoga",
-      "color": "#10B981"
-    },
-    {
-      "id": "sanskrit",
-      "name": "Sanskrit",
-      "color": "#F59E0B"
-    },
-    {
-      "id": "philosophy",
-      "name": "Philosophy",
-      "color": "#8B5CF6"
-    }
+    "ancient-wisdom",
+    "learning",
+    "spirituality"
   ],
   "authors": [
     {
