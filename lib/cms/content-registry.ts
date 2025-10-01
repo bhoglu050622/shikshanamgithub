@@ -491,6 +491,21 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     category: 'main',
     features: ['advanced-hero', 'custom-backgrounds', 'dynamic-content', 'analytics'],
     sections: ['hero', 'features', 'background', 'analytics']
+  },
+
+  // Tools & Assessments
+  gunaProfiler: {
+    id: 'guna-profiler',
+    name: 'Guna Profiler',
+    description: 'Interactive Guna assessment tool and personality profiler',
+    apiEndpoint: '/api/cms/guna-profiler',
+    cmsPath: '/cms/guna-profiler',
+    frontendPath: '/guna-profiler',
+    type: 'GunaProfilerContent',
+    status: 'active',
+    category: 'content',
+    features: ['quiz', 'analysis', 'recommendations', 'color-therapy', 'sharing'],
+    sections: ['hero', 'quiz', 'results', 'analysis', 'recommendations', 'color-therapy']
   }
 };
 
