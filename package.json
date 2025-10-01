@@ -18,7 +18,9 @@
     "devtools": "react-devtools",
     "type-check": "tsc --noEmit",
     "preview": "npm run build && npm run start",
-    "performance-check": "node scripts/performance-check.js"
+    "performance-check": "node scripts/performance-check.js",
+    "cms-test": "node scripts/cms-test-suite.js",
+    "cms-browser-test": "node scripts/cms-browser-test.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

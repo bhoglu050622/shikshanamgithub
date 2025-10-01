@@ -1,0 +1,40 @@
+{
+  "hero": {
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "image": "",
+    "ctaText": "Get This Package",
+    "ctaLink": "/courses/basic"
+  },
+  "courses": {
+    "title": "Included Courses",
+    "description": "",
+    "courseList": []
+  },
+  "pricing": {
+    "title": "Package Pricing",
+    "description": "",
+    "price": 0,
+    "originalPrice": 0,
+    "savings": 0,
+    "features": [],
+    "ctaText": "Get This Package",
+    "ctaLink": "/courses/basic"
+  },
+  "benefits": {
+    "title": "Package Benefits",
+    "description": "",
+    "benefits": []
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "",
+    "testimonials": []
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "",
+    "questions": []
+  }
+}
