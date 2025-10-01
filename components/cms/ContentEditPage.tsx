@@ -34,6 +34,7 @@ import ContributeEditor from './ContributeEditor';
 import DownloadAppEditor from './DownloadAppEditor';
 import FAQEditor from './FAQEditor';
 import { ContentRegistry } from '@/lib/cms/content-registry';
+import UniversalEditor from './UniversalEditor';
 
 interface ContentTypeStatus {
   id: string;
@@ -192,32 +193,8 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
       onChange: (data: any) => updateSectionContent(section, data)
     };
 
-    switch (section) {
-      case 'hero':
-        return <HeroEditor {...editorProps} />;
-      case 'alignYourself':
-        return <AlignYourselfEditor {...editorProps} />;
-      case 'schools':
-        return <SchoolsEditor {...editorProps} />;
-      case 'meetGurus':
-        return <MeetGurusEditor {...editorProps} />;
-      case 'studentStories':
-        return <StudentStoriesEditor {...editorProps} />;
-      case 'testimonials':
-        return <TestimonialsEditor {...editorProps} />;
-      case 'communityPosts':
-        return <CommunityPostsEditor {...editorProps} />;
-      case 'foundersMission':
-        return <FoundersMissionEditor {...editorProps} />;
-      case 'contribute':
-        return <ContributeEditor {...editorProps} />;
-      case 'downloadApp':
-        return <DownloadAppEditor {...editorProps} />;
-      case 'faq':
-        return <FAQEditor {...editorProps} />;
-      default:
-        return <div className="p-4 text-center text-gray-500">Editor not available for this section</div>;
-    }
+    // Use UniversalEditor for all sections - it can handle any content type
+    return <UniversalEditor sectionName={section} {...editorProps} />;
   };
 
   if (loading) {

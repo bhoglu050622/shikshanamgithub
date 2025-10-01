@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "title": "Kashmir Shaivism Course",
+    "subtitle": "The Philosophy of Recognition",
+    "description": "Discover the profound wisdom of Kashmir Shaivism and the path to self-recognition.",
+    "image": "/assets/courses/kashmir-shaivism-hero.jpg",
+    "cta": {
+      "text": "Begin Your Journey",
+      "link": "/enroll/kashmir-shaivism"
+    }
+  },
+  "syllabus": {
+    "title": "Course Syllabus",
+    "description": "Deep dive into Shaivite philosophy and practices",
+    "modules": [
+      {
+        "title": "Foundations of Kashmir Shaivism",
+        "duration": "3 weeks",
+        "topics": ["Historical context", "Key philosophers", "Core concepts"]
+      },
+      {
+        "title": "The Philosophy of Recognition",
+        "duration": "4 weeks",
+        "topics": ["Pratyabhijna philosophy", "Self-recognition", "Consciousness studies"]
+      },
+      {
+        "title": "Practical Applications",
+        "duration": "2 weeks",
+        "topics": ["Meditation techniques", "Daily practices", "Modern relevance"]
+      }
+    ]
+  },
+  "outcomes": {
+    "title": "Learning Outcomes",
+    "description": "Transform your understanding of consciousness",
+    "benefits": [
+      "Understand the nature of consciousness and self",
+      "Learn practical meditation and recognition techniques",
+      "Apply Shaivite wisdom to modern spiritual practice",
+      "Develop deeper self-awareness and inner peace"
+    ]
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "Journey of spiritual awakening",
+    "reviews": [
+      {
+        "name": "Ravi Sharma",
+        "role": "Spiritual Seeker",
+        "text": "This course opened my eyes to the true nature of consciousness."
+      },
+      {
+        "name": "Maria Santos",
+        "role": "Meditation Teacher",
+        "text": "The practical applications of Kashmir Shaivism are profound."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Course Pricing",
+    "description": "Investment in your spiritual growth",
+    "plans": [
+      {
+        "name": "Explorer",
+        "price": "$179",
+        "features": ["Full course access", "Meditation guide", "Community forum"]
+      },
+      {
+        "name": "Seeker",
+        "price": "$349",
+        "features": ["Everything in Explorer", "Live meditation sessions", "Personal guidance"]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Understanding Kashmir Shaivism",
+    "questions": [
+      {
+        "question": "Do I need meditation experience?",
+        "answer": "No, we provide guidance for all levels, from beginners to advanced practitioners."
+      },
+      {
+        "question": "How does this differ from other spiritual courses?",
+        "answer": "Kashmir Shaivism offers unique insights into consciousness and self-recognition that are distinct from other traditions."
+      }
+    ]
+  }
+}
