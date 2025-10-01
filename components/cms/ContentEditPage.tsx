@@ -138,21 +138,18 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
         if (result.success && result.data) {
           setContent(result.data);
         } else {
-          // Use default content if API fails
-          setContent(contentConfig.defaultContent);
+          // Use empty content structure if API fails
+          setContent({});
         }
-      } else {
-        console.warn(`API call failed for ${contentType.id}, using default content`);
-        // Use default content if API fails
-        setContent(contentConfig.defaultContent);
-      }
-    } catch (error) {
-      console.error('Error loading content:', error);
-      // Use default content as fallback
-      const contentConfig = ContentRegistry.getContentType(contentType.id);
-      if (contentConfig) {
-        setContent(contentConfig.defaultContent);
-      }
+        } else {
+          console.warn(`API call failed for ${contentType.id}, using empty content`);
+          // Use empty content structure if API fails
+          setContent({});
+        }
+      } catch (error) {
+        console.error('Error loading content:', error);
+        // Use empty content as fallback
+        setContent({});
     } finally {
       setLoading(false);
     }
@@ -196,12 +193,9 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
   };
 
   const resetContent = () => {
-    const contentConfig = ContentRegistry.getContentType(contentType.id);
-    if (contentConfig) {
-      setContent(contentConfig.defaultContent);
-      setMessage({ type: 'success', text: 'Content reset to default' });
-      setTimeout(() => setMessage(null), 3000);
-    }
+    setContent({});
+    setMessage({ type: 'success', text: 'Content reset to empty' });
+    setTimeout(() => setMessage(null), 3000);
   };
 
   const previewSite = () => {
