@@ -504,12 +504,12 @@ export default function ContentEditModal({
         )}
 
         {/* Action Buttons */}
-        <div className="flex-shrink-0 flex items-center justify-between mb-6">
+        <div className="flex-shrink-0 flex items-center justify-between mb-4 px-1">
           <div className="flex items-center space-x-3">
             <Button 
               onClick={saveContent} 
               disabled={saving || !content}
-              className="bg-saffron-600 hover:bg-saffron-700 text-white"
+              className="bg-saffron-600 hover:bg-saffron-700 text-white px-4 py-2"
             >
               <Save className="w-4 h-4 mr-2" />
               {saving ? 'Saving...' : 'Save Changes'}
@@ -518,6 +518,7 @@ export default function ContentEditModal({
               onClick={resetContent} 
               disabled={saving || !content}
               variant="outline"
+              className="px-4 py-2"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
               Reset
@@ -525,6 +526,7 @@ export default function ContentEditModal({
             <Button 
               onClick={previewSite} 
               variant="outline"
+              className="px-4 py-2"
             >
               <Eye className="w-4 h-4 mr-2" />
               Preview
@@ -533,6 +535,7 @@ export default function ContentEditModal({
               onClick={loadContent} 
               disabled={loading}
               variant="outline"
+              className="px-4 py-2"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
               Refresh
@@ -541,7 +544,7 @@ export default function ContentEditModal({
         </div>
 
         {/* Content Editor */}
-        <div className="flex-1 min-h-0 overflow-hidden relative">
+        <div className="flex-1 min-h-0 overflow-hidden relative bg-gray-50 rounded-lg">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="text-center">
@@ -560,35 +563,35 @@ export default function ContentEditModal({
               </div>
             </div>
           ) : (
-            <div className="h-full flex flex-col min-h-0">
+            <div className="h-full flex flex-col p-4">
               {/* Editor Mode Tabs */}
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
-                <TabsList className="flex-shrink-0">
-                  <TabsTrigger value="visual" className="flex items-center space-x-2">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+                <TabsList className="flex-shrink-0 mb-4 bg-gray-100 p-1 rounded-lg">
+                  <TabsTrigger value="visual" className="flex items-center space-x-2 px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">
                     <Palette className="w-4 h-4" />
                     <span>Visual Editor</span>
                   </TabsTrigger>
-                  <TabsTrigger value="code" className="flex items-center space-x-2">
+                  <TabsTrigger value="code" className="flex items-center space-x-2 px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">
                     <Code className="w-4 h-4" />
                     <span>Code Editor</span>
                   </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="visual" className="flex-1 flex flex-col mt-0 min-h-0">
-                  <div className="flex-1 flex flex-col min-h-0">
-                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col min-h-0">
-                      <TabsList className="flex-shrink-0 overflow-x-auto">
+                <TabsContent value="visual" className="flex-1 flex flex-col mt-4">
+                  <div className="flex-1 flex flex-col">
+                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col">
+                      <TabsList className="flex-shrink-0 overflow-x-auto mb-4 bg-white p-1 rounded-lg border">
                         {contentType.sections.map(section => (
-                          <TabsTrigger key={section} value={section} className="whitespace-nowrap">
+                          <TabsTrigger key={section} value={section} className="whitespace-nowrap px-3 py-2 text-sm data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200">
                             {section.charAt(0).toUpperCase() + section.slice(1)}
                           </TabsTrigger>
                         ))}
                       </TabsList>
                       
-                      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+                      <div className="flex-1 overflow-y-auto">
                         {contentType.sections.map(section => (
-                          <TabsContent key={section} value={section} className="mt-0 p-6">
-                            <div className="w-full">
+                          <TabsContent key={section} value={section} className="mt-0 p-6 bg-white rounded-lg border">
+                            <div className="w-full max-w-none">
                               {getSectionEditor(section)}
                             </div>
                           </TabsContent>
@@ -598,32 +601,34 @@ export default function ContentEditModal({
                   </div>
                 </TabsContent>
 
-                <TabsContent value="code" className="flex-1 flex flex-col mt-0 min-h-0">
-                  <div className="flex-1 flex flex-col min-h-0">
-                    <div className="flex-shrink-0 p-4 border-b bg-gray-50">
-                      <h3 className="text-lg font-semibold">Raw Content (JSON)</h3>
-                      <p className="text-sm text-gray-600 mt-1">
+                <TabsContent value="code" className="flex-1 flex flex-col mt-4">
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex-shrink-0 p-6 border-b bg-gray-50 rounded-t-lg">
+                      <h3 className="text-lg font-semibold text-gray-900">Raw Content (JSON)</h3>
+                      <p className="text-sm text-gray-600 mt-2">
                         Edit the raw JSON content directly. Be careful with syntax.
                       </p>
                     </div>
-                    <div className="flex-1 min-h-0 p-4">
-                      <textarea
-                        className="w-full font-mono text-sm border border-gray-300 rounded-md p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        value={JSON.stringify(content, null, 2)}
-                        onChange={(e) => {
-                          try {
-                            const newContent = JSON.parse(e.target.value);
-                            setContent(newContent);
-                          } catch (error) {
-                            // Invalid JSON, don't update
-                          }
-                        }}
-                        placeholder="Enter JSON content..."
-                        style={{ 
-                          height: '500px',
-                          minHeight: '500px'
-                        }}
-                      />
+                    <div className="flex-1 p-6 bg-white">
+                      <div className="h-full">
+                        <textarea
+                          className="w-full h-full font-mono text-sm border border-gray-300 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50"
+                          value={JSON.stringify(content, null, 2)}
+                          onChange={(e) => {
+                            try {
+                              const newContent = JSON.parse(e.target.value);
+                              setContent(newContent);
+                            } catch (error) {
+                              // Invalid JSON, don't update
+                            }
+                          }}
+                          placeholder="Enter JSON content..."
+                          style={{ 
+                            minHeight: '400px',
+                            height: '400px'
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </TabsContent>
