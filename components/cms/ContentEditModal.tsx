@@ -446,12 +446,12 @@ export default function ContentEditModal({
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="max-w-7xl h-[95vh] flex flex-col overflow-hidden z-[9999]"
+        className="max-w-7xl h-[90vh] flex flex-col overflow-hidden z-[9999]"
         style={{
           display: 'flex',
           flexDirection: 'column',
-          maxHeight: '95vh',
-          height: '95vh',
+          maxHeight: '90vh',
+          height: '90vh',
           overflow: 'hidden',
           position: 'fixed',
           zIndex: 9999,
@@ -560,9 +560,9 @@ export default function ContentEditModal({
               </div>
             </div>
           ) : (
-            <div className="h-full flex flex-col min-h-0 overflow-hidden">
+            <div className="h-full flex flex-col min-h-0">
               {/* Editor Mode Tabs */}
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0 overflow-hidden">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
                 <TabsList className="flex-shrink-0">
                   <TabsTrigger value="visual" className="flex items-center space-x-2">
                     <Palette className="w-4 h-4" />
@@ -574,9 +574,9 @@ export default function ContentEditModal({
                   </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="visual" className="flex-1 flex flex-col mt-0 min-h-0 overflow-hidden">
-                  <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col min-h-0 overflow-hidden">
+                <TabsContent value="visual" className="flex-1 flex flex-col mt-0 min-h-0">
+                  <div className="flex-1 flex flex-col min-h-0">
+                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col min-h-0">
                       <TabsList className="flex-shrink-0 overflow-x-auto">
                         {contentType.sections.map(section => (
                           <TabsTrigger key={section} value={section} className="whitespace-nowrap">
@@ -585,10 +585,10 @@ export default function ContentEditModal({
                         ))}
                       </TabsList>
                       
-                      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0">
+                      <div className="flex-1 overflow-y-auto overflow-x-hidden">
                         {contentType.sections.map(section => (
-                          <TabsContent key={section} value={section} className="mt-0 p-6 min-h-0">
-                            <div className="w-full min-h-0">
+                          <TabsContent key={section} value={section} className="mt-0 p-6">
+                            <div className="w-full">
                               {getSectionEditor(section)}
                             </div>
                           </TabsContent>
@@ -608,7 +608,7 @@ export default function ContentEditModal({
                     </div>
                     <div className="flex-1 min-h-0 p-4">
                       <textarea
-                        className="w-full h-full font-mono text-sm border border-gray-300 rounded-md p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full font-mono text-sm border border-gray-300 rounded-md p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         value={JSON.stringify(content, null, 2)}
                         onChange={(e) => {
                           try {
@@ -620,9 +620,8 @@ export default function ContentEditModal({
                         }}
                         placeholder="Enter JSON content..."
                         style={{ 
-                          minHeight: 'calc(100vh - 400px)',
-                          maxHeight: 'calc(100vh - 400px)',
-                          height: 'calc(100vh - 400px)'
+                          height: '500px',
+                          minHeight: '500px'
                         }}
                       />
                     </div>
