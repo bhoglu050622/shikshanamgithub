@@ -563,9 +563,9 @@ export default function ContentEditModal({
               </div>
             </div>
           ) : (
-            <div className="h-full flex flex-col p-4">
+            <div className="h-full flex flex-col p-4 min-h-0">
               {/* Editor Mode Tabs */}
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col min-h-0">
                 <TabsList className="flex-shrink-0 mb-4 bg-gray-100 p-1 rounded-lg">
                   <TabsTrigger value="visual" className="flex items-center space-x-2 px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-sm">
                     <Palette className="w-4 h-4" />
@@ -577,9 +577,9 @@ export default function ContentEditModal({
                   </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="visual" className="flex-1 flex flex-col">
-                  <div className="flex-1 flex flex-col">
-                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col">
+                <TabsContent value="visual" className="flex-1 flex flex-col min-h-0">
+                  <div className="flex-1 flex flex-col min-h-0">
+                    <Tabs value={activeSection} onValueChange={setActiveSection} className="flex-1 flex flex-col min-h-0">
                       <TabsList className="flex-shrink-0 overflow-x-auto mb-4 bg-white p-1 rounded-lg border">
                         {contentType.sections.map(section => (
                           <TabsTrigger key={section} value={section} className="whitespace-nowrap px-3 py-2 text-sm data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200">
@@ -588,7 +588,7 @@ export default function ContentEditModal({
                         ))}
                       </TabsList>
                       
-                      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+                      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0" style={{ maxHeight: 'calc(100vh - 400px)' }}>
                         {contentType.sections.map(section => (
                           <TabsContent key={section} value={section} className="mt-0 p-6 bg-white rounded-lg border">
                             <div className="w-full">
