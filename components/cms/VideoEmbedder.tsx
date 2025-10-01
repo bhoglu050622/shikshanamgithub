@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,7 +21,6 @@ import {
   AlertCircle,
   Info,
   Youtube,
-  Vimeo,
   Globe
 } from 'lucide-react';
 
@@ -145,7 +145,7 @@ export default function VideoEmbedder({
   const getPlatformIcon = (platform: VideoData['platform']) => {
     switch (platform) {
       case 'youtube': return <Youtube className="w-4 h-4 text-red-600" />;
-      case 'vimeo': return <Vimeo className="w-4 h-4 text-blue-600" />;
+      case 'vimeo': return <Play className="w-4 h-4 text-blue-600" />;
       case 'embed': return <Globe className="w-4 h-4 text-gray-600" />;
       default: return <Video className="w-4 h-4 text-gray-600" />;
     }
@@ -264,9 +264,11 @@ export default function VideoEmbedder({
                       {/* Video Thumbnail/Preview */}
                       <div className="w-32 h-20 bg-gray-100 rounded flex items-center justify-center">
                         {video.platform === 'youtube' ? (
-                          <img
+                          <Image
                             src={`https://img.youtube.com/vi/${extractVideoId(video.url, 'youtube')}/mqdefault.jpg`}
                             alt={video.title}
+                            width={128}
+                            height={80}
                             className="w-full h-full object-cover rounded"
                             onError={(e) => {
                               e.currentTarget.style.display = 'none';
@@ -274,7 +276,7 @@ export default function VideoEmbedder({
                           />
                         ) : video.platform === 'vimeo' ? (
                           <div className="text-center">
-                            <Vimeo className="w-8 h-8 text-blue-600 mx-auto mb-1" />
+                            <Play className="w-8 h-8 text-blue-600 mx-auto mb-1" />
                             <span className="text-xs text-gray-600">Vimeo</span>
                           </div>
                         ) : (
@@ -303,28 +305,24 @@ export default function VideoEmbedder({
                           </div>
                           <div className="flex items-center space-x-1">
                             <Button
-                              size="sm"
                               variant="outline"
                               onClick={() => openVideoInNewTab(video.url)}
                             >
                               <ExternalLink className="w-3 h-3" />
                             </Button>
                             <Button
-                              size="sm"
                               variant="outline"
                               onClick={() => copyEmbedCode(video.embedCode || '')}
                             >
                               <Copy className="w-3 h-3" />
                             </Button>
                             <Button
-                              size="sm"
                               variant="outline"
                               onClick={() => setEditingVideo(video.id)}
                             >
                               <Edit className="w-3 h-3" />
                             </Button>
                             <Button
-                              size="sm"
                               variant="destructive"
                               onClick={() => removeVideo(video.id)}
                             >
@@ -342,7 +340,6 @@ export default function VideoEmbedder({
                                 <Input
                                   value={video.title}
                                   onChange={(e) => updateVideo(video.id, { title: e.target.value })}
-                                  size="sm"
                                 />
                               </div>
                               <div>
@@ -350,20 +347,17 @@ export default function VideoEmbedder({
                                 <Input
                                   value={video.description || ''}
                                   onChange={(e) => updateVideo(video.id, { description: e.target.value })}
-                                  size="sm"
                                 />
                               </div>
                             </div>
                             <div className="flex space-x-2 mt-3">
                               <Button
-                                size="sm"
                                 onClick={() => setEditingVideo(null)}
                               >
                                 <Check className="w-3 h-3 mr-1" />
                                 Save
                               </Button>
                               <Button
-                                size="sm"
                                 variant="outline"
                                 onClick={() => setEditingVideo(null)}
                               >
@@ -379,7 +373,6 @@ export default function VideoEmbedder({
                           <div className="flex items-center justify-between">
                             <span className="text-gray-600">Embed Code:</span>
                             <Button
-                              size="sm"
                               variant="ghost"
                               onClick={() => copyEmbedCode(video.embedCode || '')}
                             >

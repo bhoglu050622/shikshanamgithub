@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Heart, Users, BookOpen, Globe, Target, CheckCircle, Star, ArrowRight, CreditCard, Smartphone, Banknote } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -153,9 +154,11 @@ export default function DonationPage() {
               >
                 <Card className="h-full">
                   <div className="relative h-48">
-                    <img 
+                    <Image 
                       src={cause.image} 
                       alt={cause.title}
+                      width={400}
+                      height={300}
                       className="w-full h-full object-cover rounded-t-lg"
                     />
                   </div>
@@ -304,9 +307,11 @@ export default function DonationPage() {
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
-                      <img 
+                      <Image 
                         src={testimonial.image} 
                         alt={testimonial.name}
+                        width={48}
+                        height={48}
                         className="w-12 h-12 rounded-full object-cover"
                       />
                       <div className="flex-1">

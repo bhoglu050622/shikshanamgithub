@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -270,9 +271,11 @@ export default function ImageUploader({
               {images.map((image) => (
                 <Card key={image.id} className="overflow-hidden">
                   <div className="relative">
-                    <img
+                    <Image
                       src={image.url}
                       alt={image.alt}
+                      width={400}
+                      height={192}
                       className="w-full h-48 object-cover"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
@@ -309,13 +312,11 @@ export default function ImageUploader({
                           value={image.alt}
                           onChange={(e) => updateImage(image.id, { alt: e.target.value })}
                           placeholder="Alt text"
-                          size="sm"
                         />
                         <Input
                           value={image.caption || ''}
                           onChange={(e) => updateImage(image.id, { caption: e.target.value })}
                           placeholder="Caption"
-                          size="sm"
                         />
                         <div className="flex space-x-1">
                           <Button

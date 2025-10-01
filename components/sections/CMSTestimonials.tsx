@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useCMSContent } from '@/lib/cms/hooks'
 
 export default function CMSTestimonials() {
@@ -80,9 +81,11 @@ export default function CMSTestimonials() {
           {content.testimonials?.map((testimonial: any) => (
             <div key={testimonial.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
               <div className="flex items-center mb-4">
-                <img 
+                <Image 
                   src={testimonial.image} 
                   alt={testimonial.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full mr-4 object-cover"
                 />
                 <div>

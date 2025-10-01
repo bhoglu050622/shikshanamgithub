@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -485,9 +486,11 @@ export default function VisualCustomizer({ content, onUpdate, section }: VisualC
                       </div>
                       {image.url && (
                         <div className="mt-4">
-                          <img 
+                          <Image 
                             src={image.url} 
                             alt={image.alt}
+                            width={400}
+                            height={128}
                             className="max-w-full h-32 object-cover rounded"
                             onError={(e) => {
                               e.currentTarget.style.display = 'none';

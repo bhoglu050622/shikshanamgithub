@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -67,7 +68,24 @@ export default function UserFriendlyEditor({ content, onUpdate, section }: UserF
     }
   ];
 
-  const [customization, setCustomization] = useState({
+  const [customization, setCustomization] = useState<{
+    colors: {
+      primary: string;
+      secondary: string;
+      accent: string;
+      background: string;
+      text: string;
+    };
+    text: {
+      fontFamily: string;
+      fontSize: string;
+      lineHeight: string;
+      fontWeight: string;
+    };
+    images: Array<{ url: string; alt: string }>;
+    videos: Array<{ url: string; title: string }>;
+    links: Array<{ url: string; text: string }>;
+  }>({
     colors: {
       primary: '#3b82f6',
       secondary: '#64748b',
@@ -165,13 +183,16 @@ export default function UserFriendlyEditor({ content, onUpdate, section }: UserF
   };
 
   const removeItem = (type: string, index: number) => {
-    const newItems = customization[type as keyof typeof customization].filter((_: any, i: number) => i !== index);
-    const newCustomization = { ...customization, [type]: newItems };
-    setCustomization(newCustomization);
-    onUpdate({
-      ...content,
-      customization: newCustomization
-    });
+    const items = customization[type as keyof typeof customization];
+    if (Array.isArray(items)) {
+      const newItems = items.filter((_: any, i: number) => i !== index);
+      const newCustomization = { ...customization, [type]: newItems };
+      setCustomization(newCustomization);
+      onUpdate({
+        ...content,
+        customization: newCustomization
+      });
+    }
   };
 
   const generateCSS = () => {
@@ -428,9 +449,11 @@ export default function UserFriendlyEditor({ content, onUpdate, section }: UserF
                         <CardContent className="p-4">
                           <div className="flex items-start space-x-4">
                             {image.url && (
-                              <img 
+                              <Image 
                                 src={image.url} 
                                 alt={image.alt}
+                                width={80}
+                                height={80}
                                 className="w-20 h-20 object-cover rounded"
                                 onError={(e) => {
                                   e.currentTarget.style.display = 'none';

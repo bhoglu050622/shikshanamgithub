@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -66,9 +67,11 @@ export default async function BlogPage() {
                   <div className="flex flex-col md:flex-row">
                     {post.featuredImage && (
                       <div className="md:w-1/3">
-                        <img
+                        <Image
                           src={post.featuredImage}
                           alt={post.title}
+                          width={400}
+                          height={300}
                           className="w-full h-48 md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
                         />
                       </div>

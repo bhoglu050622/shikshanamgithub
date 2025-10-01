@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -67,15 +67,6 @@ export default function ContentEditModal({
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [activeSection, setActiveSection] = useState<string>('');
 
-  useEffect(() => {
-    if (isOpen && contentType) {
-      loadContent();
-      // Set first section as active
-      if (contentType.sections.length > 0) {
-        setActiveSection(contentType.sections[0]);
-      }
-    }
-  }, [isOpen, contentType]);
 
   // Trigger layout refresh for Code Editor after mount
   useEffect(() => {
@@ -92,7 +83,7 @@ export default function ContentEditModal({
     }
   }, [isOpen, activeTab]);
 
-  const loadContent = async () => {
+  const loadContent = useCallback(async () => {
     setLoading(true);
     try {
       // Get the full content type configuration
@@ -165,7 +156,17 @@ export default function ContentEditModal({
     } finally {
       setLoading(false);
     }
-  };
+  }, [contentType]);
+
+  useEffect(() => {
+    if (isOpen && contentType) {
+      loadContent();
+      // Set first section as active
+      if (contentType.sections.length > 0) {
+        setActiveSection(contentType.sections[0]);
+      }
+    }
+  }, [isOpen, contentType, loadContent]);
 
   const saveContent = async () => {
     if (!content) return;

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useCMSContent } from '@/lib/cms/hooks'
 
 export default function CMSFoundersMission() {
@@ -51,9 +52,11 @@ export default function CMSFoundersMission() {
         {content.founderName && (
           <div className="text-center">
             <div className="inline-block bg-white rounded-lg shadow-lg p-6">
-              <img 
+              <Image 
                 src={content.image} 
                 alt={content.founderName}
+                width={96}
+                height={96}
                 className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
               />
               <h3 className="text-xl font-bold text-gray-800 mb-2">

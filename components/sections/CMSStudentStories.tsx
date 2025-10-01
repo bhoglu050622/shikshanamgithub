@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useCMSContent } from '@/lib/cms/hooks'
 
 export default function CMSStudentStories() {
@@ -49,9 +50,11 @@ export default function CMSStudentStories() {
           {content.stories?.map((story: any) => (
             <div key={story.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
               <div className="flex items-center mb-4">
-                <img 
+                <Image 
                   src={story.image} 
                   alt={story.name}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 rounded-full mr-4 object-cover"
                 />
                 <div>
