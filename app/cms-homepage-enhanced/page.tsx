@@ -14,7 +14,8 @@ import {
   Eye,
   Save,
   Settings,
-  Wand2
+  Wand2,
+  AlertCircle
 } from 'lucide-react';
 
 import EnhancedCMS from '@/components/cms/EnhancedCMS';
