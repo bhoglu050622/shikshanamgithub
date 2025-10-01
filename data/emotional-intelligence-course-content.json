@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "title": "Emotional Intelligence Course",
+    "subtitle": "Master Your Emotions with Samkhya Darshan",
+    "description": "Learn to understand and manage emotions through ancient wisdom and modern psychology.",
+    "image": "/assets/courses/emotional-intelligence-hero.jpg",
+    "cta": {
+      "text": "Start Your Journey",
+      "link": "/enroll/emotional-intelligence"
+    }
+  },
+  "syllabus": {
+    "title": "Course Syllabus",
+    "description": "Comprehensive curriculum on emotional mastery",
+    "modules": [
+      {
+        "title": "Understanding Emotions",
+        "duration": "2 weeks",
+        "topics": ["Emotion recognition", "Samkhya perspective", "Modern psychology"]
+      },
+      {
+        "title": "Emotional Regulation",
+        "duration": "3 weeks",
+        "topics": ["Self-regulation techniques", "Mindfulness practices", "Ancient wisdom"]
+      },
+      {
+        "title": "Social Intelligence",
+        "duration": "2 weeks",
+        "topics": ["Empathy development", "Relationship skills", "Leadership emotions"]
+      }
+    ]
+  },
+  "outcomes": {
+    "title": "Learning Outcomes",
+    "description": "Transform your emotional intelligence and life",
+    "benefits": [
+      "Master emotional self-awareness and regulation",
+      "Develop empathy and social skills",
+      "Apply ancient wisdom to modern emotional challenges",
+      "Build stronger relationships and leadership abilities"
+    ]
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "Real stories of transformation",
+    "reviews": [
+      {
+        "name": "Lisa Martinez",
+        "role": "Therapist",
+        "text": "This course revolutionized my approach to emotional healing."
+      },
+      {
+        "name": "David Park",
+        "role": "Manager",
+        "text": "The Samkhya perspective on emotions was eye-opening."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Course Pricing",
+    "description": "Investment in your emotional growth",
+    "plans": [
+      {
+        "name": "Self-Paced",
+        "price": "$149",
+        "features": ["Full course access", "Workbook", "Community support"]
+      },
+      {
+        "name": "Guided",
+        "price": "$299",
+        "features": ["Everything in Self-Paced", "Weekly group sessions", "Personal coaching"]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Everything you need to know",
+    "questions": [
+      {
+        "question": "Is this course suitable for beginners?",
+        "answer": "Yes, we start with the fundamentals and build up gradually."
+      },
+      {
+        "question": "How practical is the content?",
+        "answer": "Very practical! We focus on real-world applications and exercises."
+      }
+    ]
+  }
+}
