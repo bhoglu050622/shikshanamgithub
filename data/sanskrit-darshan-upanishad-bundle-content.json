@@ -1,85 +1,29 @@
 {
   "hero": {
-    "title": "Sanskrit + Darshan + Upanishad Bundle",
-    "subtitle": "Complete Learning Journey",
-    "description": "Master Sanskrit language, explore the six Darshanas, and dive deep into Upanishadic wisdom in this comprehensive 7-course bundle.",
-    "image": "/assets/sanskrit-darshan-upanishad-bundle-hero.jpg",
-    "ctaText": "Get This Bundle",
-    "ctaLink": "/courses/sanskrit-darshan-upanishad-bundle"
+    "title": "Test Package Title",
+    "subtitle": "Test Package Subtitle",
+    "description": "Test package description",
+    "ctaText": "Get Package",
+    "ctaLink": "/package"
   },
-  "courses": {
-    "title": "Included Courses",
-    "description": "This comprehensive bundle includes 7 complete courses for a complete learning journey.",
-    "courseList": [
-      {
-        "id": "sanskrit-course",
-        "title": "Complete Sanskrit Course",
-        "description": "Master Sanskrit language from basics to advanced level",
-        "duration": "12 weeks",
-        "level": "All Levels"
-      },
-      {
-        "id": "nyaya-darshan",
-        "title": "Nyaya Darshan",
-        "description": "Logic and reasoning in Indian philosophy",
-        "duration": "6 weeks",
-        "level": "Intermediate"
-      },
-      {
-        "id": "vaisheshik-darshan",
-        "title": "Vaisheshik Darshan",
-        "description": "Philosophy of particularity and atomism",
-        "duration": "6 weeks",
-        "level": "Intermediate"
-      },
-      {
-        "id": "samkhya-darshan",
-        "title": "Samkhya Darshan",
-        "description": "Philosophy of numbers and categories",
-        "duration": "8 weeks",
-        "level": "Intermediate"
-      },
-      {
-        "id": "yoga-darshan",
-        "title": "Yoga Darshan",
-        "description": "Philosophy of union and practice",
-        "duration": "8 weeks",
-        "level": "All Levels"
-      },
-      {
-        "id": "isha-upanishad",
-        "title": "Isha Upanishad",
-        "description": "Ancient wisdom for modern life",
-        "duration": "6 weeks",
-        "level": "All Levels"
-      },
-      {
-        "id": "prashna-upanishad",
-        "title": "Prashna Upanishad",
-        "description": "The questions of life and existence",
-        "duration": "6 weeks",
-        "level": "All Levels"
-      }
-    ]
-  },
+  "courses": [
+    {
+      "name": "Course 1",
+      "description": "Description 1"
+    },
+    {
+      "name": "Course 2",
+      "description": "Description 2"
+    }
+  ],
   "pricing": {
-    "title": "Bundle Pricing",
-    "description": "Get all 7 courses at a special bundle price with massive savings.",
-    "price": 7399,
-    "originalPrice": 12000,
-    "savings": 4601,
+    "price": 299,
+    "currency": "USD",
     "features": [
-      "7 Complete Courses",
-      "Sanskrit Language Mastery",
-      "All 6 Darshanas",
-      "Upanishadic Wisdom",
-      "Certificate of Completion",
-      "Lifetime Access",
-      "Live Q&A Sessions",
-      "Downloadable Materials"
-    ],
-    "ctaText": "Get This Bundle",
-    "ctaLink": "/courses/sanskrit-darshan-upanishad-bundle"
+      "Feature 1",
+      "Feature 2",
+      "Feature 3"
+    ]
   },
   "benefits": {
     "title": "Bundle Benefits",

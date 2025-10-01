@@ -1,0 +1,141 @@
+{
+  "hero": {
+    "title": "Events & Workshops",
+    "subtitle": "Join our live sessions and interactive workshops",
+    "description": "Participate in live events, workshops, and interactive sessions to deepen your understanding of ancient Indian wisdom.",
+    "image": "/images/events/hero-events.jpg",
+    "ctaText": "View All Events",
+    "ctaLink": "/events"
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "description": "Join our upcoming live sessions and workshops",
+    "eventList": [
+      {
+        "id": "event-1",
+        "title": "Sanskrit Pronunciation Workshop",
+        "date": "2024-02-15",
+        "time": "7:00 PM IST",
+        "duration": "2 hours",
+        "type": "Workshop",
+        "level": "Beginner",
+        "description": "Learn proper Sanskrit pronunciation with expert guidance",
+        "instructor": "Dr. Rajesh Kumar",
+        "maxParticipants": 50,
+        "price": 29,
+        "currency": "USD",
+        "status": "upcoming"
+      },
+      {
+        "id": "event-2",
+        "title": "Introduction to Samkhya Philosophy",
+        "date": "2024-02-20",
+        "time": "6:00 PM IST",
+        "duration": "1.5 hours",
+        "type": "Lecture",
+        "level": "Intermediate",
+        "description": "Explore the analytical philosophy of Samkhya",
+        "instructor": "Prof. Sarah Johnson",
+        "maxParticipants": 100,
+        "price": 19,
+        "currency": "USD",
+        "status": "upcoming"
+      },
+      {
+        "id": "event-3",
+        "title": "Yoga Philosophy Deep Dive",
+        "date": "2024-02-25",
+        "time": "8:00 PM IST",
+        "duration": "2.5 hours",
+        "type": "Workshop",
+        "level": "Advanced",
+        "description": "Deep dive into the philosophical foundations of Yoga",
+        "instructor": "Acharya Jamwant Ji",
+        "maxParticipants": 30,
+        "price": 49,
+        "currency": "USD",
+        "status": "upcoming"
+      }
+    ]
+  },
+  "workshops": {
+    "title": "Regular Workshops",
+    "description": "Our ongoing workshop series for continuous learning",
+    "workshopList": [
+      {
+        "id": "workshop-1",
+        "title": "Weekly Sanskrit Study Group",
+        "schedule": "Every Sunday",
+        "time": "10:00 AM IST",
+        "duration": "1 hour",
+        "type": "Study Group",
+        "level": "All Levels",
+        "description": "Join our weekly Sanskrit study group for consistent practice",
+        "instructor": "Dr. Rajesh Kumar",
+        "maxParticipants": 25,
+        "price": 0,
+        "currency": "USD",
+        "status": "ongoing"
+      },
+      {
+        "id": "workshop-2",
+        "title": "Philosophy Discussion Circle",
+        "schedule": "Every Wednesday",
+        "time": "7:00 PM IST",
+        "duration": "1.5 hours",
+        "type": "Discussion",
+        "level": "Intermediate",
+        "description": "Engage in philosophical discussions and debates",
+        "instructor": "Prof. Sarah Johnson",
+        "maxParticipants": 20,
+        "price": 0,
+        "currency": "USD",
+        "status": "ongoing"
+      }
+    ]
+  },
+  "schedule": {
+    "title": "Event Schedule",
+    "description": "Plan your learning journey with our structured schedule",
+    "calendar": {
+      "currentMonth": "February 2024",
+      "events": [
+        {
+          "date": "2024-02-15",
+          "events": [
+            "Sanskrit Pronunciation Workshop"
+          ]
+        },
+        {
+          "date": "2024-02-20",
+          "events": [
+            "Introduction to Samkhya Philosophy"
+          ]
+        },
+        {
+          "date": "2024-02-25",
+          "events": [
+            "Yoga Philosophy Deep Dive"
+          ]
+        }
+      ]
+    }
+  },
+  "registration": {
+    "title": "Event Registration",
+    "description": "Register for events and workshops",
+    "process": [
+      "Select your desired event or workshop",
+      "Choose your preferred time slot",
+      "Complete the registration form",
+      "Make payment if required",
+      "Receive confirmation and access details"
+    ],
+    "requirements": [
+      "Valid email address",
+      "Stable internet connection",
+      "Zoom or similar video conferencing software",
+      "Notebook for taking notes"
+    ]
+  }
+}
