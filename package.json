@@ -21,7 +21,10 @@
     "performance-check": "node scripts/performance-check.js",
     "cms-test": "node scripts/cms-test-suite.js",
     "cms-browser-test": "node scripts/cms-browser-test.js",
-    "cms-courses-test": "node scripts/cms-courses-packages-blogs-test.js"
+    "cms-courses-test": "node scripts/cms-courses-packages-blogs-test.js",
+    "test:cms-components": "node scripts/test-cms-components.js",
+    "cms-integration": "echo 'CMS Integration Guide available at CMS_INTEGRATION_GUIDE.md'",
+    "brand-customization": "echo 'Brand customization system available in lib/cms/brand-customization.ts'"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
