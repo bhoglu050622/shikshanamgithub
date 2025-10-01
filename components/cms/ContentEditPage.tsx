@@ -33,6 +33,34 @@ import FoundersMissionEditor from './FoundersMissionEditor';
 import ContributeEditor from './ContributeEditor';
 import DownloadAppEditor from './DownloadAppEditor';
 import FAQEditor from './FAQEditor';
+
+// Import About editors
+import AboutHeroEditor from './AboutHeroEditor';
+import AboutMissionEditor from './AboutMissionEditor';
+import AboutValuesEditor from './AboutValuesEditor';
+import AboutOfferingsEditor from './AboutOfferingsEditor';
+import AboutCTAEditor from './AboutCTAEditor';
+
+// Import Contact editors
+import ContactHeroEditor from './ContactHeroEditor';
+import ContactFormEditor from './ContactFormEditor';
+import ContactInfoEditor from './ContactInfoEditor';
+import ContactQuickHelpEditor from './ContactQuickHelpEditor';
+
+// Import Donation editors
+import DonationHeroEditor from './DonationHeroEditor';
+import DonationImpactEditor from './DonationImpactEditor';
+import DonationCausesEditor from './DonationCausesEditor';
+import DonationOptionsEditor from './DonationOptionsEditor';
+import DonationTestimonialsEditor from './DonationTestimonialsEditor';
+import DonationFAQEditor from './DonationFAQEditor';
+import DonationCTAEditor from './DonationCTAEditor';
+
+// Import Schools editors
+import SchoolsHeroEditor from './SchoolsHeroEditor';
+import SchoolsListEditor from './SchoolsListEditor';
+import SchoolsCTAEditor from './SchoolsCTAEditor';
+
 import { ContentRegistry } from '@/lib/cms/content-registry';
 import UniversalEditor from './UniversalEditor';
 
