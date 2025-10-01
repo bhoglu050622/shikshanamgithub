@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -52,7 +52,7 @@ export default function LivePreview({
     mobile: { width: '375px', height: '667px' }
   };
 
-  const refreshPreview = async () => {
+  const refreshPreview = useCallback(async () => {
     if (onRefresh) {
       onRefresh();
     }
@@ -72,7 +72,7 @@ export default function LivePreview({
     }
     
     setTimeout(() => setIsLoading(false), 1000);
-  };
+  }, [onRefresh]);
 
   useEffect(() => {
     if (isAutoRefresh) {
@@ -89,7 +89,7 @@ export default function LivePreview({
         clearInterval(refreshIntervalRef.current);
       }
     };
-  }, [isAutoRefresh, refreshInterval]);
+  }, [isAutoRefresh, refreshInterval, refreshPreview]);
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);

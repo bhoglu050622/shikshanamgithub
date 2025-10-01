@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { UniversalCMSProvider, useUniversalCMS } from './UniversalCMS';
 
 // Higher-order component to wrap any page with CMS capabilities
@@ -144,11 +145,11 @@ export const CMSImage: React.FC<{
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
-      <img 
+      <Image 
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={width || 400}
+        height={height || 300}
         className={`universal-cms-image ${cmsClassName} ${className}`}
       />
     </>

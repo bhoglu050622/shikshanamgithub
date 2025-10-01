@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Star, MapPin, Calendar, Award } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import ugcData from '@/data/ugc_content.json'
@@ -68,9 +69,11 @@ export default function StudentStoriesSection({
                   {/* Student Image */}
                   <div className="relative mb-6">
                     <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-saffron-400 to-golden-olive overflow-hidden shadow-lg">
-                      <img
+                      <Image
                         src={story.image}
                         alt={story.name}
+                        width={80}
+                        height={80}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;

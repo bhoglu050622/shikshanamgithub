@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useCMSContent } from '@/lib/cms/hooks'
 
 export default function CMSMeetGurus() {
@@ -49,9 +50,11 @@ export default function CMSMeetGurus() {
           {content.gurus?.map((guru: any) => (
             <div key={guru.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
               <div className="text-center">
-                <img 
+                <Image 
                   src={guru.image} 
                   alt={guru.name}
+                  width={96}
+                  height={96}
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="text-xl font-bold text-gray-800 mb-2">

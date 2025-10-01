@@ -154,9 +154,9 @@ function CMSToggle() {
           onClick={() => {
             const elements = document.querySelectorAll('[data-cms-element]');
             elements.forEach(el => {
-              el.style.outline = '2px solid #10b981';
+              (el as HTMLElement).style.outline = '2px solid #10b981';
               setTimeout(() => {
-                el.style.outline = '';
+                (el as HTMLElement).style.outline = '';
               }, 2000);
             });
           }}

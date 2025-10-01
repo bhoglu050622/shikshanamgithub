@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -89,15 +89,6 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [activeSection, setActiveSection] = useState<string>('');
 
-  useEffect(() => {
-    if (contentType) {
-      loadContent();
-      // Set first section as active
-      if (contentType.sections.length > 0) {
-        setActiveSection(contentType.sections[0]);
-      }
-    }
-  }, [contentType]);
 
   // Trigger layout refresh for Code Editor after mount
   useEffect(() => {
@@ -114,7 +105,7 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
     }
   }, [activeTab]);
 
-  const loadContent = async () => {
+  const loadContent = useCallback(async () => {
     setLoading(true);
     try {
       // Get the full content type configuration
@@ -153,7 +144,17 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [contentType]);
+
+  useEffect(() => {
+    if (contentType) {
+      loadContent();
+      // Set first section as active
+      if (contentType.sections.length > 0) {
+        setActiveSection(contentType.sections[0]);
+      }
+    }
+  }, [contentType, loadContent]);
 
   const saveContent = async () => {
     if (!content) return;
@@ -212,7 +213,8 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
   const getSectionEditor = (section: string) => {
     const editorProps = {
       content: content?.[section] || {},
-      onChange: (data: any) => updateSectionContent(section, data)
+      onChange: (data: any) => updateSectionContent(section, data),
+      onUpdate: (data: any) => updateSectionContent(section, data)
     };
 
     // Use specific editors where available, UniversalEditor as fallback

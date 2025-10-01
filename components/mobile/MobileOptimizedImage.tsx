@@ -95,15 +95,16 @@ export function MobileOptimizedImage({
     if (!deviceInfo || !networkInfo) return;
 
     let optimizedSrc = src;
+    let adjustedQuality = quality;
 
     // Adjust quality based on network speed
     if (isSlowConnection()) {
-      quality = Math.min(quality, 50);
+      adjustedQuality = Math.min(adjustedQuality, 50);
     }
 
     // Adjust quality based on device pixel ratio
     if (deviceInfo.devicePixelRatio > 2) {
-      quality = Math.min(quality + 10, 90);
+      adjustedQuality = Math.min(adjustedQuality + 10, 90);
     }
 
     // Use WebP format if supported
