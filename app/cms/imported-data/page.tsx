@@ -241,7 +241,7 @@ export default function ImportedDataPage() {
               <h1 className="text-2xl font-bold text-gray-900">Imported Data Management</h1>
             </div>
             <div className="flex space-x-2">
-              <Button variant="default" onClick={runDataImport}>
+              <Button variant="primary" onClick={runDataImport}>
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Re-import Data
               </Button>
