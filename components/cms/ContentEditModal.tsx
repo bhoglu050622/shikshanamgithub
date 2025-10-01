@@ -588,7 +588,7 @@ export default function ContentEditModal({
                         ))}
                       </TabsList>
                       
-                      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0" style={{ maxHeight: 'calc(100vh - 400px)' }}>
+                      <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0">
                         {contentType.sections.map(section => (
                           <TabsContent key={section} value={section} className="mt-0 p-6 bg-white rounded-lg border">
                             <div className="w-full">
