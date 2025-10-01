@@ -193,7 +193,6 @@ const editorComponents = [
   'components/cms/GlobalContentSearch.tsx',
   'components/cms/SmartContentManager.tsx',
   'components/cms/AutoSaveIndicator.tsx',
-  'components/cms/ContentPreviewTest.tsx'
 ];
 
 editorComponents.forEach(component => {
