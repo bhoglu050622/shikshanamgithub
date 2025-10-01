@@ -11,7 +11,7 @@ const defaultPackageContent = {
     description: 'Dive deep into the six schools of Hindu philosophy and the profound wisdom of the Upanishads. This comprehensive bundle offers a complete understanding of Hindu philosophical traditions.',
     image: '/images/packages/hindu-philosophies-upanishads-bundle.jpg',
     ctaText: 'Get This Bundle',
-    ctaLink: '/courses/hindu-philosophies-upanishads-bundle'
+    ctaLink: '/packages/hindu-philosophies-upanishads-bundle'
   },
   courses: {
     title: 'Included Courses',
@@ -78,7 +78,7 @@ const defaultPackageContent = {
       'Expert guidance'
     ],
     ctaText: 'Get This Bundle',
-    ctaLink: '/courses/hindu-philosophies-upanishads-bundle'
+    ctaLink: '/packages/hindu-philosophies-upanishads-bundle'
   },
   benefits: {
     title: 'Why Choose This Bundle?',

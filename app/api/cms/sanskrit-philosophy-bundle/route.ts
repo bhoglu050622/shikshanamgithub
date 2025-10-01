@@ -11,7 +11,7 @@ const defaultPackageContent = {
     description: 'Master Sanskrit language while exploring the profound wisdom of Hindu philosophical traditions. This comprehensive bundle combines linguistic excellence with philosophical depth.',
     image: '/images/packages/sanskrit-philosophy-bundle.jpg',
     ctaText: 'Get This Bundle',
-    ctaLink: '/courses/sanskrit-philosophy-bundle'
+    ctaLink: '/packages/sanskrit-philosophy-bundle'
   },
   courses: {
     title: 'Included Courses',
@@ -63,7 +63,7 @@ const defaultPackageContent = {
       'Community support'
     ],
     ctaText: 'Get This Bundle',
-    ctaLink: '/courses/sanskrit-philosophy-bundle'
+    ctaLink: '/packages/sanskrit-philosophy-bundle'
   },
   benefits: {
     title: 'Why Choose This Bundle?',
