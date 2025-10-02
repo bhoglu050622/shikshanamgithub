@@ -23,6 +23,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import EnhancedCodeEditor from '@/components/cms/EnhancedCodeEditor';
+import { useGitHubChanges, createFormChanges, getEditorInfo } from '@/lib/hooks/useGitHubChanges';
 
 interface PackageData {
   id: string;
@@ -74,6 +75,15 @@ export default function PackageEditorPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [originalData, setOriginalData] = useState<PackageData | null>(null);
+
+  // GitHub changes tracking
+  const { trackUpdate } = useGitHubChanges({
+    contentType: 'package',
+    contentId: packageId,
+    editor: getEditorInfo(),
+    enabled: process.env.NODE_ENV === 'production'
+  });
 
   const loadPackageData = useCallback(async () => {
     setLoading(true);
@@ -83,6 +93,7 @@ export default function PackageEditorPage() {
       
       if (result.success) {
         setPackageData(result.data);
+        setOriginalData(result.data);
       } else {
         setMessage({ type: 'error', text: result.error || 'Failed to load package data' });
       }
@@ -103,6 +114,16 @@ export default function PackageEditorPage() {
     
     setSaving(true);
     try {
+      // Track changes to GitHub
+      if (originalData) {
+        const changes = createFormChanges(originalData, packageData);
+        if (changes.length > 0) {
+          await trackUpdate(changes, {
+            userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : undefined
+          });
+        }
+      }
+
       const response = await fetch(`/api/cms/package/${packageId}`, {
         method: 'PUT',
         headers: {
@@ -116,6 +137,8 @@ export default function PackageEditorPage() {
       if (result.success) {
         setMessage({ type: 'success', text: 'Package updated successfully!' });
         setTimeout(() => setMessage(null), 3000);
+        // Update original data after successful save
+        setOriginalData(packageData);
       } else {
         setMessage({ type: 'error', text: result.error || 'Failed to update package' });
       }
