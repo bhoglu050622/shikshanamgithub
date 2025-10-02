@@ -96,6 +96,8 @@ export default function RevampedCMSDashboard({
     totalCourses: 0,
     totalPackages: 0
   });
+  const [analyticsData, setAnalyticsData] = useState<any>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
 
   // Toggle expanded state for dropdowns
   const toggleExpanded = (itemId: string) => {
@@ -389,20 +391,60 @@ export default function RevampedCMSDashboard({
     }
   };
 
-  // Calculate stats
+  // Load real-time analytics data
+  const loadAnalyticsData = async () => {
+    setAnalyticsLoading(true);
+    try {
+      const response = await fetch('/api/cms/analytics', {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setAnalyticsData(data);
+        
+        // Update stats with real analytics data
+        setStats({
+          totalContent: data.contentTypes.length,
+          totalViews: data.performance.totalViews,
+          totalCourses: data.contentTypes.filter((ct: any) => ct.type === 'course').length,
+          totalPackages: data.contentTypes.filter((ct: any) => ct.type === 'package').length
+        });
+      }
+    } catch (error) {
+      console.error('Error loading analytics:', error);
+    } finally {
+      setAnalyticsLoading(false);
+    }
+  };
+
+  // Calculate stats (fallback)
   useEffect(() => {
-    setStats({
-      totalContent: contentTypes.length,
-      totalViews: contentTypes.reduce((sum, content) => sum + content.views, 0),
-      totalCourses: coursesData.length,
-      totalPackages: packagesData.length
-    });
-  }, [coursesData, packagesData, contentTypes]);
+    if (!analyticsData) {
+      setStats({
+        totalContent: contentTypes.length,
+        totalViews: contentTypes.reduce((sum, content) => sum + content.views, 0),
+        totalCourses: coursesData.length,
+        totalPackages: packagesData.length
+      });
+    }
+  }, [coursesData, packagesData, contentTypes, analyticsData]);
 
   // Fetch data on component mount
   useEffect(() => {
     fetchCourses();
     fetchPackages();
+    loadAnalyticsData(); // Load real-time analytics
+  }, []);
+
+  // Auto-refresh analytics every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadAnalyticsData();
+    }, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleContentAction = (contentId: string, action: string) => {
@@ -490,20 +532,32 @@ export default function RevampedCMSDashboard({
                   Your comprehensive dashboard for managing all website content, courses, and packages with powerful analytics and intuitive controls.
                 </p>
                 
-                {/* Status Indicators */}
+                {/* Real-Time Status Indicators */}
                 <div className="flex items-center gap-8">
                   <div className="flex items-center gap-3 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium">All systems operational</span>
+                    <div className={`w-3 h-3 rounded-full ${analyticsLoading ? 'bg-yellow-400' : 'bg-green-400 animate-pulse'}`}></div>
+                    <span className="text-sm font-medium">
+                      {analyticsLoading ? 'Loading Analytics...' : 'Real-time Analytics Active'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
                     <Clock className="h-4 w-4" />
-                    <span className="text-sm">Last updated: {new Date().toLocaleTimeString()}</span>
+                    <span className="text-sm">Auto-refresh: 30s</span>
                   </div>
                   <div className="flex items-center gap-3 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
                     <TrendingUp className="h-4 w-4" />
-                    <span className="text-sm">+12% growth this month</span>
+                    <span className="text-sm">
+                      {analyticsData ? `${analyticsData.contentTypes.length} content items` : 'Loading data...'}
+                    </span>
                   </div>
+                  {analyticsData && (
+                    <div className="flex items-center gap-3 bg-white/10 rounded-full px-4 py-2 backdrop-blur-sm">
+                      <BarChart3 className="h-4 w-4" />
+                      <span className="text-sm">
+                        {analyticsData.performance.totalViews.toLocaleString()} total views
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
               
@@ -512,15 +566,19 @@ export default function RevampedCMSDashboard({
                 <Button 
                   variant="outline" 
                   className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105" 
-                  onClick={() => {
-                    setLoading(true);
-                    fetchCourses();
-                    fetchPackages();
-                    setTimeout(() => setLoading(false), 1000);
-                  }}
+                  onClick={loadAnalyticsData}
+                  disabled={analyticsLoading}
                 >
-                  <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-                  Refresh All
+                  <RefreshCw className={`h-4 w-4 mr-2 ${analyticsLoading ? 'animate-spin' : ''}`} />
+                  {analyticsLoading ? 'Loading Analytics...' : 'Refresh Analytics'}
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                  onClick={() => router.push('/cms/analytics')}
+                >
+                  <BarChart3 className="h-4 w-4 mr-2" />
+                  Full Analytics
                 </Button>
                 <Button className="bg-white text-purple-600 hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg">
                   <Plus className="h-4 w-4 mr-2" />
@@ -651,7 +709,7 @@ export default function RevampedCMSDashboard({
               {/* View Toggle */}
               <div className="flex items-center bg-gray-100 rounded-lg p-1">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  variant={viewMode === 'grid' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
                   className="rounded-md"
@@ -660,7 +718,7 @@ export default function RevampedCMSDashboard({
                   Grid
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  variant={viewMode === 'list' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setViewMode('list')}
                   className="rounded-md"
