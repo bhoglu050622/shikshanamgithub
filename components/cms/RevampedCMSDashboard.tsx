@@ -461,7 +461,7 @@ export default function RevampedCMSDashboard({
         if (onEditContent) {
           onEditContent(contentId);
         } else {
-          router.push(`/cms/edit/${contentId}`);
+          router.push(`/cms/${contentId}`);
         }
         break;
       case 'preview':
@@ -717,7 +717,7 @@ export default function RevampedCMSDashboard({
               {/* View Toggle */}
               <div className="flex items-center bg-gray-100 rounded-lg p-1">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'secondary'}
+                  variant={viewMode === 'grid' ? 'primary' : 'secondary'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
                   className="rounded-md"
@@ -726,7 +726,7 @@ export default function RevampedCMSDashboard({
                   Grid
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'secondary'}
+                  variant={viewMode === 'list' ? 'primary' : 'secondary'}
                   size="sm"
                   onClick={() => setViewMode('list')}
                   className="rounded-md"

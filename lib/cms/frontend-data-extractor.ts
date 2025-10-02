@@ -885,8 +885,8 @@ export const frontendCourses = {
 
 // Package data from actual frontend pages
 export const frontendPackages = {
-  'sanskrit-basics': {
-    id: 'sanskrit-basics',
+  'sanskrit-basics-package': {
+    id: 'sanskrit-basics-package',
     title: 'Sanskrit Basics Package',
     subtitle: 'Complete introduction to Sanskrit language and grammar',
     description: 'Master the fundamentals of Sanskrit with interactive lessons, pronunciation guides, and expert guidance from Sanskrit scholars.',

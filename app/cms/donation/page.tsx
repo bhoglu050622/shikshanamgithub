@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Save, RotateCcw, Eye, Heart, Code } from 'lucide-react'
+import EnhancedCodeEditor from '@/components/cms/EnhancedCodeEditor'
 
 export default function DonationCMSAdmin() {
   const [content, setContent] = useState<DonationContent | null>(null)
@@ -154,27 +155,26 @@ export default function DonationCMSAdmin() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <Textarea
-                    value={JSON.stringify(content, null, 2)}
-                    onChange={(e) => {
-                      try {
-                        const parsed = JSON.parse(e.target.value);
-                        setContent(parsed);
-                      } catch (error) {
-                        // Invalid JSON, don't update
-                        console.error('Invalid JSON:', error);
-                      }
-                    }}
-                    placeholder="Edit JSON content directly..."
-                    rows={25}
-                    className="font-mono text-sm bg-gray-50"
-                  />
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>{JSON.stringify(content, null, 2).length} characters</span>
-                    <span>Edit carefully - changes are saved when you click Save All</span>
-                  </div>
-                </div>
+                <EnhancedCodeEditor
+                  value={JSON.stringify(content, null, 2)}
+                  onChange={(value) => {
+                    try {
+                      const parsed = JSON.parse(value);
+                      setContent(parsed);
+                    } catch (error) {
+                      // Invalid JSON, don't update
+                      console.error('Invalid JSON:', error);
+                    }
+                  }}
+                  onSave={() => content && saveContent(content)}
+                  language="json"
+                  height="600px"
+                  placeholder="Edit JSON content directly..."
+                  enableSearch={true}
+                  enableUndoRedo={true}
+                  enableAutoFormat={true}
+                  showLineNumbers={true}
+                />
               </CardContent>
             </Card>
         </div>

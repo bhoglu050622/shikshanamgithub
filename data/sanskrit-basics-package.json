@@ -1,0 +1,92 @@
+{
+  "id": "sanskrit-basics",
+  "title": "Sanskrit Basics Package",
+  "subtitle": "Complete introduction to Sanskrit language and grammar",
+  "description": "Master the fundamentals of Sanskrit with interactive lessons, pronunciation guides, and expert guidance from Sanskrit scholars.",
+  "price": "₹4,999",
+  "originalPrice": "₹7,999",
+  "discount": "37%",
+  "duration": "3 months",
+  "level": "Beginner",
+  "rating": 4.9,
+  "reviewCount": 45,
+  "type": "Premium Package",
+  "status": "available",
+  "checkoutLink": "https://courses.shikshanam.in/checkout/sanskrit-basics",
+  "contactNumber": "9910032165",
+  "features": [
+    "Interactive Sanskrit lessons with audio pronunciation",
+    "Complete grammar foundation from basics to intermediate",
+    "Devanagari script mastery with writing exercises",
+    "Vocabulary building with 1000+ essential words",
+    "Live Q&A sessions with Sanskrit scholars",
+    "Certificate of completion upon finishing"
+  ],
+  "benefits": [
+    "Master Sanskrit script and pronunciation",
+    "Understand Sanskrit grammar fundamentals",
+    "Build vocabulary for reading classical texts",
+    "Develop confidence in Sanskrit conversation",
+    "Access to exclusive Sanskrit learning community"
+  ],
+  "courses": [
+    {
+      "id": "sanskrit-alphabet",
+      "name": "Sanskrit Alphabet & Script",
+      "description": "Learn Devanagari script and pronunciation",
+      "duration": "2 weeks",
+      "level": "Beginner"
+    },
+    {
+      "id": "sanskrit-grammar-basics",
+      "name": "Grammar Fundamentals",
+      "description": "Essential Sanskrit grammar concepts",
+      "duration": "4 weeks",
+      "level": "Beginner"
+    },
+    {
+      "id": "sanskrit-vocabulary",
+      "name": "Vocabulary Building",
+      "description": "Essential Sanskrit words and phrases",
+      "duration": "3 weeks",
+      "level": "Beginner"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Dr. Sarah Johnson",
+      "role": "Linguistics Professor",
+      "content": "This course provides an excellent foundation in Sanskrit. The interactive lessons make learning enjoyable and effective.",
+      "rating": 5
+    },
+    {
+      "name": "Michael Chen",
+      "role": "Yoga Teacher",
+      "content": "Learning Sanskrit has deepened my understanding of yoga philosophy. The course structure is perfect for beginners.",
+      "rating": 5
+    },
+    {
+      "name": "Priya Sharma",
+      "role": "Student",
+      "content": "The pronunciation guides and interactive exercises made Sanskrit accessible. Highly recommended!",
+      "rating": 5
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need any prior knowledge of Sanskrit?",
+      "answer": "No prior knowledge is required. This package is designed for complete beginners."
+    },
+    {
+      "question": "How long does it take to complete?",
+      "answer": "The package is designed to be completed in 3 months with regular study, but you have lifetime access."
+    },
+    {
+      "question": "Will I get a certificate?",
+      "answer": "Yes, you will receive a certificate of completion upon finishing all courses in the package."
+    }
+  ],
+  "lastModified": "2024-01-15T10:30:00Z",
+  "views": 1250,
+  "popularity": 85
+}

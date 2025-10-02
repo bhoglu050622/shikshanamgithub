@@ -140,18 +140,18 @@ function getRealCoursesAndPackagesData() {
   return courses.map(item => ({
     id: item.id,
     name: item.data.title || item.id,
-    views: item.data.views || 0,
+    views: (item.data as any).views || 0,
     edits: 0, // Real edit tracking would require a database
-    lastModified: item.data.lastModified || new Date().toISOString(),
+    lastModified: (item.data as any).lastModified || new Date().toISOString(),
     status: item.data.status === 'available' ? 'active' : 'inactive',
     engagement: Math.floor((item.data.rating || 0) * 20),
     type: 'course'
   })).concat(packages.map(item => ({
     id: item.id,
     name: item.data.title || item.id,
-    views: item.data.views || 0,
+    views: (item.data as any).views || 0,
     edits: 0,
-    lastModified: item.data.lastModified || new Date().toISOString(),
+    lastModified: (item.data as any).lastModified || new Date().toISOString(),
     status: item.data.status === 'available' ? 'active' : 'inactive',
     engagement: Math.floor((item.data.rating || 0) * 20),
     type: 'package'

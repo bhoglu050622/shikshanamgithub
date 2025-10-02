@@ -1,0 +1,754 @@
+{
+  "courses": {
+    "samkhya-darshan": {
+      "status": "PASS",
+      "data": {
+        "id": "samkhya-darshan",
+        "title": "सांख्य दर्शन",
+        "subtitle": "The Philosophy of Numbers and Categories",
+        "instructor": "Dr. Anil Sharma",
+        "language": "Hindi",
+        "price": "₹2,499",
+        "originalPrice": "₹3,999",
+        "duration": "4 months",
+        "level": "Intermediate",
+        "rating": 4.7,
+        "reviewCount": 98,
+        "type": "Premium Course",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/samkhya-darshan",
+        "contactNumber": "9910032165",
+        "features": [
+          {
+            "icon": "BookOpen",
+            "title": "Comprehensive Study",
+            "description": "Complete understanding of Samkhya philosophy"
+          },
+          {
+            "icon": "Users",
+            "title": "Expert Guidance",
+            "description": "Learn from experienced philosophy scholars"
+          },
+          {
+            "icon": "Award",
+            "title": "Certificate",
+            "description": "Get a certificate upon completion"
+          }
+        ],
+        "learningObjectives": [
+          "Understanding the 25 principles of Samkhya",
+          "Mastering the concept of Purusha and Prakriti",
+          "Practical application of Samkhya philosophy in modern life"
+        ],
+        "keyHighlights": [
+          "Detailed study of Samkhya Karika",
+          "Interactive discussions on philosophical concepts",
+          "Modern relevance of ancient wisdom"
+        ],
+        "syllabus": [
+          {
+            "id": 1,
+            "title": "Introduction to Samkhya Philosophy",
+            "type": "video",
+            "duration": "Week 1",
+            "description": "Understanding the fundamental concepts of Samkhya"
+          },
+          {
+            "id": 2,
+            "title": "The 25 Principles",
+            "type": "video",
+            "duration": "Week 2-4",
+            "description": "Deep dive into the 25 principles of Samkhya philosophy"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Rajesh Patel",
+            "rating": 5,
+            "comment": "Amazing course that opened my mind to new philosophical perspectives",
+            "verified": true
+          },
+          {
+            "name": "Sunita Singh",
+            "rating": 5,
+            "comment": "The instructor's depth of knowledge is impressive",
+            "verified": true
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 980,
+        "popularity": 78
+      }
+    },
+    "yoga-darshan": {
+      "status": "PASS",
+      "data": {
+        "id": "yoga-darshan",
+        "title": "योग दर्शन",
+        "subtitle": "Yoga Philosophy through Patanjali Yoga Sutras",
+        "instructor": "Dr. Rajesh Kumar",
+        "language": "Hindi",
+        "price": "₹2,999",
+        "originalPrice": "₹4,999",
+        "duration": "6 months",
+        "level": "Intermediate",
+        "rating": 4.8,
+        "reviewCount": 150,
+        "type": "Premium Course",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/yoga-darshan",
+        "contactNumber": "9910032165",
+        "features": [
+          {
+            "icon": "Gift",
+            "title": "Interactive Lessons",
+            "description": "Engaging video lessons with audio pronunciation guides"
+          },
+          {
+            "icon": "Clock",
+            "title": "Lifetime Access",
+            "description": "Access to all course materials for life"
+          },
+          {
+            "icon": "Award",
+            "title": "Certificate",
+            "description": "Get a certificate upon completion"
+          }
+        ],
+        "learningObjectives": [
+          "Understanding the eight limbs of Yoga (Ashtanga Yoga)",
+          "Mastering the Yoga Sutras of Patanjali",
+          "Practical application of Yoga philosophy in daily life"
+        ],
+        "keyHighlights": [
+          "Comprehensive study of Patanjali Yoga Sutras",
+          "Interactive sessions with experienced teachers",
+          "Practical exercises and meditation techniques"
+        ],
+        "syllabus": [
+          {
+            "id": 1,
+            "title": "Introduction to Yoga Philosophy",
+            "type": "video",
+            "duration": "Week 1",
+            "description": "Understanding the fundamental concepts of Yoga philosophy"
+          },
+          {
+            "id": 2,
+            "title": "The Eight Limbs of Yoga",
+            "type": "video",
+            "duration": "Week 2-3",
+            "description": "Deep dive into Ashtanga Yoga and its practical applications"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Priya Sharma",
+            "rating": 5,
+            "comment": "Excellent course that deepened my understanding of Yoga philosophy",
+            "verified": true
+          },
+          {
+            "name": "Amit Kumar",
+            "rating": 5,
+            "comment": "The instructor's knowledge and teaching style is outstanding",
+            "verified": true
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 1250,
+        "popularity": 85
+      }
+    },
+    "tantra-darshan": {
+      "status": "PASS",
+      "data": {
+        "id": "tantra-darshan",
+        "title": "प्राचीन तंत्र दर्शन",
+        "subtitle": "Decoding the principles of Tantra Aman Singhal",
+        "instructor": "Vishal Chaurasia",
+        "language": "Hindi",
+        "price": "Free",
+        "originalPrice": null,
+        "duration": "2-36 hours",
+        "level": "All Levels",
+        "rating": 5,
+        "reviewCount": 23,
+        "type": "Free Course",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/single-checkout/6700f323b6e40105f97a57ed?pid=p1",
+        "contactNumber": "9910032165",
+        "description": "Introduction to ancient tantric philosophy and its practical applications in modern life",
+        "features": [
+          {
+            "icon": "Gift",
+            "title": "Affordable For All",
+            "description": "Our course prices are designed to fit everyone's budget. We've made sure that affordability is at the heart of what we offer."
+          },
+          {
+            "icon": "Clock",
+            "title": "Lifetime Access",
+            "description": "Enjoy the perk of lifelong access to all our courses. This means you can learn at your own pace, on your own terms, wherever suits you best. No rush, no deadlines."
+          },
+          {
+            "icon": "Video",
+            "title": "Video Lectures",
+            "description": "Dive into learning with our awesome video lessons. They're super clear and easy to grasp, making your learning experience way more valuable."
+          },
+          {
+            "icon": "Globe",
+            "title": "Learning on the Go",
+            "description": "Discover learning your way with our easy website and app. Access resources anytime for ultimate learning flexibility."
+          },
+          {
+            "icon": "MessageCircle",
+            "title": "Doubt Solving",
+            "description": "Harness the potential of our interactive community forum for answers to all your queries. Become part of a supportive learning community, where assistance awaits at every step of your journey."
+          },
+          {
+            "icon": "Brain",
+            "title": "Interactive Learning",
+            "description": "Beyond just video lectures, you'll also unlock a treasure trove of additional resources like quizzes and notes. These valuable tools are here to enhance your learning experience."
+          }
+        ],
+        "learningObjectives": [
+          "शिव शक्ति से विश्व की निर्माण प्रक्रिया",
+          "तंत्र के विभिन्न अंग और उनका विज्ञान",
+          "तंत्र के मूल सिद्धांतों की समझ",
+          "प्राचीन ज्ञान का आधुनिक जीवन में उपयोग"
+        ],
+        "keyHighlights": [
+          "प्रत्यभिज्ञाहृदयम ग्रंथ की विवेचना",
+          "Presentation के माध्यम से तथ्यों का सरलीकरण",
+          "QnA : पाये अपने प्रश्नों का उत्तर",
+          "Live Session में भाग लें"
+        ],
+        "syllabus": [
+          {
+            "id": 1,
+            "title": "प्राचीन तंत्र दर्शन : Free Class",
+            "type": "live_tv",
+            "duration": "Class 1",
+            "description": "Introduction to ancient Tantra philosophy and its fundamental principles"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Kaushal Kumar",
+            "rating": 5,
+            "comment": "प्राचीन तंत्र दर्शन",
+            "verified": true
+          },
+          {
+            "name": "Siba prosad Saikia",
+            "rating": 5,
+            "comment": "बहुत अच्छी जानकारी मिली सिर्फ सुनने मात्र से शांति की अनुभूति हुई 🚩🙏",
+            "verified": true
+          },
+          {
+            "name": "Rahul Pradhan",
+            "rating": 5,
+            "comment": "Beautiful knowledge",
+            "verified": true
+          },
+          {
+            "name": "Prashant Tiwari Hardik",
+            "rating": 5,
+            "comment": "vey informative",
+            "verified": true
+          },
+          {
+            "name": "surinder grover",
+            "rating": 5,
+            "comment": "Jay Shree Ram! Very nicely explained.",
+            "verified": true
+          }
+        ],
+        "faq": [
+          {
+            "question": "क्या इस कोर्स के लिए कोई पूर्व ज्ञान आवश्यक है?",
+            "answer": "नहीं, इस कोर्स के लिए कोई पूर्व ज्ञान आवश्यक नहीं है। यह कोर्स शुरुआत से शुरू होता है।"
+          },
+          {
+            "question": "क्या यह कोर्स मुफ्त है?",
+            "answer": "हाँ, यह कोर्स पूरी तरह मुफ्त है। आप बिना किसी शुल्क के इसे एक्सेस कर सकते हैं।"
+          }
+        ],
+        "requirements": [
+          "कोई पूर्व ज्ञान आवश्यक नहीं",
+          "इंटरनेट कनेक्शन",
+          "सीखने की इच्छा"
+        ],
+        "outcomes": [
+          "तंत्र दर्शन की मूलभूत समझ",
+          "आध्यात्मिक ज्ञान में वृद्धि",
+          "प्राचीन ज्ञान की गहरी समझ"
+        ],
+        "instructorBio": "Vishal Chaurasia is an expert in Tantric philosophy with over 10 years of teaching experience.",
+        "tags": [
+          "tantra",
+          "philosophy",
+          "hindi",
+          "spiritual"
+        ],
+        "category": "philosophy",
+        "difficulty": "beginner",
+        "subtitles": [
+          "Hindi",
+          "English"
+        ],
+        "certificate": false,
+        "lifetimeAccess": true,
+        "mobileFriendly": true,
+        "supportIncluded": true,
+        "lastModified": "2024-01-15T00:00:00.000Z",
+        "views": 1826,
+        "popularity": 98
+      }
+    },
+    "nyaya-darshan": {
+      "status": "PASS",
+      "data": {
+        "id": "nyaya-darshan",
+        "title": "न्याय दर्शन",
+        "subtitle": "The Philosophy of Logic and Reasoning",
+        "instructor": "Dr. Rajesh Kumar",
+        "language": "Hindi",
+        "price": "₹2,799",
+        "originalPrice": "₹4,499",
+        "duration": "5 months",
+        "level": "Intermediate",
+        "rating": 4.6,
+        "reviewCount": 89,
+        "type": "Premium Course",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/nyaya-darshan",
+        "contactNumber": "9910032165",
+        "features": [
+          {
+            "icon": "Brain",
+            "title": "Logical Reasoning",
+            "description": "Master the art of logical reasoning and argumentation"
+          },
+          {
+            "icon": "Users",
+            "title": "Expert Guidance",
+            "description": "Learn from experienced philosophy scholars"
+          },
+          {
+            "icon": "Award",
+            "title": "Certificate",
+            "description": "Get a certificate upon completion"
+          }
+        ],
+        "learningObjectives": [
+          "Understanding the 16 categories of Nyaya philosophy",
+          "Mastering the art of logical reasoning and debate",
+          "Practical application of Nyaya logic in modern contexts"
+        ],
+        "keyHighlights": [
+          "Detailed study of Nyaya Sutras",
+          "Interactive logical reasoning exercises",
+          "Modern applications of ancient logic"
+        ],
+        "syllabus": [
+          {
+            "id": 1,
+            "title": "Introduction to Nyaya Philosophy",
+            "type": "video",
+            "duration": "Week 1",
+            "description": "Understanding the fundamental concepts of Nyaya logic"
+          },
+          {
+            "id": 2,
+            "title": "The 16 Categories",
+            "type": "video",
+            "duration": "Week 2-6",
+            "description": "Deep dive into the 16 categories of Nyaya philosophy"
+          },
+          {
+            "id": 3,
+            "title": "Logical Reasoning and Debate",
+            "type": "video",
+            "duration": "Week 7-10",
+            "description": "Practical application of Nyaya logic in debates and reasoning"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Amit Kumar",
+            "rating": 5,
+            "comment": "Excellent course that improved my logical thinking skills significantly",
+            "verified": true
+          },
+          {
+            "name": "Priya Singh",
+            "rating": 4,
+            "comment": "The instructor's depth of knowledge in logic is impressive",
+            "verified": true
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 1120,
+        "popularity": 82
+      }
+    },
+    "vaisheshik-darshan": {
+      "status": "PASS",
+      "data": {
+        "id": "vaisheshik-darshan",
+        "title": "वैशेषिक दर्शन",
+        "subtitle": "The Philosophy of Particularity and Atomic Theory",
+        "instructor": "Dr. Suresh Sharma",
+        "language": "Hindi",
+        "price": "₹2,299",
+        "originalPrice": "₹3,999",
+        "duration": "4 months",
+        "level": "Intermediate",
+        "rating": 4.5,
+        "reviewCount": 76,
+        "type": "Premium Course",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/vaisheshik-darshan",
+        "contactNumber": "9910032165",
+        "features": [
+          {
+            "icon": "Atom",
+            "title": "Atomic Theory",
+            "description": "Understand the ancient atomic theory of Vaisheshik"
+          },
+          {
+            "icon": "Users",
+            "title": "Expert Guidance",
+            "description": "Learn from experienced philosophy scholars"
+          },
+          {
+            "icon": "Award",
+            "title": "Certificate",
+            "description": "Get a certificate upon completion"
+          }
+        ],
+        "learningObjectives": [
+          "Understanding the 6 categories of Vaisheshik philosophy",
+          "Mastering the concept of atoms and their properties",
+          "Practical application of Vaisheshik principles in modern science"
+        ],
+        "keyHighlights": [
+          "Detailed study of Vaisheshik Sutras",
+          "Interactive discussions on atomic theory",
+          "Connections between ancient and modern science"
+        ],
+        "syllabus": [
+          {
+            "id": 1,
+            "title": "Introduction to Vaisheshik Philosophy",
+            "type": "video",
+            "duration": "Week 1",
+            "description": "Understanding the fundamental concepts of Vaisheshik"
+          },
+          {
+            "id": 2,
+            "title": "The 6 Categories",
+            "type": "video",
+            "duration": "Week 2-4",
+            "description": "Deep dive into the 6 categories of Vaisheshik philosophy"
+          },
+          {
+            "id": 3,
+            "title": "Atomic Theory and Modern Science",
+            "type": "video",
+            "duration": "Week 5-8",
+            "description": "Connecting ancient atomic theory with modern scientific understanding"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Ravi Patel",
+            "rating": 5,
+            "comment": "Fascinating course that connects ancient wisdom with modern science",
+            "verified": true
+          },
+          {
+            "name": "Sunita Kumar",
+            "rating": 4,
+            "comment": "The instructor's knowledge of both ancient and modern science is remarkable",
+            "verified": true
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 890,
+        "popularity": 75
+      }
+    },
+    "kashmir-shaivism": {
+      "status": "PASS",
+      "data": {
+        "id": "kashmir-shaivism",
+        "title": "कश्मीर शैव दर्शन",
+        "subtitle": "The Philosophy of Recognition and Consciousness",
+        "instructor": "Dr. Vishal Chaurasia",
+        "language": "Hindi",
+        "price": "₹3,499",
+        "originalPrice": "₹5,999",
+        "duration": "6 months",
+        "level": "Advanced",
+        "rating": 4.9,
+        "reviewCount": 134,
+        "type": "Premium Course",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/kashmir-shaivism",
+        "contactNumber": "9910032165",
+        "features": [
+          {
+            "icon": "Mountain",
+            "title": "Advanced Philosophy",
+            "description": "Explore the profound wisdom of Kashmir Shaivism"
+          },
+          {
+            "icon": "Users",
+            "title": "Expert Guidance",
+            "description": "Learn from experienced philosophy scholars"
+          },
+          {
+            "icon": "Award",
+            "title": "Certificate",
+            "description": "Get a certificate upon completion"
+          }
+        ],
+        "learningObjectives": [
+          "Understanding the philosophy of recognition (Pratyabhijna)",
+          "Mastering the concept of consciousness and self-awareness",
+          "Practical application of Shaivite wisdom in spiritual practice"
+        ],
+        "keyHighlights": [
+          "Detailed study of Pratyabhijna philosophy",
+          "Interactive meditation and spiritual practices",
+          "Modern relevance of ancient Shaivite wisdom"
+        ],
+        "syllabus": [
+          {
+            "id": 1,
+            "title": "Introduction to Kashmir Shaivism",
+            "type": "video",
+            "duration": "Week 1-2",
+            "description": "Understanding the fundamental concepts of Kashmir Shaivism"
+          },
+          {
+            "id": 2,
+            "title": "The Philosophy of Recognition",
+            "type": "video",
+            "duration": "Week 3-8",
+            "description": "Deep dive into Pratyabhijna philosophy and consciousness studies"
+          },
+          {
+            "id": 3,
+            "title": "Practical Applications",
+            "type": "video",
+            "duration": "Week 9-12",
+            "description": "Meditation techniques and spiritual practices based on Shaivite wisdom"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Anita Sharma",
+            "rating": 5,
+            "comment": "Transformative course that deepened my spiritual understanding",
+            "verified": true
+          },
+          {
+            "name": "Rajesh Kumar",
+            "rating": 5,
+            "comment": "The instructor's depth of knowledge in Shaivite philosophy is exceptional",
+            "verified": true
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 1450,
+        "popularity": 88
+      }
+    }
+  },
+  "packages": {
+    "hindu-philosophies-upanishads-bundle": {
+      "status": "PASS",
+      "data": {
+        "id": "hindu-philosophies-upanishads-bundle",
+        "title": "Hindu Philosophies & Upanishads Bundle",
+        "subtitle": "Complete Journey Through Ancient Indian Wisdom",
+        "description": "Master the six classical schools of Hindu philosophy and explore the profound wisdom of the Upanishads in this comprehensive learning bundle.",
+        "price": "₹9,999",
+        "originalPrice": "₹19,999",
+        "duration": "12 months",
+        "level": "Intermediate",
+        "rating": 4.9,
+        "reviewCount": 127,
+        "type": "Premium Bundle",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/hindu-philosophies-upanishads-bundle",
+        "contactNumber": "9910032165",
+        "features": [
+          "Six classical schools of Hindu philosophy (Darshanas)",
+          "Deep exploration of Upanishadic wisdom and teachings",
+          "Interactive learning with renowned philosophy scholars",
+          "Comprehensive study materials and reading lists",
+          "Lifetime access to all materials and updates",
+          "Master certificate for completing the entire bundle"
+        ],
+        "courses": [
+          {
+            "id": "samkhya-darshan",
+            "name": "Samkhya Darshan",
+            "description": "Explore the analytical philosophy of Samkhya",
+            "duration": "3 months",
+            "level": "Intermediate",
+            "icon": "🔍"
+          },
+          {
+            "id": "nyaya-darshan",
+            "name": "Nyaya Darshan",
+            "description": "Master the logical reasoning system of Nyaya",
+            "duration": "3 months",
+            "level": "Intermediate",
+            "icon": "🧠"
+          },
+          {
+            "id": "vaisheshik-darshan",
+            "name": "Vaisheshik Darshan",
+            "description": "Understand the atomic theory of Vaisheshik",
+            "duration": "3 months",
+            "level": "Intermediate",
+            "icon": "⚛️"
+          },
+          {
+            "id": "yoga-darshan",
+            "name": "Yoga Darshan",
+            "description": "Learn the practical philosophy of Yoga",
+            "duration": "3 months",
+            "level": "Intermediate",
+            "icon": "🧘‍♂️"
+          },
+          {
+            "id": "tantra-darshan",
+            "name": "Tantra Darshan",
+            "description": "Explore the esoteric philosophy of Tantra",
+            "duration": "3 months",
+            "level": "Advanced",
+            "icon": "🌀"
+          },
+          {
+            "id": "kashmir-shaivism",
+            "name": "Kashmir Shaivism",
+            "description": "Discover the non-dual philosophy of Kashmir Shaivism",
+            "duration": "3 months",
+            "level": "Advanced",
+            "icon": "🏔️"
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 2150,
+        "popularity": 92
+      }
+    },
+    "sanskrit-basics": {
+      "status": "PASS",
+      "data": {
+        "id": "sanskrit-basics",
+        "title": "Sanskrit Basics Package",
+        "subtitle": "Complete introduction to Sanskrit language and grammar",
+        "description": "Master the fundamentals of Sanskrit with interactive lessons, pronunciation guides, and expert guidance from Sanskrit scholars.",
+        "price": "₹4,999",
+        "originalPrice": "₹7,999",
+        "discount": "37%",
+        "duration": "3 months",
+        "level": "Beginner",
+        "rating": 4.9,
+        "reviewCount": 45,
+        "type": "Premium Package",
+        "status": "available",
+        "checkoutLink": "https://courses.shikshanam.in/checkout/sanskrit-basics",
+        "contactNumber": "9910032165",
+        "features": [
+          "Interactive Sanskrit lessons with audio pronunciation",
+          "Complete grammar foundation from basics to intermediate",
+          "Devanagari script mastery with writing exercises",
+          "Vocabulary building with 1000+ essential words",
+          "Live Q&A sessions with Sanskrit scholars",
+          "Certificate of completion upon finishing"
+        ],
+        "benefits": [
+          "Master Sanskrit script and pronunciation",
+          "Understand Sanskrit grammar fundamentals",
+          "Build vocabulary for reading classical texts",
+          "Develop confidence in Sanskrit conversation",
+          "Access to exclusive Sanskrit learning community"
+        ],
+        "courses": [
+          {
+            "id": "sanskrit-alphabet",
+            "name": "Sanskrit Alphabet & Script",
+            "description": "Learn Devanagari script and pronunciation",
+            "duration": "2 weeks",
+            "level": "Beginner"
+          },
+          {
+            "id": "sanskrit-grammar-basics",
+            "name": "Grammar Fundamentals",
+            "description": "Essential Sanskrit grammar concepts",
+            "duration": "4 weeks",
+            "level": "Beginner"
+          },
+          {
+            "id": "sanskrit-vocabulary",
+            "name": "Vocabulary Building",
+            "description": "Essential Sanskrit words and phrases",
+            "duration": "3 weeks",
+            "level": "Beginner"
+          }
+        ],
+        "testimonials": [
+          {
+            "name": "Dr. Sarah Johnson",
+            "role": "Linguistics Professor",
+            "content": "This course provides an excellent foundation in Sanskrit. The interactive lessons make learning enjoyable and effective.",
+            "rating": 5
+          },
+          {
+            "name": "Michael Chen",
+            "role": "Yoga Teacher",
+            "content": "Learning Sanskrit has deepened my understanding of yoga philosophy. The course structure is perfect for beginners.",
+            "rating": 5
+          },
+          {
+            "name": "Priya Sharma",
+            "role": "Student",
+            "content": "The pronunciation guides and interactive exercises made Sanskrit accessible. Highly recommended!",
+            "rating": 5
+          }
+        ],
+        "faq": [
+          {
+            "question": "Do I need any prior knowledge of Sanskrit?",
+            "answer": "No prior knowledge is required. This package is designed for complete beginners."
+          },
+          {
+            "question": "How long does it take to complete?",
+            "answer": "The package is designed to be completed in 3 months with regular study, but you have lifetime access."
+          },
+          {
+            "question": "Will I get a certificate?",
+            "answer": "Yes, you will receive a certificate of completion upon finishing all courses in the package."
+          }
+        ],
+        "lastModified": "2024-01-15T10:30:00Z",
+        "views": 1250,
+        "popularity": 85
+      }
+    }
+  },
+  "errors": [],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  }
+}

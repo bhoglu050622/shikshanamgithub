@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useCourseData } from '@/lib/hooks/useCourseData'
 import { 
   BookOpen, 
   Users, 
@@ -61,8 +62,33 @@ import {
 } from 'lucide-react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 
+// Type definition for course data
+interface CourseData {
+  title: string;
+  subtitle: string;
+  instructor: string;
+  language: string;
+  price: string;
+  originalPrice: string | null;
+  duration: string;
+  level: string;
+  rating: number;
+  reviewCount: number;
+  type: string;
+  status: string;
+  checkoutLink: string;
+  contactNumber: string;
+  features?: any[];
+  learningObjectives?: string[];
+  keyHighlights?: string[];
+  syllabus?: any[];
+  testimonials?: any[];
+}
+
 // Course data
-const courseData = {
+// Default static data (fallback)
+const defaultCourseData = {
+  id: 'tantra-darshan',
   title: 'प्राचीन तंत्र दर्शन',
   subtitle: 'Decoding the principles of Tantra',
   instructor: 'Vishal Chaurasia',
@@ -229,8 +255,30 @@ const testimonials = [
 export default function TantraDarshanCoursePage() {
   const [showAllReviews, setShowAllReviews] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')
+  
+  // Use the custom hook for dynamic course data
+  const { courseData, loading, error } = useCourseData('tantra-darshan', defaultCourseData)
 
-  const displayedReviews = showAllReviews ? testimonials : testimonials.slice(0, 5)
+  // Use dynamic features from courseData or fallback to static
+  const dynamicFeatures = courseData.features || courseFeatures
+  const dynamicLearningObjectives = courseData.learningObjectives || learningObjectives
+  const dynamicKeyHighlights = courseData.keyHighlights || keyHighlights
+  const dynamicSyllabus = courseData.syllabus || syllabus
+  const dynamicTestimonials = courseData.testimonials || testimonials
+  
+  const displayedReviews = showAllReviews ? dynamicTestimonials : dynamicTestimonials.slice(0, 5)
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-saffron-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading course data...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -411,7 +459,7 @@ export default function TantraDarshanCoursePage() {
                   <div className="card-premium p-8">
                     <h2 className="text-2xl font-display text-high-contrast mb-6">What You Will Learn</h2>
                     <div className="space-y-4">
-                      {learningObjectives.map((objective, index) => (
+                      {dynamicLearningObjectives.map((objective, index) => (
                         <motion.div
                           key={index}
                           initial={{ opacity: 0, x: -20 }}
@@ -432,7 +480,7 @@ export default function TantraDarshanCoursePage() {
                   <div className="card-premium p-8">
                     <h2 className="text-2xl font-display text-high-contrast mb-6">Key Highlights</h2>
                     <div className="space-y-4">
-                      {keyHighlights.map((highlight, index) => (
+                      {dynamicKeyHighlights.map((highlight, index) => (
                         <motion.div
                           key={index}
                           initial={{ opacity: 0, x: -20 }}
@@ -462,7 +510,7 @@ export default function TantraDarshanCoursePage() {
                   <div className="card-premium p-8">
                     <h2 className="text-2xl font-display text-high-contrast mb-6">Course Syllabus</h2>
                     <div className="space-y-4">
-                      {syllabus.map((item, index) => (
+                      {dynamicSyllabus.map((item, index) => (
                         <motion.div
                           key={item.id}
                           initial={{ opacity: 0, y: 20 }}
@@ -583,7 +631,7 @@ export default function TantraDarshanCoursePage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courseFeatures.map((feature, index) => (
+            {dynamicFeatures.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

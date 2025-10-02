@@ -7,9 +7,44 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Clock, Users, Award, Star, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { usePackageData } from '@/lib/hooks/usePackageData';
+
+// Default package data (fallback)
+const defaultPackageData = {
+  id: 'sanskrit-basics',
+  title: 'Sanskrit Basics Package',
+  subtitle: 'Complete introduction to Sanskrit language and grammar',
+  description: 'Master the fundamentals of Sanskrit with interactive lessons, pronunciation guides, and expert guidance from Sanskrit scholars.',
+  price: '₹4,999',
+  originalPrice: '₹7,999',
+  discount: '37%',
+  duration: '3 months',
+  level: 'Beginner',
+  rating: 4.9,
+  reviewCount: 45,
+  type: 'Premium Package',
+  status: 'available',
+  checkoutLink: 'https://courses.shikshanam.in/checkout/sanskrit-basics',
+  contactNumber: '9910032165'
+};
 
 export default function SanskritBasicsPackagePage() {
   const router = useRouter();
+  
+  // Use the custom hook for dynamic package data
+  const { packageData, loading, error } = usePackageData('sanskrit-basics', defaultPackageData);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-saffron-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading package data...</p>
+        </div>
+      </div>
+    );
+  }
 
   const features = [
     'Interactive Sanskrit lessons with audio pronunciation',

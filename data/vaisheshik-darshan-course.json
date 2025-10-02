@@ -1,0 +1,84 @@
+{
+  "id": "vaisheshik-darshan",
+  "title": "वैशेषिक दर्शन",
+  "subtitle": "The Philosophy of Particularity and Atomic Theory",
+  "instructor": "Dr. Suresh Sharma",
+  "language": "Hindi",
+  "price": "₹2,299",
+  "originalPrice": "₹3,999",
+  "duration": "4 months",
+  "level": "Intermediate",
+  "rating": 4.5,
+  "reviewCount": 76,
+  "type": "Premium Course",
+  "status": "available",
+  "checkoutLink": "https://courses.shikshanam.in/checkout/vaisheshik-darshan",
+  "contactNumber": "9910032165",
+  "features": [
+    {
+      "icon": "Atom",
+      "title": "Atomic Theory",
+      "description": "Understand the ancient atomic theory of Vaisheshik"
+    },
+    {
+      "icon": "Users",
+      "title": "Expert Guidance",
+      "description": "Learn from experienced philosophy scholars"
+    },
+    {
+      "icon": "Award",
+      "title": "Certificate",
+      "description": "Get a certificate upon completion"
+    }
+  ],
+  "learningObjectives": [
+    "Understanding the 6 categories of Vaisheshik philosophy",
+    "Mastering the concept of atoms and their properties",
+    "Practical application of Vaisheshik principles in modern science"
+  ],
+  "keyHighlights": [
+    "Detailed study of Vaisheshik Sutras",
+    "Interactive discussions on atomic theory",
+    "Connections between ancient and modern science"
+  ],
+  "syllabus": [
+    {
+      "id": 1,
+      "title": "Introduction to Vaisheshik Philosophy",
+      "type": "video",
+      "duration": "Week 1",
+      "description": "Understanding the fundamental concepts of Vaisheshik"
+    },
+    {
+      "id": 2,
+      "title": "The 6 Categories",
+      "type": "video",
+      "duration": "Week 2-4",
+      "description": "Deep dive into the 6 categories of Vaisheshik philosophy"
+    },
+    {
+      "id": 3,
+      "title": "Atomic Theory and Modern Science",
+      "type": "video",
+      "duration": "Week 5-8",
+      "description": "Connecting ancient atomic theory with modern scientific understanding"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Ravi Patel",
+      "rating": 5,
+      "comment": "Fascinating course that connects ancient wisdom with modern science",
+      "verified": true
+    },
+    {
+      "name": "Sunita Kumar",
+      "rating": 4,
+      "comment": "The instructor's knowledge of both ancient and modern science is remarkable",
+      "verified": true
+    }
+  ],
+  "lastModified": "2024-01-15T10:30:00Z",
+  "views": 890,
+  "popularity": 75
+}
