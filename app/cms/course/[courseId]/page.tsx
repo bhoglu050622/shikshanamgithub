@@ -23,6 +23,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import EnhancedCodeEditor from '@/components/cms/EnhancedCodeEditor';
+import { useGitHubChanges, createFormChanges, getEditorInfo } from '@/lib/hooks/useGitHubChanges';
 
 interface CourseData {
   id: string;
@@ -77,6 +78,15 @@ export default function IndividualCourseEditor() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [originalData, setOriginalData] = useState<CourseData | null>(null);
+
+  // GitHub changes tracking
+  const { trackUpdate } = useGitHubChanges({
+    contentType: 'course',
+    contentId: courseId,
+    editor: getEditorInfo(),
+    enabled: process.env.NODE_ENV === 'production'
+  });
 
   const loadCourseData = useCallback(async () => {
     setLoading(true);
@@ -86,6 +96,7 @@ export default function IndividualCourseEditor() {
       
       if (result.success) {
         setCourseData(result.data);
+        setOriginalData(result.data);
       } else {
         setMessage({ type: 'error', text: result.error || 'Failed to load course data' });
       }
@@ -106,6 +117,16 @@ export default function IndividualCourseEditor() {
     
     setSaving(true);
     try {
+      // Track changes to GitHub
+      if (originalData) {
+        const changes = createFormChanges(originalData, courseData);
+        if (changes.length > 0) {
+          await trackUpdate(changes, {
+            userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : undefined
+          });
+        }
+      }
+
       const response = await fetch(`/api/cms/course/${courseId}`, {
         method: 'PUT',
         headers: {
@@ -119,6 +140,8 @@ export default function IndividualCourseEditor() {
       if (result.success) {
         setMessage({ type: 'success', text: 'Course updated successfully!' });
         setTimeout(() => setMessage(null), 3000);
+        // Update original data after successful save
+        setOriginalData(courseData);
       } else {
         setMessage({ type: 'error', text: result.error || 'Failed to update course' });
       }
