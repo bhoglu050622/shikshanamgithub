@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { ArrowLeft, Save, Eye, Code } from 'lucide-react';
+import EnhancedCodeEditor from '@/components/cms/EnhancedCodeEditor';
 import Link from 'next/link';
 import { useGenericCMSContent } from '@/lib/cms/generic-hooks';
 import { ContactContent } from '@/lib/cms/contact-types';
@@ -176,27 +177,26 @@ export default function ContactCMSAdmin() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <Textarea
-                    value={JSON.stringify(content, null, 2)}
-                    onChange={(e) => {
-                      try {
-                        const parsed = JSON.parse(e.target.value);
-                        updateContent(parsed);
-                      } catch (error) {
-                        // Invalid JSON, don't update
-                        console.error('Invalid JSON:', error);
-                      }
-                    }}
-                    placeholder="Edit JSON content directly..."
-                    rows={25}
-                    className="font-mono text-sm bg-gray-50"
-                  />
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>{JSON.stringify(content, null, 2).length} characters</span>
-                    <span>Edit carefully - auto-saves on valid JSON</span>
-                  </div>
-                </div>
+                <EnhancedCodeEditor
+                  value={JSON.stringify(content, null, 2)}
+                  onChange={(value) => {
+                    try {
+                      const parsed = JSON.parse(value);
+                      updateContent(parsed);
+                    } catch (error) {
+                      // Invalid JSON, don't update
+                      console.error('Invalid JSON:', error);
+                    }
+                  }}
+                  onSave={() => updateContent(content)}
+                  language="json"
+                  height="600px"
+                  placeholder="Edit JSON content directly..."
+                  enableSearch={true}
+                  enableUndoRedo={true}
+                  enableAutoFormat={true}
+                  showLineNumbers={true}
+                />
               </CardContent>
             </Card>
           </TabsContent>

@@ -22,6 +22,7 @@ import {
   Phone,
   ExternalLink
 } from 'lucide-react';
+import EnhancedCodeEditor from '@/components/cms/EnhancedCodeEditor';
 
 interface CourseData {
   id: string;
@@ -245,38 +246,29 @@ export default function IndividualCourseEditor() {
             </div>
           </div>
           <div className="p-6">
-            <div className="relative">
-              <div className="absolute top-4 left-4 text-xs text-gray-400 font-mono">
-                Course: {courseData.id}
-              </div>
-              <textarea
-                className="w-full font-mono text-sm border border-gray-300 rounded-lg p-6 pt-12 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                value={courseData ? JSON.stringify(courseData, null, 2) : '{}'}
-                onChange={(e) => {
-                  try {
-                    const newCourseData = JSON.parse(e.target.value);
-                    setCourseData(newCourseData);
-                    setMessage(null);
-                  } catch (error) {
-                    setMessage({
-                      type: 'error',
-                      text: 'Invalid JSON syntax. Please check your formatting.'
-                    });
-                  }
-                }}
-                placeholder="Enter course JSON data..."
-                style={{
-                  minHeight: '600px',
-                  height: '600px',
-                  background: 'linear-gradient(90deg, #f8f9fa 0%, #ffffff 0%)',
-                  backgroundSize: '20px 20px',
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 19px, #e9ecef 20px)'
-                }}
-              />
-              <div className="absolute bottom-4 right-4 text-xs text-gray-400">
-                {courseData ? JSON.stringify(courseData, null, 2).length : 0} characters
-              </div>
-            </div>
+            <EnhancedCodeEditor
+              value={courseData ? JSON.stringify(courseData, null, 2) : '{}'}
+              onChange={(value) => {
+                try {
+                  const newCourseData = JSON.parse(value);
+                  setCourseData(newCourseData);
+                  setMessage(null);
+                } catch (error) {
+                  setMessage({
+                    type: 'error',
+                    text: 'Invalid JSON syntax. Please check your formatting.'
+                  });
+                }
+              }}
+              onSave={saveCourseData}
+              language="json"
+              height="600px"
+              placeholder="Enter course JSON data..."
+              enableSearch={true}
+              enableUndoRedo={true}
+              enableAutoFormat={true}
+              showLineNumbers={true}
+            />
             {courseData && (
               <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex items-center space-x-2">

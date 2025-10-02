@@ -7,11 +7,46 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Clock, Users, Award, Star, ArrowLeft, BookOpen, Brain, Lightbulb, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { usePackageData } from '@/lib/hooks/usePackageData';
+
+// Default package data (fallback)
+const defaultPackageData = {
+  id: 'hindu-philosophies-upanishads-bundle',
+  title: 'Hindu Philosophies & Upanishads Bundle',
+  subtitle: 'Complete Journey Through Ancient Indian Wisdom',
+  description: 'Master the six classical schools of Hindu philosophy and explore the profound wisdom of the Upanishads in this comprehensive learning bundle.',
+  price: '₹9,999',
+  originalPrice: '₹19,999',
+  duration: '12 months',
+  level: 'Intermediate',
+  rating: 4.9,
+  reviewCount: 127,
+  type: 'Premium Bundle',
+  status: 'available',
+  checkoutLink: 'https://courses.shikshanam.in/checkout/hindu-philosophies-upanishads-bundle',
+  contactNumber: '9910032165'
+};
 
 export default function HinduPhilosophiesUpanishadsBundlePage() {
   const router = useRouter();
+  
+  // Use the custom hook for dynamic package data
+  const { packageData, loading, error } = usePackageData('hindu-philosophies-upanishads-bundle', defaultPackageData);
 
-  const features = [
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-saffron-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading package data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Use dynamic features from packageData or fallback to static
+  const dynamicFeatures = packageData.features || [
     'Six classical schools of Hindu philosophy (Darshanas)',
     'Deep exploration of Upanishadic wisdom and teachings',
     'Interactive learning with renowned philosophy scholars',
@@ -133,11 +168,10 @@ export default function HinduPhilosophiesUpanishadsBundlePage() {
                 Philosophy Bundle
               </Badge>
               <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                Hindu Philosophies + Upanishads Bundle
+                {packageData.title}
               </h1>
               <p className="text-xl text-slate-600 mb-8">
-                Complete exploration of Hindu philosophical systems and Upanishadic wisdom. 
-                Dive deep into the six schools of philosophy and profound spiritual teachings.
+                {packageData.description}
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
@@ -157,15 +191,26 @@ export default function HinduPhilosophiesUpanishadsBundlePage() {
 
               <div className="bg-saffron-100 rounded-lg p-6 mb-8">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl font-bold text-slate-800">₹12,999</span>
-                  <span className="text-lg text-slate-500 line-through">₹19,999</span>
+                  <span className="text-2xl font-bold text-slate-800">{packageData.price}</span>
+                  {packageData.originalPrice && (
+                    <span className="text-lg text-slate-500 line-through">{packageData.originalPrice}</span>
+                  )}
                 </div>
-                <p className="text-saffron-800 font-semibold">Save ₹7,000 (35% off)</p>
+                {packageData.originalPrice && (
+                  <p className="text-saffron-800 font-semibold">
+                    Save ₹{parseInt(packageData.originalPrice.replace('₹', '').replace(',', '')) - parseInt(packageData.price.replace('₹', '').replace(',', ''))} 
+                    ({Math.round(((parseInt(packageData.originalPrice.replace('₹', '').replace(',', '')) - parseInt(packageData.price.replace('₹', '').replace(',', ''))) / parseInt(packageData.originalPrice.replace('₹', '').replace(',', ''))) * 100)}% off)
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-saffron-600 hover:bg-saffron-700">
-                  Get This Bundle - ₹12,999
+                <Button 
+                  size="lg" 
+                  className="bg-saffron-600 hover:bg-saffron-700"
+                  onClick={() => window.open(packageData.checkoutLink, '_blank')}
+                >
+                  Get This Bundle - {packageData.price}
                 </Button>
                 <Button size="lg" variant="outline">
                   View Sample Lessons
@@ -208,7 +253,7 @@ export default function HinduPhilosophiesUpanishadsBundlePage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
+            {dynamicFeatures.map((feature, index) => (
               <div key={index} className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-saffron-600 mr-3 mt-1 flex-shrink-0" />
                 <p className="text-slate-700">{feature}</p>
