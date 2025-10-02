@@ -27,7 +27,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import CourseEditor from '@/components/cms/CourseEditor';
 
 interface Course {
   id: string;
@@ -108,8 +107,6 @@ export default function CoursesCMSAdmin() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const [showCourseEditor, setShowCourseEditor] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState<'name' | 'modified' | 'popularity'>('name');
   const [filterStatus, setFilterStatus] = useState<'all' | 'available' | 'coming-soon' | 'archived'>('all');
@@ -163,33 +160,13 @@ export default function CoursesCMSAdmin() {
     });
 
   const handleAddCourse = () => {
-    setSelectedCourse(null);
-    setShowCourseEditor(true);
+    // Redirect to code editor for new courses
+    router.push('/cms/courses/code-editor');
   };
 
   const handleEditCourse = (course: Course) => {
-    setSelectedCourse(course);
-    setShowCourseEditor(true);
-  };
-
-  const handleUpdateCourse = (content: any) => {
-    const updatedCourse: Course = {
-      ...content,
-      id: selectedCourse?.id || `course-${Date.now()}`,
-      lastModified: new Date(),
-      views: selectedCourse?.views || 0,
-      popularity: selectedCourse?.popularity || 0
-    };
-    
-    if (selectedCourse) {
-      setCourses(courses.map(course => 
-        course.id === updatedCourse.id ? updatedCourse : course
-      ));
-    } else {
-      setCourses([...courses, updatedCourse]);
-    }
-    setShowCourseEditor(false);
-    setSelectedCourse(null);
+    // Redirect to individual course editor with JSON code editor
+    router.push(`/cms/course/${course.id}`);
   };
 
   const handleDeleteCourse = (courseId: string) => {
@@ -197,65 +174,6 @@ export default function CoursesCMSAdmin() {
       setCourses(courses.filter(course => course.id !== courseId));
     }
   };
-
-  if (showCourseEditor) {
-    const defaultContent = {
-      title: '',
-      subtitle: '',
-      instructor: '',
-      language: 'Hindi',
-      price: '',
-      originalPrice: undefined,
-      duration: '',
-      level: '',
-      rating: 0,
-      reviewCount: 0,
-      type: '',
-      status: 'available' as const,
-      checkoutLink: '',
-      contactNumber: '',
-      description: '',
-      features: [],
-      learningObjectives: [],
-      keyHighlights: [],
-      syllabus: [],
-      testimonials: [],
-      faq: [],
-      requirements: [],
-      outcomes: [],
-      instructorBio: '',
-      instructorImage: undefined,
-      courseImage: undefined,
-      tags: [],
-      category: '',
-      difficulty: 'beginner' as const,
-      subtitles: [],
-      certificate: false,
-      lifetimeAccess: false,
-      mobileFriendly: false,
-      supportIncluded: false,
-      liveSessions: false,
-      communityAccess: false,
-      bonusMaterials: false,
-      moneyBackGuarantee: false,
-      earlyBirdDiscount: false,
-      groupDiscount: false,
-      paymentPlans: [],
-      comparison: []
-    };
-
-    return (
-      <CourseEditor
-        content={selectedCourse || defaultContent}
-        onUpdate={handleUpdateCourse}
-        courseId={selectedCourse?.id || 'new'}
-        onClose={() => {
-          setShowCourseEditor(false);
-          setSelectedCourse(null);
-        }}
-      />
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">

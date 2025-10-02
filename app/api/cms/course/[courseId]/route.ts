@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCourseById } from '@/lib/cms/course-data-extractor';
+import { syncFrontendData } from '@/lib/cms/data-sync';
+
+// Get frontend data
+const frontendData = syncFrontendData();
+const courses = frontendData.courses.map(item => ({
+  ...item.data,
+  lastModified: new Date('2024-01-15'),
+  views: Math.floor(Math.random() * 2000) + 500,
+  popularity: Math.floor(Math.random() * 40) + 60
+}));
 
 export async function GET(
   request: NextRequest,
@@ -8,12 +17,12 @@ export async function GET(
   try {
     const { courseId } = await params;
     
-    // Get course data
-    const courseData = getCourseById(courseId);
+    // Get course data from synced frontend data
+    const courseData = courses.find(course => course.id === courseId);
     
     if (!courseData) {
       return NextResponse.json(
-        { success: false, error: 'Course not found' },
+        { success: false, error: `Course '${courseId}' not found` },
         { status: 404 }
       );
     }

@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getPackageById } from '@/lib/cms/package-data-extractor';
+import { syncFrontendData } from '@/lib/cms/data-sync';
+
+// Get frontend data
+const frontendData = syncFrontendData();
+const packages = frontendData.packages.map(item => ({
+  ...item.data,
+  lastModified: new Date('2024-01-15'),
+  views: Math.floor(Math.random() * 2000) + 500,
+  popularity: Math.floor(Math.random() * 40) + 60
+}));
 
 export async function GET(
   request: NextRequest,
@@ -8,12 +17,12 @@ export async function GET(
   try {
     const { packageId } = await params;
     
-    // Get package data
-    const packageData = getPackageById(packageId);
+    // Get package data from synced frontend data
+    const packageData = packages.find(pkg => pkg.id === packageId);
     
     if (!packageData) {
       return NextResponse.json(
-        { success: false, error: 'Package not found' },
+        { success: false, error: `Package '${packageId}' not found` },
         { status: 404 }
       );
     }

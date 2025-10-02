@@ -30,7 +30,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import PackageEditor from '@/components/cms/PackageEditor';
 
 interface Package {
   id: string;
@@ -120,8 +119,6 @@ export default function PackagesCMSAdmin() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
-  const [showPackageEditor, setShowPackageEditor] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState<'name' | 'modified' | 'popularity'>('name');
   const [filterStatus, setFilterStatus] = useState<'all' | 'available' | 'coming-soon' | 'archived'>('all');
@@ -175,33 +172,13 @@ export default function PackagesCMSAdmin() {
     });
 
   const handleAddPackage = () => {
-    setSelectedPackage(null);
-    setShowPackageEditor(true);
+    // Redirect to code editor for new packages
+    router.push('/cms/packages/code-editor');
   };
 
   const handleEditPackage = (pkg: Package) => {
-    setSelectedPackage(pkg);
-    setShowPackageEditor(true);
-  };
-
-  const handleUpdatePackage = (content: any) => {
-    const updatedPackage: Package = {
-      ...content,
-      id: selectedPackage?.id || `package-${Date.now()}`,
-      lastModified: new Date(),
-      views: selectedPackage?.views || 0,
-      popularity: selectedPackage?.popularity || 0
-    };
-    
-    if (selectedPackage) {
-      setPackages(packages.map(pkg => 
-        pkg.id === updatedPackage.id ? updatedPackage : pkg
-      ));
-    } else {
-      setPackages([...packages, updatedPackage]);
-    }
-    setShowPackageEditor(false);
-    setSelectedPackage(null);
+    // Redirect to individual package editor with JSON code editor
+    router.push(`/cms/package/${pkg.id}`);
   };
 
   const handleDeletePackage = (packageId: string) => {
@@ -209,64 +186,6 @@ export default function PackagesCMSAdmin() {
       setPackages(packages.filter(pkg => pkg.id !== packageId));
     }
   };
-
-  if (showPackageEditor) {
-    const defaultContent = {
-      title: '',
-      subtitle: '',
-      description: '',
-      price: '',
-      originalPrice: undefined,
-      discount: undefined,
-      duration: '',
-      level: '',
-      rating: 0,
-      reviewCount: 0,
-      type: '',
-      status: 'available' as const,
-      checkoutLink: '',
-      contactNumber: '',
-      features: [],
-      featureDetails: [],
-      benefits: [],
-      courses: [],
-      courseList: [],
-      testimonials: [],
-      faq: [],
-      requirements: [],
-      outcomes: [],
-      instructorBio: '',
-      tags: [],
-      category: '',
-      difficulty: 'beginner' as const,
-      language: '',
-      subtitles: [],
-      certificate: false,
-      lifetimeAccess: false,
-      mobileFriendly: false,
-      supportIncluded: false,
-      liveSessions: false,
-      communityAccess: false,
-      bonusMaterials: false,
-      moneyBackGuarantee: false,
-      earlyBirdDiscount: false,
-      groupDiscount: false,
-      paymentPlans: [],
-      comparison: []
-    };
-
-    return (
-      <PackageEditor
-        content={selectedPackage || defaultContent}
-        onUpdate={handleUpdatePackage}
-        packageId={selectedPackage?.id || 'new'}
-        onClose={() => {
-          setShowPackageEditor(false);
-          setSelectedPackage(null);
-        }}
-      />
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
