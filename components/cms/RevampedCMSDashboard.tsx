@@ -359,7 +359,11 @@ export default function RevampedCMSDashboard({
       const result = await response.json();
       if (result.success && result.data) {
         console.log('Fetched courses:', result.data.length);
-        setCoursesData(result.data);
+        // Remove duplicates based on ID
+        const uniqueCourses = result.data.filter((course: any, index: number, self: any[]) => 
+          index === self.findIndex((c: any) => c.id === course.id)
+        );
+        setCoursesData(uniqueCourses);
       }
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -382,7 +386,11 @@ export default function RevampedCMSDashboard({
       const result = await response.json();
       if (result.success && result.data) {
         console.log('Fetched packages:', result.data.length);
-        setPackagesData(result.data);
+        // Remove duplicates based on ID
+        const uniquePackages = result.data.filter((pkg: any, index: number, self: any[]) => 
+          index === self.findIndex((p: any) => p.id === pkg.id)
+        );
+        setPackagesData(uniquePackages);
       }
     } catch (error) {
       console.error('Error fetching packages:', error);
@@ -709,7 +717,7 @@ export default function RevampedCMSDashboard({
               {/* View Toggle */}
               <div className="flex items-center bg-gray-100 rounded-lg p-1">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'outline'}
+                  variant={viewMode === 'grid' ? 'default' : 'secondary'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
                   className="rounded-md"
@@ -718,7 +726,7 @@ export default function RevampedCMSDashboard({
                   Grid
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'outline'}
+                  variant={viewMode === 'list' ? 'default' : 'secondary'}
                   size="sm"
                   onClick={() => setViewMode('list')}
                   className="rounded-md"
@@ -734,11 +742,11 @@ export default function RevampedCMSDashboard({
         {/* Enhanced Category Tabs */}
         <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="mb-8">
           <TabsList className="grid w-full grid-cols-4 bg-gray-100 p-2 rounded-xl h-auto">
-            {categories.map((category) => {
+            {categories.map((category, index) => {
               const Icon = category.icon;
               return (
                 <TabsTrigger 
-                  key={category.id} 
+                  key={`category-${category.id}-${index}`} 
                   value={category.id} 
                   className="flex items-center gap-2 py-3 px-4 data-[state=active]:bg-white data-[state=active]:shadow-md rounded-lg transition-all duration-200"
                 >
@@ -761,12 +769,12 @@ export default function RevampedCMSDashboard({
           ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
           : 'space-y-4'
         }>
-          {filteredContent.map((content) => {
+          {filteredContent.map((content, index) => {
             const Icon = getContentIcon(content.id);
             const isExpanded = expandedItems.has(content.id);
             
             return (
-              <Card key={content.id} className="group hover:shadow-xl transition-all duration-300 border-gray-200 hover:border-blue-300 hover:-translate-y-1 overflow-hidden">
+              <Card key={`content-${content.id}-${index}`} className="group hover:shadow-xl transition-all duration-300 border-gray-200 hover:border-blue-300 hover:-translate-y-1 overflow-hidden">
                 <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-white">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3 flex-1">
@@ -825,7 +833,7 @@ export default function RevampedCMSDashboard({
                     {/* Features */}
                     <div className="flex flex-wrap gap-1">
                       {content.features.slice(0, 3).map((feature, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
+                        <Badge key={`feature-${content.id}-${index}`} variant="outline" className="text-xs">
                           {feature}
                         </Badge>
                       ))}
@@ -867,7 +875,7 @@ export default function RevampedCMSDashboard({
                           <div className="space-y-3">
                             {coursesData.map((course, index) => (
                               <div 
-                                key={course.id} 
+                                key={`course-${course.id}-${index}`} 
                                 className="group flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-purple-400 transition-all duration-200 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50"
                               >
                                 <div className="flex-1 min-w-0">
@@ -950,7 +958,7 @@ export default function RevampedCMSDashboard({
                           <div className="space-y-3">
                             {packagesData.map((pkg, index) => (
                               <div 
-                                key={pkg.id} 
+                                key={`package-${pkg.id}-${index}`} 
                                 className="group flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-orange-400 transition-all duration-200 hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50"
                               >
                                 <div className="flex-1 min-w-0">
