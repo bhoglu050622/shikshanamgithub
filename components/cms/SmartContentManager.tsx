@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { formatDateLong } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -135,6 +136,7 @@ export default function SmartContentManager({
   const [publishStatus, setPublishStatus] = useState<'idle' | 'publishing' | 'success' | 'error'>('idle');
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [analyticsData, setAnalyticsData] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   // Load content items from Next.js frontend
   useEffect(() => {
@@ -143,87 +145,57 @@ export default function SmartContentManager({
 
   const loadContentItems = async () => {
     try {
-      // Simulate loading content from Next.js frontend
-      const mockContent: ContentItem[] = [
-        {
-          id: 'homepage',
-          type: 'page',
-          name: 'Homepage',
-          path: '/',
-          status: 'published',
-          lastModified: new Date('2024-01-15'),
-          size: 245760,
-          dependencies: ['hero', 'schools', 'testimonials'],
-          usage: 1250,
-          tags: ['main', 'landing', 'home'],
-          metadata: { title: 'Shikshanam Homepage', description: 'Main landing page' }
-        },
-        {
-          id: 'about',
-          type: 'page',
-          name: 'About Page',
-          path: '/about',
-          status: 'published',
-          lastModified: new Date('2024-01-10'),
-          size: 189440,
-          dependencies: ['hero', 'mission', 'values'],
-          usage: 890,
-          tags: ['company', 'info', 'about'],
-          metadata: { title: 'About Shikshanam', description: 'Learn about our mission' }
-        },
-        {
-          id: 'hero-component',
-          type: 'component',
-          name: 'Hero Component',
-          path: '/components/sections/Hero.tsx',
-          status: 'published',
-          lastModified: new Date('2024-01-12'),
-          size: 15360,
-          dependencies: ['Button', 'Image'],
-          usage: 8,
-          tags: ['component', 'hero', 'banner'],
-          metadata: { title: 'Hero Section', description: 'Main hero banner component' }
-        },
-        {
-          id: 'schools-data',
-          type: 'data',
-          name: 'Schools Data',
-          path: '/data/schools-content.json',
-          status: 'published',
-          lastModified: new Date('2024-01-14'),
-          size: 8192,
-          dependencies: [],
-          usage: 3,
-          tags: ['data', 'schools', 'content'],
-          metadata: { title: 'Schools Information', description: 'School data and content' }
-        },
-        {
-          id: 'logo-asset',
-          type: 'asset',
-          name: 'Logo',
-          path: '/public/assets/logo.svg',
-          status: 'published',
-          lastModified: new Date('2024-01-08'),
-          size: 4096,
-          dependencies: [],
-          usage: 15,
-          tags: ['asset', 'logo', 'branding'],
-          metadata: { title: 'Shikshanam Logo', description: 'Main brand logo' }
-        }
-      ];
+      // Load real content from CMS API
+      const response = await fetch('/api/cms/content');
+      if (!response.ok) {
+        throw new Error('Failed to fetch content items');
+      }
       
-      setContentItems(mockContent);
+      const data = await response.json();
+      const contentItems: ContentItem[] = data.contentTypes || [];
+      
+      // Transform API data to ContentItem format
+      const transformedItems: ContentItem[] = contentItems.map((item: any) => ({
+        id: item.id,
+        type: item.type || 'page',
+        name: item.name,
+        path: `/${item.id}`,
+        status: item.status || 'published',
+        lastModified: new Date(item.lastModified),
+        size: item.size || 0,
+        dependencies: item.dependencies || [],
+        usage: item.usage || 0,
+        tags: item.tags || [],
+        metadata: item.metadata || { title: item.name, description: '' }
+      }));
+      
+      setContentItems(transformedItems);
+      setLoading(false);
     } catch (error) {
       console.error('Error loading content items:', error);
+      setLoading(false);
     }
   };
 
   const syncWithFrontend = async () => {
     setSyncStatus('syncing');
     try {
-      // Simulate syncing with Next.js frontend
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Sync with real frontend data
+      const response = await fetch('/api/cms/sync', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ contentItems })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to sync with frontend');
+      }
+      
+      const result = await response.json();
       setSyncStatus('success');
+      
       if (onContentSync) {
         onContentSync(contentItems);
       }
@@ -236,9 +208,22 @@ export default function SmartContentManager({
   const publishContent = async () => {
     setPublishStatus('publishing');
     try {
-      // Simulate publishing content
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Publish content to production
+      const response = await fetch('/api/cms/publish', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ contentItems })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to publish content');
+      }
+      
+      const result = await response.json();
       setPublishStatus('success');
+      
       if (onContentPublish) {
         onContentPublish(contentItems);
       }
@@ -542,7 +527,7 @@ export default function SmartContentManager({
                   </div>
                   <div className="flex items-center space-x-1">
                     <Clock className="w-4 h-4" />
-                    <span>{item.lastModified.toLocaleDateString()}</span>
+                    <span>{formatDateLong(item.lastModified)}</span>
                   </div>
                 </div>
 

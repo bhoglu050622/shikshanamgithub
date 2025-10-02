@@ -1,88 +1,12 @@
 {
   "hero": {
     "title": "Test Package Title",
-    "subtitle": "Test Package Subtitle",
-    "description": "Test package description",
-    "ctaText": "Get Package",
-    "ctaLink": "/package"
+    "subtitle": "Complete Learning Package",
+    "description": "Master Sanskrit, Philosophy, and Upanishads in one comprehensive bundle"
   },
-  "courses": [
-    {
-      "name": "Course 1",
-      "description": "Description 1"
-    },
-    {
-      "name": "Course 2",
-      "description": "Description 2"
-    }
-  ],
-  "pricing": {
-    "price": 299,
-    "currency": "USD",
-    "features": [
-      "Feature 1",
-      "Feature 2",
-      "Feature 3"
-    ]
-  },
-  "benefits": {
-    "title": "Bundle Benefits",
-    "description": "Why choose this comprehensive bundle?",
-    "benefits": [
-      "Complete Sanskrit language mastery",
-      "Deep understanding of all six Darshanas",
-      "Upanishadic wisdom and insights",
-      "Comprehensive philosophical education",
-      "Cultural and spiritual enrichment",
-      "Academic and personal growth",
-      "Certificate of completion",
-      "Lifetime access to all materials"
-    ]
-  },
-  "testimonials": {
-    "title": "Student Testimonials",
-    "description": "Hear from students who have completed this comprehensive bundle.",
-    "testimonials": [
-      {
-        "id": "testimonial-1",
-        "name": "Dr. Sarah Johnson",
-        "role": "Philosophy Professor",
-        "content": "This bundle provided me with a complete understanding of Indian philosophy. The Sanskrit component was particularly valuable.",
-        "rating": 5
-      },
-      {
-        "id": "testimonial-2",
-        "name": "Arjun Patel",
-        "role": "Spiritual Seeker",
-        "content": "The combination of Sanskrit, Darshanas, and Upanishads created a transformative learning experience.",
-        "rating": 5
-      }
-    ]
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "description": "Common questions about the Sanskrit + Darshan + Upanishad bundle.",
-    "questions": [
-      {
-        "id": "faq-1",
-        "question": "How long does it take to complete the entire bundle?",
-        "answer": "The bundle is self-paced and typically takes 6-8 months to complete all courses with regular study."
-      },
-      {
-        "id": "faq-2",
-        "question": "Do I need prior knowledge of Sanskrit?",
-        "answer": "No prior knowledge is required. The Sanskrit course starts from basics and takes you to advanced level."
-      },
-      {
-        "id": "faq-3",
-        "question": "Can I take individual courses instead of the bundle?",
-        "answer": "Yes, all courses are available individually, but the bundle offers significant savings and a structured learning path."
-      },
-      {
-        "id": "faq-4",
-        "question": "Will I get certificates for each course?",
-        "answer": "Yes, you will receive a certificate of completion for each course and a master certificate for completing the entire bundle."
-      }
-    ]
-  }
+  "courses": {},
+  "pricing": {},
+  "benefits": {},
+  "testimonials": {},
+  "faq": {}
 }

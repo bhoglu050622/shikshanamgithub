@@ -17,52 +17,14 @@ import {
   Edit,
   Code,
   Palette,
-  ArrowLeft
+  ArrowLeft,
+  Copy
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-// Import existing editors
-import HeroEditor from './HeroEditor';
-import AlignYourselfEditor from './AlignYourselfEditor';
-import SchoolsEditor from './SchoolsEditor';
-import MeetGurusEditor from './MeetGurusEditor';
-import StudentStoriesEditor from './StudentStoriesEditor';
-import TestimonialsEditor from './TestimonialsEditor';
-import CommunityPostsEditor from './CommunityPostsEditor';
-import FoundersMissionEditor from './FoundersMissionEditor';
-import ContributeEditor from './ContributeEditor';
-import DownloadAppEditor from './DownloadAppEditor';
-import FAQEditor from './FAQEditor';
-
-// Import About editors
-import AboutHeroEditor from './AboutHeroEditor';
-import AboutMissionEditor from './AboutMissionEditor';
-import AboutValuesEditor from './AboutValuesEditor';
-import AboutOfferingsEditor from './AboutOfferingsEditor';
-import AboutCTAEditor from './AboutCTAEditor';
-
-// Import Contact editors
-import ContactHeroEditor from './ContactHeroEditor';
-import ContactFormEditor from './ContactFormEditor';
-import ContactInfoEditor from './ContactInfoEditor';
-import ContactQuickHelpEditor from './ContactQuickHelpEditor';
-
-// Import Donation editors
-import DonationHeroEditor from './DonationHeroEditor';
-import DonationImpactEditor from './DonationImpactEditor';
-import DonationCausesEditor from './DonationCausesEditor';
-import DonationOptionsEditor from './DonationOptionsEditor';
-import DonationTestimonialsEditor from './DonationTestimonialsEditor';
-import DonationFAQEditor from './DonationFAQEditor';
-import DonationCTAEditor from './DonationCTAEditor';
-
-// Import Schools editors
-import SchoolsHeroEditor from './SchoolsHeroEditor';
-import SchoolsListEditor from './SchoolsListEditor';
-import SchoolsCTAEditor from './SchoolsCTAEditor';
+// Code editor only - no visual editors needed
 
 import { ContentRegistry } from '@/lib/cms/content-registry';
-import UniversalEditor from './UniversalEditor';
 
 interface ContentTypeStatus {
   id: string;
@@ -85,37 +47,112 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
   const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState('visual');
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
-  const [activeSection, setActiveSection] = useState<string>('');
 
 
   // Trigger layout refresh for Code Editor after mount
   useEffect(() => {
-    if (activeTab === 'code') {
-      // Force layout recalculation for Code Editor
-      const timer = setTimeout(() => {
-        const textarea = document.querySelector('textarea[placeholder="Enter JSON content..."]') as HTMLTextAreaElement;
-        if (textarea) {
-          textarea.style.height = 'auto';
-          textarea.style.height = textarea.scrollHeight + 'px';
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [activeTab]);
+    // Force layout recalculation for Code Editor
+    const timer = setTimeout(() => {
+      const textarea = document.querySelector('textarea[placeholder="Enter JSON content..."]') as HTMLTextAreaElement;
+      if (textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const loadContent = useCallback(async () => {
     setLoading(true);
     try {
-      // Get the full content type configuration
-      const contentConfig = ContentRegistry.getContentType(contentType.id);
+      console.log('Loading content for:', contentType?.id);
+      
+      // For homepage sections, load from the content API
+      if (contentType?.id === 'homepage') {
+        const response = await fetch('/api/cms/content', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          cache: 'no-cache'
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Homepage API response:', result);
+          if (result.success && result.data) {
+            console.log('Full homepage data loaded:', result.data);
+            setContent(result.data);
+            setLoading(false);
+            return;
+          }
+        }
+      }
+      
+      // For other content types, try their specific API endpoints
+      const contentConfig = ContentRegistry.getContentType(contentType?.id);
+      if (contentConfig?.apiEndpoint) {
+        try {
+          const response = await fetch(contentConfig.apiEndpoint, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            cache: 'no-cache'
+          });
+          
+          if (response.ok) {
+            const result = await response.json();
+            console.log(`${contentType?.id} API response:`, result);
+            if (result.success && result.data && result.data.length > 0) {
+              console.log(`Full ${contentType?.id} data loaded:`, result.data[0]);
+              setContent(result.data[0]);
+              setLoading(false);
+              return;
+            }
+          }
+        } catch (error) {
+          console.log(`API endpoint ${contentConfig.apiEndpoint} not available, using default data`);
+        }
+      }
+      
+      // Get the full content type configuration (already declared above)
+      console.log('Content config:', contentConfig);
       if (!contentConfig) {
-        throw new Error(`Content type ${contentType.id} not found`);
+        console.error(`Content type ${contentType?.id} not found in ContentRegistry`);
+        // Use default content structure based on content type sections
+        const defaultContent: any = {};
+        if (contentType?.sections && Array.isArray(contentType.sections)) {
+          contentType.sections.forEach(section => {
+            defaultContent[section] = {
+              title: `${section.charAt(0).toUpperCase() + section.slice(1)} Section`,
+              subtitle: `Edit the ${section} content`,
+              description: `This is the ${section} section content.`,
+              ...(section === 'hero' && {
+                title: 'Welcome to Shikshanam',
+                subtitle: 'Where AI meets Ancient India',
+                description: 'Preserving and sharing ancient Indian wisdom with the modern world'
+              })
+            };
+          });
+        } else {
+          // Fallback to basic structure
+          defaultContent.hero = {
+            title: 'Welcome to Shikshanam',
+            subtitle: 'Where AI meets Ancient India',
+            description: 'Preserving and sharing ancient Indian wisdom with the modern world'
+          };
+        }
+        setContent(defaultContent);
+        setLoading(false);
+        return;
       }
 
-      // Load content from API
-      const response = await fetch(`/api/cms/${contentType.id}`, {
+      // Use the correct API endpoint from the content config
+      const apiEndpoint = contentConfig.apiEndpoint;
+      console.log('API endpoint:', apiEndpoint);
+      const response = await fetch(apiEndpoint, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -126,33 +163,87 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
       
       if (response.ok) {
         const result = await response.json();
+        console.log('API response:', result);
         if (result.success && result.data) {
-          setContent(result.data);
+          // Ensure content has proper structure with fallback values
+          const contentData = result.data || {};
+          console.log('Content data:', contentData);
+          
+          const structuredContent = {
+            hero: contentData.hero || {},
+            alignYourself: contentData.alignYourself || {},
+            schools: contentData.schools || {},
+            meetGurus: contentData.meetGurus || {},
+            studentStories: contentData.studentStories || {},
+            testimonials: contentData.testimonials || {},
+            communityPosts: contentData.communityPosts || {},
+            foundersMission: contentData.foundersMission || {},
+            contribute: contentData.contribute || {},
+            downloadApp: contentData.downloadApp || {},
+            faq: contentData.faq || {},
+            ...contentData // Include any other properties
+          };
+          
+          console.log('Structured content:', structuredContent);
+          setContent(structuredContent);
         } else {
           // Use empty content structure if API fails
-          setContent({});
+          const emptyContent: any = {};
+          if (contentType?.sections && Array.isArray(contentType.sections)) {
+            contentType.sections.forEach(section => {
+              emptyContent[section] = {};
+            });
+          } else {
+            emptyContent.hero = {};
+          }
+          setContent(emptyContent);
         }
         } else {
-          console.warn(`API call failed for ${contentType.id}, using empty content`);
+          console.warn(`API call failed for ${contentType?.id}, using empty content`);
           // Use empty content structure if API fails
-          setContent({});
+          const emptyContent: any = {};
+          if (contentType?.sections && Array.isArray(contentType.sections)) {
+            contentType.sections.forEach(section => {
+              emptyContent[section] = {};
+            });
+          } else {
+            emptyContent.hero = {};
+          }
+          setContent(emptyContent);
         }
       } catch (error) {
         console.error('Error loading content:', error);
         // Use empty content as fallback
-        setContent({});
+        const emptyContent: any = {};
+        if (contentType?.sections && Array.isArray(contentType.sections)) {
+          contentType.sections.forEach(section => {
+            emptyContent[section] = {};
+          });
+        } else {
+          emptyContent.hero = {};
+        }
+        setContent(emptyContent);
     } finally {
       setLoading(false);
     }
   }, [contentType]);
 
   useEffect(() => {
-    if (contentType) {
+    if (contentType && contentType.sections && Array.isArray(contentType.sections)) {
+      // Always set some content to show the editor interface
+      // Create default content structure based on the content type sections
+      const defaultContent: any = {};
+      contentType.sections.forEach(section => {
+        defaultContent[section] = {};
+      });
+      setContent(defaultContent);
+      // Then try to load actual content
       loadContent();
-      // Set first section as active
-      if (contentType.sections.length > 0) {
-        setActiveSection(contentType.sections[0]);
-      }
+    } else {
+      console.error('ContentType or sections not properly defined:', contentType);
+      // Set a basic default content structure
+      const defaultContent = { hero: {} };
+      setContent(defaultContent);
     }
   }, [contentType, loadContent]);
 
@@ -161,7 +252,11 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
     
     setSaving(true);
     try {
-      const response = await fetch(`/api/cms/${contentType.id}`, {
+      // Get the correct API endpoint from content config
+      const contentConfig = ContentRegistry.getContentType(contentType.id);
+      const apiEndpoint = contentConfig?.apiEndpoint || `/api/cms/${contentType.id}`;
+      
+      const response = await fetch(apiEndpoint, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -210,70 +305,6 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
     }));
   };
 
-  const getSectionEditor = (section: string) => {
-    const editorProps = {
-      content: content?.[section] || {},
-      onChange: (data: any) => updateSectionContent(section, data),
-      onUpdate: (data: any) => updateSectionContent(section, data)
-    };
-
-    // Use specific editors where available, UniversalEditor as fallback
-    switch (contentType.id) {
-      case 'homepage':
-        switch (section) {
-          case 'hero': return <HeroEditor {...editorProps} />;
-          case 'alignYourself': return <AlignYourselfEditor {...editorProps} />;
-          case 'schools': return <SchoolsEditor {...editorProps} />;
-          case 'meetGurus': return <MeetGurusEditor {...editorProps} />;
-          case 'studentStories': return <StudentStoriesEditor {...editorProps} />;
-          case 'testimonials': return <TestimonialsEditor {...editorProps} />;
-          case 'communityPosts': return <CommunityPostsEditor {...editorProps} />;
-          case 'foundersMission': return <FoundersMissionEditor {...editorProps} />;
-          case 'contribute': return <ContributeEditor {...editorProps} />;
-          case 'downloadApp': return <DownloadAppEditor {...editorProps} />;
-          case 'faq': return <FAQEditor {...editorProps} />;
-          default: return <UniversalEditor sectionName={section} {...editorProps} />;
-        }
-      case 'about':
-        switch (section) {
-          case 'hero': return <AboutHeroEditor {...editorProps} />;
-          case 'mission': return <AboutMissionEditor {...editorProps} />;
-          case 'values': return <AboutValuesEditor {...editorProps} />;
-          case 'offerings': return <AboutOfferingsEditor {...editorProps} />;
-          case 'cta': return <AboutCTAEditor {...editorProps} />;
-          default: return <UniversalEditor sectionName={section} {...editorProps} />;
-        }
-      case 'contact':
-        switch (section) {
-          case 'hero': return <ContactHeroEditor {...editorProps} />;
-          case 'form': return <ContactFormEditor {...editorProps} />;
-          case 'info': return <ContactInfoEditor {...editorProps} />;
-          case 'quickHelp': return <ContactQuickHelpEditor {...editorProps} />;
-          default: return <UniversalEditor sectionName={section} {...editorProps} />;
-        }
-      case 'donation':
-        switch (section) {
-          case 'hero': return <DonationHeroEditor {...editorProps} />;
-          case 'impact': return <DonationImpactEditor {...editorProps} />;
-          case 'causes': return <DonationCausesEditor {...editorProps} />;
-          case 'options': return <DonationOptionsEditor {...editorProps} />;
-          case 'testimonials': return <DonationTestimonialsEditor {...editorProps} />;
-          case 'faq': return <DonationFAQEditor {...editorProps} />;
-          case 'cta': return <DonationCTAEditor {...editorProps} />;
-          default: return <UniversalEditor sectionName={section} {...editorProps} />;
-        }
-      case 'schools':
-        switch (section) {
-          case 'hero': return <SchoolsHeroEditor {...editorProps} />;
-          case 'list': return <SchoolsListEditor {...editorProps} />;
-          case 'cta': return <SchoolsCTAEditor {...editorProps} />;
-          default: return <UniversalEditor sectionName={section} {...editorProps} />;
-        }
-      default:
-        // For all other content types (courses, etc.), use UniversalEditor
-        return <UniversalEditor sectionName={section} {...editorProps} />;
-    }
-  };
 
   if (loading) {
     return (
@@ -389,7 +420,7 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
             </Button>
           </div>
           <div className="text-sm text-gray-500">
-            Last updated: {content ? new Date().toLocaleTimeString() : 'Never'}
+            Last updated: {content ? new Date().toISOString().split('T')[1].split('.')[0] : 'Never'}
           </div>
         </div>
       </div>
@@ -408,94 +439,126 @@ export default function ContentEditPage({ contentType }: ContentEditPageProps) {
           </div>
         ) : (
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-            {/* Editor Mode Tabs */}
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <div className="border-b border-gray-200 px-6 py-4">
-                <TabsList className="bg-gray-100 p-1 rounded-xl w-fit">
-                  <TabsTrigger 
-                    value="visual" 
-                    className="flex items-center space-x-2 px-6 py-3 data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:text-blue-600 rounded-lg font-medium transition-all duration-200"
-                  >
-                    <Palette className="w-4 h-4" />
-                    <span>Visual Editor</span>
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="code" 
-                    className="flex items-center space-x-2 px-6 py-3 data-[state=active]:bg-white data-[state=active]:shadow-lg data-[state=active]:text-blue-600 rounded-lg font-medium transition-all duration-200"
-                  >
-                    <Code className="w-4 h-4" />
-                    <span>Code Editor</span>
-                  </TabsTrigger>
-                </TabsList>
-              </div>
-
-              <TabsContent value="visual" className="p-6">
-                <div className="space-y-6">
-                  <Tabs value={activeSection} onValueChange={setActiveSection}>
-                    <div className="mb-6">
-                      <TabsList className="bg-gray-100 p-1 rounded-xl border border-gray-200 shadow-sm overflow-x-auto">
-                        {contentType.sections.map(section => (
-                          <TabsTrigger 
-                            key={section} 
-                            value={section} 
-                            className="whitespace-nowrap px-4 py-2.5 text-sm font-medium data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-blue-200 rounded-lg transition-all duration-200 hover:bg-gray-50"
-                          >
-                            {section.charAt(0).toUpperCase() + section.slice(1)}
-                          </TabsTrigger>
-                        ))}
-                      </TabsList>
-                    </div>
-                    
-                    <div className="bg-gray-50 rounded-xl border border-gray-200 p-8">
-                      {contentType.sections.map(section => (
-                        <TabsContent key={section} value={section} className="mt-0">
-                          <div className="w-full">
-                            {getSectionEditor(section)}
-                          </div>
-                        </TabsContent>
-                      ))}
-                    </div>
-                  </Tabs>
+            {/* Code Editor Only */}
+            <div className="border-b border-gray-200 px-6 py-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Code className="w-5 h-5 text-blue-600" />
                 </div>
-              </TabsContent>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Enhanced Code Editor</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Edit the complete JSON content with syntax highlighting and validation.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-              <TabsContent value="code" className="p-6">
+            {/* Code Editor Content */}
+            <div className="p-6">
                 <div className="bg-gray-50 rounded-xl border border-gray-200">
                   <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 rounded-t-xl">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-blue-100 rounded-lg">
-                        <Code className="w-5 h-5 text-blue-600" />
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="p-2 bg-blue-100 rounded-lg">
+                          <Code className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">Enhanced Code Editor</h3>
+                          <p className="text-sm text-gray-600 mt-1">
+                            Edit the complete JSON content with syntax highlighting and validation.
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Raw Content (JSON)</h3>
-                        <p className="text-sm text-gray-600 mt-1">
-                          Edit the raw JSON content directly. Be careful with syntax.
-                        </p>
+                      <div className="flex items-center space-x-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            if (content) {
+                              const formatted = JSON.stringify(content, null, 2);
+                              navigator.clipboard.writeText(formatted);
+                              setMessage({ type: 'success', text: 'JSON copied to clipboard!' });
+                              setTimeout(() => setMessage(null), 3000);
+                            }
+                          }}
+                          className="text-xs"
+                        >
+                          <Copy className="w-3 h-3 mr-1" />
+                          Copy
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            if (content) {
+                              const formatted = JSON.stringify(content, null, 2);
+                              const blob = new Blob([formatted], { type: 'application/json' });
+                              const url = URL.createObjectURL(blob);
+                              const a = document.createElement('a');
+                              a.href = url;
+                              a.download = `${contentType.id}-content.json`;
+                              a.click();
+                              URL.revokeObjectURL(url);
+                            }
+                          }}
+                          className="text-xs"
+                        >
+                          <ExternalLink className="w-3 h-3 mr-1" />
+                          Export
+                        </Button>
                       </div>
                     </div>
                   </div>
                   <div className="p-6">
-                    <textarea
-                      className="w-full font-mono text-sm border border-gray-300 rounded-lg p-6 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                      value={JSON.stringify(content, null, 2)}
-                      onChange={(e) => {
-                        try {
-                          const newContent = JSON.parse(e.target.value);
-                          setContent(newContent);
-                        } catch (error) {
-                          // Invalid JSON, don't update
-                        }
-                      }}
-                      placeholder="Enter JSON content..."
-                      style={{ 
-                        minHeight: '500px',
-                        height: '500px'
-                      }}
-                    />
+                    <div className="relative">
+                      <div className="absolute top-4 left-4 text-xs text-gray-400 font-mono">
+                        {content ? Object.keys(content).length : 0} sections
+                      </div>
+                      <textarea
+                        className="w-full font-mono text-sm border border-gray-300 rounded-lg p-6 pt-12 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                        value={content ? JSON.stringify(content, null, 2) : '{}'}
+                        onChange={(e) => {
+                          try {
+                            const newContent = JSON.parse(e.target.value);
+                            setContent(newContent);
+                            setMessage(null);
+                          } catch (error) {
+                            setMessage({ 
+                              type: 'error', 
+                              text: 'Invalid JSON syntax. Please check your formatting.' 
+                            });
+                          }
+                        }}
+                        placeholder="Enter JSON content..."
+                        style={{ 
+                          minHeight: '500px',
+                          height: '500px',
+                          background: 'linear-gradient(90deg, #f8f9fa 0%, #ffffff 0%)',
+                          backgroundSize: '20px 20px',
+                          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 19px, #e9ecef 20px)'
+                        }}
+                      />
+                      <div className="absolute bottom-4 right-4 text-xs text-gray-400">
+                        {content ? JSON.stringify(content, null, 2).length : 0} characters
+                      </div>
+                    </div>
+                    {content && (
+                      <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div className="flex items-center space-x-2">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <span className="text-sm font-medium text-green-800">
+                            Valid JSON with {Object.keys(content).length} sections
+                          </span>
+                        </div>
+                        <div className="mt-2 text-xs text-green-700">
+                          Sections: {Object.keys(content).join(', ')}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </TabsContent>
-            </Tabs>
+            </div>
           </div>
         )}
       </div>

@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 import { BookOpen, Heart, Users, Globe, ArrowRight, Star, Award, Target, Lightbulb, Shield } from 'lucide-react'
+import { API_CONFIG } from '@/lib/config/api'
+import { useState, useEffect } from 'react'
 
 const contributionOptions = [
   {
@@ -102,6 +104,38 @@ const currentProjects = [
 
 export default function Contribute() {
   const mounted = useHydrationSafeAnimation()
+  const [contributeData, setContributeData] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchContributeData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching contribute data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.contribute) {
+          setContributeData(result.data.contribute)
+        }
+      } catch (error) {
+        console.error('Failed to fetch contribute data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchContributeData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = contributeData?.title || "Contribute to Our Mission"
+  const sectionSubtitle = contributeData?.subtitle || "Help us spread ancient wisdom"
+  const sectionDescription = contributeData?.description || "Join our community of contributors and help preserve and share ancient knowledge."
+  const ctaText = contributeData?.ctaText || "Get Involved"
+  const ctaLink = contributeData?.ctaLink || "/contribute"
 
   return (
     <section id="contribute" className="section-padding bg-background relative overflow-hidden">

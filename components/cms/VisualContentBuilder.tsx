@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import { generateStableId } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -51,7 +52,7 @@ export default function VisualContentBuilder({ content, onUpdate, sectionName }:
 
   const addBlock = useCallback((type: string) => {
     const newBlock: ContentBlock = {
-      id: `block-${Date.now()}`,
+      id: generateStableId('block'),
       type: type as any,
       content: getDefaultContent(type),
       position: blocks.length,
@@ -412,23 +413,25 @@ export default function VisualContentBuilder({ content, onUpdate, sectionName }:
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" role="main" aria-label="Visual Content Builder">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <header className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold">Visual Content Builder</h3>
+          <h3 className="text-lg font-semibold" id="builder-title">Visual Content Builder</h3>
           <p className="text-sm text-gray-600">Drag and drop to build your content</p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2" role="toolbar" aria-label="Builder controls">
           <Button
             variant="outline"
             onClick={() => setIsPreview(!isPreview)}
+            aria-label={isPreview ? 'Switch to edit mode' : 'Switch to preview mode'}
+            aria-pressed={isPreview}
           >
-            <Eye className="w-4 h-4 mr-2" />
+            <Eye className="w-4 h-4 mr-2" aria-hidden="true" />
             {isPreview ? 'Edit' : 'Preview'}
           </Button>
         </div>
-      </div>
+      </header>
 
       {/* Block Types */}
       {!isPreview && (
@@ -437,7 +440,7 @@ export default function VisualContentBuilder({ content, onUpdate, sectionName }:
             <CardTitle className="text-base">Add Content Blocks</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3" role="group" aria-label="Content block types">
               {BLOCK_TYPES.map((blockType) => {
                 const Icon = blockType.icon;
                 return (
@@ -446,8 +449,15 @@ export default function VisualContentBuilder({ content, onUpdate, sectionName }:
                     variant="outline"
                     className="h-auto p-4 flex flex-col items-center space-y-2"
                     onClick={() => addBlock(blockType.type)}
+                    aria-label={`Add ${blockType.label}: ${blockType.description}`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        addBlock(blockType.type);
+                      }
+                    }}
                   >
-                    <Icon className="w-6 h-6" />
+                    <Icon className="w-6 h-6" aria-hidden="true" />
                     <div className="text-center">
                       <div className="font-medium text-sm">{blockType.label}</div>
                       <div className="text-xs text-gray-500">{blockType.description}</div>
@@ -461,24 +471,26 @@ export default function VisualContentBuilder({ content, onUpdate, sectionName }:
       )}
 
       {/* Content Blocks */}
-      <div className="space-y-4">
+      <section className="space-y-4" aria-label="Content blocks">
         {blocks.length === 0 ? (
           <Card className="text-center py-12">
             <CardContent>
-              <Layout className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <Layout className="w-12 h-12 text-gray-400 mx-auto mb-4" aria-hidden="true" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No content blocks yet</h3>
               <p className="text-gray-600 mb-4">Start building your content by adding blocks above</p>
             </CardContent>
           </Card>
         ) : (
-          blocks.map((block, index) => (
-            <div key={block.id}>
-              {renderBlock(block)}
-              {renderBlockEditor(block)}
-            </div>
-          ))
+          <div role="list" aria-label="Content blocks list">
+            {blocks.map((block, index) => (
+              <div key={block.id} role="listitem" aria-label={`Content block ${index + 1}: ${block.type}`}>
+                {renderBlock(block)}
+                {renderBlockEditor(block)}
+              </div>
+            ))}
+          </div>
         )}
-      </div>
+      </section>
 
       {/* Preview Mode */}
       {isPreview && (
@@ -487,9 +499,14 @@ export default function VisualContentBuilder({ content, onUpdate, sectionName }:
             <CardTitle>Live Preview</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="border rounded-lg p-6 bg-white">
+            <div 
+              className="border rounded-lg p-6 bg-white" 
+              role="region" 
+              aria-label="Content preview"
+              aria-live="polite"
+            >
               {blocks.map((block) => (
-                <div key={block.id} className="mb-4">
+                <div key={block.id} className="mb-4" role="article" aria-label={`Preview of ${block.type} block`}>
                   {renderBlockContent(block)}
                 </div>
               ))}

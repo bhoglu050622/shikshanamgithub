@@ -1,6 +1,6 @@
 'use client'
 
-import EnhancedCMSDashboard from '@/components/cms/EnhancedCMSDashboard'
+import CMSLayout from '@/components/cms/CMSLayout'
 import { useRouter } from 'next/navigation'
 
 export default function CMSAdmin() {
@@ -26,7 +26,7 @@ export default function CMSAdmin() {
   }
 
   return (
-    <EnhancedCMSDashboard
+    <CMSLayout
       onEditContent={handleEditContent}
       onPreviewContent={handlePreviewContent}
       onDuplicateContent={handleDuplicateContent}

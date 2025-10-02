@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import { formatDateTime } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -351,7 +352,7 @@ export default function OneClickDesignSystem({ content, onUpdate, sectionName }:
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="font-medium capitalize">{content.design.theme} Theme</h4>
-                <p className="text-sm text-gray-600">Applied {new Date(content.design.appliedAt).toLocaleString()}</p>
+                <p className="text-sm text-gray-600">Applied {formatDateTime(content.design.appliedAt)}</p>
               </div>
               <Button
                 variant="outline"

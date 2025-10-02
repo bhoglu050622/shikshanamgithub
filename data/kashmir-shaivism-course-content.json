@@ -16,17 +16,29 @@
       {
         "title": "Foundations of Kashmir Shaivism",
         "duration": "3 weeks",
-        "topics": ["Historical context", "Key philosophers", "Core concepts"]
+        "topics": [
+          "Historical context",
+          "Key philosophers",
+          "Core concepts"
+        ]
       },
       {
         "title": "The Philosophy of Recognition",
         "duration": "4 weeks",
-        "topics": ["Pratyabhijna philosophy", "Self-recognition", "Consciousness studies"]
+        "topics": [
+          "Pratyabhijna philosophy",
+          "Self-recognition",
+          "Consciousness studies"
+        ]
       },
       {
         "title": "Practical Applications",
         "duration": "2 weeks",
-        "topics": ["Meditation techniques", "Daily practices", "Modern relevance"]
+        "topics": [
+          "Meditation techniques",
+          "Daily practices",
+          "Modern relevance"
+        ]
       }
     ]
   },
@@ -63,12 +75,20 @@
       {
         "name": "Explorer",
         "price": "$179",
-        "features": ["Full course access", "Meditation guide", "Community forum"]
+        "features": [
+          "Full course access",
+          "Meditation guide",
+          "Community forum"
+        ]
       },
       {
         "name": "Seeker",
         "price": "$349",
-        "features": ["Everything in Explorer", "Live meditation sessions", "Personal guidance"]
+        "features": [
+          "Everything in Explorer",
+          "Live meditation sessions",
+          "Personal guidance"
+        ]
       }
     ]
   },
@@ -85,5 +105,10 @@
         "answer": "Kashmir Shaivism offers unique insights into consciousness and self-recognition that are distinct from other traditions."
       }
     ]
+  },
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.106Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
   }
 }

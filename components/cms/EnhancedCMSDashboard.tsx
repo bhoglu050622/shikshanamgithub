@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { formatDateLong } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -201,268 +202,6 @@ export default function EnhancedCMSDashboard({
       views: 580,
       popularity: 55
     },
-    // Courses
-    {
-      id: 'sanskrit-course',
-      name: 'Sanskrit Course',
-      description: 'Sanskrit language course',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-07'),
-      views: 1100,
-      popularity: 92
-    },
-    {
-      id: 'advaita-vedanta-course',
-      name: 'Advaita Vedanta Course',
-      description: 'Advaita Vedanta Darshan - A Journey Through Drig Drishya Viveka',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-06'),
-      views: 850,
-      popularity: 82
-    },
-    {
-      id: 'chanakya-code-course',
-      name: 'Chanakya Code Course',
-      description: 'Chanakya Code - Ancient Wisdom for Modern Leadership',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-05'),
-      views: 750,
-      popularity: 78
-    },
-    {
-      id: 'emotional-intelligence-course',
-      name: 'Emotional Intelligence Course',
-      description: 'Emotional Intelligence with Samkhya Darshan',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-04'),
-      views: 680,
-      popularity: 72
-    },
-    {
-      id: 'isha-upanishad-course',
-      name: 'Isha Upanishad Course',
-      description: 'Isha Upanishad - The Philosophy of the Divine',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-03'),
-      views: 620,
-      popularity: 68
-    },
-    {
-      id: 'kashmir-shaivism-course',
-      name: 'Kashmir Shaivism Course',
-      description: 'Kashmir Shaivism - The Philosophy of Consciousness',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-02'),
-      views: 580,
-      popularity: 65
-    },
-    {
-      id: 'nyaya-darshan-course',
-      name: 'Nyaya Darshan Course',
-      description: 'Nyaya Darshan - The Philosophy of Logic and Reasoning',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-01'),
-      views: 540,
-      popularity: 62
-    },
-    {
-      id: 'prashna-upanishad-course',
-      name: 'Prashna Upanishad Course',
-      description: 'Prashna Upanishad - The Philosophy of Questions',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-31'),
-      views: 500,
-      popularity: 58
-    },
-    {
-      id: 'samkhya-darshan-course',
-      name: 'Samkhya Darshan Course',
-      description: 'Samkhya Darshan - The Philosophy of Numbers and Categories',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-30'),
-      views: 480,
-      popularity: 55
-    },
-    {
-      id: 'sanskrit-beginner-course',
-      name: 'Sanskrit Beginner Course',
-      description: 'Sanskrit Beginner - Introduction to Sanskrit Language',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-29'),
-      views: 1200,
-      popularity: 90
-    },
-    {
-      id: 'sanskrit-live-class-course',
-      name: 'Sanskrit Live Class Course',
-      description: 'Sanskrit Live Class - Interactive Sanskrit Learning',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-28'),
-      views: 950,
-      popularity: 85
-    },
-    {
-      id: 'tantra-darshan-course',
-      name: 'Tantra Darshan Course',
-      description: 'Tantra Darshan - The Philosophy of Energy and Transformation',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-27'),
-      views: 420,
-      popularity: 48
-    },
-    {
-      id: 'vaisheshik-darshan-course',
-      name: 'Vaisheshik Darshan Course',
-      description: 'Vaisheshik Darshan - The Philosophy of Particularity',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-26'),
-      views: 380,
-      popularity: 45
-    },
-    {
-      id: 'yoga-advanced-course',
-      name: 'Yoga Advanced Course',
-      description: 'Yoga Advanced - Advanced Yoga Philosophy and Practice',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-25'),
-      views: 350,
-      popularity: 42
-    },
-    {
-      id: 'yoga-darshan-course',
-      name: 'Yoga Darshan Course',
-      description: 'Yoga Darshan - The Philosophy of Yoga',
-      status: 'active',
-      category: 'courses',
-      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-24'),
-      views: 320,
-      popularity: 40
-    },
-    // Packages
-    {
-      id: 'sanskrit-darshan-upanishad-bundle',
-      name: 'Sanskrit + Darshan + Upanishad Bundle',
-      description: 'Complete package combining Sanskrit language, philosophical systems, and Upanishadic wisdom',
-      status: 'active',
-      category: 'packages',
-      features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-05'),
-      views: 680,
-      popularity: 75
-    },
-    {
-      id: 'para-apara-bundle',
-      name: 'Para Apara Bundle',
-      description: 'Comprehensive package covering both Para and Apara Vidya',
-      status: 'active',
-      category: 'packages',
-      features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-04'),
-      views: 620,
-      popularity: 70
-    },
-    {
-      id: 'darshan-bundle',
-      name: 'Darshan Bundle',
-      description: 'Complete philosophical systems package',
-      status: 'active',
-      category: 'packages',
-      features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-03'),
-      views: 580,
-      popularity: 68
-    },
-    {
-      id: 'sanskrit-bundle',
-      name: 'Sanskrit Bundle',
-      description: 'Complete Sanskrit language learning package',
-      status: 'active',
-      category: 'packages',
-      features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-02'),
-      views: 750,
-      popularity: 80
-    },
-    {
-      id: 'upanishad-bundle',
-      name: 'Upanishad Bundle',
-      description: 'Complete Upanishadic wisdom package',
-      status: 'active',
-      category: 'packages',
-      features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-01'),
-      views: 520,
-      popularity: 65
-    },
     // Content Management
     {
       id: 'blog',
@@ -491,32 +230,6 @@ export default function EnhancedCMSDashboard({
       popularity: 50
     },
     {
-      id: 'tools',
-      name: 'Tools',
-      description: 'Educational tools and utilities',
-      status: 'active',
-      category: 'content',
-      features: ['keyboard', 'sandhi', 'dictionary', 'translator'],
-      sections: ['keyboard', 'sandhi', 'dictionary', 'translator'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-02'),
-      views: 320,
-      popularity: 45
-    },
-    {
-      id: 'glossaries',
-      name: 'Glossaries',
-      description: 'Sanskrit glossaries and dictionaries',
-      status: 'active',
-      category: 'content',
-      features: ['terms', 'definitions', 'pronunciations', 'examples'],
-      sections: ['terms', 'definitions', 'pronunciations', 'examples'],
-      isLoaded: true,
-      lastModified: new Date('2024-01-01'),
-      views: 280,
-      popularity: 40
-    },
-    {
       id: 'wisdom',
       name: 'Wisdom',
       description: 'Wisdom content and articles',
@@ -529,66 +242,40 @@ export default function EnhancedCMSDashboard({
       views: 250,
       popularity: 35
     },
+    // Courses
     {
-      id: 'practice',
-      name: 'Practice',
-      description: 'Practice materials and exercises',
+      id: 'courses',
+      name: 'Courses',
+      description: 'Individual courses and learning programs',
       status: 'active',
-      category: 'content',
-      features: ['exercises', 'quizzes', 'practices', 'materials'],
-      sections: ['exercises', 'quizzes', 'practices', 'materials'],
+      category: 'education',
+      features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
+      sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
       isLoaded: true,
-      lastModified: new Date('2023-12-30'),
-      views: 220,
-      popularity: 32
+      lastModified: new Date('2024-01-15'),
+      views: 1200,
+      popularity: 90
     },
+    // Packages
     {
-      id: 'dharma-path',
-      name: 'Dharma Path',
-      description: 'Personal dharma discovery journey',
+      id: 'packages',
+      name: 'Packages',
+      description: 'Course packages and bundles',
       status: 'active',
-      category: 'content',
-      features: ['quiz', 'assessment', 'guidance', 'path'],
-      sections: ['quiz', 'assessment', 'guidance', 'path'],
+      category: 'education',
+      features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
+      sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
       isLoaded: true,
-      lastModified: new Date('2023-12-29'),
-      views: 180,
-      popularity: 28
+      lastModified: new Date('2024-01-15'),
+      views: 950,
+      popularity: 85
     },
-    {
-      id: 'guna-profiler',
-      name: 'Guna Profiler',
-      description: 'Guna personality profiler',
-      status: 'active',
-      category: 'content',
-      features: ['assessment', 'profiling', 'analysis', 'results'],
-      sections: ['assessment', 'profiling', 'analysis', 'results'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-28'),
-      views: 160,
-      popularity: 25
-    },
-    {
-      id: 'how-aligned-are-you',
-      name: 'How Aligned Are You',
-      description: 'Alignment assessment tool',
-      status: 'active',
-      category: 'content',
-      features: ['assessment', 'alignment', 'scoring', 'feedback'],
-      sections: ['assessment', 'alignment', 'scoring', 'feedback'],
-      isLoaded: true,
-      lastModified: new Date('2023-12-27'),
-      views: 140,
-      popularity: 22
-    }
   ];
 
   const categories = [
     { id: 'all', name: 'All Content', icon: Grid, count: contentTypes.length },
     { id: 'main', name: 'Main Pages', icon: Globe, count: contentTypes.filter(c => c.category === 'main').length },
     { id: 'education', name: 'Education', icon: GraduationCap, count: contentTypes.filter(c => c.category === 'education').length },
-    { id: 'courses', name: 'Courses', icon: BookOpen, count: contentTypes.filter(c => c.category === 'courses').length },
-    { id: 'packages', name: 'Packages', icon: Package, count: contentTypes.filter(c => c.category === 'packages').length },
     { id: 'content', name: 'Content', icon: FileText, count: contentTypes.filter(c => c.category === 'content').length }
   ];
 
@@ -1028,7 +715,7 @@ export default function EnhancedCMSDashboard({
                   {content.lastModified && (
                     <div className="flex items-center space-x-1">
                       <Clock className="w-4 h-4" />
-                      <span>{content.lastModified.toLocaleDateString()}</span>
+                      <span>{formatDateLong(content.lastModified)}</span>
                     </div>
                   )}
                 </div>

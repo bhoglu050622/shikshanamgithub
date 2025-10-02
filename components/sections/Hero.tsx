@@ -31,8 +31,12 @@ export default function Hero() {
         
         const response = await fetch(apiUrl)
         const result = await response.json()
+        console.log('Hero API Response:', result)
         if (result.success && result.data.hero) {
+          console.log('Setting hero data:', result.data.hero)
           setHeroData(result.data.hero)
+        } else {
+          console.log('No hero data found in response')
         }
       } catch (error) {
         console.error('Failed to fetch hero data:', error)
@@ -125,14 +129,14 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                {heroData?.title || "Welcome to Shikshanam"}
+                {heroData?.title || "Welcome to Shikshanam (Fallback)"}
               </motion.h1>
             ) : (
               <h1 
                 ref={titleRef} 
                 className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
               >
-                {heroData?.title || "Welcome to Shikshanam"}
+                {heroData?.title || "Welcome to Shikshanam (Fallback)"}
               </h1>
             )}
           </StaggerItem>

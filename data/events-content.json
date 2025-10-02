@@ -137,5 +137,10 @@
       "Zoom or similar video conferencing software",
       "Notebook for taking notes"
     ]
+  },
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.111Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
   }
 }

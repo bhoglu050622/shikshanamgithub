@@ -6,6 +6,8 @@ import { Heart, MessageCircle, Share, Clock, Users } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import ugcData from '@/data/ugc_content.json'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
+import { API_CONFIG } from '@/lib/config/api'
+import { useState, useEffect } from 'react'
 
 interface CommunityPost {
   id: number
@@ -22,12 +24,50 @@ interface CommunityPostsSectionProps {
   showHeader?: boolean
 }
 
+interface CommunityPostsData {
+  title: string;
+  subtitle: string;
+  description: string;
+  posts: CommunityPost[];
+}
+
 export default function CommunityPostsSection({ 
   maxPosts = 4,
   showHeader = true
 }: CommunityPostsSectionProps) {
   const mounted = useHydrationSafeAnimation()
-  const posts = ugcData.communityPosts.slice(0, maxPosts)
+  const [communityPostsData, setCommunityPostsData] = useState<CommunityPostsData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchCommunityPostsData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching community posts data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.communityPosts) {
+          setCommunityPostsData(result.data.communityPosts)
+        }
+      } catch (error) {
+        console.error('Failed to fetch community posts data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchCommunityPostsData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = communityPostsData?.title || "Community Insights"
+  const sectionSubtitle = communityPostsData?.subtitle || "Join the conversation! See what our community is sharing about their learning journey."
+  const sectionDescription = communityPostsData?.description || "Connect with fellow learners and share your insights."
+  
+  const posts = communityPostsData?.posts || ugcData.communityPosts.slice(0, maxPosts)
 
   const formatTimestamp = (timestamp: string) => {
     // Use hydration-safe approach - only format on client
@@ -59,10 +99,10 @@ export default function CommunityPostsSection({
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light-contrast-primary mb-4 sm:mb-6">
-                Community Insights
+                {sectionTitle}
               </h2>
               <p className="text-lg sm:text-xl text-light-contrast-secondary max-w-3xl mx-auto leading-relaxed">
-                Join the conversation! See what our community is sharing about their learning journey.
+                {sectionSubtitle}
               </p>
             </MotionDiv>
           </div>

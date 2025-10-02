@@ -24,12 +24,32 @@ interface AlignYourselfEditorProps {
 }
 
 export default function AlignYourselfEditor({ content, onChange }: AlignYourselfEditorProps) {
+  // Debug: Log the content being received
+  console.log('AlignYourselfEditor received content:', content);
+  
   // Add comprehensive null checks and default values
+  const defaultCourses = [
+    {
+      id: "tantra-darshan",
+      title: "प्राचीन तंत्र दर्शन",
+      description: "Decoding the principles of Tantra",
+      link: "/courses/tantra-darshan",
+      icon: "book"
+    },
+    {
+      id: "yoga-advanced",
+      title: "Tatvabodha 3: Yoga Darshan",
+      description: "Vibhuti and Kaivalya Pada",
+      link: "/courses/yoga-advanced",
+      icon: "lightbulb"
+    }
+  ];
+  
   const safeContent = {
-    title: content?.title || '',
-    subtitle: content?.subtitle || '',
-    description: content?.description || '',
-    courses: content?.courses || []
+    title: content?.title || 'Two Ways to Begin Your Journey!',
+    subtitle: content?.subtitle || 'Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses.',
+    description: content?.description || 'Choose your learning path with our comprehensive educational offerings.',
+    courses: content?.courses || defaultCourses
   };
 
   const updateField = (field: string, value: string) => {

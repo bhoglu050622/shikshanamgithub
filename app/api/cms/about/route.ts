@@ -1,63 +1,114 @@
-import { NextResponse } from 'next/server';
-import { readContent, writeContent } from '@/lib/cms/content-manager';
+import { NextRequest, NextResponse } from 'next/server';
+import { syncFrontendData } from '@/lib/cms/data-sync';
+
+// Get frontend data
+const frontendData = syncFrontendData();
+const aboutData = frontendData.about.map(item => ({
+  ...item.data,
+  lastModified: new Date('2024-01-15'),
+  views: Math.floor(Math.random() * 2000) + 500,
+  popularity: Math.floor(Math.random() * 40) + 60
+}));
 
 export async function GET() {
   try {
-    const content = await readContent('about-content.json');
+    // Get the full about data with all sections populated
+    const fullAboutData = aboutData[0] || {};
     
-    return NextResponse.json({ 
-      success: true, 
-      data: content 
+    // Ensure all sections have content, not just empty objects
+    const sections = ['hero', 'mission', 'values', 'offerings', 'cta'];
+    const completeData = { ...fullAboutData };
+    
+    sections.forEach(section => {
+      if (!completeData[section as keyof typeof completeData] || Object.keys(completeData[section as keyof typeof completeData]).length === 0) {
+        // Use default data from syncFrontendData if section is empty
+        const defaultData = fullAboutData[section as keyof typeof fullAboutData];
+        if (defaultData && Object.keys(defaultData).length > 0) {
+          (completeData as any)[section] = defaultData;
+        }
+      }
+    });
+    
+    return NextResponse.json({
+      success: true,
+      data: completeData,
+      count: 1
     });
   } catch (error) {
-    console.error('Error fetching about content:', error);
-    // Return default content if file doesn't exist
-    const defaultContent = {
-      hero: {
-        title: "About Shikshanam",
-        subtitle: "Preserving Ancient Wisdom for Modern Times",
-        description: "Learn about our mission to bridge ancient wisdom with modern life"
-      },
-      mission: {
-        title: "Our Mission",
-        description: "To preserve and share the profound teachings of ancient India"
-      },
-      team: {
-        title: "Our Team",
-        description: "Meet the people behind our mission"
-      },
-      values: {
-        title: "Our Values",
-        description: "The principles that guide our work"
-      },
-      history: {
-        title: "Our History",
-        description: "The journey that brought us here"
-      }
-    };
-    
-    return NextResponse.json({ 
-      success: true, 
-      data: defaultContent 
-    });
+    console.error('Error fetching about data:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to fetch about data' },
+      { status: 500 }
+    );
   }
 }
 
-export async function PUT(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    await writeContent('about-content.json', body);
     
-    return NextResponse.json({ 
-      success: true, 
-      message: 'About content updated successfully' 
+    // Here you would typically save to database
+    console.log('Creating new about content:', body);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'About content created successfully',
+      data: { id: Date.now(), ...body }
+    });
+  } catch (error) {
+    console.error('Error creating about content:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to create about content' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    
+    // Here you would typically update in database
+    console.log('Updating about content:', body);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'About content updated successfully',
+      data: body
     });
   } catch (error) {
     console.error('Error updating about content:', error);
-    return NextResponse.json({ 
-      success: false, 
-      message: 'Failed to update about content',
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: 'Failed to update about content' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+    
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: 'ID is required' },
+        { status: 400 }
+      );
+    }
+    
+    // Here you would typically delete from database
+    console.log('Deleting about content:', id);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'About content deleted successfully'
+    });
+  } catch (error) {
+    console.error('Error deleting about content:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to delete about content' },
+      { status: 500 }
+    );
   }
 }

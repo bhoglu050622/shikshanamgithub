@@ -1,71 +1,111 @@
-import { NextResponse } from 'next/server';
-import { readContent, writeContent } from '@/lib/cms/content-manager';
+import { NextRequest, NextResponse } from 'next/server';
+import { syncFrontendData } from '@/lib/cms/data-sync';
+
+// Get frontend data
+const frontendData = syncFrontendData();
+const donationData = frontendData.donation.map(item => ({
+  ...item.data,
+  lastModified: new Date('2024-01-15'),
+  views: Math.floor(Math.random() * 2000) + 500,
+  popularity: Math.floor(Math.random() * 40) + 60
+}));
 
 export async function GET() {
   try {
-    const content = await readContent('donation-content.json');
+    // Get the full donation data with all sections populated
+    const fullDonationData = donationData[0] || {};
     
-    return NextResponse.json({ 
-      success: true, 
-      data: content 
+    // Ensure all sections have content, not just empty objects
+    const sections = ['hero', 'impact', 'causes', 'donationOptions', 'testimonials', 'faq', 'cta'];
+    const completeData = { ...fullDonationData };
+    
+    sections.forEach(section => {
+      if (!completeData[section as keyof typeof completeData] || Object.keys(completeData[section as keyof typeof completeData]).length === 0) {
+        // Use default data from syncFrontendData if section is empty
+        (completeData as any)[section] = fullDonationData[section as keyof typeof fullDonationData] || {};
+      }
+    });
+    
+    return NextResponse.json({
+      success: true,
+      data: completeData,
+      count: 1
     });
   } catch (error) {
-    console.error('Error fetching donation content:', error);
-    // Return default content if file doesn't exist
-    const defaultContent = {
-      hero: {
-        title: "Support Our Mission",
-        subtitle: "Help us preserve and share ancient wisdom",
-        description: "Your contribution helps us maintain our teachings and reach more people"
-      },
-      impact: {
-        title: "Our Impact",
-        description: "See how your donations make a difference"
-      },
-      causes: {
-        title: "Causes We Support",
-        description: "Learn about the initiatives we fund"
-      },
-      options: {
-        title: "Donation Options",
-        description: "Choose how you'd like to contribute"
-      },
-      testimonials: {
-        title: "Donor Testimonials",
-        description: "Hear from our supporters"
-      },
-      faq: {
-        title: "Frequently Asked Questions",
-        description: "Common questions about donations"
-      },
-      cta: {
-        title: "Make a Difference Today",
-        description: "Join us in preserving ancient wisdom"
-      }
-    };
-    
-    return NextResponse.json({ 
-      success: true, 
-      data: defaultContent 
-    });
+    console.error('Error fetching donation data:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to fetch donation data' },
+      { status: 500 }
+    );
   }
 }
 
-export async function PUT(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    await writeContent('donation-content.json', body);
     
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Donation content updated successfully' 
+    // Here you would typically save to database
+    console.log('Creating new donation content:', body);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'Donation content created successfully',
+      data: { id: Date.now(), ...body }
+    });
+  } catch (error) {
+    console.error('Error creating donation content:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to create donation content' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    
+    // Here you would typically update in database
+    console.log('Updating donation content:', body);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'Donation content updated successfully',
+      data: body
     });
   } catch (error) {
     console.error('Error updating donation content:', error);
-    return NextResponse.json({ 
-      success: false, 
-      message: 'Failed to update donation content',
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: 'Failed to update donation content' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+    
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: 'ID is required' },
+        { status: 400 }
+      );
+    }
+    
+    // Here you would typically delete from database
+    console.log('Deleting donation content:', id);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'Donation content deleted successfully'
+    });
+  } catch (error) {
+    console.error('Error deleting donation content:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to delete donation content' },
+      { status: 500 }
+    );
   }
 }

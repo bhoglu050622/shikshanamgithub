@@ -223,7 +223,7 @@ export default function UniversalCMSDashboard() {
                     </div>
                     {contentType.lastUpdated && (
                       <div className="text-xs text-muted-foreground">
-                        Last updated: {contentType.lastUpdated.toLocaleDateString()}
+                        Last updated: {contentType.lastUpdated.toISOString().split('T')[0]}
                       </div>
                     )}
                   </div>

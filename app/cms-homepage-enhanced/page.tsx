@@ -18,7 +18,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-import EnhancedCMS from '@/components/cms/EnhancedCMS';
+import VisualContentBuilder from '@/components/cms/VisualContentBuilder';
 import { useCMSContent } from '@/lib/cms/hooks';
 
 export default function CMSHomepageEnhanced() {
@@ -217,10 +217,10 @@ export default function CMSHomepageEnhanced() {
                 </CardContent>
               </Card>
             ) : (
-              <EnhancedCMS
+              <VisualContentBuilder
                 content={content}
                 onUpdate={updateContent}
-                section={activeSection}
+                sectionName={activeSection}
               />
             )}
           </div>

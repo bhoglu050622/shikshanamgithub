@@ -24,11 +24,42 @@ interface SchoolsEditorProps {
 }
 
 export default function SchoolsEditor({ content, onChange }: SchoolsEditorProps) {
+  // Debug: Log the content being received
+  console.log('SchoolsEditor received content:', content);
+  
+  // Default schools data
+  const defaultSchools = [
+    {
+      id: "sanskrit",
+      name: "School of Sanskrit",
+      description: "Master the Language of the Gods",
+      icon: "book",
+      link: "/schools/sanskrit",
+      color: "blue"
+    },
+    {
+      id: "darshana",
+      name: "School of Darshan",
+      description: "Philosophy and Wisdom",
+      icon: "lightbulb",
+      link: "/schools/darshana",
+      color: "purple"
+    },
+    {
+      id: "self-help",
+      name: "School of Life Skills",
+      description: "Practical Wisdom for Modern Life",
+      icon: "heart",
+      link: "/schools/self-help",
+      color: "green"
+    }
+  ];
+  
   // Add comprehensive null checks and default values
   const safeContent = {
-    title: content?.title || '',
-    subtitle: content?.subtitle || '',
-    schools: content?.schools || []
+    title: content?.title || 'Explore Our Schools',
+    subtitle: content?.subtitle || 'Discover the ancient wisdom through our structured learning paths',
+    schools: content?.schools || defaultSchools
   };
 
   const updateField = (field: string, value: string) => {
@@ -118,7 +149,7 @@ export default function SchoolsEditor({ content, onChange }: SchoolsEditorProps)
         </CardHeader>
         <CardContent className="space-y-4">
           {(safeContent.schools || []).map((school, index) => (
-            <div key={school.id} className="p-4 border rounded-lg space-y-4">
+            <div key={school.id || `school-${index}`} className="p-4 border rounded-lg space-y-4">
               <div className="flex items-center justify-between">
                 <h4 className="font-medium">School #{index + 1}</h4>
                 <Button

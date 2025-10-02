@@ -16,17 +16,29 @@
       {
         "title": "Sanskrit Fundamentals",
         "duration": "4 weeks",
-        "topics": ["Devanagari script", "Basic grammar", "Pronunciation"]
+        "topics": [
+          "Devanagari script",
+          "Basic grammar",
+          "Pronunciation"
+        ]
       },
       {
         "title": "Intermediate Sanskrit",
         "duration": "6 weeks",
-        "topics": ["Complex grammar", "Classical texts", "Translation skills"]
+        "topics": [
+          "Complex grammar",
+          "Classical texts",
+          "Translation skills"
+        ]
       },
       {
         "title": "Advanced Studies",
         "duration": "4 weeks",
-        "topics": ["Philosophical texts", "Poetry", "Independent study"]
+        "topics": [
+          "Philosophical texts",
+          "Poetry",
+          "Independent study"
+        ]
       }
     ]
   },
@@ -63,12 +75,20 @@
       {
         "name": "Group Classes",
         "price": "$199",
-        "features": ["Live group sessions", "Recorded classes", "Study materials"]
+        "features": [
+          "Live group sessions",
+          "Recorded classes",
+          "Study materials"
+        ]
       },
       {
         "name": "Private Tutoring",
         "price": "$399",
-        "features": ["One-on-one sessions", "Personalized curriculum", "Flexible scheduling"]
+        "features": [
+          "One-on-one sessions",
+          "Personalized curriculum",
+          "Flexible scheduling"
+        ]
       }
     ]
   },
@@ -85,5 +105,10 @@
         "answer": "Group classes have 8-12 students to ensure personalized attention."
       }
     ]
+  },
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.108Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
   }
 }

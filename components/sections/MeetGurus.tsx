@@ -1,8 +1,9 @@
 'use client'
 
 import { useReducedMotion, useInView } from 'framer-motion'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { MotionDiv, MotionH2, MotionP, MotionSpan, MotionButton } from '@/components/motion/MotionWrapper'
+import { API_CONFIG } from '@/lib/config/api'
 import { 
   User, 
   ExternalLink, 
@@ -28,19 +29,26 @@ interface Guru {
   profile: string
   experience: string
   education: string
-  achievements: string[]
+  achievements?: string[]
   teachingStyle: string
   philosophy: string
   courses: string[]
   rating: number
-  studentsCount: number
+  studentsCount?: number
   color: string
-  icon: any
+  icon?: any
 }
 
 interface MeetGurusProps {
   onGuruClick?: (guru: Guru) => void
   onViewProfile?: (guru: Guru) => void
+}
+
+interface MeetGurusData {
+  title: string;
+  subtitle: string;
+  description: string;
+  gurus: Guru[];
 }
 
 const gurus: Guru[] = [
@@ -175,7 +183,11 @@ const GuruCard = ({
             
             {/* Specialty icon */}
             <div className={`absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-r ${guru.color} rounded-full flex items-center justify-center shadow-lg`}>
-              <guru.icon className="w-5 h-5 text-primary-foreground" />
+              {guru.icon && typeof guru.icon === 'function' ? (
+                <guru.icon className="w-5 h-5 text-primary-foreground" />
+              ) : (
+                <BookOpen className="w-5 h-5 text-primary-foreground" />
+              )}
             </div>
           </MotionDiv>
         </div>
@@ -198,13 +210,13 @@ const GuruCard = ({
           <div className="flex items-center space-x-1">
             <Star className="w-4 h-4 text-primary fill-current" />
             <span className="text-sm font-medium text-foreground">
-              {guru.rating}
+              {guru.rating || 0}
             </span>
           </div>
           <div className="flex items-center space-x-1">
             <Users className="w-4 h-4 text-secondary" />
             <span className="text-sm text-muted-foreground">
-              {guru.studentsCount.toLocaleString()}+ students
+              {guru.studentsCount ? guru.studentsCount.toLocaleString() : '0'}+ students
             </span>
           </div>
         </div>
@@ -215,7 +227,7 @@ const GuruCard = ({
             Key Achievements
           </h4>
           <ul className="space-y-1">
-            {guru.achievements.slice(0, 2).map((achievement, idx) => (
+            {(guru.achievements || []).slice(0, 2).map((achievement, idx) => (
               <li key={idx} className="flex items-start space-x-2 text-xs text-muted-foreground">
                 <Award className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                 <span>{achievement}</span>
@@ -279,7 +291,11 @@ const GuruModal = ({
                 <User className="w-12 h-12 text-primary-foreground" />
               </div>
               <div className={`absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r ${guru.color} rounded-full flex items-center justify-center`}>
-                <guru.icon className="w-4 h-4 text-primary-foreground" />
+                {guru.icon && typeof guru.icon === 'function' ? (
+                  <guru.icon className="w-4 h-4 text-primary-foreground" />
+                ) : (
+                  <BookOpen className="w-4 h-4 text-primary-foreground" />
+                )}
               </div>
             </div>
             <div>
@@ -292,11 +308,11 @@ const GuruModal = ({
               <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-1">
                   <Star className="w-4 h-4 text-primary fill-current" />
-                  <span>{guru.rating}</span>
+                  <span>{guru.rating || 0}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Users className="w-4 h-4 text-secondary" />
-                  <span>{guru.studentsCount.toLocaleString()}+ students</span>
+                  <span>{guru.studentsCount ? guru.studentsCount.toLocaleString() : '0'}+ students</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Calendar className="w-4 h-4 text-accent" />
@@ -363,7 +379,7 @@ const GuruModal = ({
                 Key Achievements
               </h3>
               <ul className="space-y-1">
-                {guru.achievements.map((achievement, index) => (
+                {(guru.achievements || []).map((achievement, index) => (
                   <li key={index} className="flex items-start space-x-2 text-xs text-muted-foreground">
                     <Award className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                     <span>{achievement}</span>
@@ -412,9 +428,40 @@ const GuruModal = ({
 export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps) {
   const [selectedGuru, setSelectedGuru] = useState<Guru | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [gurusData, setGurusData] = useState<MeetGurusData | null>(null)
+  const [loading, setLoading] = useState(true)
   const shouldReduceMotion = useReducedMotion()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchGurusData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching gurus data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.meetGurus) {
+          setGurusData(result.data.meetGurus)
+        }
+      } catch (error) {
+        console.error('Failed to fetch gurus data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchGurusData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = gurusData?.title || "Meet Our Gurus"
+  const sectionSubtitle = gurusData?.subtitle || "Learn from authentic teachers of ancient wisdom"
+  const sectionDescription = gurusData?.description || "Our experienced teachers guide you through the ancient wisdom traditions."
+  const gurusList = gurusData?.gurus || gurus
 
   const handleGuruClick = (guru: Guru) => {
     setSelectedGuru(guru)
@@ -477,40 +524,20 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
             } : {}}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
-            Meet Your{' '}
-            <MotionSpan
-              className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-              animate={isInView ? {
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-              } : {}}
-              transition={{ 
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              style={{ backgroundSize: '200% 200%' }}
-            >
-              Gurus
-            </MotionSpan>
+            {sectionTitle}
           </MotionH2>
           <MotionP 
-            className="text-body text-muted-foreground max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <MotionSpan
-              animate={isInView ? { opacity: [0.7, 1, 0.7] } : {}}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              Learn from scholars, practitioners, and mentors who have dedicated their lives to 
-              understanding and teaching ancient Indian wisdom for modern application.
-            </MotionSpan>
+            {sectionSubtitle}
           </MotionP>
         </MotionDiv>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {gurus.map((guru, index) => (
+          {gurusList.map((guru: Guru, index: number) => (
             <GuruCard
               key={index}
               guru={guru}
