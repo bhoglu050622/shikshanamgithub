@@ -175,9 +175,17 @@ export default function PackagesCMSAdmin() {
   };
 
   const handleUpdatePackage = (content: any) => {
+    // Convert PackageContent features to Package features format
+    const features = content.features?.map((feature: any) => 
+      typeof feature === 'string' ? feature : feature.title || ''
+    ) || [];
+    
     const updatedPackage: Package = {
       ...content,
       id: selectedPackage?.id || `package-${Date.now()}`,
+      features: features,
+      courses: content.courses?.length || 0,
+      courseList: content.courses || [],
       lastModified: new Date(),
       views: selectedPackage?.views || 0,
       popularity: selectedPackage?.popularity || 0
@@ -245,11 +253,30 @@ export default function PackagesCMSAdmin() {
       comparison: []
     };
 
+    // Convert Package to PackageContent format
+    const convertPackageToContent = (pkg: Package | null) => {
+      if (!pkg) return defaultContent;
+      
+      return {
+        ...pkg,
+        features: pkg.features.map(feature => ({
+          icon: 'Gift',
+          title: feature,
+          description: ''
+        })),
+        courses: pkg.courseList || []
+      } as any;
+    };
+
     return (
       <PackageEditor
-        content={selectedPackage || defaultContent}
+        content={convertPackageToContent(selectedPackage)}
         onUpdate={handleUpdatePackage}
         packageId={selectedPackage?.id || 'new'}
+        onClose={() => {
+          setShowPackageEditor(false);
+          setSelectedPackage(null);
+        }}
       />
     );
   }

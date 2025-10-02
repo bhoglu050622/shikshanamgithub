@@ -104,17 +104,62 @@ interface PackageContent {
 }
 
 interface PackageEditorProps {
-  content: PackageContent;
+  content: PackageContent | null;
   onUpdate: (content: PackageContent) => void;
   packageId: string;
+  onClose: () => void;
 }
 
-export default function PackageEditor({ content, onUpdate, packageId }: PackageEditorProps) {
+const defaultPackageContent: PackageContent = {
+  title: '',
+  subtitle: '',
+  description: '',
+  price: '',
+  originalPrice: '',
+  discount: '',
+  duration: '',
+  level: '',
+  rating: 0,
+  reviewCount: 0,
+  type: '',
+  status: 'available',
+  checkoutLink: '',
+  contactNumber: '',
+  features: [],
+  benefits: [],
+  courses: [],
+  testimonials: [],
+  faq: [],
+  requirements: [],
+  outcomes: [],
+  instructorBio: '',
+  instructorImage: '',
+  packageImage: '',
+  tags: [],
+  category: '',
+  difficulty: 'beginner',
+  language: '',
+  subtitles: [],
+  certificate: false,
+  lifetimeAccess: false,
+  mobileFriendly: false,
+  supportIncluded: false,
+  liveSessions: false,
+  communityAccess: false,
+  bonusMaterials: false,
+  moneyBackGuarantee: false,
+  earlyBirdDiscount: false,
+  groupDiscount: false,
+  paymentPlans: [],
+  comparison: []
+};
+
+export default function PackageEditor({ content, onUpdate, packageId, onClose }: PackageEditorProps) {
   const [activeTab, setActiveTab] = useState('basic');
-  const [localContent, setLocalContent] = useState<PackageContent>(content);
+  const [localContent, setLocalContent] = useState<PackageContent>(content || defaultPackageContent);
 
   useEffect(() => {
-    setLocalContent(content);
+    setLocalContent(content || defaultPackageContent);
   }, [content]);
 
   const handleUpdate = (updates: Partial<PackageContent>) => {
@@ -248,6 +293,9 @@ export default function PackageEditor({ content, onUpdate, packageId }: PackageE
           <Button size="sm">
             <Save className="h-4 w-4 mr-2" />
             Save
+          </Button>
+          <Button variant="outline" size="sm" onClick={onClose}>
+            Close
           </Button>
         </div>
       </div>

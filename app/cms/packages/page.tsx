@@ -260,6 +260,10 @@ export default function PackagesCMSAdmin() {
         content={selectedPackage || defaultContent}
         onUpdate={handleUpdatePackage}
         packageId={selectedPackage?.id || 'new'}
+        onClose={() => {
+          setShowPackageEditor(false);
+          setSelectedPackage(null);
+        }}
       />
     );
   }

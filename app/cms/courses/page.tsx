@@ -249,6 +249,10 @@ export default function CoursesCMSAdmin() {
         content={selectedCourse || defaultContent}
         onUpdate={handleUpdateCourse}
         courseId={selectedCourse?.id || 'new'}
+        onClose={() => {
+          setShowCourseEditor(false);
+          setSelectedCourse(null);
+        }}
       />
     );
   }
