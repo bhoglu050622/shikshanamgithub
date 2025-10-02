@@ -6,6 +6,8 @@ import { Star, MapPin, Calendar, Award } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import ugcData from '@/data/ugc_content.json'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
+import { API_CONFIG } from '@/lib/config/api'
+import { useState, useEffect } from 'react'
 
 interface StudentStory {
   id: number
@@ -25,14 +27,52 @@ interface StudentStoriesSectionProps {
   showFeatured?: boolean
 }
 
+interface StudentStoriesData {
+  title: string;
+  subtitle: string;
+  description: string;
+  stories: StudentStory[];
+}
+
 export default function StudentStoriesSection({ 
   maxStories = 3,
   showFeatured = true
 }: StudentStoriesSectionProps) {
   const mounted = useHydrationSafeAnimation()
-  const stories = showFeatured 
+  const [studentStoriesData, setStudentStoriesData] = useState<StudentStoriesData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchStudentStoriesData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching student stories data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.studentStories) {
+          setStudentStoriesData(result.data.studentStories)
+        }
+      } catch (error) {
+        console.error('Failed to fetch student stories data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchStudentStoriesData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = studentStoriesData?.title || "Student Stories"
+  const sectionSubtitle = studentStoriesData?.subtitle || "Hear from our community of learners"
+  const sectionDescription = studentStoriesData?.description || "Real stories from students who have transformed their lives through ancient wisdom."
+  
+  const stories = studentStoriesData?.stories || (showFeatured 
     ? ugcData.studentStories.filter(story => story.featured).slice(0, maxStories)
-    : ugcData.studentStories.slice(0, maxStories)
+    : ugcData.studentStories.slice(0, maxStories))
 
   return (
     <section className="py-16 sm:py-20 bg-gradient-to-br from-saffron-50/30 to-golden-olive/30">
@@ -46,10 +86,10 @@ export default function StudentStoriesSection({
             viewport={{ once: true }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light-contrast-primary mb-4 sm:mb-6">
-              Student Success Stories
+              {sectionTitle}
             </h2>
             <p className="text-lg sm:text-xl text-light-contrast-secondary max-w-3xl mx-auto leading-relaxed">
-              Real transformations from our students who have embraced ancient wisdom. See how their lives have changed through our courses.
+              {sectionSubtitle}
             </p>
           </motion.div>
         </div>

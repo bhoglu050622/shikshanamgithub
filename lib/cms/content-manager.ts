@@ -84,12 +84,28 @@ const defaultContent: HomepageContent = {
     description: "Our schools offer comprehensive learning paths in Sanskrit, philosophy, and life skills.",
     schools: [
       {
-        id: "sanskrit",
+        id: "school-of-sanskrit",
         name: "School of Sanskrit",
-        description: "Master the language of the Vedas",
-        icon: "book",
+        description: "Master the ancient language that holds the key to Vedic wisdom, classical literature, and spiritual texts.",
         link: "/schools/sanskrit",
+        icon: "book",
         color: "primary"
+      },
+      {
+        id: "school-of-darshan",
+        name: "School of Darshana",
+        description: "Explore the six classical schools of Indian philosophy and discover the nature of reality, consciousness, and existence.",
+        icon: "lightbulb",
+        color: "secondary",
+        link: "/schools/darshana"
+      },
+      {
+        id: "school-of-life-skills",
+        name: "School of Life Skills",
+        description: "Discover practical wisdom from ancient texts to transform your life, relationships, and personal growth.",
+        icon: "heart",
+        color: "accent",
+        link: "/schools/self-help"
       }
     ]
   },

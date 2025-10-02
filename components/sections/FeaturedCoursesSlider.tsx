@@ -450,13 +450,13 @@ export default function FeaturedCoursesSlider({ onCourseClick, onEnrollClick }: 
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-2xl font-bold text-saffron-600 dark:text-saffron-400">
-                {featuredCourses.reduce((sum, course) => sum + course.studentsCount, 0).toLocaleString()}+
+                {featuredCourses.reduce((sum, course) => sum + (course.studentsCount || 0), 0).toLocaleString()}+
               </div>
               <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Students Enrolled</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-peacock-green-600 dark:text-peacock-green-400">
-                {(featuredCourses.reduce((sum, course) => sum + course.rating, 0) / featuredCourses.length).toFixed(1)}
+                {(featuredCourses.reduce((sum, course) => sum + (course.rating || 0), 0) / featuredCourses.length).toFixed(1)}
               </div>
               <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Average Rating</div>
             </div>

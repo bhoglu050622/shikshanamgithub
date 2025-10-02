@@ -2,10 +2,26 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronDown, ChevronUp, HelpCircle, MessageCircle, Phone } from 'lucide-react'
+import { API_CONFIG } from '@/lib/config/api'
 
-const faqs = [
+// Type definitions
+interface FAQItem {
+  id?: string;
+  question: string;
+  answer: string;
+}
+
+interface FAQData {
+  title: string;
+  subtitle: string;
+  description?: string;
+  questions: FAQItem[];
+}
+
+// Default FAQ data (fallback)
+const defaultFaqs: FAQItem[] = [
   {
     question: 'How do I sign up?',
     answer: 'To signup simply click on Login. A popup will appear. Click on signup. The next screen will prompt you to enter your details such as name, email and password, fill all the details and click next. Your account will be created. Alternatively, you can also use your google account to signup on our platform.'
@@ -42,6 +58,36 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [faqData, setFaqData] = useState<FAQData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchFaqData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching FAQ data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.faq) {
+          setFaqData(result.data.faq)
+        }
+      } catch (error) {
+        console.error('Failed to fetch FAQ data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchFaqData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const faqs = faqData?.questions || defaultFaqs
+  const sectionTitle = faqData?.title || "Frequently Asked Questions"
+  const sectionSubtitle = faqData?.subtitle || "Find answers to common questions about our courses, platform, and learning experience."
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -91,19 +137,16 @@ export default function FAQ() {
             </div>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Frequently Asked{' '}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Questions
-            </span>
+            {sectionTitle}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Find answers to common questions about our courses, platform, and learning experience.
+            {sectionSubtitle}
           </p>
         </MotionDiv>
 
         {/* FAQ Items */}
         <div className="max-w-4xl mx-auto mb-16">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq: FAQItem, index: number) => (
             <MotionDiv
               key={index}
               initial={{ opacity: 0, y: 20 }}

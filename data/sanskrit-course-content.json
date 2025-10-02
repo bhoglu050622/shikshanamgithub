@@ -1,90 +1,12 @@
 {
   "hero": {
     "title": "Test Course Title",
-    "subtitle": "Test Course Subtitle",
-    "description": "Test course description",
-    "ctaText": "Enroll Now",
-    "ctaLink": "/enroll"
+    "subtitle": "Master the Ancient Language",
+    "description": "Learn Sanskrit from basics to advanced levels"
   },
-  "syllabus": {
-    "title": "Course Syllabus",
-    "modules": [
-      {
-        "title": "Module 1",
-        "description": "Introduction"
-      },
-      {
-        "title": "Module 2",
-        "description": "Advanced Topics"
-      }
-    ]
-  },
-  "outcomes": {
-    "title": "What You Will Learn",
-    "description": "By the end of this course, you will have a solid foundation in Sanskrit language.",
-    "benefits": [
-      "Read and write in Devanagari script",
-      "Understand Sanskrit grammar fundamentals",
-      "Read simple Sanskrit texts",
-      "Understand classical Sanskrit literature",
-      "Develop pronunciation and speaking skills"
-    ]
-  },
-  "testimonials": {
-    "title": "Student Testimonials",
-    "description": "Hear from students who have mastered Sanskrit through this course.",
-    "testimonials": [
-      {
-        "id": "testimonial-1",
-        "name": "Dr. Anjali Patel",
-        "role": "Professor",
-        "content": "This course made Sanskrit accessible and enjoyable. The structured approach really works.",
-        "rating": 5
-      },
-      {
-        "id": "testimonial-2",
-        "name": "Michael Chen",
-        "role": "Researcher",
-        "content": "As a complete beginner, I was amazed at how quickly I could start reading Sanskrit texts.",
-        "rating": 5
-      }
-    ]
-  },
-  "pricing": {
-    "title": "Course Pricing",
-    "description": "Invest in learning the ancient language of wisdom.",
-    "price": 4999,
-    "originalPrice": 7999,
-    "features": [
-      "Complete video lectures",
-      "Interactive exercises",
-      "Downloadable materials",
-      "Live practice sessions",
-      "Certificate of completion",
-      "Lifetime access"
-    ],
-    "ctaText": "Start Learning",
-    "ctaLink": "/courses/sanskrit-course"
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "description": "Common questions about the Sanskrit course.",
-    "questions": [
-      {
-        "id": "faq-1",
-        "question": "Is this course suitable for complete beginners?",
-        "answer": "Yes, this course is designed for complete beginners and will take you from zero to intermediate level."
-      },
-      {
-        "id": "faq-2",
-        "question": "How long does it take to complete?",
-        "answer": "The course is self-paced and typically takes 3-4 months with regular study of 2-3 hours per week."
-      },
-      {
-        "id": "faq-3",
-        "question": "Will I be able to read Sanskrit texts after this course?",
-        "answer": "Yes, by the end of the course you will be able to read and understand simple to intermediate Sanskrit texts."
-      }
-    ]
-  }
+  "syllabus": {},
+  "outcomes": {},
+  "testimonials": {},
+  "pricing": {},
+  "faq": {}
 }

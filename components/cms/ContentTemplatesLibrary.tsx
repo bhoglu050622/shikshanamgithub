@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import { formatDateLong } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -50,11 +51,11 @@ const CONTENT_TEMPLATES: ContentTemplate[] = [
     category: 'Hero',
     tags: ['hero', 'landing', 'conversion'],
     content: {
-      headline: 'Transform Your Life with Ancient Wisdom',
-      subheadline: 'Discover the timeless teachings of Sanskrit, Yoga, and Indian Philosophy',
-      cta: 'Start Your Journey',
-      ctaLink: '/courses',
-      backgroundImage: '/images/hero-bg.jpg'
+      headline: '',
+      subheadline: '',
+      cta: '',
+      ctaLink: '',
+      backgroundImage: ''
     },
     preview: 'Hero with centered text and call-to-action',
     popularity: 95,
@@ -70,30 +71,8 @@ const CONTENT_TEMPLATES: ContentTemplate[] = [
     category: 'Social Proof',
     tags: ['testimonials', 'social-proof', 'trust'],
     content: {
-      title: 'What Our Students Say',
-      testimonials: [
-        {
-          quote: 'This course completely transformed my understanding of ancient wisdom.',
-          author: 'Sarah Johnson',
-          role: 'Student',
-          image: '/images/testimonial-1.jpg',
-          rating: 5
-        },
-        {
-          quote: 'The best investment I made for my personal growth.',
-          author: 'Michael Chen',
-          role: 'Student',
-          image: '/images/testimonial-2.jpg',
-          rating: 5
-        },
-        {
-          quote: 'Life-changing experience with practical applications.',
-          author: 'Priya Sharma',
-          role: 'Student',
-          image: '/images/testimonial-3.jpg',
-          rating: 5
-        }
-      ]
+      title: '',
+      testimonials: []
     },
     preview: '3-column testimonial grid with photos',
     popularity: 88,
@@ -323,41 +302,43 @@ export default function ContentTemplatesLibrary({ content, onApplyTemplate, sect
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" role="main" aria-label="Content Templates Library">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <header className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold flex items-center space-x-2">
-            <BookOpen className="w-5 h-5 text-blue-500" />
+          <h3 className="text-lg font-semibold flex items-center space-x-2" id="templates-title">
+            <BookOpen className="w-5 h-5 text-blue-500" aria-hidden="true" />
             <span>Content Templates Library</span>
           </h3>
           <p className="text-sm text-gray-600">Professional templates for {sectionName} section</p>
         </div>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm">
-            <Upload className="w-4 h-4 mr-1" />
+        <div className="flex items-center space-x-2" role="toolbar" aria-label="Template actions">
+          <Button variant="outline" size="sm" aria-label="Import templates">
+            <Upload className="w-4 h-4 mr-1" aria-hidden="true" />
             Import
           </Button>
-          <Button variant="outline" size="sm">
-            <Download className="w-4 h-4 mr-1" />
+          <Button variant="outline" size="sm" aria-label="Export templates">
+            <Download className="w-4 h-4 mr-1" aria-hidden="true" />
             Export
           </Button>
         </div>
-      </div>
+      </header>
 
       {/* Search and Filters */}
       <Card>
         <CardContent className="p-4">
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4" role="search" aria-label="Template search and filters">
             {/* Search */}
             <div className="flex-1 min-w-[200px]">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" aria-hidden="true" />
                 <Input
                   placeholder="Search templates..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
+                  aria-label="Search templates"
+                  role="searchbox"
                 />
               </div>
             </div>
@@ -456,7 +437,7 @@ export default function ContentTemplatesLibrary({ content, onApplyTemplate, sect
 
                 <div className="flex items-center justify-between text-xs text-gray-500">
                   <span>by {template.author}</span>
-                  <span>{new Date(template.createdAt).toLocaleDateString()}</span>
+                  <span>{formatDateLong(template.createdAt)}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-1">

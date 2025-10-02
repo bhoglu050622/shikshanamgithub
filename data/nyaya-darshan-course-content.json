@@ -98,5 +98,10 @@
         "answer": "The course is self-paced and typically takes 4-6 weeks to complete."
       }
     ]
+  },
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.104Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
   }
 }

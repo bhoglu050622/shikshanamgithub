@@ -35,5 +35,10 @@
       "bio": "Spiritual teacher and Sanskrit scholar",
       "avatar": "/assets/swami-ananda.jpg"
     }
-  ]
+  ],
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.109Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
+  }
 }

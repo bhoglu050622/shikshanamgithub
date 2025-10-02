@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "title": "Support Our Mission",
+    "subtitle": "Help us preserve and share ancient Indian wisdom"
+  },
+  "impact": {
+    "raised": "₹50L+",
+    "supporters": "2000+",
+    "projects": "25+"
+  },
+  "causes": [
+    {
+      "title": "Sanskrit Preservation",
+      "description": "Digitize ancient manuscripts",
+      "progress": 75
+    },
+    {
+      "title": "Teacher Training",
+      "description": "Train rural teachers",
+      "progress": 45
+    },
+    {
+      "title": "Mobile Learning",
+      "description": "Develop learning apps",
+      "progress": 90
+    }
+  ]
+}

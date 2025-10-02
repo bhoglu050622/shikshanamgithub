@@ -16,17 +16,29 @@
       {
         "title": "Understanding Emotions",
         "duration": "2 weeks",
-        "topics": ["Emotion recognition", "Samkhya perspective", "Modern psychology"]
+        "topics": [
+          "Emotion recognition",
+          "Samkhya perspective",
+          "Modern psychology"
+        ]
       },
       {
         "title": "Emotional Regulation",
         "duration": "3 weeks",
-        "topics": ["Self-regulation techniques", "Mindfulness practices", "Ancient wisdom"]
+        "topics": [
+          "Self-regulation techniques",
+          "Mindfulness practices",
+          "Ancient wisdom"
+        ]
       },
       {
         "title": "Social Intelligence",
         "duration": "2 weeks",
-        "topics": ["Empathy development", "Relationship skills", "Leadership emotions"]
+        "topics": [
+          "Empathy development",
+          "Relationship skills",
+          "Leadership emotions"
+        ]
       }
     ]
   },
@@ -63,12 +75,20 @@
       {
         "name": "Self-Paced",
         "price": "$149",
-        "features": ["Full course access", "Workbook", "Community support"]
+        "features": [
+          "Full course access",
+          "Workbook",
+          "Community support"
+        ]
       },
       {
         "name": "Guided",
         "price": "$299",
-        "features": ["Everything in Self-Paced", "Weekly group sessions", "Personal coaching"]
+        "features": [
+          "Everything in Self-Paced",
+          "Weekly group sessions",
+          "Personal coaching"
+        ]
       }
     ]
   },
@@ -85,5 +105,10 @@
         "answer": "Very practical! We focus on real-world applications and exercises."
       }
     ]
+  },
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.107Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
   }
 }

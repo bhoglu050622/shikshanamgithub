@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import testimonialsData from '@/data/testimonials.json'
 import ugcData from '@/data/ugc_content.json'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
+import { API_CONFIG } from '@/lib/config/api'
 
 interface Testimonial {
   id: number
@@ -29,6 +30,13 @@ interface TestimonialsSectionProps {
   autoPlayInterval?: number
 }
 
+interface TestimonialsData {
+  title: string;
+  subtitle: string;
+  description: string;
+  testimonials: Testimonial[];
+}
+
 export default function TestimonialsSection({ 
   showStats = true, 
   maxTestimonials = 6,
@@ -38,6 +46,37 @@ export default function TestimonialsSection({
   const mounted = useHydrationSafeAnimation()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay)
+  const [cmsTestimonialsData, setCmsTestimonialsData] = useState<TestimonialsData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchTestimonialsData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching testimonials data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.testimonials) {
+          setCmsTestimonialsData(result.data.testimonials)
+        }
+      } catch (error) {
+        console.error('Failed to fetch testimonials data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchTestimonialsData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = cmsTestimonialsData?.title || "What Our Students Say"
+  const sectionSubtitle = cmsTestimonialsData?.subtitle || "Real experiences from our learning community"
+  const sectionDescription = cmsTestimonialsData?.description || "Hear from our students about their transformative learning experiences."
+  
   // Combine testimonials from both sources
   const allTestimonials = [...testimonialsData.testimonials, ...ugcData.userReviews]
   const testimonials = allTestimonials.slice(0, maxTestimonials)
@@ -90,10 +129,10 @@ export default function TestimonialsSection({
             viewport={{ once: true }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light-contrast-primary mb-4 sm:mb-6">
-              What Our Students Say
+              {sectionTitle}
             </h2>
             <p className="text-lg sm:text-xl text-light-contrast-secondary max-w-3xl mx-auto leading-relaxed">
-              Join thousands of learners who have transformed their understanding of ancient Indian wisdom
+              {sectionSubtitle}
             </p>
           </MotionDiv>
         </div>

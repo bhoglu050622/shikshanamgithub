@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { generateStableId } from '@/lib/utils';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -86,7 +87,7 @@ export default function ImageUploader({
         const reader = new FileReader();
         reader.onload = (e) => {
           const newImageData: ImageData = {
-            id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+            id: generateStableId('image'),
             url: e.target?.result as string,
             alt: file.name,
             source: 'upload',
@@ -119,7 +120,7 @@ export default function ImageUploader({
     }
 
     const imageData: ImageData = {
-      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+      id: generateStableId('image'),
       url: newImage.url,
       alt: newImage.alt || '',
       caption: newImage.caption || '',

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { generateStableId } from '@/lib/utils';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -108,7 +109,7 @@ export default function VideoEmbedder({
     const embedCode = generateEmbedCode({ ...newVideo, platform } as VideoData);
 
     const videoData: VideoData = {
-      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+      id: generateStableId('video'),
       url: newVideo.url,
       title: newVideo.title || 'Untitled Video',
       description: newVideo.description || '',

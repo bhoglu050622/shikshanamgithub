@@ -10,7 +10,13 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: '#FAF8F4',
     theme_color: '#FF8A00',
     orientation: 'portrait',
-    icons: [],
+    icons: [
+      {
+        src: '/favicon.ico',
+        sizes: '16x16 32x32',
+        type: 'image/x-icon',
+      },
+    ],
     categories: ['education', 'lifestyle', 'productivity'],
     lang: 'en',
     dir: 'ltr',

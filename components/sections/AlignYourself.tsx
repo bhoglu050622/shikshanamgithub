@@ -2,14 +2,63 @@
 
 import { motion } from 'framer-motion'
 import { BookOpen, Clock, Users, ChevronLeft, ChevronRight, Play, Calendar, Star, ArrowRight } from 'lucide-react'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
+import { API_CONFIG } from '@/lib/config/api'
 
-// Sample course data - in a real app, this would come from an API
-const liveClasses = [
+// Type definitions
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  link: string;
+  icon: string;
+}
+
+interface LiveClass {
+  id: string;
+  title: string;
+  instructor: string;
+  thumbnail: string;
+  duration: string;
+  date: string;
+  time: string;
+  price: string;
+  rating: number;
+  students: number;
+  link: string;
+  description: string;
+}
+
+interface SelfPacedCourse {
+  id: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  duration: string;
+  modules: number;
+  price: string;
+  rating: number;
+  students: number;
+  link: string;
+  level: string;
+  instructor: string;
+}
+
+interface AlignYourselfData {
+  title: string;
+  subtitle: string;
+  description: string;
+  courses: Course[];
+  liveClasses: LiveClass[];
+  selfPacedCourses: SelfPacedCourse[];
+}
+
+// Default data (fallback)
+const defaultLiveClasses: LiveClass[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Vedic Mathematics Masterclass',
     instructor: 'Guru Rajesh Kumar',
     thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
@@ -23,7 +72,7 @@ const liveClasses = [
     description: 'Learn ancient mathematical techniques for faster calculations'
   },
   {
-    id: 2,
+    id: '2',
     title: 'Sanskrit Grammar Fundamentals',
     instructor: 'Dr. Priya Sharma',
     thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
@@ -37,7 +86,7 @@ const liveClasses = [
     description: 'Master the basics of Sanskrit grammar and sentence structure'
   },
   {
-    id: 3,
+    id: '3',
     title: 'Yoga Philosophy & Practice',
     instructor: 'Swami Ananda',
     thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
@@ -52,9 +101,9 @@ const liveClasses = [
   }
 ]
 
-const selfPacedCourses = [
+const defaultSelfPacedCourses: SelfPacedCourse[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Complete Bhagavad Gita Study',
     instructor: 'Dr. Krishna Das',
     thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
@@ -64,10 +113,11 @@ const selfPacedCourses = [
     rating: 4.9,
     students: 1500,
     link: 'https://example.com/bhagavad-gita-course',
-    description: 'Comprehensive study of the Bhagavad Gita with commentary and practical insights'
+    description: 'Comprehensive study of the Bhagavad Gita with commentary and practical insights',
+    level: 'Intermediate'
   },
   {
-    id: 2,
+    id: '2',
     title: 'Ayurveda Fundamentals',
     instructor: 'Dr. Vaidya Suresh',
     thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
@@ -77,10 +127,11 @@ const selfPacedCourses = [
     rating: 4.7,
     students: 800,
     link: 'https://example.com/ayurveda-fundamentals',
-    description: 'Learn the ancient science of Ayurveda and its modern applications'
+    description: 'Learn the ancient science of Ayurveda and its modern applications',
+    level: 'Beginner'
   },
   {
-    id: 3,
+    id: '3',
     title: 'Vedic Astrology Basics',
     instructor: 'Pandit Ravi Shankar',
     thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
@@ -90,10 +141,34 @@ const selfPacedCourses = [
     rating: 4.8,
     students: 650,
     link: 'https://example.com/vedic-astrology-basics',
-    description: 'Introduction to Jyotish and understanding planetary influences'
+    description: 'Introduction to Jyotish and understanding planetary influences',
+    level: 'Beginner'
   }
 ]
 
+const defaultCourses: Course[] = [
+  {
+    id: '1',
+    title: 'Sanskrit Fundamentals',
+    description: 'Learn the basics of Sanskrit language and grammar',
+    link: '/courses/sanskrit-fundamentals',
+    icon: '📚'
+  },
+  {
+    id: '2',
+    title: 'Yoga Philosophy',
+    description: 'Explore the philosophical foundations of yoga',
+    link: '/courses/yoga-philosophy',
+    icon: '🧘'
+  },
+  {
+    id: '3',
+    title: 'Vedic Mathematics',
+    description: 'Master ancient mathematical techniques',
+    link: '/courses/vedic-mathematics',
+    icon: '🔢'
+  }
+]
 
 // Course Card Component
 function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced' }) {
@@ -115,6 +190,7 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
           src={course.thumbnail}
           alt={course.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement
@@ -255,6 +331,39 @@ function CourseCarousel({ courses, type, title }: { courses: any[], type: 'live'
 
 export default function AlignYourself() {
   const mounted = useHydrationSafeAnimation()
+  const [alignData, setAlignData] = useState<AlignYourselfData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchAlignData = async () => {
+      try {
+        const apiUrl = API_CONFIG.getCmsApiUrl('content')
+        console.log('Fetching align yourself data from:', apiUrl)
+        
+        const response = await fetch(apiUrl)
+        const result = await response.json()
+        
+        if (result.success && result.data.alignYourself) {
+          setAlignData(result.data.alignYourself)
+        }
+      } catch (error) {
+        console.error('Failed to fetch align yourself data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchAlignData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = alignData?.title || "Two Ways to Begin Your Journey!"
+  const sectionSubtitle = alignData?.subtitle || "Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses."
+  const sectionDescription = alignData?.description || "Choose your learning path with our comprehensive educational offerings."
+  const liveClasses = alignData?.liveClasses || defaultLiveClasses
+  const selfPacedCourses = alignData?.selfPacedCourses || defaultSelfPacedCourses
+  const courses = alignData?.courses || defaultCourses
   
   return (
     <section id="align-yourself" className="section-padding bg-background relative overflow-hidden">
@@ -285,13 +394,10 @@ export default function AlignYourself() {
           className="text-center mb-16"
         >
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Two Ways to Begin Your{' '}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Journey!
-            </span>
+            {sectionTitle}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses.
+            {sectionSubtitle}
           </p>
         </motion.div>
 

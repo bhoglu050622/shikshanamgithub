@@ -568,7 +568,7 @@ export default function ContentEditModal({
               </Button>
             </div>
             <div className="text-sm text-gray-500">
-              Last updated: {content ? new Date().toLocaleTimeString() : 'Never'}
+              Last updated: {content ? new Date().toISOString().split('T')[1].split('.')[0] : 'Never'}
             </div>
           </div>
         </div>

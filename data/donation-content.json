@@ -150,5 +150,10 @@
     "subtitle": "Join thousands of supporters in preserving ancient wisdom for future generations",
     "buttonText": "Donate Now",
     "buttonLink": "#donation-form"
+  },
+  "_metadata": {
+    "lastCleaned": "2025-10-01T18:25:40.096Z",
+    "version": "1.0",
+    "source": "dynamic-sync"
   }
 }

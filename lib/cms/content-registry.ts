@@ -14,8 +14,6 @@ type DarshanaSchoolContent = any;
 type SelfHelpSchoolContent = any;
 type EnhancedHomepageContent = any;
 type BlogContent = any;
-type CourseContent = any;
-type PackageContent = any;
 
 // Content Type Definitions
 export interface ContentTypeConfig {
@@ -45,7 +43,7 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     type: 'HomepageContent',
     status: 'active',
     category: 'main',
-    features: ['hero', 'courses', 'schools', 'gurus', 'testimonials', 'community', 'mission'],
+    features: ['hero', 'schools', 'gurus', 'testimonials', 'community', 'mission'],
     sections: [
       'hero', 'alignYourself', 'schools', 'meetGurus', 
       'studentStories', 'testimonials', 'communityPosts', 
@@ -120,8 +118,8 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     type: 'SchoolPageContent',
     status: 'active',
     category: 'education',
-    features: ['hero', 'courses', 'benefits', 'testimonials', 'cta'],
-    sections: ['hero', 'courses', 'benefits', 'testimonials', 'cta']
+    features: ['hero', 'benefits', 'testimonials', 'cta'],
+    sections: ['hero', 'benefits', 'testimonials', 'cta']
   },
 
   darshanaSchool: {
@@ -148,230 +146,48 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
     type: 'SelfHelpSchoolContent',
     status: 'active',
     category: 'education',
-    features: ['hero', 'courses', 'benefits', 'testimonials', 'schools', 'cta'],
-    sections: ['hero', 'courses', 'benefits', 'testimonials', 'schools', 'cta']
+    features: ['hero', 'benefits', 'testimonials', 'schools', 'cta'],
+    sections: ['hero', 'benefits', 'testimonials', 'schools', 'cta']
   },
 
-  // Individual Courses
-  advaitaVedantaCourse: {
-    id: 'advaita-vedanta-course',
-    name: 'Advaita Vedanta Course',
-    description: 'Advaita Vedanta Darshan - A Journey Through Drig Drishya Viveka',
-    apiEndpoint: '/api/cms/advaita-vedanta-course',
-    cmsPath: '/cms/advaita-vedanta-course',
-    frontendPath: '/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka',
-    type: 'CourseContent',
+  // Content Pages
+  blog: {
+    id: 'blog',
+    name: 'Blog',
+    description: 'Blog posts and articles',
+    apiEndpoint: '/api/cms/blog',
+    cmsPath: '/cms/blog',
+    frontendPath: '/blog',
+    type: 'BlogContent',
     status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
+    category: 'content',
+    features: ['hero', 'posts', 'categories', 'tags'],
+    sections: ['hero', 'posts', 'categories', 'tags']
   },
 
-  chanakyaCodeCourse: {
-    id: 'chanakya-code-course',
-    name: 'Chanakya Code Course',
-    description: 'Chanakya Code - Ancient Wisdom for Modern Success',
-    apiEndpoint: '/api/cms/chanakya-code-course',
-    cmsPath: '/cms/chanakya-code-course',
-    frontendPath: '/courses/chanakya-code',
-    type: 'CourseContent',
+  events: {
+    id: 'events',
+    name: 'Events',
+    description: 'Events and workshops',
+    apiEndpoint: '/api/cms/events',
+    cmsPath: '/cms/events',
+    frontendPath: '/events',
+    type: 'BlogContent',
     status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
+    category: 'content',
+    features: ['hero', 'events', 'categories', 'registration'],
+    sections: ['hero', 'events', 'categories', 'registration']
   },
 
-  ishaUpanishadCourse: {
-    id: 'isha-upanishad-course',
-    name: 'Isha Upanishad Course',
-    description: 'Isha Upanishad - Ancient Wisdom for Modern Life',
-    apiEndpoint: '/api/cms/isha-upanishad-course',
-    cmsPath: '/cms/isha-upanishad-course',
-    frontendPath: '/courses/isha-upanishad',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  nyayaDarshanCourse: {
-    id: 'nyaya-darshan-course',
-    name: 'Nyaya Darshan Course',
-    description: 'Nyaya Darshan - Logic and Reasoning in Indian Philosophy',
-    apiEndpoint: '/api/cms/nyaya-darshan-course',
-    cmsPath: '/cms/nyaya-darshan-course',
-    frontendPath: '/courses/nyaya-darshan',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  prashnaUpanishadCourse: {
-    id: 'prashna-upanishad-course',
-    name: 'Prashna Upanishad Course',
-    description: 'Prashna Upanishad - The Questions of Life',
-    apiEndpoint: '/api/cms/prashna-upanishad-course',
-    cmsPath: '/cms/prashna-upanishad-course',
-    frontendPath: '/courses/prashna-upanishad',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  samkhyaDarshanCourse: {
-    id: 'samkhya-darshan-course',
-    name: 'Samkhya Darshan Course',
-    description: 'Samkhya Darshan - The Philosophy of Numbers and Categories',
-    apiEndpoint: '/api/cms/samkhya-darshan-course',
-    cmsPath: '/cms/samkhya-darshan-course',
-    frontendPath: '/courses/samkhya-darshan',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  sanskritBeginnerCourse: {
-    id: 'sanskrit-beginner-course',
-    name: 'Sanskrit Beginner Course',
-    description: 'Sanskrit Beginner - Learn the Language of the Gods',
-    apiEndpoint: '/api/cms/sanskrit-beginner-course',
-    cmsPath: '/cms/sanskrit-beginner-course',
-    frontendPath: '/courses/sanskrit-beginner',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  sanskritCourse: {
-    id: 'sanskrit-course',
-    name: 'Sanskrit Course',
-    description: 'Complete Sanskrit Language Learning Program',
-    apiEndpoint: '/api/cms/sanskrit-course',
-    cmsPath: '/cms/sanskrit-course',
-    frontendPath: '/courses/sanskrit-course',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  tantraDarshanCourse: {
-    id: 'tantra-darshan-course',
-    name: 'Tantra Darshan Course',
-    description: 'Tantra Darshan - Ancient Tantric Philosophy',
-    apiEndpoint: '/api/cms/tantra-darshan-course',
-    cmsPath: '/cms/tantra-darshan-course',
-    frontendPath: '/courses/tantra-darshan',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  vaisheshikDarshanCourse: {
-    id: 'vaisheshik-darshan-course',
-    name: 'Vaisheshik Darshan Course',
-    description: 'Vaisheshik Darshan - The Philosophy of Particularity',
-    apiEndpoint: '/api/cms/vaisheshik-darshan-course',
-    cmsPath: '/cms/vaisheshik-darshan-course',
-    frontendPath: '/courses/vaisheshik-darshan',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  yogaAdvancedCourse: {
-    id: 'yoga-advanced-course',
-    name: 'Yoga Advanced Course',
-    description: 'Advanced Yoga Philosophy and Practice',
-    apiEndpoint: '/api/cms/yoga-advanced-course',
-    cmsPath: '/cms/yoga-advanced-course',
-    frontendPath: '/courses/yoga-advanced',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  yogaDarshanCourse: {
-    id: 'yoga-darshan-course',
-    name: 'Yoga Darshan Course',
-    description: 'Yoga Darshan - The Philosophy of Union',
-    apiEndpoint: '/api/cms/yoga-darshan-course',
-    cmsPath: '/cms/yoga-darshan-course',
-    frontendPath: '/courses/yoga-darshan',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  // Missing Courses - Added from actual course directories
-  nyayaVaisheshikaCourse: {
-    id: 'nyaya-vaisheshika-course',
-    name: 'Nyaya-Vaisheshika Course',
-    description: 'Nyaya-Vaisheshika - Logic and Particularity in Indian Philosophy',
-    apiEndpoint: '/api/cms/nyaya-vaisheshika-course',
-    cmsPath: '/cms/nyaya-vaisheshika-course',
-    frontendPath: '/courses/nyaya-vaisheshika',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  emotionalIntelligenceCourse: {
-    id: 'emotional-intelligence-course',
-    name: 'Emotional Intelligence Course',
-    description: 'Emotional Intelligence with Samkhya Darshan',
-    apiEndpoint: '/api/cms/emotional-intelligence-course',
-    cmsPath: '/cms/emotional-intelligence-course',
-    frontendPath: '/courses/emotional-intelligence-with-samkhya-darshan',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  kashmirShaivismCourse: {
-    id: 'kashmir-shaivism-course',
-    name: 'Kashmir Shaivism Course',
-    description: 'Kashmir Shaivism - The Philosophy of Recognition',
-    apiEndpoint: '/api/cms/kashmir-shaivism-course',
-    cmsPath: '/cms/kashmir-shaivism-course',
-    frontendPath: '/courses/kashmir-shaivism',
-    type: 'CourseContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
-    sections: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq']
-  },
-
-  sanskritLiveClassCourse: {
-    id: 'sanskrit-live-class-course',
-    name: 'Sanskrit Live Class Course',
-    description: 'Interactive Sanskrit Learning with Live Classes',
-    apiEndpoint: '/api/cms/sanskrit-live-class-course',
-    cmsPath: '/cms/sanskrit-live-class-course',
-    frontendPath: '/courses/sanskrit-live-class',
-    type: 'CourseContent',
+  // Courses
+  courses: {
+    id: 'courses',
+    name: 'Courses',
+    description: 'Individual courses and learning programs',
+    apiEndpoint: '/api/cms/courses',
+    cmsPath: '/cms/courses',
+    frontendPath: '/courses',
+    type: 'BlogContent',
     status: 'active',
     category: 'education',
     features: ['hero', 'syllabus', 'outcomes', 'testimonials', 'pricing', 'faq'],
@@ -379,253 +195,172 @@ export const CONTENT_TYPES: Record<string, ContentTypeConfig> = {
   },
 
   // Packages
-  sanskritDarshanUpanishadBundle: {
-    id: 'sanskrit-darshan-upanishad-bundle',
-    name: 'Sanskrit + Darshan + Upanishad Bundle',
-    description: 'Complete package combining Sanskrit language, philosophical systems, and Upanishadic wisdom',
-    apiEndpoint: '/api/cms/sanskrit-darshan-upanishad-bundle',
-    cmsPath: '/cms/sanskrit-darshan-upanishad-bundle',
-    frontendPath: '/packages/sanskrit-darshan-upanishad-bundle',
-    type: 'PackageContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-    sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq']
-  },
-
-  sanskritPhilosophyBundle: {
-    id: 'sanskrit-philosophy-bundle',
-    name: 'Sanskrit Language + Hindu Philosophies Bundle',
-    description: 'Perfect blend of Sanskrit language learning with core Hindu philosophical systems',
-    apiEndpoint: '/api/cms/sanskrit-philosophy-bundle',
-    cmsPath: '/cms/sanskrit-philosophy-bundle',
-    frontendPath: '/packages/sanskrit-philosophy-bundle',
-    type: 'PackageContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-    sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq']
-  },
-
-  hinduPhilosophiesUpanishadsBundle: {
-    id: 'hindu-philosophies-upanishads-bundle',
-    name: 'Hindu Philosophies + Upanishads Bundle',
-    description: 'Comprehensive package focusing on philosophical systems and Upanishadic wisdom',
-    apiEndpoint: '/api/cms/hindu-philosophies-upanishads-bundle',
-    cmsPath: '/cms/hindu-philosophies-upanishads-bundle',
-    frontendPath: '/packages/hindu-philosophies-upanishads-bundle',
-    type: 'PackageContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-    sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq']
-  },
-
-  paraAparaBundle: {
-    id: 'para-apara-bundle',
-    name: 'Parā + Aparā Courses Bundle',
-    description: 'The most comprehensive package including all Parā courses plus Chanakya Code',
-    apiEndpoint: '/api/cms/para-apara-bundle',
-    cmsPath: '/cms/para-apara-bundle',
-    frontendPath: '/packages/para-apara-bundle',
-    type: 'PackageContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-    sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq']
-  },
-
-  paraBundle: {
-    id: 'para-bundle',
-    name: 'All Parā Courses Bundle',
-    description: 'Everything in traditional wisdom except Chanakya Code - pure spiritual and philosophical learning',
-    apiEndpoint: '/api/cms/para-bundle',
-    cmsPath: '/cms/para-bundle',
-    frontendPath: '/packages/para-bundle',
-    type: 'PackageContent',
-    status: 'active',
-    category: 'education',
-    features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
-    sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq']
-  },
-
-  // Content Management
-  blog: {
-    id: 'blog',
-    name: 'Blog Posts',
-    description: 'Manage blog content and articles',
-    apiEndpoint: '/api/cms/blog',
-    cmsPath: '/cms/blog',
-    frontendPath: '/blog',
+  packages: {
+    id: 'packages',
+    name: 'Packages',
+    description: 'Course packages and bundles',
+    apiEndpoint: '/api/cms/packages',
+    cmsPath: '/cms/packages',
+    frontendPath: '/packages',
     type: 'BlogContent',
-    status: 'coming-soon',
-    category: 'content',
-    features: ['posts', 'categories', 'tags', 'authors'],
-    sections: ['posts', 'categories', 'tags', 'authors']
+    status: 'active',
+    category: 'education',
+    features: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq'],
+    sections: ['hero', 'courses', 'pricing', 'benefits', 'testimonials', 'faq']
   },
 
-  events: {
-    id: 'events',
-    name: 'Events & Workshops',
-    description: 'Manage events and workshops',
-    apiEndpoint: '/api/cms/events',
-    cmsPath: '/cms/events',
-    frontendPath: '/events',
-    type: null, // To be defined
-    status: 'coming-soon',
+  // Additional Content Types
+  wisdom: {
+    id: 'wisdom',
+    name: 'Wisdom',
+    description: 'Wisdom articles and spiritual teachings',
+    apiEndpoint: '/api/cms/wisdom',
+    cmsPath: '/cms/edit/wisdom',
+    frontendPath: '/wisdom',
+    type: 'BlogContent',
+    status: 'active',
     category: 'content',
-    features: ['events', 'workshops', 'schedule', 'registration'],
-    sections: ['events', 'workshops', 'schedule', 'registration']
+    features: ['articles', 'categories', 'teachings', 'insights'],
+    sections: ['hero', 'categories', 'articles', 'featured']
   },
 
-  // Enhanced Content Types
-  enhancedHomepage: {
-    id: 'enhanced-homepage',
-    name: 'Enhanced Homepage',
-    description: 'Advanced homepage with enhanced features',
-    apiEndpoint: '/api/cms/enhanced-homepage',
-    cmsPath: '/cms/enhanced-homepage',
-    frontendPath: '/enhanced',
-    type: 'EnhancedHomepageContent',
+  gurus: {
+    id: 'gurus',
+    name: 'Gurus',
+    description: 'Spiritual teachers and their teachings',
+    apiEndpoint: '/api/cms/gurus',
+    cmsPath: '/cms/edit/gurus',
+    frontendPath: '/gurus',
+    type: 'BlogContent',
+    status: 'active',
+    category: 'content',
+    features: ['profiles', 'teachings', 'biographies', 'courses'],
+    sections: ['hero', 'featured', 'allGurus']
+  },
+
+  tools: {
+    id: 'tools',
+    name: 'Tools',
+    description: 'Spiritual tools and calculators',
+    apiEndpoint: '/api/cms/tools',
+    cmsPath: '/cms/edit/tools',
+    frontendPath: '/tools',
+    type: 'BlogContent',
+    status: 'active',
+    category: 'content',
+    features: ['calculators', 'assessments', 'tools'],
+    sections: ['hero', 'categories', 'tools', 'featured']
+  },
+
+  terms: {
+    id: 'terms',
+    name: 'Terms of Service',
+    description: 'Terms and conditions for using the platform',
+    apiEndpoint: '/api/cms/terms',
+    cmsPath: '/cms/edit/terms',
+    frontendPath: '/terms',
+    type: 'BlogContent',
+    status: 'active',
+    category: 'system',
+    features: ['terms', 'conditions', 'liability'],
+    sections: ['hero', 'introduction', 'acceptance', 'useOfPlatform', 'intellectualProperty', 'userAccounts', 'paymentTerms', 'privacy', 'limitationOfLiability', 'indemnification', 'disputeResolution', 'changesToTerms', 'contact']
+  },
+
+  privacy: {
+    id: 'privacy',
+    name: 'Privacy Policy',
+    description: 'Privacy policy and data protection information',
+    apiEndpoint: '/api/cms/privacy',
+    cmsPath: '/cms/edit/privacy',
+    frontendPath: '/privacy',
+    type: 'BlogContent',
+    status: 'active',
+    category: 'system',
+    features: ['policy', 'data-protection', 'cookies'],
+    sections: ['hero', 'introduction', 'dataCollection', 'dataUsage', 'dataProtection', 'cookies', 'yourRights', 'contact']
+  },
+
+  help: {
+    id: 'help',
+    name: 'Help Center',
+    description: 'FAQ, tutorials, and support documentation',
+    apiEndpoint: '/api/cms/help',
+    cmsPath: '/cms/edit/help',
+    frontendPath: '/help',
+    type: 'BlogContent',
+    status: 'active',
+    category: 'system',
+    features: ['faq', 'tutorials', 'support'],
+    sections: ['hero', 'categories', 'tutorials', 'support', 'community']
+  },
+
+  accessibility: {
+    id: 'accessibility',
+    name: 'Accessibility',
+    description: 'Accessibility statement and compliance information',
+    apiEndpoint: '/api/cms/accessibility',
+    cmsPath: '/cms/edit/accessibility',
+    frontendPath: '/accessibility',
+    type: 'BlogContent',
+    status: 'active',
+    category: 'system',
+    features: ['statement', 'compliance', 'features'],
+    sections: ['hero', 'statement', 'features', 'compliance', 'support']
+  },
+
+  career: {
+    id: 'career',
+    name: 'Career',
+    description: 'Job listings, company culture, and application process',
+    apiEndpoint: '/api/cms/career',
+    cmsPath: '/cms/edit/career',
+    frontendPath: '/career',
+    type: 'BlogContent',
     status: 'active',
     category: 'main',
-    features: ['advanced-hero', 'custom-backgrounds', 'dynamic-content', 'analytics'],
-    sections: ['hero', 'features', 'background', 'analytics']
-  },
-
-  // Tools & Assessments
-  gunaProfiler: {
-    id: 'guna-profiler',
-    name: 'Guna Profiler',
-    description: 'Interactive Guna assessment tool and personality profiler',
-    apiEndpoint: '/api/cms/guna-profiler',
-    cmsPath: '/cms/guna-profiler',
-    frontendPath: '/guna-profiler',
-    type: 'GunaProfilerContent',
-    status: 'active',
-    category: 'content',
-    features: ['quiz', 'analysis', 'recommendations', 'color-therapy', 'sharing'],
-    sections: ['hero', 'quiz', 'results', 'analysis', 'recommendations', 'color-therapy']
+    features: ['jobs', 'culture', 'benefits'],
+    sections: ['hero', 'culture', 'benefits', 'jobs', 'applicationProcess']
   }
+
 };
 
-// Helper functions for content type management
+// Content Registry Class
 export class ContentRegistry {
-  /**
-   * Get all content types by category
-   */
-  static getContentTypesByCategory(category: string): ContentTypeConfig[] {
-    return Object.values(CONTENT_TYPES).filter(type => type.category === category);
-  }
+  private static contentTypes = CONTENT_TYPES;
 
-  /**
-   * Get all active content types
-   */
-  static getActiveContentTypes(): ContentTypeConfig[] {
-    return Object.values(CONTENT_TYPES).filter(type => type.status === 'active');
-  }
-
-  /**
-   * Get content type by ID
-   */
   static getContentType(id: string): ContentTypeConfig | undefined {
-    return Object.values(CONTENT_TYPES).find(type => type.id === id);
+    return this.contentTypes[id];
   }
 
-  /**
-   * Get all content types
-   */
   static getAllContentTypes(): ContentTypeConfig[] {
-    return Object.values(CONTENT_TYPES);
+    return Object.values(this.contentTypes);
   }
 
-  /**
-   * Get content types with specific features
-   */
-  static getContentTypesWithFeature(feature: string): ContentTypeConfig[] {
-    return Object.values(CONTENT_TYPES).filter(type => 
-      type.features.includes(feature)
+  static getContentTypesByCategory(category: string): ContentTypeConfig[] {
+    return Object.values(this.contentTypes).filter(
+      contentType => contentType.category === category
     );
   }
 
-  /**
-   * Get navigation structure for CMS sidebar
-   */
-  static getNavigationStructure() {
-    const categories = ['main', 'education', 'content', 'system'];
-    
-    return categories.map(category => ({
-      id: category,
-      title: this.getCategoryTitle(category),
-      items: this.getContentTypesByCategory(category).map(type => ({
-        id: type.id,
-        title: type.name,
-        description: type.description,
-        href: type.cmsPath,
-        status: type.status,
-        features: type.features,
-        sections: type.sections
-      }))
-    }));
+  static getActiveContentTypes(): ContentTypeConfig[] {
+    return Object.values(this.contentTypes).filter(
+      contentType => contentType.status === 'active'
+    );
   }
 
-  /**
-   * Get category title
-   */
-  private static getCategoryTitle(category: string): string {
-    const titles = {
-      main: 'Main Pages',
-      education: 'Education',
-      content: 'Content Management',
-      system: 'System'
-    };
-    return titles[category as keyof typeof titles] || category;
+  static getContentTypeIds(): string[] {
+    return Object.keys(this.contentTypes);
   }
 
-  /**
-   * Validate content type exists
-   */
-  static isValidContentType(id: string): boolean {
-    return id in CONTENT_TYPES;
+  static getContentTypeCount(): number {
+    return Object.keys(this.contentTypes).length;
   }
 
-  /**
-   * Get API endpoint for content type
-   */
-  static getApiEndpoint(id: string): string | null {
-    const contentType = this.getContentType(id);
-    return contentType?.apiEndpoint || null;
-  }
-
-  /**
-   * Get CMS path for content type
-   */
-  static getCmsPath(id: string): string | null {
-    const contentType = this.getContentType(id);
-    return contentType?.cmsPath || null;
-  }
-
-  /**
-   * Get frontend path for content type
-   */
-  static getFrontendPath(id: string): string | null {
-    const contentType = this.getContentType(id);
-    return contentType?.frontendPath || null;
+  static getContentTypesByStatus(status: string): ContentTypeConfig[] {
+    return Object.values(this.contentTypes).filter(
+      contentType => contentType.status === status
+    );
   }
 }
 
-// Export commonly used content types
-export const MAIN_CONTENT_TYPES = ContentRegistry.getContentTypesByCategory('main');
-export const EDUCATION_CONTENT_TYPES = ContentRegistry.getContentTypesByCategory('education');
-export const CONTENT_MANAGEMENT_TYPES = ContentRegistry.getContentTypesByCategory('content');
-export const ACTIVE_CONTENT_TYPES = ContentRegistry.getActiveContentTypes();
-
-// Content type validation
-export function validateContentType(id: string): boolean {
-  return ContentRegistry.isValidContentType(id);
-}
-
-// Get content type configuration
-export function getContentTypeConfig(id: string): ContentTypeConfig | null {
-  return ContentRegistry.getContentType(id) || null;
-}
+export default ContentRegistry;

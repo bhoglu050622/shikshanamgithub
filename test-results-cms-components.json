@@ -1,17 +1,16 @@
 {
-  "timestamp": "2025-10-01T16:48:05.335Z",
+  "timestamp": "2025-10-01T18:31:02.017Z",
   "summary": {
     "total": 72,
     "passed": 62,
-    "failed": 9,
-    "warnings": 1,
+    "failed": 8,
+    "warnings": 2,
     "successRate": 86
   },
   "errors": [
-    "VisualContentBuilder: Poor accessibility score (0%)",
     "SmartContentAssistant: Poor accessibility score (25%)",
     "MobilePreview: Poor accessibility score (25%)",
-    "ContentTemplatesLibrary: Poor accessibility score (0%)",
+    "ContentTemplatesLibrary: Poor accessibility score (25%)",
     "EnhancedNonTechCMS: Poor accessibility score (0%)",
     "OnScreenGuide: Poor accessibility score (0%)",
     "WelcomeModal: Poor accessibility score (25%)",
@@ -19,6 +18,7 @@
     "OnboardingIntegration: Poor accessibility score (0%)"
   ],
   "warnings": [
+    "VisualContentBuilder: Low accessibility score (50%)",
     "OneClickDesignSystem: Low accessibility score (50%)"
   ]
 }
