@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { syncFrontendData } from '@/lib/cms/data-sync';
 
 interface AnalyticsData {
   contentTypes: Array<{
@@ -108,7 +109,8 @@ function getContentTypeData() {
         
       } catch (error) {
         console.error(`Error reading content for ${id}:`, error);
-        views = Math.floor(Math.random() * 100) + 50;
+        // Use file size as fallback instead of random
+        views = Math.floor(stats.size / 100);
       }
     }
 
@@ -118,7 +120,7 @@ function getContentTypeData() {
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join(' '),
       views: Math.max(views, 0),
-      edits: recentEdits + Math.floor(Math.random() * 10),
+      edits: recentEdits, // Real edits count, no random data
       lastModified: stats.lastModified || new Date().toISOString(),
       status: stats.exists ? 'active' : 'inactive',
       engagement: Math.min(engagement, 100),
@@ -127,6 +129,33 @@ function getContentTypeData() {
             id === 'homepage' ? 'homepage' : 'page'
     };
   });
+}
+
+// Get real courses and packages data
+function getRealCoursesAndPackagesData() {
+  const frontendData = syncFrontendData();
+  const courses = frontendData.courses || [];
+  const packages = frontendData.packages || [];
+  
+  return courses.map(item => ({
+    id: item.id,
+    name: item.data.title || item.id,
+    views: item.data.views || 0,
+    edits: 0, // Real edit tracking would require a database
+    lastModified: item.data.lastModified || new Date().toISOString(),
+    status: item.data.status === 'available' ? 'active' : 'inactive',
+    engagement: Math.floor((item.data.rating || 0) * 20),
+    type: 'course'
+  })).concat(packages.map(item => ({
+    id: item.id,
+    name: item.data.title || item.id,
+    views: item.data.views || 0,
+    edits: 0,
+    lastModified: item.data.lastModified || new Date().toISOString(),
+    status: item.data.status === 'available' ? 'active' : 'inactive',
+    engagement: Math.floor((item.data.rating || 0) * 20),
+    type: 'package'
+  })));
 }
 
 // Get recent activity from file system
@@ -160,14 +189,19 @@ function getRecentActivity() {
           'Preview Generated'
         ];
         
+        // Use real file modification time for activity
+        const actionType = stats.lastModified ? 
+          (new Date().getTime() - new Date(stats.lastModified).getTime() < 86400000 ? 'Content Updated' : 'Content Saved') :
+          'Content Saved';
+        
         activities.push({
           id: `activity-${index}`,
-          action: actions[Math.floor(Math.random() * actions.length)],
+          action: actionType,
           contentType: contentType.split('-').map(word => 
             word.charAt(0).toUpperCase() + word.slice(1)
           ).join(' '),
           timestamp: stats.lastModified || new Date().toISOString(),
-          user: Math.random() > 0.5 ? 'Admin' : 'Editor'
+          user: 'CMS Admin' // Real user tracking would require authentication
         });
       }
     });
@@ -242,7 +276,15 @@ export async function GET(request: NextRequest) {
   try {
     console.log('📊 Fetching real-time analytics data...');
     
-    const contentTypes = getContentTypeData();
+    // Get real content data from files
+    const fileBasedContent = getContentTypeData();
+    
+    // Get real courses and packages data from frontend sync
+    const coursesAndPackages = getRealCoursesAndPackagesData();
+    
+    // Combine all content types with real data
+    const contentTypes = [...fileBasedContent, ...coursesAndPackages];
+    
     const performance = getPerformanceMetrics();
     const recentActivity = getRecentActivity();
     
@@ -252,7 +294,7 @@ export async function GET(request: NextRequest) {
       recentActivity
     };
     
-    console.log(`✅ Analytics data loaded: ${contentTypes.length} content types, ${recentActivity.length} recent activities`);
+    console.log(`✅ Real-time analytics loaded: ${contentTypes.length} content types (${coursesAndPackages.length} courses/packages), ${recentActivity.length} recent activities`);
     
     return NextResponse.json(analyticsData);
   } catch (error) {
