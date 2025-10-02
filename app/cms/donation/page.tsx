@@ -4,15 +4,8 @@ import { useState, useEffect } from 'react'
 import { DonationContent } from '@/lib/cms/donation-types'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Save, RotateCcw, Eye, Heart } from 'lucide-react'
-import DonationHeroEditor from '@/components/cms/DonationHeroEditor'
-import DonationImpactEditor from '@/components/cms/DonationImpactEditor'
-import DonationCausesEditor from '@/components/cms/DonationCausesEditor'
-import DonationOptionsEditor from '@/components/cms/DonationOptionsEditor'
-import DonationTestimonialsEditor from '@/components/cms/DonationTestimonialsEditor'
-import DonationFAQEditor from '@/components/cms/DonationFAQEditor'
-import DonationCTAEditor from '@/components/cms/DonationCTAEditor'
+import { Textarea } from '@/components/ui/textarea'
+import { Save, RotateCcw, Eye, Heart, Code } from 'lucide-react'
 
 export default function DonationCMSAdmin() {
   const [content, setContent] = useState<DonationContent | null>(null)
@@ -147,68 +140,44 @@ export default function DonationCMSAdmin() {
         </div>
       )}
 
-      {/* Content Editor */}
+      {/* Content Editor - Code Only */}
       <div className="container mx-auto px-4 py-6">
-        <Tabs defaultValue="hero" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
-            <TabsTrigger value="hero">Hero</TabsTrigger>
-            <TabsTrigger value="impact">Impact</TabsTrigger>
-            <TabsTrigger value="causes">Causes</TabsTrigger>
-            <TabsTrigger value="options">Options</TabsTrigger>
-            <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
-            <TabsTrigger value="faq">FAQ</TabsTrigger>
-            <TabsTrigger value="cta">CTA</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="hero" className="mt-6">
-            <DonationHeroEditor 
-              content={content.hero} 
-              onChange={(hero) => setContent({ ...content, hero })}
-            />
-          </TabsContent>
-
-          <TabsContent value="impact" className="mt-6">
-            <DonationImpactEditor 
-              content={content.impact} 
-              onChange={(impact) => setContent({ ...content, impact })}
-            />
-          </TabsContent>
-
-          <TabsContent value="causes" className="mt-6">
-            <DonationCausesEditor 
-              content={content.causes} 
-              onChange={(causes) => setContent({ ...content, causes })}
-            />
-          </TabsContent>
-
-          <TabsContent value="options" className="mt-6">
-            <DonationOptionsEditor 
-              content={content.donationOptions} 
-              onChange={(donationOptions) => setContent({ ...content, donationOptions })}
-            />
-          </TabsContent>
-
-          <TabsContent value="testimonials" className="mt-6">
-            <DonationTestimonialsEditor 
-              content={content.testimonials} 
-              onChange={(testimonials) => setContent({ ...content, testimonials })}
-            />
-          </TabsContent>
-
-          <TabsContent value="faq" className="mt-6">
-            <DonationFAQEditor 
-              content={content.faq} 
-              onChange={(faq) => setContent({ ...content, faq })}
-            />
-          </TabsContent>
-
-          <TabsContent value="cta" className="mt-6">
-            <DonationCTAEditor 
-              content={content.cta} 
-              onChange={(cta) => setContent({ ...content, cta })}
-            />
-          </TabsContent>
-        </Tabs>
+        <div className="w-full">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Code className="w-5 h-5" />
+                  Total Content - Code Editor
+                </CardTitle>
+                <CardDescription>
+                  Edit the complete Donation page content as JSON. Be careful with syntax - invalid JSON will not be saved.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <Textarea
+                    value={JSON.stringify(content, null, 2)}
+                    onChange={(e) => {
+                      try {
+                        const parsed = JSON.parse(e.target.value);
+                        setContent(parsed);
+                      } catch (error) {
+                        // Invalid JSON, don't update
+                        console.error('Invalid JSON:', error);
+                      }
+                    }}
+                    placeholder="Edit JSON content directly..."
+                    rows={25}
+                    className="font-mono text-sm bg-gray-50"
+                  />
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <span>{JSON.stringify(content, null, 2).length} characters</span>
+                    <span>Edit carefully - changes are saved when you click Save All</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+        </div>
       </div>
     </div>
   )

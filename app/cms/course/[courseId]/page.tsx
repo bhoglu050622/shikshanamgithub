@@ -1,5 +1,7 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
+'use client';
+
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -20,7 +22,6 @@ import {
   Phone,
   ExternalLink
 } from 'lucide-react';
-import Link from 'next/link';
 
 interface CourseData {
   id: string;
@@ -66,291 +67,296 @@ interface CourseData {
   }>;
 }
 
-async function getCourseData(courseId: string): Promise<CourseData | null> {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/cms/course/${courseId}`, {
-      cache: 'no-store'
-    });
-    
-    if (!response.ok) {
-      return null;
-    }
-    
-    const result = await response.json();
-    return result.success ? result.data : null;
-  } catch (error) {
-    console.error('Error fetching course data:', error);
-    return null;
-  }
-}
+export default function IndividualCourseEditor() {
+  const params = useParams();
+  const router = useRouter();
+  const courseId = params.courseId as string;
+  
+  const [courseData, setCourseData] = useState<CourseData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-export default async function IndividualCourseEditor({ 
-  params 
-}: { 
-  params: Promise<{ courseId: string }> 
-}) {
-  const { courseId } = await params;
-  const courseData = await getCourseData(courseId);
+  const loadCourseData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/cms/course/${courseId}`);
+      const result = await response.json();
+      
+      if (result.success) {
+        setCourseData(result.data);
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Failed to load course data' });
+      }
+    } catch (error) {
+      console.error('Error loading course data:', error);
+      setMessage({ type: 'error', text: 'Failed to load course data' });
+    } finally {
+      setLoading(false);
+    }
+  }, [courseId]);
+
+  useEffect(() => {
+    loadCourseData();
+  }, [loadCourseData]);
+
+  const saveCourseData = async () => {
+    if (!courseData) return;
+    
+    setSaving(true);
+    try {
+      const response = await fetch(`/api/cms/course/${courseId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(courseData),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setMessage({ type: 'success', text: 'Course updated successfully!' });
+        setTimeout(() => setMessage(null), 3000);
+      } else {
+        setMessage({ type: 'error', text: result.error || 'Failed to update course' });
+      }
+    } catch (error) {
+      console.error('Error saving course data:', error);
+      setMessage({ type: 'error', text: 'Failed to save course data' });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading course data...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!courseData) {
-    notFound();
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Course Not Found</h1>
+          <p className="text-gray-600 mb-4">The requested course could not be found.</p>
+          <Button onClick={() => router.push('/cms')}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to CMS
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <Link href="/cms">
-              <Button variant="outline" className="flex items-center space-x-2">
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to CMS</span>
-              </Button>
-            </Link>
-            <div className="flex items-center space-x-2">
-              <Button variant="outline" className="flex items-center space-x-2">
-                <Eye className="w-4 h-4" />
-                <span>Preview</span>
-              </Button>
-              <Button className="bg-blue-600 hover:bg-blue-700 flex items-center space-x-2">
-                <Save className="w-4 h-4" />
-                <span>Save Changes</span>
-              </Button>
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              onClick={() => router.push('/cms')}
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to CMS
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Course Editor</h1>
+              <p className="text-gray-600 mt-1">{courseData.title}</p>
             </div>
           </div>
-          
-          <div className="bg-white rounded-lg shadow-sm border p-6">
-            <div className="flex items-start justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">{courseData.title}</h1>
-                <p className="text-xl text-gray-600 mb-4">{courseData.subtitle}</p>
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
-                  <div className="flex items-center space-x-1">
-                    <User className="w-4 h-4" />
-                    <span>{courseData.instructor}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{courseData.duration}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span>{courseData.rating} ({courseData.reviewCount} reviews)</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Globe className="w-4 h-4" />
-                    <span>{courseData.language}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold text-green-600 mb-2">{courseData.price}</div>
-                {courseData.originalPrice && (
-                  <div className="text-lg text-gray-500 line-through">{courseData.originalPrice}</div>
-                )}
-                <Badge variant="outline" className="mt-2">
-                  {courseData.type}
-                </Badge>
-              </div>
-            </div>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              onClick={() => window.open(`/courses/${courseId}`, '_blank')}
+              className="flex items-center gap-2"
+            >
+              <Eye className="h-4 w-4" />
+              Preview
+            </Button>
+            <Button
+              onClick={saveCourseData}
+              disabled={saving}
+              className="flex items-center gap-2"
+            >
+              <Save className="h-4 w-4" />
+              {saving ? 'Saving...' : 'Save Changes'}
+            </Button>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Description */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <BookOpen className="w-5 h-5" />
-                  <span>Course Description</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed">{courseData.description}</p>
-              </CardContent>
-            </Card>
-
-            {/* Features */}
-            <Card>
-              <CardHeader>
-                <CardTitle>What You'll Learn</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {courseData.features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Curriculum */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Course Curriculum</CardTitle>
-                <CardDescription>
-                  {courseData.curriculum.modules.length} modules
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {courseData.curriculum.modules.map((module) => (
-                    <div key={module.moduleNumber} className="border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-semibold text-gray-900">{module.title}</h4>
-                        <Badge variant="outline">{module.tag}</Badge>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">{module.description}</p>
-                      <div className="text-sm text-gray-500 mb-3">
-                        {module.lessons.length} lessons • {module.totalTime}
-                      </div>
-                      <div className="space-y-2">
-                        {module.lessons.map((lesson, index) => (
-                          <div key={index} className="flex items-center justify-between text-sm">
-                            <span className="text-gray-700">{lesson.title}</span>
-                            <div className="flex items-center space-x-2">
-                              <Badge variant="secondary" className="text-xs">
-                                {lesson.type}
-                              </Badge>
-                              <span className="text-gray-500">{lesson.duration}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Testimonials */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Student Reviews</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {courseData.testimonials.map((testimonial, index) => (
-                    <div key={index} className="border-l-4 border-blue-500 pl-4">
-                      <div className="flex items-center space-x-1 mb-2">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
-                      <p className="text-gray-700 mb-2">"{testimonial.quote}"</p>
-                      <div className="text-sm text-gray-500">
-                        <span className="font-semibold">{testimonial.name}</span>
-                        <span className="ml-2">• {testimonial.role}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* FAQ */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Frequently Asked Questions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {courseData.faq.map((item, index) => (
-                    <div key={index} className="border-b border-gray-200 pb-4 last:border-b-0">
-                      <h4 className="font-semibold text-gray-900 mb-2">{item.question}</h4>
-                      <p className="text-gray-700">{item.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+        {/* Message */}
+        {message && (
+          <div className={`mb-6 p-4 rounded-lg ${
+            message.type === 'success' 
+              ? 'bg-green-50 border border-green-200 text-green-800' 
+              : 'bg-red-50 border border-red-200 text-red-800'
+          }`}>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4" />
+              {message.text}
+            </div>
           </div>
+        )}
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Course Info */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Course Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Price</span>
-                  <span className="font-semibold text-green-600">{courseData.price}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Duration</span>
-                  <span className="font-semibold">{courseData.duration}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Level</span>
-                  <span className="font-semibold">{courseData.level}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Language</span>
-                  <span className="font-semibold">{courseData.language}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Status</span>
-                  <Badge variant={courseData.status === 'available' ? 'default' : 'secondary'}>
-                    {courseData.status}
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Contact Info */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-gray-500" />
-                  <span className="text-gray-700">{courseData.contactNumber}</span>
+        {/* Enhanced Code Editor */}
+        <div className="bg-gray-50 rounded-xl border border-gray-200">
+          <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 rounded-t-xl">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <Code className="w-5 h-5 text-blue-600" />
                 </div>
-                <div className="flex items-center space-x-3">
-                  <ExternalLink className="w-5 h-5 text-gray-500" />
-                  <a 
-                    href={courseData.checkoutLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800"
-                  >
-                    View Course Page
-                  </a>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Course Data Editor</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Edit the complete course data with syntax highlighting and validation.
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Actions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  <Save className="w-4 h-4 mr-2" />
-                  Save Changes
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    if (courseData) {
+                      const formatted = JSON.stringify(courseData, null, 2);
+                      navigator.clipboard.writeText(formatted);
+                      setMessage({ type: 'success', text: 'Course data copied to clipboard!' });
+                      setTimeout(() => setMessage(null), 3000);
+                    }
+                  }}
+                  className="text-xs"
+                >
+                  <Copy className="w-3 h-3 mr-1" />
+                  Export
                 </Button>
-                <Button variant="outline" className="w-full">
-                  <Eye className="w-4 h-4 mr-2" />
-                  Preview Course
-                </Button>
-                <Button variant="outline" className="w-full">
-                  <Code className="w-4 h-4 mr-2" />
-                  Edit Code
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
+          <div className="p-6">
+            <div className="relative">
+              <div className="absolute top-4 left-4 text-xs text-gray-400 font-mono">
+                Course: {courseData.id}
+              </div>
+              <textarea
+                className="w-full font-mono text-sm border border-gray-300 rounded-lg p-6 pt-12 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                value={courseData ? JSON.stringify(courseData, null, 2) : '{}'}
+                onChange={(e) => {
+                  try {
+                    const newCourseData = JSON.parse(e.target.value);
+                    setCourseData(newCourseData);
+                    setMessage(null);
+                  } catch (error) {
+                    setMessage({
+                      type: 'error',
+                      text: 'Invalid JSON syntax. Please check your formatting.'
+                    });
+                  }
+                }}
+                placeholder="Enter course JSON data..."
+                style={{
+                  minHeight: '600px',
+                  height: '600px',
+                  background: 'linear-gradient(90deg, #f8f9fa 0%, #ffffff 0%)',
+                  backgroundSize: '20px 20px',
+                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 19px, #e9ecef 20px)'
+                }}
+              />
+              <div className="absolute bottom-4 right-4 text-xs text-gray-400">
+                {courseData ? JSON.stringify(courseData, null, 2).length : 0} characters
+              </div>
+            </div>
+            {courseData && (
+              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-green-600" />
+                  <span className="text-sm font-medium text-green-800">
+                    Valid JSON with course data
+                  </span>
+                </div>
+                <div className="mt-2 text-xs text-green-700">
+                  Course: {courseData.title} | Instructor: {courseData.instructor} | Price: {courseData.price}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Course Overview */}
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5" />
+                Course Details
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline">{courseData.level}</Badge>
+                <Badge variant="outline">{courseData.language}</Badge>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <Clock className="h-4 w-4" />
+                {courseData.duration}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <User className="h-4 w-4" />
+                {courseData.instructor}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                {courseData.rating} ({courseData.reviewCount} reviews)
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <DollarSign className="h-5 w-5" />
+                Pricing
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="text-2xl font-bold text-gray-900">{courseData.price}</div>
+              {courseData.originalPrice && (
+                <div className="text-sm text-gray-500 line-through">{courseData.originalPrice}</div>
+              )}
+              <Badge variant="outline">{courseData.type}</Badge>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5" />
+                Content
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="text-sm">
+                <div className="font-medium">Modules: {courseData.curriculum?.modules?.length || 0}</div>
+              </div>
+              <div className="text-sm">
+                <div className="font-medium">Features: {courseData.features?.length || 0}</div>
+              </div>
+              <div className="text-sm">
+                <div className="font-medium">FAQs: {courseData.faq?.length || 0}</div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

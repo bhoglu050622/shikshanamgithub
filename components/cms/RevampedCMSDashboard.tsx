@@ -578,13 +578,13 @@ export default function RevampedCMSDashboard({
               <div className="flex items-center justify-between">
                 <div className="space-y-2">
                   <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Courses</p>
-                  <p className="text-4xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+                  <div className="text-4xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
                     {coursesLoading ? (
                       <div className="animate-pulse bg-gray-300 h-10 w-16 rounded"></div>
                     ) : (
                       stats.totalCourses
                     )}
-                  </p>
+                  </div>
                   <div className="flex items-center gap-2">
                     <BookOpen className="h-3 w-3 text-purple-500" />
                     <p className="text-xs text-purple-600 font-medium">Active courses</p>
@@ -602,13 +602,13 @@ export default function RevampedCMSDashboard({
               <div className="flex items-center justify-between">
                 <div className="space-y-2">
                   <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Packages</p>
-                  <p className="text-4xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
+                  <div className="text-4xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">
                     {packagesLoading ? (
                       <div className="animate-pulse bg-gray-300 h-10 w-16 rounded"></div>
                     ) : (
                       stats.totalPackages
                     )}
-                  </p>
+                  </div>
                   <div className="flex items-center gap-2">
                     <Package className="h-3 w-3 text-orange-500" />
                     <p className="text-xs text-orange-600 font-medium">Course bundles</p>
@@ -622,53 +622,76 @@ export default function RevampedCMSDashboard({
           </Card>
         </div>
 
-        {/* Filters and Search */}
-        <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="flex items-center gap-4 flex-1">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+        {/* Enhanced Filters and Search */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
+          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            {/* Search Bar */}
+            <div className="flex-1 w-full lg:max-w-xl">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <Input
-                  placeholder="Search content..."
+                  placeholder="Search pages, courses, packages..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-12 pr-4 py-6 text-base rounded-xl border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                 />
-              </div>
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-gray-500" />
-                <span className="text-sm text-gray-600">Filter by:</span>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant={viewMode === 'grid' ? undefined : 'outline'}
-                size="sm"
-                onClick={() => setViewMode('grid')}
-              >
-                <Grid className="h-4 w-4" />
-              </Button>
-              <Button
-                variant={viewMode === 'list' ? undefined : 'outline'}
-                size="sm"
-                onClick={() => setViewMode('list')}
-              >
-                <List className="h-4 w-4" />
-              </Button>
+
+            {/* View Mode & Actions */}
+            <div className="flex items-center gap-3">
+              {/* View Toggle */}
+              <div className="flex items-center bg-gray-100 rounded-lg p-1">
+                <Button
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                  className="rounded-md"
+                >
+                  <Grid className="h-4 w-4 mr-2" />
+                  Grid
+                </Button>
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                  className="rounded-md"
+                >
+                  <List className="h-4 w-4 mr-2" />
+                  List
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Category Tabs */}
-        <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="mb-6">
-          <TabsList className="grid w-full grid-cols-4">
+        {/* Enhanced Category Tabs */}
+        <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="mb-8">
+          <TabsList className="grid w-full grid-cols-4 bg-gray-100 p-2 rounded-xl h-auto">
             {categories.map((category) => {
               const Icon = category.icon;
               return (
-                <TabsTrigger key={category.id} value={category.id} className="flex items-center gap-2">
-                  <Icon className="h-4 w-4" />
-                  {category.name}
-                  <Badge variant="secondary" className="ml-2">{category.count}</Badge>
+                <TabsTrigger 
+                  key={category.id} 
+                  value={category.id} 
+                  className="flex items-center gap-2 py-3 px-4 data-[state=active]:bg-white data-[state=active]:shadow-md rounded-lg transition-all duration-200"
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="font-medium">{category.name}</span>
+                  <Badge 
+                    variant="secondary" 
+                    className="ml-auto bg-gray-200 group-data-[state=active]:bg-blue-100 group-data-[state=active]:text-blue-700"
+                  >
+                    {category.count}
+                  </Badge>
                 </TabsTrigger>
               );
             })}
@@ -685,22 +708,24 @@ export default function RevampedCMSDashboard({
             const isExpanded = expandedItems.has(content.id);
             
             return (
-              <Card key={content.id} className="hover:shadow-md transition-shadow">
-                <CardHeader className="pb-3">
+              <Card key={content.id} className="group hover:shadow-xl transition-all duration-300 border-gray-200 hover:border-blue-300 hover:-translate-y-1 overflow-hidden">
+                <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-white">
                   <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-blue-100 rounded-lg">
-                        <Icon className="h-5 w-5 text-blue-600" />
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-md">
+                        <Icon className="h-6 w-6 text-white" />
                       </div>
-                      <div>
-                        <CardTitle className="text-lg">{content.name}</CardTitle>
-                        <CardDescription className="text-sm">
+                      <div className="flex-1">
+                        <CardTitle className="text-lg font-bold group-hover:text-blue-600 transition-colors">
+                          {content.name}
+                        </CardTitle>
+                        <CardDescription className="text-sm text-gray-600 mt-1">
                           {content.description}
                         </CardDescription>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge className={getStatusColor(content.status)}>
+                      <Badge className={`${getStatusColor(content.status)} px-3 py-1 font-medium`}>
                         {content.status}
                       </Badge>
                       {(content.id === 'courses' || content.id === 'packages') && (
@@ -708,12 +733,12 @@ export default function RevampedCMSDashboard({
                           size="sm"
                           variant="ghost"
                           onClick={() => toggleExpanded(content.id)}
-                          className="p-1"
+                          className="p-2 hover:bg-blue-50 rounded-lg transition-colors"
                         >
                           {isExpanded ? (
-                            <ChevronDown className="h-4 w-4" />
+                            <ChevronDown className="h-5 w-5 text-blue-600" />
                           ) : (
-                            <ChevronRight className="h-4 w-4" />
+                            <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-blue-600" />
                           )}
                         </Button>
                       )}
@@ -785,46 +810,44 @@ export default function RevampedCMSDashboard({
                             {coursesData.map((course, index) => (
                               <div 
                                 key={course.id} 
-                                className="group flex items-center justify-between p-4 bg-white rounded-xl border border-purple-100 hover:shadow-lg hover:border-purple-300 transition-all duration-300 hover:-translate-y-1"
-                                style={{ animationDelay: `${index * 100}ms` }}
+                                className="group flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-purple-400 transition-all duration-200 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50"
                               >
-                                <div className="flex-1">
-                                  <div className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors truncate">
                                     {course.title || course.name}
                                   </div>
-                                  <div className="text-sm text-gray-600 mt-1">
+                                  <div className="text-sm text-gray-600 mt-1 line-clamp-1">
                                     {course.subtitle || course.description}
                                   </div>
-                                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
-                                    <span className="flex items-center gap-1">
+                                  <div className="flex items-center gap-2 mt-2 text-xs text-gray-600 flex-wrap">
+                                    <span className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md">
                                       <User className="h-3 w-3" />
                                       {course.instructor || 'Vishal Chaurasia'}
                                     </span>
-                                    <span className="flex items-center gap-1">
+                                    <span className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md">
                                       <Clock className="h-3 w-3" />
                                       {course.duration || '2-3 hours'}
                                     </span>
-                                    <span className="flex items-center gap-1">
+                                    <span className="flex items-center gap-1.5 bg-yellow-50 px-2 py-1 rounded-md">
                                       <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                                       {course.rating || 5}
                                     </span>
-                                    <span className="flex items-center gap-1">
-                                      <Users className="h-3 w-3" />
-                                      {course.students || 0} students
-                                    </span>
                                   </div>
                                 </div>
-                                <div className="flex items-center gap-3">
-                                  <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
-                                    {course.price || 'Free'}
-                                  </Badge>
+                                <div className="flex items-center gap-3 ml-4">
+                                  <div className="text-right">
+                                    <div className="font-bold text-green-700 text-sm">{course.price || 'Free'}</div>
+                                    {course.originalPrice && (
+                                      <div className="text-xs text-gray-500 line-through">{course.originalPrice}</div>
+                                    )}
+                                  </div>
                                   <Button
                                     size="sm"
-                                    variant="outline"
                                     onClick={() => router.push(`/cms/course/${course.id}`)}
-                                    className="hover:bg-purple-50 hover:border-purple-300 transition-colors"
+                                    className="bg-purple-600 hover:bg-purple-700 text-white shadow-sm hover:shadow-md transition-all duration-200"
                                   >
-                                    <Edit className="h-3 w-3" />
+                                    <Code className="h-3.5 w-3.5 mr-1.5" />
+                                    Edit
                                   </Button>
                                 </div>
                               </div>
@@ -870,45 +893,46 @@ export default function RevampedCMSDashboard({
                             {packagesData.map((pkg, index) => (
                               <div 
                                 key={pkg.id} 
-                                className="group flex items-center justify-between p-4 bg-white rounded-xl border border-orange-100 hover:shadow-lg hover:border-orange-300 transition-all duration-300 hover:-translate-y-1"
-                                style={{ animationDelay: `${index * 100}ms` }}
+                                className="group flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-orange-400 transition-all duration-200 hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50"
                               >
-                                <div className="flex-1">
-                                  <div className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                                <div className="flex-1 min-w-0">
+                                  <div className="font-semibold text-gray-900 group-hover:text-orange-700 transition-colors truncate">
                                     {pkg.title || pkg.name}
                                   </div>
-                                  <div className="text-sm text-gray-600 mt-1">
+                                  <div className="text-sm text-gray-600 mt-1 line-clamp-1">
                                     {pkg.description}
                                   </div>
-                                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
-                                    <span className="flex items-center gap-1">
+                                  <div className="flex items-center gap-2 mt-2 text-xs text-gray-600 flex-wrap">
+                                    <span className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md">
                                       <BookOpen className="h-3 w-3" />
                                       {pkg.courses || 0} courses
                                     </span>
-                                    <span className="flex items-center gap-1">
+                                    <span className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md">
                                       <Clock className="h-3 w-3" />
                                       {pkg.duration || '12 weeks'}
                                     </span>
-                                    <span className="flex items-center gap-1">
-                                      <Users className="h-3 w-3" />
-                                      {pkg.students || 0} students
-                                    </span>
+                                    {pkg.students && (
+                                      <span className="flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded-md">
+                                        <Users className="h-3 w-3" />
+                                        {pkg.students} students
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-3 ml-4">
                                   <div className="text-right">
-                                    <div className="font-semibold text-green-600">{pkg.price || '₹4,999'}</div>
+                                    <div className="font-bold text-green-700 text-sm">{pkg.price || '₹4,999'}</div>
                                     {pkg.originalPrice && (
                                       <div className="text-xs text-gray-500 line-through">{pkg.originalPrice}</div>
                                     )}
                                   </div>
                                   <Button
                                     size="sm"
-                                    variant="outline"
                                     onClick={() => router.push(`/cms/package/${pkg.id}`)}
-                                    className="hover:bg-orange-50 hover:border-orange-300 transition-colors"
+                                    className="bg-orange-600 hover:bg-orange-700 text-white shadow-sm hover:shadow-md transition-all duration-200"
                                   >
-                                    <Edit className="h-3 w-3" />
+                                    <Code className="h-3.5 w-3.5 mr-1.5" />
+                                    Edit
                                   </Button>
                                 </div>
                               </div>
@@ -923,42 +947,25 @@ export default function RevampedCMSDashboard({
                       </div>
                     )}
 
-                    {/* Actions */}
-                    <div className="flex items-center justify-between pt-2">
-                      <div className="flex items-center gap-1">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleContentAction(content.id, 'edit')}
-                        >
-                          <Edit className="h-3 w-3 mr-1" />
-                          Edit
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleContentAction(content.id, 'preview')}
-                        >
-                          <Eye className="h-3 w-3 mr-1" />
-                          Preview
-                        </Button>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => handleContentAction(content.id, 'duplicate')}
-                        >
-                          <Copy className="h-3 w-3" />
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => handleContentAction(content.id, 'delete')}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
-                      </div>
+                    {/* Enhanced Actions */}
+                    <div className="flex items-center gap-2 pt-4 mt-3 border-t border-gray-100">
+                      <Button
+                        size="sm"
+                        onClick={() => handleContentAction(content.id, 'edit')}
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg transition-all duration-200 font-medium"
+                      >
+                        <Code className="h-4 w-4 mr-2" />
+                        Edit JSON
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleContentAction(content.id, 'preview')}
+                        className="border-gray-300 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 px-3"
+                        title="Preview Page"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -983,3 +990,4 @@ export default function RevampedCMSDashboard({
     </div>
   );
 }
+

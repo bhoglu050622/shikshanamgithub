@@ -306,19 +306,19 @@ export default function PackageEditorPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center gap-2">
-                <Badge variant="outline">{packageData.level}</Badge>
-                <Badge variant="outline">{packageData.courses.length} courses</Badge>
+                <Badge variant="outline">{packageData.level || 'N/A'}</Badge>
+                <Badge variant="outline">{(packageData.courses?.length || 0)} courses</Badge>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Clock className="h-4 w-4" />
-                {packageData.duration}
+                {packageData.duration || 'N/A'}
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <User className="h-4 w-4" />
-                {packageData.instructor}
+                {packageData.instructor || 'N/A'}
               </div>
               <div className="text-sm text-gray-600">
-                {packageData.description}
+                {packageData.description || 'No description'}
               </div>
             </CardContent>
           </Card>
@@ -331,12 +331,12 @@ export default function PackageEditorPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="text-2xl font-bold text-gray-900">{packageData.price}</div>
+              <div className="text-2xl font-bold text-gray-900">{packageData.price || 'N/A'}</div>
               {packageData.originalPrice && (
                 <div className="text-sm text-gray-500 line-through">{packageData.originalPrice}</div>
               )}
               <div className="text-sm text-gray-600">
-                {packageData.courses.length} courses included
+                {(packageData.courses?.length || 0)} courses included
               </div>
             </CardContent>
           </Card>
@@ -349,12 +349,16 @@ export default function PackageEditorPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              {packageData.courses.map((course, index) => (
-                <div key={index} className="text-sm">
-                  <div className="font-medium">{course.title}</div>
-                  <div className="text-gray-500 text-xs">{course.duration} • {course.level}</div>
-                </div>
-              ))}
+              {packageData.courses && Array.isArray(packageData.courses) && packageData.courses.length > 0 ? (
+                packageData.courses.map((course, index) => (
+                  <div key={index} className="text-sm">
+                    <div className="font-medium">{course.title || 'Untitled Course'}</div>
+                    <div className="text-gray-500 text-xs">{course.duration || 'N/A'} • {course.level || 'N/A'}</div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-sm text-gray-500">No courses data available</div>
+              )}
             </CardContent>
           </Card>
         </div>
