@@ -184,6 +184,25 @@ export default function CoursesCMSAdmin() {
     setSelectedCourse(null);
   };
 
+  const handleCourseContentUpdate = (content: any) => {
+    const courseData: Course = {
+      ...content,
+      id: selectedCourse?.id || `course-${Date.now()}`,
+      liveSessions: content.liveSessions || false,
+      communityAccess: content.communityAccess || false,
+      bonusMaterials: content.bonusMaterials || false,
+      moneyBackGuarantee: content.moneyBackGuarantee || false,
+      earlyBirdDiscount: content.earlyBirdDiscount || false,
+      groupDiscount: content.groupDiscount || false,
+      paymentPlans: content.paymentPlans || [],
+      comparison: content.comparison || [],
+      lastModified: new Date(),
+      views: selectedCourse?.views || 0,
+      popularity: selectedCourse?.popularity || 0
+    };
+    handleUpdateCourse(courseData);
+  };
+
   const handleDeleteCourse = (courseId: string) => {
     if (confirm('Are you sure you want to delete this course?')) {
       setCourses(courses.filter(course => course.id !== courseId));
@@ -194,7 +213,7 @@ export default function CoursesCMSAdmin() {
     return (
       <CourseEditor
         content={selectedCourse}
-        onUpdate={handleUpdateCourse}
+        onUpdate={handleCourseContentUpdate}
         courseId={selectedCourse?.id || 'new'}
         onClose={() => {
           setShowCourseEditor(false);
@@ -268,14 +287,14 @@ export default function CoursesCMSAdmin() {
             </div>
             <div className="flex items-center gap-2">
               <Button
-                variant={viewMode === 'grid' ? 'default' : 'outline'}
+                variant={viewMode === 'grid' ? 'primary' : 'outline'}
                 size="sm"
                 onClick={() => setViewMode('grid')}
               >
                 <Grid className="h-4 w-4" />
               </Button>
               <Button
-                variant={viewMode === 'list' ? 'default' : 'outline'}
+                variant={viewMode === 'list' ? 'primary' : 'outline'}
                 size="sm"
                 onClick={() => setViewMode('list')}
               >

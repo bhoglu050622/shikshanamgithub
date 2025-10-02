@@ -83,17 +83,55 @@ interface CourseContent {
 }
 
 interface CourseEditorProps {
-  content: CourseContent;
+  content: CourseContent | null;
   onUpdate: (content: CourseContent) => void;
   courseId: string;
+  onClose: () => void;
 }
 
-export default function CourseEditor({ content, onUpdate, courseId }: CourseEditorProps) {
+const defaultCourseContent: CourseContent = {
+  title: '',
+  subtitle: '',
+  instructor: '',
+  language: '',
+  price: '',
+  originalPrice: '',
+  duration: '',
+  level: '',
+  rating: 0,
+  reviewCount: 0,
+  type: '',
+  status: 'available',
+  checkoutLink: '',
+  contactNumber: '',
+  description: '',
+  features: [],
+  learningObjectives: [],
+  keyHighlights: [],
+  syllabus: [],
+  testimonials: [],
+  faq: [],
+  requirements: [],
+  outcomes: [],
+  instructorBio: '',
+  instructorImage: '',
+  courseImage: '',
+  tags: [],
+  category: '',
+  difficulty: 'beginner',
+  subtitles: [],
+  certificate: false,
+  lifetimeAccess: false,
+  mobileFriendly: false,
+  supportIncluded: false
+};
+
+export default function CourseEditor({ content, onUpdate, courseId, onClose }: CourseEditorProps) {
   const [activeTab, setActiveTab] = useState('basic');
-  const [localContent, setLocalContent] = useState<CourseContent>(content);
+  const [localContent, setLocalContent] = useState<CourseContent>(content || defaultCourseContent);
 
   useEffect(() => {
-    setLocalContent(content);
+    setLocalContent(content || defaultCourseContent);
   }, [content]);
 
   const handleUpdate = (updates: Partial<CourseContent>) => {
@@ -204,6 +242,9 @@ export default function CourseEditor({ content, onUpdate, courseId }: CourseEdit
           <Button size="sm">
             <Save className="h-4 w-4 mr-2" />
             Save
+          </Button>
+          <Button variant="outline" size="sm" onClick={onClose}>
+            Close
           </Button>
         </div>
       </div>
