@@ -1,20 +1,10 @@
 {
   "hero": {
-    "title": "About Shikshanam Aman",
+    "title": "About Shikshanam",
     "subtitle": "We are dedicated to preserving and sharing the timeless wisdom of ancient India through modern technology and innovative learning methods."
   },
-  "alignYourself": {},
-  "schools": {},
-  "meetGurus": {},
-  "studentStories": {},
-  "testimonials": {},
-  "communityPosts": {},
-  "foundersMission": {},
-  "contribute": {},
-  "downloadApp": {},
-  "faq": {},
   "mission": {
-    "title": "Our Mission Aman",
+    "title": "Our Mission",
     "paragraph1": "Shikshanam was born from a deep reverence for India's ancient knowledge systems. We believe that the wisdom of Sanskrit, Darshanas, and traditional self-help practices holds the key to personal growth and spiritual development in the modern world.",
     "paragraph2": "Our mission is to make this profound knowledge accessible to everyone, regardless of their background or location, through carefully crafted courses, interactive tools, and expert guidance.",
     "visionTitle": "Our Vision",
