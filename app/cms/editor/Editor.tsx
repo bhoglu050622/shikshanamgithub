@@ -29,7 +29,6 @@ export default function Editor() {
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [status, setStatus] = useState('');
-  const [draftBranch, setDraftBranch] = useState<string | null>(null);
 
   useEffect(() => {
     if (fileName) {
@@ -52,32 +51,28 @@ export default function Editor() {
 
   const handleSave = async (shouldPublish = false) => {
     setIsSaving(true);
-    setStatus('Saving changes to a new branch...');
-    setDraftBranch(null); // Reset draft branch on new save
+    setStatus('Saving changes...');
     try {
-      const commitMessage = `CMS: Update ${fileName}`;
-      const response = await fetch('/api/cms/git', {
+      const response = await fetch('/api/cms/local', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'save',
           file: fileName,
-          content: JSON.parse(content),
-          commitMessage: commitMessage,
+          content: content,
         }),
       });
       const result = await response.json();
-      if (response.ok && result.branch) {
-        setStatus(`Success! Saved to branch: ${result.branch}`);
+      if (response.ok) {
+        setStatus(`Success! Content saved locally.`);
         setInitialContent(content); // Mark as no longer dirty
-        setDraftBranch(result.branch);
         
         // If shouldPublish is true, automatically publish after saving
         if (shouldPublish) {
           await handlePublish();
         }
       } else {
-        throw new Error(result.error || 'Failed to save via Git API');
+        throw new Error(result.error || 'Failed to save content');
       }
     } catch (err: any) {
       setStatus(`Error: ${err.message}`);
@@ -88,19 +83,22 @@ export default function Editor() {
   };
 
   const handlePublish = async () => {
-    if (!draftBranch) return;
     setIsPublishing(true);
     setStatus('Publishing changes...');
     try {
-      const response = await fetch('/api/cms/git', {
+      const response = await fetch('/api/cms/local', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'publish', branch: draftBranch }),
+        body: JSON.stringify({ 
+          action: 'publish', 
+          file: fileName,
+          content: content 
+        }),
       });
       const result = await response.json();
       if (response.ok) {
         setStatus('Successfully published! Your changes are live.');
-        setDraftBranch(null); // Reset after successful publish
+        setInitialContent(content); // Mark as no longer dirty
       } else {
         throw new Error(result.error || 'Failed to publish');
       }
@@ -140,18 +138,23 @@ export default function Editor() {
               <Save className="w-4 h-4 mr-2" />
               {isSaving ? 'Saving...' : 'Save Draft'}
             </Button>
-            {draftBranch && (
-              <Button onClick={handlePublish} disabled={isPublishing}>
+            {isDirty && (
+              <Button 
+                onClick={() => handlePublish()} 
+                disabled={isPublishing}
+                variant="outline"
+                className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+              >
                 <UploadCloud className="w-4 h-4 mr-2" />
                 {isPublishing ? 'Publishing...' : 'Publish Changes'}
               </Button>
             )}
-            {!draftBranch && isDirty && (
+            {isDirty && (
               <Button 
                 onClick={() => handleSave(true)} 
                 disabled={isSaving}
                 variant="outline"
-                className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+                className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
               >
                 <UploadCloud className="w-4 h-4 mr-2" />
                 Save & Publish
