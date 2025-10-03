@@ -1,21 +1,48 @@
 import { Metadata } from 'next'
+import fs from 'fs'
+import path from 'path'
 
 export const metadata: Metadata = {
   title: 'Contact Us - Shikshanam',
   description: 'Get in touch with the Shikshanam team. We\'re here to help with your Sanskrit learning journey.',
 }
 
-export default function ContactPage() {
+async function getContactContent() {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const draftPath = path.join(process.cwd(), 'data', 'contact-content.json');
+  const publishedPath = path.join(process.cwd(), 'data', 'contact-content.published.json');
+  
+  let contentPath = isProduction ? publishedPath : draftPath;
+
+  // Fallback to draft if published doesn't exist in production
+  if (isProduction && !fs.existsSync(publishedPath)) {
+    contentPath = draftPath;
+  }
+
+  try {
+    if (fs.existsSync(contentPath)) {
+      const fileContent = fs.readFileSync(contentPath, 'utf8');
+      return JSON.parse(fileContent);
+    }
+  } catch (error) {
+    console.error('Error reading contact content:', error);
+  }
+  return null;
+}
+
+export default async function ContactPage() {
+  const content = await getContactContent();
+  
   return (
     <>
       <main className="main-container py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Contact Us
+              {content?.title || 'Contact Us'}
             </h1>
             <p className="text-xl text-gray-600">
-              We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              {content?.content || 'We\'d love to hear from you. Send us a message and we\'ll respond as soon as possible.'}
             </p>
           </div>
 
@@ -116,8 +143,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Email</h3>
-                      <p className="text-gray-600">support@shikshanam.com</p>
-                      <p className="text-gray-600">info@shikshanam.com</p>
+                      <p className="text-gray-600">{content?.contactInfo?.email || 'support@shikshanam.com'}</p>
                     </div>
                   </div>
 
@@ -128,8 +154,8 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">Response Time</h3>
-                      <p className="text-gray-600">We typically respond within 24 hours</p>
+                      <h3 className="font-semibold text-gray-900">Phone</h3>
+                      <p className="text-gray-600">{content?.contactInfo?.phone || '+91-9910032165'}</p>
                     </div>
                   </div>
 
@@ -142,7 +168,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Location</h3>
-                      <p className="text-gray-600">India</p>
+                      <p className="text-gray-600">{content?.contactInfo?.address || 'India'}</p>
                     </div>
                   </div>
                 </div>

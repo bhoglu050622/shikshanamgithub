@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "About Shikshanam - CMS TEST UPDATE",
-    "subtitle": "Preserving Ancient Wisdom - UPDATED VIA CMS",
-    "description": "This content was updated through the CMS editor to test functionality."
+    "title": "About Shikshanam - E2E TEST",
+    "subtitle": "Preserving Ancient Wisdom - LIVE TEST",
+    "description": "This about page content was updated via CMS editor for E2E testing."
   }
 }

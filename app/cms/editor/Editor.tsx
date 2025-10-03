@@ -50,7 +50,7 @@ export default function Editor() {
     }
   }, [fileName]);
 
-  const handleSave = async () => {
+  const handleSave = async (shouldPublish = false) => {
     setIsSaving(true);
     setStatus('Saving changes to a new branch...');
     setDraftBranch(null); // Reset draft branch on new save
@@ -71,6 +71,11 @@ export default function Editor() {
         setStatus(`Success! Saved to branch: ${result.branch}`);
         setInitialContent(content); // Mark as no longer dirty
         setDraftBranch(result.branch);
+        
+        // If shouldPublish is true, automatically publish after saving
+        if (shouldPublish) {
+          await handlePublish();
+        }
       } else {
         throw new Error(result.error || 'Failed to save via Git API');
       }
@@ -131,7 +136,7 @@ export default function Editor() {
           </div>
           <div className="flex items-center space-x-2">
             {status && <p className="text-sm text-gray-500">{status}</p>}
-            <Button onClick={handleSave} disabled={isSaving || !isDirty}>
+            <Button onClick={() => handleSave()} disabled={isSaving || !isDirty}>
               <Save className="w-4 h-4 mr-2" />
               {isSaving ? 'Saving...' : 'Save Draft'}
             </Button>
@@ -139,6 +144,17 @@ export default function Editor() {
               <Button onClick={handlePublish} disabled={isPublishing}>
                 <UploadCloud className="w-4 h-4 mr-2" />
                 {isPublishing ? 'Publishing...' : 'Publish Changes'}
+              </Button>
+            )}
+            {!draftBranch && isDirty && (
+              <Button 
+                onClick={() => handleSave(true)} 
+                disabled={isSaving}
+                variant="outline"
+                className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+              >
+                <UploadCloud className="w-4 h-4 mr-2" />
+                Save & Publish
               </Button>
             )}
           </div>

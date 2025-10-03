@@ -7,9 +7,17 @@ export async function GET() {
     const filePath = path.join(process.cwd(), 'data', 'homepage-content.published.json');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(fileContent);
-    return NextResponse.json(data);
+    
+    // Return the data in the format expected by the Hero component
+    return NextResponse.json({
+      success: true,
+      data: data
+    });
   } catch (error) {
     console.error('Failed to fetch homepage data:', error);
-    return NextResponse.json({ error: 'Failed to fetch homepage data' }, { status: 500 });
+    return NextResponse.json({ 
+      success: false, 
+      error: 'Failed to fetch homepage data' 
+    }, { status: 500 });
   }
 }
