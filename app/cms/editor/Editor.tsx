@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowLeft, Save, UploadCloud } from 'lucide-react';
@@ -19,7 +20,7 @@ function CodeEditor({ value, onChange }: { value: string; onChange: (value: stri
   );
 }
 
-export default function Editor() {
+function EditorContent() {
   const searchParams = useSearchParams();
   const fileName = searchParams.get('file');
   
@@ -181,5 +182,20 @@ export default function Editor() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function Editor() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading editor...</p>
+        </div>
+      </div>
+    }>
+      <EditorContent />
+    </Suspense>
   );
 }
