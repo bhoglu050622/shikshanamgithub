@@ -1,0 +1,24 @@
+{
+  "id": "1759466878861_1qt056yp8",
+  "timestamp": "2025-10-03T04:47:58.862Z",
+  "contentType": "course",
+  "contentId": "yoga-advanced",
+  "action": "update",
+  "changes": [
+    {
+      "field": "title",
+      "oldValue": "Tatvabodha 3: Yoga Darshan- Vibhuti and Kaivalya Pada",
+      "newValue": "Tatvabodha 3 Aman: Yoga Darshan- Vibhuti and Kaivalya Pada"
+    }
+  ],
+  "editor": {
+    "name": "CMS Editor",
+    "email": "editor@shikshanam.in",
+    "userId": "cms-editor"
+  },
+  "metadata": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0.1 Safari/605.1.15",
+    "timestamp": "2025-10-03T04:47:58.243Z",
+    "sessionId": null
+  }
+}
