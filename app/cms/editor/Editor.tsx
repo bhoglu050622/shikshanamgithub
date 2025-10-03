@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowLeft, Save, UploadCloud } from 'lucide-react';
+import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 // A simple code editor using a textarea for now.
@@ -169,14 +169,73 @@ function EditorContent() {
           </div>
         </header>
 
+        {/* Editor Instructions */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <div className="flex items-start space-x-3">
+            <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <h3 className="font-semibold text-blue-900 mb-2">Editor Instructions</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-blue-800">Edit the JSON content in the editor below</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-blue-800">Use "Save Draft" to save without publishing</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-blue-800">Use "Save & Publish" to make changes live</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <AlertCircle className="w-4 h-4 text-yellow-600" />
+                    <span className="text-blue-800">Ensure JSON syntax is valid before saving</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <HelpCircle className="w-5 h-5 mr-2 text-blue-500" />
+              JSON Content Editor
+            </CardTitle>
+            <CardDescription>
+              Edit the JSON content below. Changes will be reflected on your website after saving and publishing.
+            </CardDescription>
+          </CardHeader>
           <CardContent className="p-6">
             {isLoading ? (
               <div className="text-center py-12">
-                <p>Loading content...</p>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-gray-600">Loading content...</p>
               </div>
             ) : (
-              <CodeEditor value={content} onChange={setContent} />
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2 text-sm text-gray-600">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span>Ready to edit</span>
+                  </div>
+                  {isDirty && (
+                    <div className="flex items-center space-x-2 text-sm text-orange-600">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>Unsaved changes</span>
+                    </div>
+                  )}
+                </div>
+                <CodeEditor value={content} onChange={setContent} />
+                <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded">
+                  <strong>Tip:</strong> Use a JSON validator if you're unsure about syntax. Invalid JSON will cause save errors.
+                </div>
+              </div>
             )}
           </CardContent>
         </Card>
