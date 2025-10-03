@@ -64,23 +64,27 @@ export default function MotionWrapper({
   // After hydration, render with motion
   const MotionComponent = (motion as any)[as] || motion.div;
   
+  const motionProps = isClient ? {
+    initial,
+    animate,
+    exit,
+    transition,
+    whileHover,
+    whileTap,
+    whileInView,
+    viewport,
+    onAnimationStart,
+    onAnimationComplete,
+    onHoverStart,
+    onHoverEnd,
+  } : {};
+
   return (
     <MotionComponent
       className={className}
       style={style}
-      initial={initial}
-      animate={animate}
-      exit={exit}
-      transition={transition}
-      whileHover={whileHover}
-      whileTap={whileTap}
-      whileInView={whileInView}
-      viewport={viewport}
-      onAnimationStart={onAnimationStart}
-      onAnimationComplete={onAnimationComplete}
-      onHoverStart={onHoverStart}
-      onHoverEnd={onHoverEnd}
       onClick={onClick}
+      {...motionProps}
       {...props}
     >
       {children}

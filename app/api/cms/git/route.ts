@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Octokit } from '@octokit/rest';
+require('dotenv').config();
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-// TODO: Replace with your repository details, possibly from environment variables
 const GITHUB_OWNER = process.env.GITHUB_OWNER!;
 const GITHUB_REPO = process.env.GITHUB_REPO!;
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN,
+  owner: GITHUB_OWNER,
+  repo: GITHUB_REPO,
+  baseUrl: 'https://api.github.com',
+});
 const BASE_BRANCH = 'main';
 
 export async function POST(request: NextRequest) {
@@ -44,8 +49,10 @@ async function handleSave(body: { file: string; content: object; commitMessage: 
   });
   const baseSha = baseBranch.commit.sha;
 
-  // 2. Create a new branch
   const newBranchName = `cms/update-${file.replace('.json', '')}-${Date.now()}`;
+  const contentString = JSON.stringify(content, null, 2);
+
+  // 2. Create a new branch from the base SHA
   await octokit.git.createRef({
     owner: GITHUB_OWNER,
     repo: GITHUB_REPO,
@@ -53,21 +60,52 @@ async function handleSave(body: { file: string; content: object; commitMessage: 
     sha: baseSha,
   });
 
-  // 3. Create a new commit with the file change
-  // Note: GitHub API requires content to be base64 encoded
-  const contentString = JSON.stringify(content, null, 2);
-  const contentBase64 = Buffer.from(contentString).toString('base64');
-
-  await octokit.repos.createOrUpdateFileContents({
+  // 3. Get the current tree
+  const { data: commitData } = await octokit.git.getCommit({
     owner: GITHUB_OWNER,
     repo: GITHUB_REPO,
-    path: `data/${file}`,
+    commit_sha: baseSha,
+  });
+  const treeSha = commitData.tree.sha;
+
+  // 4. Create a new blob with the file content
+  const { data: blobData } = await octokit.git.createBlob({
+    owner: GITHUB_OWNER,
+    repo: GITHUB_REPO,
+    content: contentString,
+    encoding: 'utf-8',
+  });
+
+  // 5. Create a new tree with the new file
+  const { data: newTree } = await octokit.git.createTree({
+    owner: GITHUB_OWNER,
+    repo: GITHUB_REPO,
+    base_tree: treeSha,
+    tree: [
+      {
+        path: `data/${file}`,
+        mode: '100644',
+        type: 'blob',
+        sha: blobData.sha,
+      },
+    ],
+  });
+
+  // 6. Create a new commit
+  const { data: newCommit } = await octokit.git.createCommit({
+    owner: GITHUB_OWNER,
+    repo: GITHUB_REPO,
     message: commitMessage,
-    content: contentBase64,
-    branch: newBranchName,
-    // If the file already exists, we need its SHA to update it.
-    // For simplicity, we're assuming a simple create/overwrite.
-    // A robust implementation would get the file's SHA first.
+    tree: newTree.sha,
+    parents: [baseSha],
+  });
+
+  // 7. Update the new branch to point to the new commit
+  await octokit.git.updateRef({
+    owner: GITHUB_OWNER,
+    repo: GITHUB_REPO,
+    ref: `heads/${newBranchName}`,
+    sha: newCommit.sha,
   });
 
   return NextResponse.json({

@@ -8,6 +8,7 @@ import ugcData from '@/data/ugc_content.json'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 import { API_CONFIG } from '@/lib/config/api'
 import { useState, useEffect } from 'react'
+import Timestamp from '@/components/ui/Timestamp'
 
 interface CommunityPost {
   id: number
@@ -69,34 +70,23 @@ export default function CommunityPostsSection({
   
   const posts = communityPostsData?.posts || ugcData.communityPosts.slice(0, maxPosts)
 
-  const formatTimestamp = (timestamp: string) => {
-    // Use hydration-safe approach - only format on client
-    if (!mounted) {
-      return 'Loading...'
-    }
-    
-    const date = new Date(timestamp)
-    const now = new Date()
-    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
-    
-    if (diffInHours < 1) return 'Just now'
-    if (diffInHours < 24) return `${diffInHours}h ago`
-    const diffInDays = Math.floor(diffInHours / 24)
-    if (diffInDays < 7) return `${diffInDays}d ago`
-    return date.toLocaleDateString()
-  }
 
   return (
+  <MotionWrapper>
     <section className="py-16 sm:py-20 bg-gradient-to-br from-wisdom-50/50 to-saffron-50/30">
       <div className="container-custom">
         {/* Header */}
         {showHeader && (
           <div className="text-center mb-12 sm:mb-16">
             <MotionDiv
-              initial={mounted ? { opacity: 0, y: 20 } : false}
-              whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={mounted ? { duration: 0.6 } : { duration: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 20 }
+              }}
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light-contrast-primary mb-4 sm:mb-6">
                 {sectionTitle}
@@ -110,10 +100,14 @@ export default function CommunityPostsSection({
 
         {/* Community Stats */}
         <MotionDiv
-          initial={mounted ? { opacity: 0, y: 20 } : false}
-          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          transition={mounted ? { duration: 0.6, delay: 0.1 } : { duration: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 }
+          }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
         >
           <div className="text-center">
@@ -147,10 +141,14 @@ export default function CommunityPostsSection({
           {posts.map((post, index) => (
             <MotionDiv
               key={post.id}
-              initial={mounted ? { opacity: 0, y: 30 } : false}
-              whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={mounted ? { duration: 0.6, delay: index * 0.1 } : { duration: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 30 }
+              }}
             >
               <Card className="h-full bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <CardContent className="p-6">
@@ -169,7 +167,7 @@ export default function CommunityPostsSection({
                         <span className="text-xs text-light-contrast-tertiary">•</span>
                         <div className="flex items-center gap-1 text-xs text-light-contrast-tertiary">
                           <Clock className="w-3 h-3" />
-                          <span>{formatTimestamp(post.timestamp)}</span>
+                          <Timestamp timestamp={post.timestamp} />
                         </div>
                       </div>
                       <div className="text-xs text-saffron-600 font-medium">
@@ -210,10 +208,14 @@ export default function CommunityPostsSection({
 
         {/* Join Community CTA */}
         <MotionDiv
-          initial={mounted ? { opacity: 0, y: 20 } : false}
-          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          transition={mounted ? { duration: 0.6, delay: 0.4 } : { duration: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 }
+          }}
           className="text-center mt-12"
         >
           <div className="bg-gradient-to-r from-saffron-50 to-golden-olive/20 rounded-2xl p-8">
@@ -227,8 +229,8 @@ export default function CommunityPostsSection({
               Connect with fellow learners, share your insights, and get support on your journey through ancient wisdom.
             </p>
             <MotionButton
-              whileHover={mounted ? { scale: 1.05 } : {}}
-              whileTap={mounted ? { scale: 0.95 } : {}}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-saffron-600 to-golden-olive text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Join Community
@@ -237,5 +239,6 @@ export default function CommunityPostsSection({
         </MotionDiv>
       </div>
     </section>
+  </MotionWrapper>
   )
 }

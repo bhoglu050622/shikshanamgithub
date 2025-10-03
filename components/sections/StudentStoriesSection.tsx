@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import MotionWrapper from '@/components/motion/MotionWrapper'
 import { Star, MapPin, Calendar, Award } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import ugcData from '@/data/ugc_content.json'
@@ -75,15 +76,20 @@ export default function StudentStoriesSection({
     : ugcData.studentStories.slice(0, maxStories))
 
   return (
+  <MotionWrapper>
     <section className="py-16 sm:py-20 bg-gradient-to-br from-saffron-50/30 to-golden-olive/30">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <motion.div
-            initial={mounted ? { opacity: 0, y: 20 } : false}
-            whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-            transition={mounted ? { duration: 0.6 } : { duration: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: 20 }
+            }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light-contrast-primary mb-4 sm:mb-6">
               {sectionTitle}
@@ -99,10 +105,14 @@ export default function StudentStoriesSection({
           {stories.map((story, index) => (
             <motion.div
               key={story.id}
-              initial={mounted ? { opacity: 0, y: 30 } : false}
-              whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={mounted ? { duration: 0.6, delay: index * 0.1 } : { duration: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 30 }
+              }}
             >
               <Card className="h-full bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <CardContent className="p-6">
@@ -110,7 +120,7 @@ export default function StudentStoriesSection({
                   <div className="relative mb-6">
                     <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-saffron-400 to-golden-olive overflow-hidden shadow-lg">
                       <Image
-                        src={story.image}
+                        src={story.image.startsWith('/') ? story.image : `/${story.image}`}
                         alt={story.name}
                         width={80}
                         height={80}
@@ -174,18 +184,22 @@ export default function StudentStoriesSection({
 
         {/* Call to Action */}
         <motion.div
-          initial={mounted ? { opacity: 0, y: 20 } : false}
-          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-          transition={mounted ? { duration: 0.6, delay: 0.3 } : { duration: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 }
+          }}
           className="text-center mt-12"
         >
           <p className="text-lg text-light-contrast-secondary mb-6">
             Ready to start your own transformation journey?
           </p>
           <motion.button
-            whileHover={mounted ? { scale: 1.05 } : {}}
-            whileTap={mounted ? { scale: 0.95 } : {}}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-saffron-600 to-golden-olive text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Explore Our Courses
@@ -193,5 +207,6 @@ export default function StudentStoriesSection({
         </motion.div>
       </div>
     </section>
+  </MotionWrapper>
   )
 }

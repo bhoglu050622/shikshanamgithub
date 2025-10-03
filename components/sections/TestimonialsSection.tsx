@@ -118,15 +118,20 @@ export default function TestimonialsSection({
   }
 
   return (
+  <MotionWrapper>
     <section className="py-16 sm:py-20 bg-gradient-to-br from-sand-beige/5 to-golden-olive/5">
       <div className="container-custom">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <MotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: 20 }
+            }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-light-contrast-primary mb-4 sm:mb-6">
               {sectionTitle}
@@ -140,10 +145,14 @@ export default function TestimonialsSection({
         {/* Stats Section */}
         {showStats && (
           <MotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: 20 }
+            }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16"
           >
             <div className="text-center">
@@ -187,10 +196,14 @@ export default function TestimonialsSection({
 
         {/* Testimonials Carousel */}
         <MotionDiv
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 }
+          }}
           className="relative"
         >
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
@@ -297,10 +310,14 @@ export default function TestimonialsSection({
 
         {/* All Testimonials Grid */}
         <MotionDiv
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 }
+          }}
           className="mt-16 sm:mt-20"
         >
           <h3 className="text-2xl sm:text-3xl font-bold text-premium-text text-center mb-8 sm:mb-12">
@@ -311,10 +328,14 @@ export default function TestimonialsSection({
             {testimonials.slice(1).map((testimonial, index) => (
               <MotionDiv
                 key={testimonial.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 20 }
+                }}
               >
                 <Card className="h-full border-premium-border bg-white/70 dark:bg-black/20 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
@@ -347,5 +368,6 @@ export default function TestimonialsSection({
         </MotionDiv>
       </div>
     </section>
+  </MotionWrapper>
   )
 }

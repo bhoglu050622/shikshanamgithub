@@ -21,11 +21,21 @@ function getSafeFilePath(fileName: string): string | null {
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const fileName = searchParams.get('file');
+  const dataDirectory = path.join(process.cwd(), 'data');
 
+  // If no file is specified, return a list of all content files
   if (!fileName) {
-    return NextResponse.json({ success: false, error: 'File name is required.' }, { status: 400 });
+    try {
+      const files = await fs.readdir(dataDirectory);
+      const contentFiles = files.filter(file => file.endsWith('-content.json'));
+      return NextResponse.json({ success: true, files: contentFiles });
+    } catch (error) {
+      console.error('Failed to read data directory:', error);
+      return NextResponse.json({ success: false, error: 'Failed to read data directory.' }, { status: 500 });
+    }
   }
 
+  // If a file is specified, return its content
   const filePath = getSafeFilePath(fileName);
   if (!filePath) {
     return NextResponse.json({ success: false, error: 'Invalid or unauthorized file path.' }, { status: 403 });
