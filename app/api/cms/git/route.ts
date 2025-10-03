@@ -4,8 +4,8 @@ import { Octokit } from '@octokit/rest';
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 // TODO: Replace with your repository details, possibly from environment variables
-const GITHUB_OWNER = process.env.GITHUB_OWNER || 'your-github-owner';
-const GITHUB_REPO = process.env.GITHUB_REPO || 'your-github-repo';
+const GITHUB_OWNER = process.env.GITHUB_OWNER!;
+const GITHUB_REPO = process.env.GITHUB_REPO!;
 const BASE_BRANCH = 'main';
 
 export async function POST(request: NextRequest) {
