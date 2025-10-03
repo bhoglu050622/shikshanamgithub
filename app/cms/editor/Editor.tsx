@@ -53,13 +53,21 @@ export default function Editor() {
     setIsSaving(true);
     setStatus('Saving changes...');
     try {
+      // Validate JSON content
+      let parsedContent;
+      try {
+        parsedContent = JSON.parse(content);
+      } catch (parseError) {
+        throw new Error('Invalid JSON content. Please check your syntax.');
+      }
+
       const response = await fetch('/api/cms/local', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'save',
           file: fileName,
-          content: content,
+          content: parsedContent,
         }),
       });
       const result = await response.json();
@@ -86,13 +94,21 @@ export default function Editor() {
     setIsPublishing(true);
     setStatus('Publishing changes...');
     try {
+      // Validate JSON content
+      let parsedContent;
+      try {
+        parsedContent = JSON.parse(content);
+      } catch (parseError) {
+        throw new Error('Invalid JSON content. Please check your syntax.');
+      }
+
       const response = await fetch('/api/cms/local', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           action: 'publish', 
           file: fileName,
-          content: content 
+          content: parsedContent 
         }),
       });
       const result = await response.json();
@@ -140,24 +156,13 @@ export default function Editor() {
             </Button>
             {isDirty && (
               <Button 
-                onClick={() => handlePublish()} 
-                disabled={isPublishing}
+                onClick={() => handleSave(true)} 
+                disabled={isSaving}
                 variant="outline"
                 className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
               >
                 <UploadCloud className="w-4 h-4 mr-2" />
-                {isPublishing ? 'Publishing...' : 'Publish Changes'}
-              </Button>
-            )}
-            {isDirty && (
-              <Button 
-                onClick={() => handleSave(true)} 
-                disabled={isSaving}
-                variant="outline"
-                className="bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
-              >
-                <UploadCloud className="w-4 h-4 mr-2" />
-                Save & Publish
+                {isSaving ? 'Saving & Publishing...' : 'Save & Publish'}
               </Button>
             )}
           </div>
