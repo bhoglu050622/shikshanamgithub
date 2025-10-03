@@ -1,7 +1,148 @@
 {
   "hero": {
-    "title": "Welcome to Shikshanam - E2E TEST",
-    "subtitle": "Where AI meets Ancient India - LIVE TEST",
-    "description": "Preserving and sharing ancient Indian wisdom with the modern world - E2E TESTING IN PROGRESS"
-  }
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "ctaButtons": {
+      "sanskrit": {
+        "text": "School of Sanskrit",
+        "link": "/schools/sanskrit"
+      },
+      "darshan": {
+        "text": "School of Darshan",
+        "link": "/schools/darshana"
+      },
+      "lifeSkills": {
+        "text": "School of Life Skills",
+        "link": "/schools/self-help"
+      }
+    }
+  },
+  "schools": {
+    "title": "Explore Our Schools",
+    "subtitle": "Discover the ancient wisdom through our structured learning paths",
+    "description": "Our schools offer comprehensive learning paths in Sanskrit, philosophy, and life skills.",
+    "schools": [
+      {
+        "id": "sanskrit",
+        "name": "School of Sanskrit",
+        "description": "Master the ancient language of Sanskrit",
+        "icon": "book",
+        "link": "/schools/sanskrit",
+        "color": "primary"
+      },
+      {
+        "id": "darshana",
+        "name": "School of Darshan",
+        "description": "Explore the philosophical traditions",
+        "icon": "lightbulb",
+        "link": "/schools/darshana",
+        "color": "secondary"
+      },
+      {
+        "id": "self-help",
+        "name": "School of Life Skills",
+        "description": "Develop practical life skills",
+        "icon": "heart",
+        "link": "/schools/self-help",
+        "color": "accent"
+      }
+    ]
+  },
+  "alignYourself": {
+    "title": "Two Ways to Begin Your Journey!",
+    "subtitle": "Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses.",
+    "description": "Choose your learning path with our comprehensive educational offerings.",
+    "courses": [
+      {
+        "id": "sanskrit-course",
+        "title": "Sanskrit Language Course",
+        "description": "Learn the ancient language of Sanskrit",
+        "link": "/courses/sanskrit",
+        "icon": "book"
+      },
+      {
+        "id": "philosophy-course",
+        "title": "Philosophy Course",
+        "description": "Explore ancient Indian philosophy",
+        "link": "/courses/philosophy",
+        "icon": "lightbulb"
+      }
+    ],
+    "liveClasses": [
+      {
+        "id": "live-sanskrit",
+        "title": "Live Sanskrit Class",
+        "instructor": "Dr. Sanskrit Expert",
+        "thumbnail": "/images/sanskrit-class.jpg",
+        "duration": "2 hours",
+        "date": "2024-01-15",
+        "time": "7:00 PM IST",
+        "price": "$49",
+        "rating": 4.9,
+        "students": 120,
+        "link": "/courses/live-sanskrit",
+        "description": "Interactive live Sanskrit learning session"
+      }
+    ],
+    "selfPacedCourses": [
+      {
+        "id": "self-paced-sanskrit",
+        "title": "Self-Paced Sanskrit Course",
+        "description": "Learn Sanskrit at your own pace",
+        "thumbnail": "/images/sanskrit-course.jpg",
+        "duration": "6 months",
+        "modules": 12,
+        "price": "$99",
+        "rating": 4.8,
+        "students": 1500,
+        "link": "/courses/self-paced-sanskrit",
+        "level": "Beginner",
+        "instructor": "Dr. Sanskrit Expert"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Students Say",
+    "subtitle": "Real experiences from our learning community",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "quote": "This platform has transformed my understanding of ancient wisdom.",
+        "author": "Sarah Johnson",
+        "role": "Student",
+        "image": "/images/student-1.jpg",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-2",
+        "quote": "The teachers are amazing and the content is comprehensive.",
+        "author": "Michael Chen",
+        "role": "Student",
+        "image": "/images/student-2.jpg",
+        "rating": 5
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions",
+    "description": "Get answers to the most commonly asked questions about our platform and courses.",
+    "questions": [
+      {
+        "id": "faq-1",
+        "question": "What is Shikshanam?",
+        "answer": "Shikshanam is a platform dedicated to preserving and sharing ancient Indian wisdom through modern technology."
+      },
+      {
+        "id": "faq-2",
+        "question": "How do I get started?",
+        "answer": "You can start by exploring our schools or taking a course that interests you."
+      }
+    ]
+  },
+  "lastUpdated": "2025-10-03T19:40:15.818Z",
+  "source": "frontend-data-sync",
+  "title": "",
+  "content": ""
 }
