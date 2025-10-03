@@ -1,12 +1,7 @@
 {
   "hero": {
-    "title": "Test Course Title",
-    "subtitle": "Master the Ancient Language",
-    "description": "Learn Sanskrit from basics to advanced levels"
-  },
-  "syllabus": {},
-  "outcomes": {},
-  "testimonials": {},
-  "pricing": {},
-  "faq": {}
+    "title": "Sanskrit Course - CMS TEST UPDATE",
+    "subtitle": "Learn Ancient Language - UPDATED VIA CMS",
+    "description": "This course content was updated through the CMS editor to test functionality."
+  }
 }
