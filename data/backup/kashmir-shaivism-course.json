@@ -1,0 +1,84 @@
+{
+  "id": "kashmir-shaivism",
+  "title": "कश्मीर शैव दर्शन",
+  "subtitle": "The Philosophy of Recognition and Consciousness",
+  "instructor": "Dr. Vishal Chaurasia",
+  "language": "Hindi",
+  "price": "₹3,499",
+  "originalPrice": "₹5,999",
+  "duration": "6 months",
+  "level": "Advanced",
+  "rating": 4.9,
+  "reviewCount": 134,
+  "type": "Premium Course",
+  "status": "available",
+  "checkoutLink": "https://courses.shikshanam.in/checkout/kashmir-shaivism",
+  "contactNumber": "9910032165",
+  "features": [
+    {
+      "icon": "Mountain",
+      "title": "Advanced Philosophy",
+      "description": "Explore the profound wisdom of Kashmir Shaivism"
+    },
+    {
+      "icon": "Users",
+      "title": "Expert Guidance",
+      "description": "Learn from experienced philosophy scholars"
+    },
+    {
+      "icon": "Award",
+      "title": "Certificate",
+      "description": "Get a certificate upon completion"
+    }
+  ],
+  "learningObjectives": [
+    "Understanding the philosophy of recognition (Pratyabhijna)",
+    "Mastering the concept of consciousness and self-awareness",
+    "Practical application of Shaivite wisdom in spiritual practice"
+  ],
+  "keyHighlights": [
+    "Detailed study of Pratyabhijna philosophy",
+    "Interactive meditation and spiritual practices",
+    "Modern relevance of ancient Shaivite wisdom"
+  ],
+  "syllabus": [
+    {
+      "id": 1,
+      "title": "Introduction to Kashmir Shaivism",
+      "type": "video",
+      "duration": "Week 1-2",
+      "description": "Understanding the fundamental concepts of Kashmir Shaivism"
+    },
+    {
+      "id": 2,
+      "title": "The Philosophy of Recognition",
+      "type": "video",
+      "duration": "Week 3-8",
+      "description": "Deep dive into Pratyabhijna philosophy and consciousness studies"
+    },
+    {
+      "id": 3,
+      "title": "Practical Applications",
+      "type": "video",
+      "duration": "Week 9-12",
+      "description": "Meditation techniques and spiritual practices based on Shaivite wisdom"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Anita Sharma",
+      "rating": 5,
+      "comment": "Transformative course that deepened my spiritual understanding",
+      "verified": true
+    },
+    {
+      "name": "Rajesh Kumar",
+      "rating": 5,
+      "comment": "The instructor's depth of knowledge in Shaivite philosophy is exceptional",
+      "verified": true
+    }
+  ],
+  "lastModified": "2024-01-15T10:30:00Z",
+  "views": 1450,
+  "popularity": 88
+}

@@ -1,0 +1,77 @@
+{
+  "id": "hindu-philosophies-upanishads-bundle",
+  "title": "Hindu Philosophies & Upanishads Bundle",
+  "subtitle": "Complete Journey Through Ancient Indian Wisdom",
+  "description": "Master the six classical schools of Hindu philosophy and explore the profound wisdom of the Upanishads in this comprehensive learning bundle.",
+  "price": "₹9,999",
+  "originalPrice": "₹19,999",
+  "duration": "12 months",
+  "level": "Intermediate",
+  "rating": 4.9,
+  "reviewCount": 127,
+  "type": "Premium Bundle",
+  "status": "available",
+  "checkoutLink": "https://courses.shikshanam.in/checkout/hindu-philosophies-upanishads-bundle",
+  "contactNumber": "9910032165",
+  "features": [
+    "Six classical schools of Hindu philosophy (Darshanas)",
+    "Deep exploration of Upanishadic wisdom and teachings",
+    "Interactive learning with renowned philosophy scholars",
+    "Comprehensive study materials and reading lists",
+    "Lifetime access to all materials and updates",
+    "Master certificate for completing the entire bundle"
+  ],
+  "courses": [
+    {
+      "id": "samkhya-darshan",
+      "name": "Samkhya Darshan",
+      "description": "Explore the analytical philosophy of Samkhya",
+      "duration": "3 months",
+      "level": "Intermediate",
+      "icon": "🔍"
+    },
+    {
+      "id": "nyaya-darshan",
+      "name": "Nyaya Darshan",
+      "description": "Master the logical reasoning system of Nyaya",
+      "duration": "3 months",
+      "level": "Intermediate",
+      "icon": "🧠"
+    },
+    {
+      "id": "vaisheshik-darshan",
+      "name": "Vaisheshik Darshan",
+      "description": "Understand the atomic theory of Vaisheshik",
+      "duration": "3 months",
+      "level": "Intermediate",
+      "icon": "⚛️"
+    },
+    {
+      "id": "yoga-darshan",
+      "name": "Yoga Darshan",
+      "description": "Learn the practical philosophy of Yoga",
+      "duration": "3 months",
+      "level": "Intermediate",
+      "icon": "🧘‍♂️"
+    },
+    {
+      "id": "tantra-darshan",
+      "name": "Tantra Darshan",
+      "description": "Explore the esoteric philosophy of Tantra",
+      "duration": "3 months",
+      "level": "Advanced",
+      "icon": "🌀"
+    },
+    {
+      "id": "kashmir-shaivism",
+      "name": "Kashmir Shaivism",
+      "description": "Discover the non-dual philosophy of Kashmir Shaivism",
+      "duration": "3 months",
+      "level": "Advanced",
+      "icon": "🏔️"
+    }
+  ],
+  "lastModified": "2024-01-15T10:30:00Z",
+  "views": 2150,
+  "popularity": 92
+}

@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "title": "Join Our Mission",
+    "subtitle": "Help preserve and share ancient wisdom with the world",
+    "backgroundImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=1080&fit=crop"
+  },
+  "about": {
+    "title": "Why Work With Us?",
+    "subtitle": "Be part of a mission that matters",
+    "content": "At Shikshanam, we're not just building a company – we're preserving and sharing the timeless wisdom of our ancestors. Join a team that's passionate about making ancient knowledge accessible to modern learners worldwide.",
+    "benefits": [
+      {
+        "id": "mission",
+        "title": "Meaningful Mission",
+        "description": "Work on something that truly matters – preserving and sharing ancient wisdom"
+      },
+      {
+        "id": "growth",
+        "title": "Personal Growth",
+        "description": "Learn from ancient teachings while building your career"
+      },
+      {
+        "id": "impact",
+        "title": "Global Impact",
+        "description": "Help thousands of learners worldwide discover ancient wisdom"
+      },
+      {
+        "id": "culture",
+        "title": "Inclusive Culture",
+        "description": "Work in a diverse, supportive environment that values different perspectives"
+      }
+    ]
+  },
+  "positions": {
+    "title": "Open Positions",
+    "subtitle": "Find your perfect role in our mission",
+    "jobs": [
+      {
+        "id": "sanskrit-teacher",
+        "title": "Sanskrit Language Instructor",
+        "department": "Education",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "Teach Sanskrit language and literature to students of all levels. Help develop curriculum and create engaging learning experiences.",
+        "requirements": [
+          "Master's degree in Sanskrit or related field",
+          "3+ years teaching experience",
+          "Fluent in Sanskrit and English",
+          "Experience with online teaching platforms"
+        ]
+      },
+      {
+        "id": "content-developer",
+        "title": "Educational Content Developer",
+        "department": "Content",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "Create engaging educational content about Indian philosophy, meditation, and ancient wisdom traditions.",
+        "requirements": [
+          "Bachelor's degree in Philosophy, Education, or related field",
+          "Strong writing and research skills",
+          "Knowledge of Indian philosophy and traditions",
+          "Experience with content management systems"
+        ]
+      },
+      {
+        "id": "tech-lead",
+        "title": "Technology Lead",
+        "department": "Engineering",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "Lead our technology initiatives to make ancient wisdom accessible through modern platforms.",
+        "requirements": [
+          "5+ years software development experience",
+          "Experience with React, Node.js, and modern web technologies",
+          "Passion for education and technology",
+          "Leadership experience preferred"
+        ]
+      }
+    ]
+  },
+  "application": {
+    "title": "How to Apply",
+    "subtitle": "Ready to join our mission?",
+    "steps": [
+      {
+        "id": "1",
+        "title": "Browse Open Positions",
+        "description": "Review our current job openings and find the role that matches your skills and interests"
+      },
+      {
+        "id": "2",
+        "title": "Submit Your Application",
+        "description": "Send us your resume and cover letter explaining why you want to join our mission"
+      },
+      {
+        "id": "3",
+        "title": "Interview Process",
+        "description": "We'll schedule interviews to get to know you and discuss how you can contribute to our mission"
+      },
+      {
+        "id": "4",
+        "title": "Welcome to the Team",
+        "description": "If selected, you'll join our passionate team working to preserve and share ancient wisdom"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Questions?",
+    "subtitle": "We'd love to hear from you",
+    "email": "careers@shikshanam.com",
+    "phone": "+91-9876543210",
+    "message": "Have questions about our positions or want to learn more about working with us? Don't hesitate to reach out!"
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
+}

@@ -1,138 +1,27 @@
 {
-  "hero": {
-    "title": "Accessibility Statement",
-    "subtitle": "Committed to making ancient wisdom accessible to everyone",
-    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
-  },
-  "commitment": {
-    "title": "Our Accessibility Commitment",
-    "subtitle": "Ensuring equal access to ancient wisdom for all learners",
-    "content": "At Shikshanam, we believe that the profound wisdom of our ancestors should be accessible to everyone, regardless of their abilities or circumstances. We are committed to providing an inclusive learning environment that welcomes and supports all students.",
-    "principles": [
-      {
-        "id": "inclusive",
-        "title": "Inclusive Design",
-        "description": "Our platform and content are designed with accessibility in mind from the ground up"
-      },
-      {
-        "id": "support",
-        "title": "Comprehensive Support",
-        "description": "We provide various support services to help students with different needs succeed"
-      },
-      {
-        "id": "continuous",
-        "title": "Continuous Improvement",
-        "description": "We regularly review and improve our accessibility features based on user feedback"
-      },
-      {
-        "id": "training",
-        "title": "Staff Training",
-        "description": "Our team is trained to provide inclusive support and accommodations"
-      }
-    ]
-  },
-  "features": {
-    "title": "Accessibility Features",
-    "subtitle": "Tools and features that make learning accessible",
-    "features": [
-      {
-        "id": "screen-reader",
-        "title": "Screen Reader Compatibility",
-        "description": "Our platform is fully compatible with screen readers and assistive technologies",
-        "icon": "screen-reader"
-      },
-      {
-        "id": "keyboard",
-        "title": "Keyboard Navigation",
-        "description": "Complete platform functionality accessible via keyboard navigation",
-        "icon": "keyboard"
-      },
-      {
-        "id": "captions",
-        "title": "Video Captions",
-        "description": "All video content includes accurate captions and transcripts",
-        "icon": "captions"
-      },
-      {
-        "id": "text-size",
-        "title": "Adjustable Text Size",
-        "description": "Users can adjust text size and contrast for better readability",
-        "icon": "text-size"
-      },
-      {
-        "id": "audio",
-        "title": "Audio Descriptions",
-        "description": "Visual content includes audio descriptions for visually impaired users",
-        "icon": "audio"
-      },
-      {
-        "id": "mobile",
-        "title": "Mobile Accessibility",
-        "description": "Full accessibility features available on mobile devices",
-        "icon": "mobile"
-      }
-    ]
-  },
-  "accommodations": {
-    "title": "Accommodations & Support",
-    "subtitle": "We provide various accommodations to support your learning journey",
-    "accommodations": [
-      {
-        "id": "extended-time",
-        "title": "Extended Time",
-        "description": "Additional time for assignments and assessments when needed"
-      },
-      {
-        "id": "alternative-format",
-        "title": "Alternative Formats",
-        "description": "Content available in multiple formats (audio, large print, etc.)"
-      },
-      {
-        "id": "assistive-technology",
-        "title": "Assistive Technology Support",
-        "description": "Compatibility with various assistive technologies and devices"
-      },
-      {
-        "id": "personal-support",
-        "title": "Personal Support",
-        "description": "Dedicated support staff to help with accessibility needs"
-      }
-    ]
-  },
-  "contact": {
-    "title": "Request Accommodations",
-    "subtitle": "We're here to help make your learning experience accessible",
-    "info": {
-      "email": "accessibility@shikshanam.com",
-      "phone": "+91-9876543210",
-      "hours": "Monday-Friday, 9 AM - 6 PM IST"
+  "url": "/accessibility",
+  "title": "Accessibility Statement - Shikshanam",
+  "description": "Learn about Shikshanam&#x27;s commitment to accessibility and inclusive design for all learners.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
     },
-    "message": "If you need specific accommodations or have questions about accessibility, please don't hesitate to contact us. We're committed to working with you to ensure you have the best possible learning experience."
-  },
-  "standards": {
-    "title": "Accessibility Standards",
-    "subtitle": "We follow international accessibility guidelines",
-    "standards": [
-      {
-        "id": "wcag",
-        "title": "WCAG 2.1 AA Compliance",
-        "description": "Our platform meets Web Content Accessibility Guidelines 2.1 AA standards"
-      },
-      {
-        "id": "section508",
-        "title": "Section 508 Compliance",
-        "description": "We comply with Section 508 of the Rehabilitation Act"
-      },
-      {
-        "id": "ada",
-        "title": "ADA Compliance",
-        "description": "Our services comply with the Americans with Disabilities Act"
-      }
+    "sections": [],
+    "features": [
+      "Keyboard navigation support for all interactive elements",
+      "Screen reader compatibility with proper ARIA labels",
+      "High contrast color schemes and customizable text sizes",
+      "Alternative text for images and visual content",
+      "Captions and transcripts for video content",
+      "Skip links for efficient navigation",
+      "Focus indicators for keyboard users",
+      "Semantic HTML structure for better screen reader experience",
+      "Screen readers (NVDA, JAWS, VoiceOver)",
+      "Voice recognition software"
     ]
   },
-  "_metadata": {
-    "lastModified": "2025-01-03T12:00:00.000Z",
-    "version": "1.0",
-    "source": "cms"
-  }
+  "metadata": {},
+  "timestamp": "2025-10-04T10:56:36.118Z"
 }

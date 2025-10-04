@@ -1,61 +1,16 @@
 {
-  "hero": {
-    "title": "Ancient Wisdom for Modern Life",
-    "subtitle": "Discover timeless teachings that guide us through contemporary challenges",
-    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
-  },
-  "sections": [
-    {
-      "id": "philosophy",
-      "title": "Philosophical Foundations",
-      "subtitle": "Explore the six classical schools of Indian philosophy",
-      "content": "Dive deep into the profound wisdom of Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, and Vedanta. Each school offers unique insights into the nature of reality, consciousness, and the path to liberation.",
-      "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop"
+  "url": "/wisdom",
+  "title": "Wisdom | Ancient Indian Philosophy &amp; Sanskrit Articles",
+  "description": "Explore curated articles on Sanskrit, Darshana, and timeless Indian wisdom. Learn from ancient texts and modern interpretations.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
     },
-    {
-      "id": "practical",
-      "title": "Practical Applications",
-      "subtitle": "How ancient wisdom applies to modern challenges",
-      "content": "Learn how timeless principles from Indian philosophy can help you navigate relationships, career decisions, stress management, and personal growth in today's fast-paced world.",
-      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop"
-    },
-    {
-      "id": "meditation",
-      "title": "Meditation & Mindfulness",
-      "subtitle": "Ancient techniques for modern well-being",
-      "content": "Discover meditation practices rooted in Indian traditions that promote mental clarity, emotional balance, and spiritual growth. Learn techniques that have been refined over thousands of years.",
-      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop"
-    }
-  ],
-  "testimonials": {
-    "title": "What Our Students Say",
-    "subtitle": "Real stories of transformation through ancient wisdom",
-    "testimonials": [
-      {
-        "id": "testimonial-1",
-        "name": "Sarah Johnson",
-        "role": "Software Engineer",
-        "content": "The wisdom teachings have completely transformed how I approach challenges at work and in my personal life. The practical applications are incredible.",
-        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face"
-      },
-      {
-        "id": "testimonial-2",
-        "name": "Michael Chen",
-        "role": "Meditation Teacher",
-        "content": "The depth of understanding I've gained through these courses has enhanced my own teaching practice. The ancient wisdom is truly timeless.",
-        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
-      }
-    ]
+    "sections": [],
+    "features": []
   },
-  "cta": {
-    "title": "Begin Your Journey",
-    "subtitle": "Start exploring ancient wisdom today",
-    "buttonText": "Explore Courses",
-    "buttonLink": "/courses"
-  },
-  "_metadata": {
-    "lastModified": "2025-01-03T12:00:00.000Z",
-    "version": "1.0",
-    "source": "cms"
-  }
+  "metadata": {},
+  "timestamp": "2025-10-04T10:58:07.968Z"
 }

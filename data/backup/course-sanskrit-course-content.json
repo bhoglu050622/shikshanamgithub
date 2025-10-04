@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "image": "",
+    "ctaText": "Enroll Now",
+    "ctaLink": "/courses/sanskrit-course"
+  },
+  "syllabus": {
+    "title": "Course Syllabus",
+    "description": "",
+    "modules": []
+  },
+  "outcomes": {
+    "title": "What You Will Learn",
+    "description": "",
+    "benefits": []
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "",
+    "testimonials": []
+  },
+  "pricing": {
+    "title": "Course Pricing",
+    "description": "",
+    "price": 0,
+    "originalPrice": 0,
+    "features": [],
+    "ctaText": "Enroll Now",
+    "ctaLink": "/courses/sanskrit-course"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "",
+    "questions": []
+  }
+}

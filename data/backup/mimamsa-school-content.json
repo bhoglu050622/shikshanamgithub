@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "title": "Mimamsa School of Philosophy",
+    "subtitle": "The science of interpretation and ritual knowledge",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+  },
+  "introduction": {
+    "title": "About Mimamsa",
+    "content": "Mimamsa, meaning 'investigation' or 'examination', is one of the six classical schools of Indian philosophy. Founded by Jaimini, it focuses on the interpretation of Vedic texts and the performance of rituals. Mimamsa provides a systematic approach to understanding dharma (duty) and the proper conduct of religious ceremonies.",
+    "keyConcepts": [
+      "Dharma (duty and righteousness)",
+      "Vedic interpretation",
+      "Ritual performance",
+      "Karma theory",
+      "Language and meaning"
+    ]
+  },
+  "history": {
+    "title": "Historical Development",
+    "content": "Mimamsa developed as a response to the need for systematic interpretation of Vedic texts. The school was formalized by Jaimini in his Mimamsa Sutras around 200 BCE. Later commentators like Sabara, Kumarila Bhatta, and Prabhakara further developed the school's philosophical foundations.",
+    "timeline": [
+      {
+        "period": "200 BCE",
+        "event": "Jaimini composes Mimamsa Sutras"
+      },
+      {
+        "period": "200-400 CE",
+        "event": "Sabara writes his commentary on Mimamsa Sutras"
+      },
+      {
+        "period": "600-700 CE",
+        "event": "Kumarila Bhatta and Prabhakara develop different schools within Mimamsa"
+      }
+    ]
+  },
+  "philosophy": {
+    "title": "Core Philosophical Principles",
+    "principles": [
+      {
+        "id": "dharma",
+        "title": "Dharma as Central",
+        "description": "Dharma is the central concept in Mimamsa, referring to the duties and obligations that maintain cosmic order",
+        "details": "Mimamsa views dharma as the foundation of all human action and the key to achieving the highest good."
+      },
+      {
+        "id": "vedic-authority",
+        "title": "Vedic Authority",
+        "description": "The Vedas are considered the ultimate source of knowledge and authority",
+        "details": "Mimamsa argues that the Vedas are eternal, authorless, and infallible sources of knowledge about dharma."
+      },
+      {
+        "id": "ritual-performance",
+        "title": "Ritual Performance",
+        "description": "Proper performance of rituals is essential for maintaining cosmic order",
+        "details": "Mimamsa provides detailed guidelines for the correct performance of Vedic rituals and their significance."
+      },
+      {
+        "id": "karma-theory",
+        "title": "Karma Theory",
+        "description": "Actions have consequences that affect future experiences",
+        "details": "Mimamsa develops a sophisticated theory of karma that explains how actions create results in this life and beyond."
+      }
+    ]
+  },
+  "keyTexts": {
+    "title": "Key Texts and Commentaries",
+    "texts": [
+      {
+        "id": "mimamsa-sutras",
+        "title": "Mimamsa Sutras",
+        "author": "Jaimini",
+        "description": "The foundational text of Mimamsa philosophy, covering the interpretation of Vedic texts and ritual performance",
+        "significance": "Establishes the basic principles and methodology of Mimamsa"
+      },
+      {
+        "id": "sabara-bhashya",
+        "title": "Sabara Bhashya",
+        "author": "Sabara",
+        "description": "The earliest surviving commentary on Mimamsa Sutras",
+        "significance": "Provides detailed explanations of Jaimini's sutras and establishes many key concepts"
+      },
+      {
+        "id": "kumarila-bhatta",
+        "title": "Works of Kumarila Bhatta",
+        "author": "Kumarila Bhatta",
+        "description": "Extensive commentaries and independent works on Mimamsa",
+        "significance": "Develops the Bhatta school of Mimamsa with emphasis on the reality of the external world"
+      }
+    ]
+  },
+  "practicalApplications": {
+    "title": "Practical Applications",
+    "subtitle": "How Mimamsa principles apply to modern life",
+    "applications": [
+      {
+        "id": "ethical-framework",
+        "title": "Ethical Framework",
+        "description": "Mimamsa provides a systematic approach to understanding duty and ethical obligations",
+        "modernRelevance": "Helps in developing a structured approach to moral decision-making and understanding one's responsibilities"
+      },
+      {
+        "id": "text-interpretation",
+        "title": "Text Interpretation",
+        "description": "Mimamsa's methods of textual analysis can be applied to understanding any authoritative text",
+        "modernRelevance": "Useful for legal interpretation, religious studies, and academic research"
+      },
+      {
+        "id": "ritual-practice",
+        "title": "Ritual and Ceremony",
+        "description": "Understanding the significance and proper performance of rituals and ceremonies",
+        "modernRelevance": "Applies to religious practices, cultural ceremonies, and formal procedures"
+      }
+    ]
+  },
+  "courses": {
+    "title": "Mimamsa Courses",
+    "subtitle": "Learn Mimamsa philosophy through structured courses",
+    "availableCourses": [
+      {
+        "id": "mimamsa-basics",
+        "title": "Introduction to Mimamsa",
+        "level": "Beginner",
+        "duration": "8 weeks",
+        "description": "Learn the fundamental concepts of Mimamsa philosophy and its approach to Vedic interpretation"
+      },
+      {
+        "id": "mimamsa-advanced",
+        "title": "Advanced Mimamsa",
+        "level": "Advanced",
+        "duration": "12 weeks",
+        "description": "Deep dive into Mimamsa epistemology, metaphysics, and its relationship with other schools"
+      },
+      {
+        "id": "mimamsa-texts",
+        "title": "Mimamsa Text Study",
+        "level": "Intermediate",
+        "duration": "16 weeks",
+        "description": "Detailed study of key Mimamsa texts with Sanskrit reading and interpretation"
+      }
+    ]
+  },
+  "resources": {
+    "title": "Learning Resources",
+    "resources": [
+      {
+        "id": "books",
+        "title": "Recommended Books",
+        "items": [
+          "Mimamsa Sutras by Jaimini",
+          "Introduction to Mimamsa by Ganganatha Jha",
+          "Mimamsa Philosophy by P. V. Kane"
+        ]
+      },
+      {
+        "id": "articles",
+        "title": "Articles and Papers",
+        "items": [
+          "The Epistemology of Mimamsa",
+          "Mimamsa and Modern Legal Theory",
+          "Ritual and Meaning in Mimamsa"
+        ]
+      },
+      {
+        "id": "videos",
+        "title": "Video Lectures",
+        "items": [
+          "Introduction to Mimamsa Philosophy",
+          "Mimamsa and Vedic Interpretation",
+          "Practical Applications of Mimamsa"
+        ]
+      }
+    ]
+  },
+  "teachers": {
+    "title": "Mimamsa Teachers",
+    "subtitle": "Learn from expert scholars",
+    "teachers": [
+      {
+        "id": "dr-sharma",
+        "name": "Dr. Rajesh Sharma",
+        "title": "Professor of Mimamsa",
+        "expertise": "Mimamsa epistemology and Vedic interpretation",
+        "experience": "25 years",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
+      },
+      {
+        "id": "prof-kumar",
+        "name": "Prof. Anil Kumar",
+        "title": "Mimamsa Scholar",
+        "expertise": "Mimamsa metaphysics and ritual theory",
+        "experience": "20 years",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
+      }
+    ]
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
+}

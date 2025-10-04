@@ -1,228 +1,27 @@
 {
-  "hero": {
-    "title": "Help Center",
-    "subtitle": "Find answers to your questions and get the support you need",
-    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
-  },
-  "quickLinks": {
-    "title": "Quick Links",
-    "subtitle": "Common topics and resources",
-    "links": [
-      {
-        "id": "getting-started",
-        "title": "Getting Started",
-        "description": "New to Shikshanam? Start here to learn the basics",
-        "icon": "play-circle"
-      },
-      {
-        "id": "account",
-        "title": "Account & Billing",
-        "description": "Manage your account, billing, and subscription",
-        "icon": "user"
-      },
-      {
-        "id": "courses",
-        "title": "Courses & Learning",
-        "description": "Learn about our courses and how to access them",
-        "icon": "book-open"
-      },
-      {
-        "id": "technical",
-        "title": "Technical Support",
-        "description": "Troubleshoot technical issues and browser problems",
-        "icon": "settings"
-      }
+  "url": "/help",
+  "title": "Help Center - Shikshanam",
+  "description": "Get help and support for your Sanskrit learning journey. Find answers to common questions and get assistance.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": [
+      "• How to create an account",
+      "• Choosing your learning path",
+      "• Understanding course structure",
+      "• Setting up your profile",
+      "• Accessing course materials",
+      "• Understanding Sanskrit grammar",
+      "• Using practice tools",
+      "• Tracking your progress",
+      "• Video playback problems",
+      "• Audio quality issues"
     ]
   },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Quick answers to common questions",
-    "categories": [
-      {
-        "id": "general",
-        "title": "General Questions",
-        "questions": [
-          {
-            "id": "what-is-shikshanam",
-            "question": "What is Shikshanam?",
-            "answer": "Shikshanam is an online platform dedicated to preserving and sharing ancient Indian wisdom, including Sanskrit language, philosophy, meditation, and traditional knowledge systems."
-          },
-          {
-            "id": "who-can-use",
-            "question": "Who can use Shikshanam?",
-            "answer": "Shikshanam is open to anyone interested in learning about ancient Indian wisdom, regardless of their background, age, or prior knowledge. Our courses are designed for beginners to advanced learners."
-          },
-          {
-            "id": "free-content",
-            "question": "Is there free content available?",
-            "answer": "Yes, we offer free introductory courses and resources. You can explore our platform and access basic content without any cost."
-          }
-        ]
-      },
-      {
-        "id": "account",
-        "title": "Account & Registration",
-        "questions": [
-          {
-            "id": "create-account",
-            "question": "How do I create an account?",
-            "answer": "Click the 'Sign Up' button on our homepage, enter your email address and create a password. You'll receive a confirmation email to verify your account."
-          },
-          {
-            "id": "forgot-password",
-            "question": "I forgot my password. What should I do?",
-            "answer": "Click 'Forgot Password' on the login page, enter your email address, and we'll send you a link to reset your password."
-          },
-          {
-            "id": "change-email",
-            "question": "How do I change my email address?",
-            "answer": "Go to your account settings, click on 'Email', and follow the instructions to update your email address. You'll need to verify the new email address."
-          }
-        ]
-      },
-      {
-        "id": "courses",
-        "title": "Courses & Learning",
-        "questions": [
-          {
-            "id": "access-courses",
-            "question": "How do I access my courses?",
-            "answer": "After logging in, go to 'My Courses' in your dashboard. All enrolled courses will be listed there with direct access links."
-          },
-          {
-            "id": "course-progress",
-            "question": "How do I track my learning progress?",
-            "answer": "Your progress is automatically saved and displayed in your course dashboard. You can see completed lessons, current position, and overall progress."
-          },
-          {
-            "id": "certificates",
-            "question": "Do I get certificates for completing courses?",
-            "answer": "Yes, we provide certificates of completion for all paid courses. Certificates are available for download from your course dashboard after completion."
-          }
-        ]
-      },
-      {
-        "id": "technical",
-        "title": "Technical Support",
-        "questions": [
-          {
-            "id": "video-issues",
-            "question": "Videos are not playing. What should I do?",
-            "answer": "Try refreshing the page, clearing your browser cache, or switching to a different browser. Ensure you have a stable internet connection."
-          },
-          {
-            "id": "mobile-access",
-            "question": "Can I access courses on mobile devices?",
-            "answer": "Yes, our platform is mobile-responsive and works on smartphones and tablets. We also have a mobile app available for download."
-          },
-          {
-            "id": "browser-support",
-            "question": "Which browsers are supported?",
-            "answer": "We support Chrome, Firefox, Safari, and Edge. For the best experience, we recommend using the latest version of Chrome or Firefox."
-          }
-        ]
-      }
-    ]
-  },
-  "contactSupport": {
-    "title": "Contact Support",
-    "subtitle": "Need more help? We're here for you",
-    "options": [
-      {
-        "id": "email",
-        "title": "Email Support",
-        "description": "Send us an email and we'll respond within 24 hours",
-        "contact": "support@shikshanam.com",
-        "icon": "mail"
-      },
-      {
-        "id": "phone",
-        "title": "Phone Support",
-        "description": "Call us for immediate assistance",
-        "contact": "+91-9876543210",
-        "icon": "phone"
-      },
-      {
-        "id": "chat",
-        "title": "Live Chat",
-        "description": "Chat with our support team in real-time",
-        "contact": "Available 9 AM - 6 PM IST",
-        "icon": "message-circle"
-      }
-    ]
-  },
-  "resources": {
-    "title": "Learning Resources",
-    "subtitle": "Additional materials to enhance your learning",
-    "resources": [
-      {
-        "id": "user-guide",
-        "title": "User Guide",
-        "description": "Comprehensive guide to using our platform",
-        "type": "PDF",
-        "download": true
-      },
-      {
-        "id": "video-tutorials",
-        "title": "Video Tutorials",
-        "description": "Step-by-step video guides for common tasks",
-        "type": "Video",
-        "download": false
-      },
-      {
-        "id": "community",
-        "title": "Community Forum",
-        "description": "Connect with other learners and get help from the community",
-        "type": "Forum",
-        "download": false
-      }
-    ]
-  },
-  "troubleshooting": {
-    "title": "Troubleshooting",
-    "subtitle": "Common issues and solutions",
-    "issues": [
-      {
-        "id": "login-issues",
-        "title": "Login Problems",
-        "solutions": [
-          "Check your email and password for typos",
-          "Clear your browser cache and cookies",
-          "Try using a different browser",
-          "Check if Caps Lock is on"
-        ]
-      },
-      {
-        "id": "video-problems",
-        "title": "Video Playback Issues",
-        "solutions": [
-          "Check your internet connection",
-          "Try refreshing the page",
-          "Disable browser extensions temporarily",
-          "Update your browser to the latest version"
-        ]
-      },
-      {
-        "id": "payment-issues",
-        "title": "Payment Problems",
-        "solutions": [
-          "Verify your payment information",
-          "Check with your bank for any restrictions",
-          "Try a different payment method",
-          "Contact our support team for assistance"
-        ]
-      }
-    ]
-  },
-  "feedback": {
-    "title": "Feedback & Suggestions",
-    "subtitle": "Help us improve our platform",
-    "content": "We value your feedback! If you have suggestions for improving our platform or encounter any issues, please let us know. Your input helps us make Shikshanam better for everyone.",
-    "email": "feedback@shikshanam.com"
-  },
-  "_metadata": {
-    "lastModified": "2025-01-03T12:00:00.000Z",
-    "version": "1.0",
-    "source": "cms"
-  }
+  "metadata": {},
+  "timestamp": "2025-10-04T10:56:42.985Z"
 }

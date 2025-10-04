@@ -1,0 +1,84 @@
+{
+  "id": "nyaya-darshan",
+  "title": "न्याय दर्शन",
+  "subtitle": "The Philosophy of Logic and Reasoning",
+  "instructor": "Dr. Rajesh Kumar",
+  "language": "Hindi",
+  "price": "₹2,799",
+  "originalPrice": "₹4,499",
+  "duration": "5 months",
+  "level": "Intermediate",
+  "rating": 4.6,
+  "reviewCount": 89,
+  "type": "Premium Course",
+  "status": "available",
+  "checkoutLink": "https://courses.shikshanam.in/checkout/nyaya-darshan",
+  "contactNumber": "9910032165",
+  "features": [
+    {
+      "icon": "Brain",
+      "title": "Logical Reasoning",
+      "description": "Master the art of logical reasoning and argumentation"
+    },
+    {
+      "icon": "Users",
+      "title": "Expert Guidance",
+      "description": "Learn from experienced philosophy scholars"
+    },
+    {
+      "icon": "Award",
+      "title": "Certificate",
+      "description": "Get a certificate upon completion"
+    }
+  ],
+  "learningObjectives": [
+    "Understanding the 16 categories of Nyaya philosophy",
+    "Mastering the art of logical reasoning and debate",
+    "Practical application of Nyaya logic in modern contexts"
+  ],
+  "keyHighlights": [
+    "Detailed study of Nyaya Sutras",
+    "Interactive logical reasoning exercises",
+    "Modern applications of ancient logic"
+  ],
+  "syllabus": [
+    {
+      "id": 1,
+      "title": "Introduction to Nyaya Philosophy",
+      "type": "video",
+      "duration": "Week 1",
+      "description": "Understanding the fundamental concepts of Nyaya logic"
+    },
+    {
+      "id": 2,
+      "title": "The 16 Categories",
+      "type": "video",
+      "duration": "Week 2-6",
+      "description": "Deep dive into the 16 categories of Nyaya philosophy"
+    },
+    {
+      "id": 3,
+      "title": "Logical Reasoning and Debate",
+      "type": "video",
+      "duration": "Week 7-10",
+      "description": "Practical application of Nyaya logic in debates and reasoning"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Amit Kumar",
+      "rating": 5,
+      "comment": "Excellent course that improved my logical thinking skills significantly",
+      "verified": true
+    },
+    {
+      "name": "Priya Singh",
+      "rating": 4,
+      "comment": "The instructor's depth of knowledge in logic is impressive",
+      "verified": true
+    }
+  ],
+  "lastModified": "2024-01-15T10:30:00Z",
+  "views": 1120,
+  "popularity": 82
+}

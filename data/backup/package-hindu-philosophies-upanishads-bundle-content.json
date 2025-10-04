@@ -1,0 +1,156 @@
+{
+  "hero": {
+    "title": "Hindu Philosophies + Upanishads Bundle",
+    "subtitle": "Complete exploration of Hindu philosophical systems and Upanishadic wisdom",
+    "description": "Dive deep into the six schools of Hindu philosophy and the profound wisdom of the Upanishads. This comprehensive bundle offers a complete understanding of Hindu philosophical traditions.",
+    "image": "/images/packages/hindu-philosophies-upanishads-bundle.jpg",
+    "ctaText": "Get This Bundle",
+    "ctaLink": "/courses/hindu-philosophies-upanishads-bundle"
+  },
+  "courses": {
+    "title": "Included Courses",
+    "description": "This bundle includes the following comprehensive courses:",
+    "courseList": [
+      {
+        "id": "samkhya-darshan-course",
+        "name": "Samkhya Darshan",
+        "description": "Explore the analytical philosophy of Samkhya",
+        "duration": "3 months",
+        "level": "Intermediate"
+      },
+      {
+        "id": "nyaya-darshan-course",
+        "name": "Nyaya Darshan",
+        "description": "Master the logical reasoning system of Nyaya",
+        "duration": "3 months",
+        "level": "Intermediate"
+      },
+      {
+        "id": "vaisheshik-darshan-course",
+        "name": "Vaisheshik Darshan",
+        "description": "Understand the atomic theory of Vaisheshik",
+        "duration": "3 months",
+        "level": "Intermediate"
+      },
+      {
+        "id": "yoga-darshan-course",
+        "name": "Yoga Darshan",
+        "description": "Learn the practical philosophy of Yoga",
+        "duration": "3 months",
+        "level": "Intermediate"
+      },
+      {
+        "id": "tantra-darshan-course",
+        "name": "Tantra Darshan",
+        "description": "Explore the esoteric philosophy of Tantra",
+        "duration": "3 months",
+        "level": "Advanced"
+      },
+      {
+        "id": "kashmir-shaivism-course",
+        "name": "Kashmir Shaivism",
+        "description": "Study the non-dual philosophy of Kashmir Shaivism",
+        "duration": "3 months",
+        "level": "Advanced"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Bundle Pricing",
+    "description": "Get all philosophical courses at a special bundle price",
+    "price": 499,
+    "originalPrice": 799,
+    "savings": 300,
+    "currency": "USD",
+    "features": [
+      "Six philosophical systems courses",
+      "Upanishadic wisdom integration",
+      "Lifetime access to all materials",
+      "Interactive learning tools",
+      "Certificate of completion",
+      "Community support",
+      "Expert guidance"
+    ],
+    "ctaText": "Get This Bundle",
+    "ctaLink": "/courses/hindu-philosophies-upanishads-bundle"
+  },
+  "benefits": {
+    "title": "Why Choose This Bundle?",
+    "description": "Discover the unique advantages of studying Hindu philosophies",
+    "benefits": [
+      {
+        "title": "Complete Philosophical System",
+        "description": "Master all six schools of Hindu philosophy",
+        "icon": "book"
+      },
+      {
+        "title": "Upanishadic Integration",
+        "description": "Connect philosophical concepts with Upanishadic wisdom",
+        "icon": "layers"
+      },
+      {
+        "title": "Expert Guidance",
+        "description": "Learn from experienced philosophy scholars",
+        "icon": "users"
+      },
+      {
+        "title": "Practical Application",
+        "description": "Apply philosophical concepts in daily life",
+        "icon": "lightbulb"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Student Testimonials",
+    "description": "Hear from students who have completed this bundle",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Dr. Rajesh Kumar",
+        "role": "Philosophy Professor",
+        "content": "This bundle provides a comprehensive understanding of Hindu philosophical traditions. The integration with Upanishadic wisdom is exceptional.",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Maria Santos",
+        "role": "Meditation Teacher",
+        "content": "The philosophical depth combined with practical application has transformed my meditation practice and teaching.",
+        "rating": 5
+      },
+      {
+        "id": "testimonial-3",
+        "name": "David Wilson",
+        "role": "Student",
+        "content": "The structured approach to different philosophical schools makes complex concepts accessible. Highly recommended.",
+        "rating": 5
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Common questions about the Hindu Philosophies + Upanishads bundle.",
+    "questions": [
+      {
+        "id": "faq-1",
+        "question": "Do I need prior knowledge of Hindu philosophy?",
+        "answer": "No prior knowledge is required. The courses start from basics and build up to advanced concepts."
+      },
+      {
+        "id": "faq-2",
+        "question": "How long does it take to complete the bundle?",
+        "answer": "The bundle is self-paced and typically takes 12-15 months to complete all courses with regular study."
+      },
+      {
+        "id": "faq-3",
+        "question": "Can I take individual courses instead of the bundle?",
+        "answer": "Yes, all courses are available individually, but the bundle offers significant savings and a structured learning path."
+      },
+      {
+        "id": "faq-4",
+        "question": "Will I get certificates for each course?",
+        "answer": "Yes, you will receive a certificate of completion for each course and a master certificate for completing the entire bundle."
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "yoga-darshan",
+  "title": "योग दर्शन",
+  "subtitle": "Yoga Philosophy through Patanjali Yoga Sutras",
+  "instructor": "Dr. Rajesh Kumar",
+  "language": "Hindi",
+  "price": "₹2,999",
+  "originalPrice": "₹4,999",
+  "duration": "6 months",
+  "level": "Intermediate",
+  "rating": 4.8,
+  "reviewCount": 150,
+  "type": "Premium Course",
+  "status": "available",
+  "checkoutLink": "https://courses.shikshanam.in/checkout/yoga-darshan",
+  "contactNumber": "9910032165",
+  "features": [
+    {
+      "icon": "Gift",
+      "title": "Interactive Lessons",
+      "description": "Engaging video lessons with audio pronunciation guides"
+    },
+    {
+      "icon": "Clock",
+      "title": "Lifetime Access",
+      "description": "Access to all course materials for life"
+    },
+    {
+      "icon": "Award",
+      "title": "Certificate",
+      "description": "Get a certificate upon completion"
+    }
+  ],
+  "learningObjectives": [
+    "Understanding the eight limbs of Yoga (Ashtanga Yoga)",
+    "Mastering the Yoga Sutras of Patanjali",
+    "Practical application of Yoga philosophy in daily life"
+  ],
+  "keyHighlights": [
+    "Comprehensive study of Patanjali Yoga Sutras",
+    "Interactive sessions with experienced teachers",
+    "Practical exercises and meditation techniques"
+  ],
+  "syllabus": [
+    {
+      "id": 1,
+      "title": "Introduction to Yoga Philosophy",
+      "type": "video",
+      "duration": "Week 1",
+      "description": "Understanding the fundamental concepts of Yoga philosophy"
+    },
+    {
+      "id": 2,
+      "title": "The Eight Limbs of Yoga",
+      "type": "video",
+      "duration": "Week 2-3",
+      "description": "Deep dive into Ashtanga Yoga and its practical applications"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Priya Sharma",
+      "rating": 5,
+      "comment": "Excellent course that deepened my understanding of Yoga philosophy",
+      "verified": true
+    },
+    {
+      "name": "Amit Kumar",
+      "rating": 5,
+      "comment": "The instructor's knowledge and teaching style is outstanding",
+      "verified": true
+    }
+  ],
+  "lastModified": "2024-01-15T10:30:00Z",
+  "views": 1250,
+  "popularity": 85
+}

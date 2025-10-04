@@ -1,12 +1,17 @@
 {
-  "hero": {
-    "title": "Test Package Title",
-    "subtitle": "Complete Learning Package",
-    "description": "Master Sanskrit, Philosophy, and Upanishads in one comprehensive bundle"
+  "url": "/packages/sanskrit-darshan-upanishad-bundle",
+  "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
+  "description": "Unlock the timeless wisdom of Sanskrit, Darshanas, and Self-help. Join Shikshanam to explore ancient Indian knowledge through live classes, courses, and spiritual guidance.",
+  "content": {
+    "packageInfo": {
+      "title": "",
+      "description": "",
+      "price": "",
+      "value": ""
+    },
+    "included": [],
+    "benefits": []
   },
-  "courses": {},
-  "pricing": {},
-  "benefits": {},
-  "testimonials": {},
-  "faq": {}
+  "metadata": {},
+  "timestamp": "2025-10-04T10:57:41.690Z"
 }

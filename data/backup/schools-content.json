@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "title": "Choose Your School!",
+    "subtitle": "From Language to Philosophy to Life, Begin your Quest!"
+  },
+  "schools": {
+    "title": "Our Schools",
+    "subtitle": "Explore our three main learning paths",
+    "schools": [
+      {
+        "id": "sanskrit",
+        "name": "School of Sanskrit",
+        "subtitle": "Ancient Manuscript",
+        "description": "Master the ancient language that holds the key to Vedic wisdom, classical literature, and spiritual texts.",
+        "icon": "📜",
+        "link": "/schools/sanskrit",
+        "color": "primary",
+        "whatYoullLearn": "Grammar, Communication, Shloka-Path, Live Q&A",
+        "cta": "Join Sanskrit School"
+      },
+      {
+        "id": "darshan",
+        "name": "School of Darshana",
+        "subtitle": "Temple Meditation",
+        "description": "Explore the six classical schools of Indian philosophy and discover the nature of reality, consciousness, and existence.",
+        "icon": "🕉",
+        "link": "/schools/darshana",
+        "color": "secondary",
+        "whatYoullLearn": "Nyaya and Vaisheshika, Samkhya and Yoga, Mimamsa and Vedanta",
+        "cta": "Join Darshan School"
+      },
+      {
+        "id": "life-skills",
+        "name": "School of Life Skills",
+        "subtitle": "Lotus & Sunrise",
+        "description": "Discover practical wisdom from ancient texts to transform your life, relationships, and personal growth.",
+        "icon": "🌱",
+        "link": "/schools/self-help",
+        "color": "accent",
+        "whatYoullLearn": "Entrepreneurship, Emotional Intelligence, Stress-Management, Purpose and Meaning",
+        "cta": "Join Life Skills School"
+      }
+    ]
+  },
+  "lastUpdated": "2025-10-03T19:40:15.822Z",
+  "source": "frontend-data-sync",
+  "title": "Our Schools",
+  "content": "<div class=\"min-h-screen bg-off-white-500 dark:bg-wisdom-900 transition-colors duration-300\"><div class=\"container-custom py-20\"><div class=\"text-center mb-16\" style=\"opacity:0;transform:translateY(30px) translateZ(0)\"><h1 class=\"text-hero bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 bg-clip-text text-transparent mb-6\">Our Schools</h1><p class=\"text-subheading text-indigo-700 dark:text-wisdom-200 max-w-3xl mx-auto\">Choose your path of learning. Each school offers structured courses, expert guidance, and a community of fellow seekers.</p></div><div class=\"grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto\"><div class=\"group\" style=\"opacity:0;transform:translateY(30px) translateZ(0)\"><a href=\"/schools/sanskrit\"><div class=\"card-premium p-8 h-full group-hover:scale-105 transition-transform duration-300 cursor-pointer\"><div class=\"w-16 h-16 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-2xl flex items-center justify-center mx-auto mb-6\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-book-open w-8 h-8 text-white\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"></path><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"></path></svg></div><h2 class=\"text-xl font-display text-indigo-700 dark:text-wisdom-100 mb-4 text-center\">School of Sanskrit</h2><p class=\"text-wisdom-600 dark:text-wisdom-400 mb-6 text-center leading-relaxed\">Master the ancient language of wisdom through grammar, conversation, and spiritual discourse.</p><div class=\"space-y-2 mb-6\"><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Grammar Foundation</span></div><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Conversation Practice</span></div><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Living Sanskrit</span></div></div><div class=\"flex items-center justify-center space-x-2 text-saffron-600 dark:text-saffron-400 font-medium group-hover:text-saffron-700 dark:group-hover:text-saffron-300 transition-colors\"><span>Explore School</span><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></div></div></a></div><div class=\"group\" style=\"opacity:0;transform:translateY(30px) translateZ(0)\"><a href=\"/schools/darshana\"><div class=\"card-premium p-8 h-full group-hover:scale-105 transition-transform duration-300 cursor-pointer\"><div class=\"w-16 h-16 bg-gradient-to-r from-deep-teal-500 to-deep-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-lightbulb w-8 h-8 text-white\"><path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"></path><path d=\"M9 18h6\"></path><path d=\"M10 22h4\"></path></svg></div><h2 class=\"text-xl font-display text-indigo-700 dark:text-wisdom-100 mb-4 text-center\">School of Darshanas</h2><p class=\"text-wisdom-600 dark:text-wisdom-400 mb-6 text-center leading-relaxed\">Explore the six classical schools of Indian philosophy and their profound insights.</p><div class=\"space-y-2 mb-6\"><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Vedanta</span></div><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Samkhya</span></div><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Yoga Philosophy</span></div></div><div class=\"flex items-center justify-center space-x-2 text-saffron-600 dark:text-saffron-400 font-medium group-hover:text-saffron-700 dark:group-hover:text-saffron-300 transition-colors\"><span>Explore School</span><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></div></div></a></div><div class=\"group\" style=\"opacity:0;transform:translateY(30px) translateZ(0)\"><a href=\"/schools/self-help\"><div class=\"card-premium p-8 h-full group-hover:scale-105 transition-transform duration-300 cursor-pointer\"><div class=\"w-16 h-16 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-users w-8 h-8 text-white\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg></div><h2 class=\"text-xl font-display text-indigo-700 dark:text-wisdom-100 mb-4 text-center\">School of Self-help</h2><p class=\"text-wisdom-600 dark:text-wisdom-400 mb-6 text-center leading-relaxed\">Discover ancient wisdom for modern living through practical spiritual guidance.</p><div class=\"space-y-2 mb-6\"><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Mindfulness</span></div><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Life Skills</span></div><div class=\"flex items-center space-x-2\"><div class=\"w-2 h-2 bg-saffron-500 rounded-full\"></div><span class=\"text-sm text-wisdom-600 dark:text-wisdom-400\">Spiritual Growth</span></div></div><div class=\"flex items-center justify-center space-x-2 text-saffron-600 dark:text-saffron-400 font-medium group-hover:text-saffron-700 dark:group-hover:text-saffron-300 transition-colors\"><span>Explore School</span><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></div></div></a></div></div></div></div><!--$?--><template id=\"B:1\"></template><!--/$-->"
+}

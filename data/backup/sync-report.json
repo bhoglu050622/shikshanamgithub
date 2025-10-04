@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-10-01T18:25:40.111Z",
+  "syncType": "dynamic-data-sync",
+  "contentTypes": 23,
+  "placeholderPatterns": 173,
+  "summary": {
+    "crawledDataSynced": 13,
+    "cmsImportedDataSynced": 10,
+    "contentFilesCleaned": 23
+  },
+  "status": "completed"
+}

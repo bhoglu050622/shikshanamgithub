@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "title": "School of Sanskrit",
+    "subtitle": "Master the Ancient Language",
+    "description": "Learn Sanskrit from basics to advanced levels through structured courses, live classes, and interactive practice sessions.",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+  },
+  "courses": {
+    "title": "Sanskrit Learning Paths",
+    "subtitle": "Choose your journey through the ancient language",
+    "courses": [
+      {
+        "id": "sanskrit-basics",
+        "title": "Sanskrit Basics",
+        "level": "Beginner",
+        "duration": "8 weeks",
+        "description": "Learn the fundamentals of Sanskrit grammar, script, and basic vocabulary",
+        "features": ["Devanagari script", "Basic grammar", "Simple conversations", "Cultural context"],
+        "price": 99,
+        "currency": "USD"
+      },
+      {
+        "id": "sanskrit-intermediate",
+        "title": "Intermediate Sanskrit",
+        "level": "Intermediate",
+        "duration": "12 weeks",
+        "description": "Build on your foundation with advanced grammar and classical texts",
+        "features": ["Advanced grammar", "Classical texts", "Poetry appreciation", "Philosophical vocabulary"],
+        "price": 149,
+        "currency": "USD"
+      },
+      {
+        "id": "sanskrit-advanced",
+        "title": "Advanced Sanskrit",
+        "level": "Advanced",
+        "duration": "16 weeks",
+        "description": "Master classical Sanskrit literature and philosophical texts",
+        "features": ["Classical literature", "Philosophical texts", "Commentary study", "Research skills"],
+        "price": 199,
+        "currency": "USD"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Why Learn Sanskrit?",
+    "subtitle": "Discover the profound benefits of mastering this ancient language",
+    "benefits": [
+      {
+        "id": "cultural-heritage",
+        "title": "Cultural Heritage",
+        "description": "Connect with thousands of years of Indian wisdom and culture",
+        "icon": "book"
+      },
+      {
+        "id": "spiritual-growth",
+        "title": "Spiritual Growth",
+        "description": "Access original spiritual texts and deepen your spiritual practice",
+        "icon": "heart"
+      },
+      {
+        "id": "mental-discipline",
+        "title": "Mental Discipline",
+        "description": "Develop focus, memory, and analytical thinking through Sanskrit study",
+        "icon": "brain"
+      },
+      {
+        "id": "academic-advantage",
+        "title": "Academic Advantage",
+        "description": "Gain access to original sources in philosophy, literature, and science",
+        "icon": "graduation-cap"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Students Say",
+    "subtitle": "Real experiences from our Sanskrit learning community",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Dr. Sarah Johnson",
+        "role": "Philosophy Professor",
+        "content": "Learning Sanskrit through Shikshanam has transformed my understanding of Indian philosophy. The structured approach and expert guidance made complex texts accessible.",
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face"
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Michael Chen",
+        "role": "Yoga Teacher",
+        "content": "The Sanskrit courses have deepened my yoga practice immensely. I can now understand the original texts and their profound meanings.",
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Start Your Sanskrit Journey",
+    "subtitle": "Join thousands of learners discovering the beauty of Sanskrit",
+    "buttonText": "Begin Learning",
+    "buttonLink": "/courses/sanskrit-basics",
+    "secondaryButtonText": "View All Courses",
+    "secondaryButtonLink": "/courses"
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
+}

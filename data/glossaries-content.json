@@ -1,111 +1,16 @@
 {
-  "hero": {
-    "title": "Sanskrit Glossary",
-    "subtitle": "Master the language of wisdom",
-    "description": "Explore our comprehensive dictionary of Sanskrit terms, their meanings, and usage in ancient texts."
+  "url": "/glossaries/sanskrit",
+  "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
+  "description": "Unlock the timeless wisdom of Sanskrit, Darshanas, and Self-help. Join Shikshanam to explore ancient Indian knowledge through live classes, courses, and spiritual guidance.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": []
   },
-  "categories": {
-    "title": "Browse by Category",
-    "subtitle": "Find terms organized by subject",
-    "categories": [
-      {
-        "id": "philosophy",
-        "name": "Philosophy",
-        "description": "Terms related to Indian philosophical systems",
-        "count": 150,
-        "icon": "lightbulb"
-      },
-      {
-        "id": "yoga",
-        "name": "Yoga",
-        "description": "Yoga and meditation terminology",
-        "count": 120,
-        "icon": "heart"
-      },
-      {
-        "id": "vedas",
-        "name": "Vedas",
-        "description": "Vedic literature and concepts",
-        "count": 200,
-        "icon": "book"
-      },
-      {
-        "id": "grammar",
-        "name": "Grammar",
-        "description": "Sanskrit grammatical terms",
-        "count": 80,
-        "icon": "scale"
-      }
-    ]
-  },
-  "search": {
-    "title": "Search Terms",
-    "subtitle": "Find specific Sanskrit words and their meanings",
-    "placeholder": "Search for Sanskrit terms...",
-    "filters": [
-      "All Terms",
-      "Beginner",
-      "Intermediate", 
-      "Advanced"
-    ]
-  },
-  "featured": {
-    "title": "Featured Terms",
-    "subtitle": "Essential Sanskrit vocabulary",
-    "terms": [
-      {
-        "id": "dharma",
-        "sanskrit": "धर्म",
-        "transliteration": "dharma",
-        "meaning": "Duty, righteousness, moral law",
-        "category": "Philosophy",
-        "usage": "Central concept in Indian philosophy referring to one's duty and moral obligations"
-      },
-      {
-        "id": "karma",
-        "sanskrit": "कर्म",
-        "transliteration": "karma",
-        "meaning": "Action, deed, work",
-        "category": "Philosophy",
-        "usage": "The law of cause and effect governing all actions and their consequences"
-      },
-      {
-        "id": "moksha",
-        "sanskrit": "मोक्ष",
-        "transliteration": "mokṣa",
-        "meaning": "Liberation, freedom from cycle of rebirth",
-        "category": "Philosophy",
-        "usage": "Ultimate goal of human life in Hindu philosophy"
-      }
-    ]
-  },
-  "learning": {
-    "title": "Learn Sanskrit",
-    "subtitle": "Master the ancient language",
-    "resources": [
-      {
-        "id": "alphabet",
-        "title": "Sanskrit Alphabet",
-        "description": "Learn the Devanagari script and pronunciation",
-        "link": "/courses/sanskrit-basics"
-      },
-      {
-        "id": "grammar",
-        "title": "Grammar Basics",
-        "description": "Understand Sanskrit grammar and sentence structure",
-        "link": "/courses/sanskrit-grammar"
-      },
-      {
-        "id": "pronunciation",
-        "title": "Pronunciation Guide",
-        "description": "Master correct Sanskrit pronunciation",
-        "link": "/courses/sanskrit-pronunciation"
-      }
-    ]
-  },
-  "_metadata": {
-    "lastModified": "2025-01-03T12:00:00.000Z",
-    "version": "1.0",
-    "source": "cms"
-  }
+  "metadata": {},
+  "timestamp": "2025-10-04T10:57:49.930Z"
 }

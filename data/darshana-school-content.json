@@ -1,134 +1,17 @@
 {
-  "hero": {
-    "title": "School of Darshana",
-    "subtitle": "Explore Indian Philosophy",
-    "description": "Dive deep into the six classical schools of Indian philosophy and discover timeless wisdom for modern living.",
-    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+  "url": "/schools/darshana",
+  "title": "School of Darshana | Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta",
+  "description": "Explore India&#x27;s six Darshanas with a clear roadmap—start with a quiz or choose a school: Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta.",
+  "content": {
+    "schoolInfo": {
+      "title": "",
+      "description": "",
+      "philosophy": "",
+      "benefits": ""
+    },
+    "courses": [],
+    "teachers": []
   },
-  "darshanas": {
-    "title": "The Six Classical Schools",
-    "subtitle": "Explore the profound philosophical traditions of India",
-    "schools": [
-      {
-        "id": "nyaya",
-        "name": "Nyaya",
-        "description": "The school of logic and reasoning",
-        "focus": "Epistemology and logical analysis",
-        "keyTexts": "Nyaya Sutras by Gautama",
-        "link": "/schools/nyaya"
-      },
-      {
-        "id": "vaisheshika",
-        "name": "Vaisheshika",
-        "description": "The school of atomism and metaphysics",
-        "focus": "Physical sciences and atomic theory",
-        "keyTexts": "Vaisheshika Sutras by Kanada",
-        "link": "/schools/vaisheshika"
-      },
-      {
-        "id": "samkhya",
-        "name": "Samkhya",
-        "description": "The school of enumeration and dualism",
-        "focus": "Cosmology and psychology",
-        "keyTexts": "Samkhya Karika by Ishvara Krishna",
-        "link": "/schools/samkhya"
-      },
-      {
-        "id": "yoga",
-        "name": "Yoga",
-        "description": "The school of practice and meditation",
-        "focus": "Spiritual practice and self-realization",
-        "keyTexts": "Yoga Sutras by Patanjali",
-        "link": "/schools/yoga"
-      },
-      {
-        "id": "mimamsa",
-        "name": "Mimamsa",
-        "description": "The school of interpretation and ritual",
-        "focus": "Vedic interpretation and dharma",
-        "keyTexts": "Mimamsa Sutras by Jaimini",
-        "link": "/schools/mimamsa"
-      },
-      {
-        "id": "vedanta",
-        "name": "Vedanta",
-        "description": "The school of non-dualism and ultimate reality",
-        "focus": "Metaphysics and self-knowledge",
-        "keyTexts": "Brahma Sutras by Badarayana",
-        "link": "/schools/vedanta"
-      }
-    ]
-  },
-  "learningPath": {
-    "title": "Your Learning Journey",
-    "subtitle": "Structured paths through Indian philosophy",
-    "paths": [
-      {
-        "id": "beginner",
-        "title": "Beginner Path",
-        "description": "Start with fundamental concepts and basic philosophy",
-        "duration": "12 weeks",
-        "courses": ["Introduction to Indian Philosophy", "Basic Concepts", "Historical Overview"]
-      },
-      {
-        "id": "intermediate",
-        "title": "Intermediate Path",
-        "description": "Dive deeper into specific schools and their teachings",
-        "duration": "24 weeks",
-        "courses": ["Samkhya Philosophy", "Yoga Philosophy", "Nyaya Logic"]
-      },
-      {
-        "id": "advanced",
-        "title": "Advanced Path",
-        "description": "Master the complex philosophical systems and their applications",
-        "duration": "36 weeks",
-        "courses": ["Vedanta Philosophy", "Mimamsa Interpretation", "Comparative Philosophy"]
-      }
-    ]
-  },
-  "mission": {
-    "title": "Our Mission",
-    "subtitle": "Making ancient wisdom accessible to modern minds",
-    "content": "We believe that the profound insights of Indian philosophy are not just historical curiosities but living wisdom that can transform our understanding of reality, consciousness, and the purpose of human life. Our mission is to make these timeless teachings accessible, relevant, and practical for contemporary seekers.",
-    "goals": [
-      "Preserve and transmit authentic philosophical knowledge",
-      "Make complex concepts accessible through clear explanations",
-      "Connect ancient wisdom with modern life applications",
-      "Foster a global community of philosophical learners"
-    ]
-  },
-  "app": {
-    "title": "Learn Anywhere",
-    "subtitle": "Access your philosophical studies on any device",
-    "features": [
-      "Mobile-responsive learning platform",
-      "Offline content access",
-      "Interactive quizzes and assessments",
-      "Community discussion forums",
-      "Progress tracking and certificates"
-    ]
-  },
-  "community": {
-    "title": "Join Our Community",
-    "subtitle": "Connect with fellow seekers and scholars",
-    "benefits": [
-      "Discussion forums with expert moderators",
-      "Monthly live Q&A sessions",
-      "Study groups and peer learning",
-      "Access to exclusive content and resources"
-    ]
-  },
-  "cta": {
-    "title": "Begin Your Philosophical Journey",
-    "subtitle": "Discover the profound wisdom of Indian philosophy",
-    "buttonText": "Start Learning",
-    "buttonLink": "/courses",
-    "secondaryButtonText": "Explore Schools",
-    "secondaryButtonLink": "/schools"
-  },
-  "_metadata": {
-    "lastModified": "2025-01-03T12:00:00.000Z",
-    "version": "1.0",
-    "source": "cms"
-  }
+  "metadata": {},
+  "timestamp": "2025-10-04T10:57:16.124Z"
 }

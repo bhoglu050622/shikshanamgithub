@@ -1,44 +1,16 @@
 {
-  "hero": {
-    "title": "Blog Posts",
-    "subtitle": "Insights, Wisdom, and Learning",
-    "description": "Explore our collection of articles, insights, and educational content."
+  "url": "/blog",
+  "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
+  "description": "Unlock the timeless wisdom of Sanskrit, Darshanas, and Self-help. Join Shikshanam to explore ancient Indian knowledge through live classes, courses, and spiritual guidance.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": []
   },
-  "posts": [
-    {
-      "id": "test-post-1",
-      "title": "Test Blog Post",
-      "content": "Test blog content",
-      "author": "Test Author",
-      "date": "2024-01-15",
-      "tags": [
-        "test",
-        "blog"
-      ],
-      "status": "published"
-    }
-  ],
-  "categories": [
-    "Philosophy",
-    "Sanskrit",
-    "Education"
-  ],
-  "tags": [
-    "ancient-wisdom",
-    "learning",
-    "spirituality"
-  ],
-  "authors": [
-    {
-      "id": "swami-ananda",
-      "name": "Swami Ananda",
-      "bio": "Spiritual teacher and Sanskrit scholar",
-      "avatar": "/assets/swami-ananda.jpg"
-    }
-  ],
-  "_metadata": {
-    "lastCleaned": "2025-10-01T18:25:40.109Z",
-    "version": "1.0",
-    "source": "dynamic-sync"
-  }
+  "metadata": {},
+  "timestamp": "2025-10-04T10:57:53.344Z"
 }

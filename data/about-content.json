@@ -1,73 +1,16 @@
 {
-  "hero": {
-    "title": "About Shikshanam Aman",
-    "subtitle": "Preserving Ancient Wisdom",
-    "description": "This about page content was updated via CMS editor for E2E testing."
+  "url": "/about",
+  "title": "About Us - Shikshanam",
+  "description": "Learn about Shikshanam&#x27;s mission to preserve and share ancient Indian knowledge through modern technology.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": []
   },
-  "mission": {
-    "title": "Our Mission",
-    "paragraph1": "Shikshanam was born from a deep reverence for India's ancient knowledge systems. We believe that the wisdom of Sanskrit, Darshanas, and traditional self-help practices holds the key to personal growth and spiritual development in the modern world.",
-    "paragraph2": "Our mission is to make this profound knowledge accessible to everyone, regardless of their background or location, through carefully crafted courses, interactive tools, and expert guidance.",
-    "visionTitle": "Our Vision",
-    "visionText": "To create a global community of learners who embrace ancient wisdom for modern living, fostering personal growth, cultural understanding, and spiritual development."
-  },
-  "offerings": {
-    "title": "What We Offer",
-    "items": [
-      {
-        "title": "Sanskrit Learning",
-        "description": "Comprehensive courses from beginner to advanced levels"
-      },
-      {
-        "title": "Darshan Studies",
-        "description": "Deep exploration of Indian philosophical systems"
-      },
-      {
-        "title": "Self-Help Wisdom",
-        "description": "Ancient practices for modern personal development"
-      },
-      {
-        "title": "Expert Guidance",
-        "description": "Learn from experienced scholars and practitioners"
-      }
-    ]
-  },
-  "values": {
-    "title": "Our Values",
-    "items": [
-      {
-        "title": "Authenticity",
-        "description": "We maintain the highest standards of authenticity in our teachings, ensuring that ancient wisdom is preserved and transmitted accurately."
-      },
-      {
-        "title": "Community",
-        "description": "We foster a supportive learning community where students can connect, share experiences, and grow together on their spiritual journey."
-      },
-      {
-        "title": "Innovation",
-        "description": "We combine traditional wisdom with modern technology to create engaging, effective learning experiences for the digital age."
-      }
-    ]
-  },
-  "cta": {
-    "title": "Join Our Journey",
-    "subtitle": "Whether you're a complete beginner or an advanced practitioner, Shikshanam offers a path for everyone to explore and embrace the wisdom of ancient India.",
-    "buttons": [
-      {
-        "text": "Explore Courses",
-        "link": "/courses",
-        "type": "primary"
-      },
-      {
-        "text": "Get in Touch",
-        "link": "/contact",
-        "type": "secondary"
-      }
-    ]
-  },
-  "lastUpdated": "2025-10-03T19:40:15.820Z",
-  "source": "frontend-data-sync",
-  "title": "About Shikshanam",
-  "lastModified": "2025-10-04T09:45:58.572Z",
-  "modifiedBy": "CMS Editor"
+  "metadata": {},
+  "timestamp": "2025-10-04T10:56:32.731Z"
 }
