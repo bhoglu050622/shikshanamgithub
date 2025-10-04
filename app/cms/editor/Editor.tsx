@@ -5,20 +5,9 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircle, Code, Zap } from 'lucide-react';
 import Link from 'next/link';
-
-// A simple code editor using a textarea for now.
-// This can be replaced with a more advanced component like Monaco Editor later.
-function CodeEditor({ value, onChange }: { value: string; onChange: (value: string) => void }) {
-  return (
-    <textarea
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full h-96 p-4 font-mono text-sm bg-gray-900 text-gray-100 rounded-md border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-    />
-  );
-}
+import MonacoCodeEditor from './MonacoCodeEditor';
 
 function EditorContent() {
   const searchParams = useSearchParams();
@@ -204,11 +193,11 @@ function EditorContent() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <HelpCircle className="w-5 h-5 mr-2 text-blue-500" />
-              JSON Content Editor
+              <Code className="w-5 h-5 mr-2 text-blue-500" />
+              Advanced JSON Editor
             </CardTitle>
             <CardDescription>
-              Edit the JSON content below. Changes will be reflected on your website after saving and publishing.
+              Professional code editor with syntax highlighting, validation, and formatting. Changes will be reflected on your website after saving and publishing.
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
@@ -220,9 +209,15 @@ function EditorContent() {
             ) : (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span>Ready to edit</span>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span>Ready to edit</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-blue-600">
+                      <Zap className="w-4 h-4" />
+                      <span>Monaco Editor</span>
+                    </div>
                   </div>
                   {isDirty && (
                     <div className="flex items-center space-x-2 text-sm text-orange-600">
@@ -231,9 +226,32 @@ function EditorContent() {
                     </div>
                   )}
                 </div>
-                <CodeEditor value={content} onChange={setContent} />
-                <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded">
-                  <strong>Tip:</strong> Use a JSON validator if you're unsure about syntax. Invalid JSON will cause save errors.
+                
+                <MonacoCodeEditor 
+                  value={content} 
+                  onChange={setContent}
+                  language="json"
+                  height="500px"
+                />
+                
+                <div className="grid md:grid-cols-2 gap-4 text-xs text-gray-500 bg-gray-50 p-4 rounded">
+                  <div>
+                    <strong>Keyboard Shortcuts:</strong>
+                    <ul className="mt-1 space-y-1">
+                      <li>• <kbd className="bg-gray-200 px-1 rounded">Ctrl+F</kbd> Format JSON</li>
+                      <li>• <kbd className="bg-gray-200 px-1 rounded">Ctrl+V</kbd> Validate JSON</li>
+                      <li>• <kbd className="bg-gray-200 px-1 rounded">Ctrl+Z</kbd> Undo</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <strong>Features:</strong>
+                    <ul className="mt-1 space-y-1">
+                      <li>• Real-time syntax highlighting</li>
+                      <li>• Auto-completion and IntelliSense</li>
+                      <li>• Error detection and validation</li>
+                      <li>• Multi-cursor editing support</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             )}
