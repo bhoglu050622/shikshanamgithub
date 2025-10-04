@@ -72,7 +72,11 @@ function EditorContent() {
         throw new Error('Invalid JSON content. Please check your syntax.');
       }
 
-      const response = await fetch('/api/cms/local', {
+      // Use GitHub API in production, local API in development
+      const isProduction = process.env.NODE_ENV === 'production';
+      const apiEndpoint = isProduction ? '/api/cms/github' : '/api/cms/local';
+      
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -83,16 +87,22 @@ function EditorContent() {
       });
       const result = await response.json();
       if (response.ok) {
-        if (result.note) {
-          setStatus(`Success! ${result.message} - ${result.note}`);
+        if (result.success) {
+          if (result.githubUrl) {
+            setStatus(`Success! ${result.message} - ${result.note} | View commit: ${result.githubUrl}`);
+          } else if (result.note) {
+            setStatus(`Success! ${result.message} - ${result.note}`);
+          } else {
+            setStatus(`Success! Content saved locally.`);
+          }
+          setInitialContent(content); // Mark as no longer dirty
+          
+          // If shouldPublish is true, automatically publish after saving
+          if (shouldPublish) {
+            await handlePublish();
+          }
         } else {
-          setStatus(`Success! Content saved locally.`);
-        }
-        setInitialContent(content); // Mark as no longer dirty
-        
-        // If shouldPublish is true, automatically publish after saving
-        if (shouldPublish) {
-          await handlePublish();
+          throw new Error(result.error || 'Failed to save content');
         }
       } else {
         throw new Error(result.error || 'Failed to save content');
@@ -101,7 +111,7 @@ function EditorContent() {
       setStatus(`Error: ${err.message}`);
     } finally {
       setIsSaving(false);
-      setTimeout(() => setStatus(''), 5000);
+      setTimeout(() => setStatus(''), 8000); // Longer timeout for GitHub operations
     }
   };
 
@@ -117,7 +127,11 @@ function EditorContent() {
         throw new Error('Invalid JSON content. Please check your syntax.');
       }
 
-      const response = await fetch('/api/cms/local', {
+      // Use GitHub API in production, local API in development
+      const isProduction = process.env.NODE_ENV === 'production';
+      const apiEndpoint = isProduction ? '/api/cms/github' : '/api/cms/local';
+      
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -128,12 +142,18 @@ function EditorContent() {
       });
       const result = await response.json();
       if (response.ok) {
-        if (result.note) {
-          setStatus(`Success! ${result.message} - ${result.note}`);
+        if (result.success) {
+          if (result.githubUrl) {
+            setStatus(`Success! ${result.message} - ${result.note} | View commit: ${result.githubUrl}`);
+          } else if (result.note) {
+            setStatus(`Success! ${result.message} - ${result.note}`);
+          } else {
+            setStatus('Successfully published! Your changes are live.');
+          }
+          setInitialContent(content); // Mark as no longer dirty
         } else {
-          setStatus('Successfully published! Your changes are live.');
+          throw new Error(result.error || 'Failed to publish');
         }
-        setInitialContent(content); // Mark as no longer dirty
       } else {
         throw new Error(result.error || 'Failed to publish');
       }
