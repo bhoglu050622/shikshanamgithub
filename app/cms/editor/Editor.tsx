@@ -83,7 +83,11 @@ function EditorContent() {
       });
       const result = await response.json();
       if (response.ok) {
-        setStatus(`Success! Content saved locally.`);
+        if (result.note) {
+          setStatus(`Success! ${result.message} - ${result.note}`);
+        } else {
+          setStatus(`Success! Content saved locally.`);
+        }
         setInitialContent(content); // Mark as no longer dirty
         
         // If shouldPublish is true, automatically publish after saving
@@ -124,7 +128,11 @@ function EditorContent() {
       });
       const result = await response.json();
       if (response.ok) {
-        setStatus('Successfully published! Your changes are live.');
+        if (result.note) {
+          setStatus(`Success! ${result.message} - ${result.note}`);
+        } else {
+          setStatus('Successfully published! Your changes are live.');
+        }
         setInitialContent(content); // Mark as no longer dirty
       } else {
         throw new Error(result.error || 'Failed to publish');

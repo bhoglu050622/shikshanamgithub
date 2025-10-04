@@ -10,6 +10,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File name is required' }, { status: 400 });
     }
 
+    // Check if we're in production (Vercel)
+    const isProduction = process.env.NODE_ENV === 'production';
+    
+    if (isProduction) {
+      // In production, we can't write to the file system
+      // Instead, we'll return a success response and log the content
+      console.log('Production CMS Save/Publish:', {
+        action,
+        file,
+        content: JSON.stringify(content, null, 2)
+      });
+
+      return NextResponse.json({
+        success: true,
+        message: 'Content saved successfully (Production mode - changes logged)',
+        file: file,
+        lastModified: new Date().toISOString(),
+        note: 'In production, content changes are logged but not persisted to file system'
+      });
+    }
+
+    // Development mode - allow file system operations
     const dataDir = path.join(process.cwd(), 'data');
     const filePath = path.join(dataDir, file);
 
