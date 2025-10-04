@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircle, Code, Zap } from 'lucide-react';
 import Link from 'next/link';
 import MonacoJsonEditor from './MonacoJsonEditor';
+import SimpleJsonEditor from './SimpleJsonEditor';
 
 function EditorContent() {
   const searchParams = useSearchParams();
@@ -19,6 +20,7 @@ function EditorContent() {
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [status, setStatus] = useState('');
+  const [useFallbackEditor, setUseFallbackEditor] = useState(false);
 
   useEffect(() => {
     console.log('Editor useEffect triggered, fileName:', fileName);
@@ -59,6 +61,18 @@ function EditorContent() {
       setIsLoading(false);
     }
   }, [fileName]);
+
+  // Timeout to detect if Monaco Editor fails to load
+  useEffect(() => {
+    if (!isLoading && content) {
+      const timeout = setTimeout(() => {
+        console.log('Monaco Editor timeout - switching to fallback');
+        setUseFallbackEditor(true);
+      }, 10000); // 10 second timeout
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isLoading, content]);
 
   const handleSave = async (shouldPublish = false) => {
     setIsSaving(true);
@@ -243,7 +257,7 @@ function EditorContent() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Zap className="w-5 h-5 mr-2 text-blue-500" />
-              Monaco JSON Editor
+              {useFallbackEditor ? 'JSON Editor (Fallback)' : 'Monaco JSON Editor'}
             </CardTitle>
             <CardDescription>
               Professional code editor with syntax highlighting, validation, and formatting. Changes will be reflected on your website after saving and publishing.
@@ -265,7 +279,7 @@ function EditorContent() {
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-blue-600">
                       <Zap className="w-4 h-4" />
-                      <span>Monaco JSON Editor</span>
+                      <span>{useFallbackEditor ? 'JSON Editor (Fallback)' : 'Monaco JSON Editor'}</span>
                     </div>
                   </div>
                   {isDirty && (
@@ -276,30 +290,57 @@ function EditorContent() {
                   )}
                 </div>
                 
-                <MonacoJsonEditor 
-                  value={content} 
-                  onChange={setContent}
-                  language="json"
-                  height="500px"
-                  onSave={() => handleSave()}
-                  onFormat={() => {
-                    try {
-                      const parsed = JSON.parse(content);
-                      const formatted = JSON.stringify(parsed, null, 2);
-                      setContent(formatted);
-                    } catch (error) {
-                      setStatus('Error: Cannot format invalid JSON');
-                    }
-                  }}
-                  onValidate={() => {
-                    try {
-                      JSON.parse(content);
-                      setStatus('JSON is valid');
-                    } catch (error) {
-                      setStatus('Error: Invalid JSON syntax');
-                    }
-                  }}
-                />
+                {useFallbackEditor ? (
+                  <SimpleJsonEditor 
+                    value={content} 
+                    onChange={setContent}
+                    language="json"
+                    height="500px"
+                    onSave={() => handleSave()}
+                    onFormat={() => {
+                      try {
+                        const parsed = JSON.parse(content);
+                        const formatted = JSON.stringify(parsed, null, 2);
+                        setContent(formatted);
+                      } catch (error) {
+                        setStatus('Error: Cannot format invalid JSON');
+                      }
+                    }}
+                    onValidate={() => {
+                      try {
+                        JSON.parse(content);
+                        setStatus('JSON is valid');
+                      } catch (error) {
+                        setStatus('Error: Invalid JSON syntax');
+                      }
+                    }}
+                  />
+                ) : (
+                  <MonacoJsonEditor 
+                    value={content} 
+                    onChange={setContent}
+                    language="json"
+                    height="500px"
+                    onSave={() => handleSave()}
+                    onFormat={() => {
+                      try {
+                        const parsed = JSON.parse(content);
+                        const formatted = JSON.stringify(parsed, null, 2);
+                        setContent(formatted);
+                      } catch (error) {
+                        setStatus('Error: Cannot format invalid JSON');
+                      }
+                    }}
+                    onValidate={() => {
+                      try {
+                        JSON.parse(content);
+                        setStatus('JSON is valid');
+                      } catch (error) {
+                        setStatus('Error: Invalid JSON syntax');
+                      }
+                    }}
+                  />
+                )}
                 
                 <div className="grid md:grid-cols-2 gap-4 text-xs text-gray-500 bg-gray-50 p-4 rounded">
                   <div>
