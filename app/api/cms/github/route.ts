@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { clearContentCache } from '@/lib/cms/github-fetcher';
 
 // GitHub API configuration
 const GITHUB_OWNER = 'bhoglu050622';
@@ -92,6 +93,9 @@ export async function POST(request: NextRequest) {
         // Use GitHub API to commit changes directly
         const result = await commitToGitHub(file, content, action);
         
+        // Clear cache for this file to ensure fresh content is fetched
+        clearContentCache(file);
+        
         return NextResponse.json({
           success: true,
           message: `Content saved and committed to GitHub successfully!`,
@@ -99,7 +103,8 @@ export async function POST(request: NextRequest) {
           lastModified: new Date().toISOString(),
           commitSha: result.commitSha,
           note: 'Changes will be live within 1-2 minutes after Vercel deployment',
-          githubUrl: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/commit/${result.commitSha}`
+          githubUrl: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/commit/${result.commitSha}`,
+          cacheCleared: true
         });
       } catch (error: any) {
         console.error('GitHub integration error:', error);

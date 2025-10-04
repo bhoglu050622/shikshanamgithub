@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { getCachedContent } from '@/lib/cms/github-fetcher';
 
 // Helper to ensure we are only accessing files within the /data directory
 function getSafeFilePath(fileName: string): string | null {
@@ -42,11 +43,23 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const fileContent = await fs.readFile(filePath, 'utf8');
-    return NextResponse.json({ success: true, content: JSON.parse(fileContent) });
+    // Use GitHub fetcher with fallback for production
+    const content = await getCachedContent(fileName);
+    
+    if (!content) {
+      return NextResponse.json({ 
+        success: false, 
+        error: `File not found or could not be read: ${fileName}` 
+      }, { status: 404 });
+    }
+    
+    return NextResponse.json({ success: true, content });
   } catch (error) {
     console.error(`Failed to read file ${fileName}:`, error);
-    return NextResponse.json({ success: false, error: `File not found or could not be read: ${fileName}` }, { status: 404 });
+    return NextResponse.json({ 
+      success: false, 
+      error: `File not found or could not be read: ${fileName}` 
+    }, { status: 404 });
   }
 }
 
