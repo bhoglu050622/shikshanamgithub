@@ -145,7 +145,7 @@ export default function MonacoJsonEditor({
               </Badge>
             )}
             {isValid && (
-              <Badge variant="default" className="text-xs bg-green-100 text-green-700">
+              <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">
                 <CheckCircle className="w-3 h-3 mr-1" />
                 Valid JSON
               </Badge>
@@ -243,7 +243,7 @@ export default function MonacoJsonEditor({
             </Button>
             {onSave && (
               <Button
-                variant="default"
+                variant="primary"
                 size="sm"
                 onClick={handleSave}
                 className="text-xs"
