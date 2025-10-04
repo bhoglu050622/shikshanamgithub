@@ -9,53 +9,55 @@ import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircl
 import Link from 'next/link';
 import MonacoJsonEditor from './MonacoJsonEditor';
 import SimpleJsonEditor from './SimpleJsonEditor';
+import { useCMSEditor } from '@/lib/cms/use-cms-editor';
+import SyncStatus from '@/components/cms/SyncStatus';
 
 function EditorContent() {
   const searchParams = useSearchParams();
   const fileName = searchParams.get('file');
   
-  const [content, setContent] = useState('');
-  const [initialContent, setInitialContent] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [status, setStatus] = useState('');
   const [useFallbackEditor, setUseFallbackEditor] = useState(false);
+  const [initialContent, setInitialContent] = useState('');
+
+  // Use the new CMS editor hook with local storage
+  const {
+    content,
+    setContent,
+    isDirty,
+    isSaving,
+    isOnline,
+    lastSaved,
+    pendingChanges,
+    conflictDetected,
+    save,
+    forceSync,
+    resolveConflict,
+    clearDraft
+  } = useCMSEditor({
+    file: fileName || '',
+    autoSave: true,
+    autoSaveInterval: 30000,
+    onSync: (syncState) => {
+      if (syncState.conflictDetected) {
+        setStatus('Conflict detected! Please resolve manually.');
+      } else if (syncState.pendingChanges) {
+        setStatus('Changes saved locally. Will sync when online.');
+      } else {
+        setStatus('All changes synced.');
+      }
+    },
+    onConflict: (file) => {
+      setStatus(`Conflict detected for ${file}. Please resolve manually.`);
+    }
+  });
 
   useEffect(() => {
-    console.log('Editor useEffect triggered, fileName:', fileName);
     if (fileName) {
-      console.log('Fetching content for file:', fileName);
-      setIsLoading(true);
-      fetch(`/api/cms/editor?file=${fileName}`)
-        .then(res => {
-          console.log('API response status:', res.status);
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-        })
-        .then(data => {
-          console.log('API response data:', data);
-          if (data.success) {
-            const formattedContent = JSON.stringify(data.content, null, 2);
-            console.log('Setting content, length:', formattedContent.length);
-            setContent(formattedContent);
-            setInitialContent(formattedContent);
-            setStatus('Content loaded successfully.');
-          } else {
-            console.error('API error:', data.error);
-            setStatus(`Error: ${data.error}`);
-          }
-        })
-        .catch(err => {
-          console.error('Fetch error:', err);
-          setStatus(`Error: ${err.message}`);
-        })
-        .finally(() => {
-          console.log('Setting isLoading to false');
-          setIsLoading(false);
-        });
+      setIsLoading(false);
+      setStatus('Content loaded with local storage support.');
     } else {
       setStatus('No file selected for editing.');
       setIsLoading(false);
@@ -81,7 +83,6 @@ function EditorContent() {
   };
 
   const handleSave = async (shouldPublish = false) => {
-    setIsSaving(true);
     setStatus('Saving changes...');
     try {
       // Validate JSON content
@@ -92,45 +93,22 @@ function EditorContent() {
         throw new Error('Invalid JSON content. Please check your syntax.');
       }
 
-      // Use GitHub API in production, local API in development
-      const isProduction = process.env.NODE_ENV === 'production';
-      const apiEndpoint = isProduction ? '/api/cms/github' : '/api/cms/local';
+      // Use the new save function from the hook
+      const success = await save();
       
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'save',
-          file: fileName,
-          content: parsedContent,
-        }),
-      });
-      const result = await response.json();
-      if (response.ok) {
-        if (result.success) {
-          if (result.githubUrl) {
-            setStatus(`Success! ${result.message} - ${result.note} | View commit: ${result.githubUrl}`);
-          } else if (result.note) {
-            setStatus(`Success! ${result.message} - ${result.note}`);
-          } else {
-            setStatus(`Success! Content saved locally.`);
-          }
-          setInitialContent(content); // Mark as no longer dirty
-          
-          // If shouldPublish is true, automatically publish after saving
-          if (shouldPublish) {
-            await handlePublish();
-          }
-        } else {
-          throw new Error(result.error || 'Failed to save content');
+      if (success) {
+        setStatus('Success! Content saved with local storage support.');
+        
+        // If shouldPublish is true, automatically publish after saving
+        if (shouldPublish) {
+          await handlePublish();
         }
       } else {
-        throw new Error(result.error || 'Failed to save content');
+        throw new Error('Failed to save content');
       }
     } catch (err: any) {
       setStatus(`Error: ${err.message}`);
     } finally {
-      setIsSaving(false);
       setTimeout(() => setStatus(''), 8000); // Longer timeout for GitHub operations
     }
   };
@@ -184,8 +162,6 @@ function EditorContent() {
       setTimeout(() => setStatus(''), 5000);
     }
   };
-  
-  const isDirty = content !== initialContent;
 
   if (!fileName) {
     return (
@@ -276,6 +252,13 @@ function EditorContent() {
             </div>
           </div>
         </div>
+
+        {/* Sync Status Component */}
+        {fileName && (
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+            <SyncStatus file={fileName} />
+          </div>
+        )}
 
         <Card>
           <CardHeader>
