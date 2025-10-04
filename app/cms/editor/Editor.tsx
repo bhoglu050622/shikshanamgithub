@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircle, Code, Zap } from 'lucide-react';
 import Link from 'next/link';
-import SimpleJsonEditor from './SimpleJsonEditor';
+import MonacoJsonEditor from './MonacoJsonEditor';
 
 function EditorContent() {
   const searchParams = useSearchParams();
@@ -242,8 +242,8 @@ function EditorContent() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <Code className="w-5 h-5 mr-2 text-blue-500" />
-              Advanced JSON Editor
+              <Zap className="w-5 h-5 mr-2 text-blue-500" />
+              Monaco JSON Editor
             </CardTitle>
             <CardDescription>
               Professional code editor with syntax highlighting, validation, and formatting. Changes will be reflected on your website after saving and publishing.
@@ -265,7 +265,7 @@ function EditorContent() {
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-blue-600">
                       <Zap className="w-4 h-4" />
-                      <span>Monaco Editor</span>
+                      <span>Monaco JSON Editor</span>
                     </div>
                   </div>
                   {isDirty && (
@@ -276,7 +276,7 @@ function EditorContent() {
                   )}
                 </div>
                 
-                <SimpleJsonEditor 
+                <MonacoJsonEditor 
                   value={content} 
                   onChange={setContent}
                   language="json"
