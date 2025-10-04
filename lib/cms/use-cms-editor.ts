@@ -51,6 +51,7 @@ export function useCMSEditor({
   // Refs
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastContentRef = useRef<string>('');
+  const saveRef = useRef<() => Promise<boolean>>();
   
   // Initialize content from local storage or server
   useEffect(() => {
@@ -100,9 +101,9 @@ export function useCMSEditor({
 
   // Auto-save effect
   useEffect(() => {
-    if (autoSave && isDirty) {
+    if (autoSave && isDirty && saveRef.current) {
       const timeout = setTimeout(() => {
-        save();
+        saveRef.current?.();
       }, autoSaveInterval);
       
       return () => clearTimeout(timeout);
@@ -125,7 +126,7 @@ export function useCMSEditor({
     // Set new timeout for auto-save
     if (autoSave && newContent !== lastContentRef.current) {
       saveTimeoutRef.current = setTimeout(() => {
-        save();
+        saveRef.current?.();
       }, autoSaveInterval);
     }
   }, [file, autoSave, autoSaveInterval, cmsStorage]);
@@ -173,6 +174,9 @@ export function useCMSEditor({
       setIsSaving(false);
     }
   }, [content, isDirty, isSaving, file, onSave, cmsStorage]);
+
+  // Assign save function to ref
+  saveRef.current = save;
 
   // Force sync function
   const forceSync = useCallback(async (): Promise<boolean> => {

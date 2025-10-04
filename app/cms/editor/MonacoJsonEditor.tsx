@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { AlertCircle, Code, Zap, Save, RotateCcw, Maximize2, Minimize2, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -56,7 +56,7 @@ export default function MonacoJsonEditor({
   const [isClient, setIsClient] = useState(false);
 
   // Validate JSON content
-  const validateContent = (content: string) => {
+  const validateContent = useCallback((content: string) => {
     if (language === 'json') {
       try {
         JSON.parse(content);
@@ -70,7 +70,7 @@ export default function MonacoJsonEditor({
       setIsValid(true);
       setErrorMessage('');
     }
-  };
+  }, [language]);
 
   // Format JSON content
   const formatContent = () => {
@@ -120,7 +120,7 @@ export default function MonacoJsonEditor({
   // Validate on mount
   useEffect(() => {
     validateContent(value);
-  }, [value, language]);
+  }, [value, language, validateContent]);
 
   // Handle Monaco Editor mount
   const handleEditorDidMount = () => {

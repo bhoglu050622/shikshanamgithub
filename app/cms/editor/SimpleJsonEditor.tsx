@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AlertCircle, Code, Zap, Save, RotateCcw, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -32,7 +32,7 @@ export default function SimpleJsonEditor({
   const [errorMessage, setErrorMessage] = useState('');
 
   // Validate JSON content
-  const validateContent = (content: string) => {
+  const validateContent = useCallback((content: string) => {
     if (language === 'json') {
       try {
         JSON.parse(content);
@@ -46,7 +46,7 @@ export default function SimpleJsonEditor({
       setIsValid(true);
       setErrorMessage('');
     }
-  };
+  }, [language]);
 
   // Format JSON content
   const formatContent = () => {
@@ -80,7 +80,7 @@ export default function SimpleJsonEditor({
   // Validate on mount
   useEffect(() => {
     validateContent(value);
-  }, [value, language]);
+  }, [value, language, validateContent]);
 
   return (
     <div className={`relative border rounded-lg overflow-hidden ${className}`}>
