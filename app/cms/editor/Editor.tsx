@@ -68,11 +68,17 @@ function EditorContent() {
       const timeout = setTimeout(() => {
         console.log('Monaco Editor timeout - switching to fallback');
         setUseFallbackEditor(true);
-      }, 10000); // 10 second timeout
+      }, 5000); // 5 second timeout
 
       return () => clearTimeout(timeout);
     }
   }, [isLoading, content]);
+
+  // Manual fallback button handler
+  const handleUseFallback = () => {
+    console.log('Manually switching to fallback editor');
+    setUseFallbackEditor(true);
+  };
 
   const handleSave = async (shouldPublish = false) => {
     setIsSaving(true);
@@ -249,6 +255,24 @@ function EditorContent() {
                   </div>
                 </div>
               </div>
+              {!useFallbackEditor && (
+                <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <AlertCircle className="w-4 h-4 text-yellow-600" />
+                      <span className="text-yellow-800 text-sm">Monaco Editor taking too long to load?</span>
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleUseFallback}
+                      className="text-xs border-yellow-300 text-yellow-700 hover:bg-yellow-100"
+                    >
+                      Use Fallback Editor
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
