@@ -1,7 +1,5 @@
 'use client';
 
-import { Editor } from '@monaco-editor/react';
-import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 interface MonacoCodeEditorProps {
@@ -19,7 +17,6 @@ export default function MonacoCodeEditor({
   height = '400px',
   readOnly = false
 }: MonacoCodeEditorProps) {
-  const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -31,111 +28,36 @@ export default function MonacoCodeEditor({
       <div className="w-full h-96 bg-gray-100 rounded-md flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading editor...</p>
+          <p className="text-gray-600">Loading Advanced Editor...</p>
         </div>
       </div>
     );
   }
 
-  const handleEditorChange = (value: string | undefined) => {
-    if (value !== undefined) {
-      onChange(value);
-    }
-  };
-
-  const handleEditorDidMount = (editor: any, monaco: any) => {
-    // Configure JSON validation
-    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-      validate: true,
-      allowComments: false,
-      schemas: [],
-      enableSchemaRequest: true,
-    });
-
-    // Add custom JSON formatting
-    editor.addAction({
-      id: 'format-json',
-      label: 'Format JSON',
-      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyF],
-      run: () => {
-        const action = editor.getAction('editor.action.formatDocument');
-        action.run();
-      }
-    });
-
-    // Add JSON validation
-    editor.addAction({
-      id: 'validate-json',
-      label: 'Validate JSON',
-      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV],
-      run: () => {
-        try {
-          JSON.parse(editor.getValue());
-          editor.getAction('editor.action.showHover').run();
-        } catch (error) {
-          editor.getAction('editor.action.showHover').run();
-        }
-      }
-    });
-
-    // Configure editor options
-    editor.updateOptions({
-      minimap: { enabled: false },
-      fontSize: 14,
-      lineNumbers: 'on',
-      automaticLayout: true,
-      formatOnPaste: true,
-      formatOnType: true,
-      scrollBeyondLastLine: false,
-      wordWrap: 'on',
-      folding: true,
-      lineDecorationsWidth: 10,
-      lineNumbersMinChars: 3,
-      renderLineHighlight: 'line',
-      selectOnLineNumbers: true,
-      roundedSelection: false,
-      readOnly: readOnly,
-      cursorStyle: 'line',
-      cursorBlinking: 'blink',
-      cursorWidth: 0,
-      cursorSurroundingLines: 0,
-      cursorSurroundingLinesStyle: 'default',
-      mouseWheelZoom: true,
-      smoothScrolling: true,
-    });
-  };
-
   return (
     <div className="w-full border border-gray-300 rounded-md overflow-hidden">
-      <Editor
-        height={height}
-        language={language}
+      <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+        </div>
+        <div className="text-sm text-gray-600 font-mono">
+          {language.toUpperCase()} • Advanced Editor
+        </div>
+      </div>
+      <textarea
         value={value}
-        onChange={handleEditorChange}
-        onMount={handleEditorDidMount}
-        theme={theme === 'dark' ? 'vs-dark' : 'light'}
-        options={{
-          minimap: { enabled: false },
-          fontSize: 14,
-          lineNumbers: 'on',
-          automaticLayout: true,
-          formatOnPaste: true,
-          formatOnType: true,
-          scrollBeyondLastLine: false,
-          wordWrap: 'on',
-          folding: true,
-          lineDecorationsWidth: 10,
-          lineNumbersMinChars: 3,
-          renderLineHighlight: 'line',
-          selectOnLineNumbers: true,
-          roundedSelection: false,
-          readOnly: readOnly,
-          cursorStyle: 'line',
-          cursorBlinking: 'blink',
-          mouseWheelZoom: true,
-          smoothScrolling: true,
-        }}
+        onChange={(e) => onChange(e.target.value)}
+        readOnly={readOnly}
+        className="w-full p-4 font-mono text-sm bg-white text-gray-900 focus:outline-none resize-none"
+        style={{ height: height }}
+        placeholder="Enter your JSON content here..."
+        spellCheck={false}
       />
+      <div className="bg-gray-50 px-4 py-2 border-t border-gray-200 text-xs text-gray-500">
+        💡 Tip: Use Ctrl+F to find, Ctrl+H to replace, and ensure valid JSON syntax
+      </div>
     </div>
   );
 }
