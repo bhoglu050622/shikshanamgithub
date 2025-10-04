@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { AlertCircle, Code, Zap, Save, RotateCcw, Maximize2, Minimize2, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -53,6 +53,7 @@ export default function MonacoJsonEditor({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [editorTheme, setEditorTheme] = useState(theme);
   const [isMonacoReady, setIsMonacoReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   // Validate JSON content
   const validateContent = (content: string) => {
@@ -110,6 +111,11 @@ export default function MonacoJsonEditor({
   const toggleTheme = () => {
     setEditorTheme(editorTheme === 'vs-dark' ? 'light' : 'vs-dark');
   };
+
+  // Check if we're on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Validate on mount
   useEffect(() => {
@@ -173,36 +179,54 @@ export default function MonacoJsonEditor({
       )}
 
       <div style={{ height: isFullscreen ? 'calc(100vh - 120px)' : height }}>
-        <MonacoEditor
-          height={isFullscreen ? 'calc(100vh - 120px)' : height}
-          language={language}
-          theme={editorTheme}
-          value={value}
-          onChange={handleChange}
-          onMount={handleEditorDidMount}
-          options={{
-            readOnly,
-            minimap: { enabled: true },
-            scrollBeyondLastLine: false,
-            fontSize: 14,
-            lineNumbers: 'on',
-            wordWrap: 'on',
-            automaticLayout: true,
-            tabSize: 2,
-            insertSpaces: true,
-            formatOnPaste: true,
-            formatOnType: true,
-            bracketPairColorization: { enabled: true },
-            guides: {
-              bracketPairs: true,
-              indentation: true
-            },
-            suggest: {
-              showKeywords: true,
-              showSnippets: true
-            }
-          }}
-        />
+        {!isClient ? (
+          <div className="w-full h-full bg-gray-50 flex items-center justify-center">
+            <div className="text-center">
+              <Zap className="w-8 h-8 text-blue-500 mx-auto mb-2 animate-pulse" />
+              <p className="text-sm text-gray-600">Loading Monaco Editor...</p>
+            </div>
+          </div>
+        ) : (
+          <Suspense fallback={
+            <div className="w-full h-full bg-gray-50 flex items-center justify-center">
+              <div className="text-center">
+                <Zap className="w-8 h-8 text-blue-500 mx-auto mb-2 animate-pulse" />
+                <p className="text-sm text-gray-600">Loading Monaco Editor...</p>
+              </div>
+            </div>
+          }>
+            <MonacoEditor
+              height={isFullscreen ? 'calc(100vh - 120px)' : height}
+              language={language}
+              theme={editorTheme}
+              value={value}
+              onChange={handleChange}
+              onMount={handleEditorDidMount}
+              options={{
+                readOnly,
+                minimap: { enabled: true },
+                scrollBeyondLastLine: false,
+                fontSize: 14,
+                lineNumbers: 'on',
+                wordWrap: 'on',
+                automaticLayout: true,
+                tabSize: 2,
+                insertSpaces: true,
+                formatOnPaste: true,
+                formatOnType: true,
+                bracketPairColorization: { enabled: true },
+                guides: {
+                  bracketPairs: true,
+                  indentation: true
+                },
+                suggest: {
+                  showKeywords: true,
+                  showSnippets: true
+                }
+              }}
+            />
+          </Suspense>
+        )}
       </div>
 
       {showFooter && (
