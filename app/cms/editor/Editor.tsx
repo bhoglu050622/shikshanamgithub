@@ -394,7 +394,13 @@ function EditorContent() {
       const success = await save();
       
       if (success) {
-        setStatus('Success! Content saved with local storage support.');
+        // Enhanced success message with branch link
+        const isProduction = process.env.NODE_ENV === 'production';
+        if (isProduction) {
+          setStatus('✅ Content saved successfully! Changes will be live within 1-2 minutes.');
+        } else {
+          setStatus('✅ Content saved successfully! (Development mode)');
+        }
         
         // If shouldPublish is true, automatically publish after saving
         if (shouldPublish) {
@@ -438,13 +444,26 @@ function EditorContent() {
       const result = await response.json();
       if (response.ok) {
         if (result.success) {
-          if (result.githubUrl) {
-            setStatus(`Success! ${result.message} - ${result.note} | View commit: ${result.githubUrl}`);
-          } else if (result.note) {
-            setStatus(`Success! ${result.message} - ${result.note}`);
-          } else {
-            setStatus('Successfully published! Your changes are live.');
+          // Enhanced success message with links
+          let successMessage = `🎉 ${result.message}`;
+          
+          if (result.branchUrl) {
+            successMessage += `\n📁 Branch: ${result.branchUrl}`;
           }
+          
+          if (result.githubUrl) {
+            successMessage += `\n🔗 Commit: ${result.githubUrl}`;
+          }
+          
+          if (result.deploymentUrl) {
+            successMessage += `\n🌐 Live URL: ${result.deploymentUrl}`;
+          }
+          
+          if (result.note) {
+            successMessage += `\n⏰ ${result.note}`;
+          }
+          
+          setStatus(successMessage);
           setInitialContent(content); // Mark as no longer dirty
         } else {
           throw new Error(result.error || 'Failed to publish');
@@ -481,7 +500,21 @@ function EditorContent() {
             <p className="text-gray-600 mt-2">Editing: <code className="bg-gray-100 p-1 rounded text-xs">{fileName}</code></p>
           </div>
           <div className="flex items-center space-x-2">
-            {status && <p className="text-sm text-gray-500">{status}</p>}
+            {status && (
+              <div className="text-sm">
+                {status.includes('🎉') || status.includes('✅') ? (
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 max-w-2xl">
+                    <div className="text-green-800 whitespace-pre-line">{status}</div>
+                  </div>
+                ) : status.includes('Error:') ? (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 max-w-2xl">
+                    <div className="text-red-800">{status}</div>
+                  </div>
+                ) : (
+                  <p className="text-gray-500">{status}</p>
+                )}
+              </div>
+            )}
             <Button onClick={() => handleSave()} disabled={isSaving || !isDirty}>
               <Save className="w-4 h-4 mr-2" />
               {isSaving ? 'Saving...' : 'Save Draft'}
@@ -518,21 +551,15 @@ function EditorContent() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="border-blue-300 text-blue-700 hover:bg-blue-100"
+                    <a 
+                      href={`${process.env.NODE_ENV === 'production' ? 'https://shikshanamgithub.vercel.app' : 'http://localhost:3000'}${getPageInfoFromFileName(fileName).page}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-3 py-2 border border-blue-300 text-blue-700 hover:bg-blue-100 text-sm rounded-md transition-colors"
                     >
-                      <a 
-                        href={`${process.env.NODE_ENV === 'production' ? 'https://shikshanamgithub.vercel.app' : 'http://localhost:3001'}${getPageInfoFromFileName(fileName).page}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Live Page
-                      </a>
-                    </Button>
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      View Live Page
+                    </a>
                     <div className="text-sm text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
                       {getPageInfoFromFileName(fileName).page}
                     </div>

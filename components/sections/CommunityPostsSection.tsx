@@ -68,7 +68,7 @@ export default function CommunityPostsSection({
   const sectionSubtitle = communityPostsData?.subtitle || "Join the conversation! See what our community is sharing about their learning journey."
   const sectionDescription = communityPostsData?.description || "Connect with fellow learners and share your insights."
   
-  const posts = communityPostsData?.posts || ugcData.communityPosts.slice(0, maxPosts)
+  const posts = communityPostsData?.posts || (ugcData.communityPosts || []).slice(0, maxPosts)
 
 
   return (
@@ -112,25 +112,25 @@ export default function CommunityPostsSection({
         >
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-saffron-600 mb-1">
-              {ugcData.stats.communityMembers.toLocaleString('en-US')}
+              {(ugcData.stats?.communityMembers || 0).toLocaleString('en-US')}
             </div>
             <div className="text-sm text-light-contrast-secondary">Community Members</div>
           </div>
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-saffron-600 mb-1">
-              {ugcData.stats.totalHours.toLocaleString('en-US')}+
+              {(ugcData.stats?.totalHours || 0).toLocaleString('en-US')}+
             </div>
             <div className="text-sm text-light-contrast-secondary">Learning Hours</div>
           </div>
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-saffron-600 mb-1">
-              {ugcData.stats.countries}
+              {ugcData.stats?.countries || 0}
             </div>
             <div className="text-sm text-light-contrast-secondary">Countries</div>
           </div>
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-saffron-600 mb-1">
-              {ugcData.stats.completionRate}%
+              {ugcData.stats?.completionRate || 0}%
             </div>
             <div className="text-sm text-light-contrast-secondary">Completion Rate</div>
           </div>

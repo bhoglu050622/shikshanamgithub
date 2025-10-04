@@ -96,15 +96,29 @@ export async function POST(request: NextRequest) {
         // Clear cache for this file to ensure fresh content is fetched
         clearContentCache(file);
         
+        // Generate deployment URL (assuming Vercel deployment)
+        const deploymentUrl = process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}` 
+          : `https://${GITHUB_REPO}.vercel.app`;
+        
         return NextResponse.json({
           success: true,
-          message: `Content saved and committed to GitHub successfully!`,
+          message: `✅ Content saved and committed to GitHub successfully!`,
           file: file,
           lastModified: new Date().toISOString(),
           commitSha: result.commitSha,
-          note: 'Changes will be live within 1-2 minutes after Vercel deployment',
+          branch: GITHUB_BRANCH,
           githubUrl: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/commit/${result.commitSha}`,
-          cacheCleared: true
+          branchUrl: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/tree/${GITHUB_BRANCH}`,
+          deploymentUrl: deploymentUrl,
+          note: '🚀 Changes will be live within 1-2 minutes after Vercel deployment',
+          cacheCleared: true,
+          successDetails: {
+            commitMessage: result.message,
+            branchName: GITHUB_BRANCH,
+            deploymentStatus: 'pending',
+            estimatedLiveTime: '1-2 minutes'
+          }
         });
       } catch (error: any) {
         console.error('GitHub integration error:', error);
@@ -120,9 +134,20 @@ export async function POST(request: NextRequest) {
     // Development mode - return success
     return NextResponse.json({
       success: true,
-      message: 'Content saved successfully (Development mode)',
+      message: '✅ Content saved successfully (Development mode)',
       file: file,
-      lastModified: new Date().toISOString()
+      lastModified: new Date().toISOString(),
+      branch: 'development',
+      githubUrl: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`,
+      branchUrl: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`,
+      deploymentUrl: 'http://localhost:3000',
+      note: '🔧 Development mode - changes are saved locally',
+      successDetails: {
+        commitMessage: 'Local development save',
+        branchName: 'development',
+        deploymentStatus: 'local',
+        estimatedLiveTime: 'immediate'
+      }
     });
 
   } catch (error: any) {

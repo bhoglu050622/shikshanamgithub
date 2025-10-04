@@ -1,16 +1,65 @@
 {
-  "url": "/about",
-  "title": "About Us - Shikshanam",
-  "description": "Learn about Shikshanam&#x27;s mission to preserve and share ancient Indian knowledge through modern technology.",
-  "content": {
-    "pageInfo": {
-      "title": "",
-      "description": "",
-      "content": ""
-    },
-    "sections": [],
-    "features": []
+  "hero": {
+    "title": "About Shikshanam",
+    "subtitle": "Preserving Ancient Wisdom"
   },
-  "metadata": {},
-  "timestamp": "2025-10-04T10:56:32.731Z"
+  "mission": {
+    "title": "Our Mission",
+    "paragraph1": "Shikshanam was born from a deep reverence for India's ancient knowledge systems.",
+    "paragraph2": "Our mission is to make this profound knowledge accessible to everyone.",
+    "visionTitle": "Our Vision",
+    "visionText": "To create a global community of learners who embrace ancient wisdom for modern living."
+  },
+  "offerings": {
+    "title": "What We Offer",
+    "items": [
+      {
+        "title": "Comprehensive Courses",
+        "description": "Structured learning paths in Sanskrit, Yoga, and ancient philosophy"
+      },
+      {
+        "title": "Expert Guidance",
+        "description": "Learn from experienced teachers and practitioners"
+      },
+      {
+        "title": "Community Support",
+        "description": "Connect with fellow learners on the journey of wisdom"
+      },
+      {
+        "title": "Modern Technology",
+        "description": "Ancient wisdom delivered through cutting-edge learning platforms"
+      }
+    ]
+  },
+  "values": {
+    "title": "Our Values",
+    "items": [
+      {
+        "title": "Authenticity",
+        "description": "We preserve the original teachings without dilution or distortion"
+      },
+      {
+        "title": "Accessibility",
+        "description": "Making profound knowledge available to everyone, regardless of background"
+      },
+      {
+        "title": "Community",
+        "description": "Building connections between learners and teachers worldwide"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Join Our Journey",
+    "subtitle": "Whether you're a complete beginner or an advanced practitioner, Shikshanam offers a path for everyone to explore and embrace the wisdom of ancient India.",
+    "buttons": [
+      {
+        "text": "Explore Courses",
+        "link": "/courses"
+      },
+      {
+        "text": "Learn More",
+        "link": "/about"
+      }
+    ]
+  }
 }

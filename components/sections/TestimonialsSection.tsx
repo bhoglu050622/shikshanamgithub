@@ -78,7 +78,7 @@ export default function TestimonialsSection({
   const sectionDescription = cmsTestimonialsData?.description || "Hear from our students about their transformative learning experiences."
   
   // Combine testimonials from both sources
-  const allTestimonials = [...testimonialsData.testimonials, ...ugcData.userReviews]
+  const allTestimonials = [...(testimonialsData.testimonials || []), ...(ugcData.userReviews || [])]
   const testimonials = allTestimonials.slice(0, maxTestimonials)
 
   useEffect(() => {
@@ -160,7 +160,7 @@ export default function TestimonialsSection({
                 <Users className="w-6 h-6 text-golden-olive" />
               </div>
               <div className="text-2xl sm:text-3xl font-bold text-premium-text">
-                {ugcData.stats.totalStudents.toLocaleString('en-US')}+
+                {(ugcData.stats?.totalStudents || 0).toLocaleString('en-US')}+
               </div>
               <div className="text-sm text-sand-beige">Students</div>
             </div>
@@ -169,7 +169,7 @@ export default function TestimonialsSection({
                 <Star className="w-6 h-6 text-golden-olive" />
               </div>
               <div className="text-2xl sm:text-3xl font-bold text-premium-text">
-                {ugcData.stats.averageRating}
+                {ugcData.stats?.averageRating || 0}
               </div>
               <div className="text-sm text-sand-beige">Average Rating</div>
             </div>
@@ -178,7 +178,7 @@ export default function TestimonialsSection({
                 <Award className="w-6 h-6 text-golden-olive" />
               </div>
               <div className="text-2xl sm:text-3xl font-bold text-premium-text">
-                {ugcData.stats.satisfactionRate}%
+                {ugcData.stats?.satisfactionRate || 0}%
               </div>
               <div className="text-sm text-sand-beige">Satisfaction</div>
             </div>
@@ -187,7 +187,7 @@ export default function TestimonialsSection({
                 <TrendingUp className="w-6 h-6 text-golden-olive" />
               </div>
               <div className="text-2xl sm:text-3xl font-bold text-premium-text">
-                {ugcData.stats.communityMembers.toLocaleString('en-US')}
+                {(ugcData.stats?.communityMembers || 0).toLocaleString('en-US')}
               </div>
               <div className="text-sm text-sand-beige">Reviews</div>
             </div>
@@ -229,27 +229,27 @@ export default function TestimonialsSection({
                       {/* Content */}
                       <div className="flex-1 text-center lg:text-left">
                         <div className="flex justify-center lg:justify-start mb-4">
-                          {renderStars(testimonials[currentIndex].rating)}
+                          {renderStars(testimonials[currentIndex]?.rating || 0)}
                         </div>
                         
                         <blockquote className="text-lg sm:text-xl text-premium-text leading-relaxed mb-6 sm:mb-8">
-                          "{testimonials[currentIndex].text}"
+                          "{testimonials[currentIndex]?.text || ''}"
                         </blockquote>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                           <div className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-gradient-to-br from-golden-olive to-sand-beige rounded-full flex items-center justify-center text-white font-bold text-lg">
-                              {testimonials[currentIndex].name.charAt(0)}
+                              {testimonials[currentIndex]?.name?.charAt(0) || '?'}
                             </div>
                             <div>
                               <div className="font-semibold text-premium-text">
-                                {testimonials[currentIndex].name}
+                                {testimonials[currentIndex]?.name || 'Anonymous'}
                               </div>
                               <div className="text-sm text-sand-beige">
-                                {testimonials[currentIndex].role}
+                                {testimonials[currentIndex]?.role || 'Student'}
                               </div>
                               <div className="text-xs text-sand-beige/70">
-                                {testimonials[currentIndex].location}
+                                {testimonials[currentIndex]?.location || 'India'}
                               </div>
                             </div>
                           </div>
@@ -261,7 +261,7 @@ export default function TestimonialsSection({
                               Course Taken
                             </div>
                             <div className="text-sm text-premium-text">
-                              {testimonials[currentIndex].course}
+                              {testimonials[currentIndex]?.course || 'Sanskrit Course'}
                             </div>
                           </div>
                         </div>
@@ -340,11 +340,11 @@ export default function TestimonialsSection({
                 <Card className="h-full border-premium-border bg-white/70 dark:bg-black/20 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex justify-center mb-4">
-                      {renderStars(testimonial.rating)}
+                      {renderStars(testimonial?.rating || 0)}
                     </div>
                     
                     <blockquote className="text-sm text-premium-text leading-relaxed mb-4">
-                      "{testimonial.text}"
+                      "{testimonial?.text || ''}"
                     </blockquote>
                     
                     <div className="flex items-center gap-3">

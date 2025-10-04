@@ -58,9 +58,20 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         success: true,
-        message: 'Content saved successfully',
+        message: '✅ Content saved successfully (Development mode)',
         file: file,
-        lastModified: parsedContent.lastModified
+        lastModified: parsedContent.lastModified,
+        branch: 'development',
+        githubUrl: 'https://github.com/bhoglu050622/shikshanamgithub',
+        branchUrl: 'https://github.com/bhoglu050622/shikshanamgithub',
+        deploymentUrl: 'http://localhost:3000',
+        note: '🔧 Development mode - changes saved locally',
+        successDetails: {
+          commitMessage: 'Local development save',
+          branchName: 'development',
+          deploymentStatus: 'local',
+          estimatedLiveTime: 'immediate'
+        }
       });
     }
 
@@ -85,9 +96,20 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         success: true,
-        message: 'Content published successfully',
+        message: '🎉 Content published successfully (Development mode)',
         file: publishedFile,
-        publishedAt: currentContent.publishedAt
+        publishedAt: currentContent.publishedAt,
+        branch: 'development',
+        githubUrl: 'https://github.com/bhoglu050622/shikshanamgithub',
+        branchUrl: 'https://github.com/bhoglu050622/shikshanamgithub',
+        deploymentUrl: 'http://localhost:3000',
+        note: '🔧 Development mode - changes published locally',
+        successDetails: {
+          commitMessage: 'Local development publish',
+          branchName: 'development',
+          deploymentStatus: 'local',
+          estimatedLiveTime: 'immediate'
+        }
       });
     }
 

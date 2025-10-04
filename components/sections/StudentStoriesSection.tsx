@@ -72,8 +72,8 @@ export default function StudentStoriesSection({
   const sectionDescription = studentStoriesData?.description || "Real stories from students who have transformed their lives through ancient wisdom."
   
   const stories = studentStoriesData?.stories || (showFeatured 
-    ? ugcData.studentStories.filter(story => story.featured).slice(0, maxStories)
-    : ugcData.studentStories.slice(0, maxStories))
+    ? (ugcData.studentStories || []).filter(story => story.featured).slice(0, maxStories)
+    : (ugcData.studentStories || []).slice(0, maxStories))
 
   return (
   <MotionWrapper>
