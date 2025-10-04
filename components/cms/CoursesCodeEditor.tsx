@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import SimpleJsonEditor from '@/app/cms/editor/SimpleJsonEditor';
 import { 
   Save, 
   RefreshCw, 
@@ -330,17 +331,38 @@ export default function CoursesCodeEditor({ onSave, onPreview }: CoursesCodeEdit
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <textarea
+              <SimpleJsonEditor
                 value={code}
-                onChange={(e) => setCode(e.target.value)}
-                className="w-full h-96 p-4 border rounded-lg font-mono text-sm"
-                placeholder="Enter courses JSON data..."
-                style={{ fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace' }}
+                onChange={setCode}
+                language="json"
+                height="500px"
+                onSave={saveCourses}
+                onFormat={() => {
+                  try {
+                    const parsed = JSON.parse(code);
+                    const formatted = JSON.stringify(parsed, null, 2);
+                    setCode(formatted);
+                    setError(null);
+                  } catch (error) {
+                    setError('Cannot format invalid JSON');
+                  }
+                }}
+                onValidate={() => {
+                  try {
+                    JSON.parse(code);
+                    setError(null);
+                    setSuccess('JSON is valid');
+                  } catch (error) {
+                    setError('Invalid JSON syntax');
+                    setSuccess(null);
+                  }
+                }}
               />
               <div className="mt-4 text-sm text-gray-500">
-                <p>• Edit the JSON data directly in the textarea above</p>
+                <p>• Edit the JSON data directly in the Monaco editor above</p>
                 <p>• Use the Save button to apply changes</p>
                 <p>• Use Download/Upload to backup and restore data</p>
+                <p>• Use Format button to auto-format JSON</p>
               </div>
             </CardContent>
           </Card>

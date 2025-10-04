@@ -1,12 +1,38 @@
 import { Metadata } from 'next'
 import { Users, BookOpen, Lightbulb, Heart, Globe, Zap } from 'lucide-react'
+import fs from 'fs'
+import path from 'path'
 
 export const metadata: Metadata = {
   title: 'Career - Join Our Team | Shikshanam',
   description: 'Join Shikshanam and help us preserve and share ancient Indian wisdom through modern technology. Explore career opportunities in education, technology, and content creation.',
 }
 
-export default function CareerPage() {
+async function getCareerContent() {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const draftPath = path.join(process.cwd(), 'data', 'career-content.json');
+  const publishedPath = path.join(process.cwd(), 'data', 'career-content.published.json');
+  
+  let contentPath = isProduction ? publishedPath : draftPath;
+
+  // Fallback to draft if published doesn't exist in production
+  if (isProduction && !fs.existsSync(publishedPath)) {
+    contentPath = draftPath;
+  }
+
+  try {
+    if (fs.existsSync(contentPath)) {
+      const fileContent = fs.readFileSync(contentPath, 'utf8');
+      return JSON.parse(fileContent);
+    }
+  } catch (error) {
+    console.error('Error reading career content:', error);
+  }
+  return null;
+}
+
+export default async function CareerPage() {
+  const content = await getCareerContent();
   return (
     <>
       <main className="main-container py-16">

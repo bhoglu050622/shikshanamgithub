@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "title": "My Account",
+    "subtitle": "Manage your learning journey",
+    "description": "Access your courses, track your progress, and manage your account settings."
+  },
+  "dashboard": {
+    "title": "Learning Dashboard",
+    "subtitle": "Your personalized learning center",
+    "stats": {
+      "coursesCompleted": 0,
+      "hoursLearned": 0,
+      "certificatesEarned": 0,
+      "currentStreak": 0
+    }
+  },
+  "courses": {
+    "title": "My Courses",
+    "subtitle": "Continue your learning journey",
+    "enrolledCourses": [],
+    "completedCourses": [],
+    "recommendedCourses": []
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "subtitle": "Manage your personal information",
+    "fields": {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "bio": "",
+      "interests": [],
+      "learningGoals": []
+    }
+  },
+  "settings": {
+    "title": "Account Settings",
+    "subtitle": "Customize your experience",
+    "notifications": {
+      "email": true,
+      "push": true,
+      "sms": false
+    },
+    "privacy": {
+      "profileVisibility": "public",
+      "showProgress": true,
+      "showCertificates": true
+    }
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
+}

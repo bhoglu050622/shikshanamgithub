@@ -2,11 +2,126 @@
   "hero": {
     "title": "School of Life Skills",
     "subtitle": "Develop Practical Wisdom",
-    "description": "Acquire essential life skills for personal growth and success"
+    "description": "Acquire essential life skills for personal growth and success through ancient wisdom and modern techniques.",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
   },
-  "courses": {},
-  "benefits": {},
-  "testimonials": {},
-  "schools": {},
-  "cta": {}
+  "courses": {
+    "title": "Life Skills Courses",
+    "subtitle": "Transform your life with practical wisdom",
+    "courses": [
+      {
+        "id": "mindfulness-basics",
+        "title": "Mindfulness & Meditation",
+        "level": "Beginner",
+        "duration": "6 weeks",
+        "description": "Learn ancient meditation techniques for modern life",
+        "features": ["Daily meditation practice", "Breathing techniques", "Mindfulness exercises", "Stress management"],
+        "price": 79,
+        "currency": "USD"
+      },
+      {
+        "id": "emotional-intelligence",
+        "title": "Emotional Intelligence",
+        "level": "Intermediate",
+        "duration": "8 weeks",
+        "description": "Develop emotional awareness and interpersonal skills",
+        "features": ["Self-awareness", "Emotional regulation", "Empathy development", "Relationship skills"],
+        "price": 99,
+        "currency": "USD"
+      },
+      {
+        "id": "goal-setting",
+        "title": "Goal Setting & Achievement",
+        "level": "All Levels",
+        "duration": "4 weeks",
+        "description": "Learn to set and achieve meaningful goals",
+        "features": ["SMART goal setting", "Action planning", "Progress tracking", "Motivation techniques"],
+        "price": 59,
+        "currency": "USD"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Why Life Skills Matter",
+    "subtitle": "Essential skills for personal and professional success",
+    "benefits": [
+      {
+        "id": "stress-reduction",
+        "title": "Stress Reduction",
+        "description": "Learn techniques to manage stress and maintain inner peace",
+        "icon": "heart"
+      },
+      {
+        "id": "better-relationships",
+        "title": "Better Relationships",
+        "description": "Develop skills for healthier personal and professional relationships",
+        "icon": "users"
+      },
+      {
+        "id": "personal-growth",
+        "title": "Personal Growth",
+        "description": "Continuous self-improvement and character development",
+        "icon": "trending-up"
+      },
+      {
+        "id": "life-balance",
+        "title": "Life Balance",
+        "description": "Achieve harmony between work, relationships, and personal well-being",
+        "icon": "balance"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Success Stories",
+    "subtitle": "Real transformations from our students",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Jennifer Martinez",
+        "role": "Marketing Manager",
+        "content": "The mindfulness course completely changed how I handle stress at work. I'm more focused, calm, and productive than ever before.",
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face"
+      },
+      {
+        "id": "testimonial-2",
+        "name": "David Thompson",
+        "role": "Entrepreneur",
+        "content": "The emotional intelligence course helped me become a better leader and improved all my relationships, both personal and professional.",
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
+      }
+    ]
+  },
+  "schools": {
+    "title": "Related Schools",
+    "subtitle": "Explore other learning paths",
+    "schools": [
+      {
+        "id": "sanskrit",
+        "name": "School of Sanskrit",
+        "description": "Master the ancient language of wisdom",
+        "link": "/schools/sanskrit"
+      },
+      {
+        "id": "darshana",
+        "name": "School of Darshana",
+        "description": "Explore Indian philosophy and spiritual wisdom",
+        "link": "/schools/darshana"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Start Your Transformation",
+    "subtitle": "Begin your journey of personal growth and development",
+    "buttonText": "Start Learning",
+    "buttonLink": "/courses",
+    "secondaryButtonText": "View All Courses",
+    "secondaryButtonLink": "/courses"
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
 }

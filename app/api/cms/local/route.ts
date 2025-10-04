@@ -19,12 +19,12 @@ export async function POST(request: NextRequest) {
     }
 
     if (action === 'save') {
-      // Parse and validate JSON content
-      let parsedContent;
-      try {
-        parsedContent = JSON.parse(content);
-      } catch (error) {
-        return NextResponse.json({ error: 'Invalid JSON content' }, { status: 400 });
+      // Content is already parsed from the frontend
+      let parsedContent = content;
+      
+      // Validate that content is an object
+      if (typeof parsedContent !== 'object' || parsedContent === null) {
+        return NextResponse.json({ error: 'Invalid content format' }, { status: 400 });
       }
 
       // Add metadata

@@ -51,34 +51,34 @@ export default async function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-gray-900 mb-6">
-              {content.hero.title}
+              {content.hero?.title || "About Shikshanam"}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {content.hero.subtitle}
+              {content.hero?.subtitle || "Preserving Ancient Wisdom"}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">{content.mission.title}</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">{content.mission?.title || "Our Mission"}</h2>
               <p className="text-gray-600 mb-6">
-                {content.mission.paragraph1}
+                {content.mission?.paragraph1 || "Shikshanam was born from a deep reverence for India's ancient knowledge systems."}
               </p>
               <p className="text-gray-600 mb-6">
-                {content.mission.paragraph2}
+                {content.mission?.paragraph2 || "Our mission is to make this profound knowledge accessible to everyone."}
               </p>
               <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{content.mission.visionTitle}</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{content.mission?.visionTitle || "Our Vision"}</h3>
                 <p className="text-gray-600">
-                  {content.mission.visionText}
+                  {content.mission?.visionText || "To create a global community of learners who embrace ancient wisdom for modern living."}
                 </p>
               </div>
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{content.offerings.title}</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">{content.offerings?.title || "What We Offer"}</h2>
               <div className="space-y-4">
-                {content.offerings.items.map((item: any, index: number) => (
+                {content.offerings?.items?.map((item: any, index: number) => (
                   <div key={index} className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-saffron-100 rounded-full flex items-center justify-center mt-1">
                       <div className="w-2 h-2 bg-saffron-600 rounded-full"></div>
@@ -94,9 +94,9 @@ export default async function AboutPage() {
           </div>
 
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">{content.values.title}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">{content.values?.title || "Our Values"}</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {content.values.items.map((item: any, index: number) => (
+              {content.values?.items?.map((item: any, index: number) => (
                 <div key={index} className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-saffron-500 to-peacock-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     {/* Icon can be made dynamic if needed */}
@@ -112,12 +112,12 @@ export default async function AboutPage() {
           </div>
 
           <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{content.cta.title}</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{content.cta?.title || "Join Our Journey"}</h2>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              {content.cta.subtitle}
+              {content.cta?.subtitle || "Whether you're a complete beginner or an advanced practitioner, Shikshanam offers a path for everyone to explore and embrace the wisdom of ancient India."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {content.cta.buttons.map((button: any, index: number) => (
+              {content.cta?.buttons?.map((button: any, index: number) => (
                 <a
                   key={index}
                   href={button.link}

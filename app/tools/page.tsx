@@ -1,53 +1,76 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import fs from 'fs'
+import path from 'path'
 
 export const metadata: Metadata = {
   title: 'Sanskrit Tools - Shikshanam',
   description: 'Access powerful tools to enhance your Sanskrit learning experience including keyboard helpers, sandhi tools, and more.',
 }
 
-const tools = [
-  {
-    name: 'Sanskrit Keyboard Helper',
-    title: 'Type in Devanagari Script',
-    description: 'Use our virtual keyboard to type Sanskrit text in Devanagari script with ease.',
-    href: '/tools/keyboard',
-    icon: '⌨️',
-    features: ['Virtual Devanagari keyboard', 'Character mapping', 'Easy text input']
-  },
-  {
-    name: 'Sandhi Tool',
-    title: 'Master Sanskrit Sound Combinations',
-    description: 'Learn and practice Sanskrit sandhi rules with our interactive tool.',
-    href: '/tools/sandhi',
-    icon: '🔗',
-    features: ['Sandhi rules explanation', 'Interactive examples', 'Practice exercises']
-  }
-]
+async function getToolsContent() {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const draftPath = path.join(process.cwd(), 'data', 'tools-content.json');
+  const publishedPath = path.join(process.cwd(), 'data', 'tools-content.published.json');
+  
+  let contentPath = isProduction ? publishedPath : draftPath;
 
-export default function ToolsPage() {
+  // Fallback to draft if published doesn't exist in production
+  if (isProduction && !fs.existsSync(publishedPath)) {
+    contentPath = draftPath;
+  }
+
+  try {
+    if (fs.existsSync(contentPath)) {
+      const fileContent = fs.readFileSync(contentPath, 'utf8');
+      return JSON.parse(fileContent);
+    }
+  } catch (error) {
+    console.error('Error reading tools content:', error);
+  }
+  return null;
+}
+
+export default async function ToolsPage() {
+  const content = await getToolsContent();
+  
+  if (!content || !content.tools || !content.tools.tools) {
+    return (
+      <main className="main-container py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Tools Not Available</h1>
+            <p className="text-xl text-gray-600">Tools content is not available at the moment.</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  const tools = content.tools.tools;
+  
   return (
     <>
       <main className="main-container py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Sanskrit Learning Tools
+              {content.hero?.title || "Sanskrit Learning Tools"}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Enhance your Sanskrit learning experience with our collection of powerful tools designed to make your journey easier and more effective.
+              {content.hero?.description || "Enhance your Sanskrit learning experience with our collection of powerful tools designed to make your journey easier and more effective."}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {tools.map((tool) => (
-              <div key={tool.name} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            {tools.map((tool: any) => (
+              <div key={tool.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div className="p-8">
                   <div className="flex items-center mb-4">
                     <div className="text-4xl mr-4">{tool.icon}</div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{tool.name}</h3>
-                      <p className="text-saffron-600 font-medium">{tool.title}</p>
+                      <h3 className="text-xl font-bold text-gray-900">{tool.title}</h3>
+                      <p className="text-saffron-600 font-medium">{tool.difficulty}</p>
                     </div>
                   </div>
                   
@@ -56,7 +79,7 @@ export default function ToolsPage() {
                   <div className="mb-6">
                     <h4 className="font-semibold text-gray-900 mb-3">Features:</h4>
                     <ul className="space-y-2">
-                      {tool.features.map((feature, index) => (
+                      {tool.features.map((feature: any, index: number) => (
                         <li key={index} className="flex items-center text-gray-600">
                           <div className="w-2 h-2 bg-saffron-500 rounded-full mr-3"></div>
                           {feature}
@@ -66,7 +89,7 @@ export default function ToolsPage() {
                   </div>
                   
                   <Link
-                    href={tool.href}
+                    href={tool.link}
                     className="inline-flex items-center bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
                     Use Tool

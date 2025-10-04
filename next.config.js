@@ -110,6 +110,7 @@ const nextConfig = {
       global.self = global;
     }
     
+    
     // Fast reload optimizations
     if (dev) {
       // Enable faster development builds

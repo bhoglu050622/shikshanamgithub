@@ -1,0 +1,111 @@
+{
+  "hero": {
+    "title": "Meet Our Gurus",
+    "subtitle": "Learn from master teachers",
+    "description": "Discover our team of expert scholars and practitioners who guide your journey through ancient wisdom."
+  },
+  "featured": {
+    "title": "Featured Teachers",
+    "subtitle": "Our most experienced instructors",
+    "gurus": [
+      {
+        "id": "swami-ananda",
+        "name": "Swami Ananda",
+        "title": "Senior Sanskrit Scholar",
+        "expertise": ["Sanskrit", "Vedanta", "Meditation"],
+        "experience": "30 years",
+        "bio": "A renowned Sanskrit scholar with over 30 years of teaching experience. Swami Ananda has dedicated his life to preserving and transmitting ancient wisdom.",
+        "image": "/assets/swami-ananda.jpg",
+        "courses": ["Sanskrit Basics", "Vedanta Philosophy", "Meditation Practice"],
+        "rating": 4.9,
+        "students": 2500
+      },
+      {
+        "id": "dr-rajesh",
+        "name": "Dr. Rajesh Kumar",
+        "title": "Professor of Indian Philosophy",
+        "expertise": ["Nyaya", "Samkhya", "Yoga Philosophy"],
+        "experience": "25 years",
+        "bio": "Professor Kumar is a leading authority on Indian philosophy with extensive research in classical texts and modern applications.",
+        "image": "/assets/dr-rajesh.jpg",
+        "courses": ["Nyaya Logic", "Samkhya Philosophy", "Yoga Sutras"],
+        "rating": 4.8,
+        "students": 1800
+      }
+    ]
+  },
+  "categories": {
+    "title": "Browse by Expertise",
+    "subtitle": "Find teachers by their specializations",
+    "categories": [
+      {
+        "id": "sanskrit",
+        "name": "Sanskrit Language",
+        "count": 12,
+        "description": "Masters of the ancient language"
+      },
+      {
+        "id": "philosophy",
+        "name": "Indian Philosophy",
+        "count": 15,
+        "description": "Expert philosophers and scholars"
+      },
+      {
+        "id": "yoga",
+        "name": "Yoga & Meditation",
+        "count": 8,
+        "description": "Spiritual teachers and practitioners"
+      },
+      {
+        "id": "vedas",
+        "name": "Vedic Studies",
+        "count": 10,
+        "description": "Vedic scholars and researchers"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Students Say",
+    "subtitle": "Real experiences from our learning community",
+    "testimonials": [
+      {
+        "id": "testimonial-1",
+        "name": "Sarah Johnson",
+        "role": "Student",
+        "content": "Swami Ananda's teaching style is incredible. He makes complex Sanskrit concepts so accessible and engaging.",
+        "rating": 5,
+        "guru": "Swami Ananda"
+      },
+      {
+        "id": "testimonial-2",
+        "name": "Michael Chen",
+        "role": "Student",
+        "content": "Dr. Kumar's philosophy courses have completely transformed my understanding of Indian thought. Highly recommended!",
+        "rating": 5,
+        "guru": "Dr. Rajesh Kumar"
+      }
+    ]
+  },
+  "join": {
+    "title": "Join Our Teaching Team",
+    "subtitle": "Share your knowledge with the world",
+    "description": "Are you an expert in Sanskrit, Indian philosophy, or related fields? We're always looking for passionate teachers to join our mission.",
+    "requirements": [
+      "Deep knowledge in Sanskrit or Indian philosophy",
+      "Teaching experience preferred",
+      "Passion for sharing ancient wisdom",
+      "Commitment to student success"
+    ],
+    "benefits": [
+      "Flexible teaching schedule",
+      "Global student reach",
+      "Competitive compensation",
+      "Professional development opportunities"
+    ]
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
+}

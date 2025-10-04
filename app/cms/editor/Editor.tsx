@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowLeft, Save, UploadCloud, HelpCircle, Info, AlertCircle, CheckCircle, Code, Zap } from 'lucide-react';
 import Link from 'next/link';
-import MonacoCodeEditor from './MonacoCodeEditor';
+import SimpleJsonEditor from './SimpleJsonEditor';
 
 function EditorContent() {
   const searchParams = useSearchParams();
@@ -21,21 +21,42 @@ function EditorContent() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
+    console.log('Editor useEffect triggered, fileName:', fileName);
     if (fileName) {
+      console.log('Fetching content for file:', fileName);
       setIsLoading(true);
       fetch(`/api/cms/editor?file=${fileName}`)
-        .then(res => res.json())
+        .then(res => {
+          console.log('API response status:', res.status);
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
         .then(data => {
+          console.log('API response data:', data);
           if (data.success) {
             const formattedContent = JSON.stringify(data.content, null, 2);
+            console.log('Setting content, length:', formattedContent.length);
             setContent(formattedContent);
             setInitialContent(formattedContent);
+            setStatus('Content loaded successfully.');
           } else {
+            console.error('API error:', data.error);
             setStatus(`Error: ${data.error}`);
           }
         })
-        .catch(err => setStatus(`Error: ${err.message}`))
-        .finally(() => setIsLoading(false));
+        .catch(err => {
+          console.error('Fetch error:', err);
+          setStatus(`Error: ${err.message}`);
+        })
+        .finally(() => {
+          console.log('Setting isLoading to false');
+          setIsLoading(false);
+        });
+    } else {
+      setStatus('No file selected for editing.');
+      setIsLoading(false);
     }
   }, [fileName]);
 
@@ -227,11 +248,29 @@ function EditorContent() {
                   )}
                 </div>
                 
-                <MonacoCodeEditor 
+                <SimpleJsonEditor 
                   value={content} 
                   onChange={setContent}
                   language="json"
                   height="500px"
+                  onSave={() => handleSave()}
+                  onFormat={() => {
+                    try {
+                      const parsed = JSON.parse(content);
+                      const formatted = JSON.stringify(parsed, null, 2);
+                      setContent(formatted);
+                    } catch (error) {
+                      setStatus('Error: Cannot format invalid JSON');
+                    }
+                  }}
+                  onValidate={() => {
+                    try {
+                      JSON.parse(content);
+                      setStatus('JSON is valid');
+                    } catch (error) {
+                      setStatus('Error: Invalid JSON syntax');
+                    }
+                  }}
                 />
                 
                 <div className="grid md:grid-cols-2 gap-4 text-xs text-gray-500 bg-gray-50 p-4 rounded">

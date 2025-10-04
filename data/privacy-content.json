@@ -1,0 +1,182 @@
+{
+  "hero": {
+    "title": "Privacy Policy",
+    "subtitle": "Your privacy and data protection are our top priorities",
+    "backgroundImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop"
+  },
+  "introduction": {
+    "title": "Our Commitment to Privacy",
+    "content": "At Shikshanam, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our platform and services.",
+    "lastUpdated": "January 3, 2025"
+  },
+  "informationCollection": {
+    "title": "Information We Collect",
+    "subtitle": "We collect information to provide and improve our services",
+    "types": [
+      {
+        "id": "personal",
+        "title": "Personal Information",
+        "description": "Name, email address, phone number, and other contact information you provide",
+        "examples": ["Email address", "Full name", "Phone number", "Billing address"]
+      },
+      {
+        "id": "account",
+        "title": "Account Information",
+        "description": "Information related to your account and learning progress",
+        "examples": ["Username", "Password (encrypted)", "Course progress", "Learning preferences"]
+      },
+      {
+        "id": "usage",
+        "title": "Usage Data",
+        "description": "Information about how you interact with our platform",
+        "examples": ["Pages visited", "Time spent on courses", "Device information", "Browser type"]
+      },
+      {
+        "id": "payment",
+        "title": "Payment Information",
+        "description": "Billing and payment details (processed securely by third-party providers)",
+        "examples": ["Payment method", "Billing address", "Transaction history"]
+      }
+    ]
+  },
+  "dataUsage": {
+    "title": "How We Use Your Information",
+    "subtitle": "We use your data to provide and improve our services",
+    "purposes": [
+      {
+        "id": "service",
+        "title": "Service Delivery",
+        "description": "To provide access to courses, track progress, and deliver educational content"
+      },
+      {
+        "id": "communication",
+        "title": "Communication",
+        "description": "To send course updates, important announcements, and respond to your inquiries"
+      },
+      {
+        "id": "improvement",
+        "title": "Service Improvement",
+        "description": "To analyze usage patterns and improve our platform and content"
+      },
+      {
+        "id": "security",
+        "title": "Security",
+        "description": "To protect against fraud, unauthorized access, and other security threats"
+      }
+    ]
+  },
+  "dataSharing": {
+    "title": "Information Sharing",
+    "subtitle": "We do not sell your personal information",
+    "sharing": [
+      {
+        "id": "service-providers",
+        "title": "Service Providers",
+        "description": "We may share information with trusted third-party service providers who help us operate our platform"
+      },
+      {
+        "id": "legal",
+        "title": "Legal Requirements",
+        "description": "We may disclose information when required by law or to protect our rights and safety"
+      },
+      {
+        "id": "consent",
+        "title": "With Your Consent",
+        "description": "We may share information with your explicit consent for specific purposes"
+      }
+    ]
+  },
+  "dataSecurity": {
+    "title": "Data Security",
+    "subtitle": "We implement robust security measures to protect your information",
+    "measures": [
+      {
+        "id": "encryption",
+        "title": "Encryption",
+        "description": "All data is encrypted in transit and at rest using industry-standard encryption protocols"
+      },
+      {
+        "id": "access",
+        "title": "Access Controls",
+        "description": "Strict access controls ensure only authorized personnel can access your data"
+      },
+      {
+        "id": "monitoring",
+        "title": "Security Monitoring",
+        "description": "Continuous monitoring and regular security audits to protect against threats"
+      },
+      {
+        "id": "training",
+        "title": "Staff Training",
+        "description": "Regular training for our team on data protection and privacy best practices"
+      }
+    ]
+  },
+  "yourRights": {
+    "title": "Your Rights",
+    "subtitle": "You have control over your personal information",
+    "rights": [
+      {
+        "id": "access",
+        "title": "Right to Access",
+        "description": "You can request a copy of the personal information we hold about you"
+      },
+      {
+        "id": "correction",
+        "title": "Right to Correction",
+        "description": "You can request correction of inaccurate or incomplete information"
+      },
+      {
+        "id": "deletion",
+        "title": "Right to Deletion",
+        "description": "You can request deletion of your personal information in certain circumstances"
+      },
+      {
+        "id": "portability",
+        "title": "Right to Data Portability",
+        "description": "You can request your data in a structured, machine-readable format"
+      },
+      {
+        "id": "objection",
+        "title": "Right to Object",
+        "description": "You can object to certain types of data processing"
+      }
+    ]
+  },
+  "cookies": {
+    "title": "Cookies and Tracking",
+    "subtitle": "We use cookies to enhance your experience",
+    "types": [
+      {
+        "id": "essential",
+        "title": "Essential Cookies",
+        "description": "Required for basic platform functionality and security"
+      },
+      {
+        "id": "analytics",
+        "title": "Analytics Cookies",
+        "description": "Help us understand how users interact with our platform"
+      },
+      {
+        "id": "preferences",
+        "title": "Preference Cookies",
+        "description": "Remember your settings and preferences"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Questions about your privacy? We're here to help",
+    "info": {
+      "email": "privacy@shikshanam.com",
+      "phone": "+91-9876543210",
+      "address": "Shikshanam Privacy Team, India"
+    },
+    "message": "If you have any questions about this Privacy Policy or want to exercise your rights, please contact us. We will respond to your inquiry within 30 days."
+  },
+  "_metadata": {
+    "lastModified": "2025-01-03T12:00:00.000Z",
+    "version": "1.0",
+    "source": "cms"
+  }
+}
