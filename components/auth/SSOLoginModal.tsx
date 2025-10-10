@@ -58,7 +58,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
     try {
       // Check if Google OAuth is configured
       if (!AUTH_CONFIG.GOOGLE.CLIENT_ID) {
-        setError('Google authentication is not configured. Please contact support.')
+        setError('Google authentication is not configured. Please set up Google OAuth credentials in your environment variables. Check the setup documentation for details.')
         setIsLoading(false)
         return
       }
@@ -246,10 +246,26 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
-                          className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center space-x-2"
+                          className="p-4 bg-red-50 border border-red-200 rounded-xl"
                         >
-                          <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                          <p className="text-sm text-red-700">{error}</p>
+                          <div className="flex items-start space-x-2">
+                            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                            <div className="flex-1">
+                              <p className="text-sm text-red-700">{error}</p>
+                              {error.includes('Google authentication is not configured') && (
+                                <div className="mt-2">
+                                  <a 
+                                    href="/test-google-oauth" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-blue-600 hover:text-blue-800 underline"
+                                  >
+                                    Check Google OAuth Configuration →
+                                  </a>
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
