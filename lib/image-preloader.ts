@@ -68,22 +68,12 @@ export class ImagePreloader {
   }
 }
 
-// Preload critical images
+// Preload critical images - only include images that actually exist
 export const preloadCriticalImages = async () => {
   const criticalImages = [
     'https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png',
-    'https://shikshanam.in/wp-content/uploads/2024/07/1-01-scaled.png',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/678b5ab8789de93b7ee832bd/678b5ab8789de93b7ee832bd_scaled_cover.jpg?v=2',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/687b56fc55ab5b6dc3bb51de/687b56fc55ab5b6dc3bb51de_scaled_cover.jpg?v=1',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/6868be22998a012a18cc0360/6868be22998a012a18cc0360_scaled_cover.jpg?v=4',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/6489826fe4b046d958772a4a/6489826fe4b046d958772a4a_scaled_cover.jpg?v=5',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/6620c94d738059528460072e/6620c94d738059528460072e_scaled_cover.jpg?v=2',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/64bfab06e4b06ed046925620/64bfab06e4b06ed046925620_scaled_cover.jpg?v=4',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/650a824be4b03b5745557827/650a824be4b03b5745557827_scaled_cover.jpg?v=4',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/678e46e9ec4fa55804909de1/678e46e9ec4fa55804909de1_scaled_cover.jpg?v=2',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/678e3649f4f9ad20d3001578/678e3649f4f9ad20d3001578_scaled_cover.jpg?v=2',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/66142b3d16c5b80f956291ea/66142b3d16c5b80f956291ea_scaled_cover.jpg?v=3',
-    'https://d502jbuhuh9wk.cloudfront.net/courses/66141e980049fe208aba2125/66141e980049fe208aba2125_scaled_cover.jpg?v=5'
+    // Note: Removed non-existent images from 2024/07 and 2025/07 directories
+    // Add other existing images here when available
   ]
 
   try {

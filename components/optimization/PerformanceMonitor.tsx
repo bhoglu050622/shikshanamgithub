@@ -1,58 +1,71 @@
 'use client'
 
 import { useEffect } from 'react'
-import { performanceConfig } from '@/lib/performance'
 
 export default function PerformanceMonitor() {
   useEffect(() => {
-    // Only run in production
-    if (process.env.NODE_ENV !== 'production') return
+    // Only run in production and client-side
+    if (process.env.NODE_ENV !== 'production' || typeof window === 'undefined') return
 
-    // Monitor Core Web Vitals
-    const monitorPerformance = () => {
-      // Largest Contentful Paint (LCP)
-      new PerformanceObserver((list) => {
-        const entries = list.getEntries()
-        const lastEntry = entries[entries.length - 1]
-        const lcp = lastEntry.startTime
-        
-        if (lcp > performanceConfig.thresholds.LCP) {
-          console.warn(`LCP is ${lcp}ms, threshold is ${performanceConfig.thresholds.LCP}ms`)
+    try {
+      // Monitor Core Web Vitals with error handling
+      const monitorPerformance = () => {
+        if (typeof PerformanceObserver === 'undefined') return
+
+        // Largest Contentful Paint (LCP)
+        try {
+          new PerformanceObserver((list) => {
+            const entries = list.getEntries()
+            const lastEntry = entries[entries.length - 1]
+            if (lastEntry && typeof lastEntry.startTime === 'number') {
+              const lcp = lastEntry.startTime
+              console.log(`LCP measured: ${lcp}ms`)
+            }
+          }).observe({ entryTypes: ['largest-contentful-paint'] })
+        } catch (error) {
+          console.warn('Failed to monitor LCP:', error)
         }
-      }).observe({ entryTypes: ['largest-contentful-paint'] })
 
-      // First Input Delay (FID)
-      new PerformanceObserver((list) => {
-        const entries = list.getEntries()
-        entries.forEach((entry) => {
-          const performanceEntry = entry as any
-          const fid = performanceEntry.processingStart - performanceEntry.startTime
-          if (fid > performanceConfig.thresholds.FID) {
-            console.warn(`FID is ${fid}ms, threshold is ${performanceConfig.thresholds.FID}ms`)
-          }
-        })
-      }).observe({ entryTypes: ['first-input'] })
-
-      // Cumulative Layout Shift (CLS)
-      let clsValue = 0
-      new PerformanceObserver((list) => {
-        const entries = list.getEntries()
-        entries.forEach((entry) => {
-          const layoutShiftEntry = entry as any
-          if (!layoutShiftEntry.hadRecentInput) {
-            clsValue += layoutShiftEntry.value
-          }
-        })
-        
-        if (clsValue > performanceConfig.thresholds.CLS) {
-          console.warn(`CLS is ${clsValue}, threshold is ${performanceConfig.thresholds.CLS}`)
+        // First Input Delay (FID)
+        try {
+          new PerformanceObserver((list) => {
+            const entries = list.getEntries()
+            entries.forEach((entry) => {
+              if (entry && typeof (entry as any).processingStart === 'number' && typeof (entry as any).startTime === 'number') {
+                const performanceEntry = entry as any
+                const fid = performanceEntry.processingStart - performanceEntry.startTime
+                console.log(`FID measured: ${fid}ms`)
+              }
+            })
+          }).observe({ entryTypes: ['first-input'] })
+        } catch (error) {
+          console.warn('Failed to monitor FID:', error)
         }
-      }).observe({ entryTypes: ['layout-shift'] })
-    }
 
-    // Start monitoring when page loads
-    if (typeof window !== 'undefined') {
+        // Cumulative Layout Shift (CLS)
+        try {
+          let clsValue = 0
+          new PerformanceObserver((list) => {
+            const entries = list.getEntries()
+            entries.forEach((entry) => {
+              if (entry && typeof (entry as any).value === 'number') {
+                const layoutShiftEntry = entry as any
+                if (!layoutShiftEntry.hadRecentInput) {
+                  clsValue += layoutShiftEntry.value
+                }
+              }
+            })
+            console.log(`CLS measured: ${clsValue}`)
+          }).observe({ entryTypes: ['layout-shift'] })
+        } catch (error) {
+          console.warn('Failed to monitor CLS:', error)
+        }
+      }
+
+      // Start monitoring when page loads
       monitorPerformance()
+    } catch (error) {
+      console.warn('Performance monitoring failed:', error)
     }
   }, [])
 

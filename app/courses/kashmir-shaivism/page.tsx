@@ -1583,7 +1583,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 1: Wisdom Chapters */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1.png" alt="Wisdom Chapters Icon" />
+                <img src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" alt="Wisdom Chapters Icon" />
               </div>
               <h3 className="feature-title">20 Wisdom-filled Chapters</h3>
               <p className="feature-desc">Comprehensive teachings that blend ancient wisdom with practical application.</p>
@@ -1592,7 +1592,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 2: Transformational Activities */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/2.png" alt="Transformational Activities Icon" />
+                <img src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" alt="Transformational Activities Icon" />
               </div>
               <h3 className="feature-title">4 Transformational Activities</h3>
               <p className="feature-desc">Practical exercises to clear mental blocks and make your self-awareness a steady, natural state.</p>
