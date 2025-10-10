@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, ExternalLink, Shield, Users, BookOpen, Sparkles, X, CheckCircle, AlertCircle } from 'lucide-react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -57,6 +56,13 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
     setError('')
     
     try {
+      // Check if Google OAuth is configured
+      if (!AUTH_CONFIG.GOOGLE.CLIENT_ID) {
+        setError('Google authentication is not configured. Please contact support.')
+        setIsLoading(false)
+        return
+      }
+      
       redirectToGoogleOAuth()
     } catch (err) {
       console.error('Google OAuth Error:', err)
@@ -75,13 +81,19 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
     setError('')
 
     try {
+      // Check if AUTH_URL is configured
+      if (!AUTH_CONFIG.GRAPHY.AUTH_URL) {
+        setError('Authentication service is not configured. Please contact support.')
+        setIsLoading(false)
+        return
+      }
+      
       // Redirect to Graphy email authentication
       window.location.href = AUTH_CONFIG.GRAPHY.AUTH_URL
       
     } catch (err) {
       console.error('Email Login Error:', err)
       setError('Failed to initiate email login. Please try again.')
-    } finally {
       setIsLoading(false)
     }
   }
@@ -96,12 +108,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -384,7 +391,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
             </motion.div>
           </div>
           </motion.div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   )
