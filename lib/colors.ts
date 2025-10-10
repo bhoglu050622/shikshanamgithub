@@ -626,7 +626,7 @@ export const generateColorPalette = (theme: 'light' | 'dark') => {
 // EXPORTS
 // ============================================================================
 
-export default {
+const colorSystem = {
   // Professional color palettes by school/section
   sanskritColors,
   darshanaColors,
@@ -647,3 +647,5 @@ export default {
   checkContrast,
   generateColorPalette,
 }
+
+export default colorSystem

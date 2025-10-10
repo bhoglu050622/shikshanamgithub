@@ -107,10 +107,10 @@ const nextConfig = {
       config.optimization = config.optimization || {};
       config.optimization.moduleIds = 'named';
       config.optimization.chunkIds = 'named';
-      
+
       // Enable parallel processing for faster builds
       config.parallelism = Math.max(1, require('os').cpus().length - 1);
-      
+
       // Optimize resolve for faster module resolution
       config.resolve.symlinks = false;
       config.resolve.cacheWithContext = false;
@@ -120,12 +120,12 @@ const nextConfig = {
       config.optimization.moduleIds = 'deterministic';
       config.optimization.chunkIds = 'deterministic';
     }
-    
+
     // Optimize resolve configuration
     config.resolve.alias = {
       ...config.resolve.alias,
     };
-    
+
     // Optimize code splitting for production
     if (!dev && config.optimization) {
       config.optimization.splitChunks = {
@@ -160,28 +160,47 @@ const nextConfig = {
         },
       };
     }
-    
-    
-    // Handle Chrome extension messaging issues
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-      };
+
+    // Handle Chrome extension messaging issues and SSR compatibility
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      net: false,
+      tls: false,
+    };
+
+    // Add polyfills for SSR compatibility
+    if (isServer) {
+      config.externals = config.externals || [];
+      config.externals.push({
+        'utf-8-validate': 'commonjs utf-8-validate',
+        'supports-color': 'commonjs supports-color',
+        'bufferutil': 'commonjs bufferutil',
+        // Polyfill for browser globals that might be accessed during SSR
+        'global': 'commonjs global',
+      });
     }
-    
-    // Production optimizations disabled to reduce memory usage
-    
-    // Ignore Chrome extension warnings
+
+    // Ensure browser APIs are properly handled
+    config.node = {
+      ...config.node,
+      global: true,
+      __filename: true,
+      __dirname: true,
+    };
+
+    // Ignore Chrome extension warnings and other build-time issues
     config.ignoreWarnings = [
       /Failed to parse source map/,
       /chrome-extension:/,
       /tx_attempts_exceeded/,
       /tx_ack_timeout/,
+      /self is not defined/,
+      /window is not defined/,
+      /document is not defined/,
+      /navigator is not defined/,
     ];
-    
+
     return config;
   },
   // make sure we're not silently falling back to Turbopack

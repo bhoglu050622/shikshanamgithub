@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/lib/auth/AuthContext'
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { AlertCircle, RefreshCw } from 'lucide-react'
 import { 
   PersonalityInsights,
@@ -23,15 +23,7 @@ export default function MyJourneyPage() {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  useEffect(() => {
-    if (user?.email) {
-      fetchDashboardData()
-    } else {
-      setIsLoading(false)
-    }
-  }, [user?.email])
-
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     if (!user?.email) return
 
     try {
@@ -83,7 +75,15 @@ export default function MyJourneyPage() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [user?.email, user?.name])
+
+  useEffect(() => {
+    if (user?.email) {
+      fetchDashboardData()
+    } else {
+      setIsLoading(false)
+    }
+  }, [user?.email, fetchDashboardData])
 
   const handleRefresh = () => {
     // Clear localStorage to reset data
