@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from '@/components/motion/SimpleMotionWrapper'
 import { useAuth } from '@/lib/auth/AuthContext'
 import { getAllQuizResults } from '@/lib/quiz-tracking'
 import { useRouter } from 'next/navigation'
@@ -11,9 +11,6 @@ import {
   ArrowRight,
   CheckCircle
 } from 'lucide-react'
-import DecorativeBorder from '@/components/ornaments/DecorativeBorder'
-import SacredGeometry from '@/components/ornaments/SacredGeometry'
-import DecorativeDivider from '@/components/ornaments/DecorativeDivider'
 
 interface MyJourneySimpleHeroProps {
   isLoading?: boolean
@@ -40,8 +37,7 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
 
   if (isLoading) {
     return (
-      <div className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 rounded-xl p-8 mb-8 relative overflow-hidden">
-        <SacredGeometry pattern="mandala" size="large" opacity={0.05} color="gold" />
+      <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-8 mb-8">
         <div className="animate-pulse">
           <div className="h-8 bg-muted rounded w-1/3 mb-4"></div>
           <div className="h-4 bg-muted rounded w-1/2 mb-6"></div>
@@ -56,17 +52,9 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative mb-8"
+      className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-8 mb-8 border border-blue-200 dark:border-blue-800"
     >
-      <SacredGeometry pattern="mandala" size="large" opacity={0.08} color="gold" />
-      <DecorativeBorder 
-        variant="lotus" 
-        color="gold" 
-        thickness="medium" 
-        corners={true}
-        className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-      >
-        <div className="text-center">
+      <div className="text-center">
         {/* Welcome Message */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -88,17 +76,10 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="relative"
+            className="bg-white dark:bg-slate-800 rounded-lg p-6 mb-6 border border-blue-200 dark:border-blue-700"
           >
-            <DecorativeBorder 
-              variant="mandala" 
-              color="orange" 
-              thickness="thin" 
-              corners={true}
-              className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-xl mb-6"
-            >
             <div className="flex items-center justify-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 via-pink-500 to-purple-500 rounded-full flex items-center justify-center mr-3 border-2 border-yellow-400/50 shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-3">
                 <Brain className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-xl font-bold text-foreground">Your Learning Profile</h2>
@@ -109,11 +90,11 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
               {quizResults.gunaProfiler && (
                 <div className="text-center">
                   <h3 className="font-semibold text-foreground mb-2">Personality Type</h3>
-                  <div className="bg-gradient-to-r from-orange-200 to-amber-200 dark:from-orange-900/40 dark:to-amber-900/40 rounded-lg p-4 border border-orange-300/50 dark:border-orange-700/50 shadow-lg">
-                    <p className="text-lg font-bold text-orange-700 dark:text-orange-300 mb-1">
+                  <div className="bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-lg p-4">
+                    <p className="text-lg font-bold text-orange-600 dark:text-orange-400 mb-1">
                       {quizResults.gunaProfiler.result.archetype}
                     </p>
-                    <p className="text-sm text-orange-600 dark:text-orange-400">
+                    <p className="text-sm text-muted-foreground">
                       {quizResults.gunaProfiler.result.dominantGuna.charAt(0).toUpperCase() + 
                        quizResults.gunaProfiler.result.dominantGuna.slice(1)}-dominant
                     </p>
@@ -125,11 +106,11 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
               {quizResults.shivaAlignment && (
                 <div className="text-center">
                   <h3 className="font-semibold text-foreground mb-2">Spiritual Alignment</h3>
-                  <div className="bg-gradient-to-r from-yellow-200 to-orange-200 dark:from-yellow-900/40 dark:to-orange-900/40 rounded-lg p-4 border border-yellow-300/50 dark:border-yellow-700/50 shadow-lg">
-                    <p className="text-lg font-bold text-yellow-700 dark:text-yellow-300 mb-1">
+                  <div className="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-lg p-4">
+                    <p className="text-lg font-bold text-yellow-600 dark:text-yellow-400 mb-1">
                       {quizResults.shivaAlignment.result.percentage}% Aligned
                     </p>
-                    <p className="text-sm text-yellow-600 dark:text-yellow-400">
+                    <p className="text-sm text-muted-foreground">
                       {quizResults.shivaAlignment.result.archetype}
                     </p>
                   </div>
@@ -142,7 +123,7 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
               {quizResults.gunaProfiler && (
                 <button
                   onClick={() => handleRetakeQuiz('guna-profiler')}
-                  className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-orange-200 to-amber-200 text-orange-800 rounded-lg hover:from-orange-300 hover:to-amber-300 transition-all duration-300 text-sm font-medium border border-orange-300/50 shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center px-4 py-2 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 transition-colors text-sm font-medium"
                 >
                   <Brain className="w-4 h-4 mr-2" />
                   Retake Guna Test
@@ -151,31 +132,23 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
               {quizResults.shivaAlignment && (
                 <button
                   onClick={() => handleRetakeQuiz('shiva-alignment')}
-                  className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-yellow-200 to-orange-200 text-yellow-800 rounded-lg hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 text-sm font-medium border border-yellow-300/50 shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center px-4 py-2 bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors text-sm font-medium"
                 >
                   <Sparkles className="w-4 h-4 mr-2" />
                   Retake Alignment Test
                 </button>
               )}
             </div>
-            </DecorativeBorder>
           </motion.div>
         ) : (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="relative"
+            className="bg-white dark:bg-slate-800 rounded-lg p-6 mb-6 border border-blue-200 dark:border-blue-700"
           >
-            <DecorativeBorder 
-              variant="paisley" 
-              color="pink" 
-              thickness="thin" 
-              corners={true}
-              className="bg-white/20 dark:bg-slate-800/20 backdrop-blur-xl mb-6"
-            >
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 via-pink-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-yellow-400/50 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Brain className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-xl font-bold text-foreground mb-2">
@@ -186,12 +159,11 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
               </p>
               <button
                 onClick={handleTakeQuiz}
-                className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:via-pink-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 border border-yellow-400/30 shadow-lg"
+                className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105"
               >
                 Start Your Assessment
               </button>
             </div>
-            </DecorativeBorder>
           </motion.div>
         )}
 
@@ -201,27 +173,23 @@ export default function MyJourneySimpleHero({ isLoading = false }: MyJourneySimp
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-6"
+            className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground"
           >
-            <DecorativeDivider variant="elaborate" color="gold" thickness="thin" className="mb-4" />
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-orange-500" />
-                <span>Personalized Recommendations</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-pink-500" />
-                <span>Learning Style Analysis</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-purple-500" />
-                <span>Spiritual Path Guidance</span>
-              </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-green-500" />
+              <span>Personalized Recommendations</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-green-500" />
+              <span>Learning Style Analysis</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-green-500" />
+              <span>Spiritual Path Guidance</span>
             </div>
           </motion.div>
         )}
-        </div>
-      </DecorativeBorder>
+      </div>
     </motion.div>
   )
 }

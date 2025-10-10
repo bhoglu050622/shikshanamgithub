@@ -1,8 +1,8 @@
 'use client'
 
 import { useAuth } from '@/lib/auth/AuthContext'
-import { motion } from 'framer-motion'
-import { useState, useEffect, useCallback } from 'react'
+import { motion } from '@/components/motion/SimpleMotionWrapper'
+import { useState, useEffect } from 'react'
 import { AlertCircle, RefreshCw } from 'lucide-react'
 import { 
   PersonalityInsights,
@@ -23,7 +23,15 @@ export default function MyJourneyPage() {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const fetchDashboardData = useCallback(async () => {
+  useEffect(() => {
+    if (user?.email) {
+      fetchDashboardData()
+    } else {
+      setIsLoading(false)
+    }
+  }, [user?.email])
+
+  const fetchDashboardData = async () => {
     if (!user?.email) return
 
     try {
@@ -75,15 +83,7 @@ export default function MyJourneyPage() {
     } finally {
       setIsLoading(false)
     }
-  }, [user?.email, user?.name])
-
-  useEffect(() => {
-    if (user?.email) {
-      fetchDashboardData()
-    } else {
-      setIsLoading(false)
-    }
-  }, [user?.email, fetchDashboardData])
+  }
 
   const handleRefresh = () => {
     // Clear localStorage to reset data
@@ -164,37 +164,8 @@ export default function MyJourneyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 dark:from-orange-900/10 dark:via-pink-900/10 dark:to-purple-900/10 relative overflow-hidden">
-      {/* Sacred Geometry Background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32">
-          <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full text-orange-500">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="5" fill="currentColor"/>
-          </svg>
-        </div>
-        <div className="absolute top-20 right-20 w-24 h-24">
-          <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full text-pink-500">
-            <path d="M50 10L60 40L90 40L70 60L80 90L50 70L20 90L30 60L10 40L40 40Z"/>
-          </svg>
-        </div>
-        <div className="absolute bottom-20 left-20 w-28 h-28">
-          <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full text-purple-500">
-            <path d="M50 2L58 18L74 18L62 30L70 46L50 36L30 46L38 30L26 18L42 18Z"/>
-          </svg>
-        </div>
-        <div className="absolute bottom-10 right-10 w-20 h-20">
-          <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full text-yellow-500">
-            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2"/>
-            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="5" fill="currentColor"/>
-          </svg>
-        </div>
-      </div>
-      <div className="container mx-auto px-4 py-8 relative z-10">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8">
         <MyJourneySimpleHero isLoading={isLoading} />
 
         <motion.section

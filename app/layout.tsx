@@ -3,22 +3,16 @@ import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_D
 import './globals.css'
 
 // Import polyfills first to ensure browser globals are available during SSR
-import '@/lib/polyfills'
+// import '@/lib/polyfills'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
-// import ClientServiceWorker from '@/components/ClientServiceWorker'
 import ErrorBoundary from '@/components/ErrorBoundary'
-// import ClientServiceWorker from '@/components/ClientServiceWorker'
+import HydrationBoundary from '@/components/HydrationBoundary'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/theme'
 import { PopupProvider, PopupManager } from '@/components/popups'
 import { AuthProvider } from '@/lib/auth/AuthContext'
 import ImagePreloader from '@/components/optimization/ImagePreloader'
-// import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
-// import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
-// import { SEOProvider } from '@/lib/seo'
-// import { AnalyticsProvider } from '@/lib/analytics'
-// import '@/lib/console-filter'
 
 // Critical fonts - loaded immediately
 const inter = Inter({ 
@@ -120,64 +114,73 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${nunito.variable} ${dmSerif.variable} ${tiroDevanagari.variable} ${playfairDisplay.variable} ${cinzel.variable}`} suppressHydrationWarning>
+    <html 
+      lang="en" 
+      className={`${inter.variable} ${nunito.variable} ${dmSerif.variable} ${tiroDevanagari.variable} ${playfairDisplay.variable} ${cinzel.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="canonical" href="https://shikshanam.com" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="theme-color" content="#FF8A00" />
+        <meta name="color-scheme" content="light dark" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Clean up extension attributes that might cause hydration mismatches
+              (function() {
+                if (typeof window !== 'undefined') {
+                  const cleanup = () => {
+                    const html = document.documentElement;
+                    if (html) {
+                      const attributesToRemove = [
+                        'katalonextensionid',
+                        'data-extension-id',
+                        'data-browser-extension'
+                      ];
+                      attributesToRemove.forEach(attr => {
+                        if (html.hasAttribute(attr)) {
+                          html.removeAttribute(attr);
+                        }
+                      });
+                    }
+                  };
+                  
+                  // Run cleanup immediately and on DOM mutations
+                  cleanup();
+                  if (window.MutationObserver) {
+                    const observer = new MutationObserver(cleanup);
+                    observer.observe(document.documentElement, {
+                      attributes: true,
+                      attributeFilter: ['katalonextensionid', 'data-extension-id', 'data-browser-extension']
+                    });
+                  }
+                }
+              })();
+            `,
+          }}
+        />
       </head>
-      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
-        {/* Structured Data Scripts */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: '{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Shikshanam","description":"Ancient Indian Knowledge Platform for Sanskrit, Darshanas, and Self-help","url":"https://shikshanam.com","logo":"https://shikshanam.com/logo.png","sameAs":["https://twitter.com/shikshanam","https://facebook.com/shikshanam","https://instagram.com/shikshanam"],"offers":{"@type":"Course","name":"Sanskrit Learning","description":"Learn Sanskrit through structured courses and live classes"}}'
-          }}
-          suppressHydrationWarning
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}'
-          }}
-          suppressHydrationWarning
-        />
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: '(function(){function makeContentVisible(){const hiddenElements=document.querySelectorAll(\'[style*="opacity:0"]\');hiddenElements.forEach(el=>{el.style.opacity=\'1\';el.style.transform=\'none\';el.style.transition=\'none\'});}makeContentVisible();if(document.readyState===\'loading\'){document.addEventListener(\'DOMContentLoaded\',makeContentVisible);}setTimeout(makeContentVisible,100);})();'
-          }}
-          suppressHydrationWarning
-        />
-        
-        {/* Skip Links for Accessibility */}
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <a href="#navigation" className="skip-link">
-          Skip to navigation
-        </a>
-        <a href="#footer" className="skip-link">
-          Skip to footer
-        </a>
-        
-        <ErrorBoundary>
-          {/* <PerformanceMonitor /> */}
-          {/* <ClientServiceWorker /> */}
-          {/* <ImagePreloader /> */}
-          <ThemeProvider>
-            <AuthProvider>
-              <PopupProvider>
-                <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden">
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <HydrationBoundary>
+          <ErrorBoundary>
+            <ThemeProvider>
+              <AuthProvider>
+                <PopupProvider>
+                  <PerformanceMonitor />
+                  <ImagePreloader />
                   <Header />
-                  <main id="main-content" className="flex-1 w-full max-w-full" role="main">
+                  <main className="flex-1">
                     {children}
                   </main>
                   <Footer />
                   <PopupManager />
-                </div>
-              </PopupProvider>
-            </AuthProvider>
-          </ThemeProvider>
-        </ErrorBoundary>
+                </PopupProvider>
+              </AuthProvider>
+            </ThemeProvider>
+          </ErrorBoundary>
+        </HydrationBoundary>
       </body>
     </html>
   )

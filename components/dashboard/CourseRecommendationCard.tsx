@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from '@/components/motion/SimpleMotionWrapper'
 import { useRouter } from 'next/navigation'
 import { 
   BookOpen, 
@@ -18,8 +18,6 @@ import {
   Award,
   CheckCircle
 } from 'lucide-react'
-import DecorativeBorder from '@/components/ornaments/DecorativeBorder'
-import SacredGeometry from '@/components/ornaments/SacredGeometry'
 
 interface CourseRecommendationCardProps {
   course: {
@@ -86,21 +84,13 @@ export default function CourseRecommendationCard({ course, index }: CourseRecomm
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="relative"
+      className="group bg-card border border-border rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full overflow-hidden hover:scale-[1.02] hover:border-primary/20"
     >
-      <SacredGeometry pattern="lotus" size="small" opacity={0.03} color="gold" />
-      <DecorativeBorder 
-        variant="lotus" 
-        color="gold" 
-        thickness="thin" 
-        corners={true}
-        className="group bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full overflow-hidden hover:scale-[1.02] hover:border-primary/20"
-      >
       {/* Header with Category Icon and Match Score */}
       <div className="relative p-6 pb-4">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 via-pink-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg border-2 border-yellow-400/50">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-2xl">{getCategoryIcon(course.category)}</span>
             </div>
             <div>
@@ -280,7 +270,6 @@ export default function CourseRecommendationCard({ course, index }: CourseRecomm
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
-      </DecorativeBorder>
     </motion.div>
   )
 }

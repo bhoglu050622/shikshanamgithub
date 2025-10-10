@@ -4,22 +4,26 @@ import { handleCorsOptions, addCorsHeaders } from '@/lib/cors'
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const ssoToken = searchParams.get('ssoToken')
+  const returnUrl = searchParams.get('returnurl')
   const error = searchParams.get('error')
 
   if (error) {
-    // Redirect to homepage with error
-    const response = NextResponse.redirect(new URL(`/?error=${encodeURIComponent(error)}`, request.url))
+    // Redirect to return URL or homepage with error
+    const redirectUrl = returnUrl ? `/${returnUrl}?error=${encodeURIComponent(error)}` : `/?error=${encodeURIComponent(error)}`
+    const response = NextResponse.redirect(new URL(redirectUrl, request.url))
     return addCorsHeaders(response)
   }
 
   if (ssoToken) {
-    // Redirect to homepage with SSO token for client-side processing
-    const response = NextResponse.redirect(new URL(`/?ssoToken=${ssoToken}`, request.url))
+    // Redirect to return URL or homepage with SSO token for client-side processing
+    const redirectUrl = returnUrl ? `/${returnUrl}?ssoToken=${ssoToken}` : `/?ssoToken=${ssoToken}`
+    const response = NextResponse.redirect(new URL(redirectUrl, request.url))
     return addCorsHeaders(response)
   }
 
-  // No token or error, redirect to homepage
-  const response = NextResponse.redirect(new URL('/', request.url))
+  // No token or error, redirect to return URL or homepage
+  const redirectUrl = returnUrl ? `/${returnUrl}` : '/'
+  const response = NextResponse.redirect(new URL(redirectUrl, request.url))
   return addCorsHeaders(response)
 }
 

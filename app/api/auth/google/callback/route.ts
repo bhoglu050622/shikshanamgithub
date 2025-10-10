@@ -5,6 +5,7 @@ import { handleCorsOptions, addCorsHeaders } from '@/lib/cors'
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const code = searchParams.get('code')
+  const state = searchParams.get('state')
   const error = searchParams.get('error')
 
   if (error) {
@@ -22,12 +23,12 @@ export async function GET(request: NextRequest) {
   try {
     console.log('Processing Google OAuth callback with code:', code.substring(0, 10) + '...')
     
-    // Handle Google OAuth callback
-    const { redirectUrl } = await handleGoogleOAuthCallback(code)
+    // Handle Google OAuth callback with return URL from state
+    const { redirectUrl } = await handleGoogleOAuthCallback(code, state || undefined)
     
     console.log('Redirecting to:', redirectUrl)
     
-    // Redirect to homepage with user data
+    // Redirect to return URL with user data
     const response = NextResponse.redirect(redirectUrl)
     return addCorsHeaders(response)
   } catch (error) {

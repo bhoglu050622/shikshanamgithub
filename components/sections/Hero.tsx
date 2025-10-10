@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from '@/components/motion/SimpleMotionWrapper'
 import { BookOpen, Sparkles, GraduationCap, Users, ArrowRight } from '@/lib/icons'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'

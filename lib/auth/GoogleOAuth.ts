@@ -18,7 +18,7 @@ export interface GoogleUser {
 /**
  * Generate Google OAuth URL
  */
-export function generateGoogleOAuthURL(): string {
+export function generateGoogleOAuthURL(returnUrl?: string): string {
   const config = AUTH_CONFIG.GOOGLE
   
   // Use server-side redirect URI for consistency
@@ -34,6 +34,11 @@ export function generateGoogleOAuthURL(): string {
     access_type: 'offline',
     prompt: 'consent'
   })
+
+  // Add return URL as state parameter if provided
+  if (returnUrl) {
+    params.set('state', encodeURIComponent(returnUrl))
+  }
 
   return `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`
 }
@@ -133,9 +138,9 @@ function generateLearnerId(email: string): string {
 }
 
 /**
- * Handle Google OAuth callback and redirect to homepage
+ * Handle Google OAuth callback and redirect to return URL
  */
-export async function handleGoogleOAuthCallback(code: string): Promise<{ redirectUrl: string; user: GoogleUser }> {
+export async function handleGoogleOAuthCallback(code: string, state?: string): Promise<{ redirectUrl: string; user: GoogleUser }> {
   try {
     // Exchange code for tokens
     const { access_token, id_token } = await exchangeCodeForToken(code)
@@ -152,9 +157,21 @@ export async function handleGoogleOAuthCallback(code: string): Promise<{ redirec
       learnerId
     }
     
-    // Create redirect URL to homepage with user data
+    // Use return URL from state parameter, or default to homepage
+    let returnUrl = '/'
+    if (state) {
+      try {
+        returnUrl = decodeURIComponent(state)
+      } catch (error) {
+        console.warn('Invalid return URL in state parameter:', error)
+        returnUrl = '/'
+      }
+    }
+    
+    // Create redirect URL with user data
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    const redirectUrl = `${baseUrl}?login=success&user=${encodeURIComponent(JSON.stringify(userWithLearnerId))}`
+    const fullReturnUrl = returnUrl.startsWith('http') ? returnUrl : `${baseUrl}${returnUrl}`
+    const redirectUrl = `${fullReturnUrl}?login=success&user=${encodeURIComponent(JSON.stringify(userWithLearnerId))}`
     
     return { redirectUrl, user: userWithLearnerId }
   } catch (error) {
@@ -166,7 +183,7 @@ export async function handleGoogleOAuthCallback(code: string): Promise<{ redirec
 /**
  * Redirect to Google OAuth
  */
-export function redirectToGoogleOAuth(): void {
-  const authUrl = generateGoogleOAuthURL()
+export function redirectToGoogleOAuth(returnUrl?: string): void {
+  const authUrl = generateGoogleOAuthURL(returnUrl)
   window.location.href = authUrl
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from '@/components/motion/SimpleMotionWrapper'
 import { getAllQuizResults } from '@/lib/quiz-tracking'
 import { useRouter } from 'next/navigation'
 import { 
@@ -16,9 +16,6 @@ import {
   Clock,
   Target
 } from 'lucide-react'
-import DecorativeBorder from '@/components/ornaments/DecorativeBorder'
-import SacredGeometry from '@/components/ornaments/SacredGeometry'
-import DecorativeDivider from '@/components/ornaments/DecorativeDivider'
 
 interface PersonalityInsightsProps {
   isLoading?: boolean
@@ -49,55 +46,37 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
 
   if (isLoading) {
     return (
-      <div className="relative">
-        <SacredGeometry pattern="yantra" size="large" opacity={0.05} color="gold" />
-        <DecorativeBorder 
-          variant="mandala" 
-          color="gold" 
-          thickness="medium" 
-          corners={true}
-          className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-        >
-          <div className="animate-pulse">
-            <div className="h-8 bg-muted rounded w-1/3 mb-4"></div>
-            <div className="h-4 bg-muted rounded w-1/2 mb-6"></div>
-            <div className="space-y-4">
-              <div className="h-32 bg-muted rounded"></div>
-              <div className="h-32 bg-muted rounded"></div>
-            </div>
+      <div className="bg-card border border-border rounded-xl shadow-lg p-8">
+        <div className="animate-pulse">
+          <div className="h-8 bg-muted rounded w-1/3 mb-4"></div>
+          <div className="h-4 bg-muted rounded w-1/2 mb-6"></div>
+          <div className="space-y-4">
+            <div className="h-32 bg-muted rounded"></div>
+            <div className="h-32 bg-muted rounded"></div>
           </div>
-        </DecorativeBorder>
+        </div>
       </div>
     )
   }
 
   if (!hasResults) {
     return (
-      <div className="relative">
-        <SacredGeometry pattern="lotus" size="large" opacity={0.08} color="pink" />
-        <DecorativeBorder 
-          variant="paisley" 
-          color="pink" 
-          thickness="medium" 
-          corners={true}
-          className="bg-gradient-to-br from-pink-100 via-purple-100 to-orange-100 dark:from-pink-900/20 dark:via-purple-900/20 dark:to-orange-900/20 backdrop-blur-xl"
-        >
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-yellow-400/50 shadow-lg">
-              <Brain className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-foreground mb-2">Discover Your Personality</h3>
-            <p className="text-muted-foreground mb-6">
-              Take our personality assessments to unlock personalized insights and course recommendations.
-            </p>
-            <button
-              onClick={handleTakeQuiz}
-              className="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-pink-600 hover:via-purple-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 border border-yellow-400/30 shadow-lg"
-            >
-              Start Your Journey
-            </button>
+      <div className="bg-card border border-border rounded-xl shadow-lg p-8">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Brain className="w-8 h-8 text-white" />
           </div>
-        </DecorativeBorder>
+          <h3 className="text-2xl font-bold text-foreground mb-2">Discover Your Personality</h3>
+          <p className="text-muted-foreground mb-6">
+            Take our personality assessments to unlock personalized insights and course recommendations.
+          </p>
+          <button
+            onClick={handleTakeQuiz}
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
+          >
+            Start Your Journey
+          </button>
+        </div>
       </div>
     )
   }
@@ -105,15 +84,7 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="relative">
-        <SacredGeometry pattern="mandala" size="large" opacity={0.06} color="gold" />
-        <DecorativeBorder 
-          variant="lotus" 
-          color="gold" 
-          thickness="medium" 
-          corners={true}
-          className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-        >
+      <div className="bg-card border border-border rounded-xl shadow-lg p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Your Personality Profile</h2>
@@ -123,7 +94,7 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
             {quizResults.gunaProfiler && (
               <button
                 onClick={() => handleRetakeQuiz('guna-profiler')}
-                className="flex items-center px-3 py-2 text-sm bg-gradient-to-r from-orange-200 to-amber-200 text-orange-800 rounded-lg hover:from-orange-300 hover:to-amber-300 transition-all duration-300 border border-orange-300/50 shadow-lg"
+                className="flex items-center px-3 py-2 text-sm bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 transition-colors"
               >
                 <RefreshCw className="w-4 h-4 mr-1" />
                 Retake Guna
@@ -132,7 +103,7 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
             {quizResults.shivaAlignment && (
               <button
                 onClick={() => handleRetakeQuiz('shiva-alignment')}
-                className="flex items-center px-3 py-2 text-sm bg-gradient-to-r from-yellow-200 to-orange-200 text-yellow-800 rounded-lg hover:from-yellow-300 hover:to-orange-300 transition-all duration-300 border border-yellow-300/50 shadow-lg"
+                className="flex items-center px-3 py-2 text-sm bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors"
               >
                 <RefreshCw className="w-4 h-4 mr-1" />
                 Retake Alignment
@@ -140,7 +111,6 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
             )}
           </div>
         </div>
-        </DecorativeBorder>
       </div>
 
       {/* Guna Profiler Results */}
@@ -148,18 +118,10 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative"
+          className="bg-card border border-border rounded-xl shadow-lg p-6"
         >
-          <SacredGeometry pattern="yantra" size="medium" opacity={0.04} color="orange" />
-          <DecorativeBorder 
-            variant="mandala" 
-            color="orange" 
-            thickness="thin" 
-            corners={true}
-            className="bg-gradient-to-br from-orange-100 via-amber-100 to-yellow-100 dark:from-orange-900/20 dark:via-amber-900/20 dark:to-yellow-900/20 backdrop-blur-xl"
-          >
           <div className="flex items-center mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center mr-3 border-2 border-yellow-400/50 shadow-lg">
+            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center mr-3">
               <UserCheck className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -170,12 +132,12 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Archetype */}
-            <div className="bg-gradient-to-br from-orange-200 to-amber-200 dark:from-orange-900/40 dark:to-amber-900/40 rounded-lg p-4 border border-orange-300/50 dark:border-orange-700/50 shadow-lg">
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4">
               <h4 className="font-semibold text-foreground mb-2">Your Archetype</h4>
-              <p className="text-2xl font-bold text-orange-700 dark:text-orange-300 mb-1">
+              <p className="text-2xl font-bold text-orange-600 mb-1">
                 {quizResults.gunaProfiler.result.archetype}
               </p>
-              <p className="text-sm text-orange-600 dark:text-orange-400">
+              <p className="text-sm text-muted-foreground">
                 {quizResults.gunaProfiler.result.description}
               </p>
             </div>
@@ -207,7 +169,6 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
               </div>
             </div>
           </div>
-          </DecorativeBorder>
         </motion.div>
       )}
 
@@ -217,16 +178,8 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="relative"
+          className="bg-card border border-border rounded-xl shadow-lg p-6"
         >
-          <SacredGeometry pattern="lotus" size="medium" opacity={0.04} color="pink" />
-          <DecorativeBorder 
-            variant="paisley" 
-            color="pink" 
-            thickness="thin" 
-            corners={true}
-            className="bg-gradient-to-br from-pink-100 via-purple-100 to-orange-100 dark:from-pink-900/20 dark:via-purple-900/20 dark:to-orange-900/20 backdrop-blur-xl"
-          >
           <div className="flex items-center mb-4">
             <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mr-3">
               <Sparkles className="w-5 h-5 text-white" />
@@ -289,7 +242,6 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
               </div>
             </div>
           </div>
-          </DecorativeBorder>
         </motion.div>
       )}
 
@@ -299,16 +251,8 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="relative"
+          className="bg-card border border-border rounded-xl shadow-lg p-6"
         >
-          <SacredGeometry pattern="om" size="medium" opacity={0.04} color="purple" />
-          <DecorativeBorder 
-            variant="lotus" 
-            color="purple" 
-            thickness="thin" 
-            corners={true}
-            className="bg-gradient-to-br from-purple-100 via-pink-100 to-orange-100 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-orange-900/20 backdrop-blur-xl"
-          >
           <div className="flex items-center mb-4">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mr-3">
               <Brain className="w-5 h-5 text-white" />
@@ -380,7 +324,6 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
               </div>
             </div>
           </div>
-          </DecorativeBorder>
         </motion.div>
       )}
 
@@ -390,16 +333,8 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="relative"
+          className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl shadow-lg p-6"
         >
-          <SacredGeometry pattern="mandala" size="large" opacity={0.06} color="purple" />
-          <DecorativeBorder 
-            variant="lotus" 
-            color="purple" 
-            thickness="medium" 
-            corners={true}
-            className="bg-gradient-to-br from-purple-100 via-pink-100 to-orange-100 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-orange-900/20 backdrop-blur-xl"
-          >
           <div className="flex items-center mb-4">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-3">
               <Brain className="w-5 h-5 text-white" />
@@ -440,7 +375,6 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
               </p>
             </div>
           </div>
-          </DecorativeBorder>
         </motion.div>
       )}
 
@@ -450,16 +384,8 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="relative"
+          className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-lg p-6 border border-blue-200"
         >
-          <SacredGeometry pattern="yantra" size="medium" opacity={0.05} color="gold" />
-          <DecorativeBorder 
-            variant="paisley" 
-            color="gold" 
-            thickness="thin" 
-            corners={true}
-            className="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 backdrop-blur-xl"
-          >
           <div className="text-center">
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
               <ArrowRight className="w-6 h-6 text-white" />
@@ -485,7 +411,6 @@ export default function PersonalityInsights({ isLoading = false }: PersonalityIn
               }
             </button>
           </div>
-          </DecorativeBorder>
         </motion.div>
       )}
     </div>

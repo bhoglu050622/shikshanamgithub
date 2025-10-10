@@ -63,7 +63,9 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
         return
       }
       
-      redirectToGoogleOAuth()
+      // Get current page URL as return URL
+      const returnUrl = window.location.pathname + window.location.search
+      redirectToGoogleOAuth(returnUrl)
     } catch (err) {
       console.error('Google OAuth Error:', err)
       setError('Failed to initiate Google login. Please try again.')
@@ -88,8 +90,12 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
         return
       }
       
-      // Redirect to Graphy email authentication
-      window.location.href = AUTH_CONFIG.GRAPHY.AUTH_URL
+      // Get current page URL as return URL
+      const returnUrl = window.location.pathname + window.location.search
+      const encodedReturnUrl = encodeURIComponent(returnUrl)
+      
+      // Redirect to Graphy email authentication with return URL
+      window.location.href = `${AUTH_CONFIG.GRAPHY.AUTH_URL}?returnurl=${encodedReturnUrl}`
       
     } catch (err) {
       console.error('Email Login Error:', err)

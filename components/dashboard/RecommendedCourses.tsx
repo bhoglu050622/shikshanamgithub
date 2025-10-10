@@ -1,16 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from '@/components/motion/SimpleMotionWrapper'
 import { useRouter } from 'next/navigation'
 import { getAllQuizResults } from '@/lib/quiz-tracking'
 import { getIntelligentRecommendations, EnhancedCourse, EnhancedPackage } from '@/lib/intelligent-course-matching'
 import CourseRecommendationCard from './CourseRecommendationCard'
-import {
-  BookOpen,
-  Clock,
-  Users,
-  Star,
+import { 
+  BookOpen, 
+  Clock, 
+  Users, 
+  Star, 
   ArrowRight,
   Filter,
   Grid,
@@ -24,9 +24,6 @@ import {
   Lightbulb,
   ChevronDown
 } from 'lucide-react'
-import DecorativeBorder from '@/components/ornaments/DecorativeBorder'
-import SacredGeometry from '@/components/ornaments/SacredGeometry'
-import DecorativeDivider from '@/components/ornaments/DecorativeDivider'
 
 interface RecommendedCoursesProps {
   isLoading?: boolean
@@ -89,56 +86,38 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
 
   if (isLoading) {
     return (
-      <div className="relative">
-        <SacredGeometry pattern="mandala" size="large" opacity={0.05} color="gold" />
-        <DecorativeBorder 
-          variant="lotus" 
-          color="gold" 
-          thickness="medium" 
-          corners={true}
-          className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-        >
-          <div className="animate-pulse">
-            <div className="h-8 bg-muted rounded w-1/3 mb-4"></div>
-            <div className="h-4 bg-muted rounded w-1/2 mb-6"></div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map(i => (
-                <div key={i} className="h-64 bg-muted rounded-xl"></div>
-              ))}
-            </div>
+      <div className="bg-card border border-border rounded-xl shadow-lg p-8">
+        <div className="animate-pulse">
+          <div className="h-8 bg-muted rounded w-1/3 mb-4"></div>
+          <div className="h-4 bg-muted rounded w-1/2 mb-6"></div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map(i => (
+              <div key={i} className="h-64 bg-muted rounded-xl"></div>
+            ))}
           </div>
-        </DecorativeBorder>
+        </div>
       </div>
     )
   }
 
   if (!hasResults) {
     return (
-      <div className="relative">
-        <SacredGeometry pattern="lotus" size="large" opacity={0.08} color="pink" />
-        <DecorativeBorder 
-          variant="paisley" 
-          color="pink" 
-          thickness="medium" 
-          corners={true}
-          className="bg-gradient-to-br from-pink-100 via-purple-100 to-orange-100 dark:from-pink-900/20 dark:via-purple-900/20 dark:to-orange-900/20 backdrop-blur-xl"
-        >
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-yellow-400/50 shadow-lg">
-              <BookOpen className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-foreground mb-2">Personalized Recommendations</h3>
-            <p className="text-muted-foreground mb-6">
-              Complete your personality assessments to unlock personalized course recommendations.
-            </p>
-            <button
-              onClick={() => router.push('/personality-test')}
-              className="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-pink-600 hover:via-purple-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 border border-yellow-400/30 shadow-lg"
-            >
-              Take Personality Tests
-            </button>
+      <div className="bg-card border border-border rounded-xl shadow-lg p-8">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <BookOpen className="w-8 h-8 text-white" />
           </div>
-        </DecorativeBorder>
+          <h3 className="text-2xl font-bold text-foreground mb-2">Personalized Recommendations</h3>
+          <p className="text-muted-foreground mb-6">
+            Complete your personality assessments to unlock personalized course recommendations.
+          </p>
+          <button
+            onClick={() => router.push('/personality-test')}
+            className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105"
+          >
+            Take Personality Tests
+          </button>
+        </div>
       </div>
     )
   }
@@ -146,15 +125,7 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="relative">
-        <SacredGeometry pattern="mandala" size="large" opacity={0.06} color="gold" />
-        <DecorativeBorder 
-          variant="lotus" 
-          color="gold" 
-          thickness="medium" 
-          corners={true}
-          className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-        >
+      <div className="bg-card border border-border rounded-xl shadow-lg p-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Recommended Courses</h2>
@@ -165,15 +136,15 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
           <div className="flex items-center space-x-4 mt-4 sm:mt-0">
             <div className="flex items-center space-x-2">
               <Filter className="w-4 h-4 text-muted-foreground" />
-                    <select
-                      value={filter}
-                      onChange={(e) => setFilter(e.target.value as any)}
-                      className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
+              <select
+                value={filter}
+                onChange={(e) => setFilter(e.target.value as any)}
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
                       <option value="all">All Recommendations</option>
                       <option value="high">Highly Recommended</option>
                       <option value="medium">Recommended</option>
-                    </select>
+              </select>
             </div>
             
             <div className="flex items-center space-x-1 border border-gray-300 rounded-lg p-1">
@@ -192,7 +163,6 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
             </div>
           </div>
         </div>
-        </DecorativeBorder>
       </div>
 
       {/* Packages Section */}
@@ -200,16 +170,8 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative"
+          className="bg-card border border-border rounded-xl shadow-lg p-6"
         >
-          <SacredGeometry pattern="yantra" size="medium" opacity={0.04} color="purple" />
-          <DecorativeBorder 
-            variant="mandala" 
-            color="purple" 
-            thickness="thin" 
-            corners={true}
-            className="bg-gradient-to-br from-purple-100 via-pink-100 to-orange-100 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-orange-900/20 backdrop-blur-xl"
-          >
           <h3 className="text-xl font-bold text-foreground mb-4 flex items-center">
             <Package className="w-5 h-5 text-purple-500 mr-2" />
             Recommended Packages
@@ -217,14 +179,14 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recommendations.packages.map((pkg, index) => (
-                      <motion.div
-                        key={pkg.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
+              <motion.div
+                key={pkg.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
                         className="group bg-card border border-border rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden hover:scale-[1.02] hover:border-primary/20 cursor-pointer package-card"
-                        onClick={() => handlePackageClick(pkg)}
-                      >
+                onClick={() => handlePackageClick(pkg)}
+              >
                         {/* Header */}
                         <div className="relative p-6 pb-4">
                           <div className="flex items-start justify-between mb-4">
@@ -409,11 +371,10 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
                             View Package Details
                             <ArrowRight className="w-4 h-4" />
                           </button>
-                        </div>
+                </div>
               </motion.div>
             ))}
           </div>
-          </DecorativeBorder>
         </motion.div>
       )}
 
@@ -422,16 +383,8 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="relative"
+          className="bg-card border border-border rounded-xl shadow-lg p-6"
       >
-        <SacredGeometry pattern="lotus" size="medium" opacity={0.04} color="orange" />
-        <DecorativeBorder 
-          variant="paisley" 
-          color="orange" 
-          thickness="thin" 
-          corners={true}
-          className="bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 dark:from-orange-900/20 dark:via-pink-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-        >
         <h3 className="text-xl font-bold text-foreground mb-4 flex items-center">
           <BookOpen className="w-5 h-5 text-blue-500 mr-2" />
           Individual Courses
@@ -453,7 +406,6 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
             ))}
           </div>
         )}
-        </DecorativeBorder>
       </motion.div>
 
       {/* View All Courses CTA */}
@@ -461,16 +413,8 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="relative"
+        className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg p-6 border border-blue-200"
       >
-        <SacredGeometry pattern="om" size="small" opacity={0.05} color="gold" />
-        <DecorativeBorder 
-          variant="lotus" 
-          color="gold" 
-          thickness="thin" 
-          corners={true}
-          className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 backdrop-blur-xl"
-        >
         <div className="text-center">
           <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
             <ExternalLink className="w-6 h-6 text-white" />
@@ -488,7 +432,6 @@ export default function RecommendedCourses({ isLoading = false }: RecommendedCou
             Browse All Courses
           </button>
         </div>
-        </DecorativeBorder>
       </motion.div>
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from '@/components/motion/SimpleMotionWrapper'
 import { Menu, X, LogIn, Search, ChevronDown, BookOpen } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -50,7 +50,7 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3 flex-shrink-0"
             aria-label="Shikshanam Home"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.preventDefault()
               try {
                 router.push(ROUTES.HOME)
@@ -78,9 +78,9 @@ export default function Header() {
             {topLevelNavItems.map((item) => (
               <div key={item.name} className="relative">
                 <motion.button
-                  onClick={(e) => {
-                    e.preventDefault()
+                  onClick={(e: React.MouseEvent) => {
                     if (item.hasDropdown) {
+                      e.preventDefault()
                       const newActiveDropdown = activeDropdown === item.name ? null : item.name
                       setActiveDropdown(newActiveDropdown)
                       setActiveGroupId(newActiveDropdown && item.groupId ? item.groupId : null)
@@ -92,7 +92,6 @@ export default function Header() {
                       setActiveGroupId(null)
                       // Navigate to the target href for non-dropdown items
                       try {
-                        console.log('Navigating to:', item.href)
                         // Use window.location for more reliable navigation
                         if (item.href.startsWith('http')) {
                           window.location.href = item.href

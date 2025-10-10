@@ -56,7 +56,6 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
   const handleLinkClick = (href: string) => {
     try {
-      console.log('Mobile navigation to:', href)
       // Use window.location for more reliable navigation
       if (href.startsWith('http')) {
         window.location.href = href
@@ -121,7 +120,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                   {/* User Authentication Section - Placeholder for future auth implementation */}
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
                     <motion.button
-                      onClick={() => handleLinkClick('/signin')}
+                      onClick={handleLinkClick}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="flex items-center justify-center space-x-2 p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 font-medium w-full"

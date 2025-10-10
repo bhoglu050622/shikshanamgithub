@@ -87,32 +87,62 @@ export function deleteCookie(name: string, options: Pick<CookieOptions, 'path' |
 
 // Authentication specific cookie functions
 export const AUTH_COOKIE_NAME = 'shikshanam-auth'
-export const AUTH_COOKIE_MAX_AGE = 30 * 24 * 60 * 60 // 30 days in seconds
+export const AUTH_COOKIE_MAX_AGE = 365 * 24 * 60 * 60 // 1 year in seconds (extended for better persistence)
+export const AUTH_STORAGE_KEY = 'shikshanam-auth-storage'
 
 export function setAuthCookie(userData: any) {
-  const cookieValue = JSON.stringify({
+  const authData = {
     isLoggedIn: true,
     user: userData,
-    timestamp: Date.now()
-  })
+    timestamp: Date.now(),
+    expires: Date.now() + (AUTH_COOKIE_MAX_AGE * 1000) // Add explicit expiration
+  }
   
+  const cookieValue = JSON.stringify(authData)
+  
+  // Set cookie
   setCookie(AUTH_COOKIE_NAME, cookieValue, {
     maxAge: AUTH_COOKIE_MAX_AGE,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax'
   })
+  
+  // Also store in localStorage as backup
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem(AUTH_STORAGE_KEY, cookieValue)
+    } catch (error) {
+      console.warn('Failed to store auth data in localStorage:', error)
+    }
+  }
 }
 
 export function getAuthCookie(): { isLoggedIn: boolean; user: any; timestamp: number } | null {
-  const cookieValue = getCookie(AUTH_COOKIE_NAME)
+  // First try to get from cookie
+  let cookieValue = getCookie(AUTH_COOKIE_NAME)
+  
+  // If no cookie, try localStorage as backup
+  if (!cookieValue && typeof window !== 'undefined') {
+    try {
+      cookieValue = localStorage.getItem(AUTH_STORAGE_KEY)
+    } catch (error) {
+      console.warn('Failed to read from localStorage:', error)
+    }
+  }
   
   if (!cookieValue) return null
   
   try {
     const authData = JSON.parse(cookieValue)
     
-    // Check if cookie is expired (older than max age)
+    // Check if auth data is expired
     const now = Date.now()
+    if (authData.expires && now > authData.expires) {
+      deleteAuthCookie()
+      return null
+    }
+    
+    // Check if cookie is expired (older than max age) - fallback check
     const cookieAge = now - authData.timestamp
     const maxAgeMs = AUTH_COOKIE_MAX_AGE * 1000
     
@@ -123,7 +153,7 @@ export function getAuthCookie(): { isLoggedIn: boolean; user: any; timestamp: nu
     
     return authData
   } catch (error) {
-    console.error('Error parsing auth cookie:', error)
+    console.error('Error parsing auth data:', error)
     deleteAuthCookie()
     return null
   }
@@ -131,4 +161,18 @@ export function getAuthCookie(): { isLoggedIn: boolean; user: any; timestamp: nu
 
 export function deleteAuthCookie() {
   deleteCookie(AUTH_COOKIE_NAME)
+  
+  // Also clear localStorage
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.removeItem(AUTH_STORAGE_KEY)
+    } catch (error) {
+      console.warn('Failed to clear auth data from localStorage:', error)
+    }
+  }
+}
+
+export function refreshAuthCookie(userData: any) {
+  // Refresh the authentication cookie with new timestamp
+  setAuthCookie(userData)
 }

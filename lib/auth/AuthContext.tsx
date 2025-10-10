@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
-import { getAuthCookie, setAuthCookie, deleteAuthCookie } from '@/lib/cookies'
+import { getAuthCookie, setAuthCookie, deleteAuthCookie, refreshAuthCookie } from '@/lib/cookies'
 import { handleGraphySSOCallback } from './GraphySSO'
 
 export interface User {
@@ -28,6 +28,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   const checkAuthStatus = useCallback(() => {
+    // First, check for existing authentication in cookies
+    const authData = getAuthCookie()
+    if (authData && authData.isLoggedIn && authData.user) {
+      setUser({
+        ...authData.user,
+        isLoggedIn: true
+      })
+      setIsLoading(false)
+      return
+    }
 
     // Check for Google OAuth callback on mount
     const urlParams = new URLSearchParams(window.location.search)
@@ -76,12 +86,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Only log errors from actual SSO callbacks, not normal page visits
       console.error('SSO Error:', ssoResult.error)
     }
+
+    // Always set loading to false after checking auth status
+    setIsLoading(false)
   }, [])
 
   // Check authentication status on mount
   useEffect(() => {
     checkAuthStatus()
   }, [checkAuthStatus])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (typeof window !== 'undefined') {
+        const refreshInterval = (window as any).authRefreshInterval
+        if (refreshInterval) {
+          clearInterval(refreshInterval)
+          delete (window as any).authRefreshInterval
+        }
+      }
+    }
+  }, [])
 
   const generateLearnerId = (email: string): string => {
     const hash = email.split('').reduce((a, b) => {
@@ -99,11 +125,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     
     setUser(userWithLoginStatus)
     setAuthCookie(userData)
+    
+    // Set up session refresh interval (refresh every 6 hours)
+    if (typeof window !== 'undefined') {
+      const refreshInterval = setInterval(() => {
+        if (userWithLoginStatus.isLoggedIn) {
+          refreshAuthCookie(userData)
+        } else {
+          clearInterval(refreshInterval)
+        }
+      }, 6 * 60 * 60 * 1000) // 6 hours
+      
+      // Store interval ID for cleanup
+      ;(window as any).authRefreshInterval = refreshInterval
+    }
   }
 
   const logout = () => {
     setUser(null)
     deleteAuthCookie()
+    
+    // Clear refresh interval
+    if (typeof window !== 'undefined') {
+      const refreshInterval = (window as any).authRefreshInterval
+      if (refreshInterval) {
+        clearInterval(refreshInterval)
+        delete (window as any).authRefreshInterval
+      }
+    }
     
     // Redirect to homepage after logout
     if (typeof window !== 'undefined') {
