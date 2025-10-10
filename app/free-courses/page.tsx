@@ -36,6 +36,7 @@ interface Masterclass {
   level: 'Beginner' | 'Intermediate' | 'Advanced'
   tags: string[]
   featured?: boolean
+  isNew?: boolean
 }
 
 // Free Masterclasses Data
@@ -48,7 +49,7 @@ const masterclasses: Masterclass[] = [
     duration: '45 min',
     views: '50K+',
     thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png',
-    videoUrl: 'https://www.youtube.com/embed/zZRzMdHWp-w',
+    videoUrl: 'https://www.youtube.com/embed/zZRzMdHWp-w?autoplay=1&modestbranding=1&rel=0',
     category: 'philosophy',
     level: 'Beginner',
     tags: ['Logic', 'Reasoning', 'Philosophy'],
@@ -62,7 +63,7 @@ const masterclasses: Masterclass[] = [
     duration: '35 min',
     views: '75K+',
     thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/07/Vishal-Chaurasia.jpg',
-    videoUrl: 'https://www.youtube.com/embed/placeholder1',
+    videoUrl: 'https://www.youtube.com/embed/iyTo_C_db5w?autoplay=1&modestbranding=1&rel=0',
     category: 'sanskrit',
     level: 'Beginner',
     tags: ['Sanskrit', 'Language', 'Basics'],
@@ -76,7 +77,7 @@ const masterclasses: Masterclass[] = [
     duration: '50 min',
     views: '40K+',
     thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png',
-    videoUrl: 'https://www.youtube.com/embed/placeholder2',
+    videoUrl: 'https://www.youtube.com/embed/An-t_C6-j7A?autoplay=1&modestbranding=1&rel=0',
     category: 'philosophy',
     level: 'Intermediate',
     tags: ['Samkhya', 'Consciousness', 'Mind'],
@@ -90,7 +91,7 @@ const masterclasses: Masterclass[] = [
     duration: '40 min',
     views: '60K+',
     thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/07/Vishal-Chaurasia.jpg',
-    videoUrl: 'https://www.youtube.com/embed/placeholder3',
+    videoUrl: 'https://www.youtube.com/embed/An-t_C6-j7A?autoplay=1&modestbranding=1&rel=0',
     category: 'wellness',
     level: 'Beginner',
     tags: ['Yoga', 'Philosophy', 'Wellness']
@@ -103,7 +104,7 @@ const masterclasses: Masterclass[] = [
     duration: '55 min',
     views: '35K+',
     thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png',
-    videoUrl: 'https://www.youtube.com/embed/placeholder4',
+    videoUrl: 'https://www.youtube.com/embed/zZRzMdHWp-w?autoplay=1&modestbranding=1&rel=0',
     category: 'spirituality',
     level: 'Intermediate',
     tags: ['Vedanta', 'Self', 'Spirituality']
@@ -116,10 +117,38 @@ const masterclasses: Masterclass[] = [
     duration: '45 min',
     views: '45K+',
     thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/07/Vishal-Chaurasia.jpg',
-    videoUrl: 'https://www.youtube.com/embed/placeholder5',
+    videoUrl: 'https://www.youtube.com/embed/iyTo_C_db5w?autoplay=1&modestbranding=1&rel=0',
     category: 'sanskrit',
     level: 'Intermediate',
     tags: ['Sanskrit', 'Reading', 'Texts']
+  },
+  {
+    id: '7',
+    title: 'The Concept of Dharma: Aligning with Cosmic Order',
+    instructor: 'Vishal Chaurasia',
+    description: 'Understand the multifaceted concept of Dharma and its importance in leading a meaningful life.',
+    duration: '48 min',
+    views: '25K+',
+    thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/07/Vishal-Chaurasia.jpg',
+    videoUrl: 'https://www.youtube.com/embed/An-t_C6-j7A?autoplay=1&modestbranding=1&rel=0',
+    category: 'spirituality',
+    level: 'Beginner',
+    tags: ['Dharma', 'Ethics', 'Spirituality'],
+    isNew: true
+  },
+  {
+    id: '8',
+    title: 'Mindfulness in the Digital Age: Ancient Wisdom for Modern Challenges',
+    instructor: 'Vishal Chaurasia',
+    description: 'Learn how to apply ancient mindfulness techniques to navigate the distractions of the modern world.',
+    duration: '30 min',
+    views: '30K+',
+    thumbnail: 'https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png',
+    videoUrl: 'https://www.youtube.com/embed/zZRzMdHWp-w?autoplay=1&modestbranding=1&rel=0',
+    category: 'wellness',
+    level: 'Beginner',
+    tags: ['Mindfulness', 'Wellness', 'Modern Life'],
+    isNew: true
   }
 ]
 
@@ -268,6 +297,12 @@ export default function FreeCoursesPage() {
                       <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
                         {masterclass.duration}
                       </div>
+                      {masterclass.isNew && (
+                        <div className="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                          <Star className="w-3 h-3" />
+                          NEW
+                        </div>
+                      )}
                     </div>
                     
                     <div className="p-6">
@@ -374,6 +409,12 @@ export default function FreeCoursesPage() {
                     <div className="absolute bottom-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-medium">
                       {masterclass.duration}
                     </div>
+                    {masterclass.isNew && (
+                      <div className="absolute top-3 left-3 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                        <Star className="w-3 h-3" />
+                        NEW
+                      </div>
+                    )}
                     <div className="absolute top-3 right-3">
                       <span className={`
                         px-2 py-1 rounded text-xs font-bold
