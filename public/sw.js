@@ -1,4 +1,9 @@
 // Service Worker for Performance Optimization
+// Only run in browser environment
+if (typeof self === 'undefined') {
+  // Skip service worker initialization in server environment
+  module.exports = {};
+} else {
 const CACHE_NAME = 'shikshanam-v1'
 const STATIC_CACHE = 'shikshanam-static-v1'
 const DYNAMIC_CACHE = 'shikshanam-dynamic-v1'
@@ -206,3 +211,4 @@ self.addEventListener('notificationclick', (event) => {
     )
   }
 })
+}

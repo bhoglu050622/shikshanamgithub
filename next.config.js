@@ -111,6 +111,20 @@ const nextConfig = {
       global.self = global;
     }
     
+    // Exclude service worker from server-side build
+    if (isServer) {
+      config.module.rules.push({
+        test: /sw\.js$/,
+        use: 'null-loader',
+      });
+      
+      // Also exclude service worker files from being processed
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'sw.js': false,
+      };
+    }
+    
     
     // Fast reload optimizations
     if (dev) {
