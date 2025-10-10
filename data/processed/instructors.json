@@ -1,0 +1,122 @@
+[
+  {
+    "id": "dr-rajesh-sharma",
+    "name": "Dr. Rajesh Sharma",
+    "title": "Senior Sanskrit Scholar & Vedic Studies Expert",
+    "bio": "Dr. Rajesh Sharma is a distinguished Sanskrit scholar with over 20 years of experience in Vedic studies. He holds a Ph.D. in Sanskrit from Banaras Hindu University and has authored several books on ancient Indian philosophy. His expertise spans across Vedas, Upanishads, and classical Sanskrit literature.",
+    "image": "/assets/instructors/dr-rajesh-sharma.jpg",
+    "qualifications": [
+      "Ph.D. in Sanskrit - Banaras Hindu University",
+      "M.A. in Sanskrit Literature - Delhi University",
+      "Certificate in Vedic Studies - Kashi Vidyapeeth"
+    ],
+    "specializations": [
+      "Vedic Studies",
+      "Sanskrit Grammar",
+      "Upanishads",
+      "Classical Sanskrit Literature",
+      "Vedic Philosophy"
+    ],
+    "social": {
+      "youtube": "https://youtube.com/@drrajeshsharma",
+      "linkedin": "https://linkedin.com/in/drrajeshsharma",
+      "twitter": "https://twitter.com/drrajeshsharma"
+    }
+  },
+  {
+    "id": "prof-sita-devi",
+    "name": "Prof. Sita Devi",
+    "title": "Professor of Indian Philosophy & Yoga Studies",
+    "bio": "Prof. Sita Devi is a renowned expert in Indian philosophy and yoga studies. With a Ph.D. in Philosophy from JNU, she has dedicated her life to teaching and researching ancient Indian wisdom traditions. She specializes in Samkhya, Yoga, and Vedanta philosophies.",
+    "image": "/assets/instructors/prof-sita-devi.jpg",
+    "qualifications": [
+      "Ph.D. in Philosophy - Jawaharlal Nehru University",
+      "M.A. in Indian Philosophy - University of Delhi",
+      "Advanced Yoga Teacher Training - Bihar School of Yoga"
+    ],
+    "specializations": [
+      "Indian Philosophy",
+      "Yoga Studies",
+      "Samkhya Philosophy",
+      "Vedanta",
+      "Meditation Techniques"
+    ],
+    "social": {
+      "youtube": "https://youtube.com/@profsidevi",
+      "linkedin": "https://linkedin.com/in/profsidevi",
+      "twitter": "https://twitter.com/profsidevi"
+    }
+  },
+  {
+    "id": "acharya-krishna-das",
+    "name": "Acharya Krishna Das",
+    "title": "Traditional Sanskrit Scholar & Vedic Teacher",
+    "bio": "Acharya Krishna Das is a traditional Sanskrit scholar who has studied under renowned gurus in Varanasi. He brings the authentic traditional approach to Sanskrit learning, focusing on proper pronunciation, chanting, and understanding of sacred texts.",
+    "image": "/assets/instructors/acharya-krishna-das.jpg",
+    "qualifications": [
+      "Acharya in Sanskrit - Sampurnanand Sanskrit University",
+      "Traditional Vedic Studies - Varanasi",
+      "Sanskrit Grammar Specialist - Panini Institute"
+    ],
+    "specializations": [
+      "Traditional Sanskrit Learning",
+      "Vedic Chanting",
+      "Sanskrit Grammar (Panini)",
+      "Mantra Studies",
+      "Rigveda"
+    ],
+    "social": {
+      "youtube": "https://youtube.com/@acharyakrishnadas",
+      "linkedin": "https://linkedin.com/in/acharyakrishnadas",
+      "twitter": "https://twitter.com/acharyakrishnadas"
+    }
+  },
+  {
+    "id": "dr-priya-nair",
+    "name": "Dr. Priya Nair",
+    "title": "Expert in Sanskrit Literature & Classical Studies",
+    "bio": "Dr. Priya Nair is a distinguished scholar specializing in classical Sanskrit literature. She has extensive experience in teaching Sanskrit poetry, drama, and prose to students of all levels. Her research focuses on classical Sanskrit aesthetics and literary theory.",
+    "image": "/assets/instructors/dr-priya-nair.jpg",
+    "qualifications": [
+      "Ph.D. in Sanskrit Literature - University of Mumbai",
+      "M.A. in Sanskrit - Pune University",
+      "Certificate in Classical Sanskrit - Sanskrit College"
+    ],
+    "specializations": [
+      "Classical Sanskrit Literature",
+      "Sanskrit Poetry",
+      "Sanskrit Drama",
+      "Literary Theory",
+      "Sanskrit Aesthetics"
+    ],
+    "social": {
+      "youtube": "https://youtube.com/@drpriyanair",
+      "linkedin": "https://linkedin.com/in/drpriyanair",
+      "twitter": "https://twitter.com/drpriyanair"
+    }
+  },
+  {
+    "id": "swami-vedanta-saraswati",
+    "name": "Swami Vedanta Saraswati",
+    "title": "Spiritual Teacher & Vedanta Scholar",
+    "bio": "Swami Vedanta Saraswati is a spiritual teacher and Vedanta scholar who has dedicated his life to the study and teaching of Advaita Vedanta. He combines traditional wisdom with modern teaching methods to make ancient knowledge accessible to contemporary students.",
+    "image": "/assets/instructors/swami-vedanta-saraswati.jpg",
+    "qualifications": [
+      "Traditional Vedanta Studies - Ramakrishna Mission",
+      "Sanskrit Studies - Advaita Ashrama",
+      "Spiritual Training - Sivananda Ashram"
+    ],
+    "specializations": [
+      "Advaita Vedanta",
+      "Upanishads",
+      "Bhagavad Gita",
+      "Spiritual Philosophy",
+      "Meditation"
+    ],
+    "social": {
+      "youtube": "https://youtube.com/@swamivedantasaraswati",
+      "linkedin": "https://linkedin.com/in/swamivedantasaraswati",
+      "twitter": "https://twitter.com/swamivedantasaraswati"
+    }
+  }
+]

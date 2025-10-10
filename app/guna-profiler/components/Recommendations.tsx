@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { GunaAnalysis, CourseRecommendation, BookRecommendation } from '../types/guna-profiler'
 
 interface RecommendationsProps {
@@ -285,12 +286,12 @@ export default function Recommendations({ analysis, userProfile }: Recommendatio
           Your Guṇa profile is just the beginning. Choose a course or book that resonates with you and start your transformation today.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
+          <Link
             href="/courses"
             className="px-8 py-3 bg-saffron-primary hover:bg-saffron-primary/80 text-deep-indigo rounded-lg font-medium transition-all duration-300"
           >
             Browse All Courses
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>

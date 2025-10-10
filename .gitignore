@@ -91,4 +91,5 @@ coverage/
 /lib/generated/prisma
 temp_repo/
 
-node_modules
+node_modules.env
+.env.local

@@ -28,6 +28,9 @@ import {
   Target,
   Brain,
   Heart,
+  Crown,
+  Globe,
+  User,
   Lightbulb,
   Shield,
 } from '@/lib/icons'

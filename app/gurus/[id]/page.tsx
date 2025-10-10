@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { 
@@ -280,18 +281,18 @@ export default async function InstructorPage({ params }: { params: Promise<{ id:
               Join thousands of students who have transformed their understanding of ancient Indian wisdom through {instructor.name}'s expert guidance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <Link 
                 href="/courses"
                 className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 bg-golden-olive hover:bg-golden-olive/90 text-white"
               >
                 Explore Courses
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold rounded-full transition-all duration-200 border border-golden-olive text-golden-olive hover:bg-golden-olive hover:text-white"
               >
                 Get in Touch
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
     }
 
     // If API call failed, return a more informative error
-    if (!result.success) {
+    if (result && typeof result === 'object' && 'success' in result && !result.success) {
       console.warn(`Graphy API failed:`, result.error)
       return NextResponse.json({
         success: false,

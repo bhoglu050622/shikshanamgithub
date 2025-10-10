@@ -203,12 +203,22 @@ export async function getDashboardDataByEmail(email: string): Promise<{
   
   if (!learnerResponse.success || !learnerResponse.data || learnerResponse.data.length === 0) {
     return {
-      success: false,
-      error: `Learner not found: ${learnerResponse.error || 'No data returned'}`,
-      learner: null,
-      stats: { totalCourses: 0, completedCourses: 0, totalLearningHours: 0, currentStreak: 0, totalExpenses: 0 },
-      usage: { dailyUsage: [], courseUsage: [], weeklyPattern: [] },
-      expenses: []
+      learner: {
+        success: false,
+        error: `Learner not found: ${learnerResponse.error || 'No data returned'}`
+      },
+      stats: {
+        success: false,
+        error: 'Learner not found'
+      },
+      usage: {
+        success: false,
+        error: 'Learner not found'
+      },
+      expenses: {
+        success: false,
+        error: 'Learner not found'
+      }
     }
   }
 
@@ -218,7 +228,7 @@ export async function getDashboardDataByEmail(email: string): Promise<{
   const expenses = await getTransactions()
   
   // Get course progress if learner has enrollments
-  let progressData = { success: true, data: [] }
+  let progressData: GraphyApiResponse<any[]> = { success: true, data: [] }
   if (learner && learner.enrollments && Array.isArray(learner.enrollments) && learner.enrollments.length > 0) {
     const productIds = learner.enrollments.map((e: any) => e.courseId || e.productId).filter(Boolean)
     if (productIds.length > 0) {
@@ -248,12 +258,22 @@ export async function getDashboardDataByEmail(email: string): Promise<{
   }
 
   return {
-    success: true,
-    error: null,
-    learner,
-    stats,
-    usage,
-    expenses
+    learner: {
+      success: true,
+      data: learner
+    },
+    stats: {
+      success: true,
+      data: stats
+    },
+    usage: {
+      success: true,
+      data: usage
+    },
+    expenses: {
+      success: true,
+      data: expenses.data || []
+    }
   }
 }
 

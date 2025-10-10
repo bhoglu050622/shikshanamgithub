@@ -28,6 +28,7 @@ import {
   Trophy,
   Diamond,
   ChevronDown,
+  Package,
   ChevronUp,
   Play,
   Download,

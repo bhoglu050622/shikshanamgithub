@@ -116,7 +116,7 @@ export function decodeGoogleIdToken(idToken: string): GoogleUser {
     }
   } catch (error) {
     console.error('JWT decode error:', error)
-    throw new Error('Failed to decode ID token: ' + error.message)
+    throw new Error('Failed to decode ID token: ' + (error instanceof Error ? error.message : String(error)))
   }
 }
 

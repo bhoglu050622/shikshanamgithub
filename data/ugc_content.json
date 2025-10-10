@@ -1,0 +1,54 @@
+{
+  "studentStories": [
+    {
+      "id": 1,
+      "name": "Priya Sharma",
+      "location": "Mumbai, India",
+      "rating": 5,
+      "story": "The Sanskrit course completely transformed my understanding of ancient texts. The structured approach made complex concepts accessible.",
+      "course": "Sanskrit Bhasha Pragya",
+      "date": "2024-01-15",
+      "achievement": "Completed with distinction"
+    },
+    {
+      "id": 2,
+      "name": "Arjun Patel",
+      "location": "Delhi, India",
+      "rating": 5,
+      "story": "The Advaita Vedanta course opened my mind to profound philosophical insights. The teaching methodology is exceptional.",
+      "course": "Advaita Vedanta",
+      "date": "2024-02-20",
+      "achievement": "Top performer"
+    },
+    {
+      "id": 3,
+      "name": "Sneha Reddy",
+      "location": "Bangalore, India",
+      "rating": 5,
+      "story": "The Yoga Darshan course helped me understand the deeper aspects of yoga philosophy. Highly recommended for serious practitioners.",
+      "course": "Yoga Darshan",
+      "date": "2024-03-10",
+      "achievement": "Scholarship recipient"
+    },
+    {
+      "id": 4,
+      "name": "Rajesh Kumar",
+      "location": "Chennai, India",
+      "rating": 5,
+      "story": "The Kashmir Shaivism course provided deep insights into non-dual philosophy. The instructors are world-class.",
+      "course": "Kashmir Shaivism",
+      "date": "2024-01-30",
+      "achievement": "Research collaboration"
+    },
+    {
+      "id": 5,
+      "name": "Meera Singh",
+      "location": "Pune, India",
+      "rating": 5,
+      "story": "The Nyaya Darshan course enhanced my logical reasoning skills. The systematic approach to Indian logic is remarkable.",
+      "course": "Nyaya Darshan",
+      "date": "2024-02-15",
+      "achievement": "Academic excellence"
+    }
+  ]
+}

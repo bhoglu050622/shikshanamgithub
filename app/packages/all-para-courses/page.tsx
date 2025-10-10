@@ -28,6 +28,12 @@ import {
   Award,
   Brain,
   Heart,
+  Layers,
+  Play,
+  User,
+  Minus,
+  Plus,
+  HelpCircle,
   Lightbulb,
   Target,
   Shield,
@@ -194,7 +200,7 @@ export default function AllParaCoursesPage() {
               <StaggerItem>
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center">
-                    <LayersIcon className="w-6 h-6 text-white" />
+                    <Layers className="w-6 h-6 text-white" />
                   </div>
                   <span className="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full text-sm font-medium">
                     {packageData.category}
@@ -303,7 +309,7 @@ export default function AllParaCoursesPage() {
                   
                   {/* Floating Elements */}
                   <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                    <LayersIcon className="w-8 h-8 text-white" />
+                    <Layers className="w-8 h-8 text-white" />
                   </div>
                   
                   <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
@@ -345,7 +351,7 @@ export default function AllParaCoursesPage() {
                 className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <LayersIcon className="w-6 h-6 text-white" />
+                  <Layers className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
                   {feature}
@@ -623,7 +629,7 @@ export default function AllParaCoursesPage() {
                     className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300"
                     whileHover={{ rotate: 5, scale: 1.1 }}
                   >
-                    <LayersIcon className="w-8 h-8 text-white" />
+                    <Layers className="w-8 h-8 text-white" />
                   </HydrationSafeMotion>
                   <h3 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-shadow-sm">
                     Ready to Access Complete Parā Collection?
