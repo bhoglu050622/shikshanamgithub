@@ -11,7 +11,7 @@ export default function ClientServiceWorker() {
     if ('serviceWorker' in navigator) {
       const registerSW = async () => {
         try {
-          const registration = await navigator.serviceWorker.register('/sw.js', {
+          const registration = await navigator.serviceWorker.register('/sw/sw.js', {
             scope: '/'
           })
 

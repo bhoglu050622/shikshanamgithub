@@ -43,6 +43,11 @@ const nextConfig = {
   // Enable static optimization
   trailingSlash: false,
   
+  // Exclude service worker from build
+  experimental: {
+    serverComponentsExternalPackages: ['sw.js'],
+  },
+  
   // Enable image optimization with proper configuration
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -114,15 +119,23 @@ const nextConfig = {
     // Exclude service worker from server-side build
     if (isServer) {
       config.module.rules.push({
-        test: /sw\.js$/,
+        test: /sw\/sw\.js$/,
         use: 'null-loader',
       });
       
       // Also exclude service worker files from being processed
       config.resolve.alias = {
         ...config.resolve.alias,
+        'sw/sw.js': false,
         'sw.js': false,
       };
+      
+      // Exclude service worker from being bundled
+      config.externals = config.externals || [];
+      config.externals.push({
+        'sw/sw.js': 'commonjs null',
+        'sw.js': 'commonjs null',
+      });
     }
     
     
