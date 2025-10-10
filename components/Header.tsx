@@ -79,8 +79,8 @@ export default function Header() {
               <div key={item.name} className="relative">
                 <motion.button
                   onClick={(e) => {
+                    e.preventDefault()
                     if (item.hasDropdown) {
-                      e.preventDefault()
                       const newActiveDropdown = activeDropdown === item.name ? null : item.name
                       setActiveDropdown(newActiveDropdown)
                       setActiveGroupId(newActiveDropdown && item.groupId ? item.groupId : null)
