@@ -124,7 +124,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-4xl max-h-[95vh] overflow-hidden"
+            className="relative w-full max-w-lg max-h-[90vh] overflow-hidden"
           >
           {/* Background with Glassmorphism */}
           <div className="absolute inset-0 bg-gradient-to-br from-orange-50/95 via-amber-50/95 to-yellow-50/95 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl" />
@@ -146,109 +146,26 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
             <X className="w-4 h-4 text-gray-600" />
           </button>
 
-          <div className="relative z-10 flex flex-col lg:flex-row min-h-[600px]">
-            {/* Left Side - Benefits */}
+          <div className="relative z-10 flex flex-col items-center justify-center min-h-[500px] p-8">
+            {/* Centered Login Form */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center"
-            >
-              <div className="text-center lg:text-left">
-                {/* Logo/Brand */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.3, type: "spring", damping: 15 }}
-                  className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl mb-6 shadow-lg"
-                >
-                  <BookOpen className="w-8 h-8 text-white" />
-                </motion.div>
-
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-3xl lg:text-4xl font-bold mb-4"
-                  style={{ fontFamily: "'Cinzel', serif", color: '#000000' }}
-                >
-                  Welcome to Shikshanam
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-lg text-gray-600 mb-8"
-                >
-                  Discover your inner wisdom through ancient knowledge and modern insights
-                </motion.p>
-
-                {/* Benefits List */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="space-y-4"
-                >
-                  {[
-                    { icon: Sparkles, text: "Personalized personality assessments" },
-                    { icon: BookOpen, text: "Curated course recommendations" },
-                    { icon: Users, text: "Join our spiritual community" },
-                    { icon: Shield, text: "Secure and private learning" }
-                  ].map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.7 + index * 0.1 }}
-                      className="flex items-center space-x-3"
-                    >
-                      <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-amber-100 rounded-lg flex items-center justify-center">
-                        <benefit.icon className="w-4 h-4 text-orange-600" />
-                      </div>
-                      <span className="text-gray-700 font-medium">{benefit.text}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                {/* Trust Indicators */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.1 }}
-                  className="mt-8 pt-6 border-t border-gray-200"
-                >
-                  <div className="flex items-center justify-center lg:justify-start space-x-4 text-sm text-gray-700">
-                    <div className="flex items-center space-x-1">
-                      <Shield className="w-4 h-4 text-orange-600" />
-                      <span>Secure Login</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Users className="w-4 h-4 text-orange-600" />
-                      <span>10,000+ Learners</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Right Side - Login Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-white/80 backdrop-blur-sm"
+              className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8"
             >
-              <div className="max-w-sm mx-auto w-full">
+              <div className="w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                   className="text-center mb-8"
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign In</h2>
-                  <p className="text-gray-600">Choose your preferred method</p>
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl mb-4 shadow-lg">
+                    <BookOpen className="w-8 h-8 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Shikshanam</h2>
+                  <p className="text-gray-600">Sign in to continue your learning journey</p>
                 </motion.div>
 
                 <div ref={dialogRef} className="space-y-6">
