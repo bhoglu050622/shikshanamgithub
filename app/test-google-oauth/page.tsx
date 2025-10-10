@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AUTH_CONFIG } from '@/lib/config/auth'
 import { generateGoogleOAuthURL } from '@/lib/auth/GoogleOAuth'
 
@@ -14,6 +14,11 @@ export default function TestGoogleOAuthPage() {
     clientSecret: false,
     appUrl: false
   })
+  const [origin, setOrigin] = useState('')
+
+  useEffect(() => {
+    setOrigin(window.location.origin)
+  }, [])
 
   const checkConfiguration = () => {
     const clientId = !!AUTH_CONFIG.GOOGLE.CLIENT_ID
@@ -133,7 +138,7 @@ export default function TestGoogleOAuthPage() {
                   <li>Create a new project or select existing one</li>
                   <li>Enable Google+ API and OAuth consent screen</li>
                   <li>Create OAuth 2.0 credentials</li>
-                  <li>Add redirect URI: <code className="bg-gray-200 px-1 rounded">{window.location.origin}/api/auth/google/callback</code></li>
+                  <li>Add redirect URI: <code className="bg-gray-200 px-1 rounded">{origin}/api/auth/google/callback</code></li>
                   <li>Set environment variables in your deployment platform</li>
                   <li>For Vercel: Go to project settings → Environment Variables</li>
                 </ol>
