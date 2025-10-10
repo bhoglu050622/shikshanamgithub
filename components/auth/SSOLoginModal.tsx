@@ -108,7 +108,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 min-h-screen">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -135,7 +135,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
             <X className="w-4 h-4 text-gray-600" />
           </button>
 
-          <div className="relative z-10 w-full max-w-md mx-auto">
+          <div className="relative z-10 w-full max-w-md mx-auto flex items-center justify-center">
             {/* Centered Login Form */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -144,7 +144,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
               transition={{ delay: 0.3 }}
               className="w-full bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20"
             >
-              <div className="w-full">
+              <div className="w-full flex flex-col items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                   <p className="text-gray-600">Sign in to continue your learning journey</p>
                 </motion.div>
 
-                <div ref={dialogRef} className="space-y-6 w-full">
+                <div ref={dialogRef} className="space-y-6 w-full max-w-sm">
                   {/* Google OAuth Button */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
