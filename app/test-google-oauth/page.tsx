@@ -20,16 +20,18 @@ export default function TestGoogleOAuthPage() {
     setOrigin(window.location.origin)
   }, [])
 
-  const checkConfiguration = () => {
-    const clientId = !!AUTH_CONFIG.GOOGLE.CLIENT_ID
-    const clientSecret = !!AUTH_CONFIG.GOOGLE.CLIENT_SECRET
-    const appUrl = !!process.env.NEXT_PUBLIC_APP_URL
-
-    setConfigStatus({
-      clientId,
-      clientSecret,
-      appUrl
-    })
+  const checkConfiguration = async () => {
+    try {
+      const response = await fetch('/api/auth/google/status')
+      if (!response.ok) {
+        throw new Error('Failed to fetch config status')
+      }
+      const data = await response.json()
+      setConfigStatus(data)
+    } catch (error) {
+      console.error('Error checking configuration:', error)
+      alert('Failed to check configuration.')
+    }
   }
 
   const testGoogleOAuth = () => {
@@ -66,7 +68,7 @@ export default function TestGoogleOAuthPage() {
                 <div className="flex items-center space-x-3">
                   <div className={`w-4 h-4 rounded-full ${configStatus.clientId ? 'bg-green-500' : 'bg-red-500'}`}></div>
                   <span className="text-gray-700">
-                    GOOGLE_CLIENT_ID: {configStatus.clientId ? '✅ Configured' : '❌ Missing'}
+                    NEXT_PUBLIC_GOOGLE_CLIENT_ID: {configStatus.clientId ? '✅ Configured' : '❌ Missing'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -91,7 +93,7 @@ export default function TestGoogleOAuthPage() {
               </h2>
               <div className="bg-gray-100 p-4 rounded-md space-y-2">
                 <div>
-                  <strong>Client ID:</strong> {AUTH_CONFIG.GOOGLE.CLIENT_ID || 'Not set'}
+                  <strong>Client ID:</strong> {process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'Not set'}
                 </div>
                 <div>
                   <strong>Client Secret:</strong> {AUTH_CONFIG.GOOGLE.CLIENT_SECRET ? '***configured***' : 'Not set'}
@@ -122,7 +124,7 @@ export default function TestGoogleOAuthPage() {
               </button>
               {!configStatus.clientId && (
                 <p className="text-red-600 mt-2">
-                  Cannot test Google OAuth: GOOGLE_CLIENT_ID is not configured
+                  Cannot test Google OAuth: NEXT_PUBLIC_GOOGLE_CLIENT_ID is not configured
                 </p>
               )}
             </div>
@@ -151,7 +153,7 @@ export default function TestGoogleOAuthPage() {
                 Required Environment Variables
               </h2>
               <div className="bg-gray-900 text-green-400 p-4 rounded-md font-mono text-sm">
-                <div>GOOGLE_CLIENT_ID=your_google_client_id_here</div>
+                <div>NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id_here</div>
                 <div>GOOGLE_CLIENT_SECRET=your_google_client_secret_here</div>
                 <div>NEXT_PUBLIC_APP_URL=https://shikshanamv10.vercel.app</div>
               </div>

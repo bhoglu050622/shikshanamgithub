@@ -15,7 +15,7 @@ export const AUTH_CONFIG = {
   
   // Google OAuth Configuration
   GOOGLE: {
-    CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
     CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
     REDIRECT_URI: typeof window !== 'undefined' 
       ? `${window.location.origin}/api/auth/google/callback`

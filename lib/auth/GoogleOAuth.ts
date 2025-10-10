@@ -23,7 +23,7 @@ export function generateGoogleOAuthURL(returnUrl?: string): string {
   
   // Check if Google OAuth is configured
   if (!config.CLIENT_ID) {
-    throw new Error('Google OAuth is not configured. Please set GOOGLE_CLIENT_ID environment variable.')
+    throw new Error('Google OAuth is not configured. Please set NEXT_PUBLIC_GOOGLE_CLIENT_ID environment variable.')
   }
   
   // Use server-side redirect URI for consistency
