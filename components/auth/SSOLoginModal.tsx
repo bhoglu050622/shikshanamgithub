@@ -142,20 +142,52 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.3 }}
-              className="w-full bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20"
+              className="w-full bg-white/98 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/30 relative overflow-hidden"
             >
+              {/* Decorative gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 via-amber-50/30 to-yellow-50/50 rounded-3xl" />
+              
+              {/* Subtle pattern overlay */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-400 to-amber-400 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-400 to-pink-400 rounded-full blur-2xl" />
+              </div>
               <div className="w-full flex flex-col items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-center mb-8"
+                  className="text-center mb-10 relative z-10"
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl mb-4 shadow-lg">
-                    <BookOpen className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Shikshanam</h2>
-                  <p className="text-gray-600">Sign in to continue your learning journey</p>
+                  {/* Enhanced logo with glow effect */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5, type: "spring", damping: 15 }}
+                    className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500 rounded-3xl mb-6 shadow-2xl relative"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-400 rounded-3xl blur-lg opacity-60" />
+                    <BookOpen className="w-10 h-10 text-white relative z-10" />
+                  </motion.div>
+                  
+                  {/* Enhanced title with gradient text */}
+                  <motion.h2
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="text-3xl font-bold mb-3 bg-gradient-to-r from-gray-900 via-orange-800 to-amber-800 bg-clip-text text-transparent"
+                  >
+                    Welcome to Shikshanam
+                  </motion.h2>
+                  
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    className="text-gray-600 text-lg font-medium"
+                  >
+                    Sign in to continue your learning journey
+                  </motion.p>
                 </motion.div>
 
                 <div ref={dialogRef} className="space-y-6 w-full max-w-sm">
@@ -172,7 +204,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                       <Button
                         onClick={handleGoogleLogin}
                         variant="secondary"
-                        className="w-full h-12 font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl"
+                        className="w-full h-14 font-semibold text-gray-700 bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl group relative overflow-hidden"
                         disabled={isLoading}
                       >
                       {isLoading ? (
@@ -190,18 +222,20 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                     </motion.div>
                   </motion.div>
 
-                  {/* Divider */}
+                  {/* Enhanced Divider */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}
-                    className="relative"
+                    className="relative my-8"
                   >
                     <div className="absolute inset-0 flex items-center">
-                      <span className="w-full border-t border-gray-200" />
+                      <span className="w-full border-t border-gradient-to-r from-transparent via-gray-300 to-transparent" />
                     </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="bg-white px-4 text-gray-700 font-medium">or</span>
+                    <div className="relative flex justify-center">
+                      <span className="bg-white px-6 py-2 text-gray-500 font-semibold text-sm rounded-full border border-gray-200 shadow-sm">
+                        or continue with email
+                      </span>
                     </div>
                   </motion.div>
 
@@ -213,20 +247,21 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                     onSubmit={(e) => { e.preventDefault(); handleEmailLogin(); }}
                     className="space-y-4"
                   >
-                    {/* Email Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                    {/* Enhanced Email Field */}
+                    <div className="space-y-3">
+                      <Label htmlFor="email" className="text-sm font-semibold text-gray-800 flex items-center">
+                        <Mail className="w-4 h-4 mr-2 text-orange-500" />
                         Email Address
                       </Label>
                       <div className="relative group">
-                        <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                        <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-orange-500 transition-colors duration-300" />
                         <Input
                           id="email"
                           type="email"
-                          placeholder="Enter your email"
+                          placeholder="Enter your email address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="pl-12 h-12 bg-white border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 transition-all duration-300 rounded-xl"
+                          className="pl-12 h-14 bg-white/80 border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 transition-all duration-300 rounded-2xl text-base font-medium shadow-sm hover:shadow-md"
                           required
                           disabled={isLoading}
                         />
@@ -255,7 +290,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                     >
                       <Button
                         type="submit"
-                        className="w-full h-12 font-medium bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                        className="w-full h-14 font-semibold bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 hover:from-orange-600 hover:via-amber-600 hover:to-yellow-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl group relative overflow-hidden"
                         disabled={isLoading}
                       >
                         {isLoading ? (
@@ -274,22 +309,22 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                     </motion.div>
                   </motion.form>
 
-                  {/* Sign Up Link */}
+                  {/* Enhanced Sign Up Link */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 }}
-                    className="text-center pt-4 border-t border-gray-200"
+                    className="text-center pt-6 border-t border-gray-200/50"
                   >
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-600 font-medium">
                       Don't have an account?{' '}
                       <button
                         type="button"
                         onClick={handleSignupClick}
-                        className="text-orange-600 hover:text-orange-700 font-medium transition-colors"
+                        className="text-orange-600 hover:text-orange-700 font-semibold transition-colors duration-300 hover:underline"
                         disabled={isLoading}
                       >
-                        Sign up
+                        Create one now
                       </button>
                     </p>
                   </motion.div>
