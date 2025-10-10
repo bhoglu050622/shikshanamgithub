@@ -1,14 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-// Set global self for server-side builds
-if (typeof global !== 'undefined' && typeof self === 'undefined') {
-  global.self = global;
-}
-
-// Additional polyfill for Node.js environment
-if (typeof globalThis !== 'undefined' && typeof globalThis.self === 'undefined') {
-  globalThis.self = globalThis;
-}
+// Global self polyfill moved to webpack config to avoid build-time execution
 
 const nextConfig = {
   outputFileTracingRoot: __dirname,
