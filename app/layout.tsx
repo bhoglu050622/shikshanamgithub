@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display, Cinzel } from 'next/font/google'
 import './globals.css'
+
+// Global polyfill for self
+if (typeof global !== 'undefined' && typeof self === 'undefined') {
+  (global as any).self = global;
+}
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 // import ClientServiceWorker from '@/components/ClientServiceWorker'
 import ErrorBoundary from '@/components/ErrorBoundary'

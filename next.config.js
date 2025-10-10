@@ -101,57 +101,6 @@ const nextConfig = {
   compress: true,
   generateEtags: true,
   webpack: (config, { isServer, dev }) => {
-    // Set global self for server-side builds
-    if (isServer && typeof global !== 'undefined') {
-      global.self = global;
-    }
-    
-    // Exclude service worker from server-side build
-    if (isServer) {
-      config.module.rules.push({
-        test: /sw\/sw\.js$/,
-        use: 'null-loader',
-      });
-      
-      // Also exclude service worker files from being processed
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        'sw/sw.js': false,
-        'sw.js': false,
-      };
-      
-      // Exclude service worker from being bundled
-      config.externals = config.externals || [];
-      config.externals.push({
-        'sw/sw.js': 'commonjs null',
-        'sw.js': 'commonjs null',
-      });
-      
-      // Completely ignore service worker files
-      config.plugins = config.plugins || [];
-      config.plugins.push(
-        new (require('webpack')).IgnorePlugin({
-          resourceRegExp: /sw\/sw\.js$/,
-          contextRegExp: /public/,
-        })
-      );
-      
-      // Add additional webpack rules to completely exclude service worker
-      config.module.rules.push({
-        test: /\.js$/,
-        include: /sw\/sw\.js$/,
-        use: 'null-loader',
-      });
-      
-      // Add resolve fallback for service worker
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        'sw/sw.js': false,
-        'sw.js': false,
-      };
-    }
-    
-    
     // Fast reload optimizations
     if (dev) {
       // Enable faster development builds
@@ -178,7 +127,7 @@ const nextConfig = {
     };
     
     // Optimize code splitting for production
-    if (!dev) {
+    if (!dev && config.optimization) {
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
@@ -212,21 +161,6 @@ const nextConfig = {
       };
     }
     
-    // Handle server-side configuration
-    if (isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-        window: false,
-        navigator: false,
-        document: false,
-        screen: false,
-        localStorage: false,
-        sessionStorage: false,
-      };
-    }
     
     // Handle Chrome extension messaging issues
     if (!isServer) {

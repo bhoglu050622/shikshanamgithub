@@ -66,15 +66,15 @@ export default function UsageChart({ analytics, isLoading = false }: UsageChartP
                     <XAxis 
                       dataKey="date" 
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                      tickFormatter={(value: string) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                     />
                     <YAxis 
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value}h`}
+                      tickFormatter={(value: number) => `${value}h`}
                     />
                     <Tooltip 
                       formatter={(value: number) => [`${value.toFixed(1)} hours`, 'Learning Time']}
-                      labelFormatter={(label) => `Date: ${new Date(label).toLocaleDateString()}`}
+                      labelFormatter={(label: string) => `Date: ${new Date(label).toLocaleDateString()}`}
                       contentStyle={{
                         backgroundColor: 'hsl(var(--card))',
                         border: '1px solid hsl(var(--border))',
@@ -105,7 +105,7 @@ export default function UsageChart({ analytics, isLoading = false }: UsageChartP
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, percent }) => `${name} (${(Number(percent) * 100).toFixed(0)}%)`}
+                      label={({ name, percent }: any) => `${name} (${(Number(percent) * 100).toFixed(0)}%)`}
                       outerRadius={80}
                       fill="#8884d8"
                       dataKey="hours"
