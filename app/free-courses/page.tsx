@@ -282,6 +282,8 @@ export default function FreeCoursesPage() {
                       <Image
                         src={masterclass.thumbnail}
                         alt={masterclass.title}
+                        width={640}
+                        height={360}
                         className="w-full h-full object-cover"
                         onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/640x360/9333ea/white?text=Video+Thumbnail' }}
                       />
@@ -398,6 +400,8 @@ export default function FreeCoursesPage() {
                     <Image
                       src={masterclass.thumbnail}
                       alt={masterclass.title}
+                      width={640}
+                      height={360}
                       className="w-full h-full object-cover"
                       onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/640x360/9333ea/white?text=Video+Thumbnail' }}
                     />

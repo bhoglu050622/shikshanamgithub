@@ -42,13 +42,13 @@ export default function Header() {
       className="sticky top-0 z-50 premium-header bg-background/95 dark:bg-background/95 backdrop-blur-md border-b border-border"
       role="banner"
     >
-      <div className="container-custom">
+      <div className="container-responsive">
         <div className="flex items-center h-16">
           {/* Logo */}
           <motion.a 
             href={ROUTES.HOME}
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3 flex-shrink-0"
+            className="flex items-center space-x-2 md:space-x-3 flex-shrink-0"
             aria-label="Shikshanam Home"
             onClick={(e: React.MouseEvent) => {
               e.preventDefault()
@@ -60,14 +60,14 @@ export default function Header() {
               }
             }}
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-golden-olive via-deep-maroon to-copper-orange rounded-2xl flex items-center justify-center shadow-lg">
-              <BookOpen className="w-7 h-7 text-white" aria-hidden="true" />
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-golden-olive via-deep-maroon to-copper-orange rounded-2xl flex items-center justify-center shadow-lg">
+              <BookOpen className="w-6 h-6 md:w-7 md:h-7 text-white" aria-hidden="true" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-2xl font-bold bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent tracking-wide">
+              <span className="font-display text-xl md:text-2xl font-bold bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent tracking-wide">
                 शिक्षणम्
               </span>
-              <span className="font-display text-sm font-medium text-foreground dark:text-foreground tracking-wider">
+              <span className="font-display text-xs md:text-sm font-medium text-foreground dark:text-foreground tracking-wider">
                 Shikshanam
               </span>
             </div>
@@ -125,13 +125,31 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden ml-auto">
+          {/* Mobile Navigation Controls */}
+          <div className="flex items-center ml-auto lg:hidden">
+            {isClient && !hideThemeToggle && <ThemeToggle className="mr-2" />}
+            {isClient && !isLoading && (
+              <>
+                {user ? (
+                  <UserDropdown className="mr-2" />
+                ) : (
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={() => setIsLoginModalOpen(true)}
+                    className="mr-2 touch-target"
+                    aria-label="Login"
+                  >
+                    <LogIn className="h-5 w-5" />
+                  </Button>
+                )}
+              </>
+            )}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl hover:bg-primary/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 tap-target"
+              className="p-2 rounded-xl hover:bg-primary/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-target"
               aria-label="Toggle mobile menu"
               aria-expanded={isMobileMenuOpen}
             >

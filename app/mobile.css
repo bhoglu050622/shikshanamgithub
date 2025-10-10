@@ -4,6 +4,56 @@
  */
 
 /* ============================================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================================ */
+   
+/* Extra Small Devices (phones) */
+@media (max-width: 480px) {
+  .xs-only {
+    display: block;
+  }
+  .xs-hidden {
+    display: none;
+  }
+}
+
+/* Small Devices (large phones, small tablets) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .sm-only {
+    display: block;
+  }
+  .sm-hidden {
+    display: none;
+  }
+}
+
+/* Medium Devices (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .md-only {
+    display: block;
+  }
+  .md-hidden {
+    display: none;
+  }
+}
+
+/* Large Devices (desktops) */
+@media (min-width: 1024px) {
+  .lg-only {
+    display: block;
+  }
+  .lg-hidden {
+    display: none;
+  }
+}
+
+/* Touch-friendly improvements */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ============================================================================
    MOBILE NAVIGATION STYLES
    ============================================================================ */
 

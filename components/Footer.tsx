@@ -1,7 +1,7 @@
 'use client'
 
 import { BookOpen, Mail, Phone, MapPin, MessageCircle, Instagram, Twitter, Youtube, Facebook, Heart, ArrowRight } from 'lucide-react'
-import { ROUTES, NAVIGATION_GROUPS } from '@/lib/routes'
+import { ROUTES } from '@/lib/routes'
 
 const footerLinks = {
   'Learning': [
@@ -51,82 +51,7 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Mandala Border Pattern - Contained within viewport */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Top Mandala Border */}
-        <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
-          <div
-            className="flex space-x-8"
-          >
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="w-16 h-16 border-2 border-orange-400/30 rounded-full flex items-center justify-center flex-shrink-0">
-                <div className="w-8 h-8 border border-orange-400/40 rounded-full"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Bottom Mandala Border */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 overflow-hidden">
-          <div
-            className="flex space-x-8"
-          >
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="w-16 h-16 border-2 border-orange-400/30 rounded-full flex items-center justify-center flex-shrink-0">
-                <div className="w-8 h-8 border border-orange-400/40 rounded-full"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Side Mandala Patterns - Hidden on mobile to prevent overflow */}
-        <div className="hidden lg:block absolute top-1/2 left-0 w-20 h-full overflow-hidden">
-          <div
-            className="flex flex-col space-y-8"
-          >
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="w-12 h-12 border-2 border-orange-400/25 rounded-full flex items-center justify-center">
-                <div className="w-6 h-6 border border-orange-400/35 rounded-full"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="hidden lg:block absolute top-1/2 right-0 w-20 h-full overflow-hidden">
-          <div
-            className="flex flex-col space-y-8"
-          >
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="w-12 h-12 border-2 border-orange-400/25 rounded-full flex items-center justify-center">
-                <div className="w-6 h-6 border border-orange-400/35 rounded-full"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Floating Mandala Elements - Contained within safe areas */}
-        <div className="absolute top-20 left-1/4 opacity-10 max-w-24 max-h-24">
-          <div
-            className="w-24 h-24 border-2 border-orange-400/30 rounded-full flex items-center justify-center"
-          >
-            <div className="w-16 h-16 border border-orange-400/40 rounded-full flex items-center justify-center">
-              <div className="w-8 h-8 border border-orange-400/50 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="absolute bottom-20 right-1/4 opacity-10 max-w-20 max-h-20">
-          <div
-            className="w-20 h-20 border-2 border-orange-400/30 rounded-full flex items-center justify-center"
-          >
-            <div className="w-12 h-12 border border-orange-400/40 rounded-full flex items-center justify-center">
-              <div className="w-6 h-6 border border-orange-400/50 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+    <footer className="bg-background border-t border-border mt-auto" role="contentinfo">
       <div className="container-custom py-16 relative z-10 mb-0">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">

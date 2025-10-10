@@ -146,34 +146,7 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
   };
 
   const getIcon = (iconName: string) => {
-    const icons: Record<string, React.ComponentType<any>> = {
-      Home,
-      BookOpen,
-      Users,
-      Settings,
-      Search,
-      Bell,
-      User,
-    };
-    const IconComponent = icons[iconName] || Home;
-    return <IconComponent size={20} />;
-  };
-
-  const isActiveItem = (item: MobileNavigationItem): boolean => {
-    if (item.href === pathname) return true;
-    if (item.children) {
-      return item.children.some(child => child.href === pathname);
-    }
-    return false;
-  };
-
-  if (!deviceInfo || !isMobileBreakpoint()) {
-    return null;
-  }
-
-  return (
-    <>
-      {/* Mobile Navigation Toggle */}
+    cons/}
       <button
         onClick={toggleNavigation}
         className={`mobile-nav-toggle ${className}`}

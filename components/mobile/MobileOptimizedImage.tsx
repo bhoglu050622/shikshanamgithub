@@ -1,6 +1,7 @@
 /**
  * Mobile Optimized Image Component
  * Responsive image component with mobile-specific optimizations
+ * Enhanced for better performance across all device sizes
  */
 
 'use client';
@@ -41,8 +42,8 @@ export function MobileOptimizedImage({
   priority = false,
   quality = 75,
   placeholder = 'blur',
-  blurDataURL,
-  sizes,
+  blurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQ4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PC9zdmc+',
+  sizes = "(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 50vw, 33vw",
   className = '',
   style,
   onLoad,
@@ -51,6 +52,7 @@ export function MobileOptimizedImage({
   lazy = true,
   responsive = true,
 }: MobileOptimizedImageProps) {
+  // Enhanced image loading with device-aware optimizations
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
   const [networkInfo, setNetworkInfo] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -116,11 +118,19 @@ export function MobileOptimizedImage({
     setOptimizedSrc(optimizedSrc);
   }, [deviceInfo, networkInfo, src, quality]);
 
+  // Handle successful image load with performance tracking
   const handleLoad = () => {
     setIsLoaded(true);
     onLoad?.();
+    
+    // Report image load performance if supported
+    if (typeof window !== 'undefined' && 'performance' in window) {
+      const loadTime = performance.now();
+      console.debug(`Image loaded: ${alt || 'image'} in ${Math.round(loadTime)}ms`);
+    }
   };
 
+  // Handle image load error with fallback
   const handleError = () => {
     setHasError(true);
     if (fallbackSrc && optimizedSrc !== fallbackSrc) {
@@ -191,43 +201,49 @@ export function MobileOptimizedImage({
   }
 
   return (
-    <div
+    <div 
       ref={imgRef}
-      className={`mobile-optimized-image-container ${className}`}
-      style={style}
+      className={`relative ${className}`} 
+      style={{
+        ...style,
+        aspectRatio: width && height ? `${width}/${height}` : 'auto',
+      }}
     >
-      <Image
-        src={hasError && fallbackSrc ? fallbackSrc : optimizedSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        priority={priority}
-        quality={getOptimizedQuality()}
-        placeholder={placeholder}
-        blurDataURL={blurDataURL}
-        sizes={getOptimizedSizes()}
-        onLoad={handleLoad}
-        onError={handleError}
-        className={`mobile-optimized-image ${isLoaded ? 'loaded' : 'loading'}`}
-        style={{
-          width: '100%',
-          height: 'auto',
-          transition: 'opacity 0.3s ease-in-out',
-          opacity: isLoaded ? 1 : 0,
-        }}
-      />
-      
-      {!isLoaded && !hasError && (
-        <div className="mobile-image-loading-overlay">
-          <div className="loading-spinner" />
+      {!hasError ? (
+        <Image
+          src={optimizedSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          priority={priority}
+          quality={getOptimizedQuality()}
+          placeholder={placeholder}
+          blurDataURL={blurDataURL}
+          sizes={getOptimizedSizes()}
+          onLoad={handleLoad}
+          onError={handleError}
+          className={`w-full h-auto object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+            objectFit: responsive ? 'cover' : 'contain',
+          }}
+        />
+      ) : fallbackSrc ? (
+        <Image
+          src={fallbackSrc}
+          alt={`${alt} (fallback)`}
+          width={width}
+          height={height}
+          className="w-full h-auto object-cover"
+        />
+      ) : (
+        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+          Image not available
         </div>
       )}
-      
-      {hasError && !fallbackSrc && (
-        <div className="mobile-image-error">
-          <div className="error-icon">📷</div>
-          <div className="error-text">Image failed to load</div>
-        </div>
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 bg-gray-100 animate-pulse" />
       )}
     </div>
   );
