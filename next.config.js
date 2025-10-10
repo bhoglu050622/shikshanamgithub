@@ -16,6 +16,11 @@ const nextConfig = {
   // Server external packages
   serverExternalPackages: ['sw.js', 'sw/sw.js'],
   
+  // Additional build exclusions
+  experimental: {
+    serverComponentsExternalPackages: ['sw.js', 'sw/sw.js'],
+  },
+  
   // Turbopack configuration
   turbopack: {
     rules: {
@@ -45,6 +50,11 @@ const nextConfig = {
   
   // Exclude service worker from build
   serverExternalPackages: ['sw.js', 'sw/sw.js'],
+  
+  // Additional build exclusions
+  experimental: {
+    serverComponentsExternalPackages: ['sw.js', 'sw/sw.js'],
+  },
   
   // Enable image optimization with proper configuration
   images: {
@@ -143,6 +153,20 @@ const nextConfig = {
           contextRegExp: /public/,
         })
       );
+      
+      // Add additional webpack rules to completely exclude service worker
+      config.module.rules.push({
+        test: /\.js$/,
+        include: /sw\/sw\.js$/,
+        use: 'null-loader',
+      });
+      
+      // Add resolve fallback for service worker
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        'sw/sw.js': false,
+        'sw.js': false,
+      };
     }
     
     

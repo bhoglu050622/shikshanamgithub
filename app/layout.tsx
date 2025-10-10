@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display, Cinzel } from 'next/font/google'
 import './globals.css'
 import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
-import ClientServiceWorker from '@/components/ClientServiceWorker'
+// import ClientServiceWorker from '@/components/ClientServiceWorker'
 import ErrorBoundary from '@/components/ErrorBoundary'
 // import ClientServiceWorker from '@/components/ClientServiceWorker'
 import Header from '@/components/Header'
@@ -158,7 +158,7 @@ export default function RootLayout({
         
         <ErrorBoundary>
           <PerformanceMonitor />
-          <ClientServiceWorker />
+          {/* <ClientServiceWorker /> */}
           <ImagePreloader />
           <ThemeProvider>
             <AuthProvider>
