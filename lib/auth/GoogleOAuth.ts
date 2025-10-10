@@ -21,6 +21,11 @@ export interface GoogleUser {
 export function generateGoogleOAuthURL(returnUrl?: string): string {
   const config = AUTH_CONFIG.GOOGLE
   
+  // Check if Google OAuth is configured
+  if (!config.CLIENT_ID) {
+    throw new Error('Google OAuth is not configured. Please set GOOGLE_CLIENT_ID environment variable.')
+  }
+  
   // Use server-side redirect URI for consistency
   const redirectUri = process.env.NEXT_PUBLIC_APP_URL 
     ? `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/google/callback`
