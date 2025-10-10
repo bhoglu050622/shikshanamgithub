@@ -160,9 +160,9 @@ export default function RootLayout({
         </a>
         
         <ErrorBoundary>
-          <PerformanceMonitor />
+          {/* <PerformanceMonitor /> */}
           {/* <ClientServiceWorker /> */}
-          <ImagePreloader />
+          {/* <ImagePreloader /> */}
           <ThemeProvider>
             <AuthProvider>
               <PopupProvider>
