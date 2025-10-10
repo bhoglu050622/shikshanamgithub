@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import { useState } from 'react'
 import { 
   Video,
@@ -249,7 +250,7 @@ export default function FreeCoursesPage() {
                 >
                   <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-orange-200 dark:border-orange-700">
                     <div className="relative aspect-video bg-slate-900 cursor-pointer" onClick={() => setSelectedVideo(masterclass)}>
-                      <img
+                      <Image
                         src={masterclass.thumbnail}
                         alt={masterclass.title}
                         className="w-full h-full object-cover"
@@ -359,7 +360,7 @@ export default function FreeCoursesPage() {
               >
                 <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 dark:border-slate-700">
                   <div className="relative aspect-video bg-slate-900 cursor-pointer" onClick={() => setSelectedVideo(masterclass)}>
-                    <img
+                    <Image
                       src={masterclass.thumbnail}
                       alt={masterclass.title}
                       className="w-full h-full object-cover"

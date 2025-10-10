@@ -5,7 +5,7 @@ import { ComponentProps, forwardRef } from 'react'
 // Simple motion wrapper that renders as regular HTML elements during SSR
 // and only applies motion on client-side
 const createMotionComponent = (tag: string) => {
-  return forwardRef<any, ComponentProps<any>>((props, ref) => {
+  const Component = forwardRef<any, ComponentProps<any>>((props, ref) => {
     const { children, ...rest } = props
     
     // Filter out Framer Motion props that shouldn't be passed to DOM elements
@@ -90,10 +90,13 @@ const createMotionComponent = (tag: string) => {
       ...domProps
     } = rest as any
     
-    const Component = tag as any
+    const Element = tag as any
     
-    return <Component ref={ref} {...domProps}>{children}</Component>
+    return <Element ref={ref} {...domProps}>{children}</Element>
   })
+  
+  Component.displayName = `Motion${tag.charAt(0).toUpperCase() + tag.slice(1)}`
+  return Component
 }
 
 // Create motion components that are SSR-safe

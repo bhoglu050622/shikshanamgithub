@@ -127,7 +127,7 @@ export default function ExpensesSummary({
             <h3 className="text-lg font-semibold text-foreground">Recent Transactions</h3>
             {(expenses || []).slice(0, 5).map((expense, index) => (
               <motion.div
-                key={expense.id || expense._id || index}
+                key={expense.id || index}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -135,7 +135,7 @@ export default function ExpensesSummary({
               >
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-1">
-                    <h4 className="font-medium text-foreground">{expense.items?.[0]?.title || expense.description || 'Course Purchase'}</h4>
+                    <h4 className="font-medium text-foreground">{expense.description || 'Course Purchase'}</h4>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(expense.status)}`}>
                       {expense.status.charAt(0).toUpperCase() + expense.status.slice(1)}
                     </span>
@@ -143,16 +143,16 @@ export default function ExpensesSummary({
                   <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                     <div className="flex items-center space-x-1">
                       <Calendar className="w-3 h-3" />
-                      <span>{formatDate(expense.createdDate)}</span>
+                      <span>{formatDate(expense.date)}</span>
                     </div>
-                    {expense.items?.[0]?.id && (
-                      <span>Course: {expense.items[0].id}</span>
+                    {expense.courseId && (
+                      <span>Course: {expense.courseId}</span>
                     )}
                   </div>
                 </div>
                 <div className="text-right">
                   <p className="text-lg font-semibold text-foreground">
-                    {formatCurrency(expense.TXNAMOUNT || expense.amount || 0, expense.currencyCode || 'INR')}
+                    {formatCurrency(expense.amount || 0, expense.currency || 'INR')}
                   </p>
                 </div>
               </motion.div>

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import React from 'react';
 
 // Icon Components
@@ -154,7 +155,7 @@ export default function ChanakyaCodeCoursePage() {
             <div className="flex justify-center order-2 lg:order-1">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-t from-red-600/50 to-transparent blur-3xl"></div>
-                <img 
+                <Image 
                   src="https://shikshanam.in/wp-content/uploads/2024/12/Acharya-Chanakya-1.png" 
                   alt="Acharya Chanakya - Master Strategist" 
                   className="relative z-10 w-full max-w-md mx-auto drop-shadow-2xl"
@@ -494,7 +495,7 @@ export default function ChanakyaCodeCoursePage() {
                 <div className="row-span-2">
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 h-full border-2 border-amber-200">
                     <div className="relative overflow-hidden rounded-2xl h-full">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png" 
                         alt="Vishal Chaurasia" 
                         className="rounded-2xl w-full h-full object-cover"
@@ -507,7 +508,7 @@ export default function ChanakyaCodeCoursePage() {
                 <div>
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-amber-200">
                     <div className="relative overflow-hidden rounded-2xl">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1-1.png" 
                         alt="Vishal Chaurasia with Guru" 
                         className="rounded-2xl w-full h-auto"
@@ -520,7 +521,7 @@ export default function ChanakyaCodeCoursePage() {
                 <div>
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 border-amber-200">
                     <div className="relative overflow-hidden rounded-2xl">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-2-2-300x259.png" 
                         alt="Vishal Chaurasia Teaching" 
                         className="rounded-2xl w-full h-auto"

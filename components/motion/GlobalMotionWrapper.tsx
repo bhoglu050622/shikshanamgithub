@@ -6,7 +6,7 @@ import { ComponentProps } from 'react'
 // Create a comprehensive motion wrapper that handles SSR properly
 const createMotionComponent = (tag: string) => {
   return dynamic(() => import('framer-motion').then(mod => ({ 
-    default: mod.motion[tag] || mod.motion.div 
+    default: (mod.motion as any)[tag] || mod.motion.div 
   })), {
     ssr: false,
     loading: () => {

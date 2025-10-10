@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import React from 'react';
 
 // Icon Components (reusing from Yoga Darshan)
@@ -222,7 +223,7 @@ export default function NyayaDarshanCoursePage() {
                 
                 <div className="relative bg-white p-2 rounded-3xl shadow-2xl border-4 border-white transform group-hover:scale-105 transition-transform duration-500">
                     <div className="relative overflow-hidden rounded-2xl">
-                        <img 
+                        <Image 
                             src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" 
                             alt="Nyaya Darshan Course - Vishal Chaurasia" 
                             className="rounded-2xl w-full h-auto shadow-lg"
@@ -693,7 +694,7 @@ export default function NyayaDarshanCoursePage() {
             <div className="space-y-6">
               <div className="group relative bg-gradient-to-br from-purple-100 to-violet-100 rounded-3xl p-2 shadow-xl hover:shadow-2xl transition-all duration-500">
                 <div className="relative overflow-hidden rounded-2xl">
-                  <img
+                  <Image
                     src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png"
                     alt="Vishal Chaurasia - Philosophy Instructor"
                     className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
@@ -707,7 +708,7 @@ export default function NyayaDarshanCoursePage() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="group relative bg-gradient-to-br from-violet-100 to-fuchsia-100 rounded-2xl p-2 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden">
                   <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
-                    <img
+                    <Image
                       src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1-1.png"
                       alt="Vishal with Spiritual Guru"
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -718,7 +719,7 @@ export default function NyayaDarshanCoursePage() {
 
                 <div className="group relative bg-gradient-to-br from-purple-100 to-violet-100 rounded-2xl p-2 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden">
                   <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
-                    <img
+                    <Image
                       src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-2-2-300x259.png"
                       alt="Vishal Teaching"
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
@@ -792,7 +793,7 @@ export default function NyayaDarshanCoursePage() {
                 <h4 className="text-lg font-bold text-slate-900 mb-4">Featured in:</h4>
                 <div className="flex flex-wrap items-center justify-center gap-6">
                   <div className="grayscale hover:grayscale-0 transition-all">
-                    <img
+                    <Image
                       src="https://upload.wikimedia.org/wikipedia/commons/3/33/ABP_News_logo.png"
                       alt="ABP News"
                       className="h-10 object-contain"
@@ -1186,7 +1187,7 @@ export default function NyayaDarshanCoursePage() {
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {/* Image 1 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-01-scaled.png" 
                 alt="Gallery Image 1" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1196,7 +1197,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 2 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-02-scaled.png" 
                 alt="Gallery Image 2" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1206,7 +1207,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 3 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-03-scaled.png" 
                 alt="Gallery Image 3" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1216,7 +1217,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 4 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-04-scaled.png" 
                 alt="Gallery Image 4" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1226,7 +1227,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 5 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-06-scaled.png" 
                 alt="Gallery Image 5" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1236,7 +1237,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 6 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-05-5-scaled.png" 
                 alt="Gallery Image 6" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1246,7 +1247,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 7 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-07-scaled.png" 
                 alt="Gallery Image 7" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1256,7 +1257,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 8 (16) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-16.png" 
                 alt="Gallery Image 16" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1266,7 +1267,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 9 (13) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-13.png" 
                 alt="Gallery Image 13" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1276,7 +1277,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 10 (12) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-12-scaled.png" 
                 alt="Gallery Image 12" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1286,7 +1287,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 11 */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-11-scaled.png" 
                 alt="Gallery Image 11" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1296,7 +1297,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 12 (15) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-15.png" 
                 alt="Gallery Image 15" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1306,7 +1307,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 13 (14) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-14-scaled.png" 
                 alt="Gallery Image 14" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1316,7 +1317,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 14 (8) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-08-scaled.png" 
                 alt="Gallery Image 8" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1326,7 +1327,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 15 (9) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-09-4-scaled.png" 
                 alt="Gallery Image 9" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1336,7 +1337,7 @@ export default function NyayaDarshanCoursePage() {
 
             {/* Image 16 (10) */}
             <div className="break-inside-avoid relative overflow-hidden rounded-lg">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2025/07/1-10-3-scaled.png" 
                 alt="Gallery Image 10" 
                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"

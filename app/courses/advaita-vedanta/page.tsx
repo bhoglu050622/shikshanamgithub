@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import Image from 'next/image';
 
 // Icon Components
 const BookOpen = (props: any) => (
@@ -163,9 +164,11 @@ export default function AdvaitaVedantaCoursePage() {
 
                   <div className="relative bg-white p-2 rounded-3xl shadow-2xl border-4 border-white transform group-hover:scale-105 transition-transform duration-500">
                     <div className="relative overflow-hidden rounded-2xl">
-                        <img 
+                        <Image 
                             src="https://shikshanam.in/wp-content/uploads/2025/03/ALL-course-thumbnail-1.png" 
                             alt="Advaita Vedanta Darshan - Drig Drishya Viveka Course" 
+                            width={600}
+                            height={600}
                             className="rounded-2xl w-full h-auto shadow-lg"
                             onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src='https://placehold.co/600x600/9333ea/white?text=Advaita+Vedanta'; }}
                         />
@@ -477,9 +480,11 @@ export default function AdvaitaVedantaCoursePage() {
                 <div className="row-span-2">
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 h-full">
                     <div className="relative overflow-hidden rounded-2xl h-full">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png" 
                         alt="Vishal Chaurasia - Guru" 
+                        width={400}
+                        height={600}
                         className="rounded-2xl w-full h-full object-cover"
                         onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src='https://placehold.co/400x600/9333ea/white?text=Guru'; }}
                       />
@@ -491,9 +496,11 @@ export default function AdvaitaVedantaCoursePage() {
                 <div>
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                     <div className="relative overflow-hidden rounded-2xl">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1-1.png" 
                         alt="Vishal Chaurasia with Traditional Guru" 
+                        width={300}
+                        height={300}
                         className="rounded-2xl w-full h-auto"
                         onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src='https://placehold.co/300x300/9333ea/white?text=Guru+2'; }}
                       />
@@ -505,9 +512,11 @@ export default function AdvaitaVedantaCoursePage() {
                 <div>
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                     <div className="relative overflow-hidden rounded-2xl">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-2-2-300x259.png" 
                         alt="Vishal Chaurasia Teaching" 
+                        width={300}
+                        height={259}
                         className="rounded-2xl w-full h-auto"
                         onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src='https://placehold.co/300x259/9333ea/white?text=Guru+3'; }}
                       />
@@ -778,9 +787,11 @@ export default function AdvaitaVedantaCoursePage() {
                 key={idx} 
                 className="break-inside-avoid relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
-                <img 
+                <Image 
                   src={image.src} 
                   alt={image.alt}
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   onError={(e) => { 
                     (e.target as HTMLImageElement).onerror = null; 

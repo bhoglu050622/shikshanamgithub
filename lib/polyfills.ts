@@ -1,53 +1,43 @@
 // Polyfills for SSR compatibility
 if (typeof window === 'undefined') {
   // Server-side polyfills for browser globals
-  (global as any).SVGElement = class SVGElement {
-    constructor() {
-      return {}
-    }
+  const globalObj = global as any;
+  
+  globalObj.SVGElement = function(...args: any[]) {
+    return {}
   }
   
-  (global as any).HTMLElement = class HTMLElement {
-    constructor() {
-      return {}
-    }
+  globalObj.HTMLElement = function(...args: any[]) {
+    return {}
   }
   
-  (global as any).Element = class Element {
-    constructor() {
-      return {}
-    }
+  globalObj.Element = function(...args: any[]) {
+    return {}
   }
   
-  (global as any).Node = class Node {
-    constructor() {
-      return {}
-    }
+  globalObj.Node = function(...args: any[]) {
+    return {}
   }
   
-  (global as any).Document = class Document {
-    constructor() {
-      return {}
-    }
+  globalObj.Document = function(...args: any[]) {
+    return {}
   }
   
-  (global as any).Window = class Window {
-    constructor() {
-      return {}
-    }
+  globalObj.Window = function(...args: any[]) {
+    return {}
   }
   
   // Add setAttribute polyfill
-  if (typeof (global as any).SVGElement !== 'undefined') {
-    (global as any).SVGElement.prototype.setAttribute = function() {}
+  if (typeof globalObj.SVGElement !== 'undefined') {
+    globalObj.SVGElement.prototype.setAttribute = function() {}
   }
   
-  if (typeof (global as any).HTMLElement !== 'undefined') {
-    (global as any).HTMLElement.prototype.setAttribute = function() {}
+  if (typeof globalObj.HTMLElement !== 'undefined') {
+    globalObj.HTMLElement.prototype.setAttribute = function() {}
   }
   
-  if (typeof (global as any).Element !== 'undefined') {
-    (global as any).Element.prototype.setAttribute = function() {}
+  if (typeof globalObj.Element !== 'undefined') {
+    globalObj.Element.prototype.setAttribute = function() {}
   }
   
   // Add isSVGElement polyfill for framer-motion

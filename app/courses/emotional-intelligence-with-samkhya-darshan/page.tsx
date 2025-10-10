@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 export default function EmotionalIntelligenceCoursePage() {
   const [mounted, setMounted] = useState(false)
@@ -300,9 +301,11 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <img 
+                  <Image 
                     src="https://shikshanam.in/wp-content/uploads/2025/06/Emotional-Overwhelm.png" 
                     alt="Emotional Overwhelm illustration" 
+                    width={400}
+                    height={200}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.onerror = null
@@ -333,7 +336,7 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <img 
+                  <Image 
                     src="https://shikshanam.in/wp-content/uploads/2025/06/Overthinking-Patterns-1.png" 
                     alt="Overthinking Patterns illustration" 
                     onError={(e) => {
@@ -366,7 +369,7 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <img 
+                  <Image 
                     src="https://shikshanam.in/wp-content/uploads/2025/06/Reactive-Responses-1.png" 
                     alt="Reactive Responses illustration" 
                     onError={(e) => {
@@ -399,7 +402,7 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <img 
+                  <Image 
                     src="https://shikshanam.in/wp-content/uploads/2025/06/Inner-Turbulence-1.png" 
                     alt="Inner Conflict illustration" 
                     onError={(e) => {
@@ -687,7 +690,7 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="bonus-card-content">
                 <div className="card-header">
                   <div className="bonus-icon">
-                    <img 
+                    <Image 
                       src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-207.png" 
                       alt="Guna Profiler Tool Icon" 
                       className="animate-all"
@@ -711,7 +714,7 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="bonus-card-content">
                 <div className="card-header">
                   <div className="bonus-icon">
-                    <img 
+                    <Image 
                       src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-202.png" 
                       alt="Emotional Journal Template Icon" 
                       className="animate-all"
@@ -735,7 +738,7 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="bonus-card-content">
                 <div className="card-header">
                   <div className="bonus-icon">
-                    <img 
+                    <Image 
                       src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-208.png" 
                       alt="Private WhatsApp Group Icon" 
                       className="animate-all"
@@ -759,7 +762,7 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="bonus-card-content">
                 <div className="card-header">
                   <div className="bonus-icon">
-                    <img 
+                    <Image 
                       src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-210.png" 
                       alt="1-Year Access Icon" 
                       className="animate-all"
@@ -783,7 +786,7 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="bonus-card-content">
                 <div className="card-header">
                   <div className="bonus-icon">
-                    <img 
+                    <Image 
                       src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-206.png" 
                       alt="Certificate of Completion Icon" 
                       className="animate-all"
@@ -807,7 +810,7 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="bonus-card-content">
                 <div className="card-header">
                   <div className="bonus-icon">
-                    <img 
+                    <Image 
                       src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-203-1.png" 
                       alt="Guna-Based Assessment Icon" 
                       className="animate-all"
@@ -870,7 +873,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/lOR9ZsMt4ug/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -907,7 +910,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/fOyOmesmUhk/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -944,7 +947,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/Y9D3VkB8cQE/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -981,7 +984,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/lqVTJewLhPs/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -1018,7 +1021,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/b92bww6ImZo/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -1055,7 +1058,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/OambhYsblNI/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -1092,7 +1095,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/90FsCxSpWD0/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -1129,7 +1132,7 @@ export default function EmotionalIntelligenceCoursePage() {
               }}
             >
               <div className="video-thumbnail">
-                <img 
+                <Image 
                   src="https://img.youtube.com/vi/LBqOELB32AM/sddefault.jpg" 
                   alt="Video Thumbnail" 
                   onError={(e) => {
@@ -2680,7 +2683,7 @@ export default function EmotionalIntelligenceCoursePage() {
         <div className="shloka-banner">
           <div className="shloka-container">
             <div className="shloka-symbol">
-              <img 
+              <Image 
                 src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png" 
                 alt="Shikshanam Logo" 
                 onError={(e) => {

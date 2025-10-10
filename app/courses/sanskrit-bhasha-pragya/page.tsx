@@ -318,7 +318,7 @@ export default function SanskritBhashaPragyaCoursePage() {
                         <div className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-orange-300 to-orange-400 dark:from-orange-700 dark:to-orange-800 rounded-3xl transform -rotate-6 group-hover:rotate-0 transition-transform duration-500"></div>
                         <div className="relative bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-2xl border-4 border-slate-100 dark:border-slate-700 group-hover:scale-105 transition-transform duration-500">
                             <div className="p-6 bg-gradient-to-br from-slate-800 to-slate-900 dark:from-slate-700 dark:to-slate-800 text-white rounded-2xl">
-                        <img 
+                        <Image 
                             src="https://shikshanam.in/wp-content/uploads/2024/12/shikshanam-course-thumbnail-7.png" 
                             alt="Acharya Srinidhi V." 
                             className="rounded-xl w-full h-auto"
@@ -671,7 +671,7 @@ export default function SanskritBhashaPragyaCoursePage() {
                   <Card className="bg-white dark:bg-slate-800 hover:shadow-2xl transition-shadow duration-300 h-full">
                     <CardHeader>
                       <div className="flex items-center gap-4 mb-4">
-                        <img 
+                        <Image 
                           src={testimonial.image} 
                           alt={testimonial.name}
                           className="w-16 h-16 rounded-full border-4 border-orange-200 dark:border-orange-800"
@@ -751,7 +751,7 @@ export default function SanskritBhashaPragyaCoursePage() {
                 <div className="grid grid-cols-2 gap-4 relative z-10">
                   <div className="col-span-2">
                     <MotionDiv whileHover={{ scale: 1.05, rotate: 2 }} transition={{ duration: 0.3 }}>
-                      <img
+                      <Image
                           src="https://shikshanam.in/wp-content/uploads/2024/03/image-5.png"
                           alt="Acharya V. Shrīnidhi"
                           className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/5] ring-4 ring-orange-200 dark:ring-orange-800"
@@ -760,7 +760,7 @@ export default function SanskritBhashaPragyaCoursePage() {
                     </MotionDiv>
                   </div>
                   <MotionDiv whileHover={{ scale: 1.05, rotate: -2 }} transition={{ duration: 0.3 }}>
-                    <img
+                    <Image
                         src="https://shikshanam.in/wp-content/uploads/2024/03/image-7.png"
                         alt="Acharya teaching"
                         className="rounded-2xl shadow-xl w-full object-cover aspect-square ring-2 ring-orange-200 dark:ring-orange-800"
@@ -768,7 +768,7 @@ export default function SanskritBhashaPragyaCoursePage() {
                     />
                   </MotionDiv>
                   <MotionDiv whileHover={{ scale: 1.05, rotate: 2 }} transition={{ duration: 0.3 }}>
-                    <img
+                    <Image
                         src="https://shikshanam.in/wp-content/uploads/2024/03/image-6.png"
                         alt="Acharya in a traditional setting"
                         className="rounded-2xl shadow-xl w-full object-cover aspect-square ring-2 ring-orange-200 dark:ring-orange-800"
@@ -1181,7 +1181,7 @@ export default function SanskritBhashaPragyaCoursePage() {
                   whileHover={{ scale: 1.05 }}
                   className="break-inside-avoid relative overflow-hidden rounded-2xl shadow-lg ring-2 ring-purple-200 dark:ring-purple-800"
                 >
-                  <img 
+                  <Image 
                     src={src} 
                     alt={`Gallery Image ${index + 1}`} 
                     className="w-full h-full object-cover transition-transform duration-300"

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import HydrationSafeMotion from '@/components/motion/HydrationSafeMotion'
 
@@ -1538,7 +1539,7 @@ export default function KashmirShaivismCoursePage() {
           <div className="teacher-card">
             <div className="card-grid-container">
               <div className="video-placeholder" data-video-id="oppR6FUIPno">
-                <img src="https://shikshanam.in/wp-content/uploads/2024/05/1.png" alt="Vishal Chaurasia" className="teacher-image" onError={(e) => {
+                <Image src="https://shikshanam.in/wp-content/uploads/2024/05/1.png" alt="Vishal Chaurasia" width={400} height={500} className="teacher-image" onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = 'https://placehold.co/400x500/374151/FFFFFF?text=Video+Not+Found';
                 }} />
@@ -1583,7 +1584,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 1: Wisdom Chapters */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" alt="Wisdom Chapters Icon" />
+                <Image src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" alt="Wisdom Chapters Icon" width={64} height={64} />
               </div>
               <h3 className="feature-title">20 Wisdom-filled Chapters</h3>
               <p className="feature-desc">Comprehensive teachings that blend ancient wisdom with practical application.</p>
@@ -1592,7 +1593,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 2: Transformational Activities */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" alt="Transformational Activities Icon" />
+                <Image src="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png" alt="Transformational Activities Icon" width={64} height={64} />
               </div>
               <h3 className="feature-title">4 Transformational Activities</h3>
               <p className="feature-desc">Practical exercises to clear mental blocks and make your self-awareness a steady, natural state.</p>
@@ -1601,7 +1602,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 3: Daily Inner Practices */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/3.png" alt="Daily Inner Practices Icon" />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/3.png" alt="Daily Inner Practices Icon" width={64} height={64} />
               </div>
               <h3 className="feature-title">Daily Inner Practices</h3>
               <p className="feature-desc">Simple yet profound techniques for maintaining Śiva-awareness throughout your day.</p>
@@ -1610,7 +1611,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 4: Sacred Tools */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/4.png" alt="Sacred Tools Icon" />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/4.png" alt="Sacred Tools Icon" width={64} height={64} />
               </div>
               <h3 className="feature-title">Sacred Tools</h3>
               <p className="feature-desc">Journal, Tracker, and Guide to support your inner transformation.</p>
@@ -1619,7 +1620,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 5: Guided Meditations */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/6.png" alt="Guided Meditations Icon" />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/6.png" alt="Guided Meditations Icon" width={64} height={64} />
               </div>
               <h3 className="feature-title">Guided Meditations</h3>
               <p className="feature-desc">Audio practices to help you access deeper states of consciousness and stillness.</p>
@@ -1628,7 +1629,7 @@ export default function KashmirShaivismCoursePage() {
             {/* Card 6: Premium Additions */}
             <div className="feature-card">
               <div className="feature-icon">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/5.png" alt="Premium Additions Icon" />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/5.png" alt="Premium Additions Icon" width={64} height={64} />
               </div>
               <h3 className="feature-title">Premium Additions</h3>
               <p className="feature-desc">Exclusive community access and a course completion certificate.</p>
@@ -1942,7 +1943,7 @@ export default function KashmirShaivismCoursePage() {
         <div className="shloka-banner">
           <div className="shloka-container">
             <div className="shloka-symbol">
-              <img src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png" alt="Shikshanam Logo" onError={(e) => e.currentTarget.style.display = 'none'} />
+              <Image src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png" alt="Shikshanam Logo" width={200} height={60} onError={(e) => e.currentTarget.style.display = 'none'} />
             </div>
             <div className="divider"></div>
             <div className="shloka-text">
@@ -1976,52 +1977,52 @@ export default function KashmirShaivismCoursePage() {
             
             <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-01-scaled.png" alt="Gallery Image 1" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+1'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-01-scaled.png" alt="Gallery Image 1" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+1'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-02-scaled.png" alt="Gallery Image 2" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+2'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-02-scaled.png" alt="Gallery Image 2" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+2'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-03-scaled.png" alt="Gallery Image 3" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+3'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-03-scaled.png" alt="Gallery Image 3" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+3'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-04-scaled.png" alt="Gallery Image 4" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+4'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-04-scaled.png" alt="Gallery Image 4" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+4'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-06-scaled.png" alt="Gallery Image 5" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+5'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-06-scaled.png" alt="Gallery Image 5" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+5'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-05-5-scaled.png" alt="Gallery Image 6" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+6'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-05-5-scaled.png" alt="Gallery Image 6" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+6'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-07-scaled.png" alt="Gallery Image 7" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+7'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-07-scaled.png" alt="Gallery Image 7" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+7'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-16.png" alt="Gallery Image 16" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+16'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-16.png" alt="Gallery Image 16" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+16'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-13.png" alt="Gallery Image 13" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+13'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-13.png" alt="Gallery Image 13" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+13'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-12-scaled.png" alt="Gallery Image 12" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+12'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-12-scaled.png" alt="Gallery Image 12" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+12'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-11-scaled.png" alt="Gallery Image 11" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+11'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-11-scaled.png" alt="Gallery Image 11" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+11'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-15.png" alt="Gallery Image 15" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+15'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-15.png" alt="Gallery Image 15" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+15'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-14-scaled.png" alt="Gallery Image 14" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+14'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-14-scaled.png" alt="Gallery Image 14" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+14'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-08-scaled.png" alt="Gallery Image 8" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+8'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-08-scaled.png" alt="Gallery Image 8" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+8'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-09-4-scaled.png" alt="Gallery Image 9" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+9'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-09-4-scaled.png" alt="Gallery Image 9" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+9'} />
               </div>
               <div className="masonry-item">
-                <img src="https://shikshanam.in/wp-content/uploads/2025/07/1-10-3-scaled.png" alt="Gallery Image 10" className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+10'} />
+                <Image src="https://shikshanam.in/wp-content/uploads/2025/07/1-10-3-scaled.png" alt="Gallery Image 10" width={600} height={400} className="gallery-image" onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1f2937/a78bfa?text=Image+10'} />
               </div>
             </div>
           </section>

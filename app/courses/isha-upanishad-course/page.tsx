@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import React from 'react';
 
 // Icon Components
@@ -151,7 +152,7 @@ export default function IshaUpanishadCoursePage() {
 
                   <div className="relative bg-white p-2 rounded-3xl shadow-2xl border-4 border-white transform group-hover:scale-105 transition-transform duration-500">
                     <div className="relative overflow-hidden rounded-2xl">
-                        <img 
+                        <Image 
                             src="https://shikshanam.in/wp-content/uploads/2024/04/1-9-1.png" 
                             alt="Isha Upanishad Course - Vishal Chaurasia" 
                             className="rounded-2xl w-full h-auto shadow-lg"
@@ -463,7 +464,7 @@ export default function IshaUpanishadCoursePage() {
                 <div>
                   <div className="group relative bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-500 p-3 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]">
                     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png" 
                         alt="Vishal Chaurasia - Yoga Philosophy Instructor" 
                         className="rounded-2xl w-full h-auto object-cover"
@@ -483,7 +484,7 @@ export default function IshaUpanishadCoursePage() {
                   <div>
                     <div className="group relative bg-gradient-to-br from-teal-400 via-cyan-500 to-teal-500 p-3 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-400 to-cyan-500">
-                        <img 
+                        <Image 
                           src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1-1.png" 
                           alt="Vishal with Spiritual Guru" 
                           className="rounded-2xl w-full h-auto object-cover"
@@ -501,7 +502,7 @@ export default function IshaUpanishadCoursePage() {
                   <div>
                     <div className="group relative bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-500 p-3 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500">
-                        <img 
+                        <Image 
                           src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-2-2-300x259.png" 
                           alt="Vishal Teaching" 
                           className="rounded-2xl w-full h-auto object-cover"
@@ -800,7 +801,7 @@ export default function IshaUpanishadCoursePage() {
                 key={idx} 
                 className="break-inside-avoid relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
-                <img 
+                <Image 
                   src={image.src} 
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

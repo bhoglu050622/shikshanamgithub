@@ -39,7 +39,7 @@ const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
   variable: '--font-dm-serif-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
   preload: true,
 })
 
@@ -47,6 +47,7 @@ const tiroDevanagari = Tiro_Devanagari_Hindi({
   subsets: ['devanagari', 'latin'],
   variable: '--font-tiro-devanagari',
   display: 'swap',
+  weight: ['400'],
   preload: true,
 })
 
@@ -54,7 +55,7 @@ const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400'],
   preload: true,
 })
 
@@ -62,7 +63,7 @@ const cinzel = Cinzel({
   subsets: ['latin'],
   variable: '--font-cinzel',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
   preload: true,
 })
 

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import React from 'react';
 
 // Icon Components
@@ -158,7 +159,7 @@ export default function PrashnaUpanishadCoursePage() {
 
                   <div className="relative bg-white p-2 rounded-3xl shadow-2xl border-4 border-white transform group-hover:scale-105 transition-transform duration-500">
                     <div className="relative overflow-hidden rounded-2xl">
-                        <img 
+                        <Image 
                             src="https://shikshanam.in/wp-content/uploads/2024/04/2-2.jpg" 
                             alt="Prashna Upanishad Course - Rishi Pippalada" 
                             className="rounded-2xl w-full h-auto shadow-lg"
@@ -470,7 +471,7 @@ export default function PrashnaUpanishadCoursePage() {
                 <div className="row-span-2">
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 h-full">
                     <div className="relative overflow-hidden rounded-2xl h-full">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1.png" 
                         alt="Vishal Chaurasia - Guru" 
                         className="rounded-2xl w-full h-full object-cover"
@@ -484,7 +485,7 @@ export default function PrashnaUpanishadCoursePage() {
                 <div>
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                     <div className="relative overflow-hidden rounded-2xl">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-1-1.png" 
                         alt="Vishal Chaurasia with Traditional Guru" 
                         className="rounded-2xl w-full h-auto"
@@ -498,7 +499,7 @@ export default function PrashnaUpanishadCoursePage() {
                 <div>
                   <div className="group relative bg-white p-2 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                     <div className="relative overflow-hidden rounded-2xl">
-                      <img 
+                      <Image 
                         src="https://shikshanam.in/wp-content/uploads/2024/04/profile-pic-2-2-300x259.png" 
                         alt="Vishal Chaurasia Teaching" 
                         className="rounded-2xl w-full h-auto"
@@ -780,7 +781,7 @@ export default function PrashnaUpanishadCoursePage() {
                 key={idx} 
                 className="break-inside-avoid relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
-                <img 
+                <Image 
                   src={image.src} 
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

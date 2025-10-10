@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { ComponentProps } from 'react'
+import Image from 'next/image'
 
 // Create SSR-safe motion components using dynamic imports
 const MotionDiv = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion.div })), {
@@ -111,7 +112,7 @@ const MotionA = dynamic(() => import('framer-motion').then(mod => ({ default: mo
 
 const MotionImg = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion.img })), {
   ssr: false,
-  loading: () => <img />
+  loading: () => <Image src="/placeholder.png" alt="" width={100} height={100} />
 })
 
 const MotionForm = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion.form })), {
