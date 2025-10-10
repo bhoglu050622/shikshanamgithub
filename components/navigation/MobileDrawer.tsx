@@ -56,6 +56,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
   const handleLinkClick = (href: string) => {
     try {
+      console.log('Mobile navigation to:', href)
       // Use window.location for more reliable navigation
       if (href.startsWith('http')) {
         window.location.href = href

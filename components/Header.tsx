@@ -92,6 +92,7 @@ export default function Header() {
                       setActiveGroupId(null)
                       // Navigate to the target href for non-dropdown items
                       try {
+                        console.log('Navigating to:', item.href)
                         // Use window.location for more reliable navigation
                         if (item.href.startsWith('http')) {
                           window.location.href = item.href
