@@ -108,7 +108,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -124,19 +124,8 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-lg max-h-[90vh] overflow-hidden"
+            className="relative w-full max-w-md mx-auto"
           >
-          {/* Background with Glassmorphism */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/95 via-amber-50/95 to-yellow-50/95 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl" />
-          
-          {/* Decorative Elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-200/30 to-amber-200/30 rounded-full blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-200/30 to-pink-200/30 rounded-full blur-xl" />
-          
-          {/* Om Symbol Decoration */}
-          <div className="absolute top-6 right-6 text-4xl opacity-10">
-            ॐ
-          </div>
 
           {/* Close Button */}
           <button
@@ -146,13 +135,14 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
             <X className="w-4 h-4 text-gray-600" />
           </button>
 
-          <div className="relative z-10 flex flex-col items-center justify-center min-h-[500px] p-8">
+          <div className="relative z-10 w-full max-w-md mx-auto">
             {/* Centered Login Form */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.3 }}
-              className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8"
+              className="w-full bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20"
             >
               <div className="w-full">
                 <motion.div
@@ -168,7 +158,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                   <p className="text-gray-600">Sign in to continue your learning journey</p>
                 </motion.div>
 
-                <div ref={dialogRef} className="space-y-6">
+                <div ref={dialogRef} className="space-y-6 w-full">
                   {/* Google OAuth Button */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -182,7 +172,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                       <Button
                         onClick={handleGoogleLogin}
                         variant="secondary"
-                        className="w-full h-14 font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300"
+                        className="w-full h-12 font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl"
                         disabled={isLoading}
                       >
                       {isLoading ? (
@@ -236,7 +226,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                           placeholder="Enter your email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="pl-12 h-14 bg-white border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 transition-all duration-300"
+                          className="pl-12 h-12 bg-white border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 transition-all duration-300 rounded-xl"
                           required
                           disabled={isLoading}
                         />
@@ -265,7 +255,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup }: SSOLoginModalProps)
                     >
                       <Button
                         type="submit"
-                        className="w-full h-14 font-medium bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full h-12 font-medium bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                         disabled={isLoading}
                       >
                         {isLoading ? (
