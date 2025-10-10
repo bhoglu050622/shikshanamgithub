@@ -15,7 +15,7 @@ import {
   UsageAnalytics
 } from '@/lib/types/graphy'
 
-const GRAPHY_API_BASE = 'https://api.ongraphy.com/public/v1'
+const GRAPHY_API_BASE = process.env.GRAPHY_API_BASE || 'https://api.ongraphy.com/public/v1'
 
 // API Configuration
 const API_CONFIG = {

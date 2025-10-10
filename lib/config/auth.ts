@@ -6,11 +6,11 @@
 export const AUTH_CONFIG = {
   // Graphy SSO Configuration
   GRAPHY: {
-    MERCHANT_ID: process.env.GRAPHY_MERCHANT_ID || 'hyperquest',
-    API_TOKEN: process.env.GRAPHY_API_TOKEN || '52bae682-186d-44af-a933-c6b6808596c9',
-    BASE_URL: process.env.GRAPHY_BASE_URL || 'https://courses.shikshanam.in',
-    LEARNING_HUB_URL: process.env.GRAPHY_LEARNING_HUB_URL || 'https://courses.shikshanam.in/t/u/activeCourses',
-    AUTH_URL: process.env.GRAPHY_AUTH_URL || 'https://courses.shikshanam.in/t/u/authenticate'
+    MERCHANT_ID: process.env.GRAPHY_MERCHANT_ID || '',
+    API_TOKEN: process.env.GRAPHY_API_TOKEN || '',
+    BASE_URL: process.env.GRAPHY_BASE_URL || '',
+    LEARNING_HUB_URL: process.env.GRAPHY_LEARNING_HUB_URL || '',
+    AUTH_URL: process.env.GRAPHY_AUTH_URL || ''
   },
   
   // Google OAuth Configuration

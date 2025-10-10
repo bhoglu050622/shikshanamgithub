@@ -56,11 +56,11 @@ This implementation integrates Graphy Single Sign-On (SSO) with Google OAuth aut
 ## Configuration
 
 ### Graphy Settings
-- **Merchant ID**: `hyperquest`
-- **API Token**: `52bae682-186d-44af-a933-c6b6808596c9`
-- **Base URL**: `https://courses.shikshanam.in`
-- **Learning Hub URL**: `https://courses.shikshanam.in/t/u/activeCourses`
-- **Auth URL**: `https://courses.shikshanam.in/t/u/authenticate`
+- **Merchant ID**: Set via `GRAPHY_MERCHANT_ID` environment variable
+- **API Token**: Set via `GRAPHY_API_TOKEN` environment variable
+- **Base URL**: Set via `GRAPHY_BASE_URL` environment variable
+- **Learning Hub URL**: Set via `GRAPHY_LEARNING_HUB_URL` environment variable
+- **Auth URL**: Set via `GRAPHY_AUTH_URL` environment variable
 
 ### Google OAuth Settings
 - **Client ID**: Set via `GOOGLE_CLIENT_ID` environment variable
