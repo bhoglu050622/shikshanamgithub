@@ -1,0 +1,27 @@
+{
+  "url": "/help",
+  "title": "Help Center - Shikshanam",
+  "description": "Get help and support for your Sanskrit learning journey. Find answers to common questions and get assistance.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": [
+      "• How to create an account",
+      "• Choosing your learning path",
+      "• Understanding course structure",
+      "• Setting up your profile",
+      "• Accessing course materials",
+      "• Understanding Sanskrit grammar",
+      "• Using practice tools",
+      "• Tracking your progress",
+      "• Video playback problems",
+      "• Audio quality issues"
+    ]
+  },
+  "metadata": {},
+  "timestamp": "2025-10-04T10:56:42.985Z"
+}

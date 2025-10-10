@@ -1,0 +1,27 @@
+{
+  "url": "/privacy",
+  "title": "Privacy Policy - Shikshanam",
+  "description": "Learn how Shikshanam protects your privacy and handles your personal information.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": [
+      "Account information (name, email address, password)",
+      "Profile information (learning preferences, progress data)",
+      "Payment information (processed securely through third-party providers)",
+      "Communication data (messages, feedback, support requests)",
+      "Provide access to courses and learning materials",
+      "Track your learning progress and achievements",
+      "Process payments and manage subscriptions",
+      "Send important updates about your account or courses",
+      "Provide customer support",
+      "Improve our platform and develop new features"
+    ]
+  },
+  "metadata": {},
+  "timestamp": "2025-10-04T10:56:39.531Z"
+}

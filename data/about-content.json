@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "About Us",
+    "subtitle": "What We're All About",
+    "description": "Welcome to Shikshanam – your doorway to the ancient wisdom of Indian philosophies, guided by a team fueled by curiosity and passion."
+  },
+  "founder": {
+    "title": "Invite Vishal Chaurasia",
+    "subtitle": "Bring our founder's expertise to your event! Invite to your speaking engagements, interviews, podcasts, or collaborations. Let's inspire together!",
+    "socialStats": {
+      "youtube": "1.5M Subscribers",
+      "instagram": "401K Followers"
+    },
+    "socialLinks": {
+      "youtube": "https://youtube.com/@vishalchaurasia",
+      "instagram": "https://instagram.com/vishalchaurasia"
+    },
+    "ctaText": "Invite now"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "paragraph1": "Shikshanam was born from a deep reverence for India's ancient knowledge systems and a vision to make this profound wisdom accessible to everyone.",
+    "paragraph2": "We believe that the timeless teachings of Sanskrit, Yoga, Vedanta, and other Indian philosophies hold the key to modern living and personal transformation.",
+    "visionTitle": "Our Vision",
+    "visionText": "To create a global community of learners who embrace ancient wisdom for modern living, fostering understanding, growth, and spiritual development."
+  },
+  "team": {
+    "title": "Meet the Team",
+    "description": "Our passionate team of educators, scholars, and technology experts work together to bring you the best learning experience.",
+    "members": [
+      {
+        "name": "Vishal Chaurasia",
+        "role": "Founder & Lead Instructor",
+        "description": "Expert in Sanskrit, Yoga, and Indian Philosophy with over 1.5M YouTube subscribers"
+      },
+      {
+        "name": "Academic Team",
+        "role": "Subject Matter Experts",
+        "description": "Renowned scholars and practitioners in various fields of Indian knowledge systems"
+      },
+      {
+        "name": "Technology Team",
+        "role": "Platform Developers",
+        "description": "Dedicated to creating seamless learning experiences through modern technology"
+      }
+    ]
+  },
+  "offerings": {
+    "title": "What We Offer",
+    "items": [
+      {
+        "title": "Comprehensive Courses",
+        "description": "Structured learning paths in Sanskrit, Yoga, Vedanta, and ancient philosophy"
+      },
+      {
+        "title": "Expert Guidance",
+        "description": "Learn from experienced teachers and practitioners with deep knowledge"
+      },
+      {
+        "title": "Community Support",
+        "description": "Connect with fellow learners on the journey of wisdom and growth"
+      },
+      {
+        "title": "Modern Technology",
+        "description": "Ancient wisdom delivered through cutting-edge learning platforms"
+      },
+      {
+        "title": "Flexible Learning",
+        "description": "Study at your own pace with lifetime access to course materials"
+      },
+      {
+        "title": "Certification",
+        "description": "Receive certificates upon completion to validate your learning journey"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Info",
+    "headquarters": "Delhi",
+    "phone": "+91-9910032165",
+    "email": "support@shikshanam.in",
+    "hours": "Monday to Saturday 11AM – 6PM",
+    "ctaText": "Give us a call"
+  },
+  "values": {
+    "title": "Our Values",
+    "items": [
+      {
+        "title": "Authenticity",
+        "description": "We preserve the original teachings without dilution or distortion, maintaining the purity of ancient wisdom"
+      },
+      {
+        "title": "Accessibility",
+        "description": "Making profound knowledge available to everyone, regardless of background or prior experience"
+      },
+      {
+        "title": "Community",
+        "description": "Building connections between learners and teachers worldwide, fostering a supportive learning environment"
+      },
+      {
+        "title": "Excellence",
+        "description": "Committed to delivering the highest quality education and learning experiences"
+      }
+    ]
+  },
+  "indianAesthetic": {
+    "sanskritTitle": "शिक्षणम्",
+    "sanskritSubtitle": "प्राचीन भारतीय ज्ञान की ओर एक यात्रा",
+    "sanskritDescription": "हमारा उद्देश्य प्राचीन भारतीय शास्त्रों और संस्कृत भाषा को आधुनिक शिक्षार्थियों के लिए सुलभ और सरल बनाना है।",
+    "decorativeElements": {
+      "lotus": "🪷",
+      "om": "🕉️",
+      "swastika": "卐",
+      "chakra": "☸️"
+    }
+  }
+}

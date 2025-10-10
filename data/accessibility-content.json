@@ -1,0 +1,27 @@
+{
+  "url": "/accessibility",
+  "title": "Accessibility Statement - Shikshanam",
+  "description": "Learn about Shikshanam&#x27;s commitment to accessibility and inclusive design for all learners.",
+  "content": {
+    "pageInfo": {
+      "title": "",
+      "description": "",
+      "content": ""
+    },
+    "sections": [],
+    "features": [
+      "Keyboard navigation support for all interactive elements",
+      "Screen reader compatibility with proper ARIA labels",
+      "High contrast color schemes and customizable text sizes",
+      "Alternative text for images and visual content",
+      "Captions and transcripts for video content",
+      "Skip links for efficient navigation",
+      "Focus indicators for keyboard users",
+      "Semantic HTML structure for better screen reader experience",
+      "Screen readers (NVDA, JAWS, VoiceOver)",
+      "Voice recognition software"
+    ]
+  },
+  "metadata": {},
+  "timestamp": "2025-10-04T10:56:36.118Z"
+}

@@ -1,0 +1,249 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import MotionWrapper from '@/components/motion/MotionWrapper'
+import { Star, MapPin, Calendar, Award } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import ugcDataRaw from '@/data/ugc_content.json'
+
+interface UGCDataType {
+  studentStories?: any[];
+}
+
+const ugcData = (ugcDataRaw as UGCDataType) || { studentStories: [] };
+import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
+import { useState, useEffect } from 'react'
+
+interface StudentStory {
+  id: number
+  name: string
+  age: number
+  profession: string
+  location: string
+  story: string
+  transformation: string
+  course: string
+  image: string
+  featured: boolean
+}
+
+interface StudentStoriesSectionProps {
+  maxStories?: number
+  showFeatured?: boolean
+}
+
+interface StudentStoriesData {
+  title: string;
+  subtitle: string;
+  description: string;
+  stories: StudentStory[];
+}
+
+export default function StudentStoriesSection({ 
+  maxStories = 3,
+  showFeatured = true
+}: StudentStoriesSectionProps) {
+  const mounted = useHydrationSafeAnimation()
+  const [studentStoriesData, setStudentStoriesData] = useState<StudentStoriesData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch CMS data
+  useEffect(() => {
+    const fetchStudentStoriesData = async () => {
+      try {
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 300))
+
+        // Mock data - replace with appropriate mock data for each component
+        setStudentStoriesData({
+          title: 'Student Stories',
+          subtitle: 'Real Journeys, Real Growth',
+          description: 'Hear from our students about their transformative learning experiences.',
+          stories: [
+            {
+              id: 1,
+              name: 'Anita M.',
+              age: 28,
+              profession: 'Software Engineer',
+              location: 'Mumbai, India',
+              story: 'Learning Sanskrit has opened up a whole new world of ancient wisdom for me. The structured approach made it accessible and enjoyable.',
+              transformation: 'I now understand the depth of ancient Indian culture and can read original texts.',
+              course: 'Sanskrit Fundamentals',
+              image: '/assets/stories/anita-patel-story.jpg',
+              featured: true
+            },
+            {
+              id: 2,
+              name: 'Vikram P.',
+              age: 35,
+              profession: 'Teacher',
+              location: 'Delhi, India',
+              story: 'The depth of Indian philosophy is incredible. This course helped me understand logical thinking in a completely new way.',
+              transformation: 'My teaching methods have improved and I can now explain complex concepts more clearly.',
+              course: 'Nyaya Philosophy',
+              image: '/assets/stories/rajesh-kumar-story.jpg',
+              featured: true
+            }
+          ]
+        })
+      } catch (error) {
+        console.error('Failed to load student stories data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchStudentStoriesData()
+  }, [])
+
+  // Use CMS data or fallback to default
+  const sectionTitle = studentStoriesData?.title || "Student Stories"
+  const sectionSubtitle = studentStoriesData?.subtitle || "Hear from our community of learners"
+  const sectionDescription = studentStoriesData?.description || "Real stories from students who have transformed their lives through ancient wisdom."
+  
+  const stories = studentStoriesData?.stories || (showFeatured
+    ? (ugcData?.studentStories || []).filter((story: any) => story.featured).slice(0, maxStories)
+    : (ugcData?.studentStories || []).slice(0, maxStories))
+
+  return (
+  <MotionWrapper>
+    <section className="py-16 sm:py-20 bg-gradient-to-br from-saffron-50/60 to-golden-olive/60 backdrop-blur-sm relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-10 right-20 w-24 h-24 bg-saffron-500/10 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 left-20 w-32 h-32 bg-golden-olive/10 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-sand-beige/10 rounded-full blur-xl"></div>
+      </div>
+      <div className="container-custom">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <motion.div
+            initial={mounted ? "hidden" : false}
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: 20 }
+            }}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">
+              {sectionTitle}
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
+              {sectionSubtitle}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Stories Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {stories.map((story: any, index: number) => (
+            <motion.div
+              key={story.id}
+              initial={mounted ? "hidden" : false}
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              variants={{
+                visible: { opacity: 1, y: 0 },
+                hidden: { opacity: 0, y: 30 }
+              }}
+            >
+              <Card className="h-full bg-white/98 dark:bg-gray-900/95 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <CardContent className="p-6">
+                  {/* Student Image */}
+                  <div className="relative mb-6">
+                    <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-saffron-400 to-golden-olive overflow-hidden shadow-lg">
+                      <Image
+                        src={story.image.startsWith('/') ? story.image : `/${story.image}`}
+                        alt={story.name}
+                        width={80}
+                        height={80}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/assets/default-blog.jpg';
+                        }}
+                      />
+                    </div>
+                    {story.featured && (
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-saffron-500 rounded-full flex items-center justify-center">
+                        <Star className="w-4 h-4 text-white fill-white" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Student Info */}
+                  <div className="text-center mb-4">
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+                      {story.name}
+                    </h3>
+                    <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-300 mb-2">
+                      <span>{story.age} years</span>
+                      <span>•</span>
+                      <span>{story.profession}</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                      <MapPin className="w-3 h-3" />
+                      <span>{story.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Story */}
+                  <div className="mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3 font-medium">
+                      "{story.story}"
+                    </p>
+                    <div className="bg-gradient-to-r from-saffron-50 to-golden-olive/20 dark:from-saffron-900/20 dark:to-golden-olive/10 p-3 rounded-lg border border-saffron-200/50 dark:border-saffron-800/30">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Award className="w-4 h-4 text-saffron-600 dark:text-saffron-400" />
+                        <span className="text-sm font-semibold text-saffron-700 dark:text-saffron-300">Transformation:</span>
+                      </div>
+                      <p className="text-sm text-gray-800 dark:text-gray-100 font-medium">
+                        {story.transformation}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Course Badge */}
+                  <div className="text-center">
+                    <span className="inline-block bg-gradient-to-r from-saffron-100 to-golden-olive/30 dark:from-saffron-900/30 dark:to-golden-olive/20 text-saffron-700 dark:text-saffron-300 px-3 py-1 rounded-full text-xs font-medium border border-saffron-200/50 dark:border-saffron-800/30">
+                      {story.course}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={mounted ? "hidden" : false}
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 }
+          }}
+          className="text-center mt-12"
+        >
+          <p className="text-lg text-gray-700 dark:text-gray-200 mb-6 font-medium">
+            Ready to start your own transformation journey?
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-saffron-600 to-golden-olive text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            Explore Our Courses
+          </motion.button>
+        </motion.div>
+      </div>
+    </section>
+  </MotionWrapper>
+  )
+}
