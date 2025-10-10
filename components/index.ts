@@ -50,4 +50,4 @@ export { default as MotionWrapper } from './motion/MotionWrapper';
 export { default as ThemeToggle } from './ThemeToggle';
 
 // Other Components
-export { default as ClientServiceWorker } from './ClientServiceWorker';
+// export { default as ClientServiceWorker } from './ClientServiceWorker'; // Disabled to prevent server-side bundling

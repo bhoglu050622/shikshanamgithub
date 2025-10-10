@@ -2,7 +2,7 @@
 // Only run in browser environment
 if (typeof self === 'undefined') {
   // Skip service worker initialization in server environment
-  module.exports = {};
+  // This file should never be loaded in a server context
 } else {
 const CACHE_NAME = 'shikshanam-v1'
 const STATIC_CACHE = 'shikshanam-static-v1'

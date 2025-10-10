@@ -16,11 +16,6 @@ const nextConfig = {
   // Server external packages
   serverExternalPackages: ['sw.js', 'sw/sw.js'],
   
-  // Additional build exclusions
-  experimental: {
-    serverComponentsExternalPackages: ['sw.js', 'sw/sw.js'],
-  },
-  
   // Turbopack configuration
   turbopack: {
     rules: {
@@ -50,11 +45,6 @@ const nextConfig = {
   
   // Exclude service worker from build
   serverExternalPackages: ['sw.js', 'sw/sw.js'],
-  
-  // Additional build exclusions
-  experimental: {
-    serverComponentsExternalPackages: ['sw.js', 'sw/sw.js'],
-  },
   
   // Enable image optimization with proper configuration
   images: {
