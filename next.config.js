@@ -14,7 +14,7 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   
   // Server external packages
-  serverExternalPackages: [],
+  serverExternalPackages: ['sw.js', 'sw/sw.js'],
   
   // Turbopack configuration
   turbopack: {
@@ -44,9 +44,7 @@ const nextConfig = {
   trailingSlash: false,
   
   // Exclude service worker from build
-  experimental: {
-    serverComponentsExternalPackages: ['sw.js'],
-  },
+  serverExternalPackages: ['sw.js', 'sw/sw.js'],
   
   // Enable image optimization with proper configuration
   images: {
@@ -136,6 +134,15 @@ const nextConfig = {
         'sw/sw.js': 'commonjs null',
         'sw.js': 'commonjs null',
       });
+      
+      // Completely ignore service worker files
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new (require('webpack')).IgnorePlugin({
+          resourceRegExp: /sw\/sw\.js$/,
+          contextRegExp: /public/,
+        })
+      );
     }
     
     
