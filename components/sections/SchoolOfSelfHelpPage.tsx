@@ -33,13 +33,8 @@ import {
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import SelfHelpHero from './SelfHelpHero'
 import SkillTracks from './SkillTracks'
-import CourseJourneyCarousel from './CourseJourneyCarousel'
-import MeetGurus from './MeetGurus'
-import FeaturedCoursesSlider from './FeaturedCoursesSlider'
-import ActivityShowcase from './ActivityShowcase'
-import FoundersMission from './FoundersMission'
-import CommunityCTA from './CommunityCTA'
-import EnhancedFooter from './EnhancedFooter'
+import PurusarthasInfographic from './PurusarthasInfographic'
+import CourseJourneyInfographic from './CourseJourneyInfographic'
 
 // Data for the page
 const sanskritQuotes = [
@@ -253,95 +248,16 @@ export default function SchoolOfSelfHelpPage() {
         onTakeTest={handleTakeTest}
       />
 
+      {/* Purusharthas Infographic */}
+      <PurusarthasInfographic />
+
       {/* Enhanced Skill Tracks Section */}
       <SkillTracks 
         onCourseClick={handleCourseClick}
       />
 
-      {/* Enhanced Course Journey Section */}
-      <CourseJourneyCarousel 
-        onStepChange={handleStepChange}
-        onComplete={handleJourneyComplete}
-        initialUnlockedSteps={1}
-      />
-
-      {/* Enhanced Meet Gurus Section */}
-      <MeetGurus 
-        onGuruClick={(guru) => {
-          // analytics.track('guru_view', {
-          //   id: guru.name.toLowerCase().replace(/\s+/g, '-'),
-          //   name: guru.name,
-          //   specialty: guru.specialty
-          // });
-        }}
-        onViewProfile={(guru) => {
-          // analytics.track('guru_view', {
-          //   id: guru.name.toLowerCase().replace(/\s+/g, '-'),
-          //   name: guru.name,
-          //   specialty: guru.specialty
-          // });
-        }}
-      />
-
-      {/* Enhanced Featured Courses Section */}
-      <FeaturedCoursesSlider 
-        onCourseClick={(course) => {
-          // analytics.track('course_click', {
-          //   id: course.id,
-          //   title: course.title,
-          //   category: course.category,
-          //   level: course.level,
-          //   price: course.price,
-          //   duration: course.duration
-          // });
-        }}
-        onEnrollClick={(course) => {
-          // analytics.track('course_enrollment', {
-          //   id: course.id,
-          //   title: course.title,
-          //   category: course.category,
-          //   level: course.level,
-          //   price: course.price
-          // });
-        }}
-      />
-
-      {/* Enhanced Activity Showcase Section */}
-      <ActivityShowcase 
-        onTestimonialClick={(testimonial) => {
-          // analytics.track('testimonial_click', {
-          //   id: testimonial.id,
-          //   author: testimonial.name
-          // });
-        }}
-        onVideoPlay={(testimonial) => {
-          // analytics.track('video_play', {
-          //   id: testimonial.id,
-          //   author: testimonial.name,
-          //   duration: parseInt(testimonial.duration.replace(':', '')) * 1000 // Convert to milliseconds
-          // });
-        }}
-      />
-
-      {/* Enhanced Founders Mission Section */}
-      <FoundersMission />
-
-      {/* Enhanced Community CTA Section */}
-      <CommunityCTA 
-        onJoinCommunity={(platform) => {
-          // analytics.track('community_join', { platform });
-        }}
-        onSubscribeNewsletter={() => {
-          // analytics.track('newsletter_subscription', { email: 'user@example.com' });
-        }}
-        onViewEvents={() => {
-          // analytics.track('event_view', {
-          //   title: 'All Events',
-          //   date: new Date().toISOString(),
-          //   type: 'view_all'
-          // });
-        }}
-      />
+      {/* Course Journey Infographic (Static) */}
+      <CourseJourneyInfographic />
 
       {/* FAQs Section */}
       <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
@@ -465,16 +381,6 @@ export default function SchoolOfSelfHelpPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Enhanced Footer */}
-      <EnhancedFooter 
-        onNewsletterSubscribe={(email) => {
-          // analytics.track('newsletter_subscription', { email });
-        }}
-        onSocialClick={(platform) => {
-          // analytics.track('social_click', { platform });
-        }}
-      />
     </>
   )
 }

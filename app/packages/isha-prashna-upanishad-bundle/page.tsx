@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { 
   BookOpen, 
@@ -8,237 +8,275 @@ import {
   Clock, 
   Star, 
   ArrowRight,
-  Play,
-  Download,
   Sparkles,
-  Flame,
-  Heart,
-  Brain,
-  Lightbulb,
-  Target,
-  Award,
-  Globe,
-  Zap,
   CheckCircle,
-  Lock,
-  Unlock,
-  Crown,
-  Gift,
-  TrendingUp,
-  MessageCircle,
-  Instagram,
-  Mail,
-  ExternalLink,
   User,
-  Shield,
   HelpCircle,
-  Settings,
-  Bell,
-  Bookmark,
-  Share2,
-  ThumbsUp,
-  Eye,
-  EyeOff,
-  IndianRupee,
-  Percent,
-  Package,
-  BookMarked,
-  GraduationCap,
-  Trophy,
-  Diamond,
-  Volume2,
-  FileText,
-  Video,
-  Headphones,
-  Calendar,
-  MapPin,
-  Phone,
-  Mail as MailIcon,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
-  ChevronDown,
-  ChevronUp,
+  Book,
   Plus,
   Minus,
-  Quote,
-  UserCheck,
-  Award as AwardIcon,
-  Clock as ClockIcon,
-  Globe as GlobeIcon,
-  Languages,
-  Book,
-  PenTool,
-  Mic,
-  HeadphonesIcon,
-  FileAudio,
-  FileVideo,
-  FileImage,
-  File,
-  Download as DownloadIcon,
-  Wifi,
-  WifiOff,
-  Smartphone,
-  Monitor,
-  Tablet,
-  Laptop,
-  Infinity,
-  Layers,
-  Database,
-  Server,
-  Cloud,
-  Zap as ZapIcon,
-  Rocket,
-  Gem,
-  Star as StarIcon,
-  Moon,
+  Eye,
   Sun,
-  TreePine,
-  Mountain,
-  Eye as EyeIcon,
-  Atom,
-  Brain as BrainIcon,
-  Heart as HeartIcon,
-  Smile,
-  UserPlus,
-  Users as UsersIcon,
-  Activity,
-  Shield as ShieldIcon,
-  Zap as ZapIcon2,
-  Lightbulb as LightbulbIcon
+  Circle,
+  Infinity,
+  Award,
+  Lightbulb,
+  Heart,
+  Brain
 } from 'lucide-react'
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
+import { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import HydrationSafeMotion from '@/components/motion/HydrationSafeMotion'
-import Button, { CTAButton } from '@/components/ui/button'
-import Link from 'next/link'
-import RobustImage from '@/components/optimization/RobustImage'
+import Button from '@/components/ui/button'
+import PhilosophicalTimeline from '@/components/packages/PhilosophicalTimeline'
+import VisualMetaphor from '@/components/packages/VisualMetaphor'
+import SacredSymbol from '@/components/packages/SacredSymbol'
+import ImmersiveStory from '@/components/packages/ImmersiveStory'
 
-// Package data
+// Package data - Upanishad Bundle theme
 const packageData = {
   id: 'isha-prashna-upanishad-bundle',
-  title: 'The Essence of Enlightenment: Isha and Prashna Upanishad Package',
-  subtitle: 'Wisdom of the Highest Knowledge',
-  description: 'Dive deep into the profound teachings of the Isha and Prashna Upanishads. These sacred texts contain the essence of enlightenment and the highest spiritual wisdom of the Vedantic tradition.',
-  originalPrice: '₹3,999',
-  currentPrice: '₹2,499',
-  savings: '₹1,500 (37% OFF)',
-  duration: '8-10 weeks',
-  level: 'Intermediate to Advanced',
+  title: 'ईशोपनिषद् + प्रश्नोपनिषद्',
+  englishTitle: 'Twin Upanishads: Isha & Prashna',
+  subtitle: 'Supreme Wisdom of Inner Reality',
+  description: 'Journey through two profound Upanishads. Isha reveals the divine pervading all existence, teaching complete renunciation while enjoying the world. Prashna answers the fundamental questions of life through cosmic knowledge. Together, they illuminate the path from outer world to inner truth.',
+  originalPrice: '₹2,999',
+  currentPrice: '₹1,899',
+  savings: '₹1,100',
+  savingsPercent: '37%',
+  duration: '6-8 weeks',
+  level: 'Intermediate',
   rating: 4.8,
   students: 750,
   status: 'available',
   category: 'Upanishadic Wisdom',
-  instructor: 'Vedantic Scholar',
-  language: 'Hindi & English',
+  instructor: 'Vedanta Acharyas',
+  language: 'Hindi & Sanskrit with English',
   lastUpdated: 'December 2024',
   
   features: [
-    'Isha Upanishad Study',
-    'Prashna Upanishad Study',
-    'Vedantic Philosophy',
-    'Enlightenment Concepts',
-    'Spiritual Practices',
-    'Text Analysis',
-    'Practical Applications',
-    'Integration Methods'
+    {
+      icon: Sun,
+      title: 'Isha Upanishad',
+      subtitle: 'Divine Pervades All',
+      description: 'Realize that the Supreme Lord pervades everything—renounce through knowledge, enjoy through detachment'
+    },
+    {
+      icon: Lightbulb,
+      title: 'Prashna Upanishad',
+      subtitle: 'Cosmic Questions',
+      description: 'Explore the fundamental questions—life force, consciousness, sleep, Om, and the path after death'
+    },
+    {
+      icon: Eye,
+      title: 'Self-Realization',
+      subtitle: 'Know Thyself',
+      description: 'Discover your true nature beyond body and mind—the immortal self, one with Brahman'
+    },
+    {
+      icon: Infinity,
+      title: 'Practical Wisdom',
+      subtitle: 'Living Truth',
+      description: 'Apply Upanishadic insights to modern life—working without attachment, living in awareness'
+    }
   ],
   
   includes: [
-    '30+ Video Lessons (HD Quality)',
-    'Isha Upanishad Commentary',
-    'Prashna Upanishad Commentary',
-    'Vedantic Philosophy Study',
-    'Enlightenment Practices',
-    'PDF Study Materials',
-    'Live Q&A Sessions (Bi-weekly)',
-    'Certificate of Completion',
-    'Lifetime Access',
-    'Community Forum Access',
-    'Progress Tracking',
-    'Expert Mentorship',
-    'Practice Workbooks',
-    'Integration Workshops'
+    '20+ Wisdom Transmissions (HD)',
+    'Isha Upanishad Verse-by-Verse',
+    'Prashna Upanishad Complete Study',
+    'Sanskrit Text with Translation',
+    'Traditional Commentary',
+    'Meditation & Contemplation Guides',
+    'PDF Sacred Texts',
+    'Live Satsang (Bi-weekly)',
+    'Traditional Certificate',
+    'Lifetime Sacred Access',
+    'Wisdom Community',
+    'Expert Guidance',
+    'Daily Contemplation Practices'
   ],
   
   curriculum: [
     {
       week: 'Weeks 1-3',
-      title: 'Isha Upanishad Foundation',
-      topics: ['Introduction to Isha', 'Key Concepts', 'Text Analysis', 'Philosophical Understanding'],
+      title: 'Isha Upanishad: Divine Pervades',
+      topics: ['Opening Invocation', 'Renunciation & Enjoyment', 'Knowledge & Ignorance', 'Vidya & Avidya'],
       duration: '8 hours'
     },
     {
       week: 'Weeks 4-6',
-      title: 'Isha Upanishad Deep Dive',
-      topics: ['Advanced Concepts', 'Spiritual Practices', 'Enlightenment Path', 'Practical Applications'],
+      title: 'Prashna Upanishad: Six Questions',
+      topics: ['Creation & Life Force', 'Pranas & Elements', 'Sleep & Consciousness', 'Om & Meditation'],
       duration: '8 hours'
     },
     {
       week: 'Weeks 7-8',
-      title: 'Prashna Upanishad Study',
-      topics: ['Introduction to Prashna', 'Six Questions', 'Philosophical Answers', 'Spiritual Insights'],
-      duration: '6 hours'
-    },
-    {
-      week: 'Weeks 9-10',
-      title: 'Integration & Practice',
-      topics: ['Combined Wisdom', 'Practical Integration', 'Enlightenment Practices', 'Advanced Topics'],
+      title: 'Integration & Realization',
+      topics: ['Combined Wisdom', 'Practical Application', 'Meditation Practices', 'Living the Teaching'],
       duration: '6 hours'
     }
   ],
   
   testimonials: [
     {
-      name: 'Dr. Suresh Agarwal',
-      role: 'Vedantic Scholar',
+      name: 'Dr. Meera Joshi',
+      role: 'Vedanta Scholar',
       rating: 5,
-      text: 'This course provides profound insights into the essence of enlightenment through the Isha and Prashna Upanishads. The teaching is clear and transformative.',
-      avatar: '/assets/testimonials/suresh-agarwal.jpg'
-    },
-    {
-      name: 'Meera Joshi',
-      role: 'Spiritual Practitioner',
-      rating: 5,
-      text: 'The depth of understanding provided in this course is remarkable. The Upanishads come alive with practical wisdom for daily spiritual practice.',
+      text: 'These two Upanishads complement each other beautifully. Isha provides the vision, Prashna provides the understanding. Together, they transform perception.',
       avatar: '/assets/testimonials/meera-joshi.jpg'
     },
     {
-      name: 'Dr. Rajesh Kumar',
-      role: 'Philosophy Professor',
+      name: 'Arjun Patel',
+      role: 'Meditation Teacher',
       rating: 5,
-      text: 'This course beautifully bridges ancient wisdom with modern understanding. The integration of theory and practice is excellent for serious seekers.',
-      avatar: '/assets/testimonials/rajesh-kumar.jpg'
+      text: 'The teachings from these Upanishads have deepened my meditation practice immeasurably. The guidance on living with detachment while fully engaged is precious.',
+      avatar: '/assets/testimonials/arjun-patel.jpg'
+    },
+    {
+      name: 'Sunita Reddy',
+      role: 'Spiritual Seeker',
+      rating: 5,
+      text: 'Studying these texts verse by verse, with traditional commentary, opened dimensions of understanding I never imagined. Life-changing wisdom.',
+      avatar: '/assets/testimonials/sunita-reddy.jpg'
     }
   ],
   
   faqs: [
     {
-      question: 'What are the Isha and Prashna Upanishads?',
-      answer: 'The Isha Upanishad is one of the shortest but most profound Upanishads, dealing with the nature of reality and the path to enlightenment. The Prashna Upanishad presents six fundamental questions about existence and their answers.'
+      question: 'What is special about Isha Upanishad?',
+      answer: 'Isha is one of the shortest yet most profound Upanishads. In just 18 verses, it presents the complete teaching—how to see the divine in everything, renounce through knowledge, and act without attachment. Its opening verse is considered one of the most important in Vedanta.'
     },
     {
-      question: 'Is this course suitable for beginners?',
-      answer: 'This is an intermediate to advanced course. Some background in philosophy or spiritual practice is helpful, but the course is designed to be accessible to serious students.'
+      question: 'What does Prashna Upanishad teach?',
+      answer: 'Prashna means "question." This Upanishad presents six profound questions asked by disciples to their teacher—about creation, life force, mind, sleep, Om, and the supreme person. The answers provide deep cosmic understanding and meditation guidance.'
     },
     {
-      question: 'What practical benefits will I gain?',
-      answer: 'You\'ll gain deep understanding of enlightenment concepts, practical spiritual practices, and methods for integrating Upanishadic wisdom into daily life for personal transformation.'
+      question: 'Do I need Sanskrit knowledge?',
+      answer: 'Sanskrit knowledge is helpful but not required. We provide Sanskrit text with word-by-word translation, making the original accessible while you learn. Understanding the original terms deepens comprehension significantly.'
     },
     {
-      question: 'How are the Upanishads taught?',
-      answer: 'The course combines traditional commentary with modern interpretation, providing both philosophical understanding and practical applications for contemporary spiritual practice.'
+      question: 'How do these Upanishads relate to each other?',
+      answer: 'Isha teaches the vision of unity—seeing the divine everywhere. Prashna provides the understanding—explaining cosmic processes and meditation. Together, they offer both the what (ultimate reality) and the how (path to realization).'
     },
     {
-      question: 'What makes this course special?',
-      answer: 'This course focuses specifically on the essence of enlightenment as presented in these two key Upanishads, providing concentrated wisdom for serious spiritual development.'
+      question: 'What practical transformation can I expect?',
+      answer: 'You\'ll develop the capacity to see the sacred in the ordinary, work without anxiety, live without excessive attachment, and maintain awareness of your true nature as immortal consciousness. The wisdom becomes lived experience, not just philosophy.'
     }
   ],
   
-  ctaText: 'Begin Enlightenment Journey',
-  ctaLink: 'https://courses.shikshanam.in/courses/The-Essence-of-Enlightenment-Isha-and-Prashna-Upanishad-Package-66142b3d16c5b80f956291ea',
-  image: 'https://d502jbuhuh9wk.cloudfront.net/courses/66142b3d16c5b80f956291ea/66142b3d16c5b80f956291ea_scaled_cover.jpg?v=3'
+  ctaText: 'Begin Upanishadic Journey',
+  ctaLink: 'https://courses.shikshanam.in/courses/Isha-and-Prashna-Upanishad-Bundle-67a5ed5fc49ef04ccf59925d',
+  image: '/assets/isha-prashna-upanishad.jpg'
 }
+
+// Journey Timeline Data
+const journeySteps = [
+  {
+    week: 'Foundation',
+    title: 'Entering Sacred Ground',
+    description: 'Approach the Upanishads with reverence and readiness. These are not ordinary texts but direct transmissions of supreme wisdom.',
+    milestone: 'Sacred foundation prepared'
+  },
+  {
+    week: 'Weeks 1-3',
+    title: 'Isha: Seeing the Divine Everywhere',
+    description: 'Learn to see the Lord pervading all—every atom, every being. Renounce through this vision, enjoy through this knowledge.',
+    milestone: 'Divine vision cultivated'
+  },
+  {
+    week: 'Weeks 4-6',
+    title: 'Prashna: Understanding Cosmic Reality',
+    description: 'Six profound questions receive illuminating answers. Understand life force, mind, sleep, Om—the architecture of existence revealed.',
+    milestone: 'Cosmic understanding gained'
+  },
+  {
+    week: 'Weeks 7-8',
+    title: 'Living the Wisdom',
+    description: 'Integrate both teachings. See the divine (Isha) while understanding the cosmic processes (Prashna). Wisdom becomes your lived reality.',
+    milestone: 'Embodied realization'
+  }
+]
+
+// Visual Metaphors Data
+const metaphors = [
+  {
+    icon: Sun,
+    title: 'The All-Pervading Light',
+    concept: 'Ishavasyam (God-covered)',
+    description: 'Like sunlight pervading space, the divine pervades all existence. Nothing exists apart from that supreme reality—this is Isha\'s teaching.',
+    symbolism: 'The sun represents the one divine consciousness illuminating and pervading all of creation'
+  },
+  {
+    icon: Lightbulb,
+    title: 'Questions and Illumination',
+    concept: 'Prashna (Questions)',
+    description: 'Like a lamp illuminating darkness, proper questions asked to realized teachers reveal truth. Each question in Prashna opens new understanding.',
+    symbolism: 'The lamp represents knowledge dispelling ignorance—questions as the wick, wisdom as the flame'
+  },
+  {
+    icon: Circle,
+    title: 'The Unbroken Wholeness',
+    concept: 'Purnamadah Purnamidam',
+    description: 'That is whole, this is whole. From wholeness comes wholeness—yet wholeness remains. The Upanishads reveal reality\'s complete, unbroken nature.',
+    symbolism: 'The perfect circle represents the completeness of Brahman—nothing added, nothing subtracted, eternally whole'
+  }
+]
+
+// Sacred Symbols Data
+const symbols = [
+  {
+    icon: Sun,
+    name: 'Isha',
+    sanskritName: 'ईश',
+    meaning: 'The Lord',
+    significance: 'The Supreme Reality pervading all existence—not separate from creation but dwelling within everything'
+  },
+  {
+    icon: Lightbulb,
+    name: 'Prana',
+    sanskritName: 'प्राण',
+    meaning: 'Life Force',
+    significance: 'The vital energy connecting individual consciousness to cosmic consciousness—taught in detail in Prashna'
+  },
+  {
+    icon: Circle,
+    name: 'Om',
+    sanskritName: 'ॐ',
+    meaning: 'The Primordial Sound',
+    significance: 'The sound-symbol of Brahman, central to Prashna\'s sixth question—gateway to supreme realization'
+  },
+  {
+    icon: Infinity,
+    name: 'Atman',
+    sanskritName: 'आत्मन्',
+    meaning: 'True Self',
+    significance: 'Your essential nature—not the body-mind but pure, immortal consciousness, one with the supreme'
+  }
+]
+
+// Immersive Story Data
+const storyPhases = [
+  {
+    label: 'Seeking',
+    title: 'The Quest for Meaning',
+    description: 'You wonder: What is the purpose of life? Who am I really? What happens after death? These questions burn in your heart, seeking answers beyond ordinary knowledge.'
+  },
+  {
+    label: 'Isha\'s Revelation',
+    title: 'All is Divine',
+    description: 'Isha Upanishad reveals the transformative vision—the divine is not distant but pervading everything. You learn to see the sacred in the mundane, to renounce through understanding rather than rejection. The world transforms from obstacle to manifestation of the divine.'
+  },
+  {
+    label: 'Prashna\'s Answers',
+    title: 'Cosmic Understanding',
+    description: 'Through Prashna, your fundamental questions receive profound answers. You understand how life force connects you to the cosmos, how consciousness operates, why we sleep, what Om represents. The universe makes sense in a way it never did before.'
+  },
+  {
+    label: 'Realization',
+    title: 'Living as the Divine',
+    description: 'You no longer merely believe the teachings—you see them, live them. The divine you read about in Isha is recognized in yourself and all beings. The cosmic processes Prashna described are experienced directly. You are the Upanishadic wisdom embodied.'
+  }
+]
 
 export default function IshaPrashnaUpanishadBundlePage() {
   const [activeTab, setActiveTab] = useState('overview')
@@ -247,18 +285,47 @@ export default function IshaPrashnaUpanishadBundlePage() {
   const tabs = [
     { id: 'overview', label: 'Overview', icon: BookOpen },
     { id: 'curriculum', label: 'Curriculum', icon: Book },
-    { id: 'testimonials', label: 'Reviews', icon: Star },
-    { id: 'faq', label: 'FAQ', icon: HelpCircle }
+    { id: 'testimonials', label: 'Realizations', icon: Star },
+    { id: 'faq', label: 'Questions', icon: HelpCircle }
   ]
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-slate-50 via-amber-50/30 to-yellow-50/30 dark:from-slate-900 dark:via-amber-900/20 dark:to-yellow-900/20">
-        {/* Background Ornaments */}
+      {/* Enhanced Hero Section with Upanishadic Wisdom Theme */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-950 dark:via-yellow-950 to-orange-950">
+        {/* Golden Light Rays */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-4 sm:left-10 w-60 sm:w-80 h-60 sm:h-80 bg-gradient-to-br from-amber-200/20 via-yellow-200/15 to-orange-200/20 dark:from-amber-500/10 dark:via-yellow-500/10 dark:to-orange-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 right-4 sm:right-10 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-yellow-200/20 via-amber-200/15 to-orange-200/20 dark:from-yellow-500/10 dark:via-amber-500/10 dark:to-orange-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+          {[...Array(12)].map((_, i) => (
+            <HydrationSafeMotion key={i}
+              className="absolute top-1/2 left-1/2 w-2 h-full origin-top"
+              style={{
+                transform: `rotate(${i * 30}deg) translateX(-50%)`,
+                background: 'linear-gradient(180deg, rgba(251,191,36,0.1) 0%, transparent 70%)'
+              }}
+              animate={{
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 3,
+                repeat: 999999,
+                delay: i * 0.25
+              }}>
+              <div />
+            </HydrationSafeMotion>
+          ))}
+
+          {/* Central Glow */}
+          <HydrationSafeMotion className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-amber-300/20 via-yellow-300/20 to-orange-300/20 dark:from-amber-600/10 dark:via-yellow-600/10 dark:to-orange-600/10 blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity
+            }}>
+              <div />
+            </HydrationSafeMotion>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -267,29 +334,45 @@ export default function IshaPrashnaUpanishadBundlePage() {
             <StaggerContainer>
               <StaggerItem>
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-xl flex items-center justify-center">
-                    <LightbulbIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-900/40 dark:to-yellow-900/40 text-amber-800 dark:text-amber-200 px-4 py-2 rounded-full text-sm font-medium">
+                  <HydrationSafeMotion
+                    className="w-14 h-14 bg-gradient-to-br from-amber-500 via-yellow-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg relative overflow-hidden"
+                    animate={{
+                      boxShadow: [
+                        '0 0 20px rgba(251, 191, 36, 0.5)',
+                        '0 0 60px rgba(251, 191, 36, 0.9)',
+                        '0 0 20px rgba(251, 191, 36, 0.5)'
+                      ]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  >
+                    <Sun className="w-7 h-7 text-white relative z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
+                  </HydrationSafeMotion>
+                  <span className="bg-gradient-to-r from-amber-100 via-yellow-100 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/40 dark:to-orange-900/40 text-amber-900 dark:text-amber-200 px-4 py-2 rounded-full text-sm font-medium border border-amber-200 dark:border-amber-800">
                     {packageData.category}
                   </span>
                 </div>
               </StaggerItem>
 
               <StaggerItem>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight text-shadow-sm">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight">
+                  <span className="bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 dark:from-amber-400 dark:via-yellow-400 dark:to-orange-400 bg-clip-text text-transparent">
                   {packageData.title}
+                  </span>
                 </h1>
+                <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-yellow-600 to-amber-600 dark:from-yellow-400 dark:to-amber-400 bg-clip-text text-transparent mb-6">
+                  {packageData.englishTitle}
+                </h2>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-xl text-amber-600 dark:text-amber-400 mb-4 font-medium">
+                <p className="text-xl text-amber-600 dark:text-amber-400 mb-4 font-medium italic">
                   {packageData.subtitle}
                 </p>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-gray-700 dark:text-gray-200 mb-8 leading-relaxed text-readable font-medium">
+                <p className="text-lg text-gray-700 dark:text-gray-200 mb-8 leading-relaxed">
                   {packageData.description}
                 </p>
               </StaggerItem>
@@ -297,54 +380,65 @@ export default function IshaPrashnaUpanishadBundlePage() {
               {/* Stats */}
               <StaggerItem>
                 <div className="flex flex-wrap gap-6 mb-8">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
-                      <Star className="w-5 h-5 text-white" />
+                  <HydrationSafeMotion
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center space-x-3 bg-white dark:bg-slate-800 px-4 py-3 rounded-xl shadow-md border-2 border-amber-200 dark:border-amber-800"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
+                      <Star className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.rating}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Rating</div>
+                      <div className="text-xl font-bold text-gray-800 dark:text-gray-100">{packageData.rating}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">Sacred Rating</div>
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center">
-                      <Users className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.students.toLocaleString()}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Students</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-white" />
+                  </HydrationSafeMotion>
+                  
+                  <HydrationSafeMotion
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center space-x-3 bg-white dark:bg-slate-800 px-4 py-3 rounded-xl shadow-md border-2 border-yellow-200 dark:border-yellow-800"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center">
+                      <Users className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.duration}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Duration</div>
+                      <div className="text-xl font-bold text-gray-800 dark:text-gray-100">{packageData.students.toLocaleString()}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">Fellow Seekers</div>
                     </div>
-                  </div>
+                  </HydrationSafeMotion>
+                  
+                  <HydrationSafeMotion
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center space-x-3 bg-white dark:bg-slate-800 px-4 py-3 rounded-xl shadow-md border-2 border-orange-200 dark:border-orange-800"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-xl font-bold text-gray-800 dark:text-gray-100">{packageData.duration}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">Journey Time</div>
+                    </div>
+                  </HydrationSafeMotion>
                 </div>
               </StaggerItem>
 
               {/* Price */}
               <StaggerItem>
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 mb-8 shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-br from-white to-amber-50/50 dark:from-slate-800 dark:to-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-2xl p-6 mb-8 shadow-xl">
+                  <div className="flex items-center justify-between mb-6">
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400 line-through">
+                      <div className="text-sm text-gray-500 dark:text-gray-400 line-through mb-1">
                         {packageData.originalPrice}
                       </div>
-                      <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                      <div className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
                         {packageData.currentPrice}
                       </div>
-                      <div className="text-sm text-green-600 dark:text-green-400 font-medium">
-                        {packageData.savings}
+                      <div className="text-sm text-amber-600 dark:text-amber-400 font-medium mt-1">
+                        Sacred Offering: Save {packageData.savings} ({packageData.savingsPercent})
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Level</div>
-                      <div className="font-medium text-gray-800 dark:text-gray-100">{packageData.level}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300 mb-1">For Seekers</div>
+                      <div className="font-medium text-gray-800 dark:text-gray-100 text-sm">{packageData.level}</div>
                     </div>
                   </div>
                   <Button
@@ -352,7 +446,7 @@ export default function IshaPrashnaUpanishadBundlePage() {
                     size="lg"
                     href={packageData.ctaLink}
                     icon={<ArrowRight className="w-6 h-6" />}
-                    className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    className="w-full bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 hover:from-amber-600 hover:via-yellow-600 hover:to-orange-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
                   >
                     {packageData.ctaText}
                   </Button>
@@ -360,46 +454,86 @@ export default function IshaPrashnaUpanishadBundlePage() {
               </StaggerItem>
             </StaggerContainer>
 
-            {/* Right Column - Image/Video */}
+            {/* Right Column - Upanishadic Visualization */}
             <StaggerContainer>
               <StaggerItem>
                 <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-2xl overflow-hidden shadow-2xl relative group">
-                    <RobustImage
-                      src={packageData.image}
-                      alt={packageData.title}
-                      width={800}
-                      height={450}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      priority
-                      fallbackSrc="https://shikshanam.in/wp-content/uploads/2024/03/Nyaya-Darshan.png"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    {/* Enhanced Shine Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 animate-enhanced-shine"></div>
-                    </div>
-                    {/* Secondary Shimmer Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500 delay-300">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-white/25 transform rotate-12 animate-shimmer"></div>
-                    </div>
-                    {/* Subtle Glow Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-50 transition-opacity duration-400">
-                      <div className="absolute inset-0 bg-gradient-to-r from-amber-400/30 via-yellow-400/30 to-amber-400/30 blur-sm"></div>
-                    </div>
-                    {/* Continuous Shine */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-80 transition-opacity duration-600">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine"></div>
-                    </div>
-                  </div>
-                  
-                  {/* Floating Elements */}
-                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                    <LightbulbIcon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <CheckCircle className="w-6 h-6 text-white" />
+                  <div className="relative aspect-square max-w-md mx-auto">
+                    {/* Central Sun - Divine Light */}
+                    <HydrationSafeMotion
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-br from-amber-300 via-yellow-300 to-orange-300 shadow-2xl flex items-center justify-center z-20 border-4 border-white/50"
+                      animate={{
+                        scale: [1, 1.15, 1],
+                        boxShadow: [
+                          '0 0 40px rgba(251, 191, 36, 0.6)',
+                          '0 0 100px rgba(251, 191, 36, 1)',
+                          '0 0 40px rgba(251, 191, 36, 0.6)'
+                        ]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    >
+                      <Sun className="w-20 h-20 text-white" />
+                    </HydrationSafeMotion>
+
+                    {/* Radiating Circles */}
+                    {[0, 1, 2, 3].map((ring) => (
+                      <HydrationSafeMotion key={ring}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-amber-400/20"
+                        style={{
+                          width: `${160 + ring * 70}px`,
+                          height: `${160 + ring * 70}px`,
+                        }}
+                        animate={{
+                          scale: [1, 1.05, 1],
+                          opacity: [0.3, 0.6, 0.3]
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: 999999,
+                          delay: ring * 0.3
+                        }}>
+              <div />
+            </HydrationSafeMotion>
+                    ))}
+
+                    {/* Question Symbols from Prashna */}
+                    {[
+                      { icon: Sparkles, angle: 0 },
+                      { icon: Brain, angle: 60 },
+                      { icon: Eye, angle: 120 },
+                      { icon: Circle, angle: 180 },
+                      { icon: Heart, angle: 240 },
+                      { icon: Lightbulb, angle: 300 }
+                    ].map((item, i) => {
+                      const Icon = item.icon
+                      const rad = (item.angle * Math.PI) / 180
+                      const radius = 180
+                      const x = Math.cos(rad) * radius
+                      const y = Math.sin(rad) * radius
+                      
+                      return (
+                        <HydrationSafeMotion
+                          key={i}
+                          className="absolute top-1/2 left-1/2 z-30"
+                          style={{
+                            transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                          }}
+                          animate={{
+                            y: [0, -15, 0]
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: 999999,
+                            delay: i * 0.5
+                          }}
+                          whileHover={{ scale: 1.2 }}
+                        >
+                          <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full shadow-lg flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-white" />
+                          </div>
+                        </HydrationSafeMotion>
+                      )
+                    })}
                   </div>
                 </div>
               </StaggerItem>
@@ -408,8 +542,23 @@ export default function IshaPrashnaUpanishadBundlePage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white dark:bg-slate-900">
+      {/* Philosophical Journey Timeline */}
+      <PhilosophicalTimeline 
+        steps={journeySteps}
+        accentColor="#f59e0b"
+        theme="warm"
+      />
+
+      {/* Visual Metaphors Section */}
+      <VisualMetaphor 
+        title="Upanishadic Illumination"
+        subtitle="Understanding supreme wisdom through sacred metaphors of light, questions, and wholeness"
+        metaphors={metaphors}
+        theme="warm"
+      />
+
+      {/* Twin Upanishads Deep Dive */}
+      <section className="py-20 bg-gradient-to-br from-white via-amber-50/20 to-yellow-50/20 dark:from-slate-950 dark:via-amber-950/20 dark:to-yellow-950/20">
         <div className="container mx-auto px-4">
           <HydrationSafeMotion
             initial={{ opacity: 0, y: 30 }}
@@ -418,38 +567,74 @@ export default function IshaPrashnaUpanishadBundlePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-shadow-sm">
-              What You'll Master
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              Twin Upanishads, Complete Wisdom
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto text-readable font-medium">
-              Deep understanding of enlightenment through the profound wisdom of Isha and Prashna Upanishads.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Isha provides the vision, Prashna provides the understanding—together revealing the path to self-realization
             </p>
           </HydrationSafeMotion>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {packageData.features.map((feature, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {packageData.features.map((feature, index) => {
+              const Icon = feature.icon
+              const gradients = [
+                'from-amber-500 to-amber-600',
+                'from-yellow-500 to-yellow-600',
+                'from-orange-500 to-orange-600',
+                'from-amber-500 via-yellow-500 to-orange-500'
+              ]
+              
+              return (
               <HydrationSafeMotion
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <LightbulbIcon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                  {feature}
+                  whileHover={{ y: -8 }}
+                  className="group"
+                >
+                  <div className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-800 dark:to-amber-900/10 rounded-2xl p-6 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-amber-200 dark:border-amber-800 relative overflow-hidden">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    
+                    <div className="relative">
+                      <HydrationSafeMotion
+                        className={`w-16 h-16 bg-gradient-to-br ${gradients[index]} rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto`}
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <Icon className="w-8 h-8 text-white" />
+                      </HydrationSafeMotion>
+                      
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 text-center">
+                        {feature.title}
                 </h3>
+                      <div className={`text-base font-semibold bg-gradient-to-r ${gradients[index]} bg-clip-text text-transparent mb-3 text-center`}>
+                        {feature.subtitle}
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm text-center">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
               </HydrationSafeMotion>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
 
+      {/* Sacred Symbolism */}
+      <SacredSymbol 
+        title="Sacred Teachings of the Upanishads"
+        subtitle="Each symbol embodies the supreme wisdom revealed in these ancient texts"
+        symbols={symbols}
+        theme="warm"
+      />
+
       {/* What's Included Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-800">
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <HydrationSafeMotion
             initial={{ opacity: 0, y: 30 }}
@@ -458,30 +643,31 @@ export default function IshaPrashnaUpanishadBundlePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-shadow-sm">
-              What's Included
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              Your Upanishadic Wisdom Journey
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto text-readable font-medium">
-              Everything you need to understand the essence of enlightenment through Upanishadic wisdom.
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Everything needed to study, understand, and realize the supreme teachings
             </p>
           </HydrationSafeMotion>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {packageData.includes.map((item, index) => (
               <HydrationSafeMotion
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-800 dark:to-amber-900/10 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-amber-200 dark:border-amber-800"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 bg-gradient-to-br from-amber-500 via-yellow-500 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                     <CheckCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
+                    <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">
                       {item}
                     </h3>
                   </div>
@@ -492,19 +678,27 @@ export default function IshaPrashnaUpanishadBundlePage() {
         </div>
       </section>
 
+      {/* Immersive Story */}
+      <ImmersiveStory 
+        title="From Questions to Realization"
+        introduction="Experience the transformation from seeking answers to becoming the answer—the journey from ignorance to supreme wisdom"
+        phases={storyPhases}
+        conclusion="You are That—Tat Tvam Asi"
+        theme="warm"
+      />
+
       {/* Tabs Section */}
-      <section className="py-16 bg-white dark:bg-slate-900">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-amber-50/20 dark:from-slate-900 dark:to-amber-900/10">
         <div className="container mx-auto px-4">
-          {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    ? 'bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-white shadow-lg scale-105'
+                    : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-amber-50 dark:hover:bg-slate-700 border border-amber-200 dark:border-amber-800'
                 }`}
               >
                 <tab.icon className="w-5 h-5" />
@@ -513,7 +707,6 @@ export default function IshaPrashnaUpanishadBundlePage() {
             ))}
           </div>
 
-          {/* Tab Content */}
           <AnimatePresence mode="wait">
             {activeTab === 'overview' && (
               <HydrationSafeMotion
@@ -524,19 +717,19 @@ export default function IshaPrashnaUpanishadBundlePage() {
                 transition={{ duration: 0.3 }}
                 className="max-w-4xl mx-auto"
               >
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
-                    Course Overview
+                <div className="bg-white dark:bg-slate-800 border-2 border-amber-200 dark:border-amber-700 rounded-2xl p-10 shadow-xl">
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                    Journey Overview
                   </h3>
                   <div className="prose prose-lg dark:prose-invert max-w-none">
-                    <p className="text-gray-700 dark:text-gray-200 mb-6">
-                      This course focuses on the essence of enlightenment as presented in two of the most profound Upanishads: the Isha and Prashna Upanishads. These texts contain the highest spiritual wisdom and provide practical guidance for achieving enlightenment.
+                    <p className="text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
+                      The Upanishads are the pinnacle of Vedic wisdom—śruti, divine revelation—containing the highest teachings on the nature of reality and self. This journey explores two complementary Upanishads: Isha (also called Ishavasyopanishad) and Prashna, each offering unique yet harmonious insights into ultimate truth.
                     </p>
-                    <p className="text-gray-700 dark:text-gray-200 mb-6">
-                      The Isha Upanishad, though short, contains profound teachings about the nature of reality and the path to liberation. The Prashna Upanishad presents six fundamental questions about existence and provides deep philosophical answers that guide spiritual seekers.
+                    <p className="text-gray-700 dark:text-gray-200 mb-6 leading-relaxed">
+                      Isha Upanishad, though brief (18 verses), is considered complete in itself. It teaches īśāvāsyam—all this is covered by the Lord—revealing how to see the divine in everything and live with perfect detachment while fully engaged. Prashna Upanishad presents six profound questions about creation, life force, mind, meditation, and the supreme—each answer revealing cosmic understanding.
                     </p>
-                    <p className="text-gray-700 dark:text-gray-200">
-                      Together, these Upanishads offer a complete understanding of the essence of enlightenment, combining theoretical knowledge with practical spiritual practices for transformation and liberation.
+                    <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                      Through verse-by-verse study with traditional commentary, meditation practices, and contemplative exercises, these teachings become not just philosophy but lived realization. This is sacred study in the traditional manner—approaching ancient wisdom with reverence, patience, and transformative intent.
                     </p>
                   </div>
                 </div>
@@ -559,27 +752,27 @@ export default function IshaPrashnaUpanishadBundlePage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg"
+                      className="bg-white dark:bg-slate-800 border-2 border-amber-200 dark:border-amber-700 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-6">
                         <div>
-                          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                             {module.title}
                           </h3>
-                          <p className="text-amber-600 dark:text-amber-400 font-medium">
+                          <p className="text-amber-600 dark:text-amber-400 font-medium text-lg">
                             {module.week}
                           </p>
                         </div>
-                        <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
-                          <Clock className="w-4 h-4" />
-                          <span className="text-sm">{module.duration}</span>
+                        <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 bg-amber-100 dark:bg-amber-900/30 px-4 py-2 rounded-lg">
+                          <Clock className="w-5 h-5" />
+                          <span className="font-medium">{module.duration}</span>
                         </div>
                       </div>
-                      <div className="grid sm:grid-cols-2 gap-3">
+                      <div className="grid sm:grid-cols-2 gap-4">
                         {module.topics.map((topic, topicIndex) => (
-                          <div key={topicIndex} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full"></div>
-                            <span className="text-gray-700 dark:text-gray-200 text-sm">{topic}</span>
+                          <div key={topicIndex} className="flex items-center space-x-3 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 rounded-lg">
+                            <div className="w-2 h-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex-shrink-0" />
+                            <span className="text-gray-700 dark:text-gray-200">{topic}</span>
                           </div>
                         ))}
                       </div>
@@ -596,34 +789,35 @@ export default function IshaPrashnaUpanishadBundlePage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
+                className="max-w-6xl mx-auto"
               >
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-3 gap-8">
                   {packageData.testimonials.map((testimonial, index) => (
                     <HydrationSafeMotion
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg"
+                      whileHover={{ y: -8 }}
+                      className="bg-white dark:bg-slate-800 border-2 border-amber-200 dark:border-amber-700 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <div className="flex items-center mb-4">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
+                          <Star key={i} className={`w-5 h-5 ${i < testimonial.rating ? 'text-amber-400 fill-current' : 'text-gray-300'}`} />
                         ))}
                       </div>
-                      <p className="text-gray-700 dark:text-gray-200 mb-4 italic">
+                      <p className="text-gray-700 dark:text-gray-200 mb-6 italic leading-relaxed">
                         "{testimonial.text}"
                       </p>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full flex items-center justify-center">
-                          <User className="w-5 h-5 text-white" />
+                      <div className="flex items-center space-x-3 pt-4 border-t border-amber-200 dark:border-amber-700">
+                        <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center">
+                          <User className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-gray-800 dark:text-gray-100">
+                          <h4 className="font-bold text-gray-900 dark:text-gray-100">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300">
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
                             {testimonial.role}
                           </p>
                         </div>
@@ -650,19 +844,19 @@ export default function IshaPrashnaUpanishadBundlePage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg"
+                      className="bg-white dark:bg-slate-800 border-2 border-amber-200 dark:border-amber-700 rounded-xl shadow-lg overflow-hidden"
                     >
                       <button
                         onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                        className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors duration-200"
                       >
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 pr-4">
                           {faq.question}
                         </h3>
                         {expandedFaq === index ? (
-                          <Minus className="w-5 h-5 text-gray-500" />
+                          <Minus className="w-5 h-5 text-amber-500 flex-shrink-0" />
                         ) : (
-                          <Plus className="w-5 h-5 text-gray-500" />
+                          <Plus className="w-5 h-5 text-amber-500 flex-shrink-0" />
                         )}
                       </button>
                       <AnimatePresence>
@@ -674,8 +868,8 @@ export default function IshaPrashnaUpanishadBundlePage() {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <div className="px-6 pb-4">
-                              <p className="text-gray-700 dark:text-gray-200">
+                            <div className="px-8 pb-6 bg-amber-50 dark:bg-amber-900/10">
+                              <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
                                 {faq.answer}
                               </p>
                             </div>
@@ -692,10 +886,23 @@ export default function IshaPrashnaUpanishadBundlePage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-amber-900 via-yellow-900 to-orange-900 relative overflow-hidden">
+        {/* Radiant Light Effect */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-8 right-8 w-32 h-32 bg-gradient-to-br from-amber-200/40 to-yellow-200/40 dark:from-amber-500/30 dark:to-yellow-500/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-8 left-8 w-24 h-24 bg-gradient-to-br from-yellow-200/40 to-orange-200/40 dark:from-yellow-500/30 dark:to-orange-500/30 rounded-full blur-3xl animate-pulse"></div>
+          <HydrationSafeMotion className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(251,191,36,0.3) 0%, transparent 70%)'
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity
+            }}>
+              <div />
+            </HydrationSafeMotion>
         </div>
         
         <div className="container mx-auto px-4">
@@ -704,76 +911,83 @@ export default function IshaPrashnaUpanishadBundlePage() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-5xl mx-auto"
           >
-            <div className="bg-white dark:bg-slate-800 border-2 border-amber-200 dark:border-amber-700 rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <div className="bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-12 shadow-2xl relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-4 mb-8">
                   <HydrationSafeMotion 
-                    className="w-16 h-16 bg-gradient-to-r from-amber-500 to-yellow-500 dark:from-amber-400 dark:to-yellow-400 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    className="w-20 h-20 bg-gradient-to-br from-amber-300 via-yellow-300 to-orange-300 rounded-full flex items-center justify-center shadow-2xl"
+                    animate={{
+                      boxShadow: [
+                        '0 0 40px rgba(251, 191, 36, 0.8)',
+                        '0 0 100px rgba(251, 191, 36, 1)',
+                        '0 0 40px rgba(251, 191, 36, 0.8)'
+                      ]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
                   >
-                    <LightbulbIcon className="w-8 h-8 text-white" />
+                    <Sun className="w-10 h-10 text-white" />
                   </HydrationSafeMotion>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-shadow-sm">
-                    Ready to Discover the Essence of Enlightenment?
+                  <h3 className="text-4xl md:text-5xl font-bold text-white">
+                    Ready for Supreme Wisdom?
                   </h3>
                 </div>
                 
-                <HydrationSafeMotion 
-                  className="bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-50 dark:from-orange-900/30 dark:via-amber-900/30 dark:to-yellow-900/30 rounded-2xl p-6 mb-8 border-2 border-amber-200 dark:border-amber-700 shadow-lg"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                <p className="text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
+                  Begin your journey through these twin Upanishads. Discover the divine pervading all, understand cosmic reality, and realize your true nature as immortal consciousness.
+                </p>
+                
+                    <HydrationSafeMotion 
+                  className="inline-block bg-gradient-to-r from-amber-100 via-yellow-100 to-orange-100 rounded-2xl p-6 mb-8 border-2 border-white/30 shadow-xl"
+                  animate={{ scale: [1, 1.02, 1] }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 >
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl font-medium">
-                      Begin your enlightenment journey today and save
-                    </p>
-                    <HydrationSafeMotion 
-                      className="font-bold text-3xl md:text-4xl text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/50 px-4 py-2 rounded-xl shadow-lg border border-green-300 dark:border-green-600"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
+                    <span className="text-gray-800 text-xl font-medium">
+                      Sacred Investment:
+                    </span>
+                    <span className="font-bold text-4xl text-amber-700">
                       {packageData.savings}
-                    </HydrationSafeMotion>
+                    </span>
+                    <span className="text-gray-700 text-lg">
+                      ({packageData.savingsPercent} offering)
+                    </span>
                   </div>
                 </HydrationSafeMotion>
                 
                 <div className="space-y-6">
                   <HydrationSafeMotion
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Button
                       variant="primary"
                       size="lg"
                       href={packageData.ctaLink}
                       icon={<ArrowRight className="w-6 h-6" />}
-                      className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-bold py-4 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg shadow-lg"
+                      className="bg-gradient-to-r from-amber-100 via-yellow-100 to-orange-100 hover:from-amber-200 hover:via-yellow-200 hover:to-orange-200 text-amber-900 font-bold py-5 px-12 rounded-2xl transition-all duration-300 shadow-2xl text-xl"
                     >
                       {packageData.ctaText}
                     </Button>
                   </HydrationSafeMotion>
                   
-                  <HydrationSafeMotion 
-                    className="flex items-center justify-center gap-3 text-sm md:text-base text-gray-600 dark:text-gray-300"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/30 px-4 py-2 rounded-full border border-green-200 dark:border-green-700">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
+                  <div className="flex flex-wrap items-center justify-center gap-4 text-white/80">
+                    <div className="flex items-center gap-2 bg-white/10 px-5 py-3 rounded-full backdrop-blur-sm">
+                      <Infinity className="w-5 h-5" />
                       <span className="font-medium">Lifetime Access</span>
                     </div>
-                    <div className="flex items-center gap-2 bg-amber-50 dark:bg-amber-900/30 px-4 py-2 rounded-full border border-amber-200 dark:border-amber-700">
-                      <Sparkles className="w-5 h-5 text-amber-500" />
-                      <span className="font-medium">Enlightenment</span>
+                    <div className="flex items-center gap-2 bg-white/10 px-5 py-3 rounded-full backdrop-blur-sm">
+                      <Award className="w-5 h-5" />
+                      <span className="font-medium">Traditional Certificate</span>
                     </div>
-                  </HydrationSafeMotion>
+                    <div className="flex items-center gap-2 bg-white/10 px-5 py-3 rounded-full backdrop-blur-sm">
+                      <Sun className="w-5 h-5" />
+                      <span className="font-medium">Supreme Wisdom</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

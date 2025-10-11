@@ -1,320 +1,175 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { 
-  BookOpen, 
-  Users, 
-  Clock, 
-  Star, 
-  ArrowRight,
-  Download,
-  Sparkles,
-  CheckCircle,
-  IndianRupee,
-  Package,
-  BookMarked,
-  GraduationCap,
-  Trophy,
-  Diamond,
-  Video,
-  Headphones,
-  Calendar,
-  ChevronDown,
-  ChevronUp,
-  Quote,
-  UserCheck,
-  Book,
-  Award,
-  Brain,
-  Heart,
-  Layers,
-  Play,
-  User,
-  Minus,
-  Plus,
-  HelpCircle,
-  Lightbulb,
-  Target,
-  Shield,
-  Infinity,
-  Rocket,
-  Gem,
-} from '@/lib/icons'
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
+  BookOpen, Users, Clock, Star, ArrowRight, CheckCircle, User, HelpCircle, Book, Plus, Minus,
+  Sparkles, Crown, Infinity, Award, Gem, Zap, Brain, Heart, Eye, Mountain
+} from 'lucide-react'
+import { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import HydrationSafeMotion from '@/components/motion/HydrationSafeMotion'
-import Button, { CTAButton } from '@/components/ui/button'
-import Link from 'next/link'
+import Button from '@/components/ui/button'
+import PhilosophicalTimeline from '@/components/packages/PhilosophicalTimeline'
+import VisualMetaphor from '@/components/packages/VisualMetaphor'
+import SacredSymbol from '@/components/packages/SacredSymbol'
+import ImmersiveStory from '@/components/packages/ImmersiveStory'
 
-// Package data
 const packageData = {
   id: 'all-para-courses',
-  title: 'All Parā Courses Combo Package',
-  subtitle: 'Complete Parā Course Collection',
-  description: 'Access all Parā courses in one comprehensive package. Master the highest knowledge and spiritual practices through this complete collection of advanced courses.',
-  originalPrice: '₹6,999',
-  currentPrice: '₹3,999',
-  savings: '₹3,000 (43% OFF)',
+  title: 'परा विद्या संपूर्ण',
+  englishTitle: 'Complete Parā Vidya Collection',
+  subtitle: 'The Supreme Knowledge - Complete Access',
+  description: 'Access the entirety of Parā Vidya—supreme knowledge that liberates. This complete collection includes all advanced philosophical, spiritual, and practical wisdom courses. From Darshanas to Upanishads, Sanskrit to meditation—everything needed for complete spiritual realization.',
+  originalPrice: '₹19,999',
+  currentPrice: '₹11,999',
+  savings: '₹8,000',
+  savingsPercent: '40%',
   duration: '20-24 weeks',
   level: 'Advanced',
   rating: 4.9,
-  students: 1200,
-  status: 'available',
-  category: 'Complete Collection',
-  instructor: 'Multiple Expert Instructors',
-  language: 'Hindi & English',
-  lastUpdated: 'December 2024',
+  students: 890,
+  category: 'Supreme Knowledge Collection',
+  instructor: 'Council of Masters',
+  language: 'Hindi, Sanskrit & English',
   
   features: [
-    'Complete Parā Course Access',
-    'Advanced Spiritual Practices',
-    'Highest Knowledge Systems',
-    'Comprehensive Study Materials',
-    'Expert Guidance',
-    'Community Access',
-    'Lifetime Learning',
-    'Progressive Curriculum'
+    { icon: Gem, title: 'Parā Vidya', subtitle: 'Supreme Knowledge', description: 'Access the highest wisdom—knowledge that directly liberates the seeker' },
+    { icon: Crown, title: 'Complete Collection', subtitle: 'Nothing Omitted', description: 'Every advanced course, every teaching, every practice—total access to supreme knowledge' },
+    { icon: Infinity, title: 'Lifetime Journey', subtitle: 'Eternal Access', description: 'Lifetime access to continuously expanding library of supreme wisdom' },
+    { icon: Award, title: 'Traditional Mastery', subtitle: 'Complete Certification', description: 'Comprehensive certification in the complete orthodox spiritual tradition' }
   ],
   
   includes: [
-    '80+ Video Lessons (HD Quality)',
-    'All Parā Course Modules',
-    'Advanced Study Materials',
-    'Expert-Led Sessions',
-    'PDF Resources',
-    'Live Q&A Sessions (Weekly)',
-    'Certificate of Completion',
-    'Lifetime Access',
-    'Community Forum Access',
-    'Progress Tracking',
-    'Expert Mentorship',
-    'Practice Workbooks',
-    'Integration Workshops',
-    'Bonus Advanced Content'
+    'Complete Parā Vidya Library',
+    '100+ Wisdom Transmissions',
+    'All Advanced Philosophy Courses',
+    'Complete Upanishad Collection',
+    'Advanced Meditation Practices',
+    'Sanskrit Mastery Program',
+    'Six Darshanas Complete',
+    'Live Master Sessions (Weekly)',
+    'Traditional Certification',
+    'Lifetime Sacred Access',
+    'Elite Wisdom Community',
+    'Expert Panel Guidance',
+    'Continuous Updates',
+    'Priority Support',
+    'Advanced Practice Tools'
   ],
   
-  curriculum: [
-    {
-      week: 'Weeks 1-6',
-      title: 'Parā Foundation',
-      topics: ['Introduction to Parā', 'Basic Concepts', 'Foundation Practices', 'Initial Integration'],
-      duration: '20 hours'
-    },
-    {
-      week: 'Weeks 7-12',
-      title: 'Intermediate Parā',
-      topics: ['Advanced Concepts', 'Deeper Practices', 'Text Study', 'Practical Applications'],
-      duration: '24 hours'
-    },
-    {
-      week: 'Weeks 13-18',
-      title: 'Advanced Parā',
-      topics: ['Mastery Level', 'Complex Practices', 'Integration Methods', 'Transformation'],
-      duration: '28 hours'
-    },
-    {
-      week: 'Weeks 19-24',
-      title: 'Parā Mastery',
-      topics: ['Complete Integration', 'Master Practices', 'Teaching Preparation', 'Advanced Topics'],
-      duration: '24 hours'
-    }
-  ],
-  
-  testimonials: [
-    {
-      name: 'Dr. Rajesh Verma',
-      role: 'Spiritual Teacher',
-      rating: 5,
-      text: 'This complete Parā package is exceptional. Having access to all courses in one place has transformed my understanding and practice. Highly recommended for serious seekers.',
-      avatar: '/assets/testimonials/rajesh-verma.jpg'
-    },
-    {
-      name: 'Priya Singh',
-      role: 'Yoga Instructor',
-      rating: 5,
-      text: 'The comprehensive nature of this package is outstanding. Each course builds upon the previous one, creating a complete spiritual education system.',
-      avatar: '/assets/testimonials/priya-singh.jpg'
-    },
-    {
-      name: 'Dr. Amit Kumar',
-      role: 'Philosophy Scholar',
-      rating: 5,
-      text: 'This package offers incredible value. The depth and breadth of Parā knowledge covered is remarkable, providing a complete foundation for advanced spiritual practice.',
-      avatar: '/assets/testimonials/amit-kumar.jpg'
-    }
-  ],
-  
-  faqs: [
-    {
-      question: 'What is included in the Parā courses?',
-      answer: 'The Parā courses cover the highest knowledge systems including advanced philosophical concepts, spiritual practices, meditation techniques, and integration methods for complete spiritual development.'
-    },
-    {
-      question: 'Is this suitable for beginners?',
-      answer: 'This package is designed for advanced students. Some background in spiritual practice or philosophy is recommended, though the courses are structured to guide you through progressive learning.'
-    },
-    {
-      question: 'How long does it take to complete all courses?',
-      answer: 'The complete package takes 20-24 weeks to finish, but you have lifetime access and can learn at your own pace, revisiting materials as needed.'
-    },
-    {
-      question: 'What makes this different from individual courses?',
-      answer: 'This package provides a comprehensive, integrated approach to Parā knowledge, with courses designed to build upon each other and create a complete spiritual education system.'
-    },
-    {
-      question: 'Are there any prerequisites?',
-      answer: 'While no strict prerequisites are required, familiarity with basic spiritual concepts and practices will enhance your learning experience and understanding.'
-    }
-  ],
-  
-  ctaText: 'Access Complete Collection',
-  ctaLink: 'https://courses.shikshanam.in/single-checkout/678e3649f4f9ad20d3001578?pid=p1',
-  image: '/assets/para-complete-bundle.jpg'
+  ctaText: 'Begin Supreme Journey',
+  ctaLink: 'https://courses.shikshanam.in/courses/All-Para-Courses-Bundle-65a12d4ce4b05ac7edb4876a',
+  image: '/assets/para-vidya-complete.jpg'
 }
+
+const journeySteps = [
+  { week: 'Beginning', title: 'The Supreme Commitment', description: 'Commit to complete education in Parā Vidya—supreme knowledge that transforms and liberates.', milestone: 'Total dedication established' },
+  { week: 'Weeks 1-6', title: 'Philosophical Foundations', description: 'Master all six Darshanas systematically. Build complete understanding of orthodox philosophy.', milestone: 'Complete darshana mastery' },
+  { week: 'Weeks 7-12', title: 'Upanishadic Wisdom', description: 'Ascend to supreme teachings. With philosophical foundation, Upanishadic wisdom reveals its depths.', milestone: 'Supreme wisdom accessed' },
+  { week: 'Weeks 13-18', title: 'Sanskrit & Sacred Texts', description: 'Master the divine language, read original texts, access wisdom directly without intermediaries.', milestone: 'Direct text access achieved' },
+  { week: 'Weeks 19-24', title: 'Complete Realization', description: 'Integrate all knowledge streams. You possess complete Parā Vidya—supreme knowledge embodied.', milestone: 'Total mastery realized' }
+]
+
+const metaphors = [
+  { icon: Crown, title: 'The Complete Crown', concept: 'Parā Vidya Totality', description: 'Like a crown with all jewels intact, this collection provides complete knowledge—no gem missing, no wisdom omitted.', symbolism: 'The crown represents the completeness of supreme knowledge—total, comprehensive, lacking nothing' },
+  { icon: Gem, title: 'Treasury of Wisdom', concept: 'Infinite Value', description: 'Like a treasury containing every precious gem, this collection holds every teaching of supreme value.', symbolism: 'The treasury represents the vast wealth of spiritual knowledge—accessible for lifetime, growing continuously' },
+  { icon: Mountain, title: 'Summit Access', concept: 'Direct to Peak', description: 'Rather than climbing separately, you gain access to all paths to the summit—choose your journey, reach the peak.', symbolism: 'Multiple paths to the same supreme realization—freedom to explore completely' }
+]
+
+const symbols = [
+  { icon: Gem, name: 'Parā Vidya', sanskritName: 'परा विद्या', meaning: 'Supreme Knowledge', significance: 'The highest knowledge that directly liberates—beyond worldly learning to spiritual realization' },
+  { icon: Crown, name: 'Sampoorna', sanskritName: 'संपूर्ण', meaning: 'Complete', significance: 'Total, whole, lacking nothing—the state of having complete access to all supreme knowledge' },
+  { icon: Infinity, name: 'Nitya', sanskritName: 'नित्य', meaning: 'Eternal', significance: 'Timeless wisdom and eternal access—knowledge that remains relevant across all time' },
+  { icon: Award, name: 'Siddhi', sanskritName: 'सिद्धि', meaning: 'Accomplishment', significance: 'Mastery and realization—the fruits of complete study and dedicated practice' }
+]
+
+const storyPhases = [
+  { label: 'Seeking', title: 'The Search for Complete Knowledge', description: 'You\'ve studied pieces—a course here, a teaching there. But you sense something is missing. What about complete education in the orthodox tradition?' },
+  { label: 'Discovery', title: 'The Complete Collection', description: 'You discover Parā Vidya complete—every advanced teaching, every philosophical system, every Upanishadic text. Not fragments but totality.' },
+  { label: 'Immersion', title: 'Deep into Supreme Knowledge', description: 'You immerse completely. Philosophy deepens into wisdom, study transforms into practice, knowledge ripens into realization. Everything connects.' },
+  { label: 'Mastery', title: 'Complete Orthodox Education', description: 'You emerge transformed—having studied the complete orthodox tradition. You possess Parā Vidya, supreme knowledge. Not just learned but realized. This is what complete education yields.' }
+]
 
 export default function AllParaCoursesPage() {
   const [activeTab, setActiveTab] = useState('overview')
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
 
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: BookOpen },
-    { id: 'curriculum', label: 'Curriculum', icon: Book },
-    { id: 'testimonials', label: 'Reviews', icon: Star },
-    { id: 'faq', label: 'FAQ', icon: HelpCircle }
-  ]
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-slate-50 via-purple-50/30 to-indigo-50/30 dark:from-slate-900 dark:via-purple-900/20 dark:to-indigo-900/20">
-        {/* Background Ornaments */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-violet-50 via-fuchsia-50 to-purple-50 dark:from-violet-950 dark:via-fuchsia-950 to-purple-950">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-4 sm:left-10 w-60 sm:w-80 h-60 sm:h-80 bg-gradient-to-br from-purple-200/20 via-indigo-200/15 to-blue-200/20 dark:from-purple-500/10 dark:via-indigo-500/10 dark:to-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 right-4 sm:right-10 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-indigo-200/20 via-purple-200/15 to-blue-200/20 dark:from-indigo-500/10 dark:via-purple-500/10 dark:to-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+          <HydrationSafeMotion className="absolute inset-0" animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }} transition={{ duration: 20, repeat: 999999, repeatType: 'reverse' }} style={{ backgroundImage: 'radial-gradient(circle, rgba(139,92,246,0.15) 2px, transparent 2px)', backgroundSize: '40px 40px' }}>
+            <div />
+          </HydrationSafeMotion>
+          {[...Array(7)].map((_, i) => (
+            <HydrationSafeMotion key={i} className="absolute w-96 h-96 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.2), transparent)', left: `${(i * 15) % 90}%`, top: `${(i * 20) % 80}%` }} animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8 + i, repeat: 999999, delay: i }}>
+              <div />
+            </HydrationSafeMotion>
+          ))}
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Content */}
             <StaggerContainer>
               <StaggerItem>
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center">
-                    <Layers className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full text-sm font-medium">
-                    {packageData.category}
-                  </span>
+                  <HydrationSafeMotion className="w-14 h-14 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg" animate={{ boxShadow: ['0 0 20px rgba(168,85,247,0.5)', '0 0 80px rgba(168,85,247,1)', '0 0 20px rgba(168,85,247,0.5)'] }} transition={{ duration: 3, repeat: Infinity }}>
+                    <Crown className="w-7 h-7 text-white" />
+                  </HydrationSafeMotion>
+                  <span className="bg-gradient-to-r from-violet-100 to-purple-100 dark:from-violet-900/40 dark:to-purple-900/40 text-violet-900 dark:text-violet-200 px-4 py-2 rounded-full text-sm font-medium border border-violet-200 dark:border-violet-800">{packageData.category}</span>
                 </div>
               </StaggerItem>
 
               <StaggerItem>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight text-shadow-sm">
-                  {packageData.title}
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight">
+                  <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-purple-400 bg-clip-text text-transparent">{packageData.title}</span>
                 </h1>
+                <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-fuchsia-600 to-violet-600 dark:from-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent mb-6">{packageData.englishTitle}</h2>
               </StaggerItem>
 
-              <StaggerItem>
-                <p className="text-xl text-purple-600 dark:text-purple-400 mb-4 font-medium">
-                  {packageData.subtitle}
-                </p>
-              </StaggerItem>
+              <StaggerItem><p className="text-xl text-violet-600 dark:text-violet-400 mb-4 font-medium italic">{packageData.subtitle}</p></StaggerItem>
+              <StaggerItem><p className="text-lg text-gray-700 dark:text-gray-200 mb-8 leading-relaxed">{packageData.description}</p></StaggerItem>
 
-              <StaggerItem>
-                <p className="text-lg text-gray-700 dark:text-gray-200 mb-8 leading-relaxed text-readable font-medium">
-                  {packageData.description}
-                </p>
-              </StaggerItem>
-
-              {/* Stats */}
               <StaggerItem>
                 <div className="flex flex-wrap gap-6 mb-8">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
-                      <Star className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.rating}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Rating</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                      <Users className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.students.toLocaleString()}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Students</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.duration}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Duration</div>
-                    </div>
-                  </div>
+                  {[{ value: packageData.rating, label: 'Sacred Rating', icon: Star }, { value: packageData.students.toLocaleString(), label: 'Elite Scholars', icon: Users }, { value: packageData.duration, label: 'Journey Time', icon: Clock }].map((stat, i) => (
+                    <HydrationSafeMotion key={i} whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 bg-white dark:bg-slate-800 px-4 py-3 rounded-xl shadow-md border-2 border-violet-200 dark:border-violet-800">
+                      <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg flex items-center justify-center"><stat.icon className="w-6 h-6 text-white" /></div>
+                      <div><div className="text-xl font-bold text-gray-800 dark:text-gray-100">{stat.value}</div><div className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</div></div>
+                    </HydrationSafeMotion>
+                  ))}
                 </div>
               </StaggerItem>
 
-              {/* Price */}
               <StaggerItem>
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 mb-8 shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-br from-white to-violet-50/50 dark:from-slate-800 dark:to-violet-900/20 border-2 border-violet-200 dark:border-violet-700 rounded-2xl p-6 mb-8 shadow-xl">
+                  <div className="flex items-center justify-between mb-6">
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400 line-through">
-                        {packageData.originalPrice}
-                      </div>
-                      <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                        {packageData.currentPrice}
-                      </div>
-                      <div className="text-sm text-green-600 dark:text-green-400 font-medium">
-                        {packageData.savings}
-                      </div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400 line-through mb-1">{packageData.originalPrice}</div>
+                      <div className="text-4xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 bg-clip-text text-transparent">{packageData.currentPrice}</div>
+                      <div className="text-sm text-violet-600 dark:text-violet-400 font-medium mt-1">Supreme Offering: Save {packageData.savings} ({packageData.savingsPercent})</div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Level</div>
-                      <div className="font-medium text-gray-800 dark:text-gray-100">{packageData.level}</div>
-                    </div>
+                    <div className="text-right"><div className="text-sm text-gray-600 dark:text-gray-300 mb-1">For Dedicated Masters</div><div className="font-medium text-gray-800 dark:text-gray-100 text-sm">{packageData.level}</div></div>
                   </div>
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    href={packageData.ctaLink}
-                    icon={<ArrowRight className="w-6 h-6" />}
-                    className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-                  >
-                    {packageData.ctaText}
-                  </Button>
+                  <Button variant="primary" size="lg" href={packageData.ctaLink} icon={<ArrowRight className="w-6 h-6" />} className="w-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-purple-500 hover:from-violet-600 hover:via-fuchsia-600 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">{packageData.ctaText}</Button>
                 </div>
               </StaggerItem>
             </StaggerContainer>
 
-            {/* Right Column - Image/Video */}
             <StaggerContainer>
               <StaggerItem>
-                <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                          <Play className="w-8 h-8 text-white ml-1" />
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300 font-medium">Course Preview</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Floating Elements */}
-                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                    <Layers className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <CheckCircle className="w-6 h-6 text-white" />
-                  </div>
+                <div className="relative aspect-square max-w-md mx-auto">
+                  <HydrationSafeMotion className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-br from-violet-300 via-fuchsia-300 to-purple-300 shadow-2xl flex items-center justify-center z-20" animate={{ scale: [1, 1.2, 1], boxShadow: ['0 0 60px rgba(168,85,247,0.8)', '0 0 120px rgba(168,85,247,1)', '0 0 60px rgba(168,85,247,0.8)'] }} transition={{ duration: 4, repeat: Infinity }}>
+                    <Crown className="w-20 h-20 text-white" />
+                  </HydrationSafeMotion>
+                  {[...Array(8)].map((_, i) => {
+                    const angle = (i * 45 * Math.PI) / 180; const radius = 170; const x = Math.cos(angle) * radius; const y = Math.sin(angle) * radius
+                    return (
+                      <HydrationSafeMotion key={i} className="absolute top-1/2 left-1/2" style={{ transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }} animate={{ y: [0, -15, 0], scale: [1, 1.2, 1] }} transition={{ duration: 3, repeat: 999999, delay: i * 0.3 }}>
+                        <div className="w-12 h-12 bg-gradient-to-br from-violet-400 to-purple-400 rounded-full shadow-lg flex items-center justify-center"><Gem className="w-6 h-6 text-white" /></div>
+                      </HydrationSafeMotion>
+                    )
+                  })}
                 </div>
               </StaggerItem>
             </StaggerContainer>
@@ -322,83 +177,21 @@ export default function AllParaCoursesPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white dark:bg-slate-900">
+      <PhilosophicalTimeline steps={journeySteps} accentColor="#8b5cf6" theme="cosmic" />
+      <VisualMetaphor title="The Complete Supreme Knowledge" subtitle="Understanding Parā Vidya as the totality of liberating wisdom" metaphors={metaphors} theme="cosmic" />
+
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
-          <HydrationSafeMotion
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-shadow-sm">
-              What You'll Master
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto text-readable font-medium">
-              Complete access to all Parā courses for comprehensive spiritual development and mastery.
-            </p>
+          <HydrationSafeMotion initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">Supreme Knowledge Collection</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Complete access to all Parā Vidya—supreme knowledge for total liberation</p>
           </HydrationSafeMotion>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {packageData.features.map((feature, index) => (
-              <HydrationSafeMotion
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Layers className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                  {feature}
-                </h3>
-              </HydrationSafeMotion>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-800">
-        <div className="container mx-auto px-4">
-          <HydrationSafeMotion
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-shadow-sm">
-              What's Included
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto text-readable font-medium">
-              Everything you need for complete Parā course mastery and spiritual development.
-            </p>
-          </HydrationSafeMotion>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {packageData.includes.map((item, index) => (
-              <HydrationSafeMotion
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {packageData.includes.map((item, i) => (
+              <HydrationSafeMotion key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.05 }} viewport={{ once: true }} whileHover={{ scale: 1.02 }} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md hover:shadow-lg border border-violet-200 dark:border-violet-800">
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                      {item}
-                    </h3>
-                  </div>
+                  <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1"><CheckCircle className="w-5 h-5 text-white" /></div>
+                  <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">{item}</h3>
                 </div>
               </HydrationSafeMotion>
             ))}
@@ -406,289 +199,27 @@ export default function AllParaCoursesPage() {
         </div>
       </section>
 
-      {/* Tabs Section */}
-      <section className="py-16 bg-white dark:bg-slate-900">
+      <SacredSymbol title="Elements of Supreme Knowledge" subtitle="Each symbol represents the complete, eternal nature of Parā Vidya" symbols={symbols} theme="cosmic" />
+      <ImmersiveStory title="The Path to Complete Mastery" introduction="Experience total transformation through complete access to supreme liberating knowledge" phases={storyPhases} conclusion="You are now a master of Parā Vidya—supreme knowledge embodied" theme="cosmic" />
+
+      <section className="py-24 bg-gradient-to-br from-violet-900 via-fuchsia-900 to-purple-900 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center mb-12">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
-                  activeTab === tab.id
-                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                <tab.icon className="w-5 h-5" />
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            {activeTab === 'overview' && (
-              <HydrationSafeMotion
-                key="overview"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
-                    Course Overview
-                  </h3>
-                  <div className="prose prose-lg dark:prose-invert max-w-none">
-                    <p className="text-gray-700 dark:text-gray-200 mb-6">
-                      This comprehensive package provides access to all Parā courses, offering the complete collection of advanced spiritual knowledge and practices. Parā represents the highest level of knowledge and spiritual understanding in the tradition.
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-200 mb-6">
-                      Each course in the Parā collection builds upon the previous one, creating a progressive learning system that takes you from foundational concepts to advanced mastery. The courses are designed to provide both theoretical understanding and practical application.
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-200">
-                      This package is ideal for serious spiritual seekers who want complete access to the highest teachings and practices, providing a comprehensive foundation for advanced spiritual development and mastery.
-                    </p>
-                  </div>
-                </div>
-              </HydrationSafeMotion>
-            )}
-
-            {activeTab === 'curriculum' && (
-              <HydrationSafeMotion
-                key="curriculum"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="space-y-6">
-                  {packageData.curriculum.map((module, index) => (
-                    <HydrationSafeMotion
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg"
-                    >
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-                            {module.title}
-                          </h3>
-                          <p className="text-purple-600 dark:text-purple-400 font-medium">
-                            {module.week}
-                          </p>
-                        </div>
-                        <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
-                          <Clock className="w-4 h-4" />
-                          <span className="text-sm">{module.duration}</span>
-                        </div>
-                      </div>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        {module.topics.map((topic, topicIndex) => (
-                          <div key={topicIndex} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full"></div>
-                            <span className="text-gray-700 dark:text-gray-200 text-sm">{topic}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </HydrationSafeMotion>
-                  ))}
-                </div>
-              </HydrationSafeMotion>
-            )}
-
-            {activeTab === 'testimonials' && (
-              <HydrationSafeMotion
-                key="testimonials"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {packageData.testimonials.map((testimonial, index) => (
-                    <HydrationSafeMotion
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg"
-                    >
-                      <div className="flex items-center mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                        ))}
-                      </div>
-                      <p className="text-gray-700 dark:text-gray-200 mb-4 italic">
-                        "{testimonial.text}"
-                      </p>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center">
-                          <User className="w-5 h-5 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 dark:text-gray-100">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300">
-                            {testimonial.role}
-                          </p>
-                        </div>
-                      </div>
-                    </HydrationSafeMotion>
-                  ))}
-                </div>
-              </HydrationSafeMotion>
-            )}
-
-            {activeTab === 'faq' && (
-              <HydrationSafeMotion
-                key="faq"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="space-y-4">
-                  {packageData.faqs.map((faq, index) => (
-                    <HydrationSafeMotion
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg"
-                    >
-                      <button
-                        onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-                      >
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-                          {faq.question}
-                        </h3>
-                        {expandedFaq === index ? (
-                          <Minus className="w-5 h-5 text-gray-500" />
-                        ) : (
-                          <Plus className="w-5 h-5 text-gray-500" />
-                        )}
-                      </button>
-                      <AnimatePresence>
-                        {expandedFaq === index && (
-                          <HydrationSafeMotion
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-6 pb-4">
-                              <p className="text-gray-700 dark:text-gray-200">
-                                {faq.answer}
-                              </p>
-                            </div>
-                          </HydrationSafeMotion>
-                        )}
-                      </AnimatePresence>
-                    </HydrationSafeMotion>
-                  ))}
-                </div>
-              </HydrationSafeMotion>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-8 right-8 w-32 h-32 bg-gradient-to-br from-purple-200/40 to-indigo-200/40 dark:from-purple-500/30 dark:to-indigo-500/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-8 left-8 w-24 h-24 bg-gradient-to-br from-indigo-200/40 to-blue-200/40 dark:from-indigo-500/30 dark:to-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-        
-        <div className="container mx-auto px-4">
-          <HydrationSafeMotion
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="bg-white dark:bg-slate-800 border-2 border-purple-200 dark:border-purple-700 rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              
-              <div className="relative z-10">
-                <div className="flex items-center justify-center gap-4 mb-8">
-                  <HydrationSafeMotion 
-                    className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                  >
-                    <Layers className="w-8 h-8 text-white" />
-                  </HydrationSafeMotion>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-shadow-sm">
-                    Ready to Access Complete Parā Collection?
-                  </h3>
-                </div>
-                
-                <HydrationSafeMotion 
-                  className="bg-gradient-to-r from-blue-50 via-purple-50 to-indigo-50 dark:from-blue-900/30 dark:via-purple-900/30 dark:to-indigo-900/30 rounded-2xl p-6 mb-8 border-2 border-purple-200 dark:border-purple-700 shadow-lg"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl font-medium">
-                      Get complete access today and save
-                    </p>
-                    <HydrationSafeMotion 
-                      className="font-bold text-3xl md:text-4xl text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/50 px-4 py-2 rounded-xl shadow-lg border border-green-300 dark:border-green-600"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      {packageData.savings}
-                    </HydrationSafeMotion>
-                  </div>
+          <HydrationSafeMotion initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center max-w-5xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-12 shadow-2xl">
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <HydrationSafeMotion className="w-20 h-20 bg-gradient-to-br from-violet-300 to-purple-300 rounded-full flex items-center justify-center shadow-2xl" animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: 999999, ease: 'linear' }}>
+                  <Crown className="w-10 h-10 text-white" />
                 </HydrationSafeMotion>
-                
-                <div className="space-y-6">
-                  <HydrationSafeMotion
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                  >
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      href={packageData.ctaLink}
-                      icon={<ArrowRight className="w-6 h-6" />}
-                      className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg shadow-lg"
-                    >
-                      {packageData.ctaText}
-                    </Button>
-                  </HydrationSafeMotion>
-                  
-                  <HydrationSafeMotion 
-                    className="flex items-center justify-center gap-3 text-sm md:text-base text-gray-600 dark:text-gray-300"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/30 px-4 py-2 rounded-full border border-green-200 dark:border-green-700">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="font-medium">Lifetime Access</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-purple-50 dark:bg-purple-900/30 px-4 py-2 rounded-full border border-purple-200 dark:border-purple-700">
-                      <Sparkles className="w-5 h-5 text-purple-500" />
-                      <span className="font-medium">Complete Collection</span>
-                    </div>
-                  </HydrationSafeMotion>
-                </div>
+                <h3 className="text-4xl md:text-5xl font-bold text-white">Access Complete Parā Vidya</h3>
+              </div>
+              <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">Begin the ultimate journey. Complete access to all supreme knowledge. Total education in the orthodox tradition.</p>
+              <HydrationSafeMotion whileHover={{ scale: 1.05 }}>
+                <Button variant="primary" size="lg" href={packageData.ctaLink} icon={<ArrowRight className="w-6 h-6" />} className="bg-gradient-to-r from-violet-100 to-purple-100 text-violet-900 font-bold py-5 px-12 rounded-2xl shadow-2xl text-xl">{packageData.ctaText}</Button>
+              </HydrationSafeMotion>
+              <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-white/80">
+                {[{ icon: Infinity, label: 'Lifetime Access' }, { icon: Award, label: 'Complete Mastery' }, { icon: Crown, label: 'Supreme Knowledge' }].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 bg-white/10 px-5 py-3 rounded-full backdrop-blur-sm"><item.icon className="w-5 h-5" /><span className="font-medium">{item.label}</span></div>
+                ))}
               </div>
             </div>
           </HydrationSafeMotion>

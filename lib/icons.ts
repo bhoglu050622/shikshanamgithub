@@ -83,6 +83,7 @@ export {
   // Time & Calendar
   Clock,
   Calendar,
+  Timer,
   
   // Location
   MapPin,
@@ -126,6 +127,7 @@ export {
   Activity,
   Smile,
   Play,
+  PlayCircle,
   ExternalLink,
   Languages,
   PenTool,

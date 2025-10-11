@@ -267,7 +267,7 @@ export default function FreeCoursesPage() {
               </p>
             </HydrationSafeMotion>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {featuredMasterclasses.map((masterclass, index) => (
                 <HydrationSafeMotion
                   key={masterclass.id}
@@ -357,7 +357,7 @@ export default function FreeCoursesPage() {
               Browse by Category
             </h2>
             
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               {categories.map((category) => (
                 <button
                   key={category.id}

@@ -196,7 +196,7 @@ export default function SelfHelpHero({ onExploreTracks, onTakeTest }: SelfHelpHe
             >
               School of{' '}
               <span className="bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 dark:from-saffron-500 dark:via-deep-teal-500 dark:to-indigo-500 bg-clip-text text-transparent relative">
-                Self-Help
+                Life-Skills
                 <motion.div
                   className="absolute -top-2 -right-2"
                   animate={shouldReduceMotion ? {} : {

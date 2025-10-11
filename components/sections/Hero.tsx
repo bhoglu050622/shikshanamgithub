@@ -60,16 +60,16 @@ export default function Hero() {
         <motion.div 
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-300/30 via-transparent to-transparent dark:from-orange-500/20"
           animate={{ 
-            opacity: [0.3, 0.5, 0.3],
+            opacity: [0.3, 0.4, 0.3],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-amber-300/30 via-transparent to-transparent dark:from-amber-500/20"
-          animate={{ 
-            opacity: [0.3, 0.5, 0.3],
+          animate={{
+            opacity: [0.3, 0.4, 0.3],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 6 }}
         />
         
         {/* Animated mesh gradient effect */}
@@ -83,45 +83,11 @@ export default function Hero() {
             `
           }}
           animate={{
-            opacity: [0.2, 0.4, 0.2],
+            opacity: [0.2, 0.3, 0.2],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
               </div>
-
-      {/* Floating Particles */}
-      {mounted && particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: particle.size,
-            height: particle.size,
-            background: particle.id % 3 === 0 
-              ? 'radial-gradient(circle, rgba(251, 146, 60, 0.8) 0%, rgba(251, 191, 36, 0.4) 100%)'
-              : particle.id % 3 === 1
-              ? 'radial-gradient(circle, rgba(245, 158, 11, 0.8) 0%, rgba(252, 211, 77, 0.4) 100%)'
-              : 'radial-gradient(circle, rgba(249, 115, 22, 0.8) 0%, rgba(251, 146, 60, 0.4) 100%)',
-            boxShadow: particle.size > 6 
-              ? '0 0 20px rgba(251, 146, 60, 0.6), 0 0 40px rgba(251, 191, 36, 0.3)'
-              : '0 0 10px rgba(251, 146, 60, 0.4)',
-          }}
-          animate={{
-            y: [0, -50, 0],
-            x: [0, particle.id % 2 === 0 ? 20 : -20, 0],
-            scale: [1, 1.2, 1],
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
 
       {/* Floating Sparkles - Accent Elements */}
       {mounted && [1, 2, 3, 4, 5, 6].map((i) => (
@@ -221,13 +187,13 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
             >
               <span className="bg-gradient-to-r from-gray-900 via-orange-800 to-amber-900 dark:from-white dark:via-orange-200 dark:to-amber-200 bg-clip-text text-transparent">
                 शिक्षणम्
               </span>
               <br />
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-700 dark:text-gray-300">
+              <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-700 dark:text-gray-300">
                 Shikshanam
               </span>
             </motion.h1>
@@ -249,7 +215,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl sm:text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-4 font-light"
+            className="text-lg sm:text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-4 font-light"
           >
             Ancient Indian Knowledge Platform
           </motion.p>
@@ -265,7 +231,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base sm:text-lg text-gray-500 dark:text-gray-200 mb-12 max-w-3xl mx-auto"
+              className="text-sm sm:text-lg text-gray-500 dark:text-gray-200 mb-12 max-w-3xl mx-auto"
             >
               Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
             </motion.p>

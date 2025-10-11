@@ -83,12 +83,10 @@ export default function DarshanaCircularVisualization({
   onDarshanaClick 
 }: DarshanaCircularVisualizationProps) {
   const [currentStep, setCurrentStep] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
   const [isReducedMotion, setIsReducedMotion] = useState(false)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
   const controls = useAnimation()
 
   // Check for reduced motion preference
@@ -100,42 +98,6 @@ export default function DarshanaCircularVisualization({
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (isPlaying && !isReducedMotion) {
-      const interval = 1800 // Fixed interval
-      
-      autoPlayRef.current = setInterval(() => {
-        setCurrentStep(prev => {
-          const nextStep = prev + 1
-          if (nextStep < steps.length) {
-            // Animate timeline
-            controls.start({
-              pathLength: (nextStep + 1) / steps.length,
-              transition: { duration: 0.6, ease: "easeInOut" }
-            })
-            
-            return nextStep
-          } else {
-            setIsPlaying(false)
-            return prev
-          }
-        })
-      }, interval)
-    } else {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current)
-        autoPlayRef.current = null
-      }
-    }
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current)
-      }
-    }
-  }, [isPlaying, isReducedMotion, controls])
 
   // Touch handlers for swipe gestures
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -193,10 +155,6 @@ export default function DarshanaCircularVisualization({
     }
   }, [currentStep, controls, isReducedMotion])
 
-  const togglePlayPause = useCallback(() => {
-    setIsPlaying(!isPlaying)
-  }, [isPlaying])
-
   const handleStepClick = useCallback((stepIndex: number) => {
     setCurrentStep(stepIndex)
     
@@ -216,15 +174,12 @@ export default function DarshanaCircularVisualization({
         handlePrevious()
       } else if (e.key === 'ArrowRight' && currentStep < steps.length - 1) {
         handleNext()
-      } else if (e.key === ' ') {
-        e.preventDefault()
-        togglePlayPause()
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentStep, handleNext, handlePrevious, togglePlayPause])
+  }, [currentStep, handleNext, handlePrevious])
 
   const handleQuizOpen = () => {
     if (onDarshanaClick) {
@@ -385,17 +340,6 @@ export default function DarshanaCircularVisualization({
             ))}
             </div>
           </div>
-
-          {/* Controls */}
-          <Controls
-            isPlaying={isPlaying}
-            onPlayPause={togglePlayPause}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-            canGoPrevious={currentStep > 0}
-            canGoNext={currentStep < steps.length - 1}
-            isReducedMotion={isReducedMotion}
-          />
 
           {/* Quiz CTA */}
           <QuizCTA onQuizOpen={handleQuizOpen} />

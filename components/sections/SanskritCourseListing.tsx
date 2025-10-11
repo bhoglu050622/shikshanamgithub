@@ -1,42 +1,47 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { BookOpen, Clock, Star, ArrowRight, Users, Award } from 'lucide-react'
+import { BookOpen, Clock, Star, ArrowRight, Users, Award, Sparkles, Target } from 'lucide-react'
 import Link from 'next/link'
+import LevelSelector, { LevelType } from './LevelSelector'
 
-// Sanskrit courses data extracted from the main courses page
+// Sanskrit courses data with level categorization
 const sanskritCourses = [
   {
+    id: 'card-a',
     title: 'संस्कृत: प्रारंभ से संभाषण तक: Level-1: Package',
     type: 'Premium Course',
     description: 'Complete Sanskrit foundation course from basics to conversation level',
     status: 'available',
     price: '₹2,898',
     duration: '12-15 weeks',
-    level: 'Beginner',
+    level: 'beginner' as LevelType,
     features: ['Grammar Fundamentals', 'Vocabulary Building', 'Conversation Practice', 'Cultural Context'],
-    link: '/courses/sanskrit-beginner'
+    link: '/courses/sanskrit-bhasha-pragya'
   },
   {
+    id: 'card-b',
     title: 'संस्कृत संभाषण: Speak Sanskrit Without Grammar: Level-1',
     type: 'Premium Course',
     description: 'Learn to speak Sanskrit naturally without getting bogged down by complex grammar rules',
     status: 'available',
     price: '₹399',
     duration: '4-6 weeks',
-    level: 'Beginner',
+    level: 'beginner' as LevelType,
     features: ['Conversational Sanskrit', 'Practical Usage', 'Audio Lessons', 'Speaking Practice'],
     link: '/courses/sanskrit-conversation'
   },
   {
-    title: 'संस्कृत भाषा प्रज्ञा: Online Sanskrit Course in Hindi for Beginners',
+    id: 'card-c',
+    title: 'संस्कृत भाषा प्रज्ञा: Advanced Sanskrit Mastery',
     type: 'Premium Course',
-    description: 'Comprehensive Sanskrit language course taught in Hindi for complete beginners',
+    description: 'Advanced Sanskrit course for intermediate learners focusing on classical texts',
     status: 'available',
-    price: '₹2,499',
-    duration: '12-15 weeks',
-    level: 'Beginner',
-    features: ['Hindi Instruction', 'Grammar Fundamentals', 'Reading Practice', 'Writing Exercises'],
+    price: '₹3,999',
+    duration: '16-20 weeks',
+    level: 'intermediate' as LevelType,
+    features: ['Classical Texts', 'Advanced Grammar', 'Literary Analysis', 'Sanskrit Composition'],
     link: '/courses/sanskrit-bhasha-pragya'
   }
 ]
@@ -60,26 +65,53 @@ const getLevelIcon = (level: string) => {
 }
 
 export default function SanskritCourseListing() {
+  const [selectedLevel, setSelectedLevel] = useState<LevelType>('beginner')
+
+  // Filter courses based on selected level - show max 3 courses
+  const filteredCourses = sanskritCourses
+    .filter(course => course.level === selectedLevel)
+    .slice(0, 3)
+
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-900 dark:to-blue-900/20">
+    <section id="course-cards" className="py-16 bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-900 dark:to-blue-900/20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">
             Featured Sanskrit Courses
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             Start your journey into the language of the gods with our carefully curated Sanskrit courses
           </p>
+          
+          {/* Join the School CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <Link
+              href="#course-cards"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-golden-olive to-deep-maroon text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              <Sparkles className="w-5 h-5" />
+              <span>Join the School</span>
+            </Link>
+          </motion.div>
         </motion.div>
 
+        {/* Level Selector */}
+        <LevelSelector selectedLevel={selectedLevel} onLevelChange={setSelectedLevel} />
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {sanskritCourses.map((course, index) => {
+          {filteredCourses.map((course, index) => {
             const LevelIcon = getLevelIcon(course.level)
             
             return (
@@ -160,14 +192,23 @@ export default function SanskritCourseListing() {
           })}
         </div>
 
-        {/* View All Courses CTA */}
+        {/* AI Tools and View All Courses CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
+          <Link
+            href="/personality-test"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-saffron-500 to-deep-teal-500 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105"
+          >
+            <Target className="w-5 h-5" />
+            <span>Explore more AI tools!</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          
           <Link
             href="/courses"
             className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border-2 border-golden-olive text-golden-olive hover:bg-golden-olive hover:text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105"

@@ -15,7 +15,7 @@ import { usePathname } from 'next/navigation'
 import { SSOLoginModal } from './auth/SSOLoginModal'
 import { UserDropdown } from './auth/UserDropdown'
 import { useAuth } from '@/lib/auth/AuthContext'
-import MobileDrawer from './navigation/MobileDrawer'
+import { MobileNavigation } from './mobile/MobileNavigation'
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -48,7 +48,7 @@ export default function Header() {
           <motion.a 
             href={ROUTES.HOME}
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2 md:space-x-3 flex-shrink-0"
+            className="flex items-center space-x-2 md:space-x-3 flex-shrink-0 touch-target"
             aria-label="Shikshanam Home"
             onClick={(e: React.MouseEvent) => {
               e.preventDefault()
@@ -126,16 +126,21 @@ export default function Header() {
           </nav>
 
           {/* Mobile Navigation Controls */}
-          <div className="flex items-center ml-auto lg:hidden">
-            {isClient && !hideThemeToggle && <ThemeToggle className="mr-2" />}
+          <div className="flex items-center ml-auto lg:hidden gap-2">
+            {isClient && !hideThemeToggle && (
+              <div className="mr-2">
+                <ThemeToggle />
+              </div>
+            )}
             {isClient && !isLoading && (
               <>
                 {user ? (
-                  <UserDropdown className="mr-2" />
+                  <div className="mr-2">
+                    <UserDropdown />
+                  </div>
                 ) : (
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
+                  <Button
+                    variant="ghost"
                     onClick={() => setIsLoginModalOpen(true)}
                     className="mr-2 touch-target"
                     aria-label="Login"
@@ -218,10 +223,12 @@ export default function Header() {
       </div>
       
       {/* Mobile Navigation Drawer */}
-      <MobileDrawer 
-        isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
-      />
+      <div className="lg:hidden">
+        <MobileNavigation
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        />
+      </div>
 
       {/* SSO Login Modal */}
       <SSOLoginModal

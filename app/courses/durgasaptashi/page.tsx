@@ -291,9 +291,12 @@ export default function DurgasaptashiCoursePage() {
             {/* Right Column: Highlight Box */}
             <div className="sacred-glow bg-gradient-to-br from-orange-500 via-red-500 to-red-600 lg:col-span-2 p-8 lg:p-10 rounded-2xl text-center text-white flex flex-col items-center justify-center shadow-xl shadow-orange-300/70">
               <Image
-                src="https://shikshanam.in/wp-content/uploads/2025/09/Gemini_Generated_Image_x5gurhx5gurhx5gu.png"
+                src="/images/courses/durgasaptashi.webp"
                 alt="Divine Mother Devi"
-                className="w-28 h-28 object-cover rounded-3xl mb-6 border-4 border-white/30 shadow-lg"
+                width={112}
+                 height={112}
+                 loading="eager"
+                 className="w-28 h-28 object-cover rounded-3xl mb-6 border-4 border-white/30 shadow-lg"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
                   target.src = 'https://placehold.co/240x240/FBBF24/FFFFFF?text=Devi'
@@ -700,9 +703,11 @@ export default function DurgasaptashiCoursePage() {
           <div className="bg-white/60 backdrop-blur-md p-6 sm:p-10 rounded-2xl shadow-xl">
             {/* Profile Info Section */}
             <div className="text-center mb-10">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/09/IMG_20250917_112045.png" 
-                alt="Acharya Shekhar Chandra Bhatt" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/09/IMG_20250917_112045.png"
+                alt="Acharya Shekhar Chandra Bhatt"
+                width={256}
+                height={256}
                 className="w-52 h-52 md:w-64 md:h-64 object-cover rounded-full mx-auto border-8 border-amber-100 shadow-2xl hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -804,18 +809,22 @@ export default function DurgasaptashiCoursePage() {
                 {activeTab === 'photos' && (
                   <div className="mt-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <Image 
-                        src="https://shikshanam.in/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-12-at-09.26.59-scaled.jpeg" 
-                        alt="Gallery Image 1" 
+                      <Image
+                        src="https://shikshanam.in/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-12-at-09.26.59-scaled.jpeg"
+                        alt="Gallery Image 1"
+                        width={384}
+                        height={256}
                         className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = 'https://placehold.co/600x400/FBBF24/FFFFFF?text=Image+1';
                         }}
                       />
-                      <Image 
-                        src="https://shikshanam.in/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-12-at-09.27.32.jpeg" 
-                        alt="Gallery Image 2" 
+                      <Image
+                        src="https://shikshanam.in/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-12-at-09.27.32.jpeg"
+                        alt="Gallery Image 2"
+                        width={384}
+                        height={256}
                         className="w-full h-64 object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -973,9 +982,11 @@ export default function DurgasaptashiCoursePage() {
           
           <div id="masonry-gallery" className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-01-scaled.png" 
-                alt="Gallery Image 1" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-01-scaled.png"
+                alt="Gallery Image 1"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -984,9 +995,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-02-scaled.png" 
-                alt="Gallery Image 2" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-02-scaled.png"
+                alt="Gallery Image 2"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -995,9 +1008,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-03-scaled.png" 
-                alt="Gallery Image 3" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-03-scaled.png"
+                alt="Gallery Image 3"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1006,9 +1021,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-04-scaled.png" 
-                alt="Gallery Image 4" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-04-scaled.png"
+                alt="Gallery Image 4"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1017,9 +1034,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-06-scaled.png" 
-                alt="Gallery Image 5" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-06-scaled.png"
+                alt="Gallery Image 5"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1028,9 +1047,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-05-5-scaled.png" 
-                alt="Gallery Image 6" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-05-5-scaled.png"
+                alt="Gallery Image 6"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1039,9 +1060,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-07-scaled.png" 
-                alt="Gallery Image 7" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-07-scaled.png"
+                alt="Gallery Image 7"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1050,9 +1073,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-16.png" 
-                alt="Gallery Image 16" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-16.png"
+                alt="Gallery Image 16"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1061,9 +1086,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-13.png" 
-                alt="Gallery Image 13" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-13.png"
+                alt="Gallery Image 13"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1072,9 +1099,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-12-scaled.png" 
-                alt="Gallery Image 12" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-12-scaled.png"
+                alt="Gallery Image 12"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1083,9 +1112,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-11-scaled.png" 
-                alt="Gallery Image 11" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-11-scaled.png"
+                alt="Gallery Image 11"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1094,9 +1125,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-15.png" 
-                alt="Gallery Image 15" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-15.png"
+                alt="Gallery Image 15"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1105,9 +1138,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-14-scaled.png" 
-                alt="Gallery Image 14" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-14-scaled.png"
+                alt="Gallery Image 14"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1116,9 +1151,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-08-scaled.png" 
-                alt="Gallery Image 8" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-08-scaled.png"
+                alt="Gallery Image 8"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1127,9 +1164,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-09-4-scaled.png" 
-                alt="Gallery Image 9" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-09-4-scaled.png"
+                alt="Gallery Image 9"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -1138,9 +1177,11 @@ export default function DurgasaptashiCoursePage() {
               />
             </div>
             <div className="break-inside-avoid relative overflow-hidden rounded-lg cursor-pointer">
-              <Image 
-                src="https://shikshanam.in/wp-content/uploads/2025/07/1-10-3-scaled.png" 
-                alt="Gallery Image 10" 
+              <Image
+                src="https://shikshanam.in/wp-content/uploads/2025/07/1-10-3-scaled.png"
+                alt="Gallery Image 10"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;

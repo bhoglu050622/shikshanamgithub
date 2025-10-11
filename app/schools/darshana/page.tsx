@@ -362,15 +362,28 @@ export default function SchoolOfDarshanaPage() {
       
       {/* Enhanced Hero Section */}
       <section className="relative section-padding overflow-hidden bg-gradient-to-br from-saffron-50/30 via-transparent to-deep-teal-50/30 dark:from-saffron-900/10 dark:via-transparent dark:to-deep-teal-900/10">
-        {/* Background Ornaments */}
+        {/* Background Ornaments with Basic Animation */}
         <div className="absolute inset-0 -z-10">
           {/* Enhanced background gradients */}
           <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-saffron-200/20 via-deep-teal-200/15 to-indigo-200/20 dark:from-saffron-400/10 dark:via-deep-teal-400/8 dark:to-indigo-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle"></div>
           <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-deep-teal-200/20 via-indigo-200/15 to-saffron-200/20 dark:from-deep-teal-400/10 dark:via-indigo-400/8 dark:to-saffron-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-indigo-200/20 via-saffron-200/15 to-deep-teal-200/20 dark:from-indigo-400/10 dark:via-saffron-400/8 dark:to-deep-teal-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-4000"></div>
           
-          {/* Indian pattern overlay */}
-          <div className="absolute inset-0 indian-pattern opacity-30 dark:opacity-20"></div>
+          {/* Simple mandala decorations with animation */}
+          <motion.div
+            className="absolute top-1/4 right-1/4 w-32 h-32 opacity-5 dark:opacity-10"
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <svg viewBox="0 0 100 100" className="w-full h-full text-indigo-600">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="1" />
+            </svg>
+          </motion.div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -483,6 +496,11 @@ export default function SchoolOfDarshanaPage() {
         </div>
       </section>
 
+
+      {/* Unsure Where to Begin? - Maya's Journey */}
+      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
+        <DarshanaCircularVisualization />
+      </section>
 
       {/* Six Schools, One Wisdom - Darshana Cards */}
       <section className="section-padding">
@@ -610,12 +628,6 @@ export default function SchoolOfDarshanaPage() {
             })}
           </div>
         </div>
-      </section>
-
-
-      {/* Unsure Where to Begin? - Maya's Journey */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <DarshanaCircularVisualization />
       </section>
 
       {/* Your Journey to Wisdom - Learning Path Timeline */}

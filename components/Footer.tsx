@@ -52,9 +52,9 @@ const contactInfo = [
 export default function Footer() {
   return (
     <footer className="bg-background border-t border-border mt-auto" role="contentinfo">
-      <div className="container-custom py-16 relative z-10 mb-0">
+      <div className="container-responsive py-16 relative z-10 mb-0">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">

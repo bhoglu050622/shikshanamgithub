@@ -1,20 +1,119 @@
 {
   "url": "/courses/samkhya-darshan",
-  "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
-  "description": "Unlock the timeless wisdom of Sanskrit, Darshanas, and Self-help. Join Shikshanam to explore ancient Indian knowledge through live classes, courses, and spiritual guidance.",
+  "title": "Learn Samkhya Darshan - Shikshanam | Learn Sanskrit Online",
+  "description": "Join our enlightening Samkhya Darshan Course and master all 72 Samkhya Karikas of Ishwar Krishna. Learn about the origin of the universe through the 25 elements, including Purusha and Prakriti, understand the nature of sufferings and how to overcome them, and explore the 3 Gunas and their role in creation.",
   "content": {
     "courseInfo": {
-      "title": "",
-      "description": "",
-      "instructor": "",
-      "duration": "",
-      "price": "",
-      "rating": ""
+      "title": "Samkhya Philosophy through Samkhya Karika",
+      "description": "वैदिक सांख्य का ज्ञान वैज्ञानिक दृष्टिकोण से ! To help you understand how our universe and we came into existence, and what the way out of all the miseries is!",
+      "instructor": "विशाल चौरसिया",
+      "duration": "3 hours 30 minutes",
+      "price": "₹999",
+      "originalPrice": "₹1,799",
+      "rating": "4.9"
     },
-    "sections": [],
-    "features": [],
+    "sections": [
+      {
+        "title": "Introduction",
+        "lessons": [
+          "Course Introduction",
+          "Introducing Samkhya Darshan"
+        ],
+        "duration": "4:60"
+      },
+      {
+        "title": "Chapter 1: On the Nature of Suffering",
+        "lessons": ["Free Demo Video"],
+        "duration": "10:50"
+      },
+      {
+        "title": "Chapter 2: Types of Proofs",
+        "lessons": [],
+        "duration": "13:20"
+      },
+      {
+        "title": "Chapter 3: Cause and Effect Principle",
+        "lessons": [],
+        "duration": "13:80"
+      },
+      {
+        "title": "Chapter 4: Understanding Three Gunas",
+        "lessons": [],
+        "duration": "13:44"
+      },
+      {
+        "title": "Chapter 5: The Characteristics of Purusha",
+        "lessons": [],
+        "duration": "11:95"
+      },
+      {
+        "title": "Chapter 6: The Union of Prakriti and Purusha",
+        "lessons": [],
+        "duration": "21:52"
+      },
+      {
+        "title": "Chapter 7: The Functioning of Karana",
+        "lessons": [],
+        "duration": "22:23"
+      },
+      {
+        "title": "Chapter 8: The Composition of Subtle Body",
+        "lessons": [],
+        "duration": "11:53"
+      },
+      {
+        "title": "Chapter 9: Analyzing Dispositions",
+        "lessons": [],
+        "duration": "6:38"
+      },
+      {
+        "title": "Chapter 10: Subjective Evolution from Intelligence",
+        "lessons": [],
+        "duration": "21:08"
+      },
+      {
+        "title": "Chapter 11: Objective Evolution from Primary Elements",
+        "lessons": [],
+        "duration": "9:43"
+      },
+      {
+        "title": "Chapter 12: Purush Prakriti Relation",
+        "lessons": [],
+        "duration": "10:17"
+      },
+      {
+        "title": "Chapter 13: Conclusion",
+        "lessons": [],
+        "duration": "18:56"
+      },
+      {
+        "title": "Chapter 14: Teacher-Disciple Tradition in Samkhya Philosophy",
+        "lessons": [],
+        "duration": "6:80"
+      },
+      {
+        "title": "Revision Part: 1",
+        "lessons": [],
+        "duration": "7:51"
+      },
+      {
+        "title": "Revision Part: 2",
+        "lessons": [],
+        "duration": "11:54"
+      }
+    ],
+    "features": [
+      "पुरुष, प्रकृति आदि सांख्य के 25 तत्वों का सम्पूर्ण ज्ञान होगा।",
+      "सृष्टि में अपने अस्तित्व को समझने की बौद्धिक क्षमता मिलेगी।",
+      "सत, रज, तम गुणों पर आधारित गीता का ज्ञान सुलभ होगा ।",
+      "सांसरिक प्रपंचों के ज्ञान से जीवन भय-मुक्त होगा ।"
+    ],
     "testimonials": []
   },
-  "metadata": {},
+  "metadata": {
+    "level": "Beginner",
+    "language": "हिन्दी",
+    "prerequisites": "No prerequisites required"
+  },
   "timestamp": "2025-10-04T10:57:04.111Z"
 }

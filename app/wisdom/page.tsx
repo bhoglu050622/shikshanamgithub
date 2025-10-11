@@ -415,7 +415,7 @@ export default function WisdomPage() {
       {/* Search and Filters */}
       <section className="py-8 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm sticky top-0 z-40 border-b border-gray-200 dark:border-slate-700">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -507,7 +507,7 @@ export default function WisdomPage() {
               </p>
             </HydrationSafeMotion>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredArticles.map((article, index) => (
                 <HydrationSafeMotion
                   key={article.id}
@@ -620,7 +620,7 @@ export default function WisdomPage() {
               </button>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredArticles.map((article, index) => (
                 <HydrationSafeMotion
                   key={article.id}

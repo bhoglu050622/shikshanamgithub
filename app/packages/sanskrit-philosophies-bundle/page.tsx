@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { 
   BookOpen, 
@@ -8,349 +8,229 @@ import {
   Clock, 
   Star, 
   ArrowRight,
-  Play,
-  Download,
   Sparkles,
-  Flame,
-  Heart,
-  Brain,
-  Lightbulb,
-  Target,
-  Award,
-  Globe,
-  Zap,
   CheckCircle,
-  Lock,
-  Unlock,
-  Crown,
-  Gift,
-  TrendingUp,
-  MessageCircle,
-  Instagram,
-  Mail,
-  ExternalLink,
   User,
-  Shield,
   HelpCircle,
-  Settings,
-  Bell,
-  Bookmark,
-  Share2,
-  ThumbsUp,
-  Eye,
-  EyeOff,
-  IndianRupee,
-  Percent,
-  Package,
-  BookMarked,
-  GraduationCap,
-  Trophy,
-  Diamond,
-  Volume2,
-  FileText,
-  Video,
-  Headphones,
-  Calendar,
-  MapPin,
-  Phone,
-  Mail as MailIcon,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
-  ChevronDown,
-  ChevronUp,
+  Book,
   Plus,
   Minus,
-  Quote,
-  UserCheck,
-  Award as AwardIcon,
-  Clock as ClockIcon,
-  Globe as GlobeIcon,
   Languages,
-  Book,
-  PenTool,
-  Mic,
-  HeadphonesIcon,
-  FileAudio,
-  FileVideo,
-  FileImage,
-  File,
-  Download as DownloadIcon,
-  Wifi,
-  WifiOff,
-  Smartphone,
-  Monitor,
-  Tablet,
-  Laptop,
-  Infinity,
+  Brain,
   Layers,
-  Database,
-  Server,
-  Cloud,
-  Zap as ZapIcon,
-  Rocket,
-  Gem,
-  Star as StarIcon,
-  Moon,
-  Sun,
-  TreePine,
-  Mountain,
-  Eye as EyeIcon,
-  Atom,
-  Brain as BrainIcon,
-  Heart as HeartIcon,
-  Smile,
-  UserPlus,
-  Users as UsersIcon,
-  Activity,
-  Shield as ShieldIcon,
-  Zap as ZapIcon2,
-  Languages as LanguagesIcon
+  Infinity,
+  Award,
+  Hexagon,
+  Triangle,
+  Circle
 } from 'lucide-react'
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
+import { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import HydrationSafeMotion from '@/components/motion/HydrationSafeMotion'
-import Button, { CTAButton } from '@/components/ui/button'
-import Link from 'next/link'
+import Button from '@/components/ui/button'
+import PhilosophicalTimeline from '@/components/packages/PhilosophicalTimeline'
+import VisualMetaphor from '@/components/packages/VisualMetaphor'
+import SacredSymbol from '@/components/packages/SacredSymbol'
+import ImmersiveStory from '@/components/packages/ImmersiveStory'
 
-// Package data
 const packageData = {
   id: 'sanskrit-philosophies-bundle',
-  title: 'Sanskrit Language + Hindu Philosophies Course Bundle',
-  subtitle: 'Complete Language and Philosophy Package',
-  description: 'Master Sanskrit language alongside Hindu philosophies in this comprehensive bundle. Learn the sacred language and understand the philosophical systems that form the foundation of Hindu wisdom traditions.',
+  title: 'संस्कृत + षड्दर्शन',
+  englishTitle: 'Sanskrit & Six Philosophies: Complete Wisdom Path',
+  subtitle: 'Language and Complete Philosophical Framework',
+  description: 'Unite the sacred language with complete philosophical understanding. Master Sanskrit to access original texts, then explore all six classical Darshanas—Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta. From language to liberation, this is the complete traditional education.',
   originalPrice: '₹6,999',
-  currentPrice: '₹3,999',
-  savings: '₹3,000 (43% OFF)',
-  duration: '16-20 weeks',
+  currentPrice: '₹4,299',
+  savings: '₹2,700',
+  savingsPercent: '39%',
+  duration: '14-16 weeks',
   level: 'Beginner to Advanced',
-  rating: 4.8,
-  students: 1100,
-  status: 'available',
-  category: 'Language + Philosophy',
-  instructor: 'Multiple Expert Instructors',
-  language: 'Hindi & English',
-  lastUpdated: 'December 2024',
+  rating: 4.9,
+  students: 1340,
+  category: 'Complete Philosophy',
+  instructor: 'Sanskrit & Darshana Masters',
+  language: 'Hindi, Sanskrit & English',
   
   features: [
-    'Sanskrit Language Mastery',
-    'Six Darshanas Study',
-    'Philosophical Integration',
-    'Text Reading Skills',
-    'Cultural Context',
-    'Practical Applications',
-    'Spiritual Practices',
-    'Complete Understanding'
+    { icon: Languages, title: 'Sanskrit Foundation', subtitle: 'Divine Language', description: 'Complete Sanskrit from alphabet to text reading—gateway to all philosophy' },
+    { icon: Hexagon, title: 'Six Darshanas', subtitle: 'Complete Vision', description: 'All six classical philosophies—six perspectives revealing complete truth' },
+    { icon: Brain, title: 'Integrated Understanding', subtitle: 'Systematic Wisdom', description: 'See how all philosophies complement each other in revealing reality' },
+    { icon: Infinity, title: 'Direct Access', subtitle: 'Original Texts', description: 'Read philosophical texts in original Sanskrit—no dependence on translation' }
   ],
   
   includes: [
-    '60+ Video Lessons (HD Quality)',
-    'Sanskrit Grammar & Vocabulary',
-    'Six Darshanas Study',
-    'Philosophical Text Reading',
-    'Cultural Context Lessons',
-    'PDF Study Materials',
-    'Live Q&A Sessions (Weekly)',
-    'Certificate of Completion',
+    '50+ Wisdom Transmissions (HD)',
+    'Complete Sanskrit Course',
+    'Six Darshanas Full Study',
+    'Original Text Access',
+    'PDF Sacred Materials',
+    'Live Sessions (Weekly)',
+    'Traditional Certificate',
     'Lifetime Access',
-    'Community Forum Access',
-    'Progress Tracking',
-    'Expert Mentorship',
+    'Complete Community',
+    'Expert Panel Guidance',
     'Practice Workbooks',
-    'Integration Workshops',
-    'Language Practice Sessions'
+    'Integration Workshops'
   ],
   
   curriculum: [
-    {
-      week: 'Weeks 1-4',
-      title: 'Sanskrit Foundation',
-      topics: ['Alphabet & Pronunciation', 'Basic Grammar', 'Vocabulary Building', 'Simple Sentences'],
-      duration: '16 hours'
-    },
-    {
-      week: 'Weeks 5-8',
-      title: 'Sanskrit Intermediate',
-      topics: ['Advanced Grammar', 'Complex Sentences', 'Text Reading', 'Writing Practice'],
-      duration: '16 hours'
-    },
-    {
-      week: 'Weeks 9-12',
-      title: 'Philosophy Introduction',
-      topics: ['Six Darshanas Overview', 'Basic Concepts', 'Philosophical Terms', 'Integration Methods'],
-      duration: '20 hours'
-    },
-    {
-      week: 'Weeks 13-16',
-      title: 'Philosophy Deep Dive',
-      topics: ['Advanced Darshanas', 'Text Analysis', 'Philosophical Reading', 'Practical Applications'],
-      duration: '20 hours'
-    },
-    {
-      week: 'Weeks 17-20',
-      title: 'Integration & Mastery',
-      topics: ['Combined Study', 'Philosophical Text Reading', 'Advanced Applications', 'Mastery Techniques'],
-      duration: '16 hours'
-    }
+    { week: 'Weeks 1-4', title: 'Sanskrit Mastery', topics: ['Script & Grammar', 'Vocabulary Building', 'Text Reading', 'Philosophical Terms'], duration: '12 hours' },
+    { week: 'Weeks 5-6', title: 'Nyaya & Vaisheshika', topics: ['Logic System', 'Atomic Theory', 'Valid Knowledge', 'Categories'], duration: '6 hours' },
+    { week: 'Weeks 7-9', title: 'Samkhya & Yoga', topics: ['Consciousness-Matter', 'Eight Limbs', 'Liberation Path', 'Integration'], duration: '8 hours' },
+    { week: 'Weeks 10-12', title: 'Mimamsa & Vedanta', topics: ['Ritual Philosophy', 'Non-Dual Reality', 'Brahman-Atman', 'Final Truth'], duration: '8 hours' },
+    { week: 'Weeks 13-16', title: 'Complete Integration', topics: ['Six Views United', 'Comparative Study', 'Practical Wisdom', 'Living Philosophy'], duration: '10 hours' }
   ],
   
   testimonials: [
-    {
-      name: 'Dr. Priya Sharma',
-      role: 'Sanskrit Scholar',
-      rating: 5,
-      text: 'This bundle is exceptional! Learning Sanskrit alongside Hindu philosophies creates a complete understanding. The integration is seamless and transformative.',
-      avatar: '/assets/testimonials/priya-sharma.jpg'
-    },
-    {
-      name: 'Rajesh Kumar',
-      role: 'Philosophy Student',
-      rating: 5,
-      text: 'The combination of language and philosophy is perfect. Being able to read original texts in Sanskrit while understanding the philosophical concepts is invaluable.',
-      avatar: '/assets/testimonials/rajesh-kumar.jpg'
-    },
-    {
-      name: 'Dr. Anjali Mehta',
-      role: 'Philosophy Professor',
-      rating: 5,
-      text: 'This bundle offers incredible value. The comprehensive approach to both Sanskrit language and Hindu philosophies provides a complete foundation for serious study.',
-      avatar: '/assets/testimonials/anjali-mehta.jpg'
-    }
+    { name: 'Dr. Priya Sharma', role: 'Sanskrit Scholar', rating: 5, text: 'Learning Sanskrit alongside the six Darshanas is brilliant. The language comes alive when used to study philosophy, and philosophy deepens when read in the original.', avatar: '/assets/testimonials/priya-sharma.jpg' },
+    { name: 'Rajesh Kumar', role: 'Philosophy Student', rating: 5, text: 'This complete bundle transformed my understanding. Now I read philosophical texts directly in Sanskrit and comprehend all six viewpoints. Total education.', avatar: '/assets/testimonials/rajesh-kumar.jpg' },
+    { name: 'Anjali Mehta', role: 'Educator', rating: 5, text: 'The integration of language and philosophy is exceptional. Six Darshanas provide complete understanding, Sanskrit provides direct access. Perfect combination.', avatar: '/assets/testimonials/anjali-mehta.jpg' }
   ],
   
   faqs: [
-    {
-      question: 'Do I need prior knowledge of Sanskrit?',
-      answer: 'No prior knowledge is required. The course starts from the basics and progresses to advanced levels, making it suitable for complete beginners.'
-    },
-    {
-      question: 'What philosophies are covered?',
-      answer: 'The course covers all six classical Darshanas: Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, and Vedanta, providing comprehensive philosophical understanding.'
-    },
-    {
-      question: 'How does language learning integrate with philosophy?',
-      answer: 'The course teaches Sanskrit grammar and vocabulary alongside philosophical concepts, enabling you to read and understand original philosophical texts in Sanskrit.'
-    },
-    {
-      question: 'Is this suitable for beginners?',
-      answer: 'Yes, this bundle is designed for beginners to advanced students. The course structure allows you to learn both language and philosophy progressively.'
-    },
-    {
-      question: 'What practical benefits will I gain?',
-      answer: 'You\'ll gain Sanskrit language skills, philosophical understanding, ability to read original texts, and comprehensive knowledge of Hindu wisdom traditions.'
-    }
+    { question: 'Why learn all six Darshanas?', answer: 'Each Darshana offers unique perspective on reality. Nyaya teaches logic, Vaisheshika reveals atomic structure, Samkhya explains consciousness-matter duality, Yoga provides practice methods, Mimamsa interprets scriptures, Vedanta reveals ultimate non-duality. Together, they provide complete philosophical understanding.' },
+    { question: 'How does Sanskrit enhance philosophy study?', answer: 'Philosophical concepts often lose nuance in translation. Technical terms like "viveka," "vairagya," "kaivalya" carry precise meanings in Sanskrit. Learning the language allows direct access to original texts and deeper comprehension of subtle philosophical points.' },
+    { question: 'Is this suitable for complete beginners?', answer: 'Yes! We start from Sanskrit basics and build systematically. The philosophies are introduced progressively. Whether you\'re new to Sanskrit or philosophy, the structured approach makes complete education accessible.' },
+    { question: 'How are these integrated?', answer: 'Sanskrit provides the foundation—you learn language naturally through philosophical texts. As you study each Darshana, your Sanskrit improves. By the end, you read philosophy in original language and understand six complete systems. Language and wisdom unite.' },
+    { question: 'What transformation can I expect?', answer: 'You\'ll gain the rare ability to read Sanskrit philosophical texts directly and comprehensive understanding of classical Indian philosophy. This complete education transforms how you think, reason, and understand reality itself—intellectual and spiritual transformation together.' }
   ],
   
-  ctaText: 'Start Language & Philosophy Journey',
-  ctaLink: 'https://courses.shikshanam.in/courses/All-Course-Bundle-65a12c60e4b05ac7edb4876c',
-  image: '/assets/sanskrit-philosophies-bundle.jpg'
+  ctaText: 'Begin Complete Education',
+  ctaLink: 'https://courses.shikshanam.in/courses/Sanskrit-and-Philosophy-Bundle-65a12b48e4b05ac7edb48765',
+  image: '/assets/sanskrit-philosophies.jpg'
 }
+
+const journeySteps = [
+  { week: 'Foundation', title: 'The Sacred Language Awakens', description: 'Begin with Sanskrit—the key that unlocks all philosophical texts. From alphabet to grammar, build your foundation.', milestone: 'Language foundation established' },
+  { week: 'Weeks 1-4', title: 'Sanskrit Becomes Yours', description: 'Progress from letters to words to sentences. Sanskrit shifts from foreign to familiar—you\'re reading, understanding, accessing wisdom directly.', milestone: 'Reading proficiency achieved' },
+  { week: 'Weeks 5-9', title: 'Four Darshanas Reveal Reality', description: 'Explore Nyaya (logic), Vaisheshika (atoms), Samkhya (duality), Yoga (practice)—reading terms in Sanskrit, understanding systematically.', milestone: 'Four systems mastered' },
+  { week: 'Weeks 10-12', title: 'Final Darshanas Complete the Vision', description: 'Study Mimamsa (interpretation) and Vedanta (ultimate truth). The six perspectives unite into complete philosophical understanding.', milestone: 'Complete darshana knowledge' },
+  { week: 'Weeks 13-16', title: 'Integration: Complete Education', description: 'You now read Sanskrit philosophical texts directly and understand six complete systems. Language and philosophy united—total traditional education achieved.', milestone: 'Complete mastery realized' }
+]
+
+const metaphors = [
+  { icon: Languages, title: 'Key and Treasury', concept: 'Sanskrit as Gateway', description: 'Sanskrit is the key, philosophy is the treasury. Without the key, the treasure remains locked. With the key, infinite wisdom opens.', symbolism: 'The key represents language unlocking the vast treasury of philosophical wisdom accumulated over millennia' },
+  { icon: Hexagon, title: 'Six Facets, One Gem', concept: 'Darshana Unity', description: 'Like a perfect gem with six facets, each Darshana reveals one angle of truth. Together, they show reality completely.', symbolism: 'The six-sided gem represents how different philosophical perspectives together reveal the complete nature of reality' },
+  { icon: Brain, title: 'Roots and Branches', concept: 'Language-Philosophy Growth', description: 'Sanskrit is the root from which philosophical understanding branches. Strong roots allow extensive growth in all directions.', symbolism: 'The tree represents integrated learning—language roots nourishing philosophical branches bearing fruits of wisdom' }
+]
+
+const symbols = [
+  { icon: Languages, name: 'Sanskrit', sanskritName: 'संस्कृत', meaning: 'Perfectly Constructed', significance: 'The divine language—precise, complete, capable of expressing the subtlest philosophical concepts' },
+  { icon: Hexagon, name: 'Shad Darshana', sanskritName: 'षड्दर्शन', meaning: 'Six Viewpoints', significance: 'The six classical philosophies forming complete orthodox Indian philosophical tradition' },
+  { icon: Book, name: 'Shastra', sanskritName: 'शास्त्र', meaning: 'Sacred Text', significance: 'Authoritative texts containing the philosophical systems—accessed directly through Sanskrit' },
+  { icon: Infinity, name: 'Moksha', sanskritName: 'मोक्ष', meaning: 'Liberation', significance: 'The ultimate goal all six Darshanas point toward—freedom achieved through knowledge and practice' }
+]
+
+const storyPhases = [
+  { label: 'Separation', title: 'Lost in Translation', description: 'You study philosophy through translations—always wondering what the original says, what nuances are lost. The six Darshanas remain separate, disconnected. Understanding feels incomplete.' },
+  { label: 'Foundation', title: 'Sanskrit Unlocks', description: 'As Sanskrit becomes familiar, philosophical texts open. You read "viveka" and understand discrimination directly, "kaivalya" and grasp liberation\'s meaning. The language barrier dissolves.' },
+  { label: 'Expansion', title: 'Six Perspectives Unfold', description: 'One by one, the Darshanas reveal themselves—each in original Sanskrit, each building on previous understanding. Logic, atoms, consciousness, practice, interpretation, ultimate truth—six complete systems.' },
+  { label: 'Integration', title: 'Complete Philosophical Understanding', description: 'You see how all six Darshanas complement each other—not contradictory but comprehensive. You read any philosophical text in Sanskrit and understand it contextually. Language and wisdom are one in you. This is complete traditional education realized.' }
+]
 
 export default function SanskritPhilosophiesBundlePage() {
   const [activeTab, setActiveTab] = useState('overview')
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
-
   const tabs = [
     { id: 'overview', label: 'Overview', icon: BookOpen },
     { id: 'curriculum', label: 'Curriculum', icon: Book },
-    { id: 'testimonials', label: 'Reviews', icon: Star },
-    { id: 'faq', label: 'FAQ', icon: HelpCircle }
+    { id: 'testimonials', label: 'Transformations', icon: Star },
+    { id: 'faq', label: 'Questions', icon: HelpCircle }
   ]
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-slate-50 via-rose-50/30 to-pink-50/30 dark:from-slate-900 dark:via-rose-900/20 dark:to-pink-900/20">
-        {/* Background Ornaments */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-indigo-950 dark:via-violet-950 to-purple-950">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-4 sm:left-10 w-60 sm:w-80 h-60 sm:h-80 bg-gradient-to-br from-rose-200/20 via-pink-200/15 to-red-200/20 dark:from-rose-500/10 dark:via-pink-500/10 dark:to-red-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 right-4 sm:right-10 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-pink-200/20 via-rose-200/15 to-red-200/20 dark:from-pink-500/10 dark:via-rose-500/10 dark:to-red-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <HydrationSafeMotion
+              key={i}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              animate={{
+                rotate: i * 60,
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                rotate: { duration: 0 },
+                scale: { duration: 3, repeat: 999999, delay: i * 0.5 }
+              }}
+            >
+              <div className={`w-${40 + i * 30} h-2 bg-gradient-to-r from-indigo-300/20 to-purple-300/20 dark:from-indigo-600/10 dark:to-purple-600/10 blur-sm`} />
+            </HydrationSafeMotion>
+          ))}
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Content */}
             <StaggerContainer>
               <StaggerItem>
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-pink-500 rounded-xl flex items-center justify-center">
-                    <LanguagesIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="bg-gradient-to-r from-rose-100 to-pink-100 dark:from-rose-900/40 dark:to-pink-900/40 text-rose-800 dark:text-rose-200 px-4 py-2 rounded-full text-sm font-medium">
+                  <HydrationSafeMotion
+                    className="w-14 h-14 bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: 999999, ease: 'linear' }}
+                  >
+                    <Hexagon className="w-7 h-7 text-white" />
+                  </HydrationSafeMotion>
+                  <span className="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 text-indigo-900 dark:text-indigo-200 px-4 py-2 rounded-full text-sm font-medium border border-indigo-200 dark:border-indigo-800">
                     {packageData.category}
                   </span>
                 </div>
               </StaggerItem>
 
               <StaggerItem>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight text-shadow-sm">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight">
+                  <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400 bg-clip-text text-transparent">
                   {packageData.title}
+                  </span>
                 </h1>
+                <h2 className="text-3xl sm:text-4xl font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent mb-6">
+                  {packageData.englishTitle}
+                </h2>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-xl text-rose-600 dark:text-rose-400 mb-4 font-medium">
+                <p className="text-xl text-violet-600 dark:text-violet-400 mb-4 font-medium italic">
                   {packageData.subtitle}
                 </p>
               </StaggerItem>
 
               <StaggerItem>
-                <p className="text-lg text-gray-700 dark:text-gray-200 mb-8 leading-relaxed text-readable font-medium">
+                <p className="text-lg text-gray-700 dark:text-gray-200 mb-8 leading-relaxed">
                   {packageData.description}
                 </p>
               </StaggerItem>
 
-              {/* Stats */}
               <StaggerItem>
                 <div className="flex flex-wrap gap-6 mb-8">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-600 rounded-lg flex items-center justify-center">
-                      <Star className="w-5 h-5 text-white" />
+                  {[
+                    { value: packageData.rating, label: 'Sacred Rating', icon: Star, color: 'from-indigo-500 to-indigo-600' },
+                    { value: packageData.students.toLocaleString(), label: 'Fellow Scholars', icon: Users, color: 'from-violet-500 to-violet-600' },
+                    { value: packageData.duration, label: 'Journey Time', icon: Clock, color: 'from-purple-500 to-purple-600' }
+                  ].map((stat, i) => (
+                    <HydrationSafeMotion key={i} whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 bg-white dark:bg-slate-800 px-4 py-3 rounded-xl shadow-md border-2 border-indigo-200 dark:border-indigo-800">
+                      <div className={`w-12 h-12 bg-gradient-to-br ${stat.color} rounded-lg flex items-center justify-center`}>
+                        <stat.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.rating}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Rating</div>
+                        <div className="text-xl font-bold text-gray-800 dark:text-gray-100">{stat.value}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</div>
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center">
-                      <Users className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.students.toLocaleString()}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Students</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-800 dark:text-gray-100">{packageData.duration}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Duration</div>
-                    </div>
-                  </div>
+                    </HydrationSafeMotion>
+                  ))}
                 </div>
               </StaggerItem>
 
-              {/* Price */}
               <StaggerItem>
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 mb-8 shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-br from-white to-indigo-50/50 dark:from-slate-800 dark:to-indigo-900/20 border-2 border-indigo-200 dark:border-indigo-700 rounded-2xl p-6 mb-8 shadow-xl">
+                  <div className="flex items-center justify-between mb-6">
                     <div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400 line-through">
-                        {packageData.originalPrice}
-                      </div>
-                      <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                        {packageData.currentPrice}
-                      </div>
-                      <div className="text-sm text-green-600 dark:text-green-400 font-medium">
-                        {packageData.savings}
-                      </div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400 line-through mb-1">{packageData.originalPrice}</div>
+                      <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">{packageData.currentPrice}</div>
+                      <div className="text-sm text-indigo-600 dark:text-indigo-400 font-medium mt-1">Sacred Offering: Save {packageData.savings} ({packageData.savingsPercent})</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-gray-600 dark:text-gray-300">Level</div>
-                      <div className="font-medium text-gray-800 dark:text-gray-100">{packageData.level}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300 mb-1">For All Levels</div>
+                      <div className="font-medium text-gray-800 dark:text-gray-100 text-sm">{packageData.level}</div>
                     </div>
                   </div>
                   <Button
@@ -358,7 +238,7 @@ export default function SanskritPhilosophiesBundlePage() {
                     size="lg"
                     href={packageData.ctaLink}
                     icon={<ArrowRight className="w-6 h-6" />}
-                    className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    className="w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 hover:from-indigo-600 hover:via-violet-600 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
                   >
                     {packageData.ctaText}
                   </Button>
@@ -366,29 +246,39 @@ export default function SanskritPhilosophiesBundlePage() {
               </StaggerItem>
             </StaggerContainer>
 
-            {/* Right Column - Image/Video */}
             <StaggerContainer>
               <StaggerItem>
-                <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-rose-100 to-pink-100 dark:from-rose-900/20 dark:to-pink-900/20 rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-20 h-20 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                          <Play className="w-8 h-8 text-white ml-1" />
+                <div className="relative aspect-square max-w-md mx-auto">
+                  <HydrationSafeMotion
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-indigo-400 via-violet-400 to-purple-400 shadow-2xl flex items-center justify-center z-20"
+                    animate={{ scale: [1, 1.1, 1], boxShadow: ['0 0 40px rgba(99,102,241,0.6)', '0 0 80px rgba(139,92,246,0.8)', '0 0 40px rgba(99,102,241,0.6)'] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <Hexagon className="w-16 h-16 text-white" />
+                  </HydrationSafeMotion>
+
+                  {/* Six Darshanas positioned hexagonally */}
+                  {['न्याय', 'वैशेषिक', 'सांख्य', 'योग', 'मीमांसा', 'वेदान्त'].map((name, i) => {
+                    const angle = (i * 60 * Math.PI) / 180
+                    const radius = 160
+                    const x = Math.cos(angle) * radius
+                    const y = Math.sin(angle) * radius
+                    
+                    return (
+                      <HydrationSafeMotion
+                        key={i}
+                        className="absolute top-1/2 left-1/2 z-30"
+                        style={{ transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }}
+                        animate={{ y: [0, -15, 0] }}
+                        transition={{ duration: 3, repeat: 999999, delay: i * 0.5 }}
+                        whileHover={{ scale: 1.2 }}
+                      >
+                        <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-xl shadow-lg text-center w-20">
+                          <span className="text-sm text-white font-bold" style={{ fontFamily: 'serif' }}>{name}</span>
                         </div>
-                        <p className="text-gray-600 dark:text-gray-300 font-medium">Course Preview</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Floating Elements */}
-                  <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                    <LanguagesIcon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-red-500 to-rose-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <CheckCircle className="w-6 h-6 text-white" />
-                  </div>
+                      </HydrationSafeMotion>
+                    )
+                  })}
                 </div>
               </StaggerItem>
             </StaggerContainer>
@@ -396,83 +286,56 @@ export default function SanskritPhilosophiesBundlePage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white dark:bg-slate-900">
+      <PhilosophicalTimeline steps={journeySteps} accentColor="#6366f1" theme="cosmic" />
+      <VisualMetaphor title="Language and Philosophy United" subtitle="Understanding how Sanskrit and six Darshanas form complete traditional education" metaphors={metaphors} theme="cosmic" />
+
+      {/* Features Grid */}
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
-          <HydrationSafeMotion
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-shadow-sm">
-              What You'll Master
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto text-readable font-medium">
-              Complete mastery of Sanskrit language and Hindu philosophies for comprehensive understanding.
-            </p>
+          <HydrationSafeMotion initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">Complete Traditional Education</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Sanskrit to access, six Darshanas to understand—the complete orthodox philosophical tradition</p>
           </HydrationSafeMotion>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {packageData.features.map((feature, index) => (
-              <HydrationSafeMotion
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-rose-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <LanguagesIcon className="w-6 h-6 text-white" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {packageData.features.map((feature, i) => {
+              const Icon = feature.icon
+              const gradients = ['from-indigo-500 to-indigo-600', 'from-violet-500 to-violet-600', 'from-purple-500 to-purple-600', 'from-indigo-500 via-violet-500 to-purple-500']
+              return (
+                <HydrationSafeMotion key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }} whileHover={{ y: -8 }} className="group">
+                  <div className="bg-gradient-to-br from-white to-indigo-50/30 dark:from-slate-800 dark:to-indigo-900/10 rounded-2xl p-6 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-indigo-200 dark:border-indigo-800">
+                    <HydrationSafeMotion className={`w-16 h-16 bg-gradient-to-br ${gradients[i]} rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto`} whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
+                      <Icon className="w-8 h-8 text-white" />
+                    </HydrationSafeMotion>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 text-center">{feature.title}</h3>
+                    <div className={`text-base font-semibold bg-gradient-to-r ${gradients[i]} bg-clip-text text-transparent mb-3 text-center`}>{feature.subtitle}</div>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm text-center">{feature.description}</p>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                  {feature}
-                </h3>
               </HydrationSafeMotion>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* What's Included Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-800">
+      <SacredSymbol title="Sacred Elements of Complete Education" subtitle="Language and philosophy united in the traditional path of learning" symbols={symbols} theme="cosmic" />
+
+      {/* What's Included */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-indigo-50/20 dark:from-slate-900 dark:to-indigo-900/10">
         <div className="container mx-auto px-4">
-          <HydrationSafeMotion
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-shadow-sm">
-              What's Included
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-3xl mx-auto text-readable font-medium">
-              Everything you need for complete Sanskrit language and Hindu philosophy mastery.
-            </p>
+          <HydrationSafeMotion initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">Your Complete Education Bundle</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Everything for complete mastery of Sanskrit and six classical philosophies</p>
           </HydrationSafeMotion>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {packageData.includes.map((item, index) => (
-              <HydrationSafeMotion
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {packageData.includes.map((item, i) => (
+              <HydrationSafeMotion key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.05 }} viewport={{ once: true }} whileHover={{ scale: 1.02 }} className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-all border border-indigo-200 dark:border-indigo-800">
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-gradient-to-r from-rose-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                     <CheckCircle className="w-5 h-5 text-white" />
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                      {item}
-                    </h3>
-                  </div>
+                  <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">{item}</h3>
                 </div>
               </HydrationSafeMotion>
             ))}
@@ -480,288 +343,44 @@ export default function SanskritPhilosophiesBundlePage() {
         </div>
       </section>
 
-      {/* Tabs Section */}
-      <section className="py-16 bg-white dark:bg-slate-900">
+      <ImmersiveStory title="From Fragmented to Complete" introduction="Experience the journey from scattered knowledge to complete traditional education" phases={storyPhases} conclusion="You are now a complete scholar—Sanskrit and six Darshanas united in you" theme="cosmic" />
+
+      {/* Final CTA */}
+      <section className="py-24 bg-gradient-to-br from-indigo-900 via-violet-900 to-purple-900 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center mb-12">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
-                  activeTab === tab.id
-                    ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                <tab.icon className="w-5 h-5" />
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            {activeTab === 'overview' && (
-              <HydrationSafeMotion
-                key="overview"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
-                    Course Overview
-                  </h3>
-                  <div className="prose prose-lg dark:prose-invert max-w-none">
-                    <p className="text-gray-700 dark:text-gray-200 mb-6">
-                      This comprehensive bundle combines Sanskrit language learning with Hindu philosophical study, providing a complete foundation for understanding Hindu wisdom traditions. Learn the sacred language while mastering the philosophical systems that form the core of Hindu thought.
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-200 mb-6">
-                      Sanskrit serves as the key to accessing original philosophical texts, while the study of the six Darshanas provides systematic understanding of Hindu philosophy. Together, they create a powerful combination for deep spiritual and intellectual development.
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-200">
-                      This bundle is perfect for serious students who want to understand Hindu traditions from the ground up, combining language skills with philosophical knowledge for complete mastery.
-                    </p>
-                  </div>
-                </div>
-              </HydrationSafeMotion>
-            )}
-
-            {activeTab === 'curriculum' && (
-              <HydrationSafeMotion
-                key="curriculum"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="space-y-6">
-                  {packageData.curriculum.map((module, index) => (
-                    <HydrationSafeMotion
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg"
-                    >
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-                            {module.title}
-                          </h3>
-                          <p className="text-rose-600 dark:text-rose-400 font-medium">
-                            {module.week}
-                          </p>
-                        </div>
-                        <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
-                          <Clock className="w-4 h-4" />
-                          <span className="text-sm">{module.duration}</span>
-                        </div>
-                      </div>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        {module.topics.map((topic, topicIndex) => (
-                          <div key={topicIndex} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full"></div>
-                            <span className="text-gray-700 dark:text-gray-200 text-sm">{topic}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </HydrationSafeMotion>
-                  ))}
-                </div>
-              </HydrationSafeMotion>
-            )}
-
-            {activeTab === 'testimonials' && (
-              <HydrationSafeMotion
-                key="testimonials"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {packageData.testimonials.map((testimonial, index) => (
-                    <HydrationSafeMotion
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg"
-                    >
-                      <div className="flex items-center mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                        ))}
-                      </div>
-                      <p className="text-gray-700 dark:text-gray-200 mb-4 italic">
-                        "{testimonial.text}"
-                      </p>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full flex items-center justify-center">
-                          <User className="w-5 h-5 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-800 dark:text-gray-100">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-300">
-                            {testimonial.role}
-                          </p>
-                        </div>
-                      </div>
-                    </HydrationSafeMotion>
-                  ))}
-                </div>
-              </HydrationSafeMotion>
-            )}
-
-            {activeTab === 'faq' && (
-              <HydrationSafeMotion
-                key="faq"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="space-y-4">
-                  {packageData.faqs.map((faq, index) => (
-                    <HydrationSafeMotion
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg"
-                    >
-                      <button
-                        onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-                      >
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-                          {faq.question}
-                        </h3>
-                        {expandedFaq === index ? (
-                          <Minus className="w-5 h-5 text-gray-500" />
-                        ) : (
-                          <Plus className="w-5 h-5 text-gray-500" />
-                        )}
-                      </button>
-                      <AnimatePresence>
-                        {expandedFaq === index && (
-                          <HydrationSafeMotion
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-6 pb-4">
-                              <p className="text-gray-700 dark:text-gray-200">
-                                {faq.answer}
-                              </p>
-                            </div>
-                          </HydrationSafeMotion>
-                        )}
-                      </AnimatePresence>
-                    </HydrationSafeMotion>
-                  ))}
-                </div>
-              </HydrationSafeMotion>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-rose-50 via-pink-50 to-red-50 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-8 right-8 w-32 h-32 bg-gradient-to-br from-rose-200/40 to-pink-200/40 dark:from-rose-500/30 dark:to-pink-500/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-8 left-8 w-24 h-24 bg-gradient-to-br from-pink-200/40 to-red-200/40 dark:from-pink-500/30 dark:to-red-500/30 rounded-full blur-3xl animate-pulse"></div>
-        </div>
-        
-        <div className="container mx-auto px-4">
-          <HydrationSafeMotion
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <div className="bg-white dark:bg-slate-800 border-2 border-rose-200 dark:border-rose-700 rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              
-              <div className="relative z-10">
+          <HydrationSafeMotion initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="text-center max-w-5xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-3xl p-12 shadow-2xl">
                 <div className="flex items-center justify-center gap-4 mb-8">
-                  <HydrationSafeMotion 
-                    className="w-16 h-16 bg-gradient-to-r from-rose-500 to-pink-500 dark:from-rose-400 dark:to-pink-400 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                  >
-                    <LanguagesIcon className="w-8 h-8 text-white" />
+                <HydrationSafeMotion className="w-20 h-20 bg-gradient-to-br from-indigo-300 to-purple-300 rounded-xl flex items-center justify-center shadow-2xl" animate={{ rotate: [0, 360] }} transition={{ duration: 20, repeat: 999999, ease: 'linear' }}>
+                  <Hexagon className="w-10 h-10 text-white" />
                   </HydrationSafeMotion>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-shadow-sm">
-                    Ready to Master Sanskrit & Philosophy?
-                  </h3>
+                <h3 className="text-4xl md:text-5xl font-bold text-white">Begin Complete Education</h3>
                 </div>
                 
-                <HydrationSafeMotion 
-                  className="bg-gradient-to-r from-red-50 via-rose-50 to-pink-50 dark:from-red-900/30 dark:via-rose-900/30 dark:to-pink-900/30 rounded-2xl p-6 mb-8 border-2 border-rose-200 dark:border-rose-700 shadow-lg"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl font-medium">
-                      Start your language & philosophy journey today and save
-                    </p>
-                    <HydrationSafeMotion 
-                      className="font-bold text-3xl md:text-4xl text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/50 px-4 py-2 rounded-xl shadow-lg border border-green-300 dark:border-green-600"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      {packageData.savings}
-                    </HydrationSafeMotion>
-                  </div>
-                </HydrationSafeMotion>
-                
-                <div className="space-y-6">
-                  <HydrationSafeMotion
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                  >
+              <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+                Start the complete traditional path. Master Sanskrit, explore six Darshanas, and achieve the rare accomplishment of complete orthodox philosophical education.
+              </p>
+              
+              <HydrationSafeMotion whileHover={{ scale: 1.05 }}>
                     <Button
                       variant="primary"
                       size="lg"
                       href={packageData.ctaLink}
                       icon={<ArrowRight className="w-6 h-6" />}
-                      className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-4 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg shadow-lg"
+                  className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-900 font-bold py-5 px-12 rounded-2xl shadow-2xl text-xl"
                     >
                       {packageData.ctaText}
                     </Button>
                   </HydrationSafeMotion>
                   
-                  <HydrationSafeMotion 
-                    className="flex items-center justify-center gap-3 text-sm md:text-base text-gray-600 dark:text-gray-300"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/30 px-4 py-2 rounded-full border border-green-200 dark:border-green-700">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
+              <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-white/80">
+                <div className="flex items-center gap-2 bg-white/10 px-5 py-3 rounded-full backdrop-blur-sm">
+                  <Infinity className="w-5 h-5" />
                       <span className="font-medium">Lifetime Access</span>
                     </div>
-                    <div className="flex items-center gap-2 bg-rose-50 dark:bg-rose-900/30 px-4 py-2 rounded-full border border-rose-200 dark:border-rose-700">
-                      <Sparkles className="w-5 h-5 text-rose-500" />
-                      <span className="font-medium">Complete Bundle</span>
-                    </div>
-                  </HydrationSafeMotion>
+                <div className="flex items-center gap-2 bg-white/10 px-5 py-3 rounded-full backdrop-blur-sm">
+                  <Award className="w-5 h-5" />
+                  <span className="font-medium">Traditional Certificate</span>
                 </div>
               </div>
             </div>

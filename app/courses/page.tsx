@@ -364,7 +364,7 @@ export default function CoursesPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
               {categoryTabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -412,7 +412,7 @@ export default function CoursesPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <div className="flex flex-wrap items-center gap-4 justify-center">
+            <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
               <div className="flex items-center gap-2">
                 <Filter className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Filters:</span>

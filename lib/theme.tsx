@@ -13,13 +13,14 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('system')
+  // Default to light theme to align with Shikshanam's spiritual brand identity
+  const [theme, setTheme] = useState<Theme>('light')
   const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
-    // Get saved theme from localStorage or default to system
+    // Get saved theme from localStorage or default to light
     if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('shikshanam-theme') as Theme || 'system'
+      const savedTheme = localStorage.getItem('shikshanam-theme') as Theme || 'light'
       setTheme(savedTheme)
     }
   }, [])

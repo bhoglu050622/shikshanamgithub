@@ -1,238 +1,44 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, BookOpen, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, Users, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 
-// Sanskrit-themed decorative elements
+// Simple Sanskrit-themed decorative elements
 const SanskritDecoration = () => (
-  <div className="absolute top-20 right-20 w-8 h-8 bg-golden-olive/20 rounded-full"></div>
-)
-
-// Floating Sanskrit characters - Highly visible with many elements
-const FloatingSanskritChars = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    {/* Primary Sanskrit characters - Large and highly visible, flowing in center */}
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {/* Subtle Om symbols */}
     <motion.div
+      className="absolute top-20 left-10 text-6xl text-golden-olive/10 font-devanagari"
       animate={{ 
-        y: [0, -40, 0],
-        opacity: [0.25, 0.6, 0.25],
-        rotate: [0, 12, 0],
-        scale: [1, 1.2, 1]
+        opacity: [0.05, 0.15, 0.05],
+        scale: [1, 1.1, 1]
       }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-1/3 left-1/3 text-6xl font-devanagari text-golden-olive/50 drop-shadow-lg"
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
     >
       ॐ
     </motion.div>
     <motion.div
+      className="absolute bottom-20 right-10 text-6xl text-deep-maroon/10 font-devanagari"
       animate={{ 
-        y: [0, 35, 0],
-        opacity: [0.25, 0.55, 0.25],
-        rotate: [0, -8, 0],
-        scale: [1, 1.15, 1]
+        opacity: [0.05, 0.15, 0.05],
+        scale: [1, 1.1, 1]
       }}
-      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      className="absolute top-1/4 right-1/4 text-5xl font-devanagari text-deep-maroon/45 drop-shadow-lg"
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 }}
     >
-      श्री
-    </motion.div>
-    <motion.div
-      animate={{ 
-        y: [0, -30, 0],
-        opacity: [0.25, 0.5, 0.25],
-        rotate: [0, 5, 0],
-        scale: [1, 1.18, 1]
-      }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      className="absolute bottom-1/3 left-1/4 text-4xl font-devanagari text-copper-orange/45 drop-shadow-lg"
-    >
-      गणेश
-    </motion.div>
-    <motion.div
-      animate={{ 
-        y: [0, 28, 0],
-        opacity: [0.25, 0.55, 0.25],
-        rotate: [0, -10, 0],
-        scale: [1, 1.12, 1]
-      }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-      className="absolute bottom-1/4 right-1/3 text-4xl font-devanagari text-golden-olive/45 drop-shadow-lg"
-    >
-      राम
-    </motion.div>
-    
-    {/* Secondary Sanskrit characters - Medium size, flowing in center */}
-    <motion.div
-      animate={{ 
-        y: [0, -25, 0],
-        opacity: [0.2, 0.45, 0.2],
-        rotate: [0, 6, 0]
-      }}
-      transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-      className="absolute top-2/5 left-2/5 text-3xl font-devanagari text-deep-maroon/35 drop-shadow-md"
-    >
-      कृष्ण
-    </motion.div>
-    <motion.div
-      animate={{ 
-        y: [0, 32, 0],
-        opacity: [0.2, 0.5, 0.2],
-        rotate: [0, -5, 0]
-      }}
-      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-      className="absolute bottom-2/5 right-2/5 text-3xl font-devanagari text-copper-orange/35 drop-shadow-md"
-    >
-      शिव
-    </motion.div>
-    <motion.div
-      animate={{ 
-        y: [0, -20, 0],
-        opacity: [0.2, 0.4, 0.2],
-        rotate: [0, 4, 0]
-      }}
-      transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-      className="absolute top-1/3 right-1/3 text-2xl font-devanagari text-golden-olive/35 drop-shadow-md"
-    >
-      विष्णु
-    </motion.div>
-  <motion.div
-      animate={{ 
-        y: [0, 25, 0],
-        opacity: [0.2, 0.45, 0.2],
-        rotate: [0, -7, 0]
-      }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-      className="absolute bottom-1/3 left-1/3 text-2xl font-devanagari text-deep-maroon/35 drop-shadow-md"
-    >
-      दुर्गा
-  </motion.div>
-    
-    {/* Tertiary Sanskrit characters - Smaller but still visible, flowing in center */}
-    <motion.div
-      animate={{ 
-        y: [0, -18, 0],
-        opacity: [0.15, 0.35, 0.15],
-        rotate: [0, 3, 0]
-      }}
-      transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-      className="absolute top-1/2 left-1/2 text-xl font-devanagari text-copper-orange/30 drop-shadow-sm"
-    >
-      लक्ष्मी
-    </motion.div>
-    <motion.div
-      animate={{ 
-        y: [0, 22, 0],
-        opacity: [0.15, 0.4, 0.15],
-        rotate: [0, -4, 0]
-      }}
-      transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
-      className="absolute bottom-1/2 right-1/2 text-xl font-devanagari text-golden-olive/30 drop-shadow-sm"
-    >
-      सरस्वती
-    </motion.div>
-    <motion.div
-      animate={{ 
-        y: [0, -15, 0],
-        opacity: [0.15, 0.3, 0.15],
-        rotate: [0, 2, 0]
-      }}
-      transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 3.5 }}
-      className="absolute top-2/5 left-2/5 text-lg font-devanagari text-deep-maroon/30 drop-shadow-sm"
-    >
-      हनुमान
-    </motion.div>
-  <motion.div
-      animate={{ 
-        y: [0, 20, 0],
-        opacity: [0.15, 0.35, 0.15],
-        rotate: [0, -3, 0]
-      }}
-      transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 4.2 }}
-      className="absolute bottom-2/5 right-2/5 text-lg font-devanagari text-copper-orange/30 drop-shadow-sm"
-    >
-      काली
-  </motion.div>
-    
-    {/* Additional smaller Sanskrit elements for density, flowing in center */}
-    <motion.div
-      animate={{ 
-        y: [0, -12, 0],
-        opacity: [0.1, 0.25, 0.1],
-        rotate: [0, 1, 0]
-      }}
-      transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 6 }}
-      className="absolute top-3/5 left-3/5 text-base font-devanagari text-golden-olive/25 drop-shadow-sm"
-    >
-      बुद्ध
-    </motion.div>
-  <motion.div
-      animate={{ 
-        y: [0, 18, 0],
-        opacity: [0.1, 0.3, 0.1],
-        rotate: [0, -2, 0]
-      }}
-      transition={{ duration: 17, repeat: Infinity, ease: "easeInOut", delay: 2.8 }}
-      className="absolute bottom-3/5 right-3/5 text-base font-devanagari text-deep-maroon/25 drop-shadow-sm"
-    >
-      महावीर
+      ॐ
     </motion.div>
       </div>
 )
 
-// Enhanced Sanskrit pattern overlay - Multiple layers for richness
-const SanskritPatternOverlay = () => (
-  <div className="absolute inset-0 pointer-events-none">
-    {/* Primary pattern layer */}
-    <motion.div
-      animate={{ 
-        backgroundPosition: ['0% 0%', '100% 100%'],
-      }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      className="w-full h-full opacity-15"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.2'%3E%3Cpath d='M50 50c0-13.807-11.193-25-25-25s-25 11.193-25 25 11.193 25 25 25 25-11.193 25-25zm0 0c0 13.807 11.193 25 25 25s25-11.193 25-25-11.193-25-25-25-25 11.193-25 25z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: '100px 100px'
-      }}
-    />
-    {/* Secondary pattern layer */}
-    <motion.div
-      animate={{ 
-        backgroundPosition: ['100% 100%', '0% 0%'],
-      }}
-      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      className="w-full h-full opacity-10"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B4513' fill-opacity='0.15'%3E%3Cpath d='M30 30c0-8.284-6.716-15-15-15s-15 6.716-15 15 6.716 15 15 15 15-6.716 15-15zm0 0c0 8.284 6.716 15 15 15s15-6.716 15-15-6.716-15-15-15-15 6.716-15 15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: '60px 60px'
-      }}
-    />
-    {/* Tertiary pattern layer */}
-          <motion.div
-      animate={{ 
-        backgroundPosition: ['50% 0%', '50% 100%'],
-      }}
-      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-      className="w-full h-full opacity-8"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23CD853F' fill-opacity='0.12'%3E%3Cpath d='M20 20c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10zm0 0c0 5.523 4.477 10 10 10s10-4.477 10-10-4.477-10-10-10-10 4.477-10 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        backgroundSize: '40px 40px'
-      }}
-    />
-      </div>
-)
 
 
 export default function SanskritHero() {
 
   return (
     <section className="relative overflow-hidden section-padding bg-parchment-ivory min-h-screen flex items-center">
-      {/* Sanskrit Background Animations */}
-      <SanskritPatternOverlay />
-      <FloatingSanskritChars />
-      
-      {/* Decorative Elements */}
+      {/* Simple Decorative Elements */}
       <SanskritDecoration />
       
 

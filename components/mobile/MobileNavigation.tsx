@@ -1,180 +1,110 @@
-/**
- * Mobile Navigation Component
- * Comprehensive mobile navigation with touch-friendly interactions
- */
+'use client'
 
-'use client';
-
-import React, { useState, useEffect, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { 
-  Menu, 
-  X, 
-  Home, 
-  BookOpen, 
-  Users, 
-  Settings, 
+import React, { useState, useEffect, useRef } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import {
+  Menu,
+  X,
   Search,
   Bell,
   User,
   ChevronRight,
-  ChevronDown
-} from 'lucide-react';
-import { 
-  MobileNavigationConfig, 
-  type MobileNavigationItem,
-  DeviceInfo 
-} from '@/lib/mobile/types';
-// Mobile detection and touch gestures - simplified for frontend-only version
-const detectDevice = () => ({ 
-  isMobile: true, 
-  isTablet: false, 
-  isDesktop: false,
-  screenWidth: typeof window !== 'undefined' ? window.innerWidth : 768,
-  screenHeight: typeof window !== 'undefined' ? window.innerHeight : 1024,
-  userAgent: typeof window !== 'undefined' ? navigator.userAgent : 'mobile',
-  devicePixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 1,
-  browser: typeof window !== 'undefined' ? 
-    (navigator.userAgent.includes('Chrome') ? 'chrome' : 
-     navigator.userAgent.includes('Firefox') ? 'firefox' : 
-     navigator.userAgent.includes('Safari') ? 'safari' : 'unknown') : 'unknown'
-});
-const isMobileBreakpoint = () => true;
-const useTouchGestures = () => ({});
-const hapticFeedback = () => {};
-const visualFeedback = () => {};
+  ChevronDown,
+} from 'lucide-react'
+import { topLevelNavItems, navigationGroups } from '@/lib/navigation-data'
+import type { NavigationGroup, NavigationLink } from '@/lib/navigation-data'
+
+interface TopLevelNavItem {
+  name: string
+  href: string
+  icon: React.ElementType
+  hasDropdown: boolean
+  groupId?: string
+}
 
 // ============================================================================
 // MOBILE NAVIGATION COMPONENT
 // ============================================================================
 
 interface MobileNavigationProps {
-  config?: Partial<MobileNavigationConfig>;
-  className?: string;
+  isOpen: boolean
+  onClose: () => void
+  className?: string
 }
 
-export function MobileNavigation({ config, className = '' }: MobileNavigationProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
-  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const router = useRouter();
-  const pathname = usePathname();
-  const navRef = useRef<HTMLDivElement>(null);
-
-  const defaultConfig: MobileNavigationConfig = {
-    theme: 'system',
-    items: [
-      {
-        id: 'home',
-        label: 'Home',
-        href: '/',
-        icon: Home,
-      },
-      {
-        id: 'courses',
-        label: 'Courses',
-        href: '/courses',
-        icon: BookOpen,
-        children: [
-          { id: 'sanskrit', label: 'Sanskrit', href: '/schools/sanskrit' },
-          { id: 'darshana', label: 'Darshana', href: '/schools/darshana' },
-          { id: 'self-help', label: 'Self-Help', href: '/schools/self-help' },
-        ],
-      },
-      {
-        id: 'gurus',
-        label: 'Gurus',
-        href: '/gurus',
-        icon: Users,
-      },
-      {
-        id: 'tools',
-        label: 'Tools',
-        href: '/tools',
-        icon: Settings,
-      },
-    ],
-    showHomeButton: true,
-    showSearchButton: true,
-    showUserMenu: true,
-    showNotifications: true,
-    position: 'bottom',
-    style: 'tabs',
-  };
-
-  const finalConfig = { ...defaultConfig, ...config };
-
-  // Detect device on mount
-  useEffect(() => {
-    setDeviceInfo(detectDevice());
-  }, []);
+export function MobileNavigation({
+  isOpen,
+  onClose,
+  className = '',
+}: MobileNavigationProps) {
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
+  const router = useRouter()
+  const pathname = usePathname()
+  const navRef = useRef<HTMLDivElement>(null)
 
   // Close navigation when route changes
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  // Handle touch gestures - simplified for frontend-only version
-  useTouchGestures();
-
-  const toggleNavigation = () => {
-    setIsOpen(!isOpen);
-    hapticFeedback();
-  };
-
-  const handleItemClick = (item: MobileNavigationItem) => {
-    if (item.children && item.children.length > 0) {
-      toggleExpanded(item.id);
-    } else {
-      router.push(item.href);
-      setIsOpen(false);
-      hapticFeedback();
+    if (isOpen) {
+      onClose()
     }
-  };
+  }, [pathname, isOpen, onClose])
+
+  const handleItemClick = (item: TopLevelNavItem | NavigationLink) => {
+    // Check if it's a TopLevelNavItem with a dropdown
+    if ('hasDropdown' in item && item.hasDropdown) {
+      toggleExpanded(item.name)
+    } else {
+      router.push(item.href)
+      onClose()
+    }
+  }
 
   const toggleExpanded = (itemId: string) => {
-    setExpandedItems(prev => {
-      const newSet = new Set(prev);
+    setExpandedItems((prev) => {
+      const newSet = new Set(prev)
       if (newSet.has(itemId)) {
-        newSet.delete(itemId);
+        newSet.delete(itemId)
       } else {
-        newSet.add(itemId);
+        newSet.add(itemId)
       }
-      return newSet;
-    });
-    hapticFeedback();
-  };
+      return newSet
+    })
+  }
 
-  const getIcon = (iconName: string) => {
-    cons/}
-      <button
-        onClick={toggleNavigation}
-        className={`mobile-nav-toggle ${className}`}
-        aria-label="Toggle navigation"
-        aria-expanded={isOpen}
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+  const isActiveItem = (item: TopLevelNavItem): boolean => {
+    if (item.href === pathname) return true
+    if (item.hasDropdown) {
+      const group = navigationGroups.find((g) => g.id === item.groupId)
+      if (group) {
+        return group.columns.some((col) =>
+          col.links.some((link) => link.href === pathname)
+        )
+      }
+    }
+    return false
+  }
 
+  return (
+    <>
       {/* Mobile Navigation Overlay */}
       {isOpen && (
-        <div 
+        <div
           className="mobile-nav-overlay"
-          onClick={() => setIsOpen(false)}
+          onClick={onClose}
         />
       )}
 
       {/* Mobile Navigation Drawer */}
       <nav
         ref={navRef}
-        className={`mobile-nav-drawer ${isOpen ? 'open' : ''} ${finalConfig.style}`}
+        className={`mobile-nav-drawer ${isOpen ? 'open' : ''}`}
         role="navigation"
         aria-label="Mobile navigation"
       >
         <div className="mobile-nav-header">
           <h2 className="mobile-nav-title">Menu</h2>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={onClose}
             className="mobile-nav-close"
             aria-label="Close navigation"
           >
@@ -183,63 +113,55 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
         </div>
 
         <div className="mobile-nav-content">
-          {finalConfig.items.map((item) => (
+          {topLevelNavItems.map((item) => (
             <MobileNavigationItem
-              key={item.id}
+              key={item.name}
               item={item}
               isActive={isActiveItem(item)}
-              isExpanded={expandedItems.has(item.id)}
+              isExpanded={expandedItems.has(item.name)}
               onItemClick={handleItemClick}
-              onToggleExpanded={toggleExpanded}
-              getIcon={getIcon}
             />
           ))}
         </div>
 
         {/* Mobile Navigation Footer */}
         <div className="mobile-nav-footer">
-          {finalConfig.showSearchButton && (
-            <button
-              className="mobile-nav-action"
-              onClick={() => {
-                router.push('/search');
-                setIsOpen(false);
-              }}
-              aria-label="Search"
-            >
-              <Search size={20} />
-            </button>
-          )}
-          
-          {finalConfig.showNotifications && (
-            <button
-              className="mobile-nav-action"
-              onClick={() => {
-                router.push('/notifications');
-                setIsOpen(false);
-              }}
-              aria-label="Notifications"
-            >
-              <Bell size={20} />
-            </button>
-          )}
-          
-          {finalConfig.showUserMenu && (
-            <button
-              className="mobile-nav-action"
-              onClick={() => {
-                router.push('/account');
-                setIsOpen(false);
-              }}
-              aria-label="User menu"
-            >
-              <User size={20} />
-            </button>
-          )}
+          <button
+            className="mobile-nav-action"
+            onClick={() => {
+              router.push('/search')
+              onClose()
+            }}
+            aria-label="Search"
+          >
+            <Search size={20} />
+          </button>
+
+          <button
+            className="mobile-nav-action"
+            onClick={() => {
+              router.push('/notifications')
+              onClose()
+            }}
+            aria-label="Notifications"
+          >
+            <Bell size={20} />
+          </button>
+
+          <button
+            className="mobile-nav-action"
+            onClick={() => {
+              router.push('/account')
+              onClose()
+            }}
+            aria-label="User menu"
+          >
+            <User size={20} />
+          </button>
         </div>
       </nav>
     </>
-  );
+  )
 }
 
 // ============================================================================
@@ -247,12 +169,10 @@ export function MobileNavigation({ config, className = '' }: MobileNavigationPro
 // ============================================================================
 
 interface MobileNavigationItemProps {
-  item: MobileNavigationItem;
-  isActive: boolean;
-  isExpanded: boolean;
-  onItemClick: (item: MobileNavigationItem) => void;
-  onToggleExpanded: (itemId: string) => void;
-  getIcon: (iconName: string) => React.ReactNode;
+  item: TopLevelNavItem
+  isActive: boolean
+  isExpanded: boolean
+  onItemClick: (item: TopLevelNavItem | NavigationLink) => void
 }
 
 function MobileNavigationItem({
@@ -260,18 +180,16 @@ function MobileNavigationItem({
   isActive,
   isExpanded,
   onItemClick,
-  onToggleExpanded,
-  getIcon,
 }: MobileNavigationItemProps) {
-  const hasChildren = item.children && item.children.length > 0;
+  const hasChildren = item.hasDropdown
 
   const handleClick = () => {
-    if (hasChildren) {
-      onToggleExpanded(item.id);
-    } else {
-      onItemClick(item);
-    }
-  };
+    onItemClick(item)
+  }
+
+  const group = item.hasDropdown
+    ? navigationGroups.find((g) => g.id === item.groupId)
+    : null
 
   return (
     <div className="mobile-nav-item">
@@ -287,12 +205,7 @@ function MobileNavigationItem({
               <item.icon className="w-5 h-5" />
             </span>
           )}
-          <span className="mobile-nav-item-label">{item.label}</span>
-          {item.badge && (
-            <span className="mobile-nav-item-badge">
-              {item.badge}
-            </span>
-          )}
+          <span className="mobile-nav-item-label">{item.name}</span>
         </div>
         {hasChildren && (
           <span className="mobile-nav-item-arrow">
@@ -301,120 +214,27 @@ function MobileNavigationItem({
         )}
       </button>
 
-      {hasChildren && isExpanded && (
+      {hasChildren && isExpanded && group && (
         <div className="mobile-nav-submenu">
-          {item.children!.map((child) => (
-            <button
-              key={child.id}
-              onClick={() => onItemClick(child)}
-              className="mobile-nav-submenu-item"
-              aria-current={typeof window !== 'undefined' && child.href === window.location.pathname ? 'page' : undefined}
-            >
-              {child.label}
-            </button>
-          ))}
+          {group.columns.map((col) =>
+            col.links.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => onItemClick(link)}
+                className="mobile-nav-submenu-item"
+                aria-current={
+                  typeof window !== 'undefined' &&
+                  link.href === window.location.pathname
+                    ? 'page'
+                    : undefined
+                }
+              >
+                {link.name}
+              </button>
+            ))
+          )}
         </div>
       )}
     </div>
-  );
-}
-
-// ============================================================================
-// BOTTOM TAB NAVIGATION
-// ============================================================================
-
-interface BottomTabNavigationProps {
-  items: MobileNavigationItem[];
-  className?: string;
-}
-
-export function BottomTabNavigation({ items, className = '' }: BottomTabNavigationProps) {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const handleItemClick = (item: MobileNavigationItem) => {
-    router.push(item.href);
-    hapticFeedback();
-  };
-
-  const getIcon = (iconName: string) => {
-    const icons: Record<string, React.ComponentType<any>> = {
-      Home,
-      BookOpen,
-      Users,
-      Settings,
-      Search,
-      Bell,
-      User,
-    };
-    const IconComponent = icons[iconName] || Home;
-    return <IconComponent size={24} />;
-  };
-
-  const isActiveItem = (item: MobileNavigationItem): boolean => {
-    if (item.href === pathname) return true;
-    if (item.children) {
-      return item.children.some(child => child.href === pathname);
-    }
-    return false;
-  };
-
-  return (
-    <nav className={`bottom-tab-navigation ${className}`} role="navigation">
-      {items.map((item) => (
-        <button
-          key={item.id}
-          onClick={() => handleItemClick(item)}
-          className={`bottom-tab-item ${isActiveItem(item) ? 'active' : ''}`}
-          aria-current={isActiveItem(item) ? 'page' : undefined}
-          aria-label={item.label}
-        >
-          <span className="bottom-tab-icon">
-            {item.icon ? <item.icon className="w-5 h-5" /> : <Home className="w-5 h-5" />}
-          </span>
-          <span className="bottom-tab-label">{item.label}</span>
-          {item.badge && (
-            <span className="bottom-tab-badge">
-              {item.badge}
-            </span>
-          )}
-        </button>
-      ))}
-    </nav>
-  );
-}
-
-// ============================================================================
-// FLOATING ACTION BUTTON
-// ============================================================================
-
-interface FloatingActionButtonProps {
-  onClick: () => void;
-  icon: React.ReactNode;
-  label: string;
-  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
-  className?: string;
-}
-
-export function FloatingActionButton({
-  onClick,
-  icon,
-  label,
-  position = 'bottom-right',
-  className = '',
-}: FloatingActionButtonProps) {
-  const handleClick = () => {
-    onClick();
-    hapticFeedback();
-  };
-
-  return (
-    <button
-      onClick={handleClick}
-      className={`floating-action-button ${position} ${className}`}
-      aria-label={label}
-    >
-      {icon}
-    </button>
-  );
+  )
 }

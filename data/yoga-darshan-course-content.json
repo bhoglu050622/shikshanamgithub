@@ -1,20 +1,126 @@
 {
   "url": "/courses/yoga-darshan",
-  "title": "Shikshanam - Ancient Indian Knowledge Platform | Sanskrit, Darshanas, Self-help",
-  "description": "Unlock the timeless wisdom of Sanskrit, Darshanas, and Self-help. Join Shikshanam to explore ancient Indian knowledge through live classes, courses, and spiritual guidance.",
+  "title": "Patanjali Yoga Darshan Course - Shikshanam | Learn Sanskrit Online",
+  "description": "Join our extensive Yoga Darshan Course that simplifies all 195 Yoga Sutras of Maharshi Patanjali for modern minds. With over 8 hours of pre-recorded video sessions, quizzes, and detailed notes, this course offers a lifetime of learning and support.",
   "content": {
     "courseInfo": {
-      "title": "",
-      "description": "",
-      "instructor": "",
-      "duration": "",
-      "price": "",
-      "rating": ""
+      "title": "Yoga Philosophy through Patanjali Yoga Sutras",
+      "description": "समझें समाधियों के विज्ञान का रहस्य ! Transform your life with the wisdom contained in all 195 Yoga Sutras of Maharshi Patanjali.",
+      "instructor": "विशाल चौरसिया",
+      "duration": "8 hours",
+      "price": "₹1,999",
+      "originalPrice": "₹2,399",
+      "rating": "4.9"
     },
-    "sections": [],
-    "features": [],
+    "sections": [
+      {
+        "title": "Samadhi Pada",
+        "lessons": [
+          "What is Yoga?",
+          "Types of Vritti",
+          "Abhyas and Vairagya",
+          "Samadhi and its types",
+          "Swiftness of Attainment",
+          "Who is Ishwara?",
+          "Obstacles in the Path of Yoga",
+          "Methods to Calm the Mind",
+          "Characteristic of an Undisturbed Mind",
+          "Types of Sampragyaat Samadhi",
+          "Sabeej and Nirbeej Samadhi",
+          "Revision: Samadhi Pada"
+        ],
+        "duration": "01:55:28",
+        "freeDemo": true
+      },
+      {
+        "title": "Sadhana Pada",
+        "lessons": [
+          "Types of Siddhis",
+          "karma Sanskaar",
+          "Mool Prakriti",
+          "Karma Samskaras",
+          "Incessancy of Karma Samskaras",
+          "Eliminating Karma Samskaras",
+          "Eternity of Past and Future forms",
+          "Unity of Substance",
+          "Mind-Universe Relationship",
+          "Mind-Atman Relationship",
+          "Difference between Mind and Atman",
+          "The Purpose Of Mind",
+          "Discriminative Knowledge",
+          "Dharma-Megha Samadhi",
+          "Kaivalya"
+        ],
+        "duration": "01:48:42"
+      },
+      {
+        "title": "Vibhuti Pada",
+        "lessons": [
+          "Dharna, Dhyaan, Samadhi",
+          "Samyam",
+          "Internal and External Limbs of Yoga",
+          "Nirodha Parinaam",
+          "Samadhi Parinaam",
+          "Ekagrata Parinaam",
+          "Parinaam of Bhutas",
+          "Dharmi and the Sequence of Parinaam",
+          "Birth of Siddhis from Samyama",
+          "Getting knowledge of previous birth and others' mind",
+          "Siddhiyan on Invisibility and Omens of Death",
+          "Power Granting Siddhis",
+          "Astronomical Siddhis",
+          "Biological Siddhis",
+          "Advance Siddhis",
+          "Controlling the Body of Others",
+          "Praan Vaayu",
+          "Mahavideha Siddhi",
+          "Conquering Bhutas",
+          "The Elements of a Quintessential Body",
+          "Conquering Indriyas",
+          "Attainment of Siddhis without Samyam",
+          "Detachment from Siddhis",
+          "Discriminatory Knowledge",
+          "The state of Kaivalya"
+        ],
+        "duration": "02:06:45"
+      },
+      {
+        "title": "Kaivalya Pada",
+        "lessons": [
+          "Kriya Yoga",
+          "What is Klesha?",
+          "Deliverance from Kleshas",
+          "Principles of Karma",
+          "Deliverance from Bondage of Karma",
+          "The Union of the Scene and the Seer",
+          "Attaining Hān in Yoga",
+          "Ashtanga Yoga",
+          "Yam and Niyam",
+          "Reinforcing Yama and Niyam",
+          "Benefits of Yama",
+          "Benefits of Niyama",
+          "Asana",
+          "Pranayama",
+          "Benefits of Pranayama"
+        ],
+        "duration": "01:51:14"
+      }
+    ],
+    "features": [
+      "प्रकृति, पुरुष, अहंकार आदि 25 तत्वों का विधिवत ज्ञान होगा।",
+      "क्रिया योग और अष्टांग योग की विधियों में पारंगत होंगे।",
+      "योग से उत्पन्न होने वाली विशेष सिद्धियों के विज्ञान को जानेंगे।",
+      "अपने दैनिक-तनाव को दूर कर पाएंगे",
+      "कठिन निर्णयों को आसानी से ले पाएंगे",
+      "जीवन के सभी प्रकार के भय से मुक्त होंगे",
+      "गीता के गूढ रहस्यों को समझ पाएंगे"
+    ],
     "testimonials": []
   },
-  "metadata": {},
+  "metadata": {
+    "level": "Beginner",
+    "language": "हिन्दी",
+    "prerequisites": "No prerequisites required"
+  },
   "timestamp": "2025-10-04T10:57:11.132Z"
 }

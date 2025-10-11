@@ -217,7 +217,7 @@ export default function EmotionalIntelligenceCoursePage() {
           <div className="button-wrapper animate-item" style={{ animationDelay: '0.6s' }}>
             <div className="main-buttons">
               <a 
-                href="https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/#:~:text=Limited%20Time%20Offer,-Transform%20Your%20Emotional" 
+                href="https://courses.shikshanam.in/courses/Samkhya-Darshan--Emotional-Intelligence-Combo-Course-6868be22998a012a18cc0360?redirectToMicroFE=true" 
                 className="hero-button btn-primary"
               >
                 🚀 Start Your Transformation -₹2,499
@@ -302,10 +302,12 @@ export default function EmotionalIntelligenceCoursePage() {
               <div className="accordion-content">
                 <div className="accordion-content-inner">
                   <Image 
-                    src="https://shikshanam.in/wp-content/uploads/2025/06/Emotional-Overwhelm.png" 
+                    src="/images/courses/emotional-intelligence.webp" 
                     alt="Emotional Overwhelm illustration" 
                     width={400}
-                    height={200}
+                     height={300}
+                     loading="lazy"
+                     className="w-full h-auto rounded-lg shadow-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.onerror = null
@@ -336,9 +338,13 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <Image 
-                    src="https://shikshanam.in/wp-content/uploads/2025/06/Overthinking-Patterns-1.png" 
-                    alt="Overthinking Patterns illustration" 
+                  <Image
+                    src="https://shikshanam.in/wp-content/uploads/2025/06/Overthinking-Patterns-1.png"
+                    alt="Overthinking Patterns illustration"
+                    width={400}
+                    height={300}
+                    loading="lazy"
+                    className="w-full h-auto rounded-lg shadow-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.onerror = null
@@ -369,9 +375,13 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <Image 
-                    src="https://shikshanam.in/wp-content/uploads/2025/06/Reactive-Responses-1.png" 
-                    alt="Reactive Responses illustration" 
+                  <Image
+                    src="https://shikshanam.in/wp-content/uploads/2025/06/Reactive-Responses-1.png"
+                    alt="Reactive Responses illustration"
+                    width={400}
+                    height={300}
+                    loading="lazy"
+                    className="w-full h-auto rounded-lg shadow-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.onerror = null
@@ -402,9 +412,13 @@ export default function EmotionalIntelligenceCoursePage() {
               </div>
               <div className="accordion-content">
                 <div className="accordion-content-inner">
-                  <Image 
-                    src="https://shikshanam.in/wp-content/uploads/2025/06/Inner-Turbulence-1.png" 
-                    alt="Inner Conflict illustration" 
+                  <Image
+                    src="https://shikshanam.in/wp-content/uploads/2025/06/Inner-Turbulence-1.png"
+                    alt="Inner Conflict illustration"
+                    width={400}
+                    height={300}
+                    loading="lazy"
+                    className="w-full h-auto rounded-lg shadow-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.onerror = null
@@ -577,7 +591,7 @@ export default function EmotionalIntelligenceCoursePage() {
           
           {/* "Start Your Journey" Button */}
           <a 
-            href="https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/#:~:text=Limited%20Time%20Offer,-Transform%20Your%20Emotional" 
+            href="https://courses.shikshanam.in/courses/Samkhya-Darshan--Emotional-Intelligence-Combo-Course-6868be22998a012a18cc0360?redirectToMicroFE=true" 
             className="start-journey-btn"
           >
             Start Your Journey
@@ -691,8 +705,10 @@ export default function EmotionalIntelligenceCoursePage() {
                 <div className="card-header">
                   <div className="bonus-icon">
                     <Image 
-                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-207.png" 
-                      alt="Guna Profiler Tool Icon" 
+                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-207.png"
+                      alt="Guna Profiler Tool Icon"
+                      width={72}
+                      height={72}
                       className="animate-all"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
@@ -715,8 +731,10 @@ export default function EmotionalIntelligenceCoursePage() {
                 <div className="card-header">
                   <div className="bonus-icon">
                     <Image 
-                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-202.png" 
-                      alt="Emotional Journal Template Icon" 
+                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-202.png"
+                      alt="Emotional Journal Template Icon"
+                      width={72}
+                      height={72}
                       className="animate-all"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
@@ -739,8 +757,10 @@ export default function EmotionalIntelligenceCoursePage() {
                 <div className="card-header">
                   <div className="bonus-icon">
                     <Image 
-                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-208.png" 
-                      alt="Private WhatsApp Group Icon" 
+                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-208.png"
+                      alt="Private WhatsApp Group Icon"
+                      width={72}
+                      height={72}
                       className="animate-all"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
@@ -763,8 +783,10 @@ export default function EmotionalIntelligenceCoursePage() {
                 <div className="card-header">
                   <div className="bonus-icon">
                     <Image 
-                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-210.png" 
-                      alt="1-Year Access Icon" 
+                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-210.png"
+                      alt="1-Year Access Icon"
+                      width={72}
+                      height={72}
                       className="animate-all"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
@@ -787,8 +809,10 @@ export default function EmotionalIntelligenceCoursePage() {
                 <div className="card-header">
                   <div className="bonus-icon">
                     <Image 
-                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-206.png" 
-                      alt="Certificate of Completion Icon" 
+                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-206.png"
+                      alt="Certificate of Completion Icon"
+                      width={72}
+                      height={72}
                       className="animate-all"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
@@ -811,8 +835,10 @@ export default function EmotionalIntelligenceCoursePage() {
                 <div className="card-header">
                   <div className="bonus-icon">
                     <Image 
-                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-203-1.png" 
-                      alt="Guna-Based Assessment Icon" 
+                      src="https://shikshanam.in/wp-content/uploads/2025/07/icons-features-Recovered-203-1.png"
+                      alt="Guna-Based Assessment Icon"
+                      width={72}
+                      height={72}
                       className="animate-all"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
@@ -874,8 +900,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/lOR9ZsMt4ug/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/lOR9ZsMt4ug/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -911,8 +940,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/fOyOmesmUhk/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/fOyOmesmUhk/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -948,8 +980,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/Y9D3VkB8cQE/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/Y9D3VkB8cQE/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -985,8 +1020,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/lqVTJewLhPs/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/lqVTJewLhPs/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -1022,8 +1060,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/b92bww6ImZo/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/b92bww6ImZo/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -1059,8 +1100,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/OambhYsblNI/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/OambhYsblNI/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -1096,8 +1140,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/90FsCxSpWD0/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/90FsCxSpWD0/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -1133,8 +1180,11 @@ export default function EmotionalIntelligenceCoursePage() {
             >
               <div className="video-thumbnail">
                 <Image 
-                  src="https://img.youtube.com/vi/LBqOELB32AM/sddefault.jpg" 
-                  alt="Video Thumbnail" 
+                  src="https://img.youtube.com/vi/LBqOELB32AM/sddefault.jpg"
+                  alt="Video Thumbnail"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.onerror = null
@@ -2684,8 +2734,10 @@ export default function EmotionalIntelligenceCoursePage() {
           <div className="shloka-container">
             <div className="shloka-symbol">
               <Image 
-                src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png" 
-                alt="Shikshanam Logo" 
+                src="https://shikshanam.in/wp-content/uploads/2024/03/logo-white-1.png"
+                alt="Shikshanam Logo"
+                width={100}
+                height={100}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
