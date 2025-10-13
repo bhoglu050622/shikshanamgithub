@@ -2,8 +2,8 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const advaitaVedantaCourseData: CourseContent = {
   metadata: {
-    title: 'अद्वैत वेदान्त दर्शन',
-    subtitle: 'A Journey Through Drig Drishya Viveka',
+    title: 'Advaita Vedanta Darshan: A Journey Through Drig Drishya Viveka',
+    subtitle: 'द्रष्टा और दृश्य की एकता को समझें',
     description: 'Explore the Unity of the Seer and Seen via verse-by-verse study of Drig Drishya Viveka. Dive deep into the non-dual philosophy of Advaita Vedanta and discover your true nature.',
     type: 'Premium Course',
     price: '₹1,999',
@@ -11,16 +11,18 @@ export const advaitaVedantaCourseData: CourseContent = {
     savings: '20%',
     duration: '7+ Hours',
     level: 'Beginner',
+    language: 'हिन्दी',
     status: 'available',
     features: [
       'All 46 Shlokas Covered',
-      '7+ Hours of Content',
+      '7+ Hrs. of Content',
       'Quizzes & Notes',
       'Certification',
-      '1 Year Access',
+      '1 Yr Access',
       'WhatsApp Group',
       'Community Access',
-      'Live Q&A'
+      'Live QnA',
+      'Free Future Updates'
     ],
     thumbnail: '/assets/advaita-vedanta-course.png',
     category: 'darshan',
@@ -210,16 +212,17 @@ export const advaitaVedantaCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Vishal Chaurasia',
-    title: 'Philosophy Scholar & IIT Graduate',
-    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Advaita Vedanta, he guides students through the profound teachings of Drig Drishya Viveka with clarity and precision.',
+    name: 'विशाल चौरसिया',
+    title: 'Graduate, IIT Patna',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT Patna. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Advaita Vedanta, he guides students through the profound teachings of Drig Drishya Viveka with clarity and precision.',
     experience: '10+ years teaching Advaita Vedanta and Indian Philosophy',
     specialization: [
       'Advaita Vedanta',
       'Drig Drishya Viveka',
       'Upanishads',
       'Indian Darshanas'
-    ]
+    ],
+    image: 'https://placehold.co/600x600/0D3B4A/FFFFFF?text=Vishal+Chaurasia'
   },
 
   testimonials: [
@@ -297,7 +300,44 @@ export const advaitaVedantaCourseData: CourseContent = {
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/6732e50755381c626392a6b6?pid=p1'
-  }
+    checkoutLink: 'https://courses.shikshanam.in/single-checkout/6732e50755381c626392a6b6?pid=p1',
+    contactEmail: 'support@shikshanam.in',
+    contactPhone: '+91-9910032165'
+  },
+
+  demoVideos: [
+    {
+      title: 'Course Introduction: Why Drig Drishya Viveka?',
+      description: 'Understand the importance and relevance of studying Drig Drishya Viveka',
+      url: 'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_1',
+      duration: '12:30',
+      isFree: true
+    },
+    {
+      title: 'Sample Shloka 1: द्रग्दृश्यविवेकः',
+      description: 'Experience how shlokas are explained with deep philosophical insights',
+      url: 'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_2',
+      duration: '15:45',
+      isFree: true
+    },
+    {
+      title: 'Sample Shloka 15: साक्षी चेतना',
+      description: 'Learn about the witness consciousness through practical examples',
+      url: 'https://www.youtube.com/embed/PLACEHOLDER_VIDEO_3',
+      duration: '18:20',
+      isFree: true
+    }
+  ]
+};
+
+// Export demo videos for components
+export const advaitaVedantaDemoVideos = advaitaVedantaCourseData.demoVideos;
+
+// Export support information for components
+export const advaitaVedantaSupport = {
+  email: advaitaVedantaCourseData.enrollment.contactEmail,
+  phone: advaitaVedantaCourseData.enrollment.contactPhone,
+  whatsapp: advaitaVedantaCourseData.enrollment.contactPhone, // Using phone as fallback since whatsapp is not in enrollment
+  refundPolicy: '7-day money-back guarantee if not satisfied'
 };
 

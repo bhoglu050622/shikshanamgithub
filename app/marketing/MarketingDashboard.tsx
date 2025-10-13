@@ -52,26 +52,27 @@ export default function MarketingDashboard() {
   // Load saved configuration on mount
   useEffect(() => {
     loadConfiguration();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update tracking status
   useEffect(() => {
     const checkStatus = () => {
-      setGA4Status({
+      setGA4Status(prev => ({
         platform: 'ga4',
         connected: !!config.ga4?.measurementId,
         scriptLoaded: ga4Manager.isLoaded(),
-        lastEvent: ga4Status.lastEvent,
+        lastEvent: prev.lastEvent,
         mode: 'test',
-      });
+      }));
 
-      setMetaStatus({
+      setMetaStatus(prev => ({
         platform: 'meta',
         connected: !!config.metaPixel?.pixelId,
         scriptLoaded: metaManager.isLoaded(),
-        lastEvent: metaStatus.lastEvent,
+        lastEvent: prev.lastEvent,
         mode: 'test',
-      });
+      }));
     };
 
     const interval = setInterval(checkStatus, 2000);

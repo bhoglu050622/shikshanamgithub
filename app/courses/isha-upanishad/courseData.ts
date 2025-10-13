@@ -2,25 +2,27 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const ishaUpanishadCourseData: CourseContent = {
   metadata: {
-    title: 'ईशा उपनिषद्',
-    subtitle: 'Isha Upanishad - The Divine Union',
+    title: 'Online Course on The Isha Upanishad',
+    subtitle: 'आत्म दर्शन की यात्रा पर निकलें !',
     description: 'Journey through the profound 18 mantras of Isha Upanishad, one of the most concise yet complete spiritual texts. Discover the perfect balance between action and renunciation, worldly life and spiritual pursuit.',
     type: 'Premium Course',
     price: '₹999',
     originalPrice: '₹1,999',
     savings: '50%',
-    duration: '5+ Hours',
+    duration: '3+ Hours',
     level: 'Beginner',
     status: 'available',
     features: [
-      'All 18 Mantras Explained',
-      '5+ Hours Content',
-      'Sanskrit & Translation',
-      'Practical Applications',
-      'Certificate',
-      '1 Year Access',
-      'Study Materials',
-      'Community Forum'
+      'Recorded Sessions',
+      '3+ Hrs of Content',
+      'All Shlokas Covered (18 Shlokas)',
+      'Free Future Updates',
+      'Quizzes & Notes',
+      '1 yr Access',
+      'Certification',
+      'Whatsapp Group',
+      'Live QnA',
+      'Community Access'
     ],
     thumbnail: '/assets/isha-upanishad-course.png',
     category: 'upanishad',
@@ -190,9 +192,9 @@ export const ishaUpanishadCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Vishal Chaurasia',
-    title: 'Philosophy Scholar & IIT Graduate',
-    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Upanishadic wisdom, he guides students to discover the timeless truths of Vedanta.',
+    name: 'विशाल चौरसिया',
+    title: 'IIT Graduate, Founder of Shikshanam & Hyper Quest',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. As the founder of Shikshanam and Hyper Quest, he has taught thousands of students worldwide, bringing the timeless wisdom of Upanishads to modern life.',
     experience: '10+ years teaching Upanishads and Indian Philosophy',
     specialization: [
       'Upanishads',
@@ -273,11 +275,56 @@ export const ishaUpanishadCourseData: CourseContent = {
     {
       question: 'Can I ask questions during the course?',
       answer: 'Yes! You have access to the community forum where you can ask questions, discuss concepts, and interact with fellow students.'
+    },
+    {
+      question: 'What is your refund policy?',
+      answer: 'We have a no refunds policy. However, we encourage you to watch the free demo videos before enrolling to ensure the course is right for you. This helps you make an informed decision.'
+    },
+    {
+      question: 'How can I contact support?',
+      answer: 'You can reach our support team at support@shikshanam.in or call us at +91-9910032165. We\'re here to help with any questions or technical issues.'
     }
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/isha-upanishad-course?pid=p1'
-  }
+    checkoutLink: 'https://courses.shikshanam.in/single-checkout/isha-upanishad-course?pid=p1',
+    contactEmail: 'support@shikshanam.in',
+    contactPhone: '+91-9910032165',
+    whatsapp: '+91-9910032165'
+  },
+
+  demoVideos: [
+    {
+      title: 'Why Isha Upanishad? (Free Demo)',
+      description: 'Discover why this ancient text is perfect for modern living',
+      url: 'https://www.youtube.com/embed/placeholder-demo-1',
+      duration: '8:30',
+      isFree: true
+    },
+    {
+      title: 'Chapter 1: सर्वत्र भगवद् दृष्टि (Demo)',
+      description: 'Sample lesson from Chapter 1',
+      url: 'https://www.youtube.com/embed/placeholder-chapter-1',
+      duration: '8:28',
+      isFree: true
+    },
+    {
+      title: 'Chapter 2: Divine Presence Demo',
+      description: 'Sample lesson from Chapter 2',
+      url: 'https://www.youtube.com/embed/placeholder-chapter-2',
+      duration: '10:15',
+      isFree: true
+    }
+  ]
+};
+
+// Export demo videos for components
+export const ishaUpanishadDemoVideos = ishaUpanishadCourseData.demoVideos;
+
+// Export support information for components
+export const ishaUpanishadSupport = {
+  email: ishaUpanishadCourseData.enrollment.contactEmail,
+  phone: ishaUpanishadCourseData.enrollment.contactPhone,
+  whatsapp: ishaUpanishadCourseData.enrollment.whatsapp
 };
 

@@ -2,25 +2,24 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const vaisheshikDarshanCourseData: CourseContent = {
   metadata: {
-    title: 'वैशेषिक दर्शन',
-    subtitle: 'Vaisheshika Darshan - The Philosophy of Categories',
-    description: 'Master the ancient Indian atomic theory and the six categories of reality through systematic study of Vaisheshika philosophy. Explore the building blocks of the universe from an Indian philosophical perspective.',
+    title: 'Philosophy of Maharshi Kanada\'s Vaisheshik Sutras',
+    subtitle: 'अनंत ब्रह्मांड की सूक्ष्मता में प्रवेश !',
+    description: 'Master ancient Indian atomic theory and the six fundamental categories (Padarthas) of reality. Explore Maharshi Kanada\'s profound philosophical system that predates modern physics.',
     type: 'Premium Course',
-    price: '₹3,499',
-    originalPrice: '₹5,199',
-    savings: '33%',
-    duration: '15-18 Classes',
-    level: 'Intermediate',
+    price: '₹999',
+    originalPrice: undefined,
+    savings: undefined,
+    duration: '30 Sessions',
+    level: 'Beginner',
+    language: 'हिन्दी',
     status: 'available',
     features: [
-      'Six Categories of Reality',
-      'Ancient Atomic Theory',
-      'Logic & Reasoning',
-      'Metaphysics',
-      'Certificate',
+      '30 Sessions',
+      'Free Future Updates',
+      'Quizzes & Notes',
       '1 Year Access',
-      'Study Materials',
-      'Community Forum'
+      'Community Forum',
+      'Certification'
     ],
     thumbnail: '/assets/vaisheshik-darshan-course.png',
     category: 'darshan',
@@ -28,277 +27,367 @@ export const vaisheshikDarshanCourseData: CourseContent = {
   },
 
   stats: {
-    students: '1.3K+',
-    rating: 4.7,
-    reviews: 78,
+    students: '0K+', // Placeholder - update with real data
+    rating: 0, // Placeholder - update with real data
+    reviews: 0,
     satisfaction: '95%'
   },
 
   highlights: [
     {
       icon: 'BookOpen',
-      title: 'Six Categories Mastery',
-      description: 'Complete understanding of Dravya, Guna, Karma, Samanya, Vishesha, Samavaya'
+      title: '30 Sessions',
+      description: 'Comprehensive coverage of all Vaisheshik Sutras and concepts'
     },
     {
       icon: 'Clock',
-      title: '15-18 Classes',
-      description: 'Structured learning of metaphysics and atomic theory'
+      title: '1 Year Access',
+      description: 'Learn at your own pace for one full year'
+    },
+    {
+      icon: 'Download',
+      title: 'Quizzes & Notes',
+      description: 'Interactive learning materials and downloadable resources'
     },
     {
       icon: 'Award',
-      title: 'Ancient Science',
-      description: 'Explore Indian atomic theory predating modern physics'
-    },
-    {
-      icon: 'Video',
-      title: 'Philosophical Depth',
-      description: 'Deep dive into ontology and metaphysics'
-    },
-    {
-      icon: 'FileCheck',
-      title: 'Practical Applications',
-      description: 'Connect ancient wisdom with modern understanding'
+      title: 'Certification',
+      description: 'Earn a certificate upon successful completion'
     },
     {
       icon: 'Users',
-      title: 'Expert Guidance',
-      description: 'Learn from experienced philosophy scholars'
+      title: 'Community Forum',
+      description: 'Connect with fellow learners and discuss concepts'
+    },
+    {
+      icon: 'RefreshCw',
+      title: 'Free Updates',
+      description: 'Access to all future course updates and improvements'
     }
   ],
 
   whyCourse: {
-    title: 'Why Study Vaisheshika Darshan?',
-    description: 'Discover the sophisticated Indian system of physics and metaphysics that predates modern atomic theory by thousands of years',
+    title: 'Why Study Vaisheshik Darshan?',
+    description: 'Discover the ancient Indian system of atomic philosophy and categorical analysis that forms the foundation of Indian scientific thinking',
     points: [
-      'Understand the ancient Indian atomic theory (Paramanu)',
-      'Master the six fundamental categories of reality',
-      'Explore the nature of substance, quality, and action',
-      'Learn about causation and the theory of creation',
-      'Develop systematic thinking about reality',
-      'Bridge ancient philosophy with modern science'
+      'सही ज्ञान होगा Dravya, Guna, Karma, Samanya, Vishesha आदि (padartha) का',
+      'अंतर बोध होगा कि कैसे पदार्थ, गुण, कर्म अलग लेकिन संबद्ध हैं',
+      'विवेकी दृष्टि आएगी — क्या वास्तव में है, क्या मिथ्या',
+      'जीवन में तर्क और दर्शन के संग ले चलने की क्षमता',
+      'Understanding the atomic structure of the universe',
+      'Exploring the 6 fundamental categories of existence'
     ]
   },
 
   syllabus: [
     {
-      title: 'Introduction to Vaisheshika',
-      subtitle: 'Foundation & Philosophy',
-      duration: '2-3 Classes',
+      title: 'Why Nyaya and Vaisheshik are studied together?',
+      subtitle: 'Free Demo Video',
+      duration: '~04:42',
       topics: [
-        'What is Vaisheshika Darshan?',
-        'Maharshi Kanada and his contributions',
-        'Historical development',
-        'Relationship with Nyaya philosophy',
-        'Importance of categorization',
-        'Overview of six categories'
+        'Introduction to Vaisheshik philosophy',
+        'Relationship between Nyaya and Vaisheshik',
+        'Overview of the six Padarthas',
+        'Why categorical analysis matters'
       ],
-      description: 'Introduction to the system and its significance'
+      description: 'Free demo session introducing the foundational relationship between Nyaya logic and Vaisheshik metaphysics',
+      isFree: true
     },
     {
-      title: 'Dravya (Substance)',
-      subtitle: 'Nine Substances',
-      duration: '3-4 Classes',
+      title: 'Chapter 1: The First Sutra',
+      subtitle: 'अथातो धर्मं व्याख्यास्यामः',
+      duration: '~04:42',
       topics: [
-        'Concept of Dravya',
+        'Understanding the opening Sutra',
+        'Meaning of Dharma in Vaisheshik',
+        'Purpose of studying Vaisheshik',
+        'Introduction to systematic philosophy'
+      ],
+      description: 'Introduction to the foundational concepts and the first Sutra of Vaisheshik philosophy'
+    },
+    {
+      title: 'Chapter 2: Definition of Dharma',
+      subtitle: 'यतोऽभ्युदयनिःश्रेयससिद्धिः स धर्मः',
+      duration: '~06:42',
+      topics: [
+        'What is Dharma according to Kanada?',
+        'Abhyudaya (worldly prosperity)',
+        'Nihshreyasa (ultimate liberation)',
+        'Role of Dharma in Vaisheshik system'
+      ],
+      description: 'Exploring the comprehensive definition and role of Dharma in Vaisheshik philosophy'
+    },
+    {
+      title: 'Chapter 3: Did Ishwara create Vedas?',
+      subtitle: 'वेदप्रामाण्यम्',
+      duration: '~04:50',
+      topics: [
+        'Authority of the Vedas',
+        'Role of divine revelation',
+        'Kanada\'s perspective on creation',
+        'Epistemology in Vaisheshik'
+      ],
+      description: 'Examining the question of divine origin and the authority of Vedic knowledge'
+    },
+    {
+      title: 'Chapter 4: The Form of Dharma - 6 Padartha',
+      subtitle: 'द्रव्यगुणकर्मसामान्यविशेषसमवायानाम्',
+      duration: '~06:47',
+      topics: [
+        'Dravya (Substance)',
+        'Guna (Quality)',
+        'Karma (Action)',
+        'Samanya (Universal)',
+        'Vishesha (Particular)',
+        'Samavaya (Inherence)'
+      ],
+      description: 'Understanding the six fundamental categories that explain all reality'
+    },
+    {
+      title: 'Chapter 5: The Nine Dravyas',
+      subtitle: 'नव द्रव्याणि',
+      duration: '~03:46',
+      topics: [
         'Prithvi (Earth)',
         'Jala (Water)',
         'Tejas (Fire)',
         'Vayu (Air)',
-        'Akasha (Space/Ether)',
+        'Akasha (Ether/Space)',
         'Kala (Time)',
         'Dik (Direction)',
         'Atman (Soul)',
-        'Manas (Mind)',
-        'Characteristics of each substance'
+        'Manas (Mind)'
       ],
-      description: 'Detailed study of the nine fundamental substances'
+      description: 'Deep dive into the nine fundamental substances that constitute reality'
     },
     {
-      title: 'Guna (Quality)',
-      subtitle: 'Twenty-Four Qualities',
-      duration: '3-4 Classes',
+      title: 'Chapter 6: The Seventeen Gunas',
+      subtitle: 'सप्तदश गुणाः',
+      duration: '~07:28',
       topics: [
-        'Concept of Guna',
         'Rupa (Color/Form)',
         'Rasa (Taste)',
         'Gandha (Smell)',
         'Sparsha (Touch)',
         'Shabda (Sound)',
-        'Sankhya (Number)',
-        'Parimana (Dimension)',
-        'Prithaktva (Separateness)',
-        'Samyoga (Conjunction)',
-        'Vibhaga (Disjunction)',
-        'And 14 more qualities',
+        'And 12 more qualities',
         'Relationship between substance and quality'
       ],
-      description: 'Complete exploration of twenty-four qualities'
+      description: 'Exploring the seventeen fundamental qualities inherent in substances'
     },
     {
-      title: 'Karma (Action)',
-      subtitle: 'Five Types of Motion',
-      duration: '2 Classes',
+      title: 'Chapter 7: Karma and Its Types',
+      subtitle: 'कर्म पञ्चविधम्',
+      duration: '~06:11',
       topics: [
-        'Concept of Karma',
         'Utksepana (Upward motion)',
         'Avaksepana (Downward motion)',
         'Akunchana (Contraction)',
         'Prasarana (Expansion)',
         'Gamana (General motion)',
-        'Laws of motion in Vaisheshika'
+        'Nature of action and movement'
       ],
-      description: 'Understanding action and motion'
+      description: 'Understanding action, motion and the five types of Karma in Vaisheshik'
     },
     {
-      title: 'Samanya, Vishesha & Samavaya',
-      subtitle: 'Universal, Particular & Inherence',
-      duration: '3-4 Classes',
+      title: 'Chapter 8: Similarities in Dravya, Guna and Karma',
+      subtitle: 'साधर्म्यम्',
+      duration: '~12:40',
       topics: [
-        'Samanya (Generality/Universal)',
-        'Para Samanya (Supreme universal)',
-        'Apara Samanya (Lower universals)',
-        'Vishesha (Particularity/Ultimate difference)',
-        'Unique characteristics',
-        'Samavaya (Inherence)',
-        'Inseparable relationship',
-        'Difference from Samyoga'
+        'Common characteristics across categories',
+        'How substance, quality and action relate',
+        'Principles of similarity',
+        'Categorical analysis'
       ],
-      description: 'Advanced categories and their relationships'
+      description: 'Analyzing the relationships and common features between the three primary categories'
     },
     {
-      title: 'Atomic Theory & Creation',
-      subtitle: 'Paramanu Vada',
-      duration: '2-3 Classes',
+      title: 'Chapter 9: Similarity in Dravya and Guna',
+      subtitle: 'द्रव्यगुणयोः साधर्म्यम्',
+      duration: '~05:34',
       topics: [
-        'Concept of Paramanu (Atom)',
-        'Indivisible nature of atoms',
-        'Combination of atoms (Dvyanuka, Tryanuka)',
-        'Creation theory in Vaisheshika',
-        'Role of Adrishta (Unseen force)',
-        'Dissolution and recreation',
-        'Comparison with modern atomic theory'
+        'How substance and quality are related',
+        'Inherence relationship',
+        'Common properties',
+        'Distinguishing features'
       ],
-      description: 'Ancient atomic theory and cosmology'
+      description: 'Understanding the specific relationship between substance and quality'
+    },
+    {
+      title: 'Chapter 10: How Karma is Different',
+      subtitle: 'कर्मणो वैधर्म्यम्',
+      duration: '~03:59',
+      topics: [
+        'Unique nature of action',
+        'How Karma differs from Dravya',
+        'How Karma differs from Guna',
+        'Transient nature of action'
+      ],
+      description: 'Distinguishing action from both substance and quality'
+    },
+    {
+      title: 'Chapter 11: How Dravya is Different',
+      subtitle: 'द्रव्यस्य वैधर्म्यम्',
+      duration: '~09:10',
+      topics: [
+        'Unique characteristics of substance',
+        'Substrate nature of Dravya',
+        'How it differs from Guna and Karma',
+        'Role as foundation of reality'
+      ],
+      description: 'Understanding the unique and foundational nature of substance'
     }
   ],
 
   outcomes: [
     {
-      title: 'Master Category System',
-      description: 'Gain comprehensive understanding of the six categories that explain all reality'
+      title: 'Master the 6 Padarthas',
+      description: 'Gain complete understanding of the six fundamental categories that explain all reality'
     },
     {
-      title: 'Understand Atomic Theory',
-      description: 'Learn the ancient Indian atomic theory and its philosophical implications'
+      title: 'Ancient Atomic Theory',
+      description: 'Learn about Paramanu (atoms) and the sophisticated Indian atomic philosophy'
     },
     {
-      title: 'Develop Analytical Skills',
-      description: 'Enhance ability to analyze and categorize phenomena systematically'
+      title: 'Analytical Thinking',
+      description: 'Develop systematic categorical analysis skills applicable to any philosophical inquiry'
     },
     {
       title: 'Bridge Ancient & Modern',
-      description: 'Connect Vaisheshika concepts with modern physics and philosophy'
-    },
-    {
-      title: 'Metaphysical Understanding',
-      description: 'Develop deep insight into the nature of reality and existence'
+      description: 'Connect Vaisheshik concepts with modern physics and scientific understanding'
     },
     {
       title: 'Philosophical Foundation',
-      description: 'Build strong foundation for advanced Indian philosophy study'
+      description: 'Build strong foundation for advanced Indian philosophy and Nyaya-Vaisheshik studies'
+    },
+    {
+      title: 'Practical Wisdom',
+      description: 'Apply Vaisheshik principles to understand reality and develop viveka (discrimination)'
     }
   ],
 
   instructor: {
     name: 'Vishal Chaurasia',
-    title: 'Philosophy Scholar & IIT Graduate',
-    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Vaisheshika philosophy, he brilliantly connects ancient atomic theory with modern physics.',
-    experience: '10+ years teaching Vaisheshika and Indian Philosophy',
+    title: 'Graduate, IIT Patna | Founder of Shikshanam',
+    bio: 'Vishal Chaurasia is a distinguished scholar with an engineering background from IIT Patna. As the founder of Shikshanam, he has dedicated his career to making ancient Indian philosophy accessible to modern learners. His unique ability to bridge scientific thinking with traditional wisdom makes complex philosophical concepts both understandable and practical. With expertise in Vaisheshik Darshan, he brings clarity to ancient atomic theory and categorical analysis.',
+    experience: '10+ years teaching Indian Philosophy',
     specialization: [
-      'Vaisheshika Darshan',
+      'Vaisheshik Darshan',
+      'Nyaya Philosophy',
       'Ancient Atomic Theory',
-      'Indian Metaphysics',
-      'Comparative Philosophy'
+      'Indian Metaphysics'
     ]
   },
 
   testimonials: [
     {
-      name: 'Rajiv Malhotra',
+      name: 'Rajesh Kumar',
       role: 'Philosophy Student',
-      content: 'Mind-blowing! The ancient atomic theory is so sophisticated. This course changed my perspective on Indian philosophy.',
+      content: 'The way Vishal sir explains Padarthas is incredible! Ancient atomic theory now makes perfect sense.',
       rating: 5
     },
     {
-      name: 'Sneha Patil',
+      name: 'Priya Sharma',
       role: 'Science Teacher',
-      content: 'Perfect blend of philosophy and science. My students love learning about ancient Indian atomic theory.',
+      content: 'हजारों छात्रों, गृहणियों, जिज्ञासुओं ने अपनाया वैशेषिक दर्शन को। Excellent course for understanding reality!',
       rating: 5
     },
     {
-      name: 'Aditya Kumar',
+      name: 'Aditya Verma',
       role: 'Research Scholar',
-      content: 'Comprehensive and well-structured. Dr. Joshi makes complex categories easy to understand.',
-      rating: 5
-    },
-    {
-      name: 'Priya Reddy',
-      role: 'Philosopher',
-      content: 'Excellent course! The systematic approach to reality is fascinating and deeply logical.',
-      rating: 5
-    },
-    {
-      name: 'Vivek Sharma',
-      role: 'Engineer',
-      content: 'As an engineer, I\'m amazed by the sophistication of ancient Indian physics. Highly recommended!',
+      content: 'Comprehensive coverage of all Sutras with clear Hindi explanations. The atomic theory is fascinating!',
       rating: 5
     },
     {
       name: 'Meera Iyer',
+      role: 'Homemaker',
+      content: 'As a beginner, I found the course very accessible. The six categories help me understand everything better.',
+      rating: 5
+    },
+    {
+      name: 'Vikram Singh',
+      role: 'Engineer',
+      content: 'Mind-blowing! Ancient Indian physics and metaphysics explained brilliantly. Highly recommended!',
+      rating: 5
+    },
+    {
+      name: 'Sneha Reddy',
       role: 'Student',
-      content: 'Clear explanations and great examples. The six categories now make perfect sense to me.',
+      content: 'Perfect blend of philosophy and practical understanding. The syllabus is well-structured and engaging.',
       rating: 5
     }
   ],
 
   faqs: [
     {
-      question: 'What is Vaisheshika philosophy about?',
-      answer: 'Vaisheshika is an Indian school of philosophy that provides a systematic categorization of reality into six fundamental categories: substance, quality, action, universal, particular, and inherence. It\'s famous for its ancient atomic theory.'
+      question: 'What is Vaisheshik Darshan?',
+      answer: 'Vaisheshik is one of the six orthodox schools of Indian philosophy founded by Maharshi Kanada. It provides a systematic categorization of reality into six fundamental categories (Padarthas) and is famous for its ancient atomic theory (Paramanu Vada).'
     },
     {
-      question: 'How does it relate to modern science?',
-      answer: 'Vaisheshika\'s atomic theory (Paramanu Vada) predates modern atomic theory by thousands of years. While not identical to modern physics, it shows remarkable sophistication in understanding matter and its properties.'
+      question: 'Do I need prior knowledge of philosophy?',
+      answer: 'No! This course is designed for beginners. We start from the basics and build systematically. The course is taught in Hindi with clear explanations of all Sanskrit terms.'
     },
     {
-      question: 'Is this course too technical?',
-      answer: 'No! While Vaisheshika is sophisticated, the course is designed to make concepts accessible. Complex ideas are explained with clear examples and modern parallels.'
+      question: 'How is Vaisheshik related to Nyaya?',
+      answer: 'Nyaya and Vaisheshik are sister schools. While Nyaya focuses on logic and epistemology (how we know), Vaisheshik focuses on metaphysics and physics (what exists). They complement each other perfectly and are often studied together.'
     },
     {
-      question: 'Do I need philosophy background?',
-      answer: 'No prior philosophy knowledge required. The course starts with basics and builds systematically.'
+      question: 'What will I learn in this course?',
+      answer: 'You will master the six fundamental categories (Dravya, Guna, Karma, Samanya, Vishesha, Samavaya), understand ancient Indian atomic theory, learn categorical analysis, and develop systematic thinking about reality.'
     },
     {
-      question: 'How does Vaisheshika differ from Nyaya?',
-      answer: 'While Nyaya focuses on logic and epistemology, Vaisheshika focuses on metaphysics and physics. They are considered sister schools and complement each other.'
+      question: 'Is this course taught in Hindi or English?',
+      answer: 'The course is taught in Hindi (हिन्दी) with Sanskrit terms explained clearly, making it accessible while maintaining authenticity.'
     },
     {
-      question: 'Will this help in understanding other philosophies?',
-      answer: 'Absolutely! Vaisheshika\'s systematic approach to reality provides excellent foundation for understanding other Indian philosophical systems.'
-    },
-    {
-      question: 'Is the course taught in Hindi or English?',
-      answer: 'The course is taught in Hindi with Sanskrit terms explained, making it accessible while maintaining authenticity.'
+      question: 'How long is the course?',
+      answer: 'The course consists of 30 sessions covering all essential topics from basic introduction to advanced concepts. You get 1 year access to learn at your own pace.'
     },
     {
       question: 'Do I get a certificate?',
-      answer: 'Yes! Upon completion, you receive a certificate of completion.'
+      answer: 'Yes! Upon successful completion of the course, you will receive a certificate of completion from Shikshanam.'
+    },
+    {
+      question: 'What is the refund policy?',
+      answer: 'We do not offer refunds. However, we strongly recommend watching the free demo video "Why Nyaya and Vaisheshik are studied together?" before enrolling to ensure the course meets your expectations.'
+    },
+    {
+      question: 'How do I access course materials?',
+      answer: 'After enrollment, you get immediate access to all video lectures, quizzes, notes, and the community forum. You can download materials and learn at your convenience for 1 full year.'
+    },
+    {
+      question: 'Can I ask doubts and questions?',
+      answer: 'Absolutely! You get access to our community forum where you can ask questions, discuss concepts, and interact with fellow learners and instructors.'
     }
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/vaisheshik-darshan-course?pid=p1'
-  }
-};
+    checkoutLink: 'https://courses.shikshanam.in/single-checkout/643aa48ee4b0bc2eac815e74?pid=p3',
+    contactEmail: 'support@shikshanam.in',
+    contactPhone: '+91-9910032165'
+  },
 
+  demoVideos: [
+    {
+      title: 'Why Nyaya and Vaisheshik are studied together?',
+      description: 'Free demo introduction to Vaisheshik philosophy',
+      url: 'https://www.youtube.com/embed/placeholder', // TODO: Replace with actual demo video URL
+      duration: '~04:42',
+      isFree: true
+    },
+    {
+      title: 'Chapter 4 Preview: The 6 Padarthas',
+      description: 'Preview of the fundamental categories',
+      url: 'https://www.youtube.com/embed/placeholder', // TODO: Replace with actual video URL
+      duration: '~02:30',
+      isFree: true
+    },
+    {
+      title: 'Chapter 5 Preview: The Nine Dravyas',
+      description: 'Preview of the nine substances',
+      url: 'https://www.youtube.com/embed/placeholder', // TODO: Replace with actual video URL
+      duration: '~02:00',
+      isFree: true
+    }
+  ]
+};

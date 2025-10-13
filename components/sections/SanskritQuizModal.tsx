@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Clock, CheckCircle, ArrowRight } from 'lucide-react'
 
@@ -66,6 +66,7 @@ export default function SanskritQuizModal({ isOpen, onClose }: SanskritQuizModal
       }, 1000)
     }
     return () => clearInterval(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep, timeRemaining])
 
   const startQuiz = () => {
@@ -92,7 +93,7 @@ export default function SanskritQuizModal({ isOpen, onClose }: SanskritQuizModal
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const finalTimeTaken = 900 - timeRemaining
     setTimeTaken(finalTimeTaken)
     
@@ -115,7 +116,7 @@ export default function SanskritQuizModal({ isOpen, onClose }: SanskritQuizModal
     localStorage.setItem('sanskritQuizResult', JSON.stringify(result))
 
     setCurrentStep('results')
-  }
+  }, [timeRemaining, userAnswers])
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)

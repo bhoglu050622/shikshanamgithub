@@ -65,7 +65,7 @@ export function useCourseData(courseId: string, fallbackData: CourseData): UseCo
     
     setCourseData(fallbackDataRef.current);
     setLoading(false);
-  }, [courseId]);
+  }, []);
 
   useEffect(() => {
     fetchCourseData();

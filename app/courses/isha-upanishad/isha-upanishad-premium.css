@@ -1,0 +1,615 @@
+/* Isha Upanishad Premium Landing Page Styles */
+
+:root {
+  /* Meditative color palette */
+  --isha-bg: #FFF9F2;
+  --isha-primary: #0D3B4A;
+  --isha-accent: #D97B2A;
+  --isha-muted: #6C6C6C;
+  --isha-cream: #FAF7F2;
+  --isha-indigo-light: #1A5568;
+  --isha-saffron-light: #E69555;
+  
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', 'Merriweather', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(13, 59, 74, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(13, 59, 74, 0.1), 0 2px 4px -1px rgba(13, 59, 74, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(13, 59, 74, 0.1), 0 4px 6px -2px rgba(13, 59, 74, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(13, 59, 74, 0.1), 0 10px 10px -5px rgba(13, 59, 74, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(13, 59, 74, 0.15);
+}
+
+/* Base styles */
+.isha-premium-page {
+  background-color: var(--isha-bg);
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.isha-hero {
+  position: relative;
+  padding: var(--space-8) var(--space-4);
+  background: linear-gradient(135deg, var(--isha-cream) 0%, var(--isha-bg) 100%);
+  overflow: hidden;
+}
+
+.isha-hero-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .isha-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.isha-hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: var(--isha-primary);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .isha-hero-content h1 {
+    font-size: 3.5rem;
+  }
+}
+
+.isha-hero-subtitle {
+  font-family: var(--font-devanagari);
+  font-size: 1.5rem;
+  color: var(--isha-accent);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+}
+
+.isha-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.isha-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.isha-badge-primary {
+  background-color: var(--isha-primary);
+  color: white;
+}
+
+.isha-badge-secondary {
+  background-color: var(--isha-accent);
+  color: white;
+}
+
+.isha-badge-outline {
+  border: 2px solid var(--isha-primary);
+  color: var(--isha-primary);
+}
+
+/* CTA Buttons */
+.isha-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.isha-btn-primary {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--isha-primary) 0%, var(--isha-indigo-light) 100%);
+  color: white;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.isha-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.isha-btn-secondary {
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--isha-primary);
+  border: 2px solid var(--isha-primary);
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.isha-btn-secondary:hover {
+  background: var(--isha-primary);
+  color: white;
+}
+
+/* Feature Chips */
+.isha-features {
+  padding: var(--space-6) var(--space-4);
+  background: white;
+}
+
+.isha-features-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.isha-features-scroll {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding: var(--space-4) 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--isha-accent) var(--isha-cream);
+}
+
+.isha-features-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.isha-features-scroll::-webkit-scrollbar-track {
+  background: var(--isha-cream);
+  border-radius: 3px;
+}
+
+.isha-features-scroll::-webkit-scrollbar-thumb {
+  background: var(--isha-accent);
+  border-radius: 3px;
+}
+
+.isha-feature-chip {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--isha-cream);
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.isha-feature-chip:hover {
+  border-color: var(--isha-accent);
+  background: white;
+  box-shadow: var(--shadow-md);
+}
+
+.isha-feature-chip-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--isha-accent);
+  flex-shrink: 0;
+}
+
+.isha-feature-chip-content h4 {
+  font-weight: 600;
+  color: var(--isha-primary);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.isha-feature-chip-content p {
+  font-size: 0.75rem;
+  color: var(--isha-muted);
+}
+
+/* Demo Carousel */
+.isha-demo-section {
+  padding: var(--space-8) var(--space-4);
+  background: linear-gradient(to bottom, white, var(--isha-cream));
+}
+
+.isha-demo-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.isha-demo-carousel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .isha-demo-carousel {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .isha-demo-carousel {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.isha-demo-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: var(--shadow-md);
+}
+
+.isha-demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.isha-demo-card.featured {
+  grid-column: 1 / -1;
+}
+
+.isha-demo-thumbnail {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: var(--isha-primary);
+}
+
+.isha-demo-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.isha-demo-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--isha-accent);
+  transition: all 0.3s ease;
+}
+
+.isha-demo-card:hover .isha-demo-play-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: white;
+}
+
+.isha-demo-info {
+  padding: var(--space-4);
+}
+
+.isha-demo-info h3 {
+  font-weight: 600;
+  color: var(--isha-primary);
+  margin-bottom: 0.5rem;
+}
+
+.isha-demo-info p {
+  font-size: 0.875rem;
+  color: var(--isha-muted);
+}
+
+/* Syllabus Grid */
+.isha-syllabus-section {
+  padding: var(--space-8) var(--space-4);
+  background: var(--isha-bg);
+}
+
+.isha-syllabus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .isha-syllabus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.isha-module-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.isha-module-card:hover {
+  border-color: var(--isha-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.isha-module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: var(--space-4);
+}
+
+.isha-module-number {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--isha-accent);
+  margin-bottom: 0.5rem;
+}
+
+.isha-module-title {
+  font-family: var(--font-devanagari);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--isha-primary);
+  margin-bottom: 0.5rem;
+}
+
+.isha-module-subtitle {
+  font-size: 0.875rem;
+  color: var(--isha-muted);
+}
+
+.isha-module-duration {
+  padding: 0.5rem 1rem;
+  background: var(--isha-cream);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: var(--isha-primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.isha-module-topics {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.isha-module-topics li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--isha-muted);
+  font-size: 0.875rem;
+}
+
+.isha-module-topics li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--isha-accent);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Purchase Card - Sticky */
+.isha-purchase-card {
+  position: sticky;
+  top: 2rem;
+  background: white;
+  border-radius: 1.5rem;
+  padding: var(--space-6);
+  box-shadow: var(--shadow-2xl);
+  border: 2px solid var(--isha-accent);
+}
+
+.isha-price-section {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.isha-price-current {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--isha-primary);
+  font-family: var(--font-heading);
+}
+
+.isha-price-original {
+  font-size: 1.5rem;
+  color: var(--isha-muted);
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+}
+
+.isha-features-checklist {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0;
+}
+
+.isha-features-checklist li {
+  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--isha-primary);
+}
+
+.isha-features-checklist li svg {
+  color: var(--isha-accent);
+  flex-shrink: 0;
+}
+
+/* Mobile bottom sheet variant */
+@media (max-width: 767px) {
+  .isha-purchase-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    border-radius: 1.5rem 1.5rem 0 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    z-index: 50;
+  }
+}
+
+/* Section Headers */
+.isha-section-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.isha-section-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--isha-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.isha-section-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--isha-primary);
+  margin-bottom: var(--space-3);
+}
+
+.isha-section-description {
+  font-size: 1.125rem;
+  color: var(--isha-muted);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Instructor Card */
+.isha-instructor-card {
+  background: linear-gradient(135deg, var(--isha-cream), white);
+  border-radius: 1.5rem;
+  padding: var(--space-8);
+  max-width: 1024px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-xl);
+  border: 2px solid var(--isha-accent);
+}
+
+.isha-instructor-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .isha-instructor-grid {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.isha-instructor-portrait {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--isha-accent);
+  margin: 0 auto;
+}
+
+.isha-instructor-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.isha-instructor-name {
+  font-family: var(--font-devanagari);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--isha-primary);
+  margin-bottom: 0.5rem;
+}
+
+.isha-instructor-title {
+  font-size: 1.125rem;
+  color: var(--isha-accent);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.isha-social-links {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.isha-social-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--isha-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.isha-social-link:hover {
+  background: var(--isha-accent);
+  transform: translateY(-2px);
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .isha-hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .isha-section-title {
+    font-size: 2rem;
+  }
+}
+

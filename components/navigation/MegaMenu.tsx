@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { createPortal } from 'react-dom'
+import Link from 'next/link'
 import { 
   Search,
   LogIn,
@@ -214,16 +215,17 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                                 {currentGroup.featured.description}
                               </p>
-                              <motion.a
-                                href={currentGroup.featured.href}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={onClose}
-                                className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
-                              >
-                                <span>Explore Now</span>
-                                <ArrowRight className="w-4 h-4" />
-                              </motion.a>
+                              <Link href={currentGroup.featured.href} passHref legacyBehavior>
+                                <motion.a
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  onClick={onClose}
+                                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+                                >
+                                  <span>Explore Now</span>
+                                  <ArrowRight className="w-4 h-4" />
+                                </motion.a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -238,27 +240,27 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                               </h4>
                               <div className="space-y-4">
                                 {column.links.map((link, linkIndex) => (
-                                  <motion.a
-                                    key={linkIndex}
-                                    href={link.href}
-                                    onClick={onClose}
-                                    whileHover={{ x: 6, scale: 1.02 }}
-                                    className="block p-4 rounded-xl hover:bg-orange-50 dark:hover:bg-gray-800 transition-all duration-200 group border border-transparent hover:border-orange-200 dark:hover:border-gray-600"
-                                  >
-                                    <div className="flex items-start space-x-4">
-                                      <div className="w-10 h-10 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900 dark:to-amber-900 rounded-lg flex items-center justify-center group-hover:from-orange-200 group-hover:to-amber-200 dark:group-hover:from-orange-800 dark:group-hover:to-amber-800 transition-all duration-200">
-                                        <link.icon className="w-5 h-5 text-orange-600 dark:text-orange-400" />
-                                      </div>
-                                      <div className="flex-1">
-                                        <div className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors mb-1">
-                                          {link.name}
+                                  <Link key={linkIndex} href={link.href} passHref legacyBehavior>
+                                    <motion.a
+                                      onClick={onClose}
+                                      whileHover={{ x: 6, scale: 1.02 }}
+                                      className="block p-4 rounded-xl hover:bg-orange-50 dark:hover:bg-gray-800 transition-all duration-200 group border border-transparent hover:border-orange-200 dark:hover:border-gray-600"
+                                    >
+                                      <div className="flex items-start space-x-4">
+                                        <div className="w-10 h-10 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900 dark:to-amber-900 rounded-lg flex items-center justify-center group-hover:from-orange-200 group-hover:to-amber-200 dark:group-hover:from-orange-800 dark:group-hover:to-amber-800 transition-all duration-200">
+                                          <link.icon className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                                         </div>
-                                        <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                          {link.description}
+                                        <div className="flex-1">
+                                          <div className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors mb-1">
+                                            {link.name}
+                                          </div>
+                                          <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                            {link.description}
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </motion.a>
+                                    </motion.a>
+                                  </Link>
                                 ))}
                               </div>
                             </div>
@@ -267,16 +269,17 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
 
                         {/* Bottom CTA */}
                         <div className="mt-10 pt-6 border-t border-orange-200 dark:border-gray-600">
-                          <motion.a
-                            href="/courses"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={onClose}
-                            className="inline-flex items-center space-x-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-semibold transition-colors group"
-                          >
-                            <span>Browse All Courses</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </motion.a>
+                          <Link href="/courses" passHref legacyBehavior>
+                            <motion.a
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={onClose}
+                              className="inline-flex items-center space-x-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-semibold transition-colors group"
+                            >
+                              <span>Browse All Courses</span>
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </motion.a>
+                          </Link>
                         </div>
                       </motion.div>
                     ) : (

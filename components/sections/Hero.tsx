@@ -53,8 +53,8 @@ export default function Hero() {
       id="home" 
       className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-950 dark:to-amber-950">
+      {/* Animated Gradient Background - High Contrast */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
         {/* Animated gradient overlays */}
         <motion.div 
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-300/30 via-transparent to-transparent dark:from-orange-500/20"
@@ -162,25 +162,25 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md border border-orange-200/50 dark:border-orange-700/50 mb-8"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-2 border-amber-400/60 dark:border-amber-500/60 mb-8 shadow-sm"
             >
-              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-100">
+              <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
+              <span className="text-sm font-semibold text-premium-text-primary dark:text-premium-text-primary">
                 Unlock Ancient Wisdom
               </span>
-              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
+              <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
             </motion.div>
           ) : (
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md border border-orange-200/50 dark:border-orange-700/50 mb-8">
-              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-100">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-2 border-amber-400/60 dark:border-amber-500/60 mb-8 shadow-sm">
+              <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
+              <span className="text-sm font-semibold text-premium-text-primary dark:text-premium-text-primary">
                 Unlock Ancient Wisdom
               </span>
-              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
+              <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
               </div>
           )}
 
-          {/* Main Heading */}
+          {/* Main Heading - High Contrast */}
           {mounted ? (
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -188,54 +188,54 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
             >
-              <span className="bg-gradient-to-r from-gray-900 via-orange-800 to-amber-900 dark:from-white dark:via-orange-200 dark:to-amber-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-slate-900 via-amber-700 to-amber-900 dark:from-slate-50 dark:via-amber-300 dark:to-amber-200 bg-clip-text text-transparent">
                 शिक्षणम्
               </span>
               <br />
-              <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-700 dark:text-gray-300">
+              <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-premium-text-primary">
                 Shikshanam
               </span>
             </motion.h1>
           ) : (
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-orange-800 to-amber-900 dark:from-white dark:via-orange-200 dark:to-amber-200 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-slate-900 via-amber-700 to-amber-900 dark:from-slate-50 dark:via-amber-300 dark:to-amber-200 bg-clip-text text-transparent">
                 शिक्षणम्
               </span>
               <br />
-              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-700 dark:text-gray-100">
+              <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-premium-text-primary">
                 Shikshanam
               </span>
               </h1>
             )}
 
-          {/* Subtitle */}
+          {/* Subtitle - Enhanced Contrast */}
           {mounted ? (
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-4 font-light"
+            className="text-lg sm:text-2xl md:text-3xl text-premium-text-secondary font-medium mb-4"
           >
             Ancient Indian Knowledge Platform
           </motion.p>
           ) : (
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-4 font-light">
+            <p className="text-lg sm:text-2xl md:text-3xl text-premium-text-secondary font-medium mb-4">
               Ancient Indian Knowledge Platform
             </p>
           )}
 
-          {/* Description */}
+          {/* Description - Enhanced Contrast */}
           {mounted ? (
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-sm sm:text-lg text-gray-500 dark:text-gray-200 mb-12 max-w-3xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-premium-text-tertiary mb-12 max-w-3xl mx-auto leading-relaxed"
             >
               Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
             </motion.p>
           ) : (
-            <p className="text-base sm:text-lg text-gray-500 dark:text-gray-200 mb-12 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-premium-text-tertiary mb-12 max-w-3xl mx-auto leading-relaxed">
               Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
             </p>
           )}
@@ -247,90 +247,93 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
           >
-            {/* Sanskrit Card */}
+            {/* Sanskrit Card - High Contrast */}
             <button
               onClick={() => scrollToSection('schools')}
-              className="group relative overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-orange-200/50 dark:border-orange-700/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer text-left w-full"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-left w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="Learn Sanskrit - Master the divine language"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <BookOpen className="w-7 h-7 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">
+                <h3 className="text-xl font-bold text-premium-text-primary mb-2">
                   Learn Sanskrit
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-100 mb-4">
+                <p className="text-base text-premium-text-tertiary mb-4 leading-relaxed">
                   Master the divine language
                 </p>
-                <div className="flex items-center text-orange-600 dark:text-orange-200 font-medium text-sm">
+                <div className="flex items-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
                   Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </div>
               </div>
             </button>
 
-            {/* Darshanas Card */}
+            {/* Darshanas Card - High Contrast */}
             <button
               onClick={() => scrollToSection('schools')}
-              className="group relative overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-amber-200/50 dark:border-amber-700/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/20 cursor-pointer text-left w-full"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-left w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="Explore Darshanas - Study six classical schools"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <GraduationCap className="w-7 h-7 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">
+                <h3 className="text-xl font-bold text-premium-text-primary mb-2">
                   Explore Darshanas
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-100 mb-4">
+                <p className="text-base text-premium-text-tertiary mb-4 leading-relaxed">
                   Study six classical schools
                 </p>
-                <div className="flex items-center text-amber-600 dark:text-amber-200 font-medium text-sm">
+                <div className="flex items-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
                   Discover <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
           </div>
           </div>
             </button>
 
-            {/* Self Development Card */}
+            {/* Self Development Card - High Contrast */}
             <button
               onClick={() => scrollToSection('schools')}
-              className="group relative overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-orange-200/50 dark:border-orange-700/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer text-left w-full"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-left w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="Self Development - Transform your life"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   <Users className="w-7 h-7 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">
+                <h3 className="text-xl font-bold text-premium-text-primary mb-2">
                   Self Development
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-100 mb-4">
+                <p className="text-base text-premium-text-tertiary mb-4 leading-relaxed">
                   Transform your life
                 </p>
-                <div className="flex items-center text-orange-600 dark:text-orange-200 font-medium text-sm">
+                <div className="flex items-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
                   Begin <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </div>
               </div>
             </button>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats - High Contrast */}
           <motion.div
             initial={mounted ? { opacity: 0 } : false}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600 dark:text-gray-400"
+            className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm sm:text-base text-premium-text-tertiary font-medium"
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-sm" aria-label="Active status" />
               <span>Live Classes Available</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4" aria-hidden="true" />
+              <Users className="w-5 h-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
               <span>10,000+ Students</span>
             </div>
             <div className="flex items-center gap-2">
-              <BookOpen className="w-4 h-4" aria-hidden="true" />
+              <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
               <span>50+ Courses</span>
           </div>
           </motion.div>

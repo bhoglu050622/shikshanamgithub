@@ -1,0 +1,595 @@
+/**
+ * Prashna Upanishad Premium Course Page Styles
+ * Theme: Curious, exploratory, scholarly
+ * Colors: Warm cream bg, deep indigo primary, saffron accents
+ */
+
+:root {
+  /* Color System */
+  --prashna-bg: #FFF9F2;
+  --prashna-bg-alt: #FAF7F2;
+  --prashna-primary: #0D3B4A;
+  --prashna-primary-light: #1A5568;
+  --prashna-accent: #D97B2A;
+  --prashna-accent-light: #E89B5A;
+  --prashna-muted: #6C6C6C;
+  --prashna-border: rgba(13, 59, 74, 0.15);
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', 'Merriweather', serif;
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  
+  /* Spacing (8px base scale) */
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-6: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+/* Base Page Styles */
+.prashna-premium-page {
+  background-color: var(--prashna-bg);
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.prashna-hero {
+  position: relative;
+  padding: var(--space-8) var(--space-4);
+  background: linear-gradient(135deg, var(--prashna-bg) 0%, var(--prashna-bg-alt) 100%);
+  overflow: hidden;
+}
+
+.prashna-hero-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .prashna-hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.prashna-hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--prashna-primary);
+  margin-bottom: var(--space-3);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .prashna-hero-content h1 {
+    font-size: 3rem;
+  }
+}
+
+.prashna-hero-subtitle {
+  font-family: var(--font-devanagari);
+  font-size: 1.5rem;
+  color: var(--prashna-accent);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+}
+
+/* Badge Strip */
+.prashna-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.prashna-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.prashna-badge-primary {
+  background: var(--prashna-primary);
+  color: white;
+}
+
+.prashna-badge-secondary {
+  background: var(--prashna-accent);
+  color: white;
+}
+
+.prashna-badge-outline {
+  background: transparent;
+  border: 2px solid var(--prashna-border);
+  color: var(--prashna-muted);
+}
+
+/* CTAs */
+.prashna-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.prashna-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--prashna-primary) 0%, var(--prashna-primary-light) 100%);
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 1.125rem;
+}
+
+.prashna-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.prashna-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--prashna-primary);
+  font-weight: 600;
+  border: 2px solid var(--prashna-primary);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.125rem;
+}
+
+.prashna-btn-secondary:hover {
+  background: var(--prashna-primary);
+  color: white;
+}
+
+/* Demo Card */
+.prashna-demo-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.prashna-demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.prashna-demo-card.featured {
+  border: 2px solid var(--prashna-accent);
+}
+
+.prashna-demo-thumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--prashna-primary) 0%, var(--prashna-primary-light) 100%);
+  overflow: hidden;
+}
+
+.prashna-demo-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  background: var(--prashna-accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.prashna-demo-card:hover .prashna-demo-play-button {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.prashna-demo-info {
+  padding: var(--space-4);
+}
+
+/* Problem Strip (6 Questions) */
+.prashna-problem-strip {
+  padding: var(--space-8) var(--space-4);
+  background: white;
+}
+
+.prashna-question-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.prashna-question-card {
+  background: linear-gradient(135deg, var(--prashna-bg) 0%, white 100%);
+  border: 2px solid var(--prashna-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.prashna-question-card:hover {
+  border-color: var(--prashna-accent);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.prashna-question-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto var(--space-3);
+  color: var(--prashna-accent);
+}
+
+.prashna-question-title {
+  font-family: var(--font-devanagari);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--prashna-primary);
+  margin-bottom: var(--space-2);
+}
+
+.prashna-question-subtitle {
+  font-size: 0.875rem;
+  color: var(--prashna-muted);
+}
+
+/* Feature Chips */
+.prashna-feature-chips {
+  padding: var(--space-4) 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prashna-chips-container {
+  display: flex;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  min-width: min-content;
+}
+
+.prashna-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 2px solid var(--prashna-border);
+  border-radius: var(--radius-lg);
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--prashna-primary);
+  transition: all 0.2s ease;
+}
+
+.prashna-chip:hover {
+  border-color: var(--prashna-accent);
+  background: var(--prashna-bg);
+}
+
+/* Syllabus Grid */
+.prashna-syllabus-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.prashna-module-card {
+  background: white;
+  border: 2px solid var(--prashna-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all 0.3s ease;
+}
+
+.prashna-module-card:hover {
+  border-color: var(--prashna-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.prashna-module-card.coming-soon {
+  opacity: 0.7;
+  position: relative;
+}
+
+.prashna-module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: var(--space-3);
+}
+
+.prashna-module-title {
+  font-family: var(--font-devanagari);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--prashna-primary);
+  margin-bottom: var(--space-1);
+}
+
+.prashna-module-subtitle {
+  font-size: 0.875rem;
+  color: var(--prashna-muted);
+  margin-bottom: var(--space-2);
+}
+
+.prashna-coming-soon-badge {
+  background: var(--prashna-accent);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.prashna-demo-badge {
+  background: #10B981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Purchase Card */
+.prashna-purchase-card {
+  background: white;
+  border: 2px solid var(--prashna-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-xl);
+  position: sticky;
+  top: 2rem;
+}
+
+.prashna-purchase-price {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.prashna-price-current {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--prashna-primary);
+}
+
+.prashna-price-original {
+  font-size: 1.5rem;
+  color: var(--prashna-muted);
+  text-decoration: line-through;
+}
+
+.prashna-purchase-features {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0;
+}
+
+.prashna-purchase-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  font-size: 0.875rem;
+  color: var(--prashna-muted);
+}
+
+.prashna-purchase-features li svg {
+  color: #10B981;
+  flex-shrink: 0;
+}
+
+/* Mobile Bottom Sheet */
+.prashna-bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 2px solid var(--prashna-border);
+  padding: var(--space-4);
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+}
+
+/* FAQ Accordion */
+.prashna-faq-item {
+  background: white;
+  border: 2px solid var(--prashna-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+}
+
+.prashna-faq-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4);
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--prashna-primary);
+  transition: all 0.2s ease;
+}
+
+.prashna-faq-button:hover {
+  background: var(--prashna-bg);
+}
+
+.prashna-faq-content {
+  padding: 0 var(--space-4) var(--space-4);
+  color: var(--prashna-muted);
+  line-height: 1.6;
+}
+
+/* Modal */
+.prashna-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.prashna-modal-content {
+  background: white;
+  border-radius: var(--radius-xl);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+}
+
+.prashna-modal-close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--prashna-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.prashna-modal-close:hover {
+  background: var(--prashna-accent);
+}
+
+/* Instructor Card */
+.prashna-instructor-card {
+  background: linear-gradient(135deg, var(--prashna-bg) 0%, white 100%);
+  border: 2px solid var(--prashna-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.prashna-instructor-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .prashna-instructor-grid {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.prashna-instructor-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--prashna-accent);
+}
+
+.prashna-instructor-name {
+  font-family: var(--font-devanagari);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--prashna-primary);
+  margin-bottom: var(--space-2);
+}
+
+.prashna-instructor-title {
+  font-size: 1.125rem;
+  color: var(--prashna-accent);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.prashna-instructor-bio {
+  color: var(--prashna-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+/* Responsive utilities */
+@media (max-width: 767px) {
+  .prashna-hide-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .prashna-hide-desktop {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

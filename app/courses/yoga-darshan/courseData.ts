@@ -2,25 +2,25 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const yogaDarshanCourseData: CourseContent = {
   metadata: {
-    title: 'योग दर्शन',
-    subtitle: 'Yoga Philosophy through Patanjali Yoga Sutras',
-    description: 'Master the complete Yoga Sutras of Patanjali - a simplified journey through all 195 sutras, taught in Hindi for modern seekers. Transform your understanding of consciousness, meditation, and spiritual growth.',
+    title: 'Yoga Philosophy through Patanjali Yoga Sutras',
+    subtitle: 'समझें समाधियों के विज्ञान का रहस्य !',
+    description: 'Master the complete Yoga Sutras of Patanjali - all 195 sutras explained in Hindi. Transform your understanding of consciousness, meditation, and spiritual growth through authentic Yoga philosophy.',
     type: 'Premium Course',
-    price: '₹3,999',
-    originalPrice: '₹5,999',
-    savings: '33%',
+    price: '₹1,999',
+    originalPrice: '₹3,599',
+    savings: '44%',
     duration: '8+ hours',
-    level: 'Intermediate',
+    level: 'Beginner',
+    language: 'हिन्दी',
     status: 'available',
     features: [
-      'All 4 Padas Covered',
-      '44 Video Lessons',
-      'Sanskrit & Translation',
-      'Meditation Techniques',
-      'Practical Application',
-      'Q&A Sessions',
-      'Certificate of Completion',
-      '1 Year Access'
+      'All 195 Sutras Covered',
+      '8+ Hrs. content',
+      'Quizzes and Notes',
+      'Free Future Updates',
+      '1 Year Access',
+      'Certification',
+      'Community Forum'
     ],
     thumbnail: '/assets/courses/yoga-darshan.png',
     category: 'darshan',
@@ -38,7 +38,7 @@ export const yogaDarshanCourseData: CourseContent = {
     {
       icon: 'BookOpen',
       title: 'All 195 Sutras Covered',
-      description: 'Complete coverage of all Yoga Sutras with detailed explanations and commentary'
+      description: 'Complete coverage of all Yoga Sutras with detailed explanations in Hindi'
     },
     {
       icon: 'Clock',
@@ -46,24 +46,29 @@ export const yogaDarshanCourseData: CourseContent = {
       description: 'Comprehensive video lessons with structured learning path'
     },
     {
-      icon: 'Award',
-      title: 'Expert Instruction',
-      description: 'Taught by experienced instructor Vishal Chaurasia'
-    },
-    {
-      icon: 'Video',
-      title: 'HD Video Lessons',
-      description: '44 high-quality video lessons for deep understanding'
-    },
-    {
-      icon: 'FileCheck',
-      title: 'Study Materials',
+      icon: 'FileText',
+      title: 'Quizzes and Notes',
       description: 'Downloadable notes, quizzes, and supplementary resources'
     },
     {
+      icon: 'RefreshCw',
+      title: 'Free Future Updates',
+      description: 'Get all future course updates and content additions for free'
+    },
+    {
+      icon: 'Calendar',
+      title: '1 Year Access',
+      description: 'Full access to all course materials for one year'
+    },
+    {
+      icon: 'Award',
+      title: 'Certification',
+      description: 'Receive a certificate upon successful course completion'
+    },
+    {
       icon: 'Users',
-      title: 'Community Access',
-      description: 'Join a vibrant community of spiritual seekers'
+      title: 'Community Forum',
+      description: 'Join a vibrant community of spiritual seekers and practitioners'
     }
   ],
 
@@ -84,7 +89,8 @@ export const yogaDarshanCourseData: CourseContent = {
     {
       title: 'Samadhi Pada (पाद 1)',
       subtitle: 'The State of Absorption',
-      duration: '01:55:28',
+      duration: '1:55:28',
+      videoCount: 11,
       topics: [
         'What is Yoga? (योग क्या है?)',
         'Types of Vritti (वृत्ति के प्रकार)',
@@ -98,12 +104,14 @@ export const yogaDarshanCourseData: CourseContent = {
         'Types of Sampragyaat Samadhi (सम्प्रज्ञात समाधि के प्रकार)',
         'Sabeej and Nirbeej Samadhi (सबीज और निर्बीज समाधि)'
       ],
-      description: '51 Sutras • 11 Videos — Introduction to Yoga and the nature of consciousness'
+      description: '51 Sutras • Introduction to Yoga and the nature of consciousness',
+      isFree: true
     },
     {
       title: 'Sadhana Pada (पाद 2)',
       subtitle: 'The Path of Practice',
-      duration: '01:51:14',
+      duration: '1:48:42',
+      videoCount: 16,
       topics: [
         'Kriya Yoga (क्रिया योग)',
         'Klesha — Five Afflictions (पंच क्लेश)',
@@ -114,12 +122,13 @@ export const yogaDarshanCourseData: CourseContent = {
         'Pranayama — Breath Control (प्राणायाम)',
         'Benefits of Pranayama (प्राणायाम के लाभ)'
       ],
-      description: '55 Sutras • 15 Videos — The practice of Yoga and the eight limbs'
+      description: '55 Sutras • The practice of Yoga and the eight limbs'
     },
     {
       title: 'Vibhuti Pada (पाद 3)',
       subtitle: 'Supernatural Powers',
-      duration: '02:06:45',
+      duration: '2:06:45',
+      videoCount: 2,
       topics: [
         'Dharana — Concentration (धारणा)',
         'Dhyana — Meditation (ध्यान)',
@@ -128,12 +137,13 @@ export const yogaDarshanCourseData: CourseContent = {
         'Siddhis — Supernatural Powers (सिद्धियाँ)',
         'Advanced Siddhis (उच्च सिद्धियाँ)'
       ],
-      description: '55 Sutras • 2 Videos — Supernatural powers and advanced practices'
+      description: '55 Sutras • Supernatural powers and advanced practices'
     },
     {
       title: 'Kaivalya Pada (पाद 4)',
       subtitle: 'Liberation',
-      duration: '01:48:42',
+      duration: '1:51:14',
+      videoCount: 15,
       topics: [
         'Types of Siddhis (सिद्धियों के प्रकार)',
         'Karma Samskar (कर्म संस्कार)',
@@ -142,48 +152,54 @@ export const yogaDarshanCourseData: CourseContent = {
         'Discriminative Knowledge (विवेक ज्ञान)',
         'Kaivalya — Liberation (कैवल्य — मुक्ति)'
       ],
-      description: '34 Sutras • 16 Videos — Liberation and the ultimate goal of Yoga'
+      description: '34 Sutras • Liberation and the ultimate goal of Yoga'
     }
   ],
 
   outcomes: [
     {
-      title: 'Deep Understanding of Yoga Philosophy',
-      description: 'Gain comprehensive knowledge of all 195 Yoga Sutras and their practical applications in daily life'
+      title: 'दैनिक-तनाव को दूर कर पाएंगे',
+      description: 'Learn to manage and eliminate daily stress through ancient Yoga philosophy principles and practical meditation techniques'
     },
     {
-      title: 'Master Meditation Techniques',
-      description: 'Learn authentic meditation practices from the Yoga tradition for mental clarity and spiritual growth'
+      title: 'कठिन निर्णयों को आसानी से ले पाएंगे',
+      description: 'Develop clarity of mind to make better decisions using the profound wisdom of Yoga Sutras'
+    },
+    {
+      title: 'सभी प्रकार के भय से मुक्त होंगे',
+      description: 'Overcome various fears and anxieties through deep spiritual understanding and self-awareness'
+    },
+    {
+      title: 'गीता के गूढ़ रहस्यों को समझ पाएंगे',
+      description: 'Gain profound insights into the Bhagavad Gita and other ancient scriptures through Yoga philosophy'
     },
     {
       title: 'Control Over Mental Modifications',
-      description: 'Develop the ability to control vrittis (mental modifications) and achieve inner peace'
-    },
-    {
-      title: 'Overcome Life\'s Challenges',
-      description: 'Apply yogic principles to overcome stress, fear, anxiety, and make better decisions'
-    },
-    {
-      title: 'Connect with Spiritual Wisdom',
-      description: 'Understand the deep connections between Yoga Darshan and other scriptures like Bhagavad Gita'
+      description: 'Master the ability to control vrittis (mental modifications) and achieve lasting inner peace'
     },
     {
       title: 'Path to Self-Realization',
-      description: 'Progress on the spiritual path towards liberation (Kaivalya) through systematic practice'
+      description: 'Progress systematically on the spiritual path towards liberation (Kaivalya) through authentic practice'
     }
   ],
 
   instructor: {
-    name: 'Vishal Chaurasia',
-    title: 'Yoga Philosophy Expert',
-    bio: 'Vishal Chaurasia is a dedicated scholar of Indian philosophy with deep expertise in Yoga Darshan. With years of teaching experience, he has helped thousands of students understand and apply the profound wisdom of Patanjali\'s Yoga Sutras in their daily lives. His teaching style is known for making complex philosophical concepts accessible and practical for modern seekers.',
+    name: 'विशाल चौरसिया (Vishal Chaurasia)',
+    title: 'Founder & Yoga Philosophy Expert',
+    bio: 'Vishal Chaurasia is the founder of Shikshanam and a dedicated scholar of Indian philosophy with deep expertise in Yoga Darshan. With years of teaching experience, he has helped thousands of students understand and apply the profound wisdom of Patanjali\'s Yoga Sutras in their daily lives. His teaching style is known for making complex philosophical concepts accessible and practical for modern seekers.',
     experience: '10+ years teaching Yoga Philosophy and Sanskrit texts',
     specialization: [
       'Patanjali Yoga Sutras',
       'Meditation & Samadhi',
       'Indian Philosophy',
       'Sanskrit Texts'
-    ]
+    ],
+    image: '/assets/instructors/vishal-chaurasia.jpg',
+    socialLinks: {
+      twitter: '#',
+      linkedin: '#',
+      youtube: '#'
+    }
   },
 
   testimonials: [
@@ -228,15 +244,15 @@ export const yogaDarshanCourseData: CourseContent = {
   faqs: [
     {
       question: 'Is this course suitable for beginners?',
-      answer: 'Yes! While it covers deep philosophical concepts, the course is designed to be accessible to beginners. The instructor explains everything from basics, making it suitable for anyone interested in Yoga philosophy, regardless of prior knowledge.'
+      answer: 'Yes! This course is specifically designed for beginners. The instructor explains everything from basics, making it accessible to anyone interested in Yoga philosophy, regardless of prior knowledge. The level is marked as "Beginner" and all concepts are taught in easy-to-understand Hindi.'
     },
     {
       question: 'In which language is the course taught?',
-      answer: 'The course is taught in Hindi with Sanskrit terms explained. This makes it perfect for Hindi speakers who want to understand Yoga Sutras in their mother tongue.'
+      answer: 'The course is taught in Hindi (हिन्दी) with Sanskrit terms explained. This makes it perfect for Hindi speakers who want to understand Yoga Sutras in their mother tongue.'
     },
     {
       question: 'How long do I have access to the course?',
-      answer: 'You get 1 year of access to all course materials including videos, notes, and quizzes. You can learn at your own pace and revisit the content as many times as you want during this period.'
+      answer: 'You get 1 year of full access to all course materials including videos, notes, quizzes, and the community forum. You can learn at your own pace and revisit the content as many times as you want during this period.'
     },
     {
       question: 'Are there any prerequisites for this course?',
@@ -244,25 +260,55 @@ export const yogaDarshanCourseData: CourseContent = {
     },
     {
       question: 'Will I get a certificate upon completion?',
-      answer: 'Yes! Upon successful completion of the course and quizzes, you will receive a certificate of completion that you can share on your resume or social profiles.'
+      answer: 'Yes! Upon successful completion of the course and quizzes, you will receive a certificate of completion that you can share on your resume, LinkedIn profile, or other social platforms.'
     },
     {
       question: 'Can I ask questions during the course?',
-      answer: 'Yes! You have access to the community forum where you can ask questions, discuss concepts with fellow students, and get clarifications from the instructor.'
+      answer: 'Yes! You have access to the community forum where you can ask questions, discuss concepts with fellow students, and get clarifications from the instructor and teaching assistants.'
     },
     {
       question: 'Is this course based on authentic texts?',
-      answer: 'Absolutely! The course is based on Patanjali\'s original Yoga Sutras and follows traditional commentaries while making the content relevant and applicable to modern life.'
+      answer: 'Absolutely! The course is based on Patanjali\'s original Yoga Sutras and follows traditional commentaries while making the content relevant and applicable to modern life. All 195 sutras are covered systematically.'
     },
     {
       question: 'What is the refund policy?',
-      answer: 'We offer a 7-day money-back guarantee. If you\'re not satisfied with the course within the first 7 days, you can request a full refund, no questions asked.'
+      answer: 'We offer a 7-day money-back guarantee. If you\'re not satisfied with the course within the first 7 days of purchase, you can request a full refund, no questions asked.'
+    },
+    {
+      question: 'Is this a physical Yoga or Hatha Yoga course?',
+      answer: 'No. This is a philosophy course focused on understanding the Yoga Sutras intellectually and spiritually. It does NOT include physical asana practice, Hatha Yoga, or exercise demonstrations. The focus is entirely on the philosophical and meditative aspects of Yoga.'
+    },
+    {
+      question: 'Do I get any study materials?',
+      answer: 'Yes! The course includes downloadable notes, quizzes for self-assessment, and supplementary resources. You also get free access to all future updates and additional materials added to the course.'
     }
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/6440e5d6e4b0c4378b6240e5?pid=p2',
-    contactNumber: '9910032165'
-  }
-};
+    checkoutLink: 'https://courses.shikshanam.in',
+    contactPhone: '+91-9910032165',
+    supportEmail: 'support@shikshanam.in'
+  },
 
+  certificate: {
+    title: 'Yoga Darshan Certificate',
+    description: 'Upon successful completion, you\'ll receive a beautiful certificate recognizing your achievement in mastering the Yoga Sutras of Patanjali.',
+    features: [
+      'Professionally designed certificate',
+      'Digitally verifiable',
+      'Includes course completion details',
+      'Sharable on LinkedIn and social media'
+    ],
+    image: '/assets/certificates/yoga-darshan-certificate-preview.png'
+  },
+
+  demoVideos: [
+    {
+      title: 'Samadhi Pada - Free Demo Video',
+      description: 'Watch a preview of the first module to experience the teaching style and content quality',
+      url: '/assets/videos/samadhi-pada-demo.mp4', // Placeholder URL
+      duration: '~15:00',
+      isFree: true
+    }
+  ]
+};

@@ -2,68 +2,69 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const chanakyaCodeCourseData: CourseContent = {
   metadata: {
-    title: 'The Chanakya Code',
-    subtitle: 'Ancient Wisdom for Modern Success',
-    description: 'Master practical wisdom from Chanakya\'s Arthashastra and Chanakya Niti. Learn timeless strategies for leadership, decision-making, and success in personal and professional life.',
-    type: 'Premium Course',
+    title: 'Chanakya\'s Code',
+    subtitle: 'Dominate Negotiation & Business Tactics!',
+    description: 'Master the ancient art of negotiation, persuasion, and strategic leadership with Chanakya\'s timeless wisdom. Learn the 10 Secret Codes that have guided emperors and business leaders for over 2,300 years.',
+    type: 'Premium Strategic Course',
     price: '₹2,999',
-    originalPrice: '₹4,499',
-    savings: '33%',
-    duration: '12-15 Classes',
+    originalPrice: '₹4,999',
+    savings: '40%',
+    duration: '6+ Hours',
     level: 'All Levels',
     status: 'available',
     features: [
-      'Leadership Strategies',
-      'Decision Making',
-      'Practical Wisdom',
-      'Life Skills',
+      'Persuasion Mastery',
+      'Negotiation Tactics',
+      'Leadership Skills',
+      'Team Building',
+      'Competitive Strategies',
       'Certificate',
       '1 Year Access',
-      'Study Materials',
-      'Real-world Application'
+      'WhatsApp Community',
+      '20 Lessons',
+      '10+ Worksheets'
     ],
     thumbnail: '/assets/chanakya-code-course.png',
     category: 'practical',
-    priority: 0.88
+    priority: 0.95
   },
 
   stats: {
-    students: '2.5K+',
+    students: '3.2K+',
     rating: 4.9,
-    reviews: 145,
-    satisfaction: '98%'
+    reviews: 185,
+    satisfaction: '98%',
+    hours: '6+',
+    lessons: 20,
+    worksheets: '10+',
+    accessYears: 1
   },
 
   highlights: [
     {
-      icon: 'Target',
-      title: 'Strategic Thinking',
-      description: 'Master Chanakya\'s proven strategies for success and leadership'
+      icon: 'MessageSquare',
+      title: 'Persuasion',
+      description: 'Master the art of influencing and convincing others with ethical strategies'
     },
     {
-      icon: 'Clock',
-      title: '12-15 Classes',
-      description: 'Practical wisdom you can apply immediately'
+      icon: 'Handshake',
+      title: 'Negotiation Mastery',
+      description: 'Win deals and create win-win situations using Chanakya\'s tactics'
     },
     {
-      icon: 'Award',
-      title: 'Ancient Wisdom',
-      description: 'Time-tested principles from Arthashastra and Niti'
-    },
-    {
-      icon: 'TrendingUp',
-      title: 'Career Growth',
-      description: 'Enhance your professional and personal effectiveness'
-    },
-    {
-      icon: 'FileCheck',
-      title: 'Real Examples',
-      description: 'Modern applications of ancient strategies'
+      icon: 'Crown',
+      title: 'Leadership',
+      description: 'Lead teams and organizations with ancient wisdom and modern application'
     },
     {
       icon: 'Users',
-      title: 'Expert Teaching',
-      description: 'Learn from experienced instructors'
+      title: 'Team Building',
+      description: 'Build cohesive, high-performing teams using strategic principles'
+    },
+    {
+      icon: 'Swords',
+      title: 'Competitive Strategies',
+      description: 'Outsmart competition and dominate your field with proven tactics'
     }
   ],
 
@@ -82,94 +83,144 @@ export const chanakyaCodeCourseData: CourseContent = {
 
   syllabus: [
     {
-      title: 'Introduction to Chanakya',
-      subtitle: 'The Master Strategist',
-      duration: '2 Classes',
+      title: 'Secret Code 1: The Art of Persuasion',
+      subtitle: 'वाग्मिता सामर्थ्यम् (Vāgmitā Sāmarthyam)',
+      duration: '2 Lessons',
       topics: [
-        'Who was Chanakya?',
-        'Historical context and achievements',
-        'Arthashastra: The science of wealth and power',
-        'Chanakya Niti: Practical wisdom',
-        'Relevance in modern times',
-        'Overview of key teachings'
+        'Understanding human psychology and motivations',
+        'Crafting compelling arguments',
+        'Using emotional intelligence in persuasion',
+        'Ethical influence techniques',
+        'Reading body language and micro-expressions'
       ],
-      description: 'Understanding the master and his timeless wisdom'
+      description: 'Master the ancient art of persuasion to influence decisions without force',
+      caseStudy: 'How Chanakya convinced Chandragupta to challenge the Nanda Empire'
     },
     {
-      title: 'Leadership & Governance',
-      subtitle: 'Rajdharma',
-      duration: '3 Classes',
+      title: 'Secret Code 2: Negotiation Strategies',
+      subtitle: 'समझौता कौशल (Samjhautā Kaushal)',
+      duration: '2 Lessons',
       topics: [
-        'Qualities of a great leader',
-        'The seven pillars of governance',
-        'Decision-making frameworks',
-        'Managing teams and organizations',
-        'Dealing with challenges',
-        'Building trust and authority',
-        'Modern leadership applications'
+        'Four Upayas: Sama, Dana, Bheda, Danda',
+        'When to compromise and when to stand firm',
+        'Creating win-win situations',
+        'Handling difficult negotiators',
+        'Power dynamics in negotiations'
       ],
-      description: 'Master leadership principles from Arthashastra'
+      description: 'Learn Chanakya\'s negotiation framework used to unite ancient India',
+      caseStudy: 'Chanakya\'s diplomatic strategies in forming alliances against Greek invasion'
     },
     {
-      title: 'Strategic Thinking',
-      subtitle: 'Neeti & Tactics',
-      duration: '3 Classes',
+      title: 'Secret Code 3: Strategic Leadership',
+      subtitle: 'नेतृत्व सिद्धांत (Netṛtva Siddhānta)',
+      duration: '2 Lessons',
       topics: [
-        'Four upayas (strategies)',
-        'Sama (Conciliation)',
-        'Dana (Gifts/Incentives)',
-        'Bheda (Division/Differentiation)',
-        'Danda (Punishment/Force)',
-        'When to use each strategy',
-        'Analyzing situations strategically',
-        'Risk assessment and mitigation'
+        'Seven pillars of effective governance',
+        'Leading through vision and values',
+        'Decision-making in uncertainty',
+        'Building loyal teams',
+        'Balancing authority and empathy'
       ],
-      description: 'Learn Chanakya\'s strategic frameworks'
+      description: 'Develop leadership qualities that inspire and command respect',
+      caseStudy: 'How Chanakya groomed Chandragupta from a commoner to emperor'
     },
     {
-      title: 'Personal Development',
-      subtitle: 'Self-Mastery',
-      duration: '2-3 Classes',
+      title: 'Secret Code 4: Team Building & Unity',
+      subtitle: 'संगठन शक्ति (Saṅgaṭhan Shakti)',
+      duration: '2 Lessons',
       topics: [
-        'Self-discipline and control',
-        'Time management',
-        'Building character',
-        'Continuous learning',
-        'Emotional intelligence',
-        'Overcoming weaknesses',
-        'Developing strengths'
+        'Identifying and leveraging individual strengths',
+        'Creating high-performance teams',
+        'Managing conflicts within teams',
+        'Building trust and loyalty',
+        'Motivating diverse personalities'
       ],
-      description: 'Personal growth through Chanakya\'s wisdom'
+      description: 'Build cohesive teams that achieve extraordinary results',
+      caseStudy: 'Mauryan army organization and espionage network under Chanakya'
     },
     {
-      title: 'Relationships & Networks',
-      subtitle: 'Mitra Niti',
-      duration: '2-3 Classes',
+      title: 'Secret Code 5: Competitive Intelligence',
+      subtitle: 'गुप्तचर विद्या (Guptachar Vidyā)',
+      duration: '2 Lessons',
       topics: [
-        'Identifying true friends',
-        'Dealing with enemies',
-        'Building alliances',
-        'Communication skills',
-        'Understanding human nature',
-        'Trust and loyalty',
-        'Professional networking'
+        'Understanding your competition',
+        'Gathering market intelligence ethically',
+        'Anticipating competitor moves',
+        'Protecting your strategies',
+        'Turning weaknesses into strengths'
       ],
-      description: 'Master the art of relationships'
+      description: 'Outsmart competition using strategic intelligence gathering',
+      caseStudy: 'Chanakya\'s spy network that brought down the Nanda dynasty'
     },
     {
-      title: 'Practical Applications',
-      subtitle: 'Modern Success',
-      duration: '2 Classes',
+      title: 'Secret Code 6: Crisis Management',
+      subtitle: 'संकट प्रबंधन (Saṅkaṭ Prabandhan)',
+      duration: '2 Lessons',
       topics: [
-        'Career advancement strategies',
-        'Business and entrepreneurship',
-        'Conflict resolution',
-        'Negotiation skills',
-        'Crisis management',
-        'Building prosperity',
-        'Creating lasting impact'
+        'Staying calm under pressure',
+        'Quick decision-making in crisis',
+        'Converting challenges into opportunities',
+        'Risk assessment and mitigation',
+        'Recovery and resilience strategies'
       ],
-      description: 'Applying Chanakya\'s wisdom to modern life'
+      description: 'Navigate crises with clarity and emerge stronger',
+      caseStudy: 'How Chanakya handled Alexander\'s invasion threat'
+    },
+    {
+      title: 'Secret Code 7: Resource Optimization',
+      subtitle: 'साधन संपदा (Sādhan Sampadā)',
+      duration: '2 Lessons',
+      topics: [
+        'Maximizing limited resources',
+        'Strategic allocation and prioritization',
+        'Building economic strength',
+        'Treasury management principles',
+        'Creating sustainable growth'
+      ],
+      description: 'Achieve more with less through strategic resource management',
+      caseStudy: 'Economic reforms that made Mauryan Empire the richest of its time'
+    },
+    {
+      title: 'Secret Code 8: Relationship Mastery',
+      subtitle: 'मैत्री नीति (Maitrī Nīti)',
+      duration: '2 Lessons',
+      topics: [
+        'Identifying true allies and hidden enemies',
+        'Building strategic partnerships',
+        'Managing difficult relationships',
+        'Network building and maintenance',
+        'Diplomacy and tact'
+      ],
+      description: 'Build powerful networks and navigate complex relationships',
+      caseStudy: 'Chanakya\'s Mandala theory of allies and enemies'
+    },
+    {
+      title: 'Secret Code 9: Self-Mastery',
+      subtitle: 'आत्म संयम (Ātma Saṅyam)',
+      duration: '2 Lessons',
+      topics: [
+        'Controlling emotions and impulses',
+        'Developing discipline and focus',
+        'Time management mastery',
+        'Building unshakeable confidence',
+        'Continuous self-improvement'
+      ],
+      description: 'Master yourself before attempting to lead others',
+      caseStudy: 'Chanakya\'s personal discipline and ascetic lifestyle'
+    },
+    {
+      title: 'Secret Code 10: Legacy & Impact',
+      subtitle: 'विरासत निर्माण (Virāsat Nirmāṇ)',
+      duration: '2 Lessons',
+      topics: [
+        'Creating lasting impact',
+        'Building institutions that outlive you',
+        'Succession planning',
+        'Ethical foundations for sustainability',
+        'Measuring true success'
+      ],
+      description: 'Build a legacy that transforms generations',
+      caseStudy: 'How Chanakya\'s principles still guide leaders 2300 years later'
     }
   ],
 
@@ -200,95 +251,161 @@ export const chanakyaCodeCourseData: CourseContent = {
     }
   ],
 
-  instructor: {
-    name: 'Prof. Rajesh Verma',
-    title: 'Chanakya Wisdom Expert',
-    bio: 'Prof. Rajesh Verma is a renowned scholar and corporate trainer who has helped thousands master Chanakya\'s wisdom for modern success. With expertise in both ancient texts and contemporary business, he bridges timeless philosophy with practical application. His engaging teaching style makes ancient wisdom immediately applicable.',
-    experience: '18+ years teaching and consulting',
-    specialization: [
-      'Arthashastra',
-      'Leadership Development',
-      'Strategic Thinking',
-      'Applied Philosophy'
-    ]
-  },
+  instructors: [
+    {
+      id: 'ravi-singh-choudhary',
+      name: 'Ravi Singh Choudhary',
+      title: 'Strategic Business Advisor & Chanakya Expert',
+      bio: 'Ravi Singh Choudhary is a celebrated business strategist and Chanakya wisdom expert with over 15 years of experience in corporate leadership and negotiation. He has trained Fortune 500 executives, entrepreneurs, and government officials in applying ancient strategic principles to modern challenges. His unique approach combines Chanakya\'s timeless wisdom with cutting-edge business tactics.',
+      image: 'https://shikshanam.in/wp-content/uploads/2024/12/DSC08101-scaled-e1735111288375.jpg',
+      experience: '15+ years in strategic consulting',
+      specialization: [
+        'Business Negotiation',
+        'Strategic Leadership',
+        'Chanakya Niti',
+        'Corporate Governance'
+      ],
+      achievements: [
+        'Trained 5000+ business leaders',
+        'Author of "The Modern Chanakya"',
+        'TEDx Speaker on Ancient Strategy'
+      ]
+    },
+    {
+      id: 'vishal-chaurasia',
+      name: 'Vishal Chaurasia',
+      title: 'Founder & Lead Instructor',
+      bio: 'IIT Patna graduate with a distinguished career in top PSUs before dedicating himself to disseminating ancient Indian knowledge. Vishal founded Shikshanam with a vision to make India\'s philosophical heritage accessible to modern learners. Through his popular Hyper Quest channel, he has inspired millions to reconnect with their cultural roots.',
+      image: '/images/instructors/vishal-chaurasia.jpg',
+      experience: 'IIT Patna | Former PSU Executive',
+      specialization: [
+        'Ancient Indian Philosophy',
+        'Vedanta',
+        'Strategic Wisdom',
+        'Educational Innovation'
+      ],
+      achievements: [
+        'Hyper Quest Channel Creator',
+        'Reached 100K+ learners',
+        'Featured in Education Times'
+      ]
+    }
+  ],
 
   testimonials: [
     {
-      name: 'Amit Patel',
+      name: 'Rajesh Kumar',
+      role: 'CEO, Tech Startup',
+      category: 'Business',
+      content: 'The negotiation strategies from this course helped me close a ₹50 crore deal. Chanakya\'s 4 Upayas framework is pure genius! This is not just theory - it\'s battle-tested wisdom that works.',
+      rating: 5,
+      image: '/images/testimonials/avatar-1.jpg'
+    },
+    {
+      name: 'Priya Malhotra',
+      role: 'VP Operations, Fortune 500',
+      category: 'Leadership',
+      content: 'I\'ve attended numerous leadership programs, but none compare to the depth and practicality of Chanakya\'s Code. The persuasion techniques transformed how I lead my team of 200+ people.',
+      rating: 5,
+      image: '/images/testimonials/avatar-2.jpg'
+    },
+    {
+      name: 'Amit Sharma',
       role: 'Business Owner',
-      content: 'Game-changer! Chanakya\'s strategies have transformed how I run my business. Profits up 40% in 6 months.',
-      rating: 5
+      category: 'Business',
+      content: 'Game-changer! Applied the competitive intelligence strategies and my business grew 75% in 8 months. Ravi Sir\'s real-world examples made everything crystal clear.',
+      rating: 5,
+      image: '/images/testimonials/avatar-3.jpg'
     },
     {
-      name: 'Neha Gupta',
-      role: 'Corporate Manager',
-      content: 'Best investment in my career. The leadership principles are pure gold. Got promoted within 4 months!',
-      rating: 5
-    },
-    {
-      name: 'Rohan Singh',
-      role: 'Entrepreneur',
-      content: 'Practical, powerful, and proven. These ancient strategies work incredibly well in modern business.',
-      rating: 5
-    },
-    {
-      name: 'Priya Sharma',
-      role: 'Team Leader',
-      content: 'My team management has improved dramatically. The relationship strategies are brilliant!',
-      rating: 5
+      name: 'Neha Patel',
+      role: 'Senior Manager, MNC',
+      category: 'Leadership',
+      content: 'The crisis management module saved my project during a major setback. I used Chanakya\'s principles to turn a disaster into an opportunity. Promoted to GM within 6 months!',
+      rating: 5,
+      image: '/images/testimonials/avatar-4.jpg'
     },
     {
       name: 'Vikram Reddy',
-      role: 'Professional',
-      content: 'Every class is packed with actionable wisdom. Already seeing results in my career and personal life.',
-      rating: 5
+      role: 'Entrepreneur',
+      category: 'Business',
+      content: 'The team building strategies are phenomenal. Built a cohesive team using Chanakya\'s principles - productivity increased 60%. Every entrepreneur needs this course!',
+      rating: 5,
+      image: '/images/testimonials/avatar-5.jpg'
     },
     {
-      name: 'Anita Joshi',
+      name: 'Anjali Singh',
+      role: 'HR Director',
+      category: 'Professional',
+      content: 'The relationship mastery module revolutionized how I handle workplace conflicts. The "identifying allies and enemies" framework is brilliant and ethical.',
+      rating: 5,
+      image: '/images/testimonials/avatar-6.jpg'
+    },
+    {
+      name: 'Karthik Nair',
+      role: 'Sales Head',
+      category: 'Professional',
+      content: 'My conversion rate doubled after applying the persuasion techniques. The psychology behind Chanakya\'s methods is incredible. Worth every rupee!',
+      rating: 5,
+      image: '/images/testimonials/avatar-7.jpg'
+    },
+    {
+      name: 'Deepak Verma',
       role: 'Consultant',
-      content: 'Prof. Verma makes ancient wisdom so relevant! My clients love the strategic frameworks I learned.',
-      rating: 5
+      category: 'Professional',
+      content: 'Resource optimization strategies helped me achieve 3x more with the same budget. Vishal Sir and Ravi Sir are masters at making ancient wisdom practical.',
+      rating: 5,
+      image: '/images/testimonials/avatar-8.jpg'
     }
   ],
 
   faqs: [
     {
-      question: 'Is this course only for business people?',
-      answer: 'No! Chanakya\'s wisdom applies to all areas of life - career, relationships, personal growth, and success. Anyone seeking practical wisdom can benefit.'
+      question: 'Who should take this course?',
+      answer: 'This course is perfect for business owners, corporate professionals, entrepreneurs, team leaders, consultants, and anyone looking to enhance their negotiation, leadership, and strategic thinking skills. Chanakya\'s wisdom applies to all fields and life situations.'
     },
     {
-      question: 'How is this different from modern self-help?',
-      answer: 'Unlike trendy advice, Chanakya\'s principles are time-tested over 2300+ years. They\'re based on deep understanding of human nature and proven strategies, not temporary trends.'
+      question: 'Do I need any prior knowledge?',
+      answer: 'No prior knowledge required! The course is designed for all levels. Whether you\'re a beginner or experienced professional, you\'ll gain valuable insights. We explain all concepts clearly with modern examples and real-world applications.'
     },
     {
-      question: 'Can beginners understand this?',
-      answer: 'Absolutely! The course is designed to be accessible to everyone, with clear explanations and modern examples. No prior knowledge needed.'
+      question: 'How is this different from other leadership courses?',
+      answer: 'Unlike modern courses that follow trends, Chanakya\'s principles are time-tested over 2,300+ years. We combine ancient strategic wisdom with contemporary business tactics, taught by experts with real corporate experience. You get battle-tested strategies that have stood the test of time.'
     },
     {
-      question: 'Will I learn Sanskrit?',
-      answer: 'Sanskrit terms are explained, but the focus is on understanding and applying the wisdom, not language learning.'
+      question: 'How long do I have access to the course?',
+      answer: 'You get 1 year of unlimited access to all course materials, including video lessons, worksheets, and the exclusive WhatsApp community. You can learn at your own pace and revisit lessons anytime.'
     },
     {
-      question: 'How quickly can I see results?',
-      answer: 'Many students report immediate improvements in decision-making and relationships. Long-term benefits develop as you consistently apply the principles.'
+      question: 'Will I get practical tools and worksheets?',
+      answer: 'Yes! The course includes 10+ practical worksheets, case study analyses, and implementation templates. Each Secret Code comes with actionable frameworks you can apply immediately to your work and life.'
     },
     {
-      question: 'Is this ethical?',
-      answer: 'Yes! Chanakya\'s wisdom emphasizes dharma (righteousness) as the foundation. The strategies are ethical and focused on long-term success, not manipulation.'
+      question: 'What\'s included in the WhatsApp community?',
+      answer: 'You\'ll join an exclusive community of fellow learners where you can discuss strategies, share experiences, get doubt resolution, and network with like-minded professionals. Our instructors also participate to provide guidance.'
     },
     {
-      question: 'Can I apply this at work immediately?',
-      answer: 'Definitely! Each class includes practical applications and real-world examples you can implement right away.'
+      question: 'Is the certificate recognized?',
+      answer: 'Yes! You\'ll receive a certificate of completion from Shikshanam that demonstrates your mastery of Chanakya\'s strategic wisdom. It\'s a valuable addition to your professional profile and LinkedIn.'
     },
     {
-      question: 'Do I get a certificate?',
-      answer: 'Yes! Upon completion, you receive a certificate that demonstrates your understanding of strategic wisdom.'
+      question: 'Can I get a refund if I\'m not satisfied?',
+      answer: 'We have a no-refund policy as mentioned on the course page. However, we\'re confident you\'ll love the course - check out our 98% satisfaction rate and hundreds of success stories!'
+    },
+    {
+      question: 'How do I enroll?',
+      answer: 'Click the "Enroll Now" button, complete the secure payment process, and get instant access to all course materials. For any queries, contact us at support@shikshanam.in or call +91-9910032165.'
     }
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/the-chanakya-code?pid=p1'
-  }
+    checkoutLink: 'https://courses.shikshanam.in/single-checkout/676d65e491299d479661c3aa?pid=p1',
+    whatsappGroup: true,
+    supportEmail: 'support@shikshanam.in',
+    supportPhone: '+91-9910032165'
+  },
+
+  videoPromo: 'https://youtu.be/ofZfXA29hY8',
+  heroImage: 'https://shikshanam.in/wp-content/uploads/2024/12/Acharya-Chanakya-1.png'
 };
 

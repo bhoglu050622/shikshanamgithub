@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import { 
   X, 
   BookOpen,
@@ -91,22 +92,22 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                   {/* Main Navigation */}
                   <nav className="space-y-1">
                     {mobileNavItems.map((item, index) => (
-                      <motion.a
-                        key={item.name}
-                        href={item.href}
-                        onClick={handleLinkClick}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 group"
-                      >
-                        <item.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {item.name}
-                        </span>
-                      </motion.a>
+                      <Link key={item.name} href={item.href} passHref legacyBehavior>
+                        <motion.a
+                          onClick={handleLinkClick}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-200 group"
+                        >
+                          <item.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                          <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {item.name}
+                          </span>
+                        </motion.a>
+                      </Link>
                     ))}
                   </nav>
 

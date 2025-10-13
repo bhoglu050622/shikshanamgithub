@@ -1,0 +1,546 @@
+/* Vaisheshik Darshan Premium Landing Page Styles */
+
+:root {
+  /* Color Tokens - Warm, Scholarly Palette */
+  --vaisheshik-bg-cream: #FFF9F2;
+  --vaisheshik-primary-indigo: #0D3B4A;
+  --vaisheshik-accent-saffron: #D97B2A;
+  --vaisheshik-muted-gray: #6C6C6C;
+  --vaisheshik-cream-light: #FAF7F2;
+  --vaisheshik-indigo-light: #1A4F5E;
+  --vaisheshik-saffron-light: #E89050;
+  
+  /* Spacing - 8px base scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-2xl: 2rem;
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(13, 59, 74, 0.08);
+  --shadow-medium: 0 8px 30px rgba(13, 59, 74, 0.12);
+  --shadow-strong: 0 12px 40px rgba(13, 59, 74, 0.16);
+}
+
+/* Base Layout */
+.vaisheshik-premium-page {
+  background-color: var(--vaisheshik-bg-cream);
+  color: var(--vaisheshik-primary-indigo);
+  font-family: 'Inter', 'Manrope', system-ui, sans-serif;
+}
+
+/* Typography */
+.vaisheshik-heading-display {
+  font-family: 'Playfair Display', 'Merriweather', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--vaisheshik-primary-indigo);
+}
+
+.vaisheshik-heading-devanagari {
+  font-family: 'Noto Sans Devanagari', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--vaisheshik-accent-saffron);
+}
+
+.vaisheshik-body-text {
+  font-family: 'Inter', 'Manrope', system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--vaisheshik-muted-gray);
+}
+
+/* Hero Section */
+.vaisheshik-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--vaisheshik-bg-cream) 0%, var(--vaisheshik-cream-light) 100%);
+  padding: var(--spacing-2xl) var(--spacing-md);
+  overflow: hidden;
+}
+
+.vaisheshik-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .vaisheshik-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.vaisheshik-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vaisheshik-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Badge Strip */
+.vaisheshik-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.vaisheshik-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(13, 59, 74, 0.08);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--vaisheshik-primary-indigo);
+}
+
+/* Feature Chips */
+.vaisheshik-feature-chips {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vaisheshik-accent-saffron) transparent;
+}
+
+.vaisheshik-feature-chips::-webkit-scrollbar {
+  height: 6px;
+}
+
+.vaisheshik-feature-chips::-webkit-scrollbar-thumb {
+  background: var(--vaisheshik-accent-saffron);
+  border-radius: 3px;
+}
+
+.vaisheshik-feature-chip {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  min-width: 140px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-feature-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.vaisheshik-feature-chip-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--vaisheshik-accent-saffron);
+}
+
+.vaisheshik-feature-chip-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--vaisheshik-primary-indigo);
+}
+
+/* Syllabus Cards */
+.vaisheshik-syllabus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl) 0;
+}
+
+@media (min-width: 768px) {
+  .vaisheshik-syllabus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.vaisheshik-syllabus-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.vaisheshik-syllabus-card:hover {
+  border-color: var(--vaisheshik-accent-saffron);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.vaisheshik-syllabus-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: var(--spacing-md);
+}
+
+.vaisheshik-syllabus-card-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--vaisheshik-accent-saffron), var(--vaisheshik-saffron-light));
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.vaisheshik-syllabus-card-duration {
+  font-size: 0.875rem;
+  color: var(--vaisheshik-muted-gray);
+  font-weight: 500;
+}
+
+/* Purchase Card */
+.vaisheshik-purchase-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-strong);
+  padding: var(--spacing-xl);
+  border: 2px solid var(--vaisheshik-accent-saffron);
+}
+
+/* Desktop sticky */
+@media (min-width: 1024px) {
+  .vaisheshik-purchase-card-sticky {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+}
+
+/* Mobile bottom sheet */
+@media (max-width: 1023px) {
+  .vaisheshik-purchase-card-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    box-shadow: 0 -4px 20px rgba(13, 59, 74, 0.2);
+  }
+}
+
+.vaisheshik-price {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--vaisheshik-primary-indigo);
+  line-height: 1;
+}
+
+.vaisheshik-price-original {
+  font-size: 1.5rem;
+  color: var(--vaisheshik-muted-gray);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.vaisheshik-features-checklist {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0;
+}
+
+.vaisheshik-features-checklist li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+  color: var(--vaisheshik-primary-indigo);
+}
+
+.vaisheshik-features-checklist li::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--vaisheshik-accent-saffron);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* CTA Buttons */
+.vaisheshik-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--vaisheshik-accent-saffron), var(--vaisheshik-saffron-light));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+}
+
+.vaisheshik-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.vaisheshik-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--vaisheshik-primary-indigo);
+  border: 2px solid var(--vaisheshik-primary-indigo);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.vaisheshik-cta-secondary:hover {
+  background: var(--vaisheshik-primary-indigo);
+  color: white;
+}
+
+/* Instructor Card */
+.vaisheshik-instructor-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+  background: linear-gradient(135deg, rgba(13, 59, 74, 0.03), rgba(217, 123, 42, 0.05));
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@media (min-width: 768px) {
+  .vaisheshik-instructor-card {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.vaisheshik-instructor-portrait {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--vaisheshik-accent-saffron);
+  box-shadow: var(--shadow-medium);
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .vaisheshik-instructor-portrait {
+    margin: 0;
+  }
+}
+
+/* Testimonial Carousel */
+.vaisheshik-testimonial-carousel {
+  position: relative;
+  padding: var(--spacing-xl) 0;
+}
+
+.vaisheshik-testimonial-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vaisheshik-testimonial-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--vaisheshik-muted-gray);
+  margin-bottom: var(--spacing-md);
+}
+
+.vaisheshik-testimonial-author {
+  font-weight: 600;
+  color: var(--vaisheshik-primary-indigo);
+}
+
+.vaisheshik-carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.vaisheshik-carousel-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--vaisheshik-accent-saffron);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-carousel-arrow:hover {
+  transform: scale(1.1);
+}
+
+.vaisheshik-carousel-dots {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.vaisheshik-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vaisheshik-muted-gray);
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-carousel-dot.active {
+  background: var(--vaisheshik-accent-saffron);
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+/* FAQ Accordion */
+.vaisheshik-faq-item {
+  background: white;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.vaisheshik-faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--vaisheshik-primary-indigo);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-faq-trigger:hover {
+  color: var(--vaisheshik-accent-saffron);
+}
+
+.vaisheshik-faq-content {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  color: var(--vaisheshik-muted-gray);
+  line-height: 1.6;
+}
+
+/* Demo Thumbnail */
+.vaisheshik-demo-thumbnail {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-medium);
+}
+
+.vaisheshik-demo-thumbnail:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-strong);
+}
+
+.vaisheshik-demo-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(217, 123, 42, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.vaisheshik-demo-thumbnail:hover .vaisheshik-demo-play-button {
+  background: var(--vaisheshik-accent-saffron);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .vaisheshik-hero {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+  
+  .vaisheshik-price {
+    font-size: 2rem;
+  }
+  
+  .vaisheshik-purchase-card {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

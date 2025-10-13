@@ -1,0 +1,689 @@
+/* ============================================
+   Advaita Vedanta Premium Landing Page Styles
+   Design System: Meditative, Scholarly, Heritage
+   ============================================ */
+
+/* ============ Design Tokens ============ */
+:root {
+  /* Colors */
+  --advaita-bg: #FFF9F2;           /* Warm cream background */
+  --advaita-bg-light: #FAF7F2;     /* Light cream */
+  --advaita-primary: #0D3B4A;      /* Deep indigo */
+  --advaita-primary-light: #1A5568; /* Light indigo */
+  --advaita-accent: #D97B2A;       /* Saffron */
+  --advaita-accent-light: #E89B5A; /* Light saffron */
+  --advaita-muted: #6C6C6C;        /* Gray */
+  --advaita-text: #1A202C;         /* Near black */
+  
+  /* Spacing Scale (8px base) */
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-6: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  
+  /* Typography */
+  --font-display: 'Playfair Display', 'Merriweather', serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+/* ============ Hero Section ============ */
+.advaita-hero {
+  position: relative;
+  min-height: 90vh;
+  background: var(--advaita-bg);
+  padding: var(--space-8) var(--space-4);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.advaita-hero-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .advaita-hero-grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+.advaita-hero-content h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--advaita-primary);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .advaita-hero-content h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .advaita-hero-content h1 {
+    font-size: 4rem;
+  }
+}
+
+.advaita-hero-subtitle {
+  font-family: var(--font-devanagari);
+  font-size: 1.25rem;
+  color: var(--advaita-muted);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .advaita-hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* Badge Strip */
+.advaita-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.advaita-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-2xl);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.advaita-badge-primary {
+  background: var(--advaita-primary);
+  color: white;
+}
+
+.advaita-badge-secondary {
+  background: var(--advaita-accent);
+  color: white;
+}
+
+.advaita-badge-outline {
+  border: 2px solid var(--advaita-primary);
+  color: var(--advaita-primary);
+  background: transparent;
+}
+
+/* CTA Buttons */
+.advaita-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.advaita-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--advaita-primary) 0%, var(--advaita-primary-light) 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.advaita-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.advaita-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--advaita-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.advaita-btn-secondary:hover {
+  background: var(--advaita-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ============ Demo Cards ============ */
+.advaita-demo-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.advaita-demo-card.featured {
+  box-shadow: var(--shadow-xl);
+}
+
+.advaita-demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.advaita-demo-thumbnail {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  background: var(--advaita-primary);
+}
+
+.advaita-demo-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.advaita-demo-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  background: var(--advaita-accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.advaita-demo-card:hover .advaita-demo-play-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: var(--advaita-accent-light);
+}
+
+.advaita-demo-info {
+  padding: var(--space-3);
+}
+
+/* ============ Feature Chips ============ */
+.advaita-feature-chips {
+  padding: var(--space-6) var(--space-4);
+  background: white;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.advaita-feature-chips-container {
+  display: flex;
+  gap: var(--space-3);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .advaita-feature-chips-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.advaita-feature-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  min-width: 140px;
+  background: var(--advaita-bg);
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-xl);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.advaita-feature-chip:hover {
+  background: var(--advaita-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.advaita-feature-chip svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--advaita-accent);
+}
+
+.advaita-feature-chip:hover svg {
+  color: var(--advaita-accent-light);
+}
+
+.advaita-feature-chip-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ============ Syllabus Grid ============ */
+.advaita-syllabus-section {
+  padding: var(--space-8) var(--space-4);
+  background: linear-gradient(to bottom, var(--advaita-bg) 0%, white 100%);
+}
+
+.advaita-syllabus-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .advaita-syllabus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.advaita-syllabus-card {
+  background: white;
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4);
+  transition: all 0.3s ease;
+}
+
+.advaita-syllabus-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+  border-color: var(--advaita-accent);
+}
+
+.advaita-syllabus-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-3);
+}
+
+.advaita-syllabus-card h3 {
+  font-family: var(--font-devanagari);
+  font-size: 1.5rem;
+  color: var(--advaita-primary);
+  margin-bottom: 0.5rem;
+}
+
+.advaita-syllabus-card h4 {
+  font-size: 1rem;
+  color: var(--advaita-muted);
+  font-weight: 500;
+}
+
+.advaita-syllabus-duration {
+  font-size: 0.875rem;
+  color: var(--advaita-accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.advaita-syllabus-topics {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0 0;
+}
+
+.advaita-syllabus-topics li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #E5E7EB;
+  font-size: 0.875rem;
+  color: var(--advaita-text);
+}
+
+.advaita-syllabus-topics li:last-child {
+  border-bottom: none;
+}
+
+/* ============ Purchase Card ============ */
+.advaita-purchase-card {
+  background: white;
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Desktop - Sticky positioning */
+@media (min-width: 1024px) {
+  .advaita-purchase-card {
+    position: sticky;
+    top: 2rem;
+    max-width: 400px;
+  }
+}
+
+/* Mobile - Bottom sheet */
+@media (max-width: 1023px) {
+  .advaita-purchase-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    z-index: 40;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+.advaita-price-section {
+  text-align: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--advaita-bg);
+}
+
+.advaita-price-current {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--advaita-primary);
+}
+
+.advaita-price-original {
+  font-size: 1.25rem;
+  color: var(--advaita-muted);
+  text-decoration: line-through;
+}
+
+.advaita-features-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-4) 0;
+}
+
+.advaita-features-checklist li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #E5E7EB;
+  color: var(--advaita-text);
+  font-size: 0.875rem;
+}
+
+.advaita-features-checklist li:last-child {
+  border-bottom: none;
+}
+
+.advaita-features-checklist li svg {
+  color: var(--advaita-accent);
+  flex-shrink: 0;
+}
+
+/* ============ Instructor Section ============ */
+.advaita-instructor-section {
+  padding: var(--space-8) var(--space-4);
+  background: white;
+}
+
+.advaita-instructor-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--advaita-bg) 0%, var(--advaita-bg-light) 100%);
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-3xl);
+  padding: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .advaita-instructor-card {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.advaita-instructor-portrait {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--advaita-primary);
+  margin: 0 auto;
+}
+
+.advaita-instructor-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.advaita-instructor-info h3 {
+  font-family: var(--font-devanagari);
+  font-size: 2rem;
+  color: var(--advaita-primary);
+  margin-bottom: 0.5rem;
+}
+
+.advaita-instructor-title {
+  font-size: 1.125rem;
+  color: var(--advaita-accent);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.advaita-instructor-specializations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.advaita-instructor-specializations span {
+  padding: 0.5rem 1rem;
+  background: var(--advaita-primary);
+  color: white;
+  font-size: 0.875rem;
+  border-radius: var(--radius-2xl);
+}
+
+/* ============ FAQ Section ============ */
+.advaita-faq-section {
+  padding: var(--space-8) var(--space-4);
+  background: var(--advaita-bg);
+}
+
+.advaita-faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.advaita-faq-search {
+  margin-bottom: var(--space-4);
+}
+
+.advaita-faq-search input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-xl);
+  font-size: 1rem;
+  background: white;
+}
+
+.advaita-faq-search input:focus {
+  outline: none;
+  border-color: var(--advaita-accent);
+  box-shadow: 0 0 0 3px rgba(217, 123, 42, 0.1);
+}
+
+/* ============ Testimonials ============ */
+.advaita-testimonials-section {
+  padding: var(--space-8) var(--space-4);
+  background: white;
+}
+
+.advaita-testimonial-card {
+  background: var(--advaita-bg);
+  border: 2px solid var(--advaita-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.advaita-testimonial-content {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--advaita-text);
+  margin-bottom: var(--space-4);
+  font-style: italic;
+}
+
+.advaita-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.advaita-testimonial-author-name {
+  font-weight: 600;
+  color: var(--advaita-primary);
+}
+
+.advaita-testimonial-author-role {
+  font-size: 0.875rem;
+  color: var(--advaita-muted);
+}
+
+/* Carousel controls */
+.advaita-carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.advaita-carousel-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--advaita-primary);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.advaita-carousel-button:hover {
+  background: var(--advaita-accent);
+  transform: scale(1.1);
+}
+
+.advaita-carousel-indicators {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.advaita-carousel-indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--advaita-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.advaita-carousel-indicator.active {
+  background: var(--advaita-accent);
+  transform: scale(1.2);
+}
+
+/* ============ Utility Classes ============ */
+.advaita-section-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.advaita-section-header h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--advaita-primary);
+  margin-bottom: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .advaita-section-header h2 {
+    font-size: 3rem;
+  }
+}
+
+.advaita-section-header p {
+  font-size: 1.125rem;
+  color: var(--advaita-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ============ Reduced Motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+

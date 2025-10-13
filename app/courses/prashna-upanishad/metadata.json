@@ -1,27 +1,27 @@
 {
-  "title": "ईशावास्य उपनिषद्: Online Course on The Isha Upanishad",
-  "subtitle": "आत्म दर्शन की यात्रा पर निकलें !",
-  "description": "Transform your life through the wisdom of all 18 Shlokas of Isha Upanishad",
+  "title": "Online Course on The Prashna Upanishad",
+  "subtitle": "जीवन के सबसे कठिन प्रश्नों से सीखें !",
+  "description": "Explore the profound six questions about life, prana, consciousness, and liberation through systematic study of Prashna Upanishad.",
   "type": "Premium Course",
-  "price": "₹999",
-  "originalPrice": "₹1,799",
-  "savings": "44%",
-  "duration": "3+ Hours",
+  "price": "₹1,499",
+  "originalPrice": "₹2,999",
+  "savings": "50%",
+  "duration": "7+ Hours",
   "level": "Beginner",
   "status": "available",
   "features": [
     "Recorded Sessions",
-    "3+ Hrs. of Content",
-    "All Shlokas Covered",
-    "Free Future Updates",
-    "Quizzes & Notes",
-    "1 yr Access",
     "Certification",
+    "7+ Hrs of Content",
+    "All Questions Covered",
+    "Free Future Updates",
+    "1 yr Access",
+    "Quizzes & Notes",
     "WhatsApp Group",
-    "Live QnA",
-    "Community Access"
+    "Community Access",
+    "Live QnA"
   ],
   "thumbnail": "/assets/prashna-upanishad-course.jpg",
   "category": "upanishad",
-  "priority": 0.89
+  "priority": 0.87
 }

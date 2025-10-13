@@ -1,24 +1,27 @@
 'use client';
 
-import './prashna-upanishad-landing.css';
+import { useState } from 'react';
+import './prashna-upanishad-premium.css';
 import '../_shared/course-landing.css';
-import HeroSection from './components/HeroSection';
 import { prashnaUpanishadCourseData } from './courseData';
 import {
-  HighlightsTemplate,
-  SyllabusTemplate,
-  OutcomesTemplate,
-  TestimonialsTemplate,
-  FAQTemplate,
-} from '../_shared/sections';
+  HeroPrashna,
+  ProblemStrip,
+  FeatureChips,
+  DemoCarousel,
+  SyllabusGrid,
+  InstructorCard,
+  PurchaseCard,
+  FAQAccordion,
+  TestimonialsCarousel
+} from './components/premium';
+import { OutcomesTemplate } from '../_shared/sections';
 import { CourseSectionHeader, CourseFeatureGrid } from '../_shared/components';
 import { Zap, Brain, Eye, MessageCircle, ArrowRight } from 'lucide-react';
-import PhilosophyFlashcards from '../_shared/components/PhilosophyFlashcards';
-import { prashnaUpanishadFlashcards } from '@/lib/courses/flashcardData';
-import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 
 export default function PrashnaUpanishadPage() {
   const courseData = prashnaUpanishadCourseData;
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
   // Transform Why Course data to features for FeatureGrid
   const whyFeatures = [
@@ -45,36 +48,38 @@ export default function PrashnaUpanishadPage() {
   ];
 
   return (
-    <div className="min-h-screen">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossOrigin="anonymous" />
+    <div className="min-h-screen prashna-premium-page">
+      {/* Hero Section with Demo */}
+      <HeroPrashna onDemoClick={() => setShowDemoModal(true)} />
 
-      <HeroSection />
+      {/* Six Questions Visual Strip */}
+      <ProblemStrip />
 
-      <PhilosophyFlashcards 
-        flashcards={prashnaUpanishadFlashcards}
-        title="प्रश्न उपनिषद् के मूल सिद्धांत"
-        subtitle="Six Cosmic Questions - Click to Reveal"
-        className="prashna-flashcards"
-      />
+      {/* Feature Chips - Horizontal Scroll */}
+      <FeatureChips />
 
-      <section id="course-details" className="course-section bg-gradient-to-b from-white to-blue-50/20">
+      {/* Demo Carousel Section */}
+      <DemoCarousel />
+
+      {/* Why Study Section */}
+      <section id="course-details" className="course-section bg-gradient-to-b from-white to-[#FFF9F2]">
         <div className="course-container">
           <CourseSectionHeader
-            subtitle="Six Questions, Infinite Wisdom"
+            subtitle="Questions That Unlock Cosmic Wisdom"
             title="Why Study Prashna Upanishad?"
             description={courseData.whyCourse?.description}
             centered={true}
           />
           <CourseFeatureGrid features={whyFeatures} columns={4} />
           
-          <div className="mt-16 course-card-premium bg-gradient-to-br from-blue-50 to-indigo-50">
-            <h3 className="course-heading-3 text-center text-gray-900 mb-8">
+          <div className="mt-16 course-card-premium bg-gradient-to-br from-[#FFF9F2] to-[#FAF7F2] border-2 border-[#D97B2A]/20">
+            <h3 className="course-heading-3 text-center text-[#0D3B4A] mb-8">
               Journey Through Six Profound Questions
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courseData.whyCourse?.points.map((point, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <ArrowRight className="w-5 h-5 text-[#1E40AF] flex-shrink-0 mt-1" />
+                  <ArrowRight className="w-5 h-5 text-[#D97B2A] flex-shrink-0 mt-1" />
                   <span className="course-body text-gray-700">{point}</span>
                 </div>
               ))}
@@ -83,45 +88,29 @@ export default function PrashnaUpanishadPage() {
         </div>
       </section>
 
-      <HighlightsTemplate
-        highlights={courseData.highlights}
-        title="Course Features"
-        subtitle="What's Included"
-        description="Comprehensive exploration of prana, consciousness, and meditation"
-        columns={3}
-        className="bg-white"
-      />
+      {/* Syllabus Grid (Desktop) & Accordion (Mobile) */}
+      <SyllabusGrid />
 
-      <SyllabusTemplate
-        syllabus={courseData.syllabus}
-        title="Six Prashnas of Wisdom"
-        subtitle="Complete Course Structure"
-        description="Systematic study of all six questions from creation to liberation"
-        defaultOpen={[0]}
-        className="bg-blue-50/20"
-      />
-
+      {/* Learning Outcomes */}
       <OutcomesTemplate
         outcomes={courseData.outcomes}
         title="Transform Your Understanding"
         subtitle="Learning Outcomes"
-        description="Master the science of prana, consciousness, and meditation"
+        description="Master the science of prana, consciousness, and meditation through systematic study"
         className="bg-white"
       />
 
-      <TestimonialsTemplate
-        testimonials={courseData.testimonials}
-        title="Student Experiences"
-        subtitle="What Our Students Say"
-        description="Hear from practitioners who have deepened their understanding"
-        maxDisplay={6}
-        className="bg-blue-50/20"
-      />
+      {/* Instructor Card */}
+      <InstructorCard />
 
-      <section className="shloka-section-prashna">
-        <div className="container mx-auto px-6 py-16">
+      {/* Testimonials Carousel */}
+      <TestimonialsCarousel />
+
+      {/* Sacred Shloka Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-[#FFF9F2] to-white">
+        <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div className="bg-gradient-to-r from-[#0D3B4A] to-[#1A5568] rounded-3xl p-8 md:p-12 shadow-2xl">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-relaxed" style={{ fontFamily: '"Noto Sans Devanagari", sans-serif' }}>
                 ओमित्येतदक्षरमुद्गीथमुपासीत।
               </h2>
@@ -134,30 +123,18 @@ export default function PrashnaUpanishadPage() {
         </div>
       </section>
 
-      <FAQTemplate
-        faqs={courseData.faqs}
-        className="bg-white"
-      />
+      {/* FAQ Accordion with Search */}
+      <FAQAccordion />
 
-      <section className="course-section bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-        <div className="course-container">
-          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 border-2 border-[#1E40AF]/20">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">Discover the Answers to Life's Profound Questions</h2>
-            <p className="text-center text-gray-700 text-lg mb-8">Master the science of prana, explore consciousness, and learn authentic meditation techniques.</p>
-            <div className="flex justify-center mb-8">
-              <ProtectedExternalLink
-                href={courseData.enrollment.checkoutLink}
-                className="group px-10 py-4 bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] text-white font-bold text-xl rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center gap-2"
-              >
-                <span>Enroll Now</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </ProtectedExternalLink>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Sticky Purchase Card - Hidden on mobile (shows as bottom sheet) */}
+      <div className="hidden lg:block fixed right-8 top-24 w-80 z-40">
+        <PurchaseCard variant="sticky" />
+      </div>
+
+      {/* Mobile Purchase Card - Bottom Sheet */}
+      <div className="lg:hidden">
+        <PurchaseCard variant="bottom-sheet" />
+      </div>
     </div>
   );
 }

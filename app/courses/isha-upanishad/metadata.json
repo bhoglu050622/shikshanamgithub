@@ -1,23 +1,38 @@
 {
-  "title": "ईशावास्य उपनिषद्: Online Course on the Isha Upanishad",
-  "subtitle": "Discover the essence of Vedantic wisdom",
-  "description": "Deep dive into one of the most important Upanishads, exploring its philosophy and practical wisdom for modern life.",
+  "title": "Online Course on The Isha Upanishad - आत्म दर्शन की यात्रा | Shikshanam",
+  "subtitle": "आत्म दर्शन की यात्रा पर निकलें !",
+  "description": "Master all 18 mantras of Isha Upanishad in Hindi. Learn the perfect balance between action and renunciation with IIT graduate विशाल चौरसिया. Beginner-friendly course with 3+ hours of content, certificate, and lifetime community access.",
+  "keywords": "Isha Upanishad course, Upanishad in Hindi, Vedanta course online, Sanskrit philosophy, Indian philosophy course, spiritual wisdom, Vedic studies, online Sanskrit course",
   "type": "Premium Course",
-  "price": "₹2,999",
-  "originalPrice": "₹4,499",
-  "savings": "33%",
-  "duration": "12-15 Classes",
-  "level": "Beginner to Intermediate",
+  "price": "₹999",
+  "originalPrice": "₹1,999",
+  "savings": "50%",
+  "duration": "3+ Hours",
+  "level": "Beginner",
+  "language": "हिन्दी",
   "status": "available",
   "features": [
-    "Verse-by-Verse Analysis",
-    "Sanskrit & Translation",
-    "Philosophical Insights",
-    "Practical Wisdom",
-    "Discussion Forum",
-    "Certificate of Completion"
+    "Recorded Sessions",
+    "3+ Hrs of Content",
+    "All Shlokas Covered (18 Shlokas)",
+    "Free Future Updates",
+    "Quizzes & Notes",
+    "1 yr Access",
+    "Certification",
+    "Whatsapp Group",
+    "Live QnA",
+    "Community Access"
   ],
   "thumbnail": "/assets/isha-upanishad-course.png",
   "category": "upanishad",
-  "priority": 0.91
+  "priority": 0.89,
+  "instructor": "विशाल चौरसिया (Vishal Chaurasia)",
+  "instructorTitle": "IIT Graduate, Founder of Shikshanam & Hyper Quest",
+  "seo": {
+    "metaTitle": "Isha Upanishad Course Online in Hindi - ₹999 | Learn 18 Mantras",
+    "metaDescription": "Complete online course on Isha Upanishad in Hindi. Learn all 18 mantras with IIT graduate विशाल चौरसिया. 3+ hours content, certification, 1 year access. Enroll now for ₹999.",
+    "ogTitle": "Online Course on The Isha Upanishad - Learn Ancient Wisdom",
+    "ogDescription": "Master the timeless wisdom of Isha Upanishad. Beginner-friendly Hindi course covering all 18 mantras. Watch free demo!",
+    "canonicalUrl": "https://shikshanam.in/courses/isha-upanishad"
+  }
 }

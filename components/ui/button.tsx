@@ -46,13 +46,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     onClick,
     ...props
   }, ref) => {
-    // Base classes for all buttons with premium design system
+    // Base classes for all buttons with premium design system and accessibility
     const baseClasses = cn(
       // Base styles with enhanced accessibility and visual quality
-      'inline-flex items-center justify-center font-semibold transition-all duration-300 ease-out',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2',
-      'disabled:pointer-events-none disabled:opacity-50',
+      'inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+      'disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed',
       'tap-target antialiased', // Ensures minimum 44px touch target and smooth text
+      'relative', // For better positioning of child elements
       
       // Size variants with premium rounded corners (0.75rem-1rem)
       {
@@ -66,25 +67,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'w-full': fullWidth,
       },
       
-      // Premium variant styles
+      // Premium variant styles with WCAG 2.1 AA compliance
       {
-        // Primary - Premium blue with subtle shadows
-        'bg-premium-accent-primary hover:bg-premium-accent-primary/90 text-white shadow-[0_4px_14px_rgba(37,99,235,0.1)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.15)] hover:scale-[1.02] active:scale-[0.98]': variant === 'primary',
+        // Primary - Premium gold with white text (4.5:1 contrast minimum)
+        'bg-button-primary-bg hover:bg-button-primary-hover text-button-primary-text font-semibold shadow-[0_2px_8px_rgba(196,155,11,0.25)] hover:shadow-[0_4px_16px_rgba(196,155,11,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200': variant === 'primary',
         
-        // Secondary - Clean white/dark background with border
-        'bg-premium-bg-secondary text-premium-text-primary border border-premium-border hover:bg-premium-bg-primary shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:scale-[1.02] active:scale-[0.98]': variant === 'secondary',
+        // Secondary - Burgundy with white text (4.5:1+ contrast)
+        'bg-button-secondary-bg hover:bg-button-secondary-hover text-button-secondary-text font-semibold border border-button-secondary-bg shadow-[0_2px_8px_rgba(139,21,21,0.25)] hover:shadow-[0_4px_16px_rgba(139,21,21,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200': variant === 'secondary',
         
-        // Outline - Premium blue border
-        'border-2 border-premium-accent-primary text-premium-accent-primary hover:bg-premium-accent-primary hover:text-white hover:scale-[1.02] active:scale-[0.98] bg-transparent': variant === 'outline',
+        // Outline - Accessible border with proper contrast (3:1 minimum)
+        'border-2 border-button-primary-bg text-premium-text-primary hover:bg-button-primary-bg hover:text-button-primary-text hover:scale-[1.02] active:scale-[0.98] bg-premium-bg-secondary font-semibold transition-all duration-200': variant === 'outline',
         
-        // Ghost - Transparent with subtle hover
-        'text-premium-accent-primary hover:bg-premium-accent-primary/10 hover:scale-[1.02] active:scale-[0.98] bg-transparent': variant === 'ghost',
+        // Ghost - Subtle hover with accessible colors
+        'text-premium-text-primary hover:bg-button-primary-bg/15 hover:text-premium-text-primary hover:scale-[1.02] active:scale-[0.98] bg-transparent font-medium transition-all duration-200': variant === 'ghost',
         
-        // Link - Text only with premium accent
-        'text-premium-accent-primary hover:text-premium-accent-primary/80 p-0 h-auto bg-transparent': variant === 'link',
+        // Link - Text only with accessible colors
+        'text-button-primary-bg hover:text-button-primary-hover underline-offset-4 hover:underline p-0 h-auto bg-transparent font-medium transition-colors duration-200': variant === 'link',
         
-        // Destructive - Premium error styling
-        'bg-premium-error hover:bg-premium-error/90 text-white shadow-[0_4px_14px_rgba(220,38,38,0.1)] hover:shadow-[0_6px_20px_rgba(220,38,38,0.15)] hover:scale-[1.02] active:scale-[0.98]': variant === 'destructive',
+        // Destructive - High contrast error styling
+        'bg-destructive hover:opacity-90 text-destructive-foreground font-semibold shadow-[0_2px_8px_rgba(185,28,28,0.25)] hover:shadow-[0_4px_16px_rgba(185,28,28,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200': variant === 'destructive',
       },
       
       className

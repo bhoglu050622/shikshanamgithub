@@ -47,7 +47,7 @@ export function usePackageData(packageId: string, fallbackData: PackageData): Us
     
     setPackageData(fallbackData);
     setLoading(false);
-  }, [packageId, fallbackData]);
+  }, [fallbackData]);
 
   useEffect(() => {
     fetchPackageData();

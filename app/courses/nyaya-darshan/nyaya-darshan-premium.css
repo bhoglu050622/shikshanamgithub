@@ -1,0 +1,550 @@
+/* ============================================
+   NYAYA DARSHAN PREMIUM DESIGN SYSTEM
+   Scholarly, analytical, modern-heritage theme
+   ============================================ */
+
+:root {
+  /* Color System - Calm cream base, deep indigo, saffron accents */
+  --nyaya-bg: #FFF9F2;
+  --nyaya-bg-secondary: #FAF7F2;
+  --nyaya-primary: #0D3B4A;
+  --nyaya-primary-light: #1A5568;
+  --nyaya-accent: #D97B2A;
+  --nyaya-accent-light: #E89450;
+  --nyaya-muted: #6C6C6C;
+  --nyaya-border: #E5DDD5;
+  --nyaya-white: #FFFFFF;
+  
+  /* Typography */
+  --nyaya-font-display: 'Playfair Display', 'Merriweather', Georgia, serif;
+  --nyaya-font-body: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --nyaya-font-devanagari: 'Noto Sans Devanagari', system-ui, sans-serif;
+  
+  /* Spacing - 8px base scale */
+  --nyaya-space-1: 0.5rem;   /* 8px */
+  --nyaya-space-2: 1rem;      /* 16px */
+  --nyaya-space-3: 1.5rem;    /* 24px */
+  --nyaya-space-4: 2rem;      /* 32px */
+  --nyaya-space-6: 3rem;      /* 48px */
+  --nyaya-space-8: 4rem;      /* 64px */
+  
+  /* Border Radius */
+  --nyaya-radius-sm: 0.5rem;
+  --nyaya-radius-md: 0.75rem;
+  --nyaya-radius-lg: 1rem;
+  --nyaya-radius-xl: 1.5rem;
+  --nyaya-radius-2xl: 2rem;
+  
+  /* Shadows */
+  --nyaya-shadow-sm: 0 1px 2px 0 rgba(13, 59, 74, 0.05);
+  --nyaya-shadow-md: 0 4px 6px -1px rgba(13, 59, 74, 0.1), 0 2px 4px -1px rgba(13, 59, 74, 0.06);
+  --nyaya-shadow-lg: 0 10px 15px -3px rgba(13, 59, 74, 0.1), 0 4px 6px -2px rgba(13, 59, 74, 0.05);
+  --nyaya-shadow-xl: 0 20px 25px -5px rgba(13, 59, 74, 0.1), 0 10px 10px -5px rgba(13, 59, 74, 0.04);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.nyaya-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--nyaya-bg) 0%, var(--nyaya-bg-secondary) 100%);
+  padding: var(--nyaya-space-8) 0;
+  overflow: hidden;
+}
+
+.nyaya-hero-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--nyaya-space-4);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--nyaya-space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .nyaya-hero-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.nyaya-hero-content h1 {
+  font-family: var(--nyaya-font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--nyaya-primary);
+  line-height: 1.2;
+  margin-bottom: var(--nyaya-space-3);
+}
+
+.nyaya-hero-subtitle {
+  font-family: var(--nyaya-font-devanagari);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--nyaya-accent);
+  font-weight: 600;
+  margin-bottom: var(--nyaya-space-4);
+}
+
+.nyaya-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nyaya-space-2);
+  margin-bottom: var(--nyaya-space-4);
+}
+
+.nyaya-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--nyaya-radius-lg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.nyaya-badge-primary {
+  background: var(--nyaya-primary);
+  color: var(--nyaya-white);
+}
+
+.nyaya-badge-secondary {
+  background: var(--nyaya-accent);
+  color: var(--nyaya-white);
+}
+
+.nyaya-badge-outline {
+  background: transparent;
+  border: 1.5px solid var(--nyaya-border);
+  color: var(--nyaya-primary);
+}
+
+/* ============================================
+   BUTTONS & CTAs
+   ============================================ */
+
+.nyaya-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nyaya-space-3);
+  margin-bottom: var(--nyaya-space-4);
+}
+
+.nyaya-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--nyaya-primary) 0%, var(--nyaya-primary-light) 100%);
+  color: var(--nyaya-white);
+  font-weight: 600;
+  font-size: 1.125rem;
+  border-radius: var(--nyaya-radius-xl);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--nyaya-shadow-lg);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nyaya-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nyaya-shadow-xl);
+}
+
+.nyaya-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: var(--nyaya-white);
+  color: var(--nyaya-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+  border-radius: var(--nyaya-radius-xl);
+  border: 2px solid var(--nyaya-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nyaya-btn-secondary:hover {
+  background: var(--nyaya-primary);
+  color: var(--nyaya-white);
+}
+
+/* ============================================
+   DEMO CARD
+   ============================================ */
+
+.nyaya-demo-card {
+  background: var(--nyaya-white);
+  border-radius: var(--nyaya-radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--nyaya-shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.nyaya-demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--nyaya-shadow-xl);
+}
+
+.nyaya-demo-card.featured {
+  border: 2px solid var(--nyaya-accent);
+}
+
+.nyaya-demo-thumbnail {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: var(--nyaya-primary);
+  overflow: hidden;
+}
+
+.nyaya-demo-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nyaya-demo-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(217, 123, 42, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nyaya-white);
+  transition: all 0.3s ease;
+}
+
+.nyaya-demo-card:hover .nyaya-demo-play-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: var(--nyaya-accent);
+}
+
+.nyaya-demo-info {
+  padding: var(--nyaya-space-3);
+}
+
+/* ============================================
+   FEATURE CHIPS
+   ============================================ */
+
+.nyaya-feature-chips {
+  padding: var(--nyaya-space-4) 0;
+  background: var(--nyaya-white);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nyaya-feature-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.nyaya-feature-chips-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--nyaya-space-4);
+  display: flex;
+  gap: var(--nyaya-space-3);
+}
+
+.nyaya-feature-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--nyaya-bg);
+  border: 1.5px solid var(--nyaya-border);
+  border-radius: var(--nyaya-radius-xl);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.nyaya-feature-chip:hover {
+  border-color: var(--nyaya-accent);
+  background: var(--nyaya-white);
+  transform: translateY(-2px);
+}
+
+.nyaya-feature-chip svg {
+  width: 28px;
+  height: 28px;
+  color: var(--nyaya-accent);
+}
+
+.nyaya-feature-chip span {
+  font-weight: 500;
+  color: var(--nyaya-primary);
+}
+
+/* ============================================
+   PURCHASE CARD
+   ============================================ */
+
+.nyaya-purchase-card {
+  background: var(--nyaya-white);
+  border: 2px solid var(--nyaya-accent);
+  border-radius: var(--nyaya-radius-2xl);
+  padding: var(--nyaya-space-4);
+  box-shadow: var(--nyaya-shadow-xl);
+}
+
+.nyaya-price-section {
+  text-align: center;
+  margin-bottom: var(--nyaya-space-4);
+  padding-bottom: var(--nyaya-space-3);
+  border-bottom: 1px solid var(--nyaya-border);
+}
+
+.nyaya-price-current {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--nyaya-primary);
+  font-family: var(--nyaya-font-display);
+}
+
+.nyaya-price-original {
+  font-size: 1.25rem;
+  color: var(--nyaya-muted);
+  text-decoration: line-through;
+}
+
+.nyaya-features-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nyaya-features-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  color: var(--nyaya-primary);
+  border-bottom: 1px solid var(--nyaya-border);
+}
+
+.nyaya-features-checklist li:last-child {
+  border-bottom: none;
+}
+
+.nyaya-features-checklist svg {
+  color: var(--nyaya-accent);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SYLLABUS EXPLORER
+   ============================================ */
+
+.nyaya-syllabus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--nyaya-space-4);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--nyaya-space-6) var(--nyaya-space-4);
+}
+
+@media (min-width: 768px) {
+  .nyaya-syllabus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .nyaya-syllabus-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.nyaya-module-card {
+  background: var(--nyaya-white);
+  border: 2px solid var(--nyaya-border);
+  border-radius: var(--nyaya-radius-2xl);
+  padding: var(--nyaya-space-4);
+  transition: all 0.3s ease;
+}
+
+.nyaya-module-card:hover {
+  border-color: var(--nyaya-accent);
+  transform: translateY(-4px);
+  box-shadow: var(--nyaya-shadow-lg);
+}
+
+.nyaya-module-header {
+  margin-bottom: var(--nyaya-space-3);
+  padding-bottom: var(--nyaya-space-2);
+  border-bottom: 2px solid var(--nyaya-bg);
+}
+
+.nyaya-module-title {
+  font-family: var(--nyaya-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--nyaya-primary);
+  margin-bottom: 0.5rem;
+}
+
+.nyaya-module-meta {
+  display: flex;
+  gap: var(--nyaya-space-2);
+  color: var(--nyaya-muted);
+  font-size: 0.875rem;
+}
+
+.nyaya-module-topics {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--nyaya-space-3) 0;
+}
+
+.nyaya-module-topics li {
+  padding: 0.5rem 0;
+  color: var(--nyaya-primary);
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.nyaya-module-topics li::before {
+  content: "▸";
+  color: var(--nyaya-accent);
+  font-weight: bold;
+}
+
+/* ============================================
+   INSTRUCTOR CARD
+   ============================================ */
+
+.nyaya-instructor-card {
+  background: linear-gradient(135deg, var(--nyaya-bg) 0%, var(--nyaya-bg-secondary) 100%);
+  border: 2px solid var(--nyaya-border);
+  border-radius: var(--nyaya-radius-2xl);
+  padding: var(--nyaya-space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--nyaya-space-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .nyaya-instructor-card {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.nyaya-instructor-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid var(--nyaya-accent);
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.nyaya-instructor-name {
+  font-family: var(--nyaya-font-devanagari);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--nyaya-primary);
+  margin-bottom: 0.5rem;
+}
+
+.nyaya-instructor-title {
+  color: var(--nyaya-accent);
+  font-weight: 600;
+  margin-bottom: var(--nyaya-space-2);
+}
+
+.nyaya-instructor-bio {
+  color: var(--nyaya-primary);
+  line-height: 1.7;
+  margin-bottom: var(--nyaya-space-3);
+}
+
+.nyaya-instructor-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nyaya-skill-badge {
+  padding: 0.5rem 1rem;
+  background: rgba(13, 59, 74, 0.1);
+  color: var(--nyaya-primary);
+  border-radius: var(--nyaya-radius-lg);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .nyaya-hero {
+    padding: var(--nyaya-space-6) 0;
+  }
+  
+  .nyaya-btn-primary,
+  .nyaya-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nyaya-purchase-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    border-radius: var(--nyaya-radius-2xl) var(--nyaya-radius-2xl) 0 0;
+    padding: var(--nyaya-space-3);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 3px solid var(--nyaya-accent);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .nyaya-badge-outline {
+    border-width: 2px;
+  }
+  
+  .nyaya-module-card {
+    border-width: 3px;
+  }
+}
+

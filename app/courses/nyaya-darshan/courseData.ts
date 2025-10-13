@@ -2,25 +2,24 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const nyayaDarshanCourseData: CourseContent = {
   metadata: {
-    title: 'न्याय दर्शन',
-    subtitle: 'Online Course on Nyaya Philosophy of Maharshi Gautama',
-    description: 'Master the Indian system of logic and reasoning through Nyaya Sutras of Maharshi Gautama. Develop critical thinking and debate skills while exploring the nature of knowledge and valid cognition.',
+    title: 'Nyaya Philosophy through Rishi Gautama\'s Nyaya Sutras',
+    subtitle: 'ईश्वर को तर्क और प्रमाणों से समझें!',
+    description: 'Master the Indian system of logic and reasoning through Nyaya Sutras of Rishi Gautama. Develop critical thinking and debate skills while exploring the nature of knowledge and valid cognition.',
     type: 'Premium Course',
-    price: '₹3,499',
-    originalPrice: '₹5,199',
-    savings: '33%',
-    duration: '16-20 Classes',
-    level: 'Intermediate',
+    price: '₹999',
+    originalPrice: '₹1,799',
+    savings: '45%',
+    duration: '40+ Sessions',
+    level: 'Beginner',
+    language: 'हिन्दी',
     status: 'available',
     features: [
-      'Nyaya Sutras Coverage',
-      'Logic & Reasoning',
-      'Pramanas (Valid Knowledge)',
-      'Debate Techniques',
-      'Critical Thinking',
-      'Certificate of Completion',
+      'Quizzes & Notes',
+      '40+ Sessions',
       '1 Year Access',
-      'Community Support'
+      'Community Access',
+      'Certification',
+      'Free Future Updates'
     ],
     thumbnail: '/assets/nyaya-darshan-course.png',
     category: 'darshan',
@@ -82,86 +81,113 @@ export const nyayaDarshanCourseData: CourseContent = {
 
   syllabus: [
     {
-      title: 'Introduction to Nyaya',
+      title: 'Introduction',
+      subtitle: 'Getting Started',
+      duration: '00:06:09',
+      videoCount: 2,
+      topics: [
+        'Welcome to Nyaya Philosophy',
+        'Course Overview and Structure',
+        'Understanding Logic and Reasoning',
+        'What is Nyaya Darshan?'
+      ],
+      description: 'Free demo videos introducing the course and Nyaya philosophy'
+    },
+    {
+      title: 'Nyaya Sutra Book 1 (Part 1)',
       subtitle: 'Foundation of Logic',
-      duration: '2-3 Classes',
+      duration: '01:07:56',
+      videoCount: 12,
       topics: [
-        'What is Nyaya Darshan?',
-        'Maharshi Gautama and his contribution',
-        'Historical development of Nyaya',
-        'Relationship with other Darshanas',
-        'Importance of logic and reasoning',
-        'Overview of Nyaya Sutras'
-      ],
-      description: 'Introduction to the philosophy and its significance'
-    },
-    {
-      title: 'Sixteen Categories (षोडश पदार्थ)',
-      subtitle: 'Core Concepts',
-      duration: '3-4 Classes',
-      topics: [
-        'Pramana (प्रमाण) - Valid means of knowledge',
+        'Pramana (प्रमाण) - Means of valid knowledge',
         'Prameya (प्रमेय) - Objects of knowledge',
-        'Samsaya (संशय) - Doubt',
-        'Prayojana (प्रयोजन) - Purpose',
-        'Drishtanta (दृष्टान्त) - Example',
-        'Siddhanta (सिद्धान्त) - Conclusion',
-        'Avayava (अवयव) - Members of syllogism',
-        'Tarka (तर्क) - Hypothetical reasoning',
-        'Nirnaya (निर्णय) - Ascertainment',
-        'Vada, Jalpa, Vitanda - Types of debates',
-        'Hetvabhasa (हेत्वाभास) - Fallacies',
-        'Chala, Jati, Nigrahasthana - Sophistical refutations'
+        'The 16 Categories of Nyaya',
+        'Perception and Direct Knowledge',
+        'Inference and Logical Reasoning',
+        'Introduction to Syllogism'
       ],
-      description: '16 Categories that form the basis of Nyaya philosophy'
+      description: 'Deep dive into the foundational concepts of Nyaya Sutras Book 1'
     },
     {
-      title: 'Pramanas - Valid Means of Knowledge',
+      title: 'Nyaya Sutra Book 1 (Part 2)',
+      subtitle: 'Advanced Concepts',
+      duration: '01:01:44',
+      videoCount: 14,
+      topics: [
+        'Comparison (Upamana)',
+        'Testimony (Shabda Pramana)',
+        'Doubt and Certainty',
+        'Purpose and Intention',
+        'Examples and Illustrations',
+        'Established Conclusions'
+      ],
+      description: 'Continuing exploration of Book 1 with advanced epistemological concepts'
+    },
+    {
+      title: 'Nyaya Sutra Book 2 (Part 1)',
       subtitle: 'Theory of Knowledge',
-      duration: '4-5 Classes',
+      duration: '00:29:39',
+      videoCount: 4,
       topics: [
-        'Pratyaksha (प्रत्यक्ष) - Perception',
-        'Types of Pratyaksha',
-        'Anumana (अनुमान) - Inference',
-        'Structure of Anumana',
-        'Types of Anumana',
-        'Upamana (उपमान) - Comparison',
-        'Shabda (शब्द) - Testimony',
-        'Validity of Shabda Pramana'
+        'Five-fold Syllogism',
+        'Proposition (Pratijna)',
+        'Reason (Hetu)',
+        'Example (Udaharana)',
+        'Application and Conclusion'
       ],
-      description: 'Detailed study of the four valid means of knowledge'
+      description: 'Detailed study of the Nyaya logical framework'
     },
     {
-      title: 'Logic and Syllogism',
-      subtitle: 'Indian Logic System',
-      duration: '3-4 Classes',
+      title: 'Nyaya Sutra Book 2 (Part 2)',
+      subtitle: 'Argumentation',
+      duration: '00:15:33',
+      videoCount: 2,
       topics: [
-        'Five-member syllogism (पंचावयव)',
-        'Pratijna (प्रतिज्ञा) - Proposition',
-        'Hetu (हेतु) - Reason',
-        'Udaharana (उदाहरण) - Example',
-        'Upanaya (उपनय) - Application',
-        'Nigamana (निगमन) - Conclusion',
-        'Vyapti (व्याप्ति) - Universal relation',
-        'Paksha, Hetu, Sadhya'
+        'Hypothetical Reasoning (Tarka)',
+        'Ascertainment (Nirnaya)',
+        'Discussion and Debate',
+        'Wrangling and Caviling'
       ],
-      description: 'Mastering the Indian logical framework'
+      description: 'Understanding different forms of debate and argumentation'
     },
     {
-      title: 'Fallacies and Debate',
-      subtitle: 'Critical Analysis',
-      duration: '3-4 Classes',
+      title: 'Nyaya Sutra Book 3',
+      subtitle: 'Fallacies and Refutations',
+      duration: '00:48:50',
+      videoCount: 7,
       topics: [
-        'Hetvabhasa (हेत्वाभास) - Fallacies of reasoning',
-        'Five types of fallacies',
-        'Chala (छल) - Quibbles',
-        'Jati (जाति) - Futile rejoinders',
-        'Nigrahasthana (निग्रहस्थान) - Clinchers',
-        'Vada (वाद) - Proper debate',
-        'Jalpa (जल्प) - Wrangling',
-        'Vitanda (वितण्डा) - Caviling'
+        'Fallacies (Hetvabhasa)',
+        'Five types of logical fallacies',
+        'Quibbles (Chala)',
+        'Futile Rejoinders (Jati)',
+        'Points of Defeat (Nigrahasthana)',
+        'Sophisticated Refutations'
       ],
-      description: 'Learn to identify fallacies and engage in proper debate'
+      description: 'Critical analysis of fallacies and proper debate techniques'
+    },
+    {
+      title: 'Revision Part 1',
+      subtitle: 'Review and Practice',
+      duration: 'Practice Sessions',
+      videoCount: 3,
+      topics: [
+        'Review of Key Concepts',
+        'Practical Applications',
+        'Case Studies in Logic'
+      ],
+      description: 'Comprehensive revision of core Nyaya principles'
+    },
+    {
+      title: 'Revision Part 2',
+      subtitle: 'Final Review',
+      duration: 'Final Sessions',
+      videoCount: 2,
+      topics: [
+        'Integration of All Concepts',
+        'Advanced Problem Solving',
+        'Conclusion and Next Steps'
+      ],
+      description: 'Final revision and integration of all learning'
     }
   ],
 
@@ -193,9 +219,9 @@ export const nyayaDarshanCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Vishal Chaurasia',
-    title: 'Philosophy Scholar & IIT Graduate',
-    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Nyaya philosophy, he expertly guides students through the intricate world of Indian logic and epistemology.',
+    name: 'विशाल चौरसिया',
+    title: 'Graduate, IIT Patna',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT Patna. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Nyaya philosophy, he expertly guides students through the intricate world of Indian logic and epistemology.',
     experience: '10+ years teaching Nyaya and Indian Philosophy',
     specialization: [
       'Nyaya Sutras',
@@ -280,7 +306,41 @@ export const nyayaDarshanCourseData: CourseContent = {
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/nyaya-darshan-course?pid=p1'
-  }
+    checkoutLink: 'https://courses.shikshanam.in/single-checkout/64bf7b3fe4b04cc6d3b00311?pid=p2',
+    contactEmail: 'support@shikshanam.in',
+    contactPhone: '+91-9910032165',
+    whatsapp: '+91-9910032165'
+  },
+
+  demoVideos: [
+    {
+      title: 'Introduction - Free Demo',
+      description: 'Get introduced to Nyaya Philosophy and course structure',
+      url: '', // TODO: Add actual video URL
+      duration: '6:09',
+      isFree: true
+    },
+    {
+      title: 'Understanding the 16 Categories',
+      description: 'Sample lesson from Book 1 Part 1',
+      url: '', // TODO: Add actual video URL
+      duration: '8:45',
+      isFree: true
+    },
+    {
+      title: 'Logic and Inference',
+      description: 'Sample lesson on Nyaya logical reasoning',
+      url: '', // TODO: Add actual video URL
+      duration: '10:22',
+      isFree: true
+    }
+  ]
+};
+
+// Export support information for components
+export const nyayaDarshanSupport = {
+  email: nyayaDarshanCourseData.enrollment.contactEmail,
+  phone: nyayaDarshanCourseData.enrollment.contactPhone,
+  whatsapp: nyayaDarshanCourseData.enrollment.whatsapp
 };
 

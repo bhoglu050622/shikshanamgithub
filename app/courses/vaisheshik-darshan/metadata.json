@@ -1,23 +1,98 @@
 {
-  "title": "वैशेषिक दर्शन: Online Course on Vaisheshik Sutras of Rishi Kanada",
-  "subtitle": "Atomic theory and categorical analysis",
-  "description": "Explore ancient Indian atomic theory and the six categories of reality through Vaisheshik Sutras.",
-  "type": "Premium Course",
-  "price": "₹3,499",
-  "originalPrice": "₹5,199",
-  "savings": "33%",
-  "duration": "15-18 Classes",
-  "level": "Intermediate",
-  "status": "available",
-  "features": [
+  "title": "Vaisheshik Darshan - Philosophy of Maharshi Kanada's Sutras | Shikshanam",
+  "description": "Master ancient Indian atomic theory with Maharshi Kanada's Vaisheshik Sutras. 30 sessions in Hindi, beginner-friendly. Learn 6 categories of reality (Padarthas). ₹999. Enroll now!",
+  "keywords": [
+    "Vaisheshik Darshan course",
     "Vaisheshik Sutras",
-    "Atomic Theory",
-    "Six Categories (Padarthas)",
-    "Metaphysics",
-    "Philosophy of Science",
-    "Certificate of Completion"
+    "Maharshi Kanada",
+    "Indian atomic theory",
+    "six Padarthas",
+    "Dravya Guna Karma",
+    "Indian philosophy course",
+    "Hindi philosophy course",
+    "Nyaya Vaisheshik",
+    "Ancient Indian science",
+    "Vaisheshika philosophy online",
+    "IIT philosophy instructor",
+    "Shikshanam courses"
   ],
-  "thumbnail": "/assets/vaisheshik-darshan-course.png",
-  "category": "darshan",
-  "priority": 0.85
+  "metaTitle": "Vaisheshik Darshan Course - Learn Ancient Indian Atomic Theory | ₹999",
+  "metaDescription": "अनंत ब्रह्मांड की सूक्ष्मता में प्रवेश! Master Maharshi Kanada's Vaisheshik philosophy with 30 comprehensive sessions in Hindi. Learn the six Padarthas, ancient atomic theory, and categorical analysis. Beginner-friendly with certificate. Enroll now for ₹999.",
+  "ogTitle": "Vaisheshik Darshan - Philosophy of Maharshi Kanada's Vaisheshik Sutras",
+  "ogDescription": "Explore ancient Indian atomic theory and the six fundamental categories of reality. 30 sessions in Hindi by IIT graduate Vishal Chaurasia. ₹999 only.",
+  "ogImage": "/assets/vaisheshik-darshan-course.png",
+  "ogType": "website",
+  "ogUrl": "https://shikshanam.in/courses/vaisheshik-darshan",
+  "twitterCard": "summary_large_image",
+  "twitterTitle": "Vaisheshik Darshan - Master Ancient Indian Atomic Philosophy",
+  "twitterDescription": "30 sessions in Hindi. Learn the 6 Padarthas and ancient atomic theory. Taught by IIT graduate. ₹999 only.",
+  "twitterImage": "/assets/vaisheshik-darshan-course.png",
+  "canonical": "https://shikshanam.in/courses/vaisheshik-darshan",
+  "language": "hi",
+  "author": "Vishal Chaurasia",
+  "publisher": "Shikshanam",
+  "courseDetails": {
+    "name": "Philosophy of Maharshi Kanada's Vaisheshik Sutras",
+    "description": "Master ancient Indian atomic theory and the six fundamental categories (Padarthas) of reality through systematic study of Vaisheshik philosophy",
+    "provider": {
+      "name": "Shikshanam",
+      "url": "https://shikshanam.in"
+    },
+    "instructor": {
+      "name": "Vishal Chaurasia",
+      "jobTitle": "Philosophy Instructor & IIT Graduate",
+      "description": "Graduate from IIT Patna, Founder of Shikshanam"
+    },
+    "price": "999",
+    "priceCurrency": "INR",
+    "courseMode": "online",
+    "educationalLevel": "Beginner",
+    "inLanguage": "hi",
+    "duration": "30 sessions",
+    "keywords": "Vaisheshik Darshan, Indian Philosophy, Atomic Theory, Padarthas, Maharshi Kanada",
+    "learningResourceType": "Online Course",
+    "teaches": [
+      "Six fundamental categories (Padarthas) of reality",
+      "Ancient Indian atomic theory (Paramanu Vada)",
+      "Dravya (Substance), Guna (Quality), Karma (Action)",
+      "Samanya (Universal), Vishesha (Particular), Samavaya (Inherence)",
+      "Categorical analysis and systematic thinking",
+      "Relationship between Nyaya and Vaisheshik philosophy"
+    ]
+  },
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Philosophy of Maharshi Kanada's Vaisheshik Sutras",
+    "description": "अनंत ब्रह्मांड की सूक्ष्मता में प्रवेश! Master ancient Indian atomic theory and the six Padarthas through 30 comprehensive sessions in Hindi.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Shikshanam",
+      "url": "https://shikshanam.in"
+    },
+    "instructor": {
+      "@type": "Person",
+      "name": "Vishal Chaurasia",
+      "jobTitle": "Philosophy Instructor",
+      "description": "Graduate, IIT Patna | Founder of Shikshanam"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "999",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "url": "https://courses.shikshanam.in/single-checkout/643aa48ee4b0bc2eac815e74?pid=p3"
+    },
+    "courseMode": "online",
+    "educationalLevel": "Beginner",
+    "inLanguage": "hi",
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "courseWorkload": "30 sessions"
+    }
+  },
+  "lastModified": "2025-01-13T12:00:00Z",
+  "priority": 0.85,
+  "changefreq": "weekly"
 }

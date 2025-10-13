@@ -48,9 +48,9 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-white transition-colors duration-300 relative overflow-hidden border-t border-slate-700 dark:border-slate-700">
+    <footer id="footer" className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white transition-colors duration-300 relative overflow-hidden border-t-2 border-slate-700" role="contentinfo">
       {/* Animated Mandala Border Pattern - Contained within viewport */}
-      <div className="absolute inset-0 -z-10 overflow-hidden opacity-20 dark:opacity-30">
+      <div className="absolute inset-0 -z-10 overflow-hidden opacity-15" aria-hidden="true">
         {/* Top Mandala Border */}
         <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
           <div
@@ -130,26 +130,27 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
-                <BookOpen className="w-6 h-6 text-primary-foreground" />
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <BookOpen className="w-6 h-6 text-slate-900" />
               </div>
-              <span className="font-serif text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="font-serif text-2xl font-bold text-amber-400">
                 Shikshanam
               </span>
             </div>
-            <p className="text-white mb-6 leading-relaxed">
+            <p className="text-slate-100 mb-6 leading-relaxed text-base">
               Preserving and sharing ancient Indian wisdom with the modern world. Join us in this noble mission of cultural preservation and spiritual growth.
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3 p-4 bg-slate-800/50 dark:bg-slate-800/50 rounded-2xl border border-slate-600 dark:border-slate-600 backdrop-blur-sm">
+            <div className="space-y-3 p-5 bg-slate-800/70 rounded-2xl border-2 border-slate-600 backdrop-blur-sm">
               {contactInfo.map((contact, index) => (
                 <a
                   key={index}
                   href={contact.href}
-                  className="flex items-center space-x-3 text-white hover:text-amber-400 transition-colors duration-200"
+                  className="flex items-center space-x-3 text-slate-100 hover:text-amber-400 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-lg"
+                  aria-label={`Contact: ${contact.text}`}
                 >
-                  <contact.icon className="w-4 h-4 text-amber-500" />
+                  <contact.icon className="w-5 h-5 text-amber-400" />
                   <span className="text-sm font-medium">{contact.text}</span>
                 </a>
               ))}
@@ -161,15 +162,16 @@ export default function Footer() {
             <div
               key={category}
             >
-              <h3 className="font-semibold text-amber-500 mb-4">{category}</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold text-amber-400 mb-4 text-base">{category}</h3>
+              <ul className="space-y-2.5">
                 {links.map((link, linkIndex) => (
                   <li
                     key={link.name}
                   >
                     <a
                       href={link.href}
-                      className="text-white hover:text-amber-400 transition-all duration-200 text-sm hover:translate-x-1 inline-block"
+                      className="text-slate-100 hover:text-amber-300 transition-all duration-200 text-sm hover:translate-x-1 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
+                      aria-label={`Go to ${link.name}`}
                     >
                       {link.name}
                     </a>
@@ -182,23 +184,25 @@ export default function Footer() {
 
         {/* Newsletter Section */}
         <div
-          className="bg-slate-800/70 dark:bg-slate-800/70 rounded-3xl p-8 mb-12 backdrop-blur-sm border border-slate-600 dark:border-slate-600 shadow-lg"
+          className="bg-slate-800/80 rounded-3xl p-8 mb-12 backdrop-blur-sm border-2 border-slate-600 shadow-xl"
         >
           <div className="text-center max-w-2xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold text-amber-500 mb-4">
+            <h3 className="font-serif text-2xl font-bold text-amber-400 mb-4">
               Stay Updated with Ancient Wisdom
             </h3>
-            <p className="text-white mb-6">
+            <p className="text-slate-100 mb-6 text-base leading-relaxed">
               Get weekly insights, course updates, and spiritual wisdom delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-2xl border border-slate-600 dark:border-slate-600 bg-slate-700 dark:bg-slate-700 text-white dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-amber-500 focus:outline-none transition-all duration-200"
+                className="flex-1 px-4 py-3 rounded-2xl border-2 border-slate-500 bg-slate-700 text-white placeholder:text-slate-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-400 focus:outline-none transition-all duration-200 tap-target"
+                aria-label="Email address for newsletter"
               />
               <button
-                className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:from-amber-400 hover:to-amber-500 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 tap-target"
+                aria-label="Subscribe to newsletter"
               >
                 <span>Subscribe</span>
                 <ArrowRight className="w-4 h-4" />
@@ -208,25 +212,28 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-slate-700 dark:border-slate-700 pt-8">
+        <div className="border-t-2 border-slate-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <div
-              className="text-white text-sm flex items-center gap-1"
+              className="text-slate-100 text-sm flex items-center gap-1"
             >
               © 2024 Shikshanam. All rights reserved. Made with{' '}
-              <Heart className="w-4 h-4 text-amber-500 inline fill-amber-500" /> in India.
+              <Heart className="w-4 h-4 text-amber-400 inline fill-amber-400" aria-label="love" /> in India.
             </div>
 
             {/* Social Links */}
             <div
               className="flex items-center space-x-4"
+              role="navigation"
+              aria-label="Social media links"
             >
               {socialLinks.map((social, index) => (
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`w-10 h-10 bg-slate-700 dark:bg-slate-700 rounded-2xl flex items-center justify-center text-white hover:text-amber-400 hover:bg-slate-600 dark:hover:bg-slate-600 transition-all duration-200 hover:scale-110 border border-slate-600 dark:border-slate-600`}
+                  className={`w-11 h-11 bg-slate-700/80 rounded-2xl flex items-center justify-center text-slate-100 hover:text-amber-400 hover:bg-slate-600 transition-all duration-200 hover:scale-110 border-2 border-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 tap-target`}
+                  aria-label={`Visit our ${social.name} page`}
                   title={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -236,34 +243,35 @@ export default function Footer() {
           </div>
 
           {/* Additional Links */}
-          <div
-            className="flex flex-wrap justify-center gap-6 mt-6 text-white text-sm"
+          <nav
+            className="flex flex-wrap justify-center gap-6 mt-6 text-slate-100 text-sm"
+            aria-label="Legal and policy links"
           >
             <a 
               href={ROUTES.PRIVACY} 
-              className="hover:text-amber-400 transition-colors duration-200"
+              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
             >
               Privacy Policy
             </a>
             <a 
               href={ROUTES.TERMS} 
-              className="hover:text-amber-400 transition-colors duration-200"
+              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
             >
               Terms of Service
             </a>
             <a 
               href="#cookies" 
-              className="hover:text-amber-400 transition-colors duration-200"
+              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
             >
               Cookie Policy
             </a>
             <a 
               href={ROUTES.ACCESSIBILITY} 
-              className="hover:text-amber-400 transition-colors duration-200"
+              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
             >
               Accessibility
             </a>
-          </div>
+          </nav>
         </div>
       </div>
     </footer>

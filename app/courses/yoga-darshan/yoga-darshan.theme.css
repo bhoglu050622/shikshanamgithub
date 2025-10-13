@@ -1,0 +1,228 @@
+/* Yoga Darshan Premium Theme - Meditative & Scholarly */
+
+:root {
+  /* Color Palette - Serene & Heritage */
+  --yoga-bg: #FFF9F2;
+  --yoga-primary: #0D3B4A;
+  --yoga-accent: #D97B2A;
+  --yoga-muted: #6C6C6C;
+  
+  /* Extended Palette */
+  --yoga-bg-secondary: #FFF5EB;
+  --yoga-primary-light: #1A5A6F;
+  --yoga-primary-dark: #082329;
+  --yoga-accent-light: #E89A5D;
+  --yoga-accent-dark: #B85F1F;
+  
+  /* Semantic Colors */
+  --yoga-text-primary: #1F2937;
+  --yoga-text-secondary: #4B5563;
+  --yoga-text-tertiary: #6B7280;
+  --yoga-border-light: #E5E7EB;
+  --yoga-border-medium: #D1D5DB;
+  
+  /* Shadow System - Soft & Elevated */
+  --yoga-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --yoga-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --yoga-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --yoga-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  
+  /* Spacing Scale (8px base) */
+  --yoga-space-1: 0.5rem;
+  --yoga-space-2: 1rem;
+  --yoga-space-3: 1.5rem;
+  --yoga-space-4: 2rem;
+  --yoga-space-6: 3rem;
+  --yoga-space-8: 4rem;
+  --yoga-space-12: 6rem;
+  
+  /* Border Radius */
+  --yoga-radius-sm: 0.375rem;
+  --yoga-radius-md: 0.5rem;
+  --yoga-radius-lg: 0.75rem;
+  --yoga-radius-xl: 1rem;
+  --yoga-radius-2xl: 1.5rem;
+  --yoga-radius-full: 9999px;
+  
+  /* Typography Scale */
+  --yoga-font-display: 'Playfair Display', 'Tiro Devanagari Hindi', serif;
+  --yoga-font-body: 'Inter', 'Noto Sans Devanagari', sans-serif;
+  --yoga-font-devanagari: 'Tiro Devanagari Hindi', 'Noto Sans Devanagari', serif;
+  
+  /* Animation Durations */
+  --yoga-transition-fast: 150ms;
+  --yoga-transition-base: 300ms;
+  --yoga-transition-slow: 500ms;
+  --yoga-transition-meditative: 800ms;
+}
+
+/* Dark Mode (if needed) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --yoga-bg: #1F2937;
+    --yoga-bg-secondary: #111827;
+    --yoga-text-primary: #F9FAFB;
+    --yoga-text-secondary: #E5E7EB;
+    --yoga-text-tertiary: #D1D5DB;
+  }
+}
+
+/* Base Typography */
+.yoga-heading-1 {
+  font-family: var(--yoga-font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.yoga-heading-2 {
+  font-family: var(--yoga-font-display);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.yoga-heading-3 {
+  font-family: var(--yoga-font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.yoga-heading-devanagari {
+  font-family: var(--yoga-font-devanagari);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.yoga-body-lg {
+  font-family: var(--yoga-font-body);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.yoga-body {
+  font-family: var(--yoga-font-body);
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+.yoga-body-sm {
+  font-family: var(--yoga-font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Utility Classes */
+.yoga-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--yoga-space-4);
+}
+
+.yoga-section {
+  padding-block: var(--yoga-space-12);
+}
+
+@media (max-width: 768px) {
+  .yoga-section {
+    padding-block: var(--yoga-space-8);
+  }
+  
+  .yoga-container {
+    padding-inline: var(--yoga-space-3);
+  }
+}
+
+/* Gradient Backgrounds */
+.yoga-gradient-serene {
+  background: linear-gradient(135deg, var(--yoga-bg) 0%, var(--yoga-bg-secondary) 100%);
+}
+
+.yoga-gradient-primary {
+  background: linear-gradient(135deg, var(--yoga-primary) 0%, var(--yoga-primary-light) 100%);
+}
+
+.yoga-gradient-accent {
+  background: linear-gradient(135deg, var(--yoga-accent) 0%, var(--yoga-accent-light) 100%);
+}
+
+/* Glass Morphism Effects */
+.yoga-glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.yoga-glass-dark {
+  background: rgba(13, 59, 74, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Animations */
+@keyframes yoga-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes yoga-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes yoga-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.yoga-animate-float {
+  animation: yoga-float 6s ease-in-out infinite;
+}
+
+.yoga-animate-glow {
+  animation: yoga-glow 4s ease-in-out infinite;
+}
+
+/* Accessibility - Focus Styles */
+.yoga-focus-visible:focus-visible {
+  outline: 3px solid var(--yoga-accent);
+  outline-offset: 2px;
+  border-radius: var(--yoga-radius-sm);
+}
+
+/* Print Styles */
+@media print {
+  .yoga-no-print {
+    display: none !important;
+  }
+}
+

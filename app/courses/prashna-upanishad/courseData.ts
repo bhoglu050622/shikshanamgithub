@@ -2,27 +2,29 @@ import { CourseContent } from '../_shared/types/course.types';
 
 export const prashnaUpanishadCourseData: CourseContent = {
   metadata: {
-    title: 'प्रश्न उपनिषद्',
-    subtitle: 'Prashna Upanishad - The Upanishad of Questions',
+    title: 'Online Course on The Prashna Upanishad',
+    subtitle: 'जीवन के सबसे कठिन प्रश्नों से सीखें !',
     description: 'Explore the profound six questions about life, prana, consciousness, and liberation through systematic study of Prashna Upanishad. Discover the deep connections between micro and macrocosm.',
     type: 'Premium Course',
-    price: '₹1,999',
+    price: '₹1,499',
     originalPrice: '₹2,999',
-    savings: '33%',
-    duration: '6+ Hours',
+    savings: '50%',
+    duration: '7+ Hours',
     level: 'Beginner',
     status: 'available',
     features: [
-      'All 6 Prashnas Covered',
-      '6+ Hours Content',
-      'Prana & Consciousness',
-      'Meditation Techniques',
-      'Certificate',
-      '1 Year Access',
-      'Study Materials',
-      'Community Forum'
+      'Recorded Sessions',
+      'Certification',
+      '7+ Hrs of Content',
+      'All Questions Covered',
+      'Free Future Updates',
+      '1 yr Access',
+      'Quizzes & Notes',
+      'WhatsApp Group',
+      'Community Access',
+      'Live QnA'
     ],
-    thumbnail: '/assets/prashna-upanishad-course.png',
+    thumbnail: '/assets/prashna-upanishad-course.jpg',
     category: 'upanishad',
     priority: 0.87
   },
@@ -82,67 +84,78 @@ export const prashnaUpanishadCourseData: CourseContent = {
 
   syllabus: [
     {
-      title: 'Introduction & First Prashna',
-      subtitle: 'Origin of Creation',
-      duration: '1 hour',
+      title: 'Introduction',
+      subtitle: 'Foundation of Prashna Upanishad',
+      duration: '00:04:57',
       topics: [
-        'Introduction to Prashna Upanishad',
+        'What is Prashna Upanishad?',
         'Historical context and importance',
-        'First Question: From where are beings born?',
-        'Prajapati and creation',
-        'Rayi (matter) and Prana (energy)',
-        'Sun and Moon symbolism',
-        'Annual cycle and spiritual significance'
+        'Overview of the six questions',
+        'Why study this Upanishad?',
+        'Course structure and learning approach'
       ],
-      description: 'Foundation and cosmology of creation'
+      description: 'Free Demo • Introduction to the profound wisdom',
+      isFree: true
     },
     {
-      title: 'Second Prashna',
-      subtitle: 'The Five Pranas',
+      title: 'प्रश्न 1',
+      subtitle: 'Origin of Creation and Beings',
+      duration: '2:40:00',
+      topics: [
+        'First Question: From where are beings born?',
+        'Prajapati and the cosmic creation',
+        'Rayi (matter) and Prana (energy)',
+        'Sun and Moon symbolism',
+        'Annual cycle and spiritual significance',
+        'Connecting macrocosm with microcosm'
+      ],
+      description: 'Free Demo • The fundamental question of existence',
+      isFree: true
+    },
+    {
+      title: 'प्रश्न 2',
+      subtitle: 'The Five Life Forces',
       duration: '1.5 hours',
       topics: [
         'Second Question: How many deities support the body?',
         'The five pranas explained',
         'Prana, Apana, Vyana, Udana, Samana',
-        'Functions of each prana',
-        'Hierarchy among pranas',
+        'Functions and hierarchy of pranas',
         'Prana as the chief vital force',
-        'Relationship between pranas and senses'
+        'Relationship with senses and mind'
       ],
-      description: 'Deep dive into vital forces and their functions'
+      description: '8 chapters • Deep dive into vital forces'
     },
     {
-      title: 'Third Prashna',
-      subtitle: 'Distribution of Prana',
+      title: 'प्रश्न 3',
+      subtitle: 'Distribution and Origin of Prana',
       duration: '1 hour',
       topics: [
         'Third Question: From where does prana originate?',
         'Birth of prana from Atman',
-        'Distribution in the body',
+        'How prana enters and distributes in body',
         'Prana and mind connection',
-        'Entry of prana into body',
         'Delegation of functions',
-        'Karmic implications'
+        'Karmic implications of prana'
       ],
-      description: 'Understanding prana\'s origin and distribution'
+      description: '6 chapters • Understanding the source of life'
     },
     {
-      title: 'Fourth Prashna',
+      title: 'प्रश्न 4',
       subtitle: 'States of Consciousness',
       duration: '1.5 hours',
       topics: [
         'Fourth Question: What sleeps in man?',
         'Waking, dream, and deep sleep states',
         'Role of prana in each state',
-        'Who witnesses all states?',
+        'The eternal witness of all states',
         'Dream creation and significance',
-        'Deep sleep as union with Brahman',
-        'Consciousness as the underlying reality'
+        'Deep sleep as union with Brahman'
       ],
-      description: 'Exploring consciousness through sleep states'
+      description: '9 chapters • Exploring the nature of consciousness'
     },
     {
-      title: 'Fifth Prashna',
+      title: 'प्रश्न 5',
       subtitle: 'Meditation on Om',
       duration: '1 hour',
       topics: [
@@ -151,26 +164,24 @@ export const prashnaUpanishadCourseData: CourseContent = {
         'Om with two matras (A+U)',
         'Om with three matras (A+U+M)',
         'Different fruits of meditation',
-        'Earthly, heavenly, and supreme goals',
-        'Complete absorption in Brahman'
+        'Supreme absorption in Brahman'
       ],
-      description: 'The power and significance of Om meditation'
+      description: '7 chapters • The power of sacred sound'
     },
     {
-      title: 'Sixth Prashna',
+      title: 'प्रश्न 6',
       subtitle: 'The Person of Sixteen Parts',
       duration: '1 hour',
       topics: [
         'Sixth Question: Who is the Person of sixteen parts?',
         'The sixteen kalas explained',
-        'Prana and fifteen other parts',
+        'Prana and fifteen other components',
         'Spokes in the wheel analogy',
-        'Dissolution of parts',
-        'Immortal Self beyond parts',
-        'Path to liberation',
-        'Final teaching and integration'
+        'Dissolution of parts at liberation',
+        'The immortal Self beyond all parts',
+        'Final wisdom and integration'
       ],
-      description: 'Ultimate teaching on Self and liberation'
+      description: '10 chapters • Ultimate teaching on liberation'
     }
   ],
 
@@ -202,15 +213,15 @@ export const prashnaUpanishadCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Acharya Suresh Patel',
-    title: 'Upanishad Scholar & Meditation Teacher',
-    bio: 'Acharya Suresh Patel is an experienced scholar of Upanishads with deep knowledge of Vedantic philosophy and meditation practices. His teaching style combines traditional wisdom with practical guidance, making ancient teachings accessible and transformative for modern practitioners.',
-    experience: '16+ years teaching Upanishads and meditation',
+    name: 'विशाल चौरसिया',
+    title: 'IIT Graduate, Founder of Shikshanam & Hyper Quest',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. As the founder of Shikshanam and Hyper Quest, he has taught thousands of students worldwide, bringing the timeless wisdom of Upanishads to modern life.',
+    experience: '10+ years teaching Upanishads and Indian Philosophy',
     specialization: [
-      'Prashna Upanishad',
-      'Prana Vidya',
-      'Meditation Techniques',
-      'Vedanta Philosophy'
+      'Upanishads',
+      'Vedanta Philosophy',
+      'Indian Darshanas',
+      'Prashna Upanishad'
     ]
   },
 
@@ -289,7 +300,37 @@ export const prashnaUpanishadCourseData: CourseContent = {
   ],
 
   enrollment: {
-    checkoutLink: 'https://courses.shikshanam.in/single-checkout/prashna-upanishad-course?pid=p1'
-  }
+    checkoutLink: 'https://courses.shikshanam.in/single-checkout/6614091229b29a677fdfd70a?pid=p2',
+    contactEmail: 'support@shikshanam.in',
+    contactPhone: '+91-9910032165',
+    whatsapp: '+91-9910032165'
+  },
+
+  demoVideos: [
+    {
+      title: 'Introduction (Free Demo)',
+      description: 'Discover the profound wisdom of the six questions',
+      url: 'https://www.youtube.com/embed/placeholder-intro',
+      duration: '00:04:57',
+      isFree: true
+    },
+    {
+      title: 'प्रश्न 1 (Free Demo)',
+      description: 'The first fundamental question about creation',
+      url: 'https://www.youtube.com/embed/placeholder-q1',
+      duration: '2:40:00',
+      isFree: true
+    }
+  ]
+};
+
+// Export demo videos for components
+export const prashnaDemoVideos = prashnaUpanishadCourseData.demoVideos;
+
+// Export support information for components
+export const prashnaSupport = {
+  email: prashnaUpanishadCourseData.enrollment.contactEmail,
+  phone: prashnaUpanishadCourseData.enrollment.contactPhone,
+  whatsapp: prashnaUpanishadCourseData.enrollment.whatsapp
 };
 

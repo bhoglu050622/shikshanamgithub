@@ -10,6 +10,7 @@ export interface CourseMetadata {
   savings?: string;
   duration: string;
   level: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
+  language?: string;
   status: 'available' | 'coming-soon' | 'sold-out';
   features: string[];
   thumbnail?: string;
@@ -18,13 +19,21 @@ export interface CourseMetadata {
 }
 
 export interface CourseInstructor {
+  id?: string;
   name: string;
   title: string;
   bio: string;
   image?: string;
   credentials?: string[];
-  experience?: string;
-  specialization?: string[];
+  experience?: string; // e.g., "10+ years teaching Indian Philosophy"
+  specialization?: string[]; // Areas of expertise
+  achievements?: string[];
+  socialLinks?: {
+    youtube?: string;
+    linkedin?: string;
+    twitter?: string;
+    website?: string;
+  };
 }
 
 export interface CourseHighlight {
@@ -37,8 +46,11 @@ export interface CourseSyllabus {
   title: string;
   subtitle?: string;
   duration?: string;
+  videoCount?: number;
   topics: string[];
   description?: string;
+  caseStudy?: string;
+  isFree?: boolean;
 }
 
 export interface CourseOutcome {
@@ -51,8 +63,10 @@ export interface CourseTestimonial {
   name: string;
   role?: string;
   avatar?: string;
+  image?: string;
   content: string;
   rating?: number;
+  category?: string;
 }
 
 export interface CourseFAQ {
@@ -66,6 +80,10 @@ export interface CourseStats {
   reviews?: number;
   completionRate?: string;
   satisfaction?: string;
+  hours?: string;
+  lessons?: number;
+  worksheets?: string;
+  accessYears?: number;
 }
 
 export interface CourseCertificate {
@@ -77,7 +95,12 @@ export interface CourseCertificate {
 
 export interface CourseEnrollmentInfo {
   checkoutLink: string;
-  contactNumber?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  whatsapp?: string;
+  whatsappGroup?: boolean;
+  supportEmail?: string;
+  supportPhone?: string;
   earlyBirdOffer?: {
     enabled: boolean;
     deadline?: string;
@@ -93,6 +116,7 @@ export interface CourseEnrollmentInfo {
 export interface CourseContent {
   metadata: CourseMetadata;
   instructor?: CourseInstructor;
+  instructors?: CourseInstructor[];
   highlights: CourseHighlight[];
   whyCourse?: {
     title: string;
@@ -106,6 +130,15 @@ export interface CourseContent {
   stats?: CourseStats;
   certificate?: CourseCertificate;
   enrollment: CourseEnrollmentInfo;
+  videoPromo?: string;
+  heroImage?: string;
+  demoVideos?: {
+    title: string;
+    description: string;
+    url: string;
+    duration: string;
+    isFree?: boolean;
+  }[];
 }
 
 export type ThemeVariant = 'philosophy' | 'upanishad' | 'sanskrit' | 'practical' | 'advanced';
