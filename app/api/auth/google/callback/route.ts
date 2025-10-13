@@ -25,19 +25,22 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code')
   const state = searchParams.get('state')
   const error = searchParams.get('error')
+  
+  // Get the base URL from the request
+  const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`
 
   // Handle OAuth error
   if (error) {
     console.error('Google OAuth error:', error)
     const returnUrl = state ? decodeURIComponent(state) : '/'
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}${returnUrl}?error=oauth_failed`)
+    return NextResponse.redirect(`${baseUrl}${returnUrl}?error=oauth_failed`)
   }
 
   // Validate required parameters
   if (!code) {
     console.error('No authorization code received')
     const returnUrl = state ? decodeURIComponent(state) : '/'
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}${returnUrl}?error=no_code`)
+    return NextResponse.redirect(`${baseUrl}${returnUrl}?error=no_code`)
   }
 
   try {
@@ -60,7 +63,7 @@ export async function GET(request: NextRequest) {
 
     // Create response with redirect
     const returnUrl = state ? decodeURIComponent(state) : '/'
-    const response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}${returnUrl}`)
+    const response = NextResponse.redirect(`${baseUrl}${returnUrl}`)
 
     const authData = JSON.stringify({
       isLoggedIn: true,
@@ -91,7 +94,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('OAuth callback error:', error)
     const returnUrl = state ? decodeURIComponent(state) : '/'
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}${returnUrl}?error=auth_failed`)
+    return NextResponse.redirect(`${baseUrl}${returnUrl}?error=auth_failed`)
   }
 }
 
@@ -106,15 +109,15 @@ async function exchangeCodeForToken(code: string): Promise<GoogleTokenResponse> 
     throw new Error('Google OAuth configuration is missing')
   }
 
+  const redirectUri = `${request.nextUrl.protocol}//${request.nextUrl.host}${AUTH_CONFIG.GOOGLE.REDIRECT_URI}`
+  
   const tokenData = new URLSearchParams({
     code,
     client_id: AUTH_CONFIG.GOOGLE.CLIENT_ID,
     client_secret: AUTH_CONFIG.GOOGLE.CLIENT_SECRET,
-    redirect_uri: `${process.env.NEXT_PUBLIC_APP_URL}${AUTH_CONFIG.GOOGLE.REDIRECT_URI}`,
+    redirect_uri: redirectUri,
     grant_type: 'authorization_code'
   })
-
-  const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL}${AUTH_CONFIG.GOOGLE.REDIRECT_URI}`
   console.log('Token exchange details:', {
     redirectUri,
     clientId: AUTH_CONFIG.GOOGLE.CLIENT_ID.substring(0, 20) + '...',
