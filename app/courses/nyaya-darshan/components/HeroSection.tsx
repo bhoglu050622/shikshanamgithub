@@ -3,15 +3,25 @@
 import { motion } from 'framer-motion';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 import AnimatedBackground from './AnimatedBackground';
+import LogicDiagram from './LogicDiagram';
 
 export default function HeroSection() {
   return (
     <section className="nyaya-hero-section"
             suppressHydrationWarning
           >
+      {/* Logic Pattern Overlay */}
+      <div className="logic-pattern" />
+      
+      {/* Logic Diagram Visualization */}
+      <div className="inference-lines">
+        <LogicDiagram />
+      </div>
+      
+      {/* Original Background */}
       <AnimatedBackground />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/95 via-[#6B7280]/80 to-blue-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#D97706]/80 via-[#92400E]/70 to-amber-900/30" />
       
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32"
             suppressHydrationWarning
