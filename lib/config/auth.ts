@@ -8,7 +8,7 @@ export const AUTH_CONFIG = {
   GOOGLE: {
     CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
     CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
-    REDIRECT_URI: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI || '/auth/google/callback',
+    REDIRECT_URI: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI || '/api/auth/google/callback',
     SCOPES: ['openid', 'email', 'profile'].join(' '),
   },
 
