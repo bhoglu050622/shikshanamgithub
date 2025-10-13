@@ -93,8 +93,8 @@ const nextConfig = {
     // Enable fast refresh optimizations
     optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-icons'],
     
-    // Enable faster builds
-    webpackBuildWorker: true,
+    // Enable faster builds (disabled on Vercel due to TypeScript detection issues)
+    webpackBuildWorker: process.env.VERCEL ? false : true,
     
     // Enable faster compilation
     // esmExternals: 'loose', // Not recommended to modify
