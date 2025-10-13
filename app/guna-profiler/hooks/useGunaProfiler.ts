@@ -20,17 +20,9 @@ export function useGunaProfiler() {
     setSessionId(`${timestamp}-${randomPart}`)
   }, [])
 
-  // Load user name from dharma-path profile
+  // User name is managed within this component
   useEffect(() => {
-    const storedProfile = localStorage.getItem('dharma-path-profile')
-    if (storedProfile) {
-      try {
-        const profile = JSON.parse(storedProfile)
-        setUserName(profile.name || 'Seeker')
-      } catch (error) {
-        setUserName('Seeker')
-      }
-    }
+    // No external profile to load
   }, [])
 
   const handleAnswerSelect = (guna: 'sattva' | 'rajas' | 'tamas') => {
@@ -91,22 +83,17 @@ export function useGunaProfiler() {
     setResult(gunaResult)
     setShowResults(true)
 
-    // Save to localStorage for dharma-path integration
-    saveToProfile(gunaResult)
+    // Save result to localStorage
+    saveToLocalStorage(gunaResult)
   }
 
 
-  const saveToProfile = (gunaResult: GunaResult) => {
+  const saveToLocalStorage = (gunaResult: GunaResult) => {
     try {
-      const existingProfile = localStorage.getItem('dharma-path-profile')
-      let profile = existingProfile ? JSON.parse(existingProfile) : {}
-      
-      profile.gunaResult = gunaResult
-      profile.lastUpdated = new Date().toISOString()
-      
-      localStorage.setItem('dharma-path-profile', JSON.stringify(profile))
+      localStorage.setItem('guna-profiler-result', JSON.stringify(gunaResult))
+      localStorage.setItem('guna-profiler-timestamp', new Date().toISOString())
     } catch (error) {
-      console.error('Error saving guna result to profile:', error)
+      console.error('Error saving guna result:', error)
     }
   }
 

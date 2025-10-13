@@ -79,7 +79,7 @@ export default function CertificateShowcase() {
           <div className="w-16 h-16 bg-advaita-light rounded-full flex items-center justify-center mx-auto mb-4">
             <Download className="w-8 h-8 text-advaita-primary" />
           </div>
-          <h4 className="advaita-heading text-lg mb-2">Lifetime Access</h4>
+          <h4 className="advaita-heading text-lg mb-2">1-Year Access</h4>
           <p className="advaita-subheading text-sm text-gray-600">
             Download and access your certificate anytime
           </p>

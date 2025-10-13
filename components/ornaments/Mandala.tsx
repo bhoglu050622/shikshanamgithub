@@ -16,7 +16,7 @@ export default function Mandala({ size = 200, className = '', speed = 60 }: Mand
       viewBox="0 0 200 200"
       className={`absolute pointer-events-none ${className}`}
       animate={{ rotate: 360 }}
-      transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: speed, repeat: Number.POSITIVE_INFINITY, repeatType: "loop", ease: "linear" }}
       style={{ willChange: 'transform' }}
     >
       <defs>

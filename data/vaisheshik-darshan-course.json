@@ -1,84 +1,160 @@
 {
   "id": "vaisheshik-darshan",
-  "title": "वैशेषिक दर्शन",
-  "subtitle": "The Philosophy of Particularity and Atomic Theory",
-  "instructor": "Dr. Suresh Sharma",
-  "language": "Hindi",
-  "price": "₹2,299",
-  "originalPrice": "₹3,999",
-  "duration": "4 months",
-  "level": "Intermediate",
-  "rating": 4.5,
-  "reviewCount": 76,
+  "title": "Philosophy of Maharshi Kanada's Vaisheshik Sutras",
+  "subtitle": "(Anant Brahmand ki sookshmta mein pravesh!)",
+  "instructor": "Vishal Chaurasia",
+  "language": "हिन्दी",
+  "price": "₹999",
+  "originalPrice": null,
+  "duration": "30 Sessions",
+  "level": "Beginner",
+  "rating": 0,
+  "reviewCount": 0,
+  "students": "0K+",
   "type": "Premium Course",
   "status": "available",
-  "checkoutLink": "https://courses.shikshanam.in/checkout/vaisheshik-darshan",
+  "checkoutLink": "https://courses.shikshanam.in/single-checkout/643aa48ee4b0bc2eac815e74?pid=p3",
   "contactNumber": "9910032165",
   "features": [
     {
-      "icon": "Atom",
-      "title": "Atomic Theory",
-      "description": "Understand the ancient atomic theory of Vaisheshik"
+      "icon": "BookOpen",
+      "title": "30 Sessions",
+      "description": "Comprehensive coverage of all Vaisheshik Sutras"
     },
     {
-      "icon": "Users",
-      "title": "Expert Guidance",
-      "description": "Learn from experienced philosophy scholars"
+      "icon": "Clock",
+      "title": "1 Yr Access",
+      "description": "Learn at your own pace for one full year"
+    },
+    {
+      "icon": "Download",
+      "title": "Quizzes & Notes",
+      "description": "Interactive learning materials included"
     },
     {
       "icon": "Award",
-      "title": "Certificate",
-      "description": "Get a certificate upon completion"
+      "title": "Certification",
+      "description": "Earn a certificate upon completion"
+    },
+    {
+      "icon": "Users",
+      "title": "Community Forum",
+      "description": "Connect with fellow learners"
+    },
+    {
+      "icon": "MessageCircle",
+      "title": "Free Updates",
+      "description": "Access to all future course updates"
     }
   ],
   "learningObjectives": [
-    "Understanding the 6 categories of Vaisheshik philosophy",
-    "Mastering the concept of atoms and their properties",
-    "Practical application of Vaisheshik principles in modern science"
+    "सही ज्ञान होगा Dravya, Guna, Karma, Samanya, Vishesha आदि (padartha) का",
+    "अंतर बोध होगा कि कैसे पदार्थ, गुण, कर्म अलग लेकिन संबद्ध हैं",
+    "विवेकी दृष्टि आएगी — क्या वास्तव में है, क्या मिथ्या",
+    "जीवन में तर्क और दर्शन के संग ले चलने की क्षमता"
   ],
   "keyHighlights": [
-    "Detailed study of Vaisheshik Sutras",
-    "Interactive discussions on atomic theory",
-    "Connections between ancient and modern science"
+    "Complete study of Maharshi Kanada's Vaisheshik Sutras",
+    "Understanding the atomic structure of the universe",
+    "Exploring the 6 fundamental categories (Padarthas)",
+    "Hindi language instruction for easy comprehension"
   ],
   "syllabus": [
     {
       "id": 1,
-      "title": "Introduction to Vaisheshik Philosophy",
+      "title": "Why Nyaya and Vaisheshik are studied together?",
       "type": "video",
-      "duration": "Week 1",
-      "description": "Understanding the fundamental concepts of Vaisheshik"
+      "duration": "~00:04:42",
+      "description": "Free Demo Video",
+      "isFree": true
     },
     {
       "id": 2,
-      "title": "The 6 Categories",
+      "title": "Chapter 1: The First Sutra",
       "type": "video",
-      "duration": "Week 2-4",
-      "description": "Deep dive into the 6 categories of Vaisheshik philosophy"
+      "duration": "~00:04:42",
+      "description": "Introduction to the foundational concepts"
     },
     {
       "id": 3,
-      "title": "Atomic Theory and Modern Science",
+      "title": "Chapter 2: Definition of Dharma",
       "type": "video",
-      "duration": "Week 5-8",
-      "description": "Connecting ancient atomic theory with modern scientific understanding"
+      "duration": "~00:06:42",
+      "description": "Exploring the concept of Dharma"
+    },
+    {
+      "id": 4,
+      "title": "Chapter 3: Did Ishwara create Vedas?",
+      "type": "video",
+      "duration": "~00:04:50",
+      "description": "Examining creation and divine origin"
+    },
+    {
+      "id": 5,
+      "title": "Chapter 4: The form of Dharma: 6 Padartha",
+      "type": "video",
+      "duration": "~00:06:47",
+      "description": "Understanding the six fundamental categories"
+    },
+    {
+      "id": 6,
+      "title": "Chapter 5: The Nine Dravyas",
+      "type": "video",
+      "duration": "~00:03:46",
+      "description": "Deep dive into the nine substances"
+    },
+    {
+      "id": 7,
+      "title": "Chapter 6: The Seventeen Gunas",
+      "type": "video",
+      "duration": "~00:07:28",
+      "description": "Exploring the seventeen qualities"
+    },
+    {
+      "id": 8,
+      "title": "Chapter 7: Karma and Its Types",
+      "type": "video",
+      "duration": "~00:06:11",
+      "description": "Understanding action and classifications"
+    },
+    {
+      "id": 9,
+      "title": "Chapter 8: Similarities in Dravya, Guna and Karma",
+      "type": "video",
+      "duration": "~00:12:40",
+      "description": "Analyzing relationships between categories"
+    },
+    {
+      "id": 10,
+      "title": "Chapter 9: Similarity in Dravya and Guna",
+      "type": "video",
+      "duration": "~00:05:34",
+      "description": "How substance and quality relate"
+    },
+    {
+      "id": 11,
+      "title": "Chapter 10: How Karma is different from Dravya and Guna",
+      "type": "video",
+      "duration": "~00:03:59",
+      "description": "Distinguishing action from substance and quality"
+    },
+    {
+      "id": 12,
+      "title": "Chapter 11: How Dravya is different from Guna and Karma",
+      "type": "video",
+      "duration": "~00:09:10",
+      "description": "Understanding unique characteristics of substance"
     }
   ],
   "testimonials": [
     {
-      "name": "Ravi Patel",
-      "rating": 5,
-      "comment": "Fascinating course that connects ancient wisdom with modern science",
-      "verified": true
-    },
-    {
-      "name": "Sunita Kumar",
-      "rating": 4,
-      "comment": "The instructor's knowledge of both ancient and modern science is remarkable",
+      "name": "Student Review",
+      "rating": 0,
+      "comment": "हजारों छात्रों, गृहणियों, जिज्ञासुओं ने अपनाया वैशेषिक दर्शन को",
       "verified": true
     }
   ],
-  "lastModified": "2024-01-15T10:30:00Z",
+  "lastModified": "2025-10-12T10:30:00Z",
   "views": 890,
   "popularity": 75
 }

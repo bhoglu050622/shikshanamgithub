@@ -103,22 +103,30 @@ export function setAuthCookie(userData: any) {
   })
 }
 
-export function getAuthCookie(): { isLoggedIn: boolean; user: any; timestamp: number } | null {
-  const cookieValue = getCookie(AUTH_COOKIE_NAME)
+export function getAuthCookie(): { isLoggedIn: boolean; user: any; timestamp?: number } | null {
+  // Try client-readable cookie first (set by OAuth callback)
+  let cookieValue = getCookie(`${AUTH_COOKIE_NAME}-client`)
+  
+  // Fallback to regular cookie if client cookie not found
+  if (!cookieValue) {
+    cookieValue = getCookie(AUTH_COOKIE_NAME)
+  }
   
   if (!cookieValue) return null
   
   try {
     const authData = JSON.parse(cookieValue)
     
-    // Check if cookie is expired (older than max age)
-    const now = Date.now()
-    const cookieAge = now - authData.timestamp
-    const maxAgeMs = AUTH_COOKIE_MAX_AGE * 1000
-    
-    if (cookieAge > maxAgeMs) {
-      deleteAuthCookie()
-      return null
+    // Check if cookie is expired (older than max age) if timestamp exists
+    if (authData.timestamp) {
+      const now = Date.now()
+      const cookieAge = now - authData.timestamp
+      const maxAgeMs = AUTH_COOKIE_MAX_AGE * 1000
+      
+      if (cookieAge > maxAgeMs) {
+        deleteAuthCookie()
+        return null
+      }
     }
     
     return authData
@@ -131,4 +139,5 @@ export function getAuthCookie(): { isLoggedIn: boolean; user: any; timestamp: nu
 
 export function deleteAuthCookie() {
   deleteCookie(AUTH_COOKIE_NAME)
+  deleteCookie(`${AUTH_COOKIE_NAME}-client`)
 }

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useAuth } from '@/lib/auth/AuthContext'
+import { SSOLoginModal } from '@/components/auth/SSOLoginModal'
 import InitialScreen from './components/InitialScreen'
 import QuizInterface from './components/QuizInterface'
 import ResultsScreen from './components/ResultsScreen'
@@ -9,9 +11,25 @@ import { useShivaAlignment } from './hooks/useShivaAlignment'
 
 export default function ShivaAlignmentPage() {
   const [currentScreen, setCurrentScreen] = useState<'initial' | 'quiz' | 'results'>('initial')
+  const [showLoginModal, setShowLoginModal] = useState(false)
+  const { user, isLoading } = useAuth()
   const alignmentData = useShivaAlignment()
 
+  // Check authentication on mount
+  useEffect(() => {
+    if (!isLoading && !user) {
+      // Store the intended quiz path for redirect after login
+      localStorage.setItem('quiz-return-path', '/how-aligned-are-you')
+      setShowLoginModal(true)
+    }
+  }, [user, isLoading])
+
   const handleStartQuiz = () => {
+    if (!user) {
+      localStorage.setItem('quiz-return-path', '/how-aligned-are-you')
+      setShowLoginModal(true)
+      return
+    }
     setCurrentScreen('quiz')
   }
 
@@ -25,8 +43,22 @@ export default function ShivaAlignmentPage() {
   }
 
   // Auto-navigate to results when quiz is complete
-  if (alignmentData.showResults && currentScreen !== 'results') {
-    setCurrentScreen('results')
+  useEffect(() => {
+    if (alignmentData.showResults && currentScreen !== 'results') {
+      setCurrentScreen('results')
+    }
+  }, [alignmentData.showResults, currentScreen])
+
+  // Show loading state while checking auth
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="text-center z-10">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-gray-300">Loading...</p>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -75,12 +107,19 @@ export default function ShivaAlignmentPage() {
             key="results"
             result={alignmentData.result}
             userName={alignmentData.userName}
+            userEmail={user?.email || ''}
             onResetQuiz={handleResetQuiz}
             feedbackRating={alignmentData.feedbackRating}
             setFeedbackRating={alignmentData.setFeedbackRating}
           />
         )}
       </AnimatePresence>
+
+      {/* Login Modal */}
+      <SSOLoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+      />
     </div>
   )
 }

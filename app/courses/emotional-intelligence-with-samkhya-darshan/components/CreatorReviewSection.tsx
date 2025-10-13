@@ -80,8 +80,8 @@ const ReviewCard = ({ name, bio, quote, videoId, thumbnailUrl, rating }: ReviewC
           src={thumbnailUrl}
           alt={`${name} video thumbnail`}
           layout="fill"
-          objectFit="cover"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          objectFit="contain"
+          className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageLoaded(true)} // Fallback if image fails to load
         />

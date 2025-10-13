@@ -7,36 +7,36 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      question: "How do I sign up for the course?",
-      answer: "Simply click the 'Enroll Now' button and follow the registration process. You'll receive instant access to all course materials upon successful payment."
+      question: "How do I sign up?",
+      answer: "Click login → signup; or use Google."
     },
     {
-      question: "What is the validity of the course?",
-      answer: "You get lifetime access to the course materials. Once enrolled, you can access the content anytime, anywhere, forever."
+      question: "What is course validity?",
+      answer: "Lifetime (or long access)"
     },
     {
-      question: "Are there any prerequisites for this course?",
-      answer: "No prerequisites required! This course is designed for beginners and is taught in Hindi with clear explanations. Basic understanding of Hindi is sufficient."
+      question: "Any prerequisites?",
+      answer: "None"
     },
     {
-      question: "Can I download the course materials?",
-      answer: "Yes, you can download the course notes, quizzes, and supplementary materials for offline study. The video content is available for streaming."
+      question: "How to access after purchase?",
+      answer: "Via Dashboard, website / mobile app"
     },
     {
-      question: "What is your refund policy?",
-      answer: "We offer a 7-day money-back guarantee. If you're not satisfied with the course content, you can request a full refund within 7 days of enrollment."
+      question: "Can I download lectures?",
+      answer: "Yes, via mobile app"
     },
     {
-      question: "How can I get support if I have questions?",
-      answer: "You can reach our support team at support@shikshanam.in or call +91-9910032165. We also have a community forum where you can interact with other students."
+      question: "How to contact support?",
+      answer: "support@shikshanam.in"
     },
     {
-      question: "Is the certificate authentic?",
-      answer: "Yes, the certificate is authentic and includes a verification code. You can share it on LinkedIn and other professional platforms."
+      question: "Issue accessing course?",
+      answer: "Check email used, check Dashboard, contact support"
     },
     {
-      question: "Can I access the course on mobile devices?",
-      answer: "Absolutely! The course is fully responsive and can be accessed on smartphones, tablets, and computers. Learn anywhere, anytime."
+      question: "Refunds?",
+      answer: "No refunds currently"
     }
   ];
 
@@ -100,32 +100,18 @@ export default function FAQSection() {
             Still Have Questions?
           </h3>
           <p className="text-saffron-700 mb-6">
-            Our support team is here to help you on your spiritual journey
+            Give us a call +91-9910032165 (Monday to Saturday 11 AM – 6 PM)
           </p>
           
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg">
-              <div className="w-12 h-12 bg-saffron-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                </svg>
-              </div>
-              <h4 className="font-semibold text-saffron-800 mb-2">Email Support</h4>
-              <p className="text-saffron-700 mb-2">support@shikshanam.in</p>
-              <p className="text-sm text-saffron-600">Response within 24 hours</p>
+          <div className="bg-white p-6 rounded-lg max-w-md mx-auto">
+            <div className="w-12 h-12 bg-saffron-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              </svg>
             </div>
-
-            <div className="bg-white p-6 rounded-lg">
-              <div className="w-12 h-12 bg-saffron-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                </svg>
-              </div>
-              <h4 className="font-semibold text-saffron-800 mb-2">Phone Support</h4>
-              <p className="text-saffron-700 mb-2">+91-9910032165</p>
-              <p className="text-sm text-saffron-600">Mon-Fri, 9 AM - 6 PM IST</p>
-            </div>
+            <h4 className="font-semibold text-saffron-800 mb-2">Email Support</h4>
+            <p className="text-saffron-700">support@shikshanam.in</p>
           </div>
         </div>
       </div>

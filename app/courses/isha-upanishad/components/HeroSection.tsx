@@ -1,7 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -12,8 +14,18 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-saffron-900 via-saffron-800 to-saffron-700 hero-animated-bg">
+      {/* Course Icon Overlay */}
+      <div className="absolute inset-0 opacity-5 z-0">
+        <Image 
+          src="/assets/courses/isha-upanishad.png"
+          alt="Isha Upanishad"
+          fill
+          className="object-contain"
+        />
+      </div>
+      
       {/* Enhanced Animated Background Elements */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-10">
         {/* Dynamic Floating Particles */}
         <div className="absolute inset-0">
           {[...Array(30)].map((_, i) => (
@@ -243,21 +255,27 @@ export default function HeroSection() {
               fontWeight: '300'
             }}
           >
-            A Spiritual Journey of the Self
+            आत्म दर्शन की यात्रा पर निकलें !
           </span>
         </h1>
 
         {/* Enhanced Subtitle */}
-        <p 
-          className={`text-xl md:text-2xl mb-10 text-saffron-100 max-w-3xl mx-auto ${mounted ? 'animate-fade-lift' : ''}`} 
+        <div 
+          className={`text-lg md:text-xl mb-10 max-w-3xl mx-auto ${mounted ? 'animate-fade-lift' : ''}`} 
           style={{
             animationDelay: '1.6s',
-            textShadow: '0 0 15px rgba(249, 115, 22, 0.3)',
-            lineHeight: '1.6'
+            lineHeight: '1.8'
           }}
         >
-          Dive into all 18 Shlokas with clarity, quizzes, notes & a certificate
-        </p>
+          <div className="inline-flex flex-col gap-2 bg-white/20 backdrop-blur-md rounded-lg px-6 py-4 border border-white/30">
+            <p className="text-white font-semibold">
+              <span className="text-saffron-200">Skill Level:</span> Beginner
+            </p>
+            <p className="text-white font-semibold">
+              <span className="text-saffron-200">Language:</span> हिन्दी
+            </p>
+          </div>
+        </div>
 
         {/* Enhanced Price */}
         <div 
@@ -275,9 +293,9 @@ export default function HeroSection() {
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              ₹999
+              ₹2,999
             </span>
-            <span className="text-lg text-saffron-200 ml-3 font-medium">· Lifetime Access</span>
+            <span className="text-lg text-saffron-200 ml-3 font-medium line-through opacity-70">₹4,499</span>
           </div>
         </div>
 
@@ -286,15 +304,17 @@ export default function HeroSection() {
           className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 ${mounted ? 'animate-fade-lift' : ''}`} 
           style={{animationDelay: '2.4s'}}
         >
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white px-10 py-5 text-xl font-bold rounded-xl shadow-2xl hover:shadow-saffron-500/25 transition-all duration-300 transform hover:scale-105"
-            style={{
-              boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'
-            }}
-          >
-            Enroll Now
-          </Button>
+          <ProtectedExternalLink href="https://courses.shikshanam.in/single-checkout/6613dc28c07e467c4f550416?pid=p2">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white px-10 py-5 text-xl font-bold rounded-xl shadow-2xl hover:shadow-saffron-500/25 transition-all duration-300 transform hover:scale-105"
+              style={{
+                boxShadow: '0 0 30px rgba(249, 115, 22, 0.4)'
+              }}
+            >
+              Enroll Now
+            </Button>
+          </ProtectedExternalLink>
           <Button 
             variant="outline" 
             size="lg"
@@ -309,26 +329,31 @@ export default function HeroSection() {
 
         {/* Enhanced Feature Badges */}
         <div 
-          className={`grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto ${mounted ? 'animate-fade-lift' : ''}`} 
+          className={`grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto ${mounted ? 'animate-fade-lift' : ''}`} 
           style={{animationDelay: '2.8s'}}
         >
           {[
-            { icon: '👁️', title: 'Recorded Sessions', desc: 'High Quality' },
-            { icon: '⏱️', title: '3+ Hrs. Content', desc: 'Comprehensive' },
-            { icon: '📜', title: '18 Shlokas', desc: 'Complete Coverage' },
-            { icon: '🏆', title: 'Certificate', desc: 'Shareable' }
+            { icon: '📹', title: 'Recorded Sessions' },
+            { icon: '⏱️', title: '3+ Hrs. Content' },
+            { icon: '📜', title: 'All Shlokas Covered' },
+            { icon: '🔄', title: 'Free Future Updates' },
+            { icon: '📝', title: 'Quizzes & Notes' },
+            { icon: '🗓️', title: '1 yr Access' },
+            { icon: '🏆', title: 'Certification' },
+            { icon: '💬', title: 'WhatsApp Group' },
+            { icon: '❓', title: 'Live QnA' },
+            { icon: '👥', title: 'Community Access' }
           ].map((feature, i) => (
             <div 
               key={i}
-              className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-md rounded-xl border border-saffron-400/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105"
+              className="flex flex-col items-center p-4 bg-white/10 backdrop-blur-md rounded-xl border border-saffron-400/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105"
               style={{
                 boxShadow: '0 0 20px rgba(249, 115, 22, 0.1)',
-                animationDelay: `${2.8 + i * 0.2}s`
+                animationDelay: `${2.8 + i * 0.1}s`
               }}
             >
-              <div className="text-3xl mb-3">{feature.icon}</div>
-              <span className="text-sm font-semibold text-saffron-200 mb-1">{feature.title}</span>
-              <span className="text-xs text-saffron-300 opacity-80">{feature.desc}</span>
+              <div className="text-2xl mb-2">{feature.icon}</div>
+              <span className="text-xs font-semibold text-saffron-200 text-center">{feature.title}</span>
             </div>
           ))}
         </div>

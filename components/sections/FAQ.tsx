@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
 import { useState, useEffect } from 'react'
 import { ChevronDown, ChevronUp, HelpCircle, MessageCircle, Phone } from 'lucide-react'
-import { API_CONFIG } from '@/lib/config/api'
 
 // Type definitions
 interface FAQItem {
@@ -58,43 +57,18 @@ const defaultFaqs: FAQItem[] = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const [faqData, setFaqData] = useState<FAQData | null>(null)
-  const [loading, setLoading] = useState(true)
 
-  // Fetch CMS data
-  useEffect(() => {
-    const fetchFaqData = async () => {
-      try {
-        const apiUrl = API_CONFIG.getCmsApiUrl('content')
-        console.log('Fetching FAQ data from:', apiUrl)
-        
-        const response = await fetch(apiUrl)
-        const result = await response.json()
-        
-        if (result.success && result.data.faq) {
-          setFaqData(result.data.faq)
-        }
-      } catch (error) {
-        console.error('Failed to fetch FAQ data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchFaqData()
-  }, [])
-
-  // Use CMS data or fallback to default
-  const faqs = faqData?.questions || defaultFaqs
-  const sectionTitle = faqData?.title || "Frequently Asked Questions"
-  const sectionSubtitle = faqData?.subtitle || "Find answers to common questions about our courses, platform, and learning experience."
+  // Hardcoded FAQ data
+  const faqs = defaultFaqs
+  const sectionTitle = "Frequently Asked Questions"
+  const sectionSubtitle = "Find answers to common questions about our courses, platform, and learning experience."
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
   return (
-    <section id="faq" className="section-padding bg-background relative overflow-hidden">
+    <section id="faq" className="py-12 md:py-16 bg-gradient-to-b from-[hsl(45,40%,98%)] to-[hsl(45,30%,97%)] dark:from-[hsl(240,8%,9%)] dark:to-[hsl(240,6%,11%)] relative overflow-hidden">
       {/* Background Animation - Floating Question Marks & Help Icons */}
       <div className="absolute inset-0 -z-10">
         {/* Floating Question Marks */}
@@ -203,46 +177,6 @@ export default function FAQ() {
         </div>
 
         {/* Bottom CTA */}
-        <MotionDiv
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="bg-gradient-to-r from-secondary to-accent rounded-3xl p-8 text-primary-foreground max-w-3xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold mb-4 text-white">
-              Still have questions?
-            </h3>
-            <p className="text-primary-foreground/90 mb-6 text-lg">
-              Our support team is here to help you on your learning journey. Get in touch with us for any assistance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="mailto:support@shikshanam.in"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-foreground px-8 py-3 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
-              >
-                <MessageCircle className="w-5 h-5" />
-                <span>Email Support</span>
-              </motion.a>
-              <motion.a
-                href="tel:+919910032165"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-3 rounded-2xl font-semibold hover:bg-white hover:text-foreground transition-all duration-300 flex items-center justify-center space-x-2"
-              >
-                <Phone className="w-5 h-5" />
-                <span>Call Us</span>
-              </motion.a>
-            </div>
-            <div className="mt-4 text-white text-sm">
-              <p>Monday to Saturday 11AM – 6PM</p>
-              <p>Phone: +91-9910032165</p>
-            </div>
-          </div>
-        </MotionDiv>
       </div>
     </section>
   )

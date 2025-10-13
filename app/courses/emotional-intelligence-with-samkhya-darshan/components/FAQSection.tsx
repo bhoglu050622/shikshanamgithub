@@ -10,54 +10,54 @@ interface FAQItem {
 
 const faqItems: FAQItem[] = [
   {
-    id: 'what-is-chanakya-code',
-    question: 'What is Chanakya\'s Code and how is it different from other business courses?',
-    answer: 'Chanakya\'s Code is a comprehensive course based on the ancient wisdom of Chanakya\'s Arthashastra, adapted for modern business challenges. Unlike generic business courses, it provides time-tested principles that have been proven effective for over 2000 years. The course combines ancient strategic thinking with contemporary business applications, giving you a unique advantage in negotiations, leadership, and strategic decision-making.'
+    id: 'what-is-course',
+    question: 'What is Emotional Intelligence with Samkhya Darshan?',
+    answer: 'This is a transformative course that combines ancient Samkhya philosophy with modern emotional intelligence principles. You\'ll learn to understand and manage your emotions using time-tested wisdom from one of India\'s oldest philosophical systems, making it highly practical for modern life challenges.'
   },
   {
-    id: 'course-duration',
-    question: 'How long does the course take to complete?',
-    answer: 'The course is designed to be completed at your own pace. The core content includes 12 comprehensive modules that can be completed in 4-6 weeks with 2-3 hours of study per week. However, you have lifetime access, so you can revisit the material whenever you need a refresher or want to dive deeper into specific topics.'
+    id: 'course-validity',
+    question: 'How long is the course valid?',
+    answer: 'You get 1-year access to all course materials from the date of enrollment. During this period, you can revisit the content anytime, anywhere, as many times as you want. This gives you ample time to complete the course at your own pace and revisit lessons as needed.'
+  },
+  {
+    id: 'access-after-completion',
+    question: 'Can I access the course after completion?',
+    answer: 'Yes! As long as you\'re within the 1-year validity period, you can continue to access all course materials even after completing the course. This allows you to revise and reinforce your learning whenever you need a refresher.'
+  },
+  {
+    id: 'after-one-year',
+    question: 'What happens after 1 year?',
+    answer: 'After 1 year, your access to the course materials will expire. However, any certificates earned and downloaded materials will remain with you permanently. You can also re-enroll at that time if you wish to continue learning and accessing updated content.'
   },
   {
     id: 'prerequisites',
-    question: 'Do I need any prior knowledge or experience to take this course?',
-    answer: 'No prior knowledge of ancient Indian philosophy or business strategy is required. The course is designed for professionals at all levels - from entrepreneurs and managers to executives and consultants. We start with the fundamentals and build up to advanced applications, making it accessible to beginners while providing valuable insights for experienced professionals.'
+    question: 'Do I need any prior knowledge of philosophy or psychology?',
+    answer: 'No prior knowledge is required! The course is designed for complete beginners and takes you step-by-step through the concepts. We start with fundamentals and build up gradually, making ancient wisdom accessible and practical for everyone.'
   },
   {
     id: 'practical-application',
-    question: 'How practical and applicable are these ancient principles in modern business?',
-    answer: 'Extremely practical! Each lesson includes real-world case studies, modern examples, and actionable frameworks you can implement immediately. We\'ve helped over 10,000 professionals apply these principles to close multi-million dollar deals, resolve team conflicts, and make strategic decisions. The principles are timeless because they address fundamental human psychology and strategic thinking that hasn\'t changed over the centuries.'
+    question: 'How can I apply this in my daily life?',
+    answer: 'Each module includes practical exercises, real-life scenarios, and actionable techniques you can implement immediately. You\'ll learn to manage stress, improve relationships, make better decisions, and achieve emotional balance using these time-tested principles.'
   },
   {
-    id: 'money-back-guarantee',
-    question: 'What is your refund policy?',
-    answer: 'We offer a 30-day money-back guarantee. If you\'re not completely satisfied with the course content, quality, or value, simply contact our support team within 30 days of purchase, and we\'ll provide a full refund, no questions asked. We\'re confident in the value we provide, which is why we can offer this guarantee.'
-  },
-  {
-    id: 'bonus-materials',
-    question: 'What bonus materials are included with the course?',
-    answer: 'You\'ll receive over $1,200 worth of bonus materials including: Negotiation templates and scripts, Leadership style assessment, Strategic thinking workbook, 50+ real-world case studies, Audio lesson summaries, and access to our private mastermind community. All bonuses are included at no extra cost when you enroll today.'
-  },
-  {
-    id: 'community-access',
-    question: 'Do I get access to a community or support group?',
-    answer: 'Yes! You\'ll get lifetime access to our exclusive private community where you can network with other successful professionals, ask questions, share experiences, and get ongoing support from our instructors and fellow students. This community has been instrumental in helping students apply the principles and achieve their goals.'
+    id: 'certificate-validity',
+    question: 'Is the certificate permanently valid?',
+    answer: 'Yes! Upon successful completion of the course, you\'ll receive a certificate that is yours to keep permanently. You can add it to your LinkedIn profile, resume, and use it to showcase your expertise in emotional intelligence and personal development. The certificate remains valid even after your course access expires.'
   },
   {
     id: 'mobile-access',
     question: 'Can I access the course on my mobile device?',
-    answer: 'Absolutely! The course is fully optimized for mobile devices. You can watch videos, download materials, and access the community from your smartphone or tablet. We also provide audio summaries of all lessons so you can learn during your commute or workout.'
+    answer: 'Absolutely! The course is fully optimized for mobile devices. You can watch videos, download materials, and complete exercises from your smartphone or tablet, allowing you to learn on the go.'
   },
   {
-    id: 'certificate',
-    question: 'Do I receive a certificate upon completion?',
-    answer: 'Yes, upon successful completion of the course, you\'ll receive a certificate of completion that you can add to your LinkedIn profile and resume. This certificate demonstrates your commitment to professional development and mastery of strategic thinking principles.'
+    id: 'community-support',
+    question: 'Do I get community support?',
+    answer: 'Yes! You\'ll have access to our learning community during your 1-year access period where you can ask questions, share experiences, and connect with fellow learners on the same journey of emotional growth.'
   },
   {
     id: 'instructor-support',
-    question: 'What kind of support do I get from the instructors?',
-    answer: 'Our instructors are actively involved in the community and regularly answer questions, provide additional insights, and share new case studies. You also get access to monthly live Q&A sessions where you can ask specific questions about applying the principles to your unique business challenges.'
+    question: 'What kind of instructor support is available?',
+    answer: 'Our instructors provide guidance through the community forum and regular Q&A sessions. You can ask questions about the concepts, seek clarification on techniques, and get personalized advice for applying the principles to your specific situations.'
   }
 ]
 
@@ -82,7 +82,7 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-body text-text-secondary max-w-3xl mx-auto text-readable">
-            Have questions about Chanakya's Code? We've compiled the most common questions 
+            Have questions about Emotional Intelligence with Samkhya Darshan? We've compiled the most common questions 
             and detailed answers to help you make an informed decision.
           </p>
         </div>

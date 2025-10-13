@@ -103,8 +103,8 @@ export default function PricingSection() {
             </div>
             <div className="emp-price">
               <span className="emp-current-price">₹4,499</span>
-              <span className="emp-original-price">₹8,499</span>
-              <div className="emp-save-badge emp-save-badge-installment">Save 47%</div>
+              <span className="emp-original-price">₹5,999</span>
+              <div className="emp-save-badge emp-save-badge-installment">Save 25%</div>
             </div>
             <div className="emp-monthly-price">Only ₹1,499 per month</div>
             <ul className="emp-features">
@@ -151,8 +151,8 @@ export default function PricingSection() {
             </div>
             <div className="emp-price">
               <span className="emp-current-price">₹3,999</span>
-              <span className="emp-original-price">₹8,499</span>
-              <div className="emp-save-badge emp-save-badge-otp">Save 53%</div>
+              <span className="emp-original-price">₹5,999</span>
+              <div className="emp-save-badge emp-save-badge-otp">Save 33%</div>
             </div>
             <ul className="emp-features">
               <li>

@@ -23,14 +23,6 @@
   ],
   "courses": [
     {
-      "id": "samkhya-darshan",
-      "name": "Samkhya Darshan",
-      "description": "Explore the analytical philosophy of Samkhya",
-      "duration": "3 months",
-      "level": "Intermediate",
-      "icon": "🔍"
-    },
-    {
       "id": "nyaya-darshan",
       "name": "Nyaya Darshan",
       "description": "Master the logical reasoning system of Nyaya",

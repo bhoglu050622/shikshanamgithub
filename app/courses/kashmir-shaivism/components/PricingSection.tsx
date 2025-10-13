@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 
 export default function PricingSection() {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -61,9 +62,9 @@ export default function PricingSection() {
             <h3 className="card-title">Ultimate Bundle</h3>
             <p className="card-subtitle">Kashmir Shaiva Darshan + Advaita Vedanta Darshan</p>
             <div className="price-container">
-              <p className="card-price">₹2,999</p>
-              <p className="original-price">₹4,999</p>
-              <span className="save-badge">Save 40%</span>
+              <p className="card-price">₹5,499</p>
+              <p className="original-price">₹7,998</p>
+              <span className="save-badge">Save 31%</span>
             </div>
             <ul className="features-list">
               <li>
@@ -85,14 +86,12 @@ export default function PricingSection() {
                 <span>Combined Community Access</span>
               </li>
             </ul>
-            <a 
+            <ProtectedExternalLink 
               href="https://courses.shikshanam.in/single-checkout/678b5ab8789de93b7ee832bd?pid=p1" 
               className="enroll-button btn-secondary"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Enroll Now
-            </a>
+            </ProtectedExternalLink>
           </div>
 
           {/* Card 2: Full Access */}
@@ -101,9 +100,9 @@ export default function PricingSection() {
             <h3 className="card-title">Full Access</h3>
             <p className="card-subtitle">The complete path to self-recognition.</p>
             <div className="price-container">
-              <p className="card-price">₹1,999</p>
-              <p className="original-price">₹2,999</p>
-              <span className="save-badge">Save 33%</span>
+              <p className="card-price">₹3,499</p>
+              <p className="original-price">₹5,499</p>
+              <span className="save-badge">Save 36%</span>
             </div>
             <ul className="features-list">
               <li>
@@ -149,14 +148,12 @@ export default function PricingSection() {
                 <span>1 year access</span>
               </li>
             </ul>
-            <a 
+            <ProtectedExternalLink 
               href="https://courses.shikshanam.in/single-checkout/669bb8e2949477460bb34d26?pid=p2" 
               className="enroll-button btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Enroll Now
-            </a>
+            </ProtectedExternalLink>
           </div>
         </div>
       </div>

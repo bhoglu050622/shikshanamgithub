@@ -9,6 +9,8 @@ import { PurchaseRequest } from '@/lib/types/packages';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useAuth } from '@/lib/auth/AuthContext';
+import { SSOLoginModal } from '@/components/auth/SSOLoginModal';
 
 export default function PackageDetailPage() {
   const params = useParams();
@@ -16,7 +18,9 @@ export default function PackageDetailPage() {
   const sku = params.sku as string;
   
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   
+  const { isLoggedIn } = useAuth();
   const { package: pkg, loading: packageLoading, error: packageError } = usePackage(sku);
   const { sessions, loading: sessionsLoading, fetchSessions } = useLiveSessions(sku);
   const { purchasePackage } = usePurchase();
@@ -29,6 +33,15 @@ export default function PackageDetailPage() {
   }, [pkg, fetchSessions]);
 
   const handleBuy = (packageSku: string) => {
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
+    setIsBuyModalOpen(true);
+  };
+
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
     setIsBuyModalOpen(true);
   };
 
@@ -116,6 +129,13 @@ export default function PackageDetailPage() {
         onClose={() => setIsBuyModalOpen(false)}
         package={pkg}
         onPurchase={handlePurchase}
+      />
+
+      {/* Login Modal */}
+      <SSOLoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLoginSuccess={handleLoginSuccess}
       />
     </>
   );

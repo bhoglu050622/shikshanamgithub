@@ -8,36 +8,32 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      question: "When does the course start?",
-      answer: "The course launches on November 15th with structured content releases on Mondays, Wednesdays, and Fridays. You can enroll now and get immediate access to the first modules."
+      question: "How to sign up?",
+      answer: "Click on the 'Enroll Now' button, then you can sign up using your email or Google account. The process is quick and straightforward."
     },
     {
-      question: "How is the content delivered?",
-      answer: "Content is delivered through pre-recorded videos with new lessons released three times per week (Monday, Wednesday, Friday). You get lifetime access to all materials."
+      question: "Validity of the course?",
+      answer: "You get 1-year access to all course materials from the date of enrollment. This gives you ample time to complete the course at your own pace."
     },
     {
-      question: "What is the course validity?",
-      answer: "You get lifetime access to all course materials. There's no expiration date - you can revisit the content anytime, anywhere, as many times as you want."
+      question: "Prerequisites?",
+      answer: "None! This course is designed for beginners. No prior knowledge of Advaita Vedanta is required. Basic understanding of Hindi is helpful but not mandatory."
     },
     {
-      question: "What language is the course taught in?",
-      answer: "The course is taught primarily in Hindi with English explanations for technical terms, making it accessible to a wide range of learners."
+      question: "How to access after purchase?",
+      answer: "After purchase, you can access the course via your dashboard on the Shikshanam website or through the mobile app. All your enrolled courses will be visible there."
     },
     {
-      question: "Do I need prior knowledge of Advaita Vedanta?",
-      answer: "No prior knowledge required! This course is designed for beginners and intermediate learners. Basic understanding of Hindi is helpful but not mandatory."
+      question: "Download lectures?",
+      answer: "Yes! Lecture downloads are available via the mobile app, allowing you to learn offline at your convenience."
     },
     {
-      question: "Can I download the course materials?",
-      answer: "Yes! You can download notes, summaries, and exercises for offline study. Video content is available for streaming with lifetime access."
+      question: "Contact / Support?",
+      answer: "For any queries or support, you can reach us at support@shikshanam.in. Our team is here to help you throughout your learning journey."
     },
     {
-      question: "What is the refund policy?",
-      answer: "We offer a 7-day money-back guarantee. If you're not satisfied with the course content, you can request a full refund within 7 days of enrollment."
-    },
-    {
-      question: "Is there community support available?",
-      answer: "Yes! You'll have access to our community forum where you can ask questions, discuss concepts, and connect with fellow learners and instructors."
+      question: "Refund policy?",
+      answer: "We currently do not offer refunds. However, we're confident in the quality of our content and believe you'll find immense value in this course."
     }
   ];
 

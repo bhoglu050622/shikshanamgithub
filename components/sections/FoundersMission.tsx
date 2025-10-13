@@ -53,7 +53,7 @@ export default function FoundersMission() {
   }
 
   return (
-    <section id="founders-mission-section" className="section-padding bg-slate-900 relative overflow-hidden">
+    <section id="founders-mission-section" className="py-12 md:py-16 bg-slate-900 relative overflow-hidden">
       {/* Background styling to match Kashmir Shaivism theme */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
       

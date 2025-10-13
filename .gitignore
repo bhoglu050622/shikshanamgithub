@@ -89,3 +89,4 @@ coverage/
 .tern-port
 
 /lib/generated/prisma
+.env

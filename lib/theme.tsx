@@ -31,17 +31,24 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       // Remove previous theme classes
       root.classList.remove('light', 'dark')
       
+      let appliedTheme: 'light' | 'dark'
+      
       if (theme === 'system') {
         const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         root.classList.add(systemTheme)
-        setActualTheme(systemTheme)
+        appliedTheme = systemTheme
       } else {
         root.classList.add(theme)
-        setActualTheme(theme)
+        appliedTheme = theme
       }
+      
+      setActualTheme(appliedTheme)
       
       // Save theme preference
       localStorage.setItem('shikshanam-theme', theme)
+      
+      // Debug log
+      console.log('Theme applied:', theme, '| Actual theme:', appliedTheme, '| Classes:', root.classList.toString())
     }
   }, [theme])
 

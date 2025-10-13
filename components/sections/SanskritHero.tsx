@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Sparkles, BookOpen, Users, Trophy, Star } from 'lucide-react'
 
@@ -233,22 +233,37 @@ const SimpleProgressIndicator = ({ currentLevel = 1, totalLevels = 3 }) => (
   </div>
 )
 
-export default function SanskritHero() {
+interface SanskritHeroProps {
+  onQuizClick?: () => void
+  onPathSelection?: (path: 'beginner' | 'intermediate') => void
+}
+
+export default function SanskritHero({ onQuizClick, onPathSelection }: SanskritHeroProps = {}) {
   const [selectedPath, setSelectedPath] = useState<'beginner' | 'intermediate' | null>(null)
   const [showCelebration, setShowCelebration] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handlePathSelection = (path: 'beginner' | 'intermediate') => {
     setSelectedPath(path)
     setShowCelebration(true)
     
+    // Call the callback if provided
+    if (onPathSelection) {
+      onPathSelection(path)
+    }
+    
     // Hide celebration after animation
     setTimeout(() => setShowCelebration(false), 2000)
     
-    // Scroll to Play & Learn section after selection
+    // Scroll to recommended courses section after selection
     setTimeout(() => {
-      const playLearnSection = document.getElementById('play-learn')
-      if (playLearnSection) {
-        playLearnSection.scrollIntoView({ behavior: 'smooth' })
+      const coursesSection = document.getElementById('recommended-courses')
+      if (coursesSection) {
+        coursesSection.scrollIntoView({ behavior: 'smooth' })
       }
     }, 500)
   }
@@ -261,7 +276,6 @@ export default function SanskritHero() {
       
       {/* Decorative Elements */}
       <SanskritDecoration />
-      <SimpleProgressIndicator currentLevel={1} totalLevels={3} />
       
       {/* Celebration Animation */}
       <AnimatePresence>
@@ -292,8 +306,8 @@ export default function SanskritHero() {
 
       <div className="container-custom relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={mounted ? { opacity: 0, y: 20 } : false}
+          animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center max-w-5xl mx-auto"
         >
@@ -365,13 +379,16 @@ export default function SanskritHero() {
           </div>
 
           {/* Micro-CTA */}
-          <button className="group bg-white/80 border border-golden-olive/30 text-deep-maroon text-base px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center space-x-3 mx-auto hover:border-golden-olive/50">
+          <button 
+            onClick={onQuizClick}
+            className="group bg-white/80 border border-golden-olive/30 text-deep-maroon text-base px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center space-x-3 mx-auto hover:border-golden-olive/50"
+          >
             <div className="w-5 h-5 bg-gradient-to-r from-golden-olive to-deep-maroon rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">?</span>
             </div>
             <div className="text-left">
               <div className="font-medium">Not sure where to start?</div>
-              <div className="text-sm opacity-80">Take our 3-minute assessment</div>
+              <div className="text-sm opacity-80">Take our quick assessment</div>
             </div>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>

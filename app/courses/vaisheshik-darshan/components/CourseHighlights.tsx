@@ -16,7 +16,7 @@ export default function CourseHighlights() {
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Lifetime Access",
+      title: "1-Year Access",
       description: "Learn at your own pace, revisit anytime"
     },
     {

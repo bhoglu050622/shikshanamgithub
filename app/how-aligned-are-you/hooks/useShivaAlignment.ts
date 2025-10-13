@@ -21,17 +21,9 @@ export function useShivaAlignment() {
     setSessionId(`${timestamp}-${randomPart}`)
   }, [])
 
-  // Load user name from dharma-path profile
+  // User name is managed within this component
   useEffect(() => {
-    const storedProfile = localStorage.getItem('dharma-path-profile')
-    if (storedProfile) {
-      try {
-        const profile = JSON.parse(storedProfile)
-        setUserName(profile.name || 'Seeker')
-      } catch (error) {
-        setUserName('Seeker')
-      }
-    }
+    // No external profile to load
   }, [])
 
   const handleAnswerSelect = (answerScores: ShivaScores, tag: string) => {
@@ -104,38 +96,17 @@ export function useShivaAlignment() {
     setResult(shivaResult)
     setShowResults(true)
 
-    // Save to localStorage for dharma-path integration
+    // Save to localStorage
     saveToProfile(shivaResult)
   }
 
   const saveToProfile = (shivaResult: ShivaResult) => {
     try {
-      const existingProfile = localStorage.getItem('dharma-path-profile')
-      let profile = existingProfile ? JSON.parse(existingProfile) : {}
-      
-      // Add Shiva alignment result to quiz results
-      const shivaQuizResult = {
-        quizId: 'shiva-consciousness',
-        answers: {}, // We could store answer details if needed
-        scores: shivaResult.scores,
-        interpretation: shivaResult.archetype,
-        description: shivaResult.description,
-        completedAt: shivaResult.timestamp
-      }
-
-      if (!profile.quizResults) {
-        profile.quizResults = []
-      }
-
-      // Remove any existing Shiva consciousness result and add the new one
-      profile.quizResults = profile.quizResults.filter((result: any) => result.quizId !== 'shiva-consciousness')
-      profile.quizResults.push(shivaQuizResult)
-      
-      profile.lastUpdated = new Date().toISOString()
-      
-      localStorage.setItem('dharma-path-profile', JSON.stringify(profile))
+      // Store in dedicated shiva-alignment-results key
+      localStorage.setItem('shiva-alignment-results', JSON.stringify(shivaResult))
+      localStorage.setItem('shiva-alignment-timestamp', new Date().toISOString())
     } catch (error) {
-      console.error('Error saving shiva alignment result to profile:', error)
+      console.error('Error saving shiva alignment result:', error)
     }
   }
 

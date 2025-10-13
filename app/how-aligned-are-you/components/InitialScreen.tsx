@@ -11,6 +11,12 @@ interface InitialScreenProps {
 
 export default function InitialScreen({ onStartQuiz, userName }: InitialScreenProps) {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [mounted, setMounted] = useState(false)
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Testimonial rotation
   useEffect(() => {
@@ -88,9 +94,9 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
     >
       {/* Main Content */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        initial={mounted ? { opacity: 0, y: 50 } : false}
+        animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={mounted ? { duration: 1, delay: 0.5 } : { duration: 0 }}
         className="w-full max-w-4xl"
       >
         {/* Title */}
@@ -101,9 +107,9 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
             color: 'hsl(43, 45%, 58%)',
             textShadow: '0 0 15px hsla(43, 85%, 70%, 0.4), 0 0 5px hsla(50, 90%, 95%, 0.5)'
           }}
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
+          initial={mounted ? { scale: 0.8, opacity: 0 } : false}
+          animate={mounted ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
+          transition={mounted ? { duration: 1.2, delay: 0.8 } : { duration: 0 }}
         >
           How Aligned Are You?
         </motion.h1>
@@ -115,9 +121,9 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
             fontFamily: "'Noto Serif', serif",
             color: 'hsl(50, 90%, 95%)'
           }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={mounted ? { duration: 1, delay: 1.2 } : { duration: 0 }}
         >
           A spiritual mirror reflecting your inner state
         </motion.p>
@@ -131,12 +137,12 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
             color: 'hsl(260, 50%, 8%)',
             boxShadow: '0 10px 40px -12px hsla(43, 45%, 58%, 0.3)'
           }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          whileHover={{
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={mounted ? { duration: 1, delay: 1.5 } : { duration: 0 }}
+          whileHover={mounted ? {
             boxShadow: '0 0 30px hsla(43, 45%, 58%, 0.2)'
-          }}
+          } : {}}
         >
           Begin the Journey 🔱
         </motion.button>
@@ -144,9 +150,9 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
 
       {/* Testimonials Section */}
       <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2 }}
+        initial={mounted ? { opacity: 0, y: 50 } : false}
+        animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={mounted ? { duration: 1, delay: 2 } : { duration: 0 }}
         className="w-full max-w-4xl mt-16"
       >
         <h2 
@@ -162,10 +168,10 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
         <div className="relative max-w-3xl mx-auto min-h-32 flex items-center justify-center overflow-hidden">
           <motion.div
             key={currentTestimonial}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 1 }}
+            initial={mounted ? { opacity: 0, y: 20 } : false}
+            animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            exit={mounted ? { opacity: 0, y: -20 } : {}}
+            transition={mounted ? { duration: 1 } : { duration: 0 }}
             className="absolute w-full text-center"
           >
             <p 

@@ -8,147 +8,117 @@ export default function SyllabusSection() {
   const chapters = [
     {
       number: 1,
-      title: "ईशावास्य उपनिषद् का परिचय",
-      englishTitle: "Introduction to Isha Upanishad",
-      duration: "15 min",
+      title: "Why Isha Upanishad ?",
       hasDemo: true,
-      description: "Understanding the essence and significance of Isha Upanishad in spiritual literature"
+      duration: "00:05:39"
     },
     {
       number: 2,
-      title: "पहला श्लोक - ईशावास्यमिदं सर्वं",
-      englishTitle: "First Shloka - Everything is pervaded by the Lord",
-      duration: "12 min",
+      title: "सर्वत्र भगवद् दृष्टि",
       hasDemo: true,
-      description: "Deep dive into the opening verse that sets the foundation of the entire Upanishad"
+      duration: "00:08:28"
     },
     {
       number: 3,
-      title: "दूसरा श्लोक - कुर्वन्नेवेह कर्माणि",
-      englishTitle: "Second Shloka - Performing actions while renouncing attachment",
-      duration: "14 min",
+      title: "पथ-भ्रष्ट कौन? [What not to do?]",
       hasDemo: false,
-      description: "Understanding the path of Karma Yoga and detached action"
+      duration: "00:05:48"
     },
     {
       number: 4,
-      title: "तीसरा श्लोक - असुर्या नाम ते लोकाः",
-      englishTitle: "Third Shloka - The worlds of the Asuras",
-      duration: "11 min",
+      title: "ईश्वर की हत्या न करें",
       hasDemo: false,
-      description: "Exploring the consequences of ignorance and material attachment"
+      duration: "00:07:58"
     },
     {
       number: 5,
-      title: "चौथा श्लोक - अनेजदेकं मनसो जवीयः",
-      englishTitle: "Fourth Shloka - The unmoving One, swifter than the mind",
-      duration: "13 min",
+      title: "आत्मतत्व कैसा है?",
       hasDemo: false,
-      description: "Understanding the nature of the Supreme Reality"
+      duration: "00:14:54"
     },
     {
       number: 6,
-      title: "पांचवां श्लोक - तदेजति तन्नैजति",
-      englishTitle: "Fifth Shloka - It moves and it moves not",
-      duration: "12 min",
+      title: "आत्मा कहाँ रहती है ?",
       hasDemo: false,
-      description: "The paradox of the Absolute - both static and dynamic"
+      duration: "00:07:30"
     },
     {
       number: 7,
-      title: "छठा श्लोक - तद्दूरे तद्वन्तिके",
-      englishTitle: "Sixth Shloka - It is far and it is near",
-      duration: "10 min",
+      title: "सार्वात्म्यदर्शन",
       hasDemo: false,
-      description: "The omnipresence of the Divine Reality"
+      duration: "00:07:45"
     },
     {
       number: 8,
-      title: "सातवां श्लोक - तदन्तरस्य सर्वस्य",
-      englishTitle: "Seventh Shloka - It is within all and outside all",
-      duration: "11 min",
+      title: "शोक-मोह का नाश",
       hasDemo: false,
-      description: "The immanent and transcendent nature of the Absolute"
+      duration: "00:04:35"
     },
     {
       number: 9,
-      title: "आठवां श्लोक - यस्तु सर्वाणि भूतानि",
-      englishTitle: "Eighth Shloka - He who sees all beings in the Self",
-      duration: "13 min",
+      title: "आत्मा के लक्षण",
       hasDemo: false,
-      description: "The vision of unity in diversity"
+      duration: "00:10:19"
     },
     {
       number: 10,
-      title: "नौवां श्लोक - अंधं तमः प्रविशन्ति",
-      englishTitle: "Ninth Shloka - Into blind darkness enter those",
-      duration: "12 min",
+      title: "कर्म या ज्ञान ?",
       hasDemo: false,
-      description: "The consequences of ignorance and false knowledge"
+      duration: "00:12:23"
     },
     {
       number: 11,
-      title: "दसवां श्लोक - अंधं तमः प्रविशन्ति",
-      englishTitle: "Tenth Shloka - Into greater darkness enter those",
-      duration: "11 min",
+      title: "विद्या और अविद्या के फल",
       hasDemo: false,
-      description: "The deeper levels of ignorance and delusion"
+      duration: "00:08:43"
     },
     {
       number: 12,
-      title: "ग्यारहवां श्लोक - अंधं तमः प्रविशन्ति",
-      englishTitle: "Eleventh Shloka - Into blind darkness enter those",
-      duration: "10 min",
+      title: "ज्ञानयुक्त कर्म",
       hasDemo: false,
-      description: "The cycle of ignorance and its consequences"
+      duration: "00:09:31"
     },
     {
       number: 13,
-      title: "बारहवां श्लोक - अंधं तमः प्रविशन्ति",
-      englishTitle: "Twelfth Shloka - Into greater darkness enter those",
-      duration: "12 min",
+      title: "सगुण/निर्गुण उपासना के फल",
       hasDemo: false,
-      description: "The deepening spiral of ignorance"
+      duration: "00:11:13"
     },
     {
       number: 14,
-      title: "तेरहवां श्लोक - अंधं तमः प्रविशन्ति",
-      englishTitle: "Thirteenth Shloka - Into blind darkness enter those",
-      duration: "11 min",
+      title: "व्यक्त/अव्यक्त उपासना फल में भेद",
       hasDemo: false,
-      description: "The persistence of ignorance in human consciousness"
+      duration: "00:03:11"
     },
     {
       number: 15,
-      title: "चौदहवां श्लोक - अंधं तमः प्रविशन्ति",
-      englishTitle: "Fourteenth Shloka - Into greater darkness enter those",
-      duration: "10 min",
+      title: "व्यक्त-अव्यक्त का एकत्व",
       hasDemo: false,
-      description: "The final stages of ignorance and delusion"
+      duration: "00:07:56"
     },
     {
       number: 16,
-      title: "पंद्रहवां श्लोक - हिरण्मयेन पात्रेण",
-      englishTitle: "Fifteenth Shloka - With the golden vessel covered",
-      duration: "13 min",
+      title: "अमृतत्व का मार्ग",
       hasDemo: false,
-      description: "The metaphor of the golden vessel and the path to liberation"
+      duration: "00:08:30"
     },
     {
       number: 17,
-      title: "सोलहवां श्लोक - पूषन्नेकर्षे यम सूर्य",
-      englishTitle: "Sixteenth Shloka - O Sun, sole traveler of the heavens",
-      duration: "12 min",
+      title: "परमात्मा में एकत्व",
       hasDemo: false,
-      description: "The prayer to the Sun as the symbol of divine consciousness"
+      duration: "00:10:19"
     },
     {
       number: 18,
-      title: "अठारहवां श्लोक - अग्ने नय सुपथा राये",
-      englishTitle: "Eighteenth Shloka - O Fire, lead us by the good path",
-      duration: "15 min",
+      title: "मैं पुरुष हूँ",
       hasDemo: false,
-      description: "The final prayer for guidance and the conclusion of the Upanishad"
+      duration: "00:12:11"
+    },
+    {
+      number: 19,
+      title: "मरणोन्मुख उपासना",
+      hasDemo: false,
+      duration: "00:15:59"
     }
   ];
 
@@ -162,11 +132,8 @@ export default function SyllabusSection() {
         {/* Section Heading */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-saffron-800 mb-4">
-            Course Syllabus — Step-by-Step Journey
+            Syllabus
           </h2>
-          <p className="text-lg text-saffron-700 max-w-2xl mx-auto">
-            A comprehensive exploration of all 18 shlokas of the Isha Upanishad
-          </p>
         </div>
 
         {/* Timeline */}
@@ -199,12 +166,9 @@ export default function SyllabusSection() {
                             </span>
                           )}
                         </div>
-                        <h3 className="text-lg font-semibold text-saffron-800 mb-1">
+                        <h3 className="text-lg font-semibold text-saffron-800 mb-2">
                           {chapter.title}
                         </h3>
-                        <p className="text-sm text-saffron-600 mb-2">
-                          {chapter.englishTitle}
-                        </p>
                         <div className="flex items-center gap-4 text-sm text-saffron-500">
                           <span className="flex items-center gap-1">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -214,28 +178,8 @@ export default function SyllabusSection() {
                           </span>
                         </div>
                       </div>
-                      <div className="ml-4">
-                        <svg 
-                          className={`w-5 h-5 text-saffron-500 transition-transform duration-200 ${
-                            expandedChapter === chapter.number ? 'rotate-180' : ''
-                          }`}
-                          fill="currentColor" 
-                          viewBox="0 0 20 20"
-                        >
-                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
-                        </svg>
-                      </div>
                     </div>
                   </button>
-
-                  {/* Expanded content */}
-                  {expandedChapter === chapter.number && (
-                    <div className="px-6 pb-6 border-t border-saffron-100">
-                      <p className="text-saffron-700 mt-4">
-                        {chapter.description}
-                      </p>
-                    </div>
-                  )}
                 </div>
               </div>
             ))}
@@ -248,7 +192,7 @@ export default function SyllabusSection() {
             Complete Learning Journey
           </h3>
           <p className="text-saffron-700">
-            Total Duration: 3+ Hours • 18 Comprehensive Chapters • Lifetime Access
+            Total Duration: 3+ Hours • 19 Comprehensive Chapters • 1-Year Access
           </p>
         </div>
       </div>

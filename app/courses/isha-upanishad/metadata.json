@@ -1,0 +1,23 @@
+{
+  "title": "ईशावास्य उपनिषद्: Online Course on the Isha Upanishad",
+  "subtitle": "Discover the essence of Vedantic wisdom",
+  "description": "Deep dive into one of the most important Upanishads, exploring its philosophy and practical wisdom for modern life.",
+  "type": "Premium Course",
+  "price": "₹2,999",
+  "originalPrice": "₹4,499",
+  "savings": "33%",
+  "duration": "12-15 Classes",
+  "level": "Beginner to Intermediate",
+  "status": "available",
+  "features": [
+    "Verse-by-Verse Analysis",
+    "Sanskrit & Translation",
+    "Philosophical Insights",
+    "Practical Wisdom",
+    "Discussion Forum",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/isha-upanishad-course.png",
+  "category": "upanishad",
+  "priority": 0.91
+}

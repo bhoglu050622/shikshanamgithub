@@ -10,153 +10,16 @@ interface SelfHelpHeroProps {
   onTakeTest?: () => void
 }
 
-// Animated Skyline Component
+// Simple Background Component - No animations
 const AnimatedSkyline = () => {
-  const shouldReduceMotion = useReducedMotion()
-  
-  const mountains = [
-    { height: 120, delay: 0, color: 'from-indigo-200 to-indigo-300 dark:from-indigo-800 dark:to-indigo-900' },
-    { height: 80, delay: 0.2, color: 'from-deep-teal-200 to-deep-teal-300 dark:from-deep-teal-800 dark:to-deep-teal-900' },
-    { height: 100, delay: 0.4, color: 'from-saffron-200 to-saffron-300 dark:from-saffron-800 dark:to-saffron-900' },
-    { height: 60, delay: 0.6, color: 'from-lotus-pink-200 to-lotus-pink-300 dark:from-lotus-pink-800 dark:to-lotus-pink-900' },
-    { height: 90, delay: 0.8, color: 'from-peacock-green-200 to-peacock-green-300 dark:from-peacock-green-800 dark:to-peacock-green-900' },
-  ]
-
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-50 via-indigo-50 to-off-white-500 dark:from-wisdom-900 dark:via-deep-indigo-500 dark:to-wisdom-800" />
-      
-      {/* Animated mountains */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 flex items-end">
-        {mountains.map((mountain, index) => (
-          <motion.div
-            key={index}
-            className={`flex-1 bg-gradient-to-t ${mountain.color} rounded-t-full relative`}
-            style={{ height: `${mountain.height}px` }}
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scaleY: 0 }}
-            animate={shouldReduceMotion ? {} : { opacity: 1, scaleY: 1 }}
-            transition={{
-              duration: 1.2,
-              delay: mountain.delay,
-              ease: [0.22, 0.9, 0.3, 1]
-            }}
-          >
-            {/* Mountain peak highlight */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-white/20 dark:bg-white/10 rounded-full blur-sm" />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Floating clouds */}
-      <motion.div
-        className="absolute top-20 left-10 w-16 h-8 bg-white/60 dark:bg-white/20 rounded-full"
-        animate={shouldReduceMotion ? {} : {
-          x: [0, 20, 0],
-          y: [0, -10, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute top-32 right-20 w-12 h-6 bg-white/40 dark:bg-white/15 rounded-full"
-        animate={shouldReduceMotion ? {} : {
-          x: [0, -15, 0],
-          y: [0, 5, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
-
-      {/* Sun */}
-      <motion.div
-        className="absolute top-16 right-16 w-12 h-12 bg-gradient-to-br from-soft-gold-400 to-saffron-500 rounded-full shadow-lg"
-        animate={shouldReduceMotion ? {} : {
-          rotate: 360,
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-soft-gold-300 to-saffron-400 rounded-full blur-sm opacity-60" />
-      </motion.div>
+      {/* Clean simple background */}
+      <div className="absolute inset-0 bg-white dark:bg-wisdom-900" />
     </div>
   )
 }
 
-// Acharya Character Component
-const AcharyaCharacter = () => {
-  const shouldReduceMotion = useReducedMotion()
-  
-  return (
-    <motion.div
-      className="absolute bottom-0 right-1/4 w-32 h-40 flex items-end justify-center"
-      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-      transition={{
-        duration: 1,
-        delay: 1.5,
-        ease: [0.22, 0.9, 0.3, 1]
-      }}
-    >
-      {/* Acharya figure */}
-      <div className="relative">
-        {/* Body */}
-        <motion.div
-          className="w-16 h-24 bg-gradient-to-b from-saffron-400 to-saffron-600 rounded-t-2xl relative"
-          animate={shouldReduceMotion ? {} : {
-            y: [0, -5, 0],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Head */}
-          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-b from-soft-gold-200 to-soft-gold-400 rounded-full">
-            {/* Eyes */}
-            <div className="absolute top-2 left-1 w-1 h-1 bg-indigo-700 dark:bg-indigo-300 rounded-full" />
-            <div className="absolute top-2 right-1 w-1 h-1 bg-indigo-700 dark:bg-indigo-300 rounded-full" />
-            {/* Smile */}
-            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-1 border-b-2 border-indigo-700 dark:border-indigo-300 rounded-full" />
-          </div>
-          
-          {/* Arms */}
-          <div className="absolute top-4 -left-2 w-3 h-8 bg-gradient-to-b from-saffron-400 to-saffron-600 rounded-full" />
-          <div className="absolute top-4 -right-2 w-3 h-8 bg-gradient-to-b from-saffron-400 to-saffron-600 rounded-full" />
-          
-          {/* Legs */}
-          <div className="absolute bottom-0 left-2 w-4 h-6 bg-gradient-to-b from-saffron-500 to-saffron-700 rounded-b-lg" />
-          <div className="absolute bottom-0 right-2 w-4 h-6 bg-gradient-to-b from-saffron-500 to-saffron-700 rounded-b-lg" />
-        </motion.div>
-        
-        {/* Wisdom aura */}
-        <motion.div
-          className="absolute inset-0 rounded-full border-2 border-soft-gold-300/30 dark:border-soft-gold-600/30"
-          animate={shouldReduceMotion ? {} : {
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
-    </motion.div>
-  )
-}
 
 export default function SelfHelpHero({ onExploreTracks, onTakeTest }: SelfHelpHeroProps) {
   const shouldReduceMotion = useReducedMotion()
@@ -178,11 +41,10 @@ export default function SelfHelpHero({ onExploreTracks, onTakeTest }: SelfHelpHe
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden section-padding"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-0"
       aria-labelledby="hero-title"
     >
       <AnimatedSkyline />
-      <AcharyaCharacter />
       
       <div className="container-custom relative z-10">
         <StaggerContainer className="text-center">
@@ -280,33 +142,6 @@ export default function SelfHelpHero({ onExploreTracks, onTakeTest }: SelfHelpHe
         </StaggerContainer>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={shouldReduceMotion ? {} : {
-          y: [0, 10, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        <div className="w-6 h-10 border-2 border-saffron-500 dark:border-saffron-400 rounded-full flex justify-center">
-          <motion.div
-            className="w-1 h-3 bg-saffron-500 dark:bg-saffron-400 rounded-full mt-2"
-            animate={shouldReduceMotion ? {} : {
-              y: [0, 12, 0],
-              opacity: [1, 0, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        </div>
-      </motion.div>
     </section>
   )
 }

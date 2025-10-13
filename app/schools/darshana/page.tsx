@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
 import { 
   Brain, 
   Atom, 
@@ -31,7 +30,9 @@ import {
   Zap
 } from 'lucide-react'
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
-import DarshanaCircularVisualization from '@/components/sections/DarshanaCircularVisualization'
+import DownloadAppNew from '@/components/sections/DownloadAppNew'
+import JoinCommunity from '@/components/sections/JoinCommunity'
+import FAQ from '@/components/sections/FAQ'
 
 // Enhanced Darshana data with richer content
 const darshanas = [
@@ -264,66 +265,22 @@ const quizQuestions = [
   }
 ]
 
-// Enhanced Sanskrit quotes with philosophical depth
-const sanskritQuotes = [
-  { 
-    text: 'सर्वं ज्ञानं मयि विद्यते', 
-    translation: 'All knowledge exists within me',
-    transliteration: 'Sarvam jñānam mayi vidyate',
-    source: 'Bhagavad Gita 7.17'
-  },
-  { 
-    text: 'विद्या ददाति विनयम्', 
-    translation: 'Knowledge bestows humility',
-    transliteration: 'Vidyā dadāti vinayam',
-    source: 'Panchatantra'
-  },
-  { 
-    text: 'न हि ज्ञानेन सदृशं पवित्रमिह विद्यते', 
-    translation: 'Nothing is purer than knowledge',
-    transliteration: 'Na hi jñānena sadṛśaṁ pavitramiha vidyate',
-    source: 'Bhagavad Gita 4.38'
-  },
-  { 
-    text: 'योगः कर्मसु कौशलम्', 
-    translation: 'Yoga is skill in action',
-    transliteration: 'Yogaḥ karmasu kauśalam',
-    source: 'Bhagavad Gita 2.50'
-  },
-  { 
-    text: 'सत्यमेव जयते', 
-    translation: 'Truth alone triumphs',
-    transliteration: 'Satyameva jayate',
-    source: 'Mundaka Upanishad 3.1.6'
-  }
-]
 
 // Stats for the page
 const stats = [
   { number: '8,500+', label: 'Active Students', icon: Users },
   { number: '6', label: 'Darshanas', icon: BookOpen },
-  { number: '50+', label: 'Expert Teachers', icon: Award },
-  { number: '98%', label: 'Satisfaction Rate', icon: Star }
+  { number: '100%', label: 'Success Rate', icon: Star }
 ]
 
 export default function SchoolOfDarshanaPage() {
-  const [hoveredDarshana, setHoveredDarshana] = useState<string | null>(null)
   const [selectedDarshana, setSelectedDarshana] = useState<string | null>(null)
   const [showQuiz, setShowQuiz] = useState(false)
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({})
-  const [currentQuote, setCurrentQuote] = useState(0)
-  const [isClient, setIsClient] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  // Rotate quotes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentQuote((prev) => (prev + 1) % sanskritQuotes.length)
-    }, 6000)
-    return () => clearInterval(interval)
+    setMounted(true)
   }, [])
 
 
@@ -407,39 +364,6 @@ export default function SchoolOfDarshanaPage() {
               </p>
             </StaggerItem>
 
-            {/* Rotating Sanskrit Quote */}
-            <StaggerItem>
-              <motion.figure 
-                className="bg-white/80 dark:bg-wisdom-800/80 backdrop-blur-md rounded-2xl p-6 mb-8 border border-saffron-200/30 dark:border-soft-gold-500/20 max-w-3xl mx-auto"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.blockquote
-                    key={currentQuote}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center"
-                  >
-                    <div className="text-3xl md:text-4xl font-devanagari text-indigo-700 dark:text-soft-gold-500 mb-2">
-                      {sanskritQuotes[currentQuote].text}
-                    </div>
-                    <div className="text-lg text-saffron-600 dark:text-saffron-400 mb-1">
-                      {sanskritQuotes[currentQuote].transliteration}
-                    </div>
-                    <figcaption className="text-wisdom-600 dark:text-wisdom-400 mb-2">
-                      {sanskritQuotes[currentQuote].translation}
-                    </figcaption>
-                    <div className="text-sm text-wisdom-500 dark:text-wisdom-400 italic">
-                      — {sanskritQuotes[currentQuote].source}
-                    </div>
-                  </motion.blockquote>
-                </AnimatePresence>
-              </motion.figure>
-            </StaggerItem>
 
             {/* Stats */}
             <StaggerItem>
@@ -491,114 +415,7 @@ export default function SchoolOfDarshanaPage() {
               </div>
             </StaggerItem>
 
-            <StaggerItem>
-              <div className="flex flex-col items-center space-y-4">
-                <span className="text-medium-contrast text-small font-medium tracking-wide uppercase">
-                  Scroll to explore the six schools
-                </span>
-                
-                <motion.div
-                  animate={{ y: [0, 15, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-7 h-12 border-2 border-saffron-500 dark:border-saffron-400 rounded-full flex justify-center relative group cursor-pointer tap-target"
-                >
-                  <motion.div
-                    animate={{ y: [0, 18, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-1.5 h-4 bg-gradient-to-b from-saffron-500 to-deep-teal-500 dark:from-saffron-400 dark:to-deep-teal-400 rounded-full mt-2"
-                  />
-                </motion.div>
-              </div>
-            </StaggerItem>
           </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Enhanced 6 Darshana Flowing Network */}
-      <section className="py-12 md:py-16 lg:py-20 bg-white/50 dark:bg-deep-indigo-500/50 min-h-screen">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              Six Schools, One Wisdom
-            </h2>
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-3xl mx-auto">
-              Each darshana offers a unique perspective on reality, yet together they form a complete 
-              understanding of existence, consciousness, and the path to liberation.
-            </p>
-          </motion.div>
-
-          {/* Interactive Circular Visualization */}
-          <DarshanaCircularVisualization />
-
-          {/* Network Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 mb-6 max-w-4xl mx-auto leading-relaxed">
-              Experience the interconnected wisdom of the six schools. Hover over each darshana to see its essence, 
-              click to activate the flame path to the center. When all six are unlocked, the central lock transforms 
-              into the sacred ॐ symbol, representing the unity of all wisdom.
-            </p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="flex justify-center mb-8"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToDarshana('nyaya')}
-                className="btn-outline flex items-center space-x-3 px-6 py-3 text-lg"
-              >
-                <BookOpen className="w-5 h-5" />
-                <span>Explore Detailed Information</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                { concept: 'Logic', darshana: 'nyaya' },
-                { concept: 'Reality', darshana: 'vaisheshika' },
-                { concept: 'Consciousness', darshana: 'samkhya' },
-                { concept: 'Practice', darshana: 'yoga' },
-                { concept: 'Ethics', darshana: 'mimamsa' },
-                { concept: 'Liberation', darshana: 'vedanta' }
-              ].map((item, index) => (
-                <motion.button
-                  key={item.concept}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToDarshana(item.darshana)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer focus-ring ${
-                    selectedDarshana === item.darshana
-                      ? 'bg-saffron-500 text-white shadow-lg scale-105'
-                      : 'bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 hover:bg-saffron-200 dark:hover:bg-saffron-800/50'
-                  }`}
-                  aria-pressed={selectedDarshana === item.darshana}
-                  aria-label={`Select ${item.concept} - ${darshanas.find(d => d.id === item.darshana)?.name}`}
-                >
-                  {item.concept}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -706,26 +523,8 @@ export default function SchoolOfDarshanaPage() {
               </motion.div>
               )
 
-              // Wrap darshana cards with Links to their respective school pages
-              const schoolRoutes = {
-                'nyaya': '/schools/nyaya',
-                'vaisheshika': '/schools/vaisheshika',
-                'samkhya': '/schools/samkhya',
-                'yoga': '/schools/yoga',
-                'mimamsa': '/schools/mimamsa',
-                'vedanta': '/schools/vedanta'
-              }
-
-              if (schoolRoutes[darshana.id as keyof typeof schoolRoutes]) {
-                return (
-                  <Link key={darshana.id} href={schoolRoutes[darshana.id as keyof typeof schoolRoutes]}>
-                    {CardContent}
-                  </Link>
-                )
-              }
-
-              // Return other cards without link
-              return CardContent
+              // All darshana cards are now display-only without links to individual pages
+              return <div key={darshana.id}>{CardContent}</div>
             })}
           </div>
         </div>
@@ -798,482 +597,7 @@ export default function SchoolOfDarshanaPage() {
         </div>
       </section>
 
-      {/* Enhanced Learning Path Timeline */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-              Your Journey to Wisdom
-            </h2>
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-3xl mx-auto">
-              Follow this structured path to build a comprehensive understanding of Indian philosophy. 
-              Each phase builds upon the previous one, creating a solid foundation for deep wisdom.
-            </p>
-          </motion.div>
-
-          <div className="max-w-6xl mx-auto">
-            {/* Desktop Timeline */}
-            <div className="hidden lg:block">
-              <div className="relative">
-                {/* Timeline Line */}
-                <div className="absolute left-8 top-0 bottom-0 w-1 timeline-line rounded-full" />
-                
-                {learningPath.map((step, index) => (
-                  <motion.div
-                    key={step.id}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="relative flex items-start mb-16 last:mb-0"
-                  >
-                    {/* Timeline Dot */}
-                    <motion.div 
-                      className="absolute left-6 w-6 h-6 bg-gradient-to-r from-saffron-500 to-deep-teal-500 rounded-full border-4 border-off-white-500 dark:border-wisdom-900 z-10 shadow-lg"
-                      whileInView={{ 
-                        scale: [1, 1.3, 1],
-                        opacity: [0.7, 1, 0.7]
-                      }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                    />
-                    
-                    {/* Step Card */}
-                    <div className="ml-20 flex-1">
-                      <motion.div
-                        whileHover={{ scale: 1.02, y: -5 }}
-                        className="card-premium p-8 group cursor-pointer relative overflow-hidden"
-                      >
-                        {/* Background Pattern */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-saffron-100/20 to-deep-teal-100/20 rounded-full -translate-y-16 translate-x-16 group-hover:scale-110 transition-transform duration-500"></div>
-                        
-                        <div className="relative z-10">
-                          <div className="flex items-start space-x-6">
-                            <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                              <step.icon className="w-8 h-8 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="flex items-center space-x-3 mb-3">
-                                <h3 className="text-xl font-display text-indigo-700 dark:text-soft-gold-500">
-                                  {step.title}
-                                </h3>
-                                <span className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-3 py-1 rounded-full text-xs font-medium">
-                                  {step.badge}
-                                </span>
-                              </div>
-                              <div className="text-sm text-saffron-600 dark:text-saffron-400 mb-3 font-devanagari">
-                                {step.titleSanskrit}
-                              </div>
-                              <p className="text-wisdom-600 dark:text-wisdom-400 mb-4 leading-relaxed">
-                                {step.description}
-                              </p>
-                              <p className="text-wisdom-600 dark:text-wisdom-400 mb-4 text-sm leading-relaxed">
-                                {step.detailedDescription}
-                              </p>
-                              
-                              {/* Modules */}
-                              <div className="mb-4">
-                                <h4 className="text-sm font-semibold text-indigo-700 dark:text-soft-gold-500 mb-2">
-                                  Modules ({step.duration})
-                                </h4>
-                                <div className="flex flex-wrap gap-2">
-                                  {step.modules.map((module, moduleIndex) => (
-                                    <span key={moduleIndex} className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-3 py-1 rounded-full text-xs font-medium">
-                                      {module}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                              
-                              <div className="flex items-center space-x-2 text-saffron-600 dark:text-saffron-400 font-medium group-hover:text-saffron-700 dark:group-hover:text-saffron-300 transition-colors">
-                                <span>Start Phase {index + 1}</span>
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Shine Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile Timeline */}
-            <div className="lg:hidden space-y-8">
-              {learningPath.map((step, index) => (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-start space-x-4"
-                >
-                  <div className="flex flex-col items-center">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                      <step.icon className="w-6 h-6 text-white" />
-                    </div>
-                    {index < learningPath.length - 1 && (
-                      <div className="w-0.5 h-16 bg-saffron-200 dark:bg-saffron-800 mt-4"></div>
-                    )}
-                  </div>
-                  <div className="flex-1 card-premium p-6">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500">
-                        {step.title}
-                      </h3>
-                      <span className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-2 py-1 rounded-full text-xs font-medium">
-                        {step.badge}
-                      </span>
-                    </div>
-                    <div className="text-sm text-saffron-600 dark:text-saffron-400 mb-3 font-devanagari">
-                      {step.titleSanskrit}
-                    </div>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 mb-2 text-sm font-semibold">
-                      {step.description}
-                    </p>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 mb-4 text-sm leading-relaxed">
-                      {step.detailedDescription}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {step.modules.slice(0, 2).map((module, moduleIndex) => (
-                        <span key={moduleIndex} className="bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300 px-2 py-1 rounded-full text-xs font-medium">
-                          {module}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center space-x-2 text-saffron-600 dark:text-saffron-400 text-sm font-medium">
-                      <span>Start Phase {index + 1}</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Founder's Mission */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
-          >
-            <div className="card-premium p-12 text-center relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-saffron-100/20 to-deep-teal-100/20 rounded-full -translate-y-32 translate-x-32"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-br from-deep-teal-100/20 to-indigo-100/20 rounded-full translate-y-24 -translate-x-24"></div>
-              
-              <div className="relative z-10">
-                <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-8">
-                  Our Mission
-                </h2>
-                
-                <blockquote className="text-xl md:text-2xl text-wisdom-600 dark:text-wisdom-400 mb-8 leading-relaxed italic">
-                  &ldquo;Shikshanam nurtures contemplative clarity through India&apos;s wisdom traditions—making rigorous ideas accessible, kind, and practical.&rdquo;
-                </blockquote>
-                
-                <div className="grid md:grid-cols-3 gap-8 mb-8">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <BookOpen className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-2">
-                      Accessible
-                    </h3>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 text-sm">
-                      Complex ideas made simple and engaging
-                    </p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-deep-teal-500 to-deep-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <Heart className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-2">
-                      Kind
-                    </h3>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 text-sm">
-                      Gentle guidance with patience and compassion
-                    </p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <Zap className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 mb-2">
-                      Practical
-                    </h3>
-                    <p className="text-wisdom-600 dark:text-wisdom-400 text-sm">
-                      Ancient wisdom for modern life
-                    </p>
-                  </div>
-                </div>
-                
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg mx-auto"
-                >
-                  <Users className="w-6 h-6" />
-                  <span>Meet Our Community</span>
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Enhanced Download App */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="card-premium p-12">
-              <div className="flex flex-col lg:flex-row items-center justify-center space-y-12 lg:space-y-0 lg:space-x-16">
-                {/* Phone Mockup */}
-                <motion.div
-                  animate={{ rotateY: [0, 5, -5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative"
-                >
-                  <div className="w-56 h-[500px] bg-gradient-to-b from-wisdom-800 to-wisdom-900 rounded-[3rem] shadow-2xl border-8 border-wisdom-700 relative overflow-hidden">
-                    {/* Screen Content */}
-                    <div className="p-8 h-full flex flex-col justify-between">
-                      <div className="space-y-6">
-                        <div className="w-full h-3 bg-saffron-500 rounded-full" />
-                        <div className="w-4/5 h-2 bg-wisdom-600 rounded-full" />
-                        <div className="w-5/6 h-2 bg-wisdom-600 rounded-full" />
-                        <div className="w-3/4 h-2 bg-wisdom-600 rounded-full" />
-                      </div>
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-gradient-to-r from-saffron-500 to-deep-teal-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                          <BookOpen className="w-8 h-8 text-white" />
-                        </div>
-                        <div className="text-white text-sm font-medium">Shikshanam</div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                
-                {/* App Info */}
-                <div className="flex-1 text-center lg:text-left">
-                  <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-6">
-                    Learn Anywhere, Anytime
-                  </h2>
-                  
-                  <p className="text-body text-wisdom-600 dark:text-wisdom-400 mb-8 leading-relaxed">
-                    Take your philosophical journey with you. Our mobile app offers offline access, 
-                    spaced repetition, and personalized reminders to keep your learning consistent.
-                  </p>
-                  
-                  <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-xl flex items-center justify-center">
-                        <Download className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-indigo-700 dark:text-soft-gold-500">Offline Access</div>
-                        <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Learn without internet</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-deep-teal-500 to-deep-teal-600 rounded-xl flex items-center justify-center">
-                        <Clock className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-indigo-700 dark:text-soft-gold-500">Smart Reminders</div>
-                        <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Never miss a lesson</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                        <Target className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-indigo-700 dark:text-soft-gold-500">Spaced Repetition</div>
-                        <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Optimize retention</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                        <BookOpen className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-indigo-700 dark:text-soft-gold-500">Progress Tracking</div>
-                        <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Monitor your journey</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg mx-auto lg:mx-0"
-                  >
-                    <Download className="w-6 h-6" />
-                    <span>Download Now</span>
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Enhanced Community */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-8">
-              Join Our Global Community
-            </h2>
-            
-            <p className="text-body text-wisdom-600 dark:text-wisdom-400 mb-12 max-w-3xl mx-auto">
-              Connect with fellow seekers, share insights, and grow together in your philosophical journey. 
-              Our community spans across continents, united by the love of wisdom.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-8">
-              {[
-                { 
-                  name: 'Telegram', 
-                  icon: MessageCircle, 
-                  color: 'from-blue-500 to-blue-600',
-                  members: '2,500+',
-                  description: 'Daily discussions & Q&A'
-                },
-                { 
-                  name: 'Instagram', 
-                  icon: Instagram, 
-                  color: 'from-pink-500 to-pink-600',
-                  members: '5,200+',
-                  description: 'Visual wisdom & stories'
-                },
-                { 
-                  name: 'Discord', 
-                  icon: Users, 
-                  color: 'from-indigo-500 to-indigo-600',
-                  members: '1,800+',
-                  description: 'Study groups & events'
-                }
-              ].map((social, index) => (
-                <motion.div
-                  key={social.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="group cursor-pointer"
-                >
-                  <div className={`bg-gradient-to-r ${social.color} text-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:shadow-2xl`}>
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <social.icon className="w-8 h-8" />
-                    </div>
-                    
-                    <h3 className="text-xl font-display mb-2">{social.name}</h3>
-                    <div className="text-white/80 text-sm mb-3">{social.members} members</div>
-                    <div className="text-white/70 text-sm">{social.description}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Enhanced Footer Elements */}
-      <section className="section-padding border-t border-saffron-200/30 dark:border-saffron-400/20">
-        <div className="container-custom">
-          <div className="flex flex-col lg:flex-row items-center justify-between space-y-12 lg:space-y-0">
-            {/* FAQs */}
-            <motion.a
-              href="#faqs"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-3 text-indigo-700 dark:text-wisdom-200 hover:text-saffron-600 dark:hover:text-saffron-400 transition-colors focus-ring group"
-            >
-              <div className="w-12 h-12 bg-saffron-100 dark:bg-saffron-900/30 rounded-xl flex items-center justify-center group-hover:bg-saffron-200 dark:group-hover:bg-saffron-800/50 transition-colors">
-                <HelpCircle className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="font-semibold">FAQs</div>
-                <div className="text-sm text-wisdom-500 dark:text-wisdom-400">Common questions</div>
-              </div>
-            </motion.a>
-
-            {/* Sanskrit Quote Bar */}
-            <motion.div
-              key={currentQuote}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="text-center flex-1 mx-8 max-w-2xl"
-            >
-              <div className="bg-white/80 dark:bg-wisdom-800/80 backdrop-blur-md rounded-2xl p-6 border border-saffron-200/30 dark:border-soft-gold-500/20">
-                <p className="text-xl font-devanagari text-indigo-700 dark:text-soft-gold-500 mb-2">
-                  {sanskritQuotes[currentQuote].text}
-                </p>
-                <p className="text-sm text-saffron-600 dark:text-saffron-400 mb-1">
-                  {sanskritQuotes[currentQuote].transliteration}
-                </p>
-                <p className="text-sm text-wisdom-500 dark:text-wisdom-400">
-                  {sanskritQuotes[currentQuote].translation}
-                </p>
-                <p className="text-xs text-wisdom-400 dark:text-wisdom-500 italic mt-2">
-                  — {sanskritQuotes[currentQuote].source}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Contact Us */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-3 bg-gradient-to-r from-saffron-600 to-saffron-700 dark:from-saffron-500 dark:to-saffron-600 text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 focus-ring group"
-              title="Replies within 24 hrs"
-            >
-              <Mail className="w-6 h-6" />
-              <div className="text-left">
-                <div>Contact Us</div>
-                <div className="text-xs text-saffron-100">24hr response</div>
-              </div>
-            </motion.button>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Quiz Modal */}
+      {/* Quiz Modal */}
       <AnimatePresence>
         {showQuiz && (
           <motion.div
@@ -1374,6 +698,10 @@ export default function SchoolOfDarshanaPage() {
         )}
       </AnimatePresence>
 
+      {/* Homepage-Style Sections */}
+      <DownloadAppNew />
+      <JoinCommunity />
+      <FAQ />
     </>
   )
 }

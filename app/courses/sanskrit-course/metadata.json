@@ -1,0 +1,24 @@
+{
+  "title": "संस्कृत भाषा प्रज्ञा: Online Sanskrit Course in Hindi for Beginners",
+  "subtitle": "Learn Sanskrit in Hindi medium from scratch",
+  "description": "Comprehensive Sanskrit language course taught in Hindi, designed for complete beginners to develop fluency.",
+  "type": "Premium Course",
+  "price": "₹3,999",
+  "originalPrice": "₹5,999",
+  "savings": "33%",
+  "duration": "20-25 Classes",
+  "level": "Beginner",
+  "status": "available",
+  "features": [
+    "Hindi Medium Instruction",
+    "Devanagari Script Mastery",
+    "Grammar Foundation",
+    "Conversation Practice",
+    "Reading Classical Texts",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/sanskrit-bhasha-pragya.png",
+  "category": "sanskrit",
+  "priority": 0.92
+}
+

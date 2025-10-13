@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { getAllCourses } from '@/lib/courses'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://shikshanam.com'
@@ -102,87 +103,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Course pages (dynamic - would be generated from database in production)
-  const coursePages = [
-    {
-      url: `${baseUrl}/courses/sanskrit-course`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/courses/sanskrit-live-class`,
-      lastModified: now,
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/emotional-intelligence-with-samkhya-darshan`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/isha-upanishad`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/kashmir-shaivism`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/nyaya-darshan`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/prashna-upanishad`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/samkhya-darshan`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/tantra-darshan`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/vaisheshik-darshan`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/yoga-darshan`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/courses/yoga-advanced`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    },
-  ]
+  // Course pages (dynamically generated from /app/courses/ directory)
+  const allCourses = getAllCourses()
+  const coursePages = allCourses.map(course => ({
+    url: `${baseUrl}${course.link}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: course.priority || 0.7,
+  }))
 
   // Guru pages
   const guruPages = [
@@ -243,6 +171,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/personality-test`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/guna-profiler`,

@@ -2,445 +2,91 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpen, MessageCircle, Users, ChevronDown, ChevronUp, ArrowRight, CheckCircle, Lock, Unlock, Star, Trophy, Sparkles, Zap } from 'lucide-react'
+import Link from 'next/link'
+import { BookOpen, MessageCircle, Users, ArrowRight, CheckCircle, Lock, Unlock, Sparkles, Clock, Star } from 'lucide-react'
 
-const learningStages = [
+const courses = [
   {
     id: 1,
     title: "Basic Sanskrit Grammar",
     titleDevanagari: "संस्कृत भाषा प्रज्ञा",
     subtitle: "Build a rock-solid foundation",
-    description: "Master the fundamentals of Sanskrit grammar with structured lessons",
-    badges: ["📚 PDFs", "🎧 Audio drills", "🧩 Quizzes"],
-    cta: "Start Module (Free Preview)",
+    description: "Master the fundamentals of Sanskrit grammar with structured lessons on Devanagari script, declensions, conjugations, and sentence formation.",
     icon: BookOpen,
-    gradient: "from-teal-primary via-teal-primary/90 to-teal-primary/70",
-    accent: "teal-primary",
-    lessons: [
-      "Introduction to Devanagari script",
-      "Basic vowels and consonants", 
-      "Sandhi rules and combinations",
-      "Noun declensions (vibhakti)",
-      "Verb conjugations",
-      "Sentence structure basics"
-    ],
-    backgroundBand: "bg-light-cyan",
-    progress: 0,
-    isUnlocked: true,
-    isCompleted: false,
-    xpReward: 150,
-    achievements: ["First Steps", "Script Master", "Grammar Guru"],
-    estimatedTime: "4-6 weeks"
+    gradient: "from-blue-500 to-teal-600",
+    bgGradient: "from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20",
+    iconBg: "bg-gradient-to-br from-blue-500 to-teal-600",
+    courseUrl: "/courses/sanskrit-basics",
+    estimatedTime: "4-6 weeks",
+    level: "Beginner",
+    isUnlocked: false,
+    order: 1
   },
   {
     id: 2,
-    title: "Basic Sanskrit Sambhāṣaṇam",
+    title: "Sanskrit Conversation Practice",
     titleDevanagari: "संस्कृत संभाषणम्",
     subtitle: "Daily phrases, greetings, introductions",
-    description: "Develop conversational skills with live practice sessions",
-    badges: ["Live Sessions", "Practice Pods", "Mentor Feedback"],
-    cta: "Join Practice Cohort",
+    description: "Develop conversational skills through guided practice sessions with common phrases, questions, and daily interactions.",
     icon: MessageCircle,
-    gradient: "from-purple-primary via-purple-primary/90 to-purple-primary/70",
-    accent: "purple-primary",
-    lessons: [
-      "Greetings and introductions",
-      "Common daily phrases",
-      "Asking questions",
-      "Expressing needs and wants",
-      "Numbers and time",
-      "Family and relationships"
-    ],
-    backgroundBand: "bg-lavender-primary",
-    progress: 0,
+    gradient: "from-purple-500 to-pink-600",
+    bgGradient: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20",
+    iconBg: "bg-gradient-to-br from-purple-500 to-pink-600",
+    courseUrl: "/courses/sanskrit-conversation",
+    estimatedTime: "6-8 weeks",
+    level: "Intermediate",
     isUnlocked: false,
-    isCompleted: false,
-    xpReward: 200,
-    achievements: ["Conversation Starter", "Daily Speaker", "Social Sanskrit"],
-    estimatedTime: "6-8 weeks"
+    order: 2
   },
   {
     id: 3,
     title: "Live Speaking Practice",
     titleDevanagari: "जीवन्त संस्कृतम्",
     subtitle: "Small groups + mentor feedback + recordings",
-    description: "Advanced conversations and spiritual discourse",
-    badges: ["Small Groups", "Recordings", "Advanced"],
-    cta: "Book Your Slot",
+    description: "Advanced conversations and spiritual discourse with expert teachers in live interactive sessions.",
     icon: Users,
-    gradient: "from-coral-primary via-coral-primary/90 to-coral-primary/70",
-    accent: "coral-primary",
-    lessons: [
-      "Advanced conversation topics",
-      "Spiritual and philosophical discussions",
-      "Classical text recitation",
-      "Debate and argumentation",
-      "Poetry and literature",
-      "Teaching others Sanskrit"
-    ],
-    backgroundBand: "bg-light-cyan",
-    progress: 0,
+    gradient: "from-orange-500 to-red-600",
+    bgGradient: "from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20",
+    iconBg: "bg-gradient-to-br from-orange-500 to-red-600",
+    courseUrl: "/courses/sanskrit-live-class",
+    estimatedTime: "8-12 weeks",
+    level: "Advanced",
     isUnlocked: false,
-    isCompleted: false,
-    xpReward: 300,
-    achievements: ["Master Speaker", "Spiritual Scholar", "Sanskrit Teacher"],
-    estimatedTime: "8-12 weeks"
+    order: 3
   }
 ]
 
-// Arrow Component for connecting cards
-function ArrowConnector({ delay = 0 }: { delay?: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scaleX: 0 }}
-      animate={{ opacity: 1, scaleX: 1 }}
-      transition={{ duration: 0.8, delay, ease: "easeOut" }}
-      className="hidden lg:flex items-center justify-center mx-4"
-    >
-      <div className="relative">
-        {/* Arrow line */}
-        <div className="w-16 h-0.5 bg-gradient-to-r from-teal-primary to-purple-primary"></div>
-        {/* Arrow head */}
-        <motion.div
-          initial={{ x: -8, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: delay + 0.3 }}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2"
-        >
-          <ArrowRight className="w-4 h-4 text-purple-primary" />
-        </motion.div>
-        {/* Animated dots */}
-        <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 1, 0.5]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            delay: delay + 0.5
-          }}
-          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-teal-primary rounded-full"
-        />
-      </div>
-    </motion.div>
-  )
+interface SequentialPathProps {
+  selectedLevel?: 'beginner' | 'intermediate' | null
 }
 
-interface StageCardProps {
-  stage: typeof learningStages[0]
-  index: number
-  isExpanded: boolean
-  onToggle: () => void
-  isActive?: boolean
-  onUnlock?: () => void
-}
-
-function StageCard({ stage, index, isExpanded, onToggle, isActive = false, onUnlock }: StageCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ 
-        duration: 0.8, 
-        delay: index * 0.2,
-        type: "spring",
-        stiffness: 100
-      }}
-      viewport={{ once: true }}
-      whileHover={{ 
-        y: stage.isUnlocked ? -8 : 0,
-        transition: { duration: 0.3 }
-      }}
-      className={`relative group ${!stage.isUnlocked ? 'opacity-60' : ''}`}
-    >
-      {/* Enhanced Card Design */}
-      <div className={`relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 transition-all duration-500 overflow-hidden ${
-        stage.isUnlocked ? 'hover:shadow-2xl' : 'cursor-not-allowed'
-      } ${stage.isCompleted ? 'ring-4 ring-green-400/30' : ''}`}>
-        
-        {/* Lock Overlay for locked stages */}
-        {!stage.isUnlocked && (
-          <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-sm rounded-3xl flex items-center justify-center z-20">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="bg-white/90 backdrop-blur-md rounded-2xl p-6 text-center shadow-xl"
-            >
-              <Lock className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-              <h3 className="font-bold text-gray-700 mb-2">Locked</h3>
-              <p className="text-sm text-gray-600 mb-4">Complete previous stage to unlock</p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={onUnlock}
-                className="bg-gradient-to-r from-golden-olive to-deep-maroon text-white px-4 py-2 rounded-xl text-sm font-semibold"
-              >
-                Unlock Now
-              </motion.button>
-            </motion.div>
-          </div>
-        )}
-
-        {/* Completion Badge */}
-        {stage.isCompleted && (
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="absolute -top-3 -left-3 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg z-10"
-          >
-            <CheckCircle className="w-6 h-6 text-white" />
-          </motion.div>
-        )}
-
-        {/* Gradient Background Overlay */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${stage.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
-        
-        {/* Progress Indicator */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gray-100 rounded-t-3xl overflow-hidden">
-          <motion.div
-            className={`h-full bg-gradient-to-r ${stage.gradient}`}
-            initial={{ width: 0 }}
-            whileInView={{ width: `${stage.progress}%` }}
-            transition={{ duration: 1, delay: index * 0.3 + 0.5 }}
-            viewport={{ once: true }}
-          />
-        </div>
-
-        {/* Enhanced Stage Number Badge */}
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          whileInView={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-          viewport={{ once: true }}
-          className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${stage.gradient} rounded-full flex items-center justify-center shadow-lg ${
-            stage.isCompleted ? 'ring-4 ring-green-400/30' : ''
-          }`}
-        >
-          {stage.isCompleted ? (
-            <CheckCircle className="w-6 h-6 text-white" />
-          ) : (
-            <span className="text-white font-bold text-lg">{index + 1}</span>
-          )}
-        </motion.div>
-
-        {/* Icon with Enhanced Animation */}
-        <motion.div
-          initial={{ scale: 0, rotate: -90 }}
-          whileInView={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.2 }}
-          viewport={{ once: true }}
-          whileHover={{ 
-            scale: 1.1, 
-            rotate: 5,
-            transition: { duration: 0.3 }
-          }}
-          className={`w-16 h-16 bg-gradient-to-br ${stage.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}
-        >
-          <stage.icon className="w-8 h-8 text-white" />
-        </motion.div>
-        
-        {/* Content */}
-        <div className="relative z-10">
-          <motion.h3 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
-            viewport={{ once: true }}
-            className="text-2xl font-bold text-dark-text mb-2"
-          >
-            {stage.title}
-          </motion.h3>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.2 }}
-            viewport={{ once: true }}
-            className="text-sm text-purple-primary mb-4 font-devanagari"
-          >
-            {stage.titleDevanagari}
-          </motion.div>
-          
-          <motion.p 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-            viewport={{ once: true }}
-            className="text-dark-text mb-2 text-sm font-semibold"
-          >
-            {stage.subtitle}
-          </motion.p>
-          
-          <motion.p 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
-            viewport={{ once: true }}
-            className="text-muted-gray mb-6 text-sm leading-relaxed"
-          >
-            {stage.description}
-          </motion.p>
-          
-          {/* Enhanced Badges */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
-            viewport={{ once: true }}
-            className="flex flex-wrap gap-2 mb-4"
-          >
-            {stage.badges.map((badge, badgeIndex) => (
-              <motion.span 
-                key={badgeIndex}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.2 + 0.5 + badgeIndex * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className={`bg-gradient-to-r ${stage.gradient} bg-opacity-10 text-${stage.accent} px-4 py-2 rounded-full text-xs font-medium border border-current border-opacity-20`}
-              >
-                {badge}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          {/* XP and Time Information */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.6 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl"
-          >
-            <div className="flex items-center space-x-2">
-              <Star className="w-4 h-4 text-yellow-500" />
-              <span className="text-sm font-semibold text-gray-700">{stage.xpReward} XP</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Zap className="w-4 h-4 text-blue-500" />
-              <span className="text-sm font-medium text-gray-600">{stage.estimatedTime}</span>
-            </div>
-          </motion.div>
-
-          {/* Achievements Preview */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 + 0.7 }}
-            viewport={{ once: true }}
-            className="mb-6"
-          >
-            <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center">
-              <Trophy className="w-4 h-4 text-yellow-500 mr-2" />
-              Achievements
-            </h4>
-            <div className="flex flex-wrap gap-1">
-              {stage.achievements.slice(0, 2).map((achievement, achievementIndex) => (
-                <motion.span 
-                  key={achievementIndex}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.2 + 0.7 + achievementIndex * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs font-medium"
-                >
-                  {achievement}
-                </motion.span>
-              ))}
-              {stage.achievements.length > 2 && (
-                <span className="text-xs text-gray-500 px-2 py-1">
-                  +{stage.achievements.length - 2} more
-                </span>
-              )}
-            </div>
-          </motion.div>
-          
-          {/* Enhanced Toggle Button */}
-          <motion.button 
-            onClick={onToggle}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-2 text-teal-primary hover:text-teal-primary/80 text-sm font-medium mb-6 group/btn"
-          >
-            <span>View Lessons</span>
-            <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ChevronDown className="w-4 h-4" />
-            </motion.div>
-          </motion.button>
-          
-          {/* Enhanced Lessons Panel */}
-          <AnimatePresence>
-            {isExpanded && (
-              <motion.div
-                initial={{ opacity: 0, height: 0, y: -20 }}
-                animate={{ opacity: 1, height: 'auto', y: 0 }}
-                exit={{ opacity: 0, height: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="mb-6 overflow-hidden"
-              >
-                <div className="bg-gradient-to-r from-light-cyan to-lavender-primary rounded-2xl p-6 border border-gray-100">
-                  <h4 className="font-bold text-dark-text mb-4 flex items-center">
-                    <CheckCircle className="w-5 h-5 text-teal-primary mr-2" />
-                    Lessons in this stage:
-                  </h4>
-                  <div className="grid gap-3">
-                    {stage.lessons.map((lesson, lessonIndex) => (
-                      <motion.div
-                        key={lessonIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: lessonIndex * 0.1 }}
-                        className="flex items-center space-x-3 p-3 bg-white/50 rounded-xl hover:bg-white/80 transition-colors"
-                      >
-                        <div className={`w-2 h-2 bg-gradient-to-r ${stage.gradient} rounded-full`}></div>
-                        <span className="text-sm text-dark-text font-medium">{lesson}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          
-          {/* Enhanced CTA Button */}
-          <motion.button 
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className={`w-full bg-gradient-to-r ${stage.gradient} text-white font-semibold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2`}
-          >
-            <span>{stage.cta}</span>
-            <ArrowRight className="w-4 h-4" />
-          </motion.button>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-export default function SequentialPath() {
-  const [expandedStage, setExpandedStage] = useState<number | null>(null)
-  const [stages, setStages] = useState(learningStages)
+export default function SequentialPath({ selectedLevel }: SequentialPathProps) {
+  const [coursesState, setCoursesState] = useState(courses)
   const [showUnlockAnimation, setShowUnlockAnimation] = useState<number | null>(null)
-
-  const handleToggle = (stageId: number) => {
-    setExpandedStage(expandedStage === stageId ? null : stageId)
-  }
-
-  const handleUnlock = (stageId: number) => {
-    setStages(prev => prev.map(stage => 
-      stage.id === stageId ? { ...stage, isUnlocked: true } : stage
-    ))
-    setShowUnlockAnimation(stageId)
-    setTimeout(() => setShowUnlockAnimation(null), 2000)
-  }
+  
+  // Unlock courses based on selected level
+  useEffect(() => {
+    if (selectedLevel) {
+      setCoursesState(prev => prev.map((course, index) => {
+        const shouldUnlock = 
+          (selectedLevel === 'beginner' && index === 0) ||
+          (selectedLevel === 'intermediate' && index <= 1)
+        
+        if (shouldUnlock && !course.isUnlocked) {
+          setTimeout(() => {
+            setShowUnlockAnimation(course.id)
+            setTimeout(() => setShowUnlockAnimation(null), 2000)
+          }, index * 300)
+        }
+        
+        return { ...course, isUnlocked: shouldUnlock || course.isUnlocked }
+      }))
+    }
+  }, [selectedLevel])
 
   return (
-    <section className="section-padding bg-parchment-ivory relative overflow-hidden">
-      {/* Unlock Animation */}
+    <section className="section-padding bg-gradient-to-b from-parchment-ivory to-white dark:from-wisdom-900 dark:to-deep-indigo-500 relative overflow-hidden">
+      {/* Unlock Animation Overlay */}
       <AnimatePresence>
         {showUnlockAnimation && (
           <motion.div
@@ -460,13 +106,13 @@ export default function SequentialPath() {
               <div className="text-center">
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 1, repeat: 2, ease: "linear" }}
                   className="w-16 h-16 mx-auto mb-4"
                 >
                   <Unlock className="w-full h-full" />
                 </motion.div>
-                <h3 className="text-2xl font-bold mb-2">Stage Unlocked!</h3>
-                <p className="text-lg">You can now access this learning path</p>
+                <h3 className="text-2xl font-bold mb-2">Course Unlocked!</h3>
+                <p className="text-lg">You can now access this course</p>
               </div>
             </motion.div>
           </motion.div>
@@ -474,141 +120,252 @@ export default function SequentialPath() {
       </AnimatePresence>
 
       <div className="container-custom">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-display text-dark-text mb-4"
-          >
-            Your Sequential Path
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-body text-muted-gray max-w-2xl mx-auto"
-          >
-            Guided curriculum with structured learning journey from grammar fundamentals 
-            to living Sanskrit conversations with expert guidance.
-          </motion.p>
+          <h2 className="text-display text-dark-text mb-4">
+            Recommended Learning Path
+          </h2>
+          <p className="text-body text-muted-gray max-w-2xl mx-auto">
+            {selectedLevel 
+              ? `Perfect for ${selectedLevel === 'beginner' ? 'beginners' : 'intermediate learners'}! Follow this structured path to master Sanskrit.`
+              : 'Choose your level above to unlock your personalized learning path.'}
+          </p>
         </motion.div>
 
-        {/* Desktop: 3 Cards with Arrows */}
-        <div className="hidden lg:block">
-          <div className="flex items-center justify-center space-x-8">
-            {stages.map((stage, index) => (
-              <div key={stage.id} className="flex items-center">
-                <StageCard
-                  stage={stage}
-                  index={index}
-                  isExpanded={expandedStage === stage.id}
-                  onToggle={() => handleToggle(stage.id)}
-                  onUnlock={() => handleUnlock(stage.id)}
-                />
-                {/* Arrow between cards (except after last card) */}
-                {index < stages.length - 1 && (
-                  <ArrowConnector delay={index * 0.3 + 0.5} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Course Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {coursesState.map((course, index) => {
+            const CardContent = (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                whileHover={course.isUnlocked ? { y: -10, scale: 1.02 } : {}}
+                className="relative group h-full"
+              >
+                <div className={`relative bg-white dark:bg-wisdom-800 rounded-3xl shadow-xl overflow-hidden h-full flex flex-col transition-all duration-500 ${
+                  course.isUnlocked ? 'hover:shadow-2xl cursor-pointer' : 'opacity-70'
+                }`}>
+                  
+                  {/* Lock Overlay */}
+                  {!course.isUnlocked && (
+                    <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm z-20 flex items-center justify-center rounded-3xl">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="bg-white/95 dark:bg-wisdom-800/95 rounded-2xl p-8 text-center shadow-2xl max-w-xs"
+                      >
+                        <Lock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                        <h3 className="font-bold text-gray-700 dark:text-gray-300 mb-2 text-lg">Locked</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                          {index === 0 
+                            ? 'Select "Beginner" above to unlock'
+                            : 'Select "Intermediate" above to unlock'}
+                        </p>
+                      </motion.div>
+                    </div>
+                  )}
 
-        {/* Mobile: Vertical Stack */}
-        <div className="lg:hidden space-y-8">
-          {stages.map((stage, index) => (
-            <div key={stage.id} className="relative">
-              <StageCard
-                stage={stage}
-                index={index}
-                isExpanded={expandedStage === stage.id}
-                onToggle={() => handleToggle(stage.id)}
-                onUnlock={() => handleUnlock(stage.id)}
-              />
-              {/* Vertical Arrow for mobile */}
-              {index < stages.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, scaleY: 0 }}
-                  animate={{ opacity: 1, scaleY: 1 }}
-                  transition={{ duration: 0.8, delay: index * 0.3 + 0.5 }}
-                  className="flex justify-center mt-8 mb-8"
-                >
-                  <div className="relative">
-                    <div className="w-0.5 h-16 bg-gradient-to-b from-teal-primary to-purple-primary"></div>
+                  {/* Course Number Badge */}
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                    viewport={{ once: true }}
+                    className={`absolute -top-4 -right-4 w-12 h-12 ${course.iconBg} rounded-full flex items-center justify-center shadow-lg z-10`}
+                  >
+                    <span className="text-white font-bold text-lg">{course.order}</span>
+                  </motion.div>
+
+                  {/* Gradient Header with Icon */}
+                  <div className={`relative bg-gradient-to-br ${course.bgGradient} p-8 border-b-4 border-gradient-to-r ${course.gradient}`}>
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className={`w-full h-full bg-gradient-to-br ${course.gradient}`} />
+                    </div>
+                    
+                    {/* Icon */}
                     <motion.div
-                      initial={{ y: -8, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.3 + 0.8 }}
-                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
+                      initial={{ scale: 0, rotate: -90 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      viewport={{ once: true }}
+                      whileHover={course.isUnlocked ? { scale: 1.1, rotate: 5 } : {}}
+                      className={`w-20 h-20 ${course.iconBg} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg relative z-10`}
                     >
-                      <ArrowRight className="w-4 h-4 text-purple-primary rotate-90" />
+                      <course.icon className="w-10 h-10 text-white" />
                     </motion.div>
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.3 + 1
-                      }}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-teal-primary rounded-full"
-                    />
+                    
+                    {/* Level Badge */}
+                    <div className="text-center relative z-10">
+                      <span className={`inline-block px-4 py-1 rounded-full text-xs font-semibold ${
+                        course.level === 'Beginner' 
+                          ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                          : course.level === 'Intermediate'
+                            ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
+                            : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                      }`}>
+                        {course.level}
+                      </span>
+                    </div>
                   </div>
-                </motion.div>
-              )}
-            </div>
-          ))}
+
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col relative z-10">
+                    <h3 className="text-2xl font-bold text-dark-text dark:text-soft-gold-500 mb-2">
+                      {course.title}
+                    </h3>
+                    
+                    <div className="text-lg font-devanagari text-golden-olive dark:text-golden-olive/80 mb-3">
+                      {course.titleDevanagari}
+                    </div>
+                    
+                    <p className="text-sm text-deep-maroon dark:text-copper-orange font-semibold mb-3">
+                      {course.subtitle}
+                    </p>
+                    
+                    <p className="text-muted-gray dark:text-wisdom-400 mb-4 leading-relaxed flex-1">
+                      {course.description}
+                    </p>
+
+                    {/* Duration */}
+                    <div className="flex items-center justify-center mb-4 p-3 bg-gray-50 dark:bg-wisdom-700 rounded-xl">
+                      <Clock className="w-4 h-4 text-golden-olive mr-2" />
+                      <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                        {course.estimatedTime}
+                      </span>
+                    </div>
+                    
+                    {/* CTA Button */}
+                    {course.isUnlocked && (
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`w-full bg-gradient-to-r ${course.gradient} text-white font-semibold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2`}
+                      >
+                        <span>Start Course</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* Decorative Corner */}
+                  <div className={`absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br ${course.gradient} opacity-10 rounded-full blur-2xl`} />
+                </div>
+              </motion.div>
+            )
+
+            // Wrap unlocked courses with Link
+            if (course.isUnlocked) {
+              return (
+                <Link key={course.id} href={course.courseUrl}>
+                  {CardContent}
+                </Link>
+              )
+            }
+
+            // Return locked courses without link
+            return <div key={course.id}>{CardContent}</div>
+          })}
         </div>
 
-        {/* Enhanced Progress Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex items-center space-x-6 bg-white/90 backdrop-blur-md rounded-2xl px-8 py-6 shadow-xl border border-golden-olive/20">
-            <div className="flex items-center space-x-2">
-              <Trophy className="w-5 h-5 text-yellow-500" />
-              <span className="text-sm font-semibold text-gray-700">Learning Progress</span>
+        {/* Progress Message */}
+        {selectedLevel && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+          >
+            <div className="inline-block bg-gradient-to-r from-golden-olive/10 to-deep-maroon/10 rounded-2xl px-8 py-4 border-2 border-golden-olive/20">
+              <div className="flex items-center justify-center space-x-3">
+                <Sparkles className="w-5 h-5 text-golden-olive" />
+                <p className="text-base font-semibold text-gray-700 dark:text-gray-300">
+                  {selectedLevel === 'beginner' 
+                    ? '🎯 Start with Basic Grammar to build your foundation' 
+                    : '🚀 Continue to Conversation Practice to enhance your skills'}
+                </p>
+                <Sparkles className="w-5 h-5 text-golden-olive" />
+              </div>
             </div>
-            <div className="flex space-x-3">
-              {stages.map((stage, index) => (
-                <motion.div
-                  key={stage.id}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 + 1 }}
-                  className={`w-4 h-4 rounded-full flex items-center justify-center ${
-                    stage.isCompleted 
-                      ? 'bg-green-500' 
-                      : stage.isUnlocked 
-                        ? `bg-gradient-to-r ${stage.gradient}` 
-                        : 'bg-gray-200'
-                  }`}
-                >
-                  {stage.isCompleted && <CheckCircle className="w-3 h-3 text-white" />}
-                  {!stage.isUnlocked && <Lock className="w-3 h-3 text-gray-400" />}
-                </motion.div>
-              ))}
+          </motion.div>
+        )}
+
+        {/* Connecting Visual Flow (Desktop Only) */}
+        <div className="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl pointer-events-none">
+          <svg className="w-full h-24 opacity-20" viewBox="0 0 1000 100">
+            <motion.path
+              d="M 100 50 Q 250 20, 400 50 T 700 50 Q 850 80, 1000 50"
+              stroke="currentColor"
+              strokeWidth="3"
+              fill="none"
+              className="text-golden-olive"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
+              viewport={{ once: true }}
+            />
+            {[200, 500, 800].map((x, i) => (
+              <motion.circle
+                key={i}
+                cx={x}
+                cy="50"
+                r="8"
+                fill="currentColor"
+                className="text-deep-maroon"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 + i * 0.2 }}
+                viewport={{ once: true }}
+              />
+            ))}
+          </svg>
+        </div>
+
+        {/* No Selection Message */}
+        {!selectedLevel && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+          >
+            <div className="bg-gradient-to-r from-saffron-100 to-deep-teal-100 dark:from-saffron-900/30 dark:to-deep-teal-900/30 rounded-2xl p-8 max-w-2xl mx-auto border-2 border-saffron-200 dark:border-saffron-800">
+              <Lock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-dark-text dark:text-soft-gold-500 mb-3">
+                Select Your Level to Begin
+              </h3>
+              <p className="text-muted-gray dark:text-wisdom-400 mb-6">
+                Choose Beginner or Intermediate in the hero section above to unlock your personalized course path.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                className="bg-gradient-to-r from-golden-olive to-deep-maroon text-white px-6 py-3 rounded-xl font-semibold inline-flex items-center space-x-2"
+              >
+                <span>Go to Selection</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
             </div>
-            <div className="text-sm text-gray-600">
-              {stages.filter(s => s.isCompleted).length}/{stages.length} completed
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   )

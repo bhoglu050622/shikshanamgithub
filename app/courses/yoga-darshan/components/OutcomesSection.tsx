@@ -7,26 +7,26 @@ import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motio
 const outcomes = [
   {
     icon: Brain,
-    title: 'Deep Understanding of Patanjali\'s 195 Yoga Sutras',
-    description: 'Master the complete philosophy of Yoga as outlined by Maharshi Patanjali',
+    title: 'Know the 25 Tattvas Properly',
+    description: 'Understand prakriti, purusha, ahamkara and all fundamental elements of Yoga philosophy',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: Heart,
-    title: 'Practical Mind-Body-Spirit Balance',
-    description: 'Learn to apply Yoga principles for holistic well-being in everyday life',
+    title: 'Master Methods of Kriya Yoga & Ashtanga',
+    description: 'Gain both conceptual and philosophical understanding of practical Yoga methods',
     color: 'from-teal-500 to-teal-600'
   },
   {
     icon: Lightbulb,
-    title: 'Tools for Meditation & Clarity',
-    description: 'Develop meditation techniques grounded in traditional wisdom',
+    title: 'Understand Science of Siddhis',
+    description: 'Learn about the supernatural powers that arise from advanced Yoga practice',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: Target,
-    title: 'Confidence to Integrate Yoga Philosophy',
-    description: 'Gain the knowledge and confidence to live according to Yoga principles',
+    title: 'Alleviate Suffering Through Right Practice',
+    description: 'Apply both philosophical and practical knowledge to overcome life\'s challenges',
     color: 'from-teal-500 to-teal-600'
   }
 ];
@@ -138,6 +138,39 @@ export default function OutcomesSection() {
                   </div>
                   <h4 className="text-lg font-semibold text-high-contrast mb-2">Inner Peace</h4>
                   <p className="text-wisdom-600 text-sm">Cultivate mindfulness and inner tranquility through ancient practices</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </StaggerItem>
+
+        <StaggerItem>
+          <div className="mt-16 bg-gradient-to-r from-orange-50 to-red-50 p-8 rounded-3xl border border-orange-200">
+            <div className="text-center">
+              <h3 className="text-2xl font-display text-high-contrast mb-4">
+                What This Course is NOT
+              </h3>
+              <div className="max-w-3xl mx-auto">
+                <p className="text-wisdom-600 leading-relaxed mb-4">
+                  This is a study of <strong>Maharshi Patanjali's Yoga Darshan (philosophy)</strong>, 
+                  not a <strong>Hatha-yoga physical posture/exercise training course</strong>. 
+                  The page explicitly clarifies it is not a course for asana/exercise instruction.
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🧘</span>
+                    </div>
+                    <h4 className="font-semibold text-high-contrast mb-2">Philosophy Focus</h4>
+                    <p className="text-wisdom-600 text-sm">Deep study of ancient Yoga philosophy and spiritual concepts</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <span className="text-2xl">🚫</span>
+                    </div>
+                    <h4 className="font-semibold text-high-contrast mb-2">Not Physical Exercise</h4>
+                    <p className="text-wisdom-600 text-sm">Does not include physical asana practice or exercise training</p>
+                  </div>
                 </div>
               </div>
             </div>

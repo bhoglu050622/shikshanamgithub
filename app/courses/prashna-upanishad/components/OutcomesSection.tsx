@@ -1,15 +1,15 @@
 'use client';
 
-import { motion } from 'framer-motion';
+
 import { Brain, Heart, Lightbulb, Target, CheckCircle, HelpCircle } from 'lucide-react';
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import MotionWrapper, { StaggerContainer, StaggerItem, MotionInView } from '@/components/motion/MotionWrapper';
 
 const outcomes = [
   {
     icon: Brain,
     title: 'Wisdom & Clarity',
     description: 'Understand foundational Vedic questions and gain profound insights into life\'s mysteries',
-    color: 'from-muted-saffron-500 to-muted-saffron-600'
+    color: 'from-gold-500 to-gold-600'
   },
   {
     icon: Heart,
@@ -21,7 +21,7 @@ const outcomes = [
     icon: Lightbulb,
     title: 'Practical Insight',
     description: 'Learn questions that foster lifelong inquiry and clarity in daily life',
-    color: 'from-muted-saffron-500 to-muted-saffron-600'
+    color: 'from-gold-500 to-gold-600'
   },
   {
     icon: Target,
@@ -32,12 +32,10 @@ const outcomes = [
 ];
 
 const learningOutcomes = [
-  'Understand the six fundamental questions of Prashna Upanishad',
-  'Apply ancient wisdom to modern life situations',
-  'Develop a deeper sense of self-awareness and presence',
-  'Learn to ask meaningful questions that lead to spiritual growth',
-  'Integrate Upanishadic insights into daily contemplative practice',
-  'Build a foundation for advanced spiritual studies'
+  'अपने अस्तित्व को गहराई से समझ पाएंगे।',
+  'पाखंड-रहित आध्यात्मिक विकास कर पाएंगे।',
+  'ब्रह्मांड और आत्मा के सम्बन्धों का ज्ञान होगा।',
+  'आंतरिक सुख और शांति का अनुभव करेंगे।'
 ];
 
 export default function OutcomesSection() {
@@ -47,10 +45,10 @@ export default function OutcomesSection() {
         <StaggerItem>
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display text-high-contrast mb-6">
-              What You'll Gain
+              Outcomes
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
-              Transform your understanding of life's deepest questions through the profound wisdom of Prashna Upanishad's six inquiries.
+              What you'll be able to do after the course
             </p>
           </div>
         </StaggerItem>
@@ -58,7 +56,7 @@ export default function OutcomesSection() {
         <StaggerItem>
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             {outcomes.map((outcome, index) => (
-              <motion.div
+              <MotionInView
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +73,7 @@ export default function OutcomesSection() {
                 <p className="text-wisdom-600 leading-relaxed">
                   {outcome.description}
                 </p>
-              </motion.div>
+              </MotionInView>
             ))}
           </div>
         </StaggerItem>
@@ -93,7 +91,7 @@ export default function OutcomesSection() {
             
             <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
               {learningOutcomes.map((outcome, index) => (
-                <motion.div
+                <MotionInView
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -105,7 +103,7 @@ export default function OutcomesSection() {
                     <CheckCircle className="w-4 h-4 text-white" />
                   </div>
                   <p className="text-wisdom-600 leading-relaxed">{outcome}</p>
-                </motion.div>
+                </MotionInView>
               ))}
             </div>
           </div>

@@ -1,0 +1,23 @@
+{
+  "title": "योग दर्शन: Yoga Philosophy through Patanjali Yoga Sutras",
+  "subtitle": "Master the complete Yoga Sutras of Patanjali",
+  "description": "Comprehensive study of Patanjali's Yoga Sutras covering all four padas - philosophy, practice, and liberation.",
+  "type": "Premium Course",
+  "price": "₹3,999",
+  "originalPrice": "₹5,999",
+  "savings": "33%",
+  "duration": "20-25 Classes",
+  "level": "Intermediate",
+  "status": "available",
+  "features": [
+    "All 4 Padas Covered",
+    "Sanskrit & Translation",
+    "Meditation Techniques",
+    "Practical Application",
+    "Q&A Sessions",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/yoga-darshan-course.png",
+  "category": "darshan",
+  "priority": 0.93
+}

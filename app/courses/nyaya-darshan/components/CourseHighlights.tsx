@@ -41,7 +41,7 @@ export default function CourseHighlights() {
     },
     {
       icon: <CheckCircle className="w-6 h-6" />,
-      title: "Lifetime Access",
+      title: "1-Year Access",
       description: "Master logical reasoning at your own pace, revisit anytime"
     }
   ];
@@ -62,21 +62,27 @@ export default function CourseHighlights() {
         accessible format designed for developing critical thinking skills.
       </p>
 
-      <div className="nyaya-grid nyaya-grid-4">
+      <div className="nyaya-bento-grid">
         {highlights.map((highlight, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
             viewport={{ once: true }}
-            className="nyaya-card text-center group hover:nyaya-glow"
+            className="nyaya-card text-center group hover:nyaya-glow relative"
+            style={{
+              gridColumn: index === 0 || index === 7 ? 'span 2' : 'span 1',
+            }}
           >
-            <div className="nyaya-icon mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="nyaya-icon mx-auto mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
               {highlight.icon}
             </div>
-            <h3 className="nyaya-heading text-lg mb-2">{highlight.title}</h3>
+            <h3 className="nyaya-heading text-lg mb-2 font-bold">{highlight.title}</h3>
             <p className="nyaya-subheading text-sm text-gray-600">{highlight.description}</p>
+            
+            {/* Decorative corner accent */}
+            <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-blue-200 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.div>
         ))}
       </div>

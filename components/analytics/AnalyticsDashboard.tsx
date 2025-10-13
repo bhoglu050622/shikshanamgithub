@@ -491,19 +491,11 @@ function ErrorTracking({ data }: ErrorTrackingProps) {
 
 async function fetchAnalyticsMetrics(): Promise<DashboardMetrics> {
   try {
-    // Fetch real-time analytics data from CMS API
-    const response = await fetch('/api/cms/analytics');
-    if (!response.ok) {
-      throw new Error('Failed to fetch analytics data');
-    }
-    
-    const analyticsData = await response.json();
-    
-    // Transform CMS analytics data to dashboard format
-    const totalViews = analyticsData.performance?.totalViews || 0;
-    const totalEdits = analyticsData.performance?.totalEdits || 0;
-    const contentTypes = analyticsData.contentTypes || [];
-    const recentActivity = analyticsData.recentActivity || [];
+    // CMS API removed - using mock data for analytics
+    const totalViews = 5000;
+    const totalEdits = 150;
+    const contentTypes: any[] = [];
+    const recentActivity: any[] = [];
     
     // Calculate real metrics from actual data
     const activeContent = contentTypes.filter((ct: any) => ct.status === 'active');
@@ -553,14 +545,14 @@ async function fetchAnalyticsMetrics(): Promise<DashboardMetrics> {
         })),
       },
       performance: {
-        averageLoadTime: analyticsData.performance?.avgResponseTime || 250,
+        averageLoadTime: 250,
         coreWebVitals: {
           lcp: Math.floor(Math.random() * 500) + 1500,
           fid: Math.floor(Math.random() * 50) + 50,
           cls: Math.random() * 0.1,
         },
         errorRate: Math.random() * 2,
-        uptime: analyticsData.performance?.uptime || 99.5,
+        uptime: 99.5,
       },
       errors: {
         totalErrors: Math.floor(Math.random() * 50) + 10,

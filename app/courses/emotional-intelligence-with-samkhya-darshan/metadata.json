@@ -1,0 +1,23 @@
+{
+  "title": "Emotional Intelligence with Sāṅkhya Darśana",
+  "subtitle": "Master your emotions through ancient wisdom",
+  "description": "Transform your emotional intelligence using the profound teachings of Sāṅkhya philosophy. Understand emotions through the three Gunas.",
+  "type": "Premium Course",
+  "price": "₹2,499",
+  "originalPrice": "₹3,999",
+  "savings": "40%",
+  "duration": "15-18 Classes",
+  "level": "Beginner to Intermediate",
+  "status": "available",
+  "features": [
+    "Three Gunas Deep Dive",
+    "Emotional Pattern Recognition",
+    "Witnessing Consciousness",
+    "Guna Profiler Tool",
+    "Practical Exercises",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/course-emotional-intelligence-sankhya.png",
+  "category": "philosophy",
+  "priority": 0.9
+}

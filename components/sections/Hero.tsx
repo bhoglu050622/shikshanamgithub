@@ -1,348 +1,354 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { BookOpen, Sparkles, Flower, Users, Award } from 'lucide-react'
+import { BookOpen, Sparkles, GraduationCap, Users, ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import MotionWrapper, { StaggerContainer, StaggerItem } from '../motion/MotionWrapper'
-import { useScrollAnimations, useStaggeredAnimations } from '@/lib/hooks/useProgressiveAnimations'
-import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
-import { API_CONFIG, logApiCall } from '@/lib/config/api'
 
-interface HeroData {
-  title: string
-  subtitle: string
-  ctaButtons: {
-    sanskrit: { text: string; link: string }
-    darshan: { text: string; link: string }
-    lifeSkills: { text: string; link: string }
-  }
+interface FloatingParticle {
+  id: number
+  x: number
+  y: number
+  size: number
+  duration: number
+  delay: number
 }
 
 export default function Hero() {
-  const mounted = useHydrationSafeAnimation()
-  const [heroData, setHeroData] = useState<HeroData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [particles, setParticles] = useState<FloatingParticle[]>([])
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const fetchHeroData = async () => {
-      try {
-        const apiUrl = API_CONFIG.getCmsApiUrl('content')
-        logApiCall(apiUrl, 'GET')
-        
-        const response = await fetch(apiUrl)
-        const result = await response.json()
-        console.log('Hero API Response:', result)
-        if (result.success && result.data.hero) {
-          console.log('Setting hero data:', result.data.hero)
-          setHeroData(result.data.hero)
-        } else {
-          console.log('No hero data found in response')
-        }
-      } catch (error) {
-        console.error('Failed to fetch hero data:', error)
-      } finally {
-        setLoading(false)
+    setMounted(true)
+    // Generate floating particles with more variety
+    const newParticles = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 8 + 3, // Larger particles: 3-11px
+      duration: Math.random() * 8 + 10, // Faster: 10-18s
+      delay: Math.random() * 3
+    }))
+    setParticles(newParticles)
+  }, [])
+
+  // Prevent animation on SSR
+  const animationProps = mounted
+    ? { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
+    : { initial: false, animate: { opacity: 1, y: 0 } }
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    } else {
+      const schoolsSection = document.getElementById('schools')
+      if (schoolsSection) {
+        schoolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
-
-    fetchHeroData()
-  }, [])
-  
-  // Progressive animations
-  const titleRef = useScrollAnimations('fadeIn', { delay: 200 })
-  const subtitleRef = useScrollAnimations('slideUp', { delay: 400 })
-  const statsRef = useStaggeredAnimations('fadeIn', 150, { delay: 600 })
-  const ctaRef = useStaggeredAnimations('scaleIn', 200, { delay: 800 })
-
+  }
   
   return (
-    <section id="home" className="section-padding relative min-h-screen flex items-center bg-background transition-colors duration-300">
-      <div className="container-custom text-center relative z-20">
-        <StaggerContainer className="space-y-readable">
-          <StaggerItem>
-            <div className="flex justify-center mb-8">
-              {mounted ? (
-                <motion.div 
-                  className="flex items-center space-x-4 text-brand-primary"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <Sparkles className="w-6 h-6 animate-glow" />
-                  </motion.div>
-                  <motion.div
-                    animate={{ 
-                      y: [-3, 3, -3]
-                    }}
-                    transition={{ 
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <Flower className="w-8 h-8 animate-pulse-slow" />
-                  </motion.div>
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5
-                    }}
-                  >
-                    <Sparkles className="w-6 h-6 animate-glow" />
-                  </motion.div>
-                </motion.div>
-              ) : (
-                <div className="flex items-center space-x-4 text-golden-olive">
-                  <Sparkles className="w-6 h-6 animate-glow" />
-                  <Flower className="w-8 h-8 animate-pulse-slow" />
-                  <Sparkles className="w-6 h-6 animate-glow" />
-                </div>
-              )}
-            </div>
-          </StaggerItem>
-
-          <StaggerItem>
-            {loading ? (
-              <div className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm">
-                <div className="animate-pulse bg-gray-300 h-12 w-96 mx-auto rounded"></div>
+    <section 
+      id="home" 
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+    >
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-950 dark:to-amber-950">
+        {/* Animated gradient overlays */}
+        <motion.div 
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-300/30 via-transparent to-transparent dark:from-orange-500/20"
+          animate={{ 
+            opacity: [0.3, 0.4, 0.3],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-amber-300/30 via-transparent to-transparent dark:from-amber-500/20"
+          animate={{
+            opacity: [0.3, 0.4, 0.3],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 6 }}
+        />
+        
+        {/* Animated mesh gradient effect */}
+        <motion.div
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `
+              radial-gradient(at 20% 30%, rgba(251, 146, 60, 0.3) 0px, transparent 50%),
+              radial-gradient(at 80% 70%, rgba(245, 158, 11, 0.3) 0px, transparent 50%),
+              radial-gradient(at 50% 50%, rgba(251, 191, 36, 0.2) 0px, transparent 50%)
+            `
+          }}
+          animate={{
+            opacity: [0.2, 0.3, 0.2],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        />
               </div>
-            ) : mounted ? (
-              <motion.h1 
-                ref={titleRef} 
-                className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.3 }}
-              >
-                {heroData?.title || "Welcome to Shikshanam (Fallback)"}
-              </motion.h1>
-            ) : (
-              <h1 
-                ref={titleRef} 
-                className="text-mobile-hero text-high-contrast mb-6 sm:mb-8 text-shadow-sm"
-              >
-                {heroData?.title || "Welcome to Shikshanam (Fallback)"}
+
+      {/* Floating Sparkles - Accent Elements */}
+      {mounted && [1, 2, 3, 4, 5, 6].map((i) => (
+        <motion.div
+          key={`sparkle-${i}`}
+          className="absolute"
+          style={{
+            left: `${(i * 17) % 100}%`,
+            top: `${(i * 23) % 100}%`,
+          }}
+          animate={{
+            scale: [0, 1, 0],
+            rotate: [0, 180, 360],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: i * 0.8,
+            ease: "easeInOut"
+          }}
+        >
+          <Sparkles className="w-6 h-6 text-orange-400/60" />
+        </motion.div>
+      ))}
+
+      {/* Sacred Geometry Mandala - Enhanced */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-20 dark:opacity-25">
+        {/* Outer rotating circle */}
+        <motion.div
+          className="absolute w-[700px] h-[700px] rounded-full border-2 border-orange-400/40"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        />
+        
+        {/* Middle rotating circle - opposite direction */}
+        <motion.div
+          className="absolute w-[500px] h-[500px] rounded-full border-2 border-amber-400/50"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="w-full h-full rounded-full border-2 border-orange-300/40 rotate-45" />
+        </motion.div>
+        
+        {/* Inner pulsing circle */}
+        <motion.div
+          className="absolute w-[300px] h-[300px] rounded-full border-2 border-orange-500/60"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.4, 0.7, 0.4]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Center dot */}
+        <motion.div
+          className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-orange-400/30 to-amber-400/30"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5]
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+          </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          
+          {/* Badge */}
+          {mounted ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md border border-orange-200/50 dark:border-orange-700/50 mb-8"
+            >
+              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-100">
+                Unlock Ancient Wisdom
+              </span>
+              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
+            </motion.div>
+          ) : (
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md border border-orange-200/50 dark:border-orange-700/50 mb-8">
+              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-100">
+                Unlock Ancient Wisdom
+              </span>
+              <Sparkles className="w-4 h-4 text-orange-500" aria-hidden="true" />
+              </div>
+          )}
+
+          {/* Main Heading */}
+          {mounted ? (
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+            >
+              <span className="bg-gradient-to-r from-gray-900 via-orange-800 to-amber-900 dark:from-white dark:via-orange-200 dark:to-amber-200 bg-clip-text text-transparent">
+                शिक्षणम्
+              </span>
+              <br />
+              <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-700 dark:text-gray-300">
+                Shikshanam
+              </span>
+            </motion.h1>
+          ) : (
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-gray-900 via-orange-800 to-amber-900 dark:from-white dark:via-orange-200 dark:to-amber-200 bg-clip-text text-transparent">
+                शिक्षणम्
+              </span>
+              <br />
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-gray-700 dark:text-gray-100">
+                Shikshanam
+              </span>
               </h1>
             )}
-          </StaggerItem>
 
-          <StaggerItem>
-            {loading ? (
-              <div className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable">
-                <div className="animate-pulse bg-gray-300 h-6 w-80 mx-auto rounded"></div>
-              </div>
-            ) : mounted ? (
-              <motion.p 
-                ref={subtitleRef} 
-                className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <motion.span
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <span className="inline">{heroData?.subtitle || "Where AI meets Ancient India"}</span>
-                </motion.span>
-              </motion.p>
-            ) : (
-              <p 
-                ref={subtitleRef} 
-                className="text-mobile-subheading text-high-contrast mb-12 sm:mb-16 max-w-4xl sm:max-w-5xl mx-auto devanagari-separator text-readable"
-              >
-                <span className="inline">{heroData?.subtitle || "Where AI meets Ancient India"}</span>
-              </p>
-            )}
-          </StaggerItem>
+          {/* Subtitle */}
+          {mounted ? (
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg sm:text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-4 font-light"
+          >
+            Ancient Indian Knowledge Platform
+          </motion.p>
+          ) : (
+            <p className="text-xl sm:text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-4 font-light">
+              Ancient Indian Knowledge Platform
+            </p>
+          )}
 
-          {/* Quick Stats removed as requested */}
-
-          <StaggerItem>
-            <motion.h2 
-              initial={mounted ? { opacity: 0, y: 20, scale: 0.9 } : false}
-              animate={mounted ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
-              transition={mounted ? { delay: 0.8, duration: 0.8 } : { duration: 0 }}
-              className="text-2xl sm:text-3xl md:text-4xl font-serif text-high-contrast mb-12 sm:mb-16 text-shadow-sm"
+          {/* Description */}
+          {mounted ? (
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-sm sm:text-lg text-gray-500 dark:text-gray-200 mb-12 max-w-3xl mx-auto"
             >
-              <motion.span
-                animate={mounted ? { 
-                  textShadow: [
-                    '0 0 0px rgba(218, 165, 32, 0)',
-                    '0 0 20px rgba(218, 165, 32, 0.3)',
-                    '0 0 0px rgba(218, 165, 32, 0)'
-                  ]
-                } : { textShadow: '0 0 0px rgba(218, 165, 32, 0)' }}
-                transition={mounted ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0 }}
-              >
-                <span className="inline">What do you seek?</span>
-              </motion.span>
-            </motion.h2>
-          </StaggerItem>
+              Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
+            </motion.p>
+          ) : (
+            <p className="text-base sm:text-lg text-gray-500 dark:text-gray-200 mb-12 max-w-3xl mx-auto">
+              Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
+            </p>
+          )}
 
-          <StaggerItem>
-            <div ref={ctaRef} className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-16 md:mb-20 w-full max-w-sm md:max-w-none mx-auto px-4 md:px-0">
-              <motion.button
-                initial={mounted ? { opacity: 0, x: -50 } : false}
-                animate={mounted ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-                transition={mounted ? { delay: 1, duration: 0.6 } : { duration: 0 }}
-                whileHover={mounted ? { 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(218, 165, 32, 0.3)"
-                } : {}}
-                whileTap={mounted ? { scale: 0.95 } : {}}
-                onClick={() => {
-                  const sanskritSchool = document.getElementById('school-of-sanskrit');
-                  if (sanskritSchool) {
-                    sanskritSchool.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                    // Add temporary highlight effect
-                    sanskritSchool.style.transition = 'box-shadow 0.3s ease';
-                    sanskritSchool.style.boxShadow = '0 0 30px rgba(218, 165, 32, 0.6)';
-                    setTimeout(() => {
-                      sanskritSchool.style.boxShadow = '';
-                    }, 3000);
-                  }
-                }}
-                className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 text-primary-foreground px-6 md:px-8 py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/20 hover:border-primary/40 relative overflow-hidden cursor-pointer no-underline w-full md:w-auto"
-              >
-                <motion.span 
-                  className="relative z-10"
-                  animate={mounted ? { textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] } : { textShadow: '0 0 0px rgba(255,255,255,0)' }}
-                  transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0 }}
-                >
-                  <span className="inline">{heroData?.ctaButtons?.sanskrit?.text || "School of Sanskrit"}</span>
-                </motion.span>
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
-                  initial={mounted ? { x: '-100%' } : { x: '-100%' }}
-                  whileHover={mounted ? { x: '100%' } : {}}
-                  transition={{ duration: 0.7 }}
-                />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent opacity-0 group-hover:opacity-100"
-                  transition={mounted ? { duration: 0.3 } : { duration: 0 }}
-                />
-              </motion.button>
-              
-              <motion.button
-                initial={mounted ? { opacity: 0, y: 50 } : false}
-                animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                transition={mounted ? { delay: 1.2, duration: 0.6 } : { duration: 0 }}
-                whileHover={mounted ? { 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(139, 69, 19, 0.3)"
-                } : {}}
-                whileTap={mounted ? { scale: 0.95 } : {}}
-                onClick={() => {
-                  const darshanSchool = document.getElementById('school-of-darshan');
-                  if (darshanSchool) {
-                    darshanSchool.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                    // Add temporary highlight effect
-                    darshanSchool.style.transition = 'box-shadow 0.3s ease';
-                    darshanSchool.style.boxShadow = '0 0 30px rgba(139, 69, 19, 0.6)';
-                    setTimeout(() => {
-                      darshanSchool.style.boxShadow = '';
-                    }, 3000);
-                  }
-                }}
-                className="group bg-gradient-to-r from-secondary to-secondary/90 hover:from-secondary/90 hover:to-secondary/80 text-secondary-foreground px-6 md:px-8 py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-secondary/20 hover:border-secondary/40 relative overflow-hidden cursor-pointer no-underline w-full md:w-auto"
-              >
-                <motion.span 
-                  className="relative z-10"
-                  animate={mounted ? { textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] } : { textShadow: '0 0 0px rgba(255,255,255,0)' }}
-                  transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 } : { duration: 0 }}
-                >
-                  <span className="inline">{heroData?.ctaButtons?.darshan?.text || "School of Darshan"}</span>
-                </motion.span>
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
-                  initial={mounted ? { x: '-100%' } : { x: '-100%' }}
-                  whileHover={mounted ? { x: '100%' } : {}}
-                  transition={{ duration: 0.7 }}
-                />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-transparent opacity-0 group-hover:opacity-100"
-                  transition={mounted ? { duration: 0.3 } : { duration: 0 }}
-                />
-              </motion.button>
-              
-              <motion.button
-                initial={mounted ? { opacity: 0, x: 50 } : false}
-                animate={mounted ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-                transition={mounted ? { delay: 1.4, duration: 0.6 } : { duration: 0 }}
-                whileHover={mounted ? { 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(255, 140, 0, 0.3)"
-                } : {}}
-                whileTap={mounted ? { scale: 0.95 } : {}}
-                onClick={() => {
-                  const lifeSkillsSchool = document.getElementById('school-of-life-skills');
-                  if (lifeSkillsSchool) {
-                    lifeSkillsSchool.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'center',
-                      inline: 'nearest'
-                    });
-                    // Add temporary highlight effect
-                    lifeSkillsSchool.style.transition = 'box-shadow 0.3s ease';
-                    lifeSkillsSchool.style.boxShadow = '0 0 30px rgba(255, 140, 0, 0.6)';
-                    setTimeout(() => {
-                      lifeSkillsSchool.style.boxShadow = '';
-                    }, 3000);
-                  }
-                }}
-                className="group bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80 text-accent-foreground px-6 md:px-8 py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-accent/20 hover:border-accent/40 relative overflow-hidden cursor-pointer no-underline w-full md:w-auto"
-              >
-                <motion.span 
-                  className="relative z-10"
-                  animate={mounted ? { textShadow: ['0 0 0px rgba(255,255,255,0)', '0 0 10px rgba(255,255,255,0.5)', '0 0 0px rgba(255,255,255,0)'] } : { textShadow: '0 0 0px rgba(255,255,255,0)' }}
-                  transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 } : { duration: 0 }}
-                >
-                  <span className="inline">{heroData?.ctaButtons?.lifeSkills?.text || "School of Life Skills"}</span>
-                </motion.span>
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
-                  initial={mounted ? { x: '-100%' } : { x: '-100%' }}
-                  whileHover={mounted ? { x: '100%' } : {}}
-                  transition={{ duration: 0.7 }}
-                />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100"
-                  transition={mounted ? { duration: 0.3 } : { duration: 0 }}
-                />
-              </motion.button>
+          {/* CTA Cards */}
+          <motion.div
+            initial={mounted ? { opacity: 0, y: 40 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
+          >
+            {/* Sanskrit Card */}
+            <button
+              onClick={() => scrollToSection('schools')}
+              className="group relative overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-orange-200/50 dark:border-orange-700/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer text-left w-full"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="w-7 h-7 text-white" aria-hidden="true" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">
+                  Learn Sanskrit
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-100 mb-4">
+                  Master the divine language
+                </p>
+                <div className="flex items-center text-orange-600 dark:text-orange-200 font-medium text-sm">
+                  Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+          </div>
+              </div>
+            </button>
+
+            {/* Darshanas Card */}
+            <button
+              onClick={() => scrollToSection('schools')}
+              className="group relative overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-amber-200/50 dark:border-amber-700/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/20 cursor-pointer text-left w-full"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <GraduationCap className="w-7 h-7 text-white" aria-hidden="true" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">
+                  Explore Darshanas
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-100 mb-4">
+                  Study six classical schools
+                </p>
+                <div className="flex items-center text-amber-600 dark:text-amber-200 font-medium text-sm">
+                  Discover <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+          </div>
+          </div>
+            </button>
+
+            {/* Self Development Card */}
+            <button
+              onClick={() => scrollToSection('schools')}
+              className="group relative overflow-hidden rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-orange-200/50 dark:border-orange-700/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer text-left w-full"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="w-7 h-7 text-white" aria-hidden="true" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">
+                  Self Development
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-100 mb-4">
+                  Transform your life
+                </p>
+                <div className="flex items-center text-orange-600 dark:text-orange-200 font-medium text-sm">
+                  Begin <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                </div>
+              </div>
+            </button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={mounted ? { opacity: 0 } : false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600 dark:text-gray-400"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span>Live Classes Available</span>
             </div>
-          </StaggerItem>
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4" aria-hidden="true" />
+              <span>10,000+ Students</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4" aria-hidden="true" />
+              <span>50+ Courses</span>
+          </div>
+          </motion.div>
 
-
-        </StaggerContainer>
+        </div>
       </div>
+
+      {/* Decorative Bottom Wave */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          <path 
+            d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" 
+            fill="currentColor" 
+            className="text-background"
+          />
+        </svg>
+      </div>
+
     </section>
   )
 }

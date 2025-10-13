@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
-import { API_CONFIG } from '@/lib/config/api'
 
 // Default schools data (fallback)
 const defaultSchools = [
@@ -69,95 +68,23 @@ const defaultSchools = [
   }
 ]
 
+// Hardcoded schools data
+const schoolsData = {
+  title: "Choose Your School!",
+  subtitle: "From Language to Philosophy to Life, Begin your Quest!",
+  description: "Our schools offer comprehensive learning paths in Sanskrit, philosophy, and life skills.",
+  schools: defaultSchools
+}
+
 export default function Schools() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const mounted = useHydrationSafeAnimation()
-  
-  // CMS data state
-  const [schoolsData, setSchoolsData] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-  
-  // Fetch CMS data
-  useEffect(() => {
-    const fetchSchoolsData = async () => {
-      try {
-        const apiUrl = API_CONFIG.getCmsApiUrl('content')
-        console.log('Fetching schools data from:', apiUrl)
-        
-        const response = await fetch(apiUrl)
-        const result = await response.json()
-        
-        if (result.success && result.data.schools) {
-          setSchoolsData(result.data.schools)
-        } else if (result.success && result.data) {
-          // Handle case where schools data is nested differently
-          setSchoolsData(result.data)
-        }
-      } catch (error) {
-        console.error('Failed to fetch schools data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchSchoolsData()
-  }, [])
-  
-  // Transform CMS data to match component expectations
-  const transformSchoolData = (school: any) => {
-    return {
-      id: school.id || school.name?.toLowerCase().replace(/\s+/g, '-'),
-      title: school.name || school.title || 'School',
-      subtitle: school.subtitle || school.tagline || 'Learning Path',
-      description: school.description || 'Discover ancient wisdom',
-      icon: school.icon || BookOpen,
-      emoji: school.emoji || '📚',
-      color: school.color ? `from-${school.color} to-${school.color}/90` : 'from-primary to-primary/90',
-      hoverColor: school.color ? `from-${school.color}/90 to-${school.color}/80` : 'from-primary/90 to-primary/80',
-      href: school.link || school.href || '#',
-      whatYoullLearn: school.whatYoullLearn || school.curriculum || 'Comprehensive learning modules',
-      features: school.features || school.topics || ['Core Concepts', 'Practical Applications'],
-      cta: school.cta || school.buttonText || 'Join School'
-    }
-  }
 
-  // Use CMS data or fallback to default
-  const schools = schoolsData?.schools || defaultSchools
-  const sectionTitle = schoolsData?.title || "Explore Our Schools"
-  const sectionSubtitle = schoolsData?.subtitle || "Discover the ancient wisdom through our structured learning paths"
-  const sectionDescription = schoolsData?.description || "Our schools offer comprehensive learning paths in Sanskrit, philosophy, and life skills."
-
-  // Ensure schools is always an array and transform data
-  const safeSchools = Array.isArray(schools) 
-    ? schools.map(transformSchoolData)
-    : defaultSchools
-
-  // Show loading state
-  if (loading) {
-    return (
-      <section id="schools" className="py-8 sm:py-12 md:py-16 bg-background relative overflow-hidden">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <div className="animate-pulse">
-              <div className="h-12 bg-gray-200 rounded w-1/3 mx-auto mb-6"></div>
-              <div className="h-6 bg-gray-200 rounded w-1/2 mx-auto"></div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-8 max-w-4xl mx-auto">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 rounded-3xl p-8 h-32"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
+  const safeSchools = defaultSchools
 
   return (
-    <section id="schools" className="py-8 sm:py-12 md:py-16 bg-background relative overflow-hidden">
+    <section id="schools" className="py-12 md:py-16 bg-[hsl(40,15%,99%)] dark:bg-[hsl(240,8%,8%)] relative overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10">
         <motion.div
@@ -206,7 +133,7 @@ export default function Schools() {
             } : {}}
             transition={mounted ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0 }}
           >
-            {sectionTitle}
+            {schoolsData.title}
           </motion.h2>
           <motion.p 
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
@@ -218,7 +145,7 @@ export default function Schools() {
               animate={mounted && isInView ? { opacity: [0.7, 1, 0.7] } : {}}
               transition={mounted ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0 }}
             >
-              {sectionDescription}
+              {schoolsData.description}
             </motion.span>
           </motion.p>
         </motion.div>

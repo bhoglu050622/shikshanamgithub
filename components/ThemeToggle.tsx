@@ -12,37 +12,56 @@ export default function ThemeToggle() {
     { value: 'dark' as const, icon: Moon, label: 'Dark' },
   ]
 
+  const handleThemeChange = (newTheme: 'light' | 'dark') => {
+    console.log('Theme change requested:', newTheme)
+    setTheme(newTheme)
+    // Force immediate DOM update for better UX
+    if (typeof window !== 'undefined') {
+      const root = document.documentElement
+      root.classList.remove('light', 'dark')
+      root.classList.add(newTheme)
+    }
+  }
+
   return (
-    <div className="flex items-center space-x-1 bg-secondary/50 rounded-2xl p-1 backdrop-blur-sm border border-primary/20">
-      {themes.map(({ value, icon: Icon, label }) => (
-        <motion.button
-          key={value}
-          onClick={() => {
-            setTheme(value)
-          }}
-          className={`
-            relative flex items-center space-x-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
-            ${theme === value 
-              ? 'text-brand-primary' 
-              : 'text-medium-contrast hover:text-brand-primary'
-            }
-            focus-ring tap-target
-          `}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label={`Switch to ${label} theme`}
-        >
-          {theme === value && (
-            <motion.div
-              layoutId="theme-indicator"
-              className="absolute inset-0 bg-card/80 rounded-xl shadow-sm"
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            />
-          )}
-          <Icon className="w-4 h-4 relative z-10" />
-          <span className="relative z-10 hidden sm:inline">{label}</span>
-        </motion.button>
-      ))}
+    <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-1">
+      {themes.map(({ value, icon: Icon, label }) => {
+        const isActive = actualTheme === value || theme === value
+        
+        return (
+          <motion.button
+            key={value}
+            onClick={() => handleThemeChange(value)}
+            className={`
+              relative flex-1 flex flex-col items-center justify-center px-3 py-2 rounded-xl text-xs font-medium transition-all duration-200 h-12
+              ${isActive
+                ? 'bg-white shadow-sm' 
+                : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+              }
+              focus-ring tap-target
+            `}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            aria-label={`Switch to ${label} theme`}
+            aria-pressed={isActive}
+          >
+            <Icon className={`w-5 h-5 mb-1 ${isActive ? 'text-yellow-500' : 'text-gray-600 dark:text-gray-400'}`} />
+            <div className={`text-[10px] leading-tight font-medium ${isActive ? 'text-yellow-600' : 'text-gray-600 dark:text-gray-400'}`}>
+              {label === 'Light' ? (
+                <>
+                  <div>Lig</div>
+                  <div>ht</div>
+                </>
+              ) : (
+                <>
+                  <div>Da</div>
+                  <div>rk</div>
+                </>
+              )}
+            </div>
+          </motion.button>
+        )
+      })}
     </div>
   )
 }

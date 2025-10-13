@@ -664,3 +664,36 @@ export const StaggerItem = ({ children, ...props }: Omit<MotionWrapperProps, 'as
     {children}
   </MotionWrapper>
 );
+
+// SSR-safe motion component specifically for whileInView animations
+export const MotionInView = ({ children, className, style, initial, whileInView, transition, viewport, ...props }: MotionWrapperProps) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // During SSR, render without motion
+  if (!isClient) {
+    return (
+      <div className={className} style={style} {...props}>
+        {children}
+      </div>
+    );
+  }
+
+  // After hydration, render with motion
+  return (
+    <motion.div
+      className={className}
+      style={style}
+      initial={initial}
+      whileInView={whileInView}
+      transition={transition}
+      viewport={viewport}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+};

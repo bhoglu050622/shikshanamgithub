@@ -38,27 +38,16 @@ export function usePackageData(packageId: string, fallbackData: PackageData): Us
   const [error, setError] = useState<string | null>(null);
 
   const fetchPackageData = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`/api/cms/package/${packageId}`);
-      
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success && data.data) {
-          setPackageData(data.data);
-        }
-      } else {
-        console.warn(`Failed to fetch package data for ${packageId}, using fallback data`);
-      }
-    } catch (err) {
-      console.error(`Error fetching package data for ${packageId}:`, err);
-      setError(err instanceof Error ? err.message : 'Unknown error');
-    } finally {
-      setLoading(false);
-    }
-  }, [packageId]);
+    // CMS API removed - using static fallback data only
+    setLoading(true);
+    setError(null);
+    
+    // Simulate async behavior for consistency
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    setPackageData(fallbackData);
+    setLoading(false);
+  }, [packageId, fallbackData]);
 
   useEffect(() => {
     fetchPackageData();

@@ -1,0 +1,23 @@
+{
+  "title": "Durgāsaptashatī Recitation - Live Class!",
+  "subtitle": "Master the sacred Durgā Saptashatī chanting",
+  "description": "Learn the proper recitation and meaning of Durgāsaptashatī with live guidance from expert scholars.",
+  "type": "Live Course",
+  "price": "₹1,999",
+  "originalPrice": "₹2,999",
+  "savings": "33%",
+  "duration": "8-10 Classes",
+  "level": "Beginner",
+  "status": "available",
+  "features": [
+    "Live Interactive Sessions",
+    "Proper Pronunciation Guide",
+    "Meaning & Context",
+    "Practice Materials",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/durgasaptashi-course.jpeg",
+  "category": "vedic",
+  "priority": 0.9
+}
+

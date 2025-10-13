@@ -5,7 +5,6 @@ import { BookOpen, Clock, Users, ChevronLeft, ChevronRight, Play, Calendar, Star
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
-import { API_CONFIG } from '@/lib/config/api'
 
 // Type definitions
 interface Course {
@@ -104,45 +103,45 @@ const defaultLiveClasses: LiveClass[] = [
 const defaultSelfPacedCourses: SelfPacedCourse[] = [
   {
     id: '1',
-    title: 'Complete Bhagavad Gita Study',
-    instructor: 'Dr. Krishna Das',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
-    duration: '40 hours',
-    modules: 12,
+    title: 'Emotional Intelligence with Samkhya Darshan',
+    instructor: 'Vishal Chaurasia',
+    thumbnail: '/assets/course-emotional-intelligence-sankhya.png',
+    duration: '8 weeks',
+    modules: 6,
     price: '₹1,999',
     rating: 4.9,
     students: 1500,
-    link: 'https://example.com/bhagavad-gita-course',
-    description: 'Comprehensive study of the Bhagavad Gita with commentary and practical insights',
+    link: '/courses/emotional-intelligence-with-samkhya-darshan',
+    description: 'Master your emotions through ancient Sāṅkhya wisdom and modern psychology',
     level: 'Intermediate'
   },
   {
     id: '2',
-    title: 'Ayurveda Fundamentals',
-    instructor: 'Dr. Vaidya Suresh',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
-    duration: '25 hours',
+    title: 'Durgāsaptashatī Recitation',
+    instructor: 'Expert Scholars',
+    thumbnail: '/assets/durgasaptashi-course.jpeg',
+    duration: '8-10 Classes',
     modules: 8,
-    price: '₹1,499',
-    rating: 4.7,
+    price: '₹1,999',
+    rating: 4.8,
     students: 800,
-    link: 'https://example.com/ayurveda-fundamentals',
-    description: 'Learn the ancient science of Ayurveda and its modern applications',
+    link: '/courses/durgasaptashi',
+    description: 'Master the sacred Durgā Saptashatī chanting with proper pronunciation and meaning',
     level: 'Beginner'
   },
   {
     id: '3',
-    title: 'Vedic Astrology Basics',
-    instructor: 'Pandit Ravi Shankar',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
-    duration: '30 hours',
-    modules: 10,
-    price: '₹1,799',
-    rating: 4.8,
+    title: 'कश्मीर शैव दर्शन',
+    instructor: 'Vishal Chaurasia',
+    thumbnail: '/assets/kashmir-shaivism-course.png',
+    duration: '6 months',
+    modules: 15,
+    price: '₹3,499',
+    rating: 4.9,
     students: 650,
-    link: 'https://example.com/vedic-astrology-basics',
-    description: 'Introduction to Jyotish and understanding planetary influences',
-    level: 'Beginner'
+    link: '/courses/kashmir-shaivism',
+    description: 'The Philosophy of Recognition and Consciousness - Advanced Kashmir Shaivism',
+    level: 'Advanced'
   }
 ]
 
@@ -181,7 +180,7 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
   return (
     <motion.div
       whileHover={mounted ? { scale: 1.02, y: -5 } : {}}
-      className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0"
+      className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0 flex flex-col h-[520px]"
       onClick={handleClick}
     >
       {/* Thumbnail */}
@@ -191,7 +190,7 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
           alt={course.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
+          className="object-contain"
           onError={(e) => {
             const target = e.target as HTMLImageElement
             target.style.display = 'none'
@@ -214,10 +213,10 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         <h3 className="font-bold text-lg text-foreground mb-2 line-clamp-2">{course.title}</h3>
         <p className="text-sm text-muted-foreground mb-3">{course.instructor}</p>
-        <p className="text-sm text-foreground/80 mb-4 line-clamp-2">{course.description}</p>
+        <p className="text-sm text-foreground/80 mb-4 line-clamp-3 flex-1">{course.description}</p>
 
         {/* Course Details */}
         <div className="space-y-2 mb-4">
@@ -253,7 +252,7 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`w-full py-3 px-4 rounded-xl font-semibold text-primary-foreground transition-all duration-300 flex items-center justify-center space-x-2 ${
+          className={`w-full py-3 px-4 rounded-xl font-semibold text-primary-foreground transition-all duration-300 flex items-center justify-center space-x-2 mt-auto ${
             type === 'live' 
               ? 'bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80' 
               : 'bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80'
@@ -329,44 +328,21 @@ function CourseCarousel({ courses, type, title }: { courses: any[], type: 'live'
   )
 }
 
+// Hardcoded align yourself data
+const alignData = {
+  title: "Two Ways to Begin Your Journey!",
+  subtitle: "Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses.",
+  description: "Choose your learning path with our comprehensive educational offerings.",
+  liveClasses: defaultLiveClasses,
+  selfPacedCourses: defaultSelfPacedCourses,
+  courses: defaultCourses
+}
+
 export default function AlignYourself() {
   const mounted = useHydrationSafeAnimation()
-  const [alignData, setAlignData] = useState<AlignYourselfData | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  // Fetch CMS data
-  useEffect(() => {
-    const fetchAlignData = async () => {
-      try {
-        const apiUrl = API_CONFIG.getCmsApiUrl('content')
-        console.log('Fetching align yourself data from:', apiUrl)
-        
-        const response = await fetch(apiUrl)
-        const result = await response.json()
-        
-        if (result.success && result.data.alignYourself) {
-          setAlignData(result.data.alignYourself)
-        }
-      } catch (error) {
-        console.error('Failed to fetch align yourself data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchAlignData()
-  }, [])
-
-  // Use CMS data or fallback to default
-  const sectionTitle = alignData?.title || "Two Ways to Begin Your Journey!"
-  const sectionSubtitle = alignData?.subtitle || "Learn through interactive Live Classes, or walk your own path of Swadhyaya with Self-Paced Courses."
-  const sectionDescription = alignData?.description || "Choose your learning path with our comprehensive educational offerings."
-  const liveClasses = alignData?.liveClasses || defaultLiveClasses
-  const selfPacedCourses = alignData?.selfPacedCourses || defaultSelfPacedCourses
-  const courses = alignData?.courses || defaultCourses
   
   return (
-    <section id="align-yourself" className="section-padding bg-background relative overflow-hidden">
+    <section id="align-yourself" className="py-12 md:py-16 bg-gradient-to-b from-[hsl(45,40%,98%)] to-[hsl(45,30%,97%)] dark:from-[hsl(240,8%,9%)] dark:to-[hsl(240,6%,11%)] relative overflow-hidden">
       {/* Background Animation - Shooting Stars & Diya Lamps */}
       <div className="absolute inset-0 -z-10">
         {/* Shooting Stars */}
@@ -394,10 +370,10 @@ export default function AlignYourself() {
           className="text-center mb-16"
         >
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            {sectionTitle}
+            {alignData.title}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            {sectionSubtitle}
+            {alignData.subtitle}
           </p>
         </motion.div>
 
@@ -410,12 +386,12 @@ export default function AlignYourself() {
           className="mb-16 flex flex-col items-center space-y-8"
         >
           <CourseCarousel 
-            courses={liveClasses} 
+            courses={alignData.liveClasses} 
             type="live" 
             title="Latest Live Classes" 
           />
           <CourseCarousel 
-            courses={selfPacedCourses} 
+            courses={alignData.selfPacedCourses} 
             type="self-paced" 
             title="Featured Self-Paced Courses" 
           />

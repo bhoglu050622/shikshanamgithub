@@ -4,8 +4,6 @@ import { motion } from 'framer-motion'
 import MotionWrapper, { MotionDiv } from '@/components/motion/MotionWrapper'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 import { BookOpen, Heart, Users, Globe, ArrowRight, Star, Award, Target, Lightbulb, Shield } from 'lucide-react'
-import { API_CONFIG } from '@/lib/config/api'
-import { useState, useEffect } from 'react'
 
 const contributionOptions = [
   {
@@ -102,43 +100,26 @@ const currentProjects = [
   }
 ]
 
+// Hardcoded contribute data
+const contributeData = {
+  title: "Keep the Indian Wisdom Alive!",
+  subtitle: "Be part of this movement — share knowledge, guide as a Guru, or support a project.",
+  description: "Join us in our mission to make ancient knowledge accessible to everyone.",
+  ctaText: "Get Involved",
+  ctaLink: "/contribute"
+}
+
 export default function Contribute() {
   const mounted = useHydrationSafeAnimation()
-  const [contributeData, setContributeData] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
 
-  // Fetch CMS data
-  useEffect(() => {
-    const fetchContributeData = async () => {
-      try {
-        const apiUrl = API_CONFIG.getCmsApiUrl('content')
-        console.log('Fetching contribute data from:', apiUrl)
-        
-        const response = await fetch(apiUrl)
-        const result = await response.json()
-        
-        if (result.success && result.data.contribute) {
-          setContributeData(result.data.contribute)
-        }
-      } catch (error) {
-        console.error('Failed to fetch contribute data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchContributeData()
-  }, [])
-
-  // Use CMS data or fallback to default
-  const sectionTitle = contributeData?.title || "Contribute to Our Mission"
-  const sectionSubtitle = contributeData?.subtitle || "Help us spread ancient wisdom"
-  const sectionDescription = contributeData?.description || "Join our community of contributors and help preserve and share ancient knowledge."
-  const ctaText = contributeData?.ctaText || "Get Involved"
-  const ctaLink = contributeData?.ctaLink || "/contribute"
+  const sectionTitle = contributeData.title
+  const sectionSubtitle = contributeData.subtitle
+  const sectionDescription = contributeData.description
+  const ctaText = contributeData.ctaText
+  const ctaLink = contributeData.ctaLink
 
   return (
-    <section id="contribute" className="section-padding bg-background relative overflow-hidden">
+    <section id="contribute" className="py-12 md:py-16 bg-gradient-to-b from-[hsl(45,40%,98%)] to-[hsl(45,30%,97%)] dark:from-[hsl(240,8%,9%)] dark:to-[hsl(240,6%,11%)] relative overflow-hidden">
       {/* Background Animation - 3D Donation Box & Pen Writing */}
       <div className="absolute inset-0 -z-10">
         {/* 3D Donation Box Animation */}
@@ -296,7 +277,7 @@ export default function Contribute() {
           ))}
         </div>
 
-        {/* Current Projects Section */}
+        {/* FAQ Section */}
         <MotionDiv
           initial={mounted ? { opacity: 0, y: 30 } : false}
           whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
@@ -304,63 +285,42 @@ export default function Contribute() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground text-center mb-6">
-            Current Projects You Can Support
+          <h3 className="font-serif text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+            Frequently Asked Questions
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {currentProjects.map((project, index) => (
+          <div className="max-w-4xl mx-auto space-y-6">
+            {[
+              {
+                question: 'How can I contribute content?',
+                answer: 'You can submit your original research, translations, or educational materials through our contributor portal. All submissions are reviewed by our expert team to maintain quality and accuracy.'
+              },
+              {
+                question: 'What qualifications do I need to become a teacher?',
+                answer: 'We look for individuals with deep knowledge of their subject area, teaching experience, and a passion for sharing ancient wisdom. Formal qualifications are valued but not always required.'
+              },
+              {
+                question: 'How are contributions used?',
+                answer: 'Your contributions help us digitize manuscripts, develop new courses, support teachers, create mobile apps, and provide scholarships to deserving students.'
+              },
+              {
+                question: 'Can I get tax benefits for my contributions?',
+                answer: 'Yes, we are a registered non-profit organization, and all contributions are eligible for tax deductions under applicable laws. You will receive a receipt for tax purposes.'
+              },
+              {
+                question: 'How can I track the impact of my contribution?',
+                answer: 'Contributors receive regular updates about the projects they support, including progress reports, testimonials from beneficiaries, and impact metrics.'
+              }
+            ].map((faq, index) => (
               <MotionDiv
-                key={project.title}
-                initial={mounted ? { opacity: 0, y: 30 } : false}
-                whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                transition={mounted ? { duration: 0.6, delay: 0.5 + index * 0.1 } : { duration: 0 }}
+                key={index}
+                initial={mounted ? { opacity: 0, x: -20 } : false}
+                whileInView={mounted ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+                transition={mounted ? { duration: 0.6, delay: 0.1 * index } : { duration: 0 }}
                 viewport={{ once: true }}
-                whileHover={mounted ? { scale: 1.02, y: -3 } : {}}
-                className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-border"
+                className="bg-card rounded-2xl p-6 shadow-lg border border-border"
               >
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
-                    {project.category}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{project.daysLeft} days left</span>
-                </div>
-                
-                <h4 className="font-bold text-foreground mb-3 text-xl">{project.title}</h4>
-                <p className="text-muted-foreground text-base mb-4 leading-relaxed">{project.description}</p>
-                
-                {/* Progress Bar */}
-                <div className="mb-5">
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-muted-foreground">Progress</span>
-                    <span className="text-foreground font-medium">{project.progress}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-primary to-accent h-2 rounded-full transition-all duration-300"
-                      style={{ width: `${project.progress}%` }}
-                    ></div>
-                  </div>
-                </div>
-                
-                {/* Funding Info */}
-                <div className="flex justify-between items-center mb-5">
-                  <div>
-                    <div className="text-xs text-muted-foreground">Raised</div>
-                    <div className="font-bold text-foreground">{project.raised}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs text-muted-foreground">Target</div>
-                    <div className="font-bold text-foreground">{project.target}</div>
-                  </div>
-                </div>
-                
-                <motion.button
-                  whileHover={mounted ? { scale: 1.05 } : {}}
-                  whileTap={mounted ? { scale: 0.95 } : {}}
-                  className="btn-primary w-full py-4 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300 text-base"
-                >
-                  Support This Project
-                </motion.button>
+                <h4 className="font-bold text-foreground mb-3 text-lg">{faq.question}</h4>
+                <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
               </MotionDiv>
             ))}
           </div>

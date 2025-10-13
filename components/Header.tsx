@@ -13,6 +13,9 @@ import Button, { CTAButton } from './ui/button'
 import { ROUTES } from '@/lib/routes'
 import { shouldHideThemeToggle } from '@/lib/config/theme-exclusions'
 import { usePathname } from 'next/navigation'
+import { useAuth } from '@/lib/auth/AuthContext'
+import { SSOLoginModal } from './auth/SSOLoginModal'
+import { UserDropdown } from './auth/UserDropdown'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -21,9 +24,11 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeGroupId, setActiveGroupId] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const hideThemeToggle = shouldHideThemeToggle(pathname)
+  const { isLoggedIn } = useAuth()
 
   useEffect(() => {
     setIsClient(true)
@@ -34,7 +39,7 @@ export default function Header() {
       initial={isClient ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-0 z-50 premium-header"
+      className="sticky top-0 z-50 bg-background/98 backdrop-blur-md border-b border-border shadow-sm"
       role="banner"
     >
       <div className="container-custom">
@@ -45,14 +50,14 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3 flex-shrink-0"
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-golden-olive via-deep-maroon to-copper-orange rounded-2xl flex items-center justify-center shadow-lg">
-              <BookOpen className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
+              <BookOpen className="w-7 h-7 text-primary-foreground" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display text-2xl font-bold bg-gradient-to-r from-golden-olive via-deep-maroon to-copper-orange bg-clip-text text-transparent tracking-wide">
+              <span className="font-display text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-wide">
                 शिक्षणम्
               </span>
-              <span className="font-display text-sm font-medium text-high-contrast tracking-wider">
+              <span className="font-display text-sm font-medium text-foreground tracking-wider">
                 Shikshanam
               </span>
             </div>
@@ -87,7 +92,7 @@ export default function Header() {
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="premium-nav-item font-medium flex items-center space-x-1 text-high-contrast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-3 py-2"
+                  className="font-medium flex items-center space-x-1 text-foreground hover:text-primary hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-4 py-2.5 transition-all duration-200"
                 >
                   <item.icon className="w-4 h-4" />
                   <span>{item.name}</span>
@@ -111,24 +116,26 @@ export default function Header() {
               onClick={() => {
                 setIsSearchOpen(!isSearchOpen)
               }}
-              className="p-2 rounded-xl hover:bg-premium-accent-primary/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-premium-accent-primary focus-visible:ring-offset-2 tap-target"
+              className="p-2 rounded-xl hover:bg-orange-100 dark:hover:bg-gray-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 tap-target"
               aria-label="Search"
             >
-              <Search className="w-5 h-5 text-high-contrast" />
+              <Search className="w-5 h-5 text-foreground" />
             </motion.button>
 
-            {/* Theme Toggle - Hidden on excluded pages */}
-            {!hideThemeToggle && <ThemeToggle />}
-
-            {/* Login Button - Placeholder for future auth implementation */}
-            <Button
-              variant="primary"
-              size="md"
-              className="flex items-center space-x-2"
-            >
-              <LogIn className="w-4 h-4" />
-              <span>Login</span>
-            </Button>
+            {/* Authentication Section */}
+            {isLoggedIn ? (
+              <UserDropdown />
+            ) : (
+              <Button
+                variant="primary"
+                size="md"
+                onClick={() => setIsLoginModalOpen(true)}
+                className="flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Login</span>
+              </Button>
+            )}
           </div>
 
           {/* Mobile Controls */}
@@ -179,6 +186,12 @@ export default function Header() {
         <MobileDrawer 
           isOpen={isMenuOpen} 
           onClose={() => setIsMenuOpen(false)} 
+        />
+
+        {/* Login Modal */}
+        <SSOLoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
         />
 
       </div>

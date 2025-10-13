@@ -130,20 +130,6 @@ export default function InitialScreen({ onStartQuiz, userName }: InitialScreenPr
           </motion.blockquote>
         </div>
 
-        {/* Report Counter */}
-        <div className="text-center mb-8">
-          <div className="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-4 rounded-md shadow-sm max-w-sm mx-auto">
-            <div className="text-sm font-medium">Total Journeys Decoded</div>
-            <motion.div
-              className="text-4xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 text-transparent bg-clip-text"
-              animate={{ scale: reportCount === 15000 ? [1, 1.1, 1] : 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              {reportCount.toLocaleString()}+
-            </motion.div>
-          </div>
-        </div>
-
         {/* Start Button */}
         <div className="text-center">
           <button

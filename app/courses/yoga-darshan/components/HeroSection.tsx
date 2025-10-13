@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Play, ArrowRight, Star, Clock, Users, Award } from 'lucide-react';
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 
 export default function HeroSection() {
   return (
@@ -11,6 +13,16 @@ export default function HeroSection() {
       <div className="absolute inset-0 -z-10">
         {/* Sunrise gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-saffron-50 via-orange-50 to-amber-50"></div>
+        
+        {/* Course Icon Overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <Image 
+            src="/assets/courses/yoga-darshan.png"
+            alt="Yoga Darshan"
+            fill
+            className="object-contain"
+          />
+        </div>
         
         {/* Mandala overlay pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -34,8 +46,8 @@ export default function HeroSection() {
                 </div>
                 <div className="flex items-center space-x-2 text-wisdom-500">
                   <Star className="w-4 h-4 fill-current text-yellow-400" />
-                  <span className="text-sm">4.8/5</span>
-                  <span className="text-sm">(150+ reviews)</span>
+                  <span className="text-sm">4.9/5</span>
+                  <span className="text-sm">(180+ reviews)</span>
                 </div>
               </div>
             </StaggerItem>
@@ -46,6 +58,10 @@ export default function HeroSection() {
                 <br />
                 <span className="text-2xl lg:text-3xl text-wisdom-600 font-normal">
                   Yoga Philosophy through Patanjali Yoga Sutras
+                </span>
+                <br />
+                <span className="text-lg lg:text-xl text-saffron-600 font-medium">
+                  समझें समाधियों के विज्ञान का रहस्य !
                 </span>
               </h1>
             </StaggerItem>
@@ -64,7 +80,7 @@ export default function HeroSection() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Users className="w-5 h-5 text-saffron-600" />
-                  <span className="text-wisdom-600">Instructor: <span className="font-semibold text-high-contrast">Vishal Chaurasia</span></span>
+                  <span className="text-wisdom-600">Students: <span className="font-semibold text-high-contrast">2.9K+</span></span>
                 </div>
               </div>
             </StaggerItem>
@@ -72,39 +88,41 @@ export default function HeroSection() {
             <StaggerItem>
               <div className="flex items-center space-x-4 mb-8">
                 <div className="text-4xl font-bold text-saffron-600">
-                  ₹1,999
+                  ₹3,999
                 </div>
                 <div className="text-xl text-wisdom-400 line-through">
-                  ₹3,599
+                  ₹5,999
                 </div>
                 <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                  44% OFF
+                  33% OFF
                 </div>
               </div>
             </StaggerItem>
 
             <StaggerItem>
               <div className="flex flex-col sm:flex-row gap-4">
+                <ProtectedExternalLink href="https://courses.shikshanam.in/single-checkout/6440e5d6e4b0c4378b6240e5?pid=p2">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn-primary flex items-center justify-center space-x-3 px-8 py-4 text-lg"
+                  >
+                    <span>Enroll Now</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.button>
+                </ProtectedExternalLink>
+                
                 <motion.a
-                  href="https://courses.shikshanam.in/courses/Yoga-Philosophy-Patanjali-Yoga-Sutras-6440e5d6e4b0c4378b6240e5"
+                  href="https://www.youtube.com/watch?v=ekeTLlgFwGg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary flex items-center justify-center space-x-3 px-8 py-4 text-lg"
-                >
-                  <span>Enroll Now</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.a>
-                
-                <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-outline flex items-center justify-center space-x-3 px-8 py-4 text-lg"
                 >
                   <Play className="w-5 h-5" />
                   <span>Watch Free Demo</span>
-                </motion.button>
+                </motion.a>
               </div>
             </StaggerItem>
           </StaggerContainer>
@@ -143,11 +161,11 @@ export default function HeroSection() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-wisdom-600">Language:</span>
-                      <span className="font-semibold text-high-contrast">Hindi</span>
+                      <span className="font-semibold text-high-contrast">हिन्दी</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-wisdom-600">Access:</span>
-                      <span className="font-semibold text-green-600">Lifetime</span>
+                      <span className="font-semibold text-green-600">1 Year</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-wisdom-600">Sutras Covered:</span>

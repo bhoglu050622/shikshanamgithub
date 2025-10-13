@@ -862,3 +862,279 @@
     font-size: 16px !important;
   }
 }
+
+/* --------------------------------------------------- */
+/* --- Bonus Features Section --- */
+/* --------------------------------------------------- */
+#bonus-features-component {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);
+    padding: 5rem 2rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.bonus-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.bonus-main-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 0.5rem;
+}
+
+.bonus-sub-heading {
+    font-size: 1.125rem;
+    color: #78350f;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.bonus-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.bonus-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.bonus-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.bonus-card.yellow {
+    border: 2px solid #fbbf24;
+}
+
+.bonus-card.blue {
+    border: 2px solid #60a5fa;
+}
+
+.ribbon-wrapper {
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    transform: rotate(45deg);
+    width: 150px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.ribbon {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(217, 119, 6, 0.3);
+}
+
+.bonus-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.bonus-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.bonus-card:hover .bonus-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.bonus-pill {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.bonus-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 1rem 0 0.5rem;
+    line-height: 1.4;
+}
+
+.bonus-desc {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.animate-all {
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .bonus-main-heading {
+        font-size: 2rem;
+    }
+    .bonus-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* --------------------------------------------------- */
+/* --- Founder's Mission Section - Masonry Gallery --- */
+/* --------------------------------------------------- */
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.masonry-item:hover .gallery-image {
+  transform: scale(1.05);
+}
+
+.wisdom-tag {
+  background-color: #f3e8ff;
+  color: #8b5cf6;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------- */
+/* --- Video Modal Styles --- */
+/* --------------------------------------------------- */
+.video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.video-modal-overlay.visible .video-modal-content {
+  transform: scale(1);
+}
+
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  color: #000;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .video-modal-content {
+    width: 95%;
+  }
+  .video-modal-close {
+    top: -40px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+}

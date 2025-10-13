@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Award, Clock, CheckCircle } from 'lucide-react';
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 
 export default function FinalCTA() {
   return (
@@ -37,36 +38,31 @@ export default function FinalCTA() {
                   </div>
                 </div>
                 <p className="text-wisdom-600">
-                  One-time payment • Lifetime access • No recurring fees
+                  One-time payment • 1-Year access • No recurring fees
                 </p>
               </div>
 
               {/* CTA Button */}
-              <motion.a
-                href="https://courses.shikshanam.in/courses/Yoga-Philosophy-Patanjali-Yoga-Sutras-6440e5d6e4b0c4378b6240e5"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center space-x-3 bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white font-semibold py-6 px-12 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl text-xl mb-8"
-              >
-                <span>Enroll Now · ₹1,999</span>
-                <ArrowRight className="w-6 h-6" />
-              </motion.a>
+              <ProtectedExternalLink href="https://courses.shikshanam.in/single-checkout/6440e5d6e4b0c4378b6240e5?pid=p2">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center space-x-3 bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white font-semibold py-6 px-12 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl text-xl mb-8"
+                >
+                  <span>Enroll Now · ₹1,999</span>
+                  <ArrowRight className="w-6 h-6" />
+                </motion.button>
+              </ProtectedExternalLink>
 
               {/* Trust Badges */}
               <div className="flex flex-wrap justify-center items-center gap-6 mb-8">
                 <div className="flex items-center space-x-2 text-wisdom-600">
                   <Shield className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium">Secure Payment</span>
+                  <span className="text-sm font-medium">1-Year Access</span>
                 </div>
                 <div className="flex items-center space-x-2 text-wisdom-600">
                   <Award className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium">Lifetime Access</span>
-                </div>
-                <div className="flex items-center space-x-2 text-wisdom-600">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium">Satisfaction Guarantee</span>
+                  <span className="text-sm font-medium">Certificate Included</span>
                 </div>
               </div>
 
@@ -136,14 +132,14 @@ export default function FinalCTA() {
                     <span className="text-3xl">🎯</span>
                   </div>
                   <h4 className="text-lg font-semibold text-high-contrast mb-2">Proven Results</h4>
-                  <p className="text-wisdom-600 text-sm">Join 150+ students who have transformed their understanding</p>
+                  <p className="text-wisdom-600 text-sm">Join 2,900+ students who have transformed their understanding</p>
                 </div>
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-3xl">💎</span>
                   </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Lifetime Value</h4>
-                  <p className="text-wisdom-600 text-sm">One-time investment for a lifetime of spiritual growth</p>
+                  <h4 className="text-lg font-semibold text-high-contrast mb-2">1-Year Value</h4>
+                  <p className="text-wisdom-600 text-sm">One-time investment for 1 year of comprehensive spiritual learning</p>
                 </div>
               </div>
             </div>

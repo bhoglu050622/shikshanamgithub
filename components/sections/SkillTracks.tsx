@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
 import { 
   TrendingUp, 
   Heart, 
@@ -344,15 +345,17 @@ export default function SkillTracks({ onCourseClick, onTrackSelect }: SkillTrack
           <p className="text-wisdom-600 dark:text-wisdom-400 mb-6">
             Not sure which path to choose? Take our personality assessment to get personalized recommendations.
           </p>
-          <motion.button
-            whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-            className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto"
-          >
-            <Brain className="w-6 h-6" />
-            <span>Take Assessment</span>
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
+          <Link href="/personality-test">
+            <motion.button
+              whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+              className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto"
+            >
+              <Brain className="w-6 h-6" />
+              <span>Take Assessment</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>

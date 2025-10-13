@@ -453,45 +453,8 @@ export default function ActivityShowcase({ onTestimonialClick, onVideoPlay }: Ac
   }
 
   return (
-    <section className="section-padding" aria-labelledby="showcase-title">
+    <section className="section-padding">
       <div className="container-custom">
-        <motion.div
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 id="showcase-title" className="text-display text-indigo-700 dark:text-soft-gold-500 mb-4">
-            Student Stories & Transformations
-          </h2>
-          <p className="text-body text-wisdom-600 dark:text-wisdom-400 max-w-2xl mx-auto mb-8">
-            See how our students have transformed their lives through ancient wisdom. 
-            Real stories, real results, real inspiration.
-          </p>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-saffron-600 dark:text-saffron-400">
-                {testimonials.length}+
-              </div>
-              <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Success Stories</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-peacock-green-600 dark:text-peacock-green-400">
-                4.9/5
-              </div>
-              <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Average Rating</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-deep-teal-600 dark:text-deep-teal-400">
-                95%
-              </div>
-              <div className="text-sm text-wisdom-600 dark:text-wisdom-400">Report Positive Change</div>
-            </div>
-          </div>
-        </motion.div>
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">

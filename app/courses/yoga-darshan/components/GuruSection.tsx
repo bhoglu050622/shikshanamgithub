@@ -12,18 +12,18 @@ const instructorStats = [
   },
   {
     icon: Award,
-    title: 'Founder & CEO',
-    description: 'Shikshanam & Hyper Quest - Leading educational platforms'
+    title: '2M+ Listeners',
+    description: 'Reached millions through YouTube and educational platforms'
   },
   {
     icon: Users,
-    title: '10,000+ Students',
-    description: 'Taught thousands of students across various courses'
+    title: 'Featured in Media',
+    description: 'ABP News, TEDxSRCC, The Times of India'
   },
   {
     icon: BookOpen,
-    title: 'Ancient Scriptures Expert',
-    description: 'Specialized in decoding ancient texts into modern Hindi'
+    title: 'Sadhguru Collaboration',
+    description: 'Worked on PSTU government initiative'
   }
 ];
 
@@ -72,9 +72,10 @@ export default function GuruSection() {
                 Founder of Shikshanam & Hyper Quest
               </p>
               <p className="text-wisdom-600 leading-relaxed mb-6">
-                Graduate of IIT Patna with extensive experience in decoding ancient scriptures 
-                into practical, modern Hindi. Specialized in making complex spiritual concepts 
-                accessible to contemporary learners.
+                IIT Patna graduate who left a prestigious PSU job (2016-2023) to work with ancient Indian knowledge. 
+                Founded Shikshanam and Hyper Quest to make spiritual topics accessible with a scientific approach. 
+                Reached nearly 2 million listeners through YouTube, including overseas Indians. 
+                Worked with Sadhguru on PSTU government initiative. Featured in ABP News, TEDxSRCC, and The Times of India.
               </p>
             </div>
 
@@ -122,15 +123,15 @@ export default function GuruSection() {
                   <div className="w-20 h-20 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <BookOpen className="w-10 h-10 text-white" />
                   </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Ancient Wisdom</h4>
-                  <p className="text-wisdom-600 text-sm">Deep understanding of traditional scriptures and philosophy</p>
+                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Scientific Approach</h4>
+                  <p className="text-wisdom-600 text-sm">Making ancient wisdom accessible with modern scientific methods</p>
                 </div>
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-10 h-10 text-white" />
                   </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Proven Experience</h4>
-                  <p className="text-wisdom-600 text-sm">Successfully taught thousands of students across various courses</p>
+                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Global Reach</h4>
+                  <p className="text-wisdom-600 text-sm">Reached 2+ million listeners worldwide including overseas Indians</p>
                 </div>
               </div>
             </div>

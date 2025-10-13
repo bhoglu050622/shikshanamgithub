@@ -98,7 +98,7 @@ export class AnalyticsService {
 
     window.dataLayer = window.dataLayer || [];
     window.gtag = function() {
-      window.dataLayer.push(arguments);
+      window.dataLayer!.push(arguments);
     };
 
     window.gtag('js', new Date());
@@ -761,7 +761,7 @@ export interface AnalyticsConfig {
 
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
   }
 }

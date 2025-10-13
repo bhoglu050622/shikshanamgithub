@@ -17,50 +17,50 @@ import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motio
 const courseHighlights = [
   {
     icon: BookOpen,
-    title: '195 Sutras Explained',
-    description: 'Complete coverage of all Patanjali Yoga Sutras with detailed explanations',
+    title: 'All Sutras Covered',
+    description: 'Complete coverage of all 195 Yoga Sutras with detailed explanations',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: Clock,
-    title: '8+ Hours Video Content',
-    description: 'Comprehensive video lessons with lifetime access',
+    title: '8+ Hrs. of Content',
+    description: 'Comprehensive video lessons with structured learning',
     color: 'from-teal-500 to-teal-600'
   },
   {
-    icon: Award,
-    title: 'Lifetime Access',
-    description: 'Learn at your own pace with unlimited access to all materials',
+    icon: Download,
+    title: 'Quizzes and Notes',
+    description: 'Downloadable study materials and self-assessment tools',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
-    icon: Download,
-    title: 'Downloadable Notes & Quizzes',
-    description: 'Get comprehensive study materials and self-assessment tools',
+    icon: Award,
+    title: 'Free Future Updates',
+    description: 'Get access to course updates and new content',
     color: 'from-teal-500 to-teal-600'
   },
   {
     icon: GraduationCap,
-    title: 'Certificate of Completion',
-    description: 'Receive a certificate upon successful completion of the course',
+    title: '1Yr Access',
+    description: 'Learn at your own pace with 1-year access to all materials',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: Languages,
-    title: 'Hindi Medium Simplicity',
-    description: 'Clear explanations in Hindi for better understanding',
+    title: 'Certification',
+    description: 'Receive a certificate upon successful completion',
     color: 'from-teal-500 to-teal-600'
   },
   {
     icon: Users,
-    title: 'Community Support',
+    title: 'Community Forum',
     description: 'Join a community of like-minded spiritual seekers',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: MessageCircle,
-    title: 'Q&A Sessions',
-    description: 'Get your doubts cleared through interactive Q&A sessions',
+    title: 'Expert Support',
+    description: 'Get your doubts cleared through expert guidance',
     color: 'from-teal-500 to-teal-600'
   }
 ];
@@ -130,8 +130,8 @@ export default function CourseHighlights() {
                   <div className="w-20 h-20 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Award className="w-10 h-10 text-white" />
                   </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Lifetime Access</h4>
-                  <p className="text-wisdom-600 text-sm">Learn at your own pace with unlimited access to all course materials</p>
+                  <h4 className="text-lg font-semibold text-high-contrast mb-2">1-Year Access</h4>
+                  <p className="text-wisdom-600 text-sm">Learn at your own pace with 1-year access to all course materials</p>
                 </div>
               </div>
             </div>

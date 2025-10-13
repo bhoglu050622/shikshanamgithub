@@ -3,27 +3,6 @@ import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 
 export default function TestimonialsSection() {
-  const testimonials = [
-    {
-      name: "Dr. Meera Patel",
-      role: "Spiritual Seeker",
-      content: "This course transformed my understanding of reality. The way Vishal Sir explains the seer-seen relationship made the complex concepts of Advaita Vedanta crystal clear. Highly recommended for anyone seeking deeper understanding.",
-      rating: 5
-    },
-    {
-      name: "Rajesh Kumar",
-      role: "Philosophy Student",
-      content: "The systematic approach to Drig-Drishya Viveka was exceptional. Each verse was explained with such clarity that I could see the practical applications in my daily life. The non-dual perspective has changed how I view everything.",
-      rating: 5
-    },
-    {
-      name: "Priya Sharma",
-      role: "Meditation Teacher",
-      content: "As someone who teaches meditation, this course deepened my understanding of the philosophical foundations. The explanation of consciousness and its relationship to the world was profound and practical.",
-      rating: 4
-    }
-  ];
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -33,61 +12,44 @@ export default function TestimonialsSection() {
       className="text-center"
     >
       <h2 className="advaita-heading text-4xl mb-4">
-        What Students Say
+        Testimonials / Feedback
       </h2>
       <p className="advaita-subheading text-xl mb-12 max-w-3xl mx-auto">
-        Join seekers who have transformed their understanding of reality 
-        through this comprehensive exploration of Drig-Drishya Viveka.
+        Join thousands of students, homemakers, and seekers who have adopted this Shikshanam offering.
       </p>
-
-      <div className="advaita-grid advaita-grid-3">
-        {testimonials.map((testimonial, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className="advaita-testimonial"
-          >
-            <div className="flex items-center mb-4">
-              {[...Array(testimonial.rating)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-              ))}
-            </div>
-            <p className="advaita-subheading text-gray-700 mb-6 leading-relaxed">
-              "{testimonial.content}"
-            </p>
-            <div className="border-t border-gray-200 pt-4">
-              <h4 className="advaita-heading text-lg">{testimonial.name}</h4>
-              <p className="advaita-subheading text-sm text-gray-600">{testimonial.role}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
         viewport={{ once: true }}
-        className="mt-16 p-8 bg-gradient-to-r from-advaita-light to-white rounded-2xl border border-advaita-secondary/20"
+        className="mt-8 p-12 bg-gradient-to-r from-advaita-light to-white rounded-2xl border border-advaita-secondary/20 max-w-4xl mx-auto"
       >
-        <div className="flex items-center justify-center gap-4 mb-6">
-          <div className="flex items-center">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-8 h-8 fill-yellow-400 text-yellow-400" />
-            ))}
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          <div className="text-center">
+            <div className="advaita-heading text-5xl mb-2 text-advaita-primary">0K+</div>
+            <div className="advaita-subheading text-gray-600">Students</div>
           </div>
-          <div className="text-left">
-            <div className="advaita-heading text-3xl">4.8</div>
-            <div className="advaita-subheading text-gray-600">Average Rating (6 reviews)</div>
+          <div className="text-center">
+            <div className="advaita-heading text-5xl mb-2 text-advaita-primary">0</div>
+            <div className="advaita-subheading text-gray-600">Rating</div>
+            <div className="flex items-center justify-center mt-2">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+          </div>
+          <div className="text-center">
+            <div className="advaita-heading text-5xl mb-2 text-advaita-primary">0K+</div>
+            <div className="advaita-subheading text-gray-600">Positive Reviews</div>
           </div>
         </div>
-        <p className="advaita-subheading text-lg text-gray-700 max-w-2xl mx-auto">
-          "Trusted by seekers for clear, timeless wisdom. Join a community of spiritual explorers 
-          who are transforming their understanding of reality through Advaita Vedanta philosophy."
-        </p>
+        <div className="border-t border-advaita-secondary/20 pt-6">
+          <p className="advaita-subheading text-lg text-gray-700 max-w-3xl mx-auto">
+            Be among the first students to embark on this transformative journey through Drig Drishya Viveka. 
+            Your feedback will help shape the future of this course and inspire others.
+          </p>
+        </div>
       </motion.div>
     </motion.div>
   );

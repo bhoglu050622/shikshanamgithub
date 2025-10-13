@@ -7,57 +7,77 @@ import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motio
 const syllabusModules = [
   {
     id: 1,
-    title: 'Samadhi Pada (Sutras 1-51)',
+    title: 'Samadhi Pada (Free Demo Video)',
     description: 'Introduction to Yoga and the nature of consciousness',
-    duration: '2.5 hours',
+    duration: '01:55:28',
+    videos: '11 Videos',
     sutras: '51 Sutras',
     topics: [
-      'Definition of Yoga',
-      'Types of Samadhi',
-      'Obstacles in Yoga',
-      'Methods to overcome obstacles'
+      'What is Yoga?',
+      'Types of Vritti',
+      'Abhyas and Vairagya',
+      'Samadhi and its types',
+      'Swiftness of Attainment',
+      'Who is Ishwara?',
+      'Obstacles in the Path of Yoga',
+      'Methods to Calm the Mind',
+      'Characteristic of an Undisturbed Mind',
+      'Types of Sampragyaat Samadhi',
+      'Sabeej and Nirbeej Samadhi',
+      'Revision: Samadhi Pada'
     ],
     isPreview: true
   },
   {
     id: 2,
-    title: 'Sadhana Pada (Sutras 52-55)',
+    title: 'Sadhana Pada',
     description: 'The practice of Yoga and the eight limbs',
-    duration: '2 hours',
+    duration: '01:48:42',
+    videos: '16 Videos',
     sutras: '55 Sutras',
     topics: [
-      'Eight limbs of Yoga (Ashtanga)',
-      'Yamas and Niyamas',
-      'Asana and Pranayama',
-      'Pratyahara and Dharana'
+      'Types of siddhis',
+      'Karma samskar',
+      'Mool prakriti',
+      'Mind-universe relationship',
+      'Discriminative knowledge',
+      'Kaivalya'
     ],
     isPreview: false
   },
   {
     id: 3,
-    title: 'Vibhuti Pada (Sutras 56-144)',
+    title: 'Vibhuti Pada',
     description: 'Supernatural powers and advanced practices',
-    duration: '2 hours',
+    duration: '02:06:45',
+    videos: '2 Videos',
     sutras: '55 Sutras',
     topics: [
-      'Dhyana and Samadhi',
-      'Supernatural powers (Siddhis)',
-      'Obstacles to spiritual progress',
-      'Methods of concentration'
+      'Dharna',
+      'Dhyaan',
+      'Samyam',
+      'Samyama outcomes',
+      'Siddhis',
+      'Advanced siddhis'
     ],
     isPreview: false
   },
   {
     id: 4,
-    title: 'Kaivalya Pada (Sutras 145-195)',
+    title: 'Kaivalya Pada',
     description: 'Liberation and the ultimate goal of Yoga',
-    duration: '1.5 hours',
+    duration: '01:51:14',
+    videos: '15 Videos',
     sutras: '51 Sutras',
     topics: [
-      'Nature of liberation',
-      'Prakriti and Purusha',
-      'The process of liberation',
-      'Final state of Kaivalya'
+      'Kriya Yoga',
+      'Klesha',
+      'Deliverance from kleshas',
+      'Ashtanga yoga',
+      'Yama/niyama',
+      'Asana',
+      'Pranayama',
+      'Benefits of pranayama'
     ],
     isPreview: false
   }
@@ -120,15 +140,15 @@ export default function SyllabusSection() {
                   <div className="grid md:grid-cols-3 gap-4 mb-4">
                     <div className="flex items-center space-x-2">
                       <Clock className="w-4 h-4 text-saffron-600" />
-                      <span className="text-sm text-wisdom-600">Duration: <span className="font-medium text-high-contrast">{module.duration}</span></span>
+                      <span className="text-sm text-wisdom-600">Videos: <span className="font-medium text-high-contrast">{module.videos}</span></span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <BookOpen className="w-4 h-4 text-saffron-600" />
-                      <span className="text-sm text-wisdom-600">Sutras: <span className="font-medium text-high-contrast">{module.sutras}</span></span>
+                      <span className="text-sm text-wisdom-600">Duration: <span className="font-medium text-high-contrast">{module.duration}</span></span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-600" />
-                      <span className="text-sm text-wisdom-600">Topics: <span className="font-medium text-high-contrast">{module.topics.length}</span></span>
+                      <span className="text-sm text-wisdom-600">Sutras: <span className="font-medium text-high-contrast">{module.sutras}</span></span>
                     </div>
                   </div>
 
@@ -163,34 +183,35 @@ export default function SyllabusSection() {
                     <span className="text-white font-bold text-lg">1</span>
                   </div>
                   <h4 className="font-semibold text-high-contrast mb-1">Samadhi Pada</h4>
-                  <p className="text-wisdom-600 text-sm">51 Sutras</p>
+                  <p className="text-wisdom-600 text-sm">11 Videos</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-white font-bold text-lg">2</span>
                   </div>
                   <h4 className="font-semibold text-high-contrast mb-1">Sadhana Pada</h4>
-                  <p className="text-wisdom-600 text-sm">55 Sutras</p>
+                  <p className="text-wisdom-600 text-sm">16 Videos</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-saffron-500 to-saffron-600 rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-white font-bold text-lg">3</span>
                   </div>
                   <h4 className="font-semibold text-high-contrast mb-1">Vibhuti Pada</h4>
-                  <p className="text-wisdom-600 text-sm">55 Sutras</p>
+                  <p className="text-wisdom-600 text-sm">2 Videos</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-white font-bold text-lg">4</span>
                   </div>
                   <h4 className="font-semibold text-high-contrast mb-1">Kaivalya Pada</h4>
-                  <p className="text-wisdom-600 text-sm">51 Sutras</p>
+                  <p className="text-wisdom-600 text-sm">15 Videos</p>
                 </div>
               </div>
               <div className="mt-6 text-center">
                 <p className="text-wisdom-600">
-                  <span className="font-semibold text-high-contrast">Total: 195 Yoga Sutras</span> • 
-                  <span className="font-semibold text-high-contrast"> 8+ hours</span> of structured lessons
+                  <span className="font-semibold text-high-contrast">Total: 44 Videos</span> • 
+                  <span className="font-semibold text-high-contrast">195 Yoga Sutras</span> • 
+                  <span className="font-semibold text-high-contrast">8+ hours</span> of structured lessons
                 </p>
               </div>
             </div>

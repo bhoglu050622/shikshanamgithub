@@ -1,0 +1,23 @@
+{
+  "title": "Sanskrit Live Class",
+  "subtitle": "Learn Sanskrit with live interactive sessions",
+  "description": "Interactive live Sanskrit classes with expert teachers. Practice speaking, reading, and understanding Sanskrit in real-time.",
+  "type": "Live Course",
+  "price": "₹3,999",
+  "originalPrice": "₹5,999",
+  "savings": "33%",
+  "duration": "20-24 Live Sessions",
+  "level": "Beginner to Intermediate",
+  "status": "available",
+  "features": [
+    "Live Interactive Classes",
+    "Speaking Practice",
+    "Grammar & Conversation",
+    "Private Community",
+    "Recorded Sessions",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/Basik-sanskrit-Live.png",
+  "category": "sanskrit",
+  "priority": 0.93
+}

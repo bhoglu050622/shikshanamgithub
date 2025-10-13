@@ -9,10 +9,10 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/theme'
+import { AuthProvider } from '@/lib/auth/AuthContext'
 // import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider'
 // import { AccessibilityToolbar } from '@/components/accessibility/AccessibilityToolbar'
 // import { SEOProvider } from '@/lib/seo'
-import { MobileNavigation } from '@/components/mobile/MobileNavigation'
 // import { AnalyticsProvider } from '@/lib/analytics'
 // import '@/lib/console-filter'
 
@@ -134,6 +134,56 @@ export default function RootLayout({
           suppressHydrationWarning
         />
         
+        {/* Google Analytics 4 */}
+        {process.env.NEXT_PUBLIC_GA4_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA4_ID}', {
+                    page_path: window.location.pathname,
+                    debug_mode: ${process.env.NEXT_PUBLIC_GA4_DEBUG === 'true'}
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
+        
+        {/* Meta Pixel */}
+        {process.env.NEXT_PUBLIC_META_PIXEL_ID && (
+          <>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  !function(f,b,e,v,n,t,s)
+                  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                  n.queue=[];t=b.createElement(e);t.async=!0;
+                  t.src=v;s=b.getElementsByTagName(e)[0];
+                  s.parentNode.insertBefore(t,s)}(window, document,'script',
+                  'https://connect.facebook.net/en_US/fbevents.js');
+                  fbq('init', '${process.env.NEXT_PUBLIC_META_PIXEL_ID}');
+                  fbq('track', 'PageView');
+                `,
+              }}
+            />
+            <noscript>
+              <img
+                height="1"
+                width="1"
+                style={{ display: 'none' }}
+                src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_META_PIXEL_ID}&ev=PageView&noscript=1`}
+              />
+            </noscript>
+          </>
+        )}
+        
         {/* Skip Links for Accessibility */}
         <a href="#main-content" className="skip-link">
           Skip to main content
@@ -147,14 +197,15 @@ export default function RootLayout({
         
         <ErrorBoundary>
           <ThemeProvider>
-            <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
-              <Header />
-              <main id="main-content" className="w-full pb-20" role="main">
-                {children}
-              </main>
-              <Footer />
-              <MobileNavigation />
-            </div>
+            <AuthProvider>
+              <div className="min-h-screen bg-parchment-ivory transition-colors duration-300 overflow-x-hidden w-full">
+                <Header />
+                <main id="main-content" className="w-full pb-20" role="main">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+            </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>
       </body>

@@ -1,23 +1,23 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Eye, Brain, Heart, Lightbulb } from 'lucide-react';
+import { Brain, Scale, Lightbulb, Target } from 'lucide-react';
 
 export default function OutcomesSection() {
   const outcomes = [
     {
-      icon: <Eye className="w-12 h-12" />,
-      title: "Deep Insight into Reality",
-      description: "Understand the fundamental structure of existence through Purusha and Prakriti, gaining clarity on the nature of consciousness and matter."
-    },
-    {
       icon: <Brain className="w-12 h-12" />,
-      title: "Balanced Perspective",
-      description: "Develop a balanced approach to life by understanding the Three Gunas and their influence on thoughts, emotions, and actions."
+      title: "Master Logical Reasoning",
+      description: "Develop powerful critical thinking and analytical skills through the systematic study of Nyaya logic and the five-membered syllogism."
     },
     {
-      icon: <Heart className="w-12 h-12" />,
-      title: "Mindful Causality",
-      description: "Learn to approach cause and effect with wisdom, making better decisions based on understanding Satkaryavada principles."
+      icon: <Scale className="w-12 h-12" />,
+      title: "Debate & Argumentation",
+      description: "Learn classical Indian debate techniques and how to construct valid arguments while identifying logical fallacies in reasoning."
+    },
+    {
+      icon: <Target className="w-12 h-12" />,
+      title: "Valid Knowledge (Pramanas)",
+      description: "Understand the four means of acquiring valid knowledge: perception, inference, comparison, and testimony through systematic epistemology."
     }
   ];
 
@@ -29,15 +29,15 @@ export default function OutcomesSection() {
       viewport={{ once: true }}
       className="text-center"
     >
-      <h2 className="samkhya-heading text-4xl mb-4">
+      <h2 className="nyaya-heading text-4xl mb-4 font-bold">
         What You'll Gain
       </h2>
-      <p className="samkhya-subheading text-xl mb-12 max-w-3xl mx-auto">
-        Transform your understanding of reality and develop practical wisdom that you can apply 
-        to enhance your daily life and spiritual growth.
+      <p className="nyaya-subheading text-xl mb-12 max-w-3xl mx-auto">
+        Transform your logical reasoning abilities and develop critical thinking skills that you can apply 
+        to enhance your analytical capabilities and argumentation prowess.
       </p>
 
-      <div className="samkhya-grid samkhya-grid-3">
+      <div className="nyaya-grid nyaya-grid-3">
         {outcomes.map((outcome, index) => (
           <motion.div
             key={index}
@@ -45,13 +45,13 @@ export default function OutcomesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
             viewport={{ once: true }}
-            className="samkhya-card text-center group hover:samkhya-glow"
+            className="nyaya-card text-center group hover:nyaya-glow"
           >
-            <div className="samkhya-icon mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="nyaya-icon mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
               {outcome.icon}
             </div>
-            <h3 className="samkhya-heading text-2xl mb-4">{outcome.title}</h3>
-            <p className="samkhya-subheading text-gray-600 leading-relaxed">{outcome.description}</p>
+            <h3 className="nyaya-heading text-2xl mb-4 font-bold">{outcome.title}</h3>
+            <p className="nyaya-subheading text-gray-600 leading-relaxed">{outcome.description}</p>
           </motion.div>
         ))}
       </div>
@@ -61,16 +61,16 @@ export default function OutcomesSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
         viewport={{ once: true }}
-        className="mt-16 p-8 bg-gradient-to-r from-samkhya-primary to-samkhya-accent rounded-2xl text-white"
+        className="mt-16 p-10 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-3xl text-white shadow-2xl"
       >
-        <Lightbulb className="w-16 h-16 mx-auto mb-6 opacity-80" />
-        <h3 className="samkhya-heading text-3xl mb-4 text-white">
-          Transform Your Understanding
+        <Lightbulb className="w-16 h-16 mx-auto mb-6 opacity-90 animate-pulse" />
+        <h3 className="nyaya-heading text-3xl mb-4 text-white font-bold">
+          Master the Art of Logic
         </h3>
-        <p className="samkhya-subheading text-lg text-white/90 max-w-3xl mx-auto">
-          Samkhya philosophy isn't just theoretical knowledge—it's a practical framework for understanding 
-          yourself and the world around you. By the end of this course, you'll have the tools to approach 
-          life with greater wisdom, clarity, and balance.
+        <p className="nyaya-subheading text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
+          Nyaya philosophy isn't just theoretical knowledge—it's a practical framework for developing 
+          sharp logical reasoning and debate skills. By the end of this course, you'll have the tools to approach 
+          arguments with precision, clarity, and systematic thinking.
         </p>
       </motion.div>
     </motion.div>

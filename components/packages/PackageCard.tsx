@@ -1,27 +1,45 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { PackageCardProps } from '@/lib/types/packages';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useAuth } from '@/lib/auth/AuthContext';
+import { SSOLoginModal } from '@/components/auth/SSOLoginModal';
 
 export function PackageCard({ package: pkg, onViewDetails, onBuy }: PackageCardProps) {
   const savings = pkg.originalPriceInr ? pkg.originalPriceInr - pkg.priceInr : 0;
   const savingsPercent = pkg.originalPriceInr ? Math.round((savings / pkg.originalPriceInr) * 100) : 0;
+  
+  const { isLoggedIn } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleBuyClick = () => {
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
+    onBuy(pkg.sku);
+  };
+
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
+    onBuy(pkg.sku);
+  };
 
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-saffron-400 bg-white">
       <CardHeader className="p-0">
         {pkg.thumbnailUrl && (
-          <div className="relative w-full h-48 overflow-hidden rounded-t-xl">
+          <div className="relative w-full h-48 overflow-hidden rounded-t-xl bg-gradient-to-br from-saffron-50 to-amber-50">
             <Image
               src={pkg.thumbnailUrl}
               alt={pkg.name}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              className="object-contain group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             {savings > 0 && (
@@ -87,12 +105,18 @@ export function PackageCard({ package: pkg, onViewDetails, onBuy }: PackageCardP
         </Button>
         <Button
           className="flex-1 bg-saffron-600 hover:bg-saffron-700 text-white"
-          onClick={() => onBuy(pkg.sku)}
+          onClick={handleBuyClick}
           aria-label={`Buy ${pkg.name} for ₹${pkg.priceInr.toLocaleString()}`}
         >
           Buy
         </Button>
       </CardFooter>
+
+      <SSOLoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
     </Card>
   );
 }

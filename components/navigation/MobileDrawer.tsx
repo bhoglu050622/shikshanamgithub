@@ -78,11 +78,11 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
           {/* Mobile Navigation Overlay */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="fixed top-16 left-4 right-4 z-50 bg-white dark:bg-gray-900 shadow-2xl rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            className="fixed top-20 left-4 right-4 z-50 bg-white dark:bg-gray-900 shadow-2xl rounded-3xl border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
             <div className="flex flex-col max-h-[80vh] overflow-hidden">
               {/* Navigation Items */}
@@ -130,11 +130,10 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-900 dark:text-white">Theme</span>
                   </div>
-                  <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                  <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
                     {[
                       { value: 'light' as const, icon: Sun, label: 'Light' },
-                      { value: 'dark' as const, icon: Moon, label: 'Dark' },
-                      { value: 'system' as const, icon: Monitor, label: 'Auto' }
+                      { value: 'dark' as const, icon: Moon, label: 'Dark' }
                     ].map(({ value, icon: Icon, label }) => (
                       <motion.button
                         key={value}
@@ -142,7 +141,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                           setTheme(value)
                         }}
                         className={cn(
-                          "flex-1 flex items-center justify-center space-x-1 px-2 py-2 rounded-md text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 tap-target",
+                          "flex-1 flex flex-col items-center justify-center px-3 py-2 rounded-md text-xs font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 tap-target min-w-[70px]",
                           theme === value 
                             ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-700 shadow-sm' 
                             : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
@@ -151,8 +150,8 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                         whileTap={{ scale: 0.98 }}
                         aria-label={`Switch to ${label} theme`}
                       >
-                        <Icon className="w-3 h-3" />
-                        <span>{label}</span>
+                        <Icon className="w-4 h-4 mb-1" />
+                        <span className="text-[10px] leading-tight">{label}</span>
                       </motion.button>
                     ))}
                   </div>

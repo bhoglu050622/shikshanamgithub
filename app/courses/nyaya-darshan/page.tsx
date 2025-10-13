@@ -1,99 +1,133 @@
 'use client';
-import './nyaya-darshan-landing.css';
-import { useCourseData } from '@/lib/hooks/useCourseData';
-import HeroSection from './components/HeroSection';
-import WhyCourseSection from './components/WhyCourseSection';
-import CourseHighlights from './components/CourseHighlights';
-import SyllabusSection from './components/SyllabusSection';
-import GuruSection from './components/GuruSection';
-import OutcomesSection from './components/OutcomesSection';
-import CertificateShowcase from './components/CertificateShowcase';
-import TestimonialsSection from './components/TestimonialsSection';
-import FAQSection from './components/FAQSection';
-import FinalCTA from './components/FinalCTA';
 
-// Default course data (fallback)
-const defaultCourseData = {
-  id: 'nyaya-darshan',
-  title: 'न्याय दर्शन',
-  subtitle: 'The Philosophy of Logic and Reasoning',
-  instructor: 'Dr. Rajesh Kumar',
-  language: 'Hindi',
-  price: '₹2,799',
-  originalPrice: '₹4,499',
-  duration: '5 months',
-  level: 'Intermediate',
-  rating: 4.6,
-  reviewCount: 89,
-  type: 'Premium Course',
-  status: 'available',
-  checkoutLink: 'https://courses.shikshanam.in/checkout/nyaya-darshan',
-  contactNumber: '9910032165'
-};
+import '../_shared/course-landing.css';
+import './nyaya-darshan-landing.css';
+import CourseLayout from '../_shared/layouts/CourseLayout';
+import { nyayaDarshanCourseData } from './courseData';
+import {
+  HeroTemplate,
+  HighlightsTemplate,
+  SyllabusTemplate,
+  InstructorTemplate,
+  OutcomesTemplate,
+  TestimonialsTemplate,
+  FAQTemplate,
+} from '../_shared/sections';
+import { CourseCTA, CourseSectionHeader, CourseFeatureGrid } from '../_shared/components';
+import { Brain, Scale, Lightbulb, Target } from 'lucide-react';
 
 export default function NyayaDarshanCoursePage() {
-  // Use the custom hook for dynamic course data
-  const { courseData, loading, error } = useCourseData('nyaya-darshan', defaultCourseData);
+  const courseData = nyayaDarshanCourseData;
 
-  // Show loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-saffron-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading course data...</p>
-        </div>
-      </div>
-    );
-  }
+  // Transform Why Course data to features for FeatureGrid
+  const whyFeatures = [
+    {
+      icon: Brain,
+      title: 'Master Indian Logic Systems',
+      description: 'Learn the sophisticated Nyaya logical framework including the five-membered syllogism'
+    },
+    {
+      icon: Target,
+      title: 'Understand Epistemology (Pramanas)',
+      description: 'Explore the four means of valid knowledge: perception, inference, comparison, and testimony'
+    },
+    {
+      icon: Scale,
+      title: 'Debate and Argumentation',
+      description: 'Master classical Indian debate techniques and logical reasoning'
+    },
+    {
+      icon: Lightbulb,
+      title: 'Develop Critical Thinking',
+      description: 'Enhance your logical reasoning skills and apply ancient wisdom to modern problem-solving'
+    }
+  ];
   return (
-    <>
-      <HeroSection />
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
-        <div className="container-custom">
-          <WhyCourseSection />
+    <CourseLayout theme="philosophy">
+      {/* Hero Section */}
+      <HeroTemplate
+        metadata={courseData.metadata}
+        stats={courseData.stats}
+        enrollmentLink={courseData.enrollment.checkoutLink}
+        backgroundImage={courseData.metadata.thumbnail}
+      />
+
+      {/* Why This Course Section */}
+      <section className="course-section bg-gradient-to-b from-white to-gray-50">
+        <div className="course-container">
+          <CourseSectionHeader
+            subtitle="Indian Logic & Epistemology"
+            title="क्यों पढ़ें न्याय दर्शन?"
+            description="Nyaya philosophy offers the most sophisticated logical systems in Indian thought. Master the art of reasoning, debate, and critical thinking that has shaped intellectual discourse for centuries."
+            centered={true}
+          />
+          <CourseFeatureGrid features={whyFeatures} columns={4} />
         </div>
       </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/30 to-parchment">
-        <div className="container-custom">
-          <CourseHighlights />
+
+      {/* Course Highlights */}
+      <HighlightsTemplate
+        highlights={courseData.highlights}
+        title="Course Highlights"
+        subtitle="What You'll Master"
+        description="Comprehensive training in Indian logic, epistemology, and critical thinking"
+        columns={3}
+        className="bg-white"
+      />
+
+      {/* Syllabus */}
+      <SyllabusTemplate
+        syllabus={courseData.syllabus}
+        title="Complete Course Curriculum"
+        subtitle="Systematic Learning Path"
+        description="Master Nyaya philosophy through structured modules covering logic, epistemology, and debate"
+        defaultOpen={[0]}
+      />
+
+      {/* Instructor */}
+      {courseData.instructor && (
+        <InstructorTemplate
+          instructor={courseData.instructor}
+          className="bg-white"
+        />
+      )}
+
+      {/* Learning Outcomes */}
+      <OutcomesTemplate
+        outcomes={courseData.outcomes}
+        title="Skills You'll Develop"
+        subtitle="Learning Outcomes"
+        description="Transform your thinking with logical reasoning and critical analysis skills"
+      />
+
+      {/* Testimonials */}
+      <TestimonialsTemplate
+        testimonials={courseData.testimonials}
+        title="Student Success Stories"
+        subtitle="What Our Students Say"
+        description="Hear from students who have mastered logical reasoning through this course"
+        maxDisplay={6}
+      />
+
+      {/* FAQ */}
+      <FAQTemplate
+        faqs={courseData.faqs}
+        className="bg-white"
+      />
+
+      {/* Final CTA */}
+      <section className="course-section bg-gradient-to-br from-[var(--theme-primary-50)] via-white to-[var(--theme-secondary-50)]">
+        <div className="course-container">
+          <CourseCTA
+            title="Master the Art of Logic and Reasoning"
+            description="Join hundreds of students who have developed sharp critical thinking skills through Nyaya philosophy. Transform your approach to logic and debate."
+            primaryButtonText="Enroll Now"
+            primaryButtonHref={courseData.enrollment.checkoutLink}
+            badges={['1 Year Access', 'Certificate Included', 'Community Support', 'Hindi Medium']}
+            backgroundGradient={false}
+          />
         </div>
       </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/20">
-        <div className="container-custom">
-          <SyllabusSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/20 to-parchment">
-        <div className="container-custom">
-          <GuruSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
-        <div className="container-custom">
-          <OutcomesSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/30 to-parchment">
-        <div className="container-custom">
-          <CertificateShowcase />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/20">
-        <div className="container-custom">
-          <TestimonialsSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/20 to-parchment">
-        <div className="container-custom">
-          <FAQSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
-        <div className="container-custom">
-          <FinalCTA />
-        </div>
-      </section>
-    </>
+    </CourseLayout>
   );
 }

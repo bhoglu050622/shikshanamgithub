@@ -1,0 +1,23 @@
+{
+  "title": "न्याय दर्शन: Online Course on Nyaya Philosophy of Maharshi Gautama",
+  "subtitle": "Logic, epistemology, and reasoning",
+  "description": "Master the Indian system of logic and reasoning through Nyaya Sutras of Maharshi Gautama.",
+  "type": "Premium Course",
+  "price": "₹3,499",
+  "originalPrice": "₹5,199",
+  "savings": "33%",
+  "duration": "16-20 Classes",
+  "level": "Intermediate",
+  "status": "available",
+  "features": [
+    "Nyaya Sutras",
+    "Logic & Reasoning",
+    "Pramanas (Valid Knowledge)",
+    "Debate Techniques",
+    "Critical Thinking",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/nyaya-darshan-course.png",
+  "category": "darshan",
+  "priority": 0.86
+}

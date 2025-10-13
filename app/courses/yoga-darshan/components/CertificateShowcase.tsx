@@ -158,14 +158,17 @@ export default function CertificateShowcase() {
                 commitment to spiritual growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <motion.button
+                <motion.a
+                  href="https://courses.shikshanam.in/single-checkout/6440e5d6e4b0c4378b6240e5?pid=p2"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-primary flex items-center space-x-3 px-8 py-4"
                 >
                   <Award className="w-5 h-5" />
                   <span>Start Learning Now</span>
-                </motion.button>
+                </motion.a>
                 <div className="text-sm text-wisdom-600">
                   ✓ Complete all modules ✓ Pass assessments ✓ Download certificate
                 </div>

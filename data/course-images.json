@@ -1,0 +1,72 @@
+{
+  "courses": {
+    "chanakya-code": {
+      "thumbnail": "/assets/courses/chanakya-code.png",
+      "hero": "/assets/courses/chanakya-code.png",
+      "fallback": "/assets/comics/basics.svg"
+    },
+    "nyaya-darshan": {
+      "thumbnail": "/assets/courses/nyaya-darshan.png",
+      "hero": "/assets/courses/nyaya-darshan.png",
+      "fallback": "/assets/comics/nyaya.svg"
+    },
+    "yoga-darshan": {
+      "thumbnail": "/assets/courses/yoga-darshan.png",
+      "hero": "/assets/courses/yoga-darshan.png",
+      "fallback": "/assets/comics/yoga.svg"
+    },
+    "vaisheshik-darshan": {
+      "thumbnail": "/assets/courses/vaisheshik-darshan.webp",
+      "hero": "/assets/courses/vaisheshik-darshan.webp",
+      "fallback": "/assets/comics/vaisheshika.svg"
+    },
+    "advaita-vedanta": {
+      "thumbnail": "/assets/comics/vedanta.svg",
+      "hero": "/assets/comics/vedanta.svg",
+      "fallback": "/assets/comics/vedanta.svg"
+    },
+    "emotional-intelligence": {
+      "thumbnail": "/assets/comics/samkhya.svg",
+      "hero": "/assets/comics/samkhya.svg",
+      "fallback": "/assets/comics/samkhya.svg"
+    },
+    "prashna-upanishad": {
+      "thumbnail": "/assets/courses/prashna-upanishad.jpg",
+      "hero": "/assets/courses/prashna-upanishad.jpg",
+      "fallback": "/assets/comics/vedanta.svg"
+    },
+    "isha-upanishad": {
+      "thumbnail": "/assets/courses/isha-upanishad.png",
+      "hero": "/assets/courses/isha-upanishad.png",
+      "fallback": "/assets/comics/vedanta.svg"
+    },
+    "sanskrit-course": {
+      "thumbnail": "/assets/comics/basics.svg",
+      "hero": "/assets/comics/basics.svg",
+      "fallback": "/assets/comics/basics.svg"
+    },
+    "kashmir-shaivism": {
+      "thumbnail": "/assets/comics/yoga.svg",
+      "hero": "/assets/comics/yoga.svg",
+      "fallback": "/assets/comics/yoga.svg"
+    }
+  },
+  "packages": {
+    "para-bundle": {
+      "hero": "/assets/comics/vedanta.svg",
+      "fallback": "/assets/comics/vedanta.svg"
+    },
+    "sanskrit-darshan-upanishad-bundle": {
+      "hero": "/assets/comics/basics.svg",
+      "fallback": "/assets/comics/basics.svg"
+    },
+    "hindu-philosophies-upanishads-bundle": {
+      "hero": "/assets/comics/samkhya.svg",
+      "fallback": "/assets/comics/samkhya.svg"
+    },
+    "para-apara-bundle": {
+      "hero": "/assets/comics/yoga.svg",
+      "fallback": "/assets/comics/yoga.svg"
+    }
+  }
+}

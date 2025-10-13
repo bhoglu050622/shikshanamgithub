@@ -40,7 +40,7 @@ export default function CountdownHeader() {
   return (
     <header 
       id="countdown-header"
-      className="fixed top-0 left-0 w-full bg-parchment-ivory flex items-center justify-center p-3 z-[9998] border-b border-temple-gold/20 shadow-sm"
+      className="fixed top-0 left-0 w-full bg-parchment-ivory flex items-center justify-center p-3 z-50 border-b border-temple-gold/20 shadow-sm"
     >
       <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
         <span className="text-sm font-medium tracking-wide text-text-secondary">Special Offer Ends In</span>

@@ -3,38 +3,38 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-interface StruggleItem {
-  id: string
+interface AccordionItem {
+  id: number
   question: string
   title: string
   description: string
   image: string
 }
 
-const struggleItems: StruggleItem[] = [
+const accordionData: AccordionItem[] = [
   {
-    id: 'emotional-overwhelm',
+    id: 1,
     question: 'Are you eating significantly more or less than usual?',
     title: 'Emotional Overwhelm',
     description: 'Feeling flooded by intense emotions without clear direction.',
     image: 'https://shikshanam.in/wp-content/uploads/2025/06/Emotional-Overwhelm.png'
   },
   {
-    id: 'overthinking-patterns',
+    id: 2,
     question: 'Are you constantly replaying past conversations or imagining future ones?',
     title: 'Overthinking Patterns',
     description: 'Mental loops that drain energy and cloud judgment.',
     image: 'https://shikshanam.in/wp-content/uploads/2025/06/Overthinking-Patterns-1.png'
   },
   {
-    id: 'reactive-responses',
+    id: 3,
     question: 'Do you often either lash out or completely shut down when stressed?',
     title: 'Reactive Responses',
     description: 'Acting from emotion rather than conscious choice.',
     image: 'https://shikshanam.in/wp-content/uploads/2025/06/Reactive-Responses-1.png'
   },
   {
-    id: 'inner-conflict',
+    id: 4,
     question: 'Are you struggling to make a decision or stick with one once it\'s made?',
     title: 'Inner Conflict',
     description: 'A state of mental and emotional unrest.',
@@ -43,91 +43,80 @@ const struggleItems: StruggleItem[] = [
 ]
 
 export default function StruggleSection() {
-  const [activeItem, setActiveItem] = useState<string | null>(null)
+  const [openItem, setOpenItem] = useState<number | null>(null)
 
-  const handleItemClick = (itemId: string) => {
-    if (activeItem === itemId) {
-      setActiveItem(null)
-    } else {
-      setActiveItem(itemId)
-    }
+  const toggleItem = (id: number) => {
+    setOpenItem(openItem === id ? null : id)
   }
 
   return (
     <section 
       id="struggle-section-component"
-      className="py-16 px-4"
-      style={{ 
-        fontFamily: 'Poppins, sans-serif',
-        backgroundColor: '#fdfaf6',
-        color: '#3a2e2e'
-      }}
+      className="bg-[#fdfaf6] py-16 px-4 overflow-hidden"
+      style={{ fontFamily: "'Poppins', sans-serif" }}
     >
-      <div className="struggle-wrapper max-w-4xl mx-auto text-center">
+      <div className="max-w-[900px] mx-auto flex flex-col items-center gap-10 text-center">
         <h2 
-          className="section-heading text-4xl font-bold leading-tight mb-4"
-          style={{ maxWidth: '600px', margin: '0 auto 1rem auto' }}
+          className="text-4xl md:text-[2.25rem] font-bold leading-tight max-w-[600px] mb-4"
+          style={{ color: '#3a2e2e' }}
         >
-          Do you often struggle with emotional overwhelm,<br/>
-          overthinking, or impulsive responses?
+          Do you often struggle with emotional overwhelm,<br className="hidden md:block"/>overthinking, or impulsive responses?
         </h2>
         
-        <div className="accordion-container grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-          {struggleItems.map((item) => (
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+          {accordionData.map((item) => (
             <div
               key={item.id}
-              className={`accordion-item bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ${
-                activeItem === item.id ? 'is-open' : ''
+              className={`bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 ${
+                openItem === item.id ? 'is-open' : ''
               }`}
-              style={{ boxShadow: '0 4px 15px rgba(0, 0, 0, 0.07)' }}
             >
+              {/* Accordion Header */}
               <button
-                className="accordion-header w-full p-6 text-left flex items-start gap-4 min-h-[110px] border-none bg-none cursor-pointer"
-                onClick={() => handleItemClick(item.id)}
+                onClick={() => toggleItem(item.id)}
+                className="w-full flex items-start p-6 text-left min-h-[110px] cursor-pointer"
               >
                 <div 
-                  className="question-icon w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0 animate-pulse"
-                  style={{ 
-                    backgroundColor: '#f07127',
+                  className="flex-shrink-0 w-10 h-10 rounded-full bg-[#f07127] text-white flex items-center justify-center text-2xl font-bold mr-4"
+                  style={{
                     animation: 'pulse 0.3s infinite'
                   }}
                 >
                   ?
                 </div>
-                <div className="question-text-wrapper flex flex-col">
-                  <p className="main-question font-semibold leading-relaxed text-base m-0">
+                <div className="flex flex-col">
+                  <p className="font-semibold text-base leading-relaxed m-0" style={{ color: '#3a2e2e' }}>
                     {item.question}
                   </p>
                   <span 
-                    className="see-more-text text-sm mt-2 transition-colors duration-200"
+                    className="text-sm mt-2 transition-all duration-200"
                     style={{ color: '#7a7373' }}
                   >
-                    {activeItem === item.id ? 'see less' : 'see more'}
+                    {openItem === item.id ? 'see less' : 'see more'}
                   </span>
                 </div>
               </button>
 
-              <div 
-                className={`accordion-content overflow-hidden transition-all duration-500 ${
-                  activeItem === item.id ? 'max-h-[600px]' : 'max-h-0'
+              {/* Accordion Content */}
+              <div
+                className={`transition-all duration-700 ease-in-out ${
+                  openItem === item.id ? 'max-h-[600px]' : 'max-h-0'
                 }`}
-                style={{
-                  borderTop: activeItem === item.id ? '1px solid #eee' : 'none'
-                }}
+                style={{ overflow: 'hidden' }}
               >
-                <div className="accordion-content-inner flex flex-col items-center gap-6 p-8">
+                <div className={`flex flex-col items-center gap-6 p-8 ${openItem === item.id ? 'border-t border-[#eee]' : ''}`}>
                   <Image
                     src={item.image}
                     alt={`${item.title} illustration`}
-                    width={400}
-                    height={200}
-                    className="w-full max-w-xs h-auto rounded-lg"
+                    width={300}
+                    height={150}
+                    className="w-full max-w-[300px] h-auto rounded-lg"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.src = `https://placehold.co/400x200/f0f0f0/3a2e2e?text=${encodeURIComponent(item.title)}`
                     }}
                   />
-                  <div className="text-content text-center">
+                  <div className="text-center">
                     <h3 className="text-xl font-bold mb-2 m-0" style={{ color: '#3a2e2e' }}>
                       {item.title}
                     </h3>
@@ -157,20 +146,10 @@ export default function StruggleSection() {
             box-shadow: 0 0 0 0 rgba(240, 113, 39, 0);
           }
         }
-        
-        .accordion-item:hover .see-more-text {
-          text-decoration: none;
-        }
-        
+
         @media (max-width: 768px) {
-          .section-heading {
+          h2 {
             font-size: 1.75rem !important;
-          }
-          .accordion-container {
-            grid-template-columns: 1fr !important;
-          }
-          .accordion-header {
-            padding: 1.25rem !important;
           }
         }
       `}</style>

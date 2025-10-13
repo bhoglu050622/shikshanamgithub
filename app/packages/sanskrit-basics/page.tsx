@@ -4,10 +4,18 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Clock, Users, Award, Star, ArrowLeft } from 'lucide-react';
+import { CheckCircle, Clock, Users, Award, Star, ArrowLeft, BookOpen, MessageCircle, FileText, Mic, Brain, Zap, Sparkles, Infinity, Eye, Heart, Target } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import Mandala from '@/components/ornaments/Mandala';
 import { usePackageData } from '@/lib/hooks/usePackageData';
+import { PremiumFeatures } from '@/components/packages/PremiumFeatures';
+import { LearningPathTimeline } from '@/components/packages/LearningPathTimeline';
+import { PremiumTestimonials } from '@/components/packages/PremiumTestimonials';
+import { PremiumFAQ } from '@/components/packages/PremiumFAQ';
+import { PremiumCTA } from '@/components/packages/PremiumCTA';
+import testimonialsData from '@/data/testimonials.json';
 
 // Default package data (fallback)
 const defaultPackageData = {
@@ -45,6 +53,73 @@ export default function SanskritBasicsPackagePage() {
       </div>
     );
   }
+
+  const premiumFeatures = [
+    {
+      icon: Mic,
+      title: 'Audio Pronunciation Guide',
+      description: 'Interactive Sanskrit lessons with authentic audio pronunciation from expert scholars',
+      gradient: 'from-blue-500 to-cyan-600'
+    },
+    {
+      icon: FileText,
+      title: 'Devanagari Script Mastery',
+      description: 'Complete Devanagari script learning with writing exercises and practice materials',
+      gradient: 'from-purple-500 to-pink-600'
+    },
+    {
+      icon: Brain,
+      title: 'Grammar Foundation',
+      description: 'Comprehensive grammar training from basics to intermediate level',
+      gradient: 'from-saffron-500 to-amber-600'
+    },
+    {
+      icon: BookOpen,
+      title: 'Vocabulary Building',
+      description: 'Master 1000+ essential Sanskrit words with contextual usage and examples',
+      gradient: 'from-emerald-500 to-green-600'
+    },
+    {
+      icon: MessageCircle,
+      title: 'Live Q&A Sessions',
+      description: 'Regular interactive sessions with Sanskrit scholars to clarify doubts',
+      gradient: 'from-orange-500 to-red-600'
+    },
+    {
+      icon: Award,
+      title: 'Certification',
+      description: 'Verified certificate of completion upon successfully finishing the package',
+      gradient: 'from-indigo-500 to-purple-600'
+    }
+  ];
+
+  const learningPath = [
+    {
+      title: 'Sanskrit Alphabet & Script',
+      description: 'Master the Devanagari script with proper pronunciation and writing techniques. Learn to recognize and write all Sanskrit letters.',
+      duration: '2 weeks'
+    },
+    {
+      title: 'Grammar Fundamentals',
+      description: 'Build a strong foundation in Sanskrit grammar including noun declensions, verb conjugations, and sentence structure.',
+      duration: '4 weeks'
+    },
+    {
+      title: 'Vocabulary Building',
+      description: 'Expand your Sanskrit vocabulary with essential words, phrases, and their contextual usage in classical texts.',
+      duration: '3 weeks'
+    },
+    {
+      title: 'Reading & Practice',
+      description: 'Apply your knowledge by reading simple Sanskrit texts and engaging in conversation practice with peers.',
+      duration: '3 weeks'
+    }
+  ];
+
+  // Get relevant testimonials
+  const relevantTestimonials = testimonialsData.testimonials
+    .filter(t => t.course.toLowerCase().includes('sanskrit'))
+    .slice(0, 6);
 
   const features = [
     'Interactive Sanskrit lessons with audio pronunciation',
@@ -97,232 +172,167 @@ export default function SanskritBasicsPackagePage() {
 
   return (
     <div className="min-h-screen bg-parchment-ivory">
-      {/* Header */}
-      <div className="bg-gradient-to-br from-saffron-50 to-amber-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <Button
-              variant="ghost"
-              onClick={() => router.back()}
-              className="mr-4"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Packages
-            </Button>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-saffron-100 text-saffron-800">
-                Sanskrit Language
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                Sanskrit Basics Package
-              </h1>
-              <p className="text-xl text-slate-600 mb-8">
-                Complete introduction to Sanskrit language and grammar with interactive lessons, 
-                pronunciation guides, and expert guidance from Sanskrit scholars.
-              </p>
-              
-              <div className="flex flex-wrap gap-4 mb-8">
-                <div className="flex items-center text-slate-600">
-                  <Clock className="h-5 w-5 mr-2" />
-                  <span>3 months</span>
+      <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-br from-saffron-50 to-amber-50">
+        <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-saffron-200/20 via-amber-200/15 to-orange-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-br from-amber-200/20 via-saffron-200/15 to-orange-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+          <Mandala size={600} speed={120} />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <Button variant="ghost" onClick={() => router.back()} className="mb-6"><ArrowLeft className="h-4 w-4 mr-2" />Back to Packages</Button>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="space-y-6">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="inline-flex items-center space-x-2 bg-gradient-to-r from-saffron-100 to-amber-100 text-saffron-700 px-4 py-2 rounded-full text-sm font-medium">
+                <BookOpen className="w-4 h-4" /><span>Sanskrit Language</span>
+              </motion.div>
+              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight">
+                Sanskrit Basics<span className="block text-saffron-600 mt-2">Package</span>
+              </motion.h1>
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-xl text-slate-600 leading-relaxed">
+                Complete introduction to Sanskrit language and grammar with interactive lessons, pronunciation guides, and expert guidance from Sanskrit scholars.
+              </motion.p>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex flex-wrap gap-6">
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 }} className="flex items-center space-x-2 text-slate-600">
+                  <Users className="w-5 h-5 text-saffron-600" /><span>800+ Students</span>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.7 }} className="flex items-center space-x-2 text-slate-600">
+                  <Clock className="w-5 h-5 text-amber-600" /><span>3 Months</span>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.8 }} className="flex items-center space-x-2 text-slate-600">
+                  <Star className="w-5 h-5 fill-saffron-500 text-saffron-500" /><span>4.9/5 Rating</span>
+                </motion.div>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="bg-gradient-to-br from-saffron-50 to-amber-50 rounded-2xl p-6 border-2 border-saffron-200">
+                <div className="flex items-center justify-between mb-4">
+                  <div><div className="text-3xl font-bold text-slate-700">₹7,999</div><div className="text-sm text-slate-400 line-through">₹12,999</div></div>
+                  <div className="text-right"><div className="text-sm font-semibold text-green-600">Save ₹5,000</div><div className="text-xs text-slate-500">38% off</div></div>
                 </div>
-                <div className="flex items-center text-slate-600">
-                  <Users className="h-5 w-5 mr-2" />
-                  <span>Beginner</span>
+                <div className="flex items-center space-x-2 text-sm text-slate-600 mb-2">
+                  <Award className="w-4 h-4" /><span>3 Years Access • Certificate Included</span>
                 </div>
-                <div className="flex items-center text-slate-600">
-                  <Award className="h-5 w-5 mr-2" />
-                  <span>Certificate</span>
+                <div className="flex items-center space-x-2 text-sm text-saffron-600">
+                  <BookOpen className="w-4 h-4" /><span>Complete Sanskrit Basics • Premium Quality</span>
                 </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-saffron-600 hover:bg-saffron-700">
-                  Get This Package - ₹7,999
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }} className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="flex-1 bg-gradient-to-r from-saffron-600 to-amber-600 hover:from-saffron-700 hover:to-amber-700 text-white font-semibold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  Get This Package
                 </Button>
-                <Button size="lg" variant="outline">
-                  View Sample Lesson
-                </Button>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-8">
-                <div className="aspect-video bg-gradient-to-br from-saffron-100 to-amber-100 rounded-lg mb-6 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">🕉️</div>
-                    <p className="text-slate-600">Sanskrit Learning Preview</p>
-                  </div>
+                <a href="#features" className="inline-flex items-center justify-center px-8 py-4 border-2 border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white font-semibold text-lg rounded-2xl transition-all duration-300">
+                  View Details
+                </a>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 }} className="flex items-center space-x-4 text-sm text-slate-600">
+                <div className="flex items-center space-x-1">
+                  {[...Array(5)].map((_, i) => (<Star key={i} className="w-4 h-4 fill-saffron-500 text-saffron-500" />))}
                 </div>
-                <div className="text-center">
-                  <p className="text-sm text-slate-500 mb-2">Package includes:</p>
-                  <div className="flex justify-center space-x-4 text-sm text-slate-600">
-                    <span>• 5 Live Sessions</span>
-                    <span>• 3 Mentor Hours</span>
-                    <span>• Certificate</span>
-                  </div>
+                <span>Master Sanskrit Fundamentals - Ancient Language Basics</span>
+              </motion.div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative">
+              <div className="relative bg-gradient-to-br from-saffron-100 to-amber-100 rounded-3xl p-8 shadow-2xl">
+                <div className="grid grid-cols-2 gap-6 mb-6">
+                  <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }} className="bg-white rounded-2xl p-6 shadow-lg">
+                    <FileText className="w-8 h-8 text-saffron-600 mb-2" /><p className="text-xs font-semibold text-slate-700">Script</p>
+                  </motion.div>
+                  <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="bg-white rounded-2xl p-6 shadow-lg">
+                    <Brain className="w-8 h-8 text-amber-600 mb-2" /><p className="text-xs font-semibold text-slate-700">Grammar</p>
+                  </motion.div>
+                  <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }} className="bg-white rounded-2xl p-6 shadow-lg">
+                    <MessageCircle className="w-8 h-8 text-orange-600 mb-2" /><p className="text-xs font-semibold text-slate-700">Basics</p>
+                  </motion.div>
+                  <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8 }} className="bg-white rounded-2xl p-6 shadow-lg">
+                    <BookOpen className="w-8 h-8 text-saffron-600 mb-2" /><p className="text-xs font-semibold text-slate-700">Practice</p>
+                  </motion.div>
                 </div>
+                <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, duration: 0.8 }} className="aspect-video bg-gradient-to-br from-saffron-100 to-amber-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                  <div className="text-center"><div className="text-6xl mb-4">🕉️</div><p className="text-slate-700 font-semibold">Sanskrit Learning</p></div>
+                  {['Script', 'Grammar', 'Words', 'Practice'].map((text, index) => (
+                    <motion.div key={text} className="absolute text-xs font-bold text-saffron-600/60 bg-white/80 px-2 py-1 rounded-lg" style={{ left: `${15 + (index * 18)}%`, top: `${20 + (index % 2) * 50}%` }}
+                      animate={{ y: [-10, 10, -10], opacity: [0.4, 0.8, 0.4] }}
+                      transition={{ duration: 3 + index * 0.5, repeat: Number.POSITIVE_INFINITY, repeatType: "loop", delay: index * 0.3, ease: "easeInOut" }}>
+                      {text}
+                    </motion.div>
+                  ))}
+                </motion.div>
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-saffron-500 rounded-full animate-pulse-gentle" />
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-amber-500 rounded-full animate-pulse-gentle animation-delay-2000" />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="py-16 bg-white">
+      <div id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              What You'll Learn
-            </h2>
-            <p className="text-xl text-slate-600">
-              Comprehensive Sanskrit learning with practical applications
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="flex items-start">
-                <CheckCircle className="h-6 w-6 text-saffron-600 mr-3 mt-1 flex-shrink-0" />
-                <p className="text-slate-700">{feature}</p>
-              </div>
-            ))}
-          </div>
+          <PremiumFeatures
+            title="What You'll Master"
+            subtitle="Comprehensive Sanskrit learning journey from basics to fluency"
+            features={premiumFeatures}
+            layout="staggered"
+          />
         </div>
       </div>
 
-      {/* Course Content */}
-      <div className="py-16 bg-slate-50">
+      {/* Learning Path Timeline */}
+      <div className="py-24 bg-gradient-to-br from-slate-50 to-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Course Structure
-            </h2>
-            <p className="text-xl text-slate-600">
-              Structured learning path from basics to intermediate level
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <span className="bg-saffron-100 text-saffron-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
-                  Sanskrit Fundamentals
-                </CardTitle>
-                <CardDescription>2 hours of foundational content</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-600">
-                  <li>• Introduction to Sanskrit language</li>
-                  <li>• Devanagari script basics</li>
-                  <li>• Pronunciation fundamentals</li>
-                  <li>• Basic vocabulary</li>
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <span className="bg-saffron-100 text-saffron-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
-                  Grammar Basics
-                </CardTitle>
-                <CardDescription>3 hours of grammar fundamentals</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-slate-600">
-                  <li>• Noun declensions</li>
-                  <li>• Verb conjugations</li>
-                  <li>• Sentence structure</li>
-                  <li>• Reading practice</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
+          <LearningPathTimeline 
+            steps={learningPath}
+            orientation="vertical"
+          />
         </div>
       </div>
 
       {/* Testimonials */}
-      <div className="py-16 bg-white">
+      <div className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Student Testimonials
-            </h2>
-            <p className="text-xl text-slate-600">
-              Hear from students who have completed this package
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-slate-600 mb-4">"{testimonial.content}"</p>
-                  <div>
-                    <p className="font-semibold text-slate-800">{testimonial.name}</p>
-                    <p className="text-sm text-slate-500">{testimonial.role}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <PremiumTestimonials
+            testimonials={relevantTestimonials}
+            title="Student Success Stories"
+            subtitle="Real experiences from students who have mastered Sanskrit with us"
+          />
         </div>
       </div>
 
       {/* FAQ Section */}
-      <div className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-slate-600">
-              Common questions about the Sanskrit Basics package
-            </p>
-          </div>
-          
-          <div className="space-y-6">
-            {faq.map((item, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold text-slate-800 mb-3">{item.question}</h3>
-                  <p className="text-slate-600">{item.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+      <div className="py-24 bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PremiumFAQ
+            faqs={faq}
+            title="Frequently Asked Questions"
+            subtitle="Everything you need to know about the Sanskrit Basics package"
+            showSearch={false}
+          />
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 bg-gradient-to-br from-saffron-50 to-amber-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-slate-800 mb-4">
-            Ready to Start Your Sanskrit Journey?
-          </h2>
-          <p className="text-xl text-slate-600 mb-8">
-            Join thousands of students learning Sanskrit with our comprehensive package
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-saffron-600 hover:bg-saffron-700">
-              Get Sanskrit Basics Package - ₹7,999
-            </Button>
-            <Button size="lg" variant="outline">
-              View All Packages
-            </Button>
-          </div>
-        </div>
-      </div>
+      <PremiumCTA
+        title="Ready to Start Your Sanskrit Journey?"
+        subtitle="Join thousands of students learning Sanskrit with our comprehensive package and master this ancient language"
+        price="₹7,999"
+        originalPrice="₹12,999"
+        savings="Save ₹5,000 (38%)"
+        primaryCTA={{
+          text: 'Enroll in Sanskrit Basics',
+          action: () => window.open('https://courses.shikshanam.in/checkout/sanskrit-basics', '_blank')
+        }}
+        secondaryCTA={{
+          text: 'View Sample Lessons',
+          action: () => router.push('/courses')
+        }}
+        trustBadges={[
+          '3 years Access to All Content',
+          'Expert Sanskrit Scholar Support',
+          'Certificate of Completion'
+        ]}
+        urgency={{
+          type: 'seats',
+          message: 'Limited seats remaining for this cohort - Enroll now!'
+        }}
+      />
     </div>
   );
 }

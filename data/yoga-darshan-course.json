@@ -2,44 +2,50 @@
   "id": "yoga-darshan",
   "title": "योग दर्शन",
   "subtitle": "Yoga Philosophy through Patanjali Yoga Sutras",
-  "instructor": "Dr. Rajesh Kumar",
-  "language": "Hindi",
-  "price": "₹2,999",
-  "originalPrice": "₹4,999",
-  "duration": "6 months",
-  "level": "Intermediate",
-  "rating": 4.8,
-  "reviewCount": 150,
+  "instructor": "Vishal Chaurasia",
+  "language": "हिन्दी",
+  "price": "₹1,999",
+  "originalPrice": "₹3,599",
+  "duration": "8+ hours",
+  "level": "Beginner",
+  "rating": 4.9,
+  "reviewCount": 180,
+  "studentCount": 2900,
   "type": "Premium Course",
   "status": "available",
-  "checkoutLink": "https://courses.shikshanam.in/checkout/yoga-darshan",
+  "checkoutLink": "https://courses.shikshanam.in/single-checkout/6440e5d6e4b0c4378b6240e5?pid=p2",
   "contactNumber": "9910032165",
   "features": [
     {
-      "icon": "Gift",
-      "title": "Interactive Lessons",
-      "description": "Engaging video lessons with audio pronunciation guides"
+      "icon": "BookOpen",
+      "title": "All Sutras Covered",
+      "description": "Complete coverage of all 195 Yoga Sutras"
     },
     {
       "icon": "Clock",
-      "title": "Lifetime Access",
-      "description": "Access to all course materials for life"
+      "title": "1 Year Access",
+      "description": "Access to all course materials for 1 year"
     },
     {
       "icon": "Award",
-      "title": "Certificate",
+      "title": "Certification",
       "description": "Get a certificate upon completion"
     }
   ],
   "learningObjectives": [
-    "Understanding the eight limbs of Yoga (Ashtanga Yoga)",
-    "Mastering the Yoga Sutras of Patanjali",
-    "Practical application of Yoga philosophy in daily life"
+    "Know the 25 tattvas (prakriti, purusha, ahamkara etc.) properly",
+    "Master methods of kriya yoga and ashtanga practices (conceptual + philosophical understanding)",
+    "Understand the science of siddhis arising from Yoga",
+    "Alleviate suffering through right practice (philosophical + practical knowledge)"
   ],
   "keyHighlights": [
-    "Comprehensive study of Patanjali Yoga Sutras",
-    "Interactive sessions with experienced teachers",
-    "Practical exercises and meditation techniques"
+    "All Sutras Covered (195 Yoga Sutras)",
+    "8+ Hrs. of Content",
+    "Quizzes and Notes",
+    "Free Future Updates",
+    "1Yr Access",
+    "Certification",
+    "Community Forum"
   ],
   "syllabus": [
     {

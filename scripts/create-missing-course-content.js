@@ -162,4 +162,4 @@ courses.forEach(courseId => {
 console.log('\n🎯 Course Content Files Created!');
 console.log('================================');
 console.log('All missing course content files have been generated with default content.');
-console.log('You can now edit these files through the CMS to customize the content.');
+console.log('You can now edit these files directly to customize the content.');

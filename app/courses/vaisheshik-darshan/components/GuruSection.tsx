@@ -25,47 +25,47 @@ export default function GuruSection() {
           <div className="vaisheshik-logical-content">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="text-center md:text-left">
-                <div className="w-48 h-48 mx-auto md:mx-0 mb-6 rounded-full overflow-hidden border-4 border-vaisheshik-secondary shadow-lg">
+                <div className="w-48 h-48 mx-auto md:mx-0 mb-6 rounded-full overflow-hidden border-4 border-vaisheshik-secondary shadow-lg bg-gradient-to-br from-slate-100 to-slate-200">
                   <Image
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
                     alt="Vishal Chaurasia"
                     width={192}
                     height={192}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </div>
               
               <div className="space-y-6">
                 <div>
-                  <h3 className="vaisheshik-heading text-3xl mb-2">Vishal Chaurasia</h3>
-                  <p className="text-vaisheshik-secondary text-lg font-medium">Vaisheshika Philosophy Expert</p>
+                  <h3 className="vaisheshik-heading text-3xl mb-2">विशाल चौरसिया</h3>
+                  <p className="text-vaisheshik-secondary text-lg font-medium">Founder, Shikshanam / Hyper Quest</p>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <GraduationCap className="w-6 h-6 text-vaisheshik-primary" />
-                    <span className="vaisheshik-subheading">IIT Graduate with expertise in Indian Philosophy</span>
+                    <span className="vaisheshik-subheading">Graduate, IIT Patna</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <BookOpen className="w-6 h-6 text-vaisheshik-primary" />
-                    <span className="vaisheshik-subheading">Founder of Shikshanam & Hyper Quest</span>
+                    <span className="vaisheshik-subheading">Worked in PSU 2016–2023, then moved into teaching ancient wisdom</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Users className="w-6 h-6 text-vaisheshik-primary" />
-                    <span className="vaisheshik-subheading">Passionate about making philosophy accessible</span>
+                    <span className="vaisheshik-subheading">Through Hyper Quest, he makes darshanas & philosophy accessible to many</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Award className="w-6 h-6 text-vaisheshik-primary" />
-                    <span className="vaisheshik-subheading">Specialized in logical and analytical thinking</span>
+                    <span className="vaisheshik-subheading">Dedicated to making ancient Indian wisdom accessible to modern learners</span>
                   </div>
                 </div>
 
                 <div className="pt-4">
                   <p className="vaisheshik-subheading text-gray-600 italic">
-                    "Vaisheshika philosophy offers the most systematic approach to understanding reality. 
-                    My mission is to help students develop logical thinking and analytical skills through 
-                    the study of ancient wisdom that remains relevant today."
+                    "Vaisheshik Darshan reveals the profound insights our ancient sages had into the nature of reality. 
+                    My mission is to help students understand these timeless principles and apply them to develop 
+                    logical thinking and a deeper understanding of the universe."
                   </p>
                 </div>
               </div>

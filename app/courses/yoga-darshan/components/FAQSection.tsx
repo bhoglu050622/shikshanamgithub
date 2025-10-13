@@ -12,7 +12,15 @@ const faqs = [
   },
   {
     question: 'What is the course validity?',
-    answer: 'You get lifetime access to the course materials. Once enrolled, you can access all videos, notes, and resources forever, and learn at your own pace.'
+    answer: 'You get 1-year access to all course materials from the date of enrollment. During this period, you can access all videos, notes, and resources anytime via dashboard on hyperquest.graphy.com or Android app, and learn at your own pace.'
+  },
+  {
+    question: 'Can I access the course after completion?',
+    answer: 'Yes! As long as you\'re within the 1-year validity period, you can continue to access all course materials even after completing the course. This allows you to revise and reinforce your learning.'
+  },
+  {
+    question: 'What happens after 1 year?',
+    answer: 'After 1 year, your access to the course materials will expire. However, any certificates earned and downloaded materials will remain with you permanently. You can also re-enroll at that time if you wish to continue learning.'
   },
   {
     question: 'Are there any prerequisites for this course?',
@@ -20,11 +28,11 @@ const faqs = [
   },
   {
     question: 'Can I download the course material?',
-    answer: 'Yes! You can download the comprehensive notes, quizzes, and supplementary materials. However, the video content is streamed online for the best learning experience.'
+    answer: 'Yes! Lectures are downloadable on the mobile app (link to Play Store present). You can download the comprehensive notes, quizzes, and supplementary materials during your 1-year access period. These materials remain with you even after the access period ends.'
   },
   {
     question: 'What is the refund policy?',
-    answer: 'We offer a 7-day money-back guarantee. If you\'re not satisfied with the course content within the first 7 days, you can request a full refund.'
+    answer: 'No refunds policy. We do not offer refunds for this course.'
   },
   {
     question: 'Is the course available in other languages?',
@@ -32,11 +40,11 @@ const faqs = [
   },
   {
     question: 'How long does it take to complete the course?',
-    answer: 'The course contains 8+ hours of video content. Most students complete it within 2-4 weeks, but you can take as much time as you need with lifetime access.'
+    answer: 'The course contains 8+ hours of video content. Most students complete it within 2-4 weeks, but you can take as much time as you need within the 1-year access period.'
   },
   {
     question: 'Will I get a certificate after completion?',
-    answer: 'Yes! Upon successful completion of all modules and assessments, you\'ll receive a downloadable certificate that you can share on LinkedIn and other professional platforms.'
+    answer: 'Yes! Upon successful completion of all modules and assessments, you\'ll receive a downloadable certificate that you can share on LinkedIn and other professional platforms. The certificate is yours to keep permanently.'
   },
   {
     question: 'Is there any community support?',
@@ -44,7 +52,7 @@ const faqs = [
   },
   {
     question: 'Can I access the course on mobile devices?',
-    answer: 'Yes! The course is fully responsive and can be accessed on any device - desktop, tablet, or mobile. Learn anywhere, anytime at your convenience.'
+    answer: 'Yes! The course is accessible via dashboard on hyperquest.graphy.com or Android app. You can learn anywhere, anytime at your convenience.'
   }
 ];
 
@@ -147,7 +155,7 @@ export default function FAQSection() {
                   </div>
                   <div className="text-left">
                     <h4 className="font-semibold text-high-contrast">Phone Support</h4>
-                    <p className="text-wisdom-600 text-sm">+91-9910032165</p>
+                    <p className="text-wisdom-600 text-sm">+91-9910032165 (Mon–Sat 11AM–6PM)</p>
                   </div>
                 </div>
               </div>

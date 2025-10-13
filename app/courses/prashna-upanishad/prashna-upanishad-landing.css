@@ -2,41 +2,41 @@
 
 /* --- Global Theme Variables --- */
 :root {
-    /* Primary Colors - Muted Saffron Theme */
-    --muted-saffron-50: #fef7ed;
-    --muted-saffron-100: #fed7aa;
-    --muted-saffron-200: #fdba74;
-    --muted-saffron-300: #fb923c;
-    --muted-saffron-400: #f97316;
-    --muted-saffron-500: #ea580c;
-    --muted-saffron-600: #dc2626;
-    --muted-saffron-700: #b91c1c;
-    --muted-saffron-800: #991b1b;
-    --muted-saffron-900: #7c2d12;
+    /* Primary Colors - Premium Gold Theme */
+    --gold-50: #FFF8F0;
+    --gold-100: #FBF5ED;
+    --gold-200: #F5EFE7;
+    --gold-300: #EAD9B8;
+    --gold-400: #DEC785;
+    --gold-500: #D4AF37;
+    --gold-600: #C19A3B;
+    --gold-700: #B8860B;
+    --gold-800: #9A7209;
+    --gold-900: #7D5E07;
     
-    /* Secondary Colors - Teal Theme */
+    /* Secondary Colors - Rich Teal-Blue Theme */
     --teal-50: #f0fdfa;
     --teal-100: #ccfbf1;
     --teal-200: #99f6e4;
     --teal-300: #5eead4;
     --teal-400: #2dd4bf;
-    --teal-500: #14b8a6;
-    --teal-600: #0d9488;
-    --teal-700: #0f766e;
-    --teal-800: #115e59;
+    --teal-500: #0891b2;
+    --teal-600: #0e7490;
+    --teal-700: #155e75;
+    --teal-800: #164e63;
     --teal-900: #134e4a;
     
-    /* Background Colors */
-    --parchment-ivory: #faf8f3;
-    --sand-beige: #d2b48c;
-    --ivory-cream: #fbf7f0;
+    /* Background Colors - Warm Cream */
+    --parchment-ivory: #FFF8F0;
+    --sand-beige: #F5EFE7;
+    --ivory-cream: #FBF5ED;
     
-    /* Text Colors */
-    --text-primary: #111319;
-    --text-secondary: #404040;
-    --text-tertiary: #737373;
-    --text-accent: #8b7355;
-    --text-muted: #999999;
+    /* Text Colors - High Contrast */
+    --text-primary: #1a1a1a;
+    --text-secondary: #2d2d2d;
+    --text-tertiary: #4a4a4a;
+    --text-accent: #B8860B;
+    --text-muted: #6b7280;
     --text-light: #f3f4f6;
     
     /* Wisdom Colors (for compatibility) */
@@ -46,13 +46,25 @@
     --wisdom-300: #d1d5db;
     --wisdom-400: #9ca3af;
     --wisdom-500: #6b7280;
-    --wisdom-600: #4b5563;
-    --wisdom-700: #374151;
+    --wisdom-600: #4a4a4a;
+    --wisdom-700: #2d2d2d;
     --wisdom-800: #1f2937;
     --wisdom-900: #111827;
     
     /* High Contrast Text */
-    --high-contrast: #111319;
+    --high-contrast: #1a1a1a;
+    
+    /* Legacy naming for backward compatibility */
+    --muted-saffron-50: #FFF8F0;
+    --muted-saffron-100: #FBF5ED;
+    --muted-saffron-200: #F5EFE7;
+    --muted-saffron-300: #EAD9B8;
+    --muted-saffron-400: #DEC785;
+    --muted-saffron-500: #D4AF37;
+    --muted-saffron-600: #B8860B;
+    --muted-saffron-700: #9A7209;
+    --muted-saffron-800: #7D5E07;
+    --muted-saffron-900: #6B5006;
 }
 
 /* --- Hero Section Styles --- */
@@ -121,7 +133,7 @@
 
 /* --- Button Styles --- */
 .btn-primary {
-    background: linear-gradient(135deg, var(--muted-saffron-500) 0%, var(--muted-saffron-600) 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
     color: white;
     padding: 1rem 2rem;
     border-radius: 1rem;
@@ -133,22 +145,23 @@
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.25);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--muted-saffron-600) 0%, var(--muted-saffron-700) 100%);
+    background: linear-gradient(135deg, #C19A3B 0%, #9A7209 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.35);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
     color: white;
     text-decoration: none;
 }
 
 .btn-outline {
     background: transparent;
-    color: var(--muted-saffron-600);
+    color: #B8860B;
     padding: 1rem 2rem;
-    border: 2px solid var(--muted-saffron-600);
+    border: 2px solid #D4AF37;
     border-radius: 1rem;
     font-weight: 600;
     text-decoration: none;
@@ -160,10 +173,10 @@
 }
 
 .btn-outline:hover {
-    background: var(--muted-saffron-600);
+    background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.25);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
     text-decoration: none;
 }
 
@@ -194,7 +207,12 @@
 }
 
 .section-padding {
-    padding: 5rem 0;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.border-bottom-0 {
+    border-bottom: none !important;
 }
 
 /* --- Animation Styles --- */
@@ -218,21 +236,38 @@
 }
 
 /* --- Gradient Backgrounds --- */
-.bg-gradient-muted-saffron {
-    background: linear-gradient(135deg, var(--muted-saffron-500) 0%, var(--muted-saffron-600) 100%);
+.bg-gradient-gold {
+    background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-600) 100%);
 }
 
 .bg-gradient-teal {
     background: linear-gradient(135deg, var(--teal-500) 0%, var(--teal-600) 100%);
 }
 
+.bg-gradient-gold-teal {
+    background: linear-gradient(135deg, var(--gold-500) 0%, var(--teal-500) 100%);
+}
+
+/* Legacy gradient names */
+.bg-gradient-muted-saffron {
+    background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-600) 100%);
+}
+
 .bg-gradient-muted-saffron-teal {
-    background: linear-gradient(135deg, var(--muted-saffron-500) 0%, var(--teal-500) 100%);
+    background: linear-gradient(135deg, var(--gold-500) 0%, var(--teal-500) 100%);
 }
 
 /* --- Text Color Utilities --- */
+.text-gold-600 {
+    color: var(--gold-600) !important;
+}
+
+.text-gold-500 {
+    color: var(--gold-500) !important;
+}
+
 .text-muted-saffron-600 {
-    color: var(--muted-saffron-600) !important;
+    color: var(--gold-600) !important;
 }
 
 .text-teal-600 {
@@ -314,7 +349,7 @@
     }
     
     .section-padding {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
     
     .container-custom {

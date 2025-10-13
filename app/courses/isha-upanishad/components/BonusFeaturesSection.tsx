@@ -54,7 +54,7 @@ export default function BonusFeaturesSection() {
     },
     {
       icon: "🔄",
-      title: "Lifetime Access",
+      title: "1-Year Access",
       description: "Access the course content forever with all future updates included."
     },
     {

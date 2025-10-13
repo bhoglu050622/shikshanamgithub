@@ -130,38 +130,90 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
 
+@layer components {
+  /* Heading styles with better contrast */
+  .heading-primary {
+    @apply text-foreground font-display font-bold;
+    color: hsl(var(--text-primary));
+  }
+  
+  .heading-secondary {
+    @apply text-foreground font-display font-semibold;
+    color: hsl(var(--text-secondary));
+  }
+  
+  .subheading {
+    @apply text-foreground font-body font-medium;
+    color: hsl(var(--text-secondary));
+  }
+  
+  .body-text {
+    @apply text-foreground font-body;
+    color: hsl(var(--text-tertiary));
+  }
+  
+  /* Premium button styles - Gold and Burgundy */
+  .btn-premium-primary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+    background: linear-gradient(135deg, hsl(var(--button-primary-bg)), hsl(var(--button-primary-hover)));
+    color: hsl(var(--button-primary-text));
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  }
+  
+  .btn-premium-primary:hover {
+    background: linear-gradient(135deg, hsl(var(--button-primary-hover)), hsl(var(--button-primary-bg)));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+  }
+  
+  .btn-premium-secondary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+    background: hsl(var(--button-secondary-bg));
+    color: hsl(var(--button-secondary-text));
+    box-shadow: 0 2px 8px rgba(139, 26, 26, 0.3);
+  }
+  
+  .btn-premium-secondary:hover {
+    background: hsl(var(--button-secondary-hover));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(139, 26, 26, 0.4);
+  }
+}
+
 @layer base {
   :root {
-    /* Premium Design System - Light Mode (Enhanced Contrast) */
-    --background: 0 0% 100%; /* Pure white for premium feel */
-    --foreground: 0 0% 8%; /* Very dark text for maximum contrast */
-    --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 0 0% 8%; /* Very dark text on cards */
+    /* Premium Design System - Light Mode (Optimized for Readability) */
+    --background: 0 0% 99.6%; /* Warm white (#FEFEFE) */
+    --foreground: 0 0% 10%; /* Deep charcoal (#1A1A1A) */
+    --card: 0 0% 100%; /* Pure white cards (#FFFFFF) */
+    --card-foreground: 0 0% 29%; /* Medium dark gray for card text (#4A4A4A) */
     --popover: 0 0% 100%; /* Pure white popovers */
-    --popover-foreground: 0 0% 8%; /* Very dark text */
-    --primary: 45 67% 40%; /* Darker golden olive for better contrast */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
-    --secondary: 0 30% 12%; /* Darker deep maroon for better contrast */
-    --secondary-foreground: 0 0% 100%; /* White text on secondary */
-    --muted: 0 0% 96%; /* Light gray for muted elements */
-    --muted-foreground: 0 0% 30%; /* Darker gray text for better contrast */
-    --accent: 20 80% 40%; /* Darker copper orange for better contrast */
+    --popover-foreground: 0 0% 29%; /* Medium dark gray text */
+    --primary: 43 62% 52%; /* Premium gold (#D4AF37) */
+    --primary-foreground: 0 0% 100%; /* White text on primary buttons */
+    --secondary: 0 68% 32%; /* Deep burgundy (#8B1A1A) */
+    --secondary-foreground: 0 0% 100%; /* White text on secondary buttons */
+    --muted: 0 0% 95%; /* Light gray for muted elements */
+    --muted-foreground: 0 0% 29%; /* Medium dark gray text */
+    --accent: 43 62% 52%; /* Gold accent matching primary */
     --accent-foreground: 0 0% 100%; /* White text on accent */
     --destructive: 0 74% 50%; /* Red for destructive actions */
     --destructive-foreground: 0 0% 100%; /* White text */
-    --border: 0 0% 80%; /* Darker border for better visibility */
-    --input: 0 0% 96%; /* Light input background */
-    --ring: 45 67% 40%; /* Darker golden olive focus ring */
+    --border: 0 0% 88%; /* Light gray borders (#E0E0E0) */
+    --input: 0 0% 100%; /* White input background */
+    --ring: 43 62% 52%; /* Gold focus ring */
     --radius: 0.75rem; /* 12px */
     
-    /* Premium Design System Core Colors - Light Mode */
-    --premium-bg-primary: 0 0% 100%; /* Pure white background */
-    --premium-bg-secondary: 0 0% 98%; /* Off-white secondary background */
-    --premium-text-primary: 0 0% 8%; /* Deep charcoal primary text */
-    --premium-text-secondary: 0 0% 20%; /* Darker gray secondary text for better contrast */
-    --premium-border: 0 0% 85%; /* Darker gray borders for better visibility */
-    --premium-accent-primary: 45 67% 40%; /* Darker golden olive primary accent */
-    --premium-accent-secondary: 0 30% 15%; /* Darker deep maroon secondary accent */
+    /* Premium Design System Core Colors - Light Mode (Optimized for Readability) */
+    --premium-bg-primary: 0 0% 99.6%; /* Warm white background (#FEFEFE) */
+    --premium-bg-secondary: 0 0% 100%; /* Pure white secondary background */
+    --premium-text-primary: 0 0% 10%; /* Deep charcoal headings (#1A1A1A) */
+    --premium-text-secondary: 0 0% 20%; /* Dark gray subheadings (#333333) */
+    --premium-text-tertiary: 0 0% 29%; /* Medium dark gray paragraphs (#4A4A4A) */
+    --premium-border: 0 0% 88%; /* Light gray borders (#E0E0E0) */
+    --premium-accent-primary: 43 62% 52%; /* Premium gold (#D4AF37) */
+    --premium-accent-secondary: 0 68% 32%; /* Deep burgundy (#8B1A1A) */
+    --premium-accent-gold: 43 62% 52%; /* Premium gold for highlights */
     --premium-success: 142 71% 40%; /* Darker green for success */
     --premium-warning: 38 92% 45%; /* Darker orange for warnings */
     --premium-error: 0 74% 45%; /* Darker red for errors */
@@ -197,48 +249,57 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     
-    /* Premium Shikshanam Color System - Light Mode (Enhanced Contrast) */
+    /* Premium Shikshanam Color System - Light Mode (Enhanced Luxury) */
     --parchment-ivory: 45 33% 98%;
-    --golden-olive: 45 67% 50%;
-    --deep-maroon: 0 30% 20%;
-    --copper-orange: 20 80% 50%;
+    --golden-olive: 45 75% 48%;
+    --deep-maroon: 0 40% 18%;
+    --copper-orange: 20 85% 48%;
     --sand-beige: 45 67% 80%;
     --dark-olive: 45 67% 20%;
-    --temple-gold: 45 100% 45%;
+    --temple-gold: 45 85% 45%;
     --deep-indigo: 240 100% 6%;
     
-    /* Premium Light Theme Colors */
-    --premium-bg-primary: 0 0% 100%; /* Pure white */
-    --premium-bg-secondary: 0 0% 98%; /* Off-white */
-    --premium-bg-tertiary: 0 0% 96%; /* Light gray */
+    /* Premium Light Theme Colors (Optimized for Readability) */
+    --premium-bg-primary: 0 0% 99.6%; /* Warm white (#FEFEFE) */
+    --premium-bg-secondary: 0 0% 100%; /* Pure white */
+    --premium-bg-tertiary: 0 0% 98%; /* Very light gray */
     --premium-bg-elevated: 0 0% 100%; /* Pure white elevated */
     --premium-bg-overlay: 0 0% 100% / 0.95; /* White overlay */
     
-    --premium-text-primary: 0 0% 8%; /* Deep charcoal */
-    --premium-text-secondary: 0 0% 25%; /* Dark gray */
-    --premium-text-tertiary: 0 0% 45%; /* Medium gray */
-    --premium-text-quaternary: 0 0% 65%; /* Light gray */
+    --premium-text-primary: 0 0% 10%; /* Deep charcoal (#1A1A1A) */
+    --premium-text-secondary: 0 0% 20%; /* Dark gray (#333333) */
+    --premium-text-tertiary: 0 0% 29%; /* Medium dark gray (#4A4A4A) */
+    --premium-text-quaternary: 0 0% 50%; /* Medium gray */
     --premium-text-inverse: 0 0% 100%; /* White */
     
-    --premium-border-primary: 0 0% 90%; /* Light border */
-    --premium-border-secondary: 0 0% 85%; /* Medium border */
-    --premium-border-accent: 45 67% 50%; /* Golden olive border */
+    --premium-border-primary: 0 0% 88%; /* Light gray (#E0E0E0) */
+    --premium-border-secondary: 0 0% 80%; /* Medium light gray */
+    --premium-border-accent: 43 62% 52%; /* Premium gold border */
     
-    --premium-accent-primary: 45 67% 50%; /* Golden olive */
-    --premium-accent-secondary: 0 30% 20%; /* Deep maroon */
-    --premium-accent-tertiary: 20 80% 50%; /* Copper orange */
+    --premium-accent-primary: 43 62% 52%; /* Premium gold (#D4AF37) */
+    --premium-accent-secondary: 0 68% 32%; /* Deep burgundy (#8B1A1A) */
+    --premium-accent-tertiary: 43 90% 38%; /* Darker gold (#B8860B) */
     
-    --premium-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --premium-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --premium-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --premium-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --premium-shadow-sm: 0 1px 2px 0 rgba(26, 26, 26, 0.06);
+    --premium-shadow-md: 0 4px 6px -1px rgba(26, 26, 26, 0.12), 0 2px 4px -1px rgba(26, 26, 26, 0.08);
+    --premium-shadow-lg: 0 10px 15px -3px rgba(26, 26, 26, 0.15), 0 4px 6px -2px rgba(26, 26, 26, 0.08);
+    --premium-shadow-xl: 0 20px 25px -5px rgba(26, 26, 26, 0.18), 0 10px 10px -5px rgba(26, 26, 26, 0.10);
     
     /* Enhanced Text Colors for Better Contrast */
-    --text-primary: 0 0% 8%;
-    --text-secondary: 0 0% 20%;
-    --text-tertiary: 0 0% 35%;
-    --text-accent: 45 67% 35%;
-    --text-muted: 0 0% 50%;
+    --text-primary: 0 0% 10%; /* Deep charcoal (#1A1A1A) */
+    --text-secondary: 0 0% 20%; /* Dark gray (#333333) */
+    --text-tertiary: 0 0% 29%; /* Medium dark gray (#4A4A4A) */
+    --text-accent: 43 62% 45%; /* Gold accent */
+    --text-muted: 0 0% 50%; /* Medium gray */
+    
+    /* Button colors - Premium Gold Gradient */
+    --button-primary-bg: 43 62% 52%; /* Premium gold (#D4AF37) */
+    --button-primary-text: 0 0% 100%; /* White text */
+    --button-primary-hover: 43 90% 38%; /* Darker gold hover (#B8860B) */
+    
+    --button-secondary-bg: 0 68% 32%; /* Deep burgundy (#8B1A1A) */
+    --button-secondary-text: 0 0% 100%; /* White text */
+    --button-secondary-hover: 0 68% 28%; /* Darker burgundy hover */
     
     /* Brand Color System - Light Mode */
     --brand-primary: 45 67% 40%; /* darker golden-olive for better contrast */
@@ -271,35 +332,37 @@
   }
 
   .dark {
-    /* Premium Design System - Dark Mode with High Contrast */
-    --background: 0 0% 5%; /* Very dark background for maximum contrast */
-    --foreground: 0 0% 98%; /* Near white text for maximum readability */
-    --card: 0 0% 8%; /* Dark card background with better contrast */
-    --card-foreground: 0 0% 98%; /* Near white text on cards */
-    --popover: 0 0% 8%; /* Dark popover background */
-    --popover-foreground: 0 0% 98%; /* Near white text */
-    --primary: 45 67% 80%; /* Brighter golden olive for better visibility */
-    --primary-foreground: 0 0% 5%; /* Very dark text on primary */
-    --secondary: 0 30% 50%; /* Lighter deep maroon for better contrast */
-    --secondary-foreground: 0 0% 98%; /* Near white text */
-    --muted: 0 0% 15%; /* Darker muted background */
-    --muted-foreground: 0 0% 80%; /* Lighter gray text for better readability */
-    --accent: 20 80% 75%; /* Brighter copper orange */
-    --accent-foreground: 0 0% 5%; /* Very dark text on accent */
+    /* Premium Design System - Dark Mode (Optimized for Readability) */
+    --background: 210 25% 8%; /* Deep navy (#0F1419) */
+    --foreground: 0 0% 96%; /* Almost white (#F5F5F5) */
+    --card: 218 20% 15%; /* Card background (#1E2430) */
+    --card-foreground: 0 0% 72%; /* Medium light gray for card text (#B8B8B8) */
+    --popover: 218 20% 15%; /* Card background for popovers */
+    --popover-foreground: 0 0% 72%; /* Medium light gray text */
+    --primary: 48 89% 60%; /* Bright gold (#F4D03F) */
+    --primary-foreground: 0 0% 10%; /* Dark text on gold buttons (#1A1A1A) */
+    --secondary: 351 73% 45%; /* Burgundy (#C41E3A) */
+    --secondary-foreground: 0 0% 100%; /* White text on burgundy */
+    --muted: 218 20% 20%; /* Dark muted background */
+    --muted-foreground: 0 0% 72%; /* Medium light gray text */
+    --accent: 48 89% 60%; /* Bright gold accent */
+    --accent-foreground: 0 0% 10%; /* Dark text on accent */
     --destructive: 0 72% 65%; /* Brighter red for better visibility */
     --destructive-foreground: 0 0% 98%; /* Near white text */
-    --border: 0 0% 18%; /* Darker border for better definition */
-    --input: 0 0% 12%; /* Darker input background */
-    --ring: 45 67% 80%; /* Brighter golden olive focus ring */
+    --border: 218 20% 23%; /* Medium dark gray borders (#2F3745) */
+    --input: 218 20% 15%; /* Dark input background */
+    --ring: 48 89% 60%; /* Bright gold focus ring */
     
-    /* Premium Design System Core Colors - Dark Mode with High Contrast */
-    --premium-bg-primary: 0 0% 5%; /* Very dark background for maximum contrast */
-    --premium-bg-secondary: 0 0% 8%; /* Dark secondary background with better contrast */
-    --premium-text-primary: 0 0% 98%; /* Near white primary text for maximum readability */
-    --premium-text-secondary: 0 0% 85%; /* Lighter gray secondary text for better readability */
-    --premium-border: 0 0% 18%; /* Darker borders for better definition */
-    --premium-accent-primary: 45 67% 80%; /* Brighter golden olive for better visibility */
-    --premium-accent-secondary: 0 30% 50%; /* Lighter deep maroon for better contrast */
+    /* Premium Design System Core Colors - Dark Mode (Optimized for Readability) */
+    --premium-bg-primary: 210 25% 8%; /* Deep navy (#0F1419) */
+    --premium-bg-secondary: 218 20% 15%; /* Card background (#1E2430) */
+    --premium-text-primary: 0 0% 96%; /* Almost white headings (#F5F5F5) */
+    --premium-text-secondary: 0 0% 83%; /* Light gray subheadings (#D4D4D4) */
+    --premium-text-tertiary: 0 0% 72%; /* Medium light gray paragraphs (#B8B8B8) */
+    --premium-border: 218 20% 23%; /* Medium dark gray borders (#2F3745) */
+    --premium-accent-primary: 48 89% 60%; /* Bright gold (#F4D03F) */
+    --premium-accent-secondary: 351 73% 45%; /* Burgundy (#C41E3A) */
+    --premium-accent-gold: 48 89% 60%; /* Bright gold for highlights */
     --premium-success: 142 70% 65%; /* Brighter green for better visibility */
     --premium-warning: 38 92% 70%; /* Brighter orange for better visibility */
     --premium-error: 0 72% 65%; /* Brighter red for better visibility */
@@ -337,48 +400,57 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     
-    /* Premium Shikshanam Color System - Dark Mode (Enhanced Contrast) */
+    /* Premium Shikshanam Color System - Dark Mode (Deeper Luxury) */
     --parchment-ivory: 45 33% 8%;
-    --golden-olive: 45 67% 75%;
-    --deep-maroon: 0 30% 40%;
-    --copper-orange: 20 80% 70%;
+    --golden-olive: 45 80% 72%;
+    --deep-maroon: 0 35% 52%;
+    --copper-orange: 20 82% 72%;
     --sand-beige: 45 67% 20%;
     --dark-olive: 45 67% 80%;
-    --temple-gold: 45 100% 65%;
+    --temple-gold: 45 88% 65%;
     --deep-indigo: 240 100% 25%;
     
-    /* Premium Dark Theme Colors */
-    --premium-bg-primary: 0 0% 9%; /* Deep charcoal */
-    --premium-bg-secondary: 0 0% 12%; /* Dark secondary */
-    --premium-bg-tertiary: 0 0% 15%; /* Dark tertiary */
-    --premium-bg-elevated: 0 0% 18%; /* Dark elevated */
-    --premium-bg-overlay: 0 0% 0% / 0.95; /* Black overlay */
+    /* Premium Dark Theme Colors (Optimized for Readability) */
+    --premium-bg-primary: 210 25% 8%; /* Deep navy (#0F1419) */
+    --premium-bg-secondary: 218 20% 15%; /* Card background (#1E2430) */
+    --premium-bg-tertiary: 218 20% 18%; /* Slightly lighter dark */
+    --premium-bg-elevated: 218 20% 20%; /* Elevated background */
+    --premium-bg-overlay: 210 25% 8% / 0.95; /* Deep navy overlay */
     
-    --premium-text-primary: 0 0% 95%; /* Near white */
-    --premium-text-secondary: 0 0% 80%; /* Light gray */
-    --premium-text-tertiary: 0 0% 65%; /* Medium gray */
-    --premium-text-quaternary: 0 0% 50%; /* Dark gray */
-    --premium-text-inverse: 0 0% 9%; /* Dark charcoal */
+    --premium-text-primary: 0 0% 96%; /* Almost white (#F5F5F5) */
+    --premium-text-secondary: 0 0% 83%; /* Light gray (#D4D4D4) */
+    --premium-text-tertiary: 0 0% 72%; /* Medium light gray (#B8B8B8) */
+    --premium-text-quaternary: 0 0% 60%; /* Medium gray */
+    --premium-text-inverse: 0 0% 10%; /* Deep charcoal */
     
-    --premium-border-primary: 0 0% 20%; /* Dark border */
-    --premium-border-secondary: 0 0% 25%; /* Medium dark border */
-    --premium-border-accent: 45 67% 75%; /* Lighter golden olive border */
+    --premium-border-primary: 218 20% 23%; /* Medium dark gray (#2F3745) */
+    --premium-border-secondary: 218 20% 28%; /* Lighter border */
+    --premium-border-accent: 48 89% 60%; /* Bright gold border */
     
-    --premium-accent-primary: 45 67% 75%; /* Lighter golden olive */
-    --premium-accent-secondary: 0 30% 40%; /* Lighter deep maroon */
-    --premium-accent-tertiary: 20 80% 70%; /* Lighter copper orange */
+    --premium-accent-primary: 48 89% 60%; /* Bright gold (#F4D03F) */
+    --premium-accent-secondary: 351 73% 45%; /* Burgundy (#C41E3A) */
+    --premium-accent-tertiary: 48 89% 51%; /* Darker gold (#E8B923) */
     
-    --premium-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --premium-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-    --premium-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
-    --premium-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+    --premium-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --premium-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --premium-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+    --premium-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.6);
     
     /* Enhanced Text Colors for Dark Mode */
-    --text-primary: 0 0% 95%;
-    --text-secondary: 0 0% 80%;
-    --text-tertiary: 0 0% 65%;
-    --text-accent: 45 67% 75%;
-    --text-muted: 0 0% 50%;
+    --text-primary: 0 0% 96%; /* Almost white (#F5F5F5) */
+    --text-secondary: 0 0% 83%; /* Light gray (#D4D4D4) */
+    --text-tertiary: 0 0% 72%; /* Medium light gray (#B8B8B8) */
+    --text-accent: 48 89% 60%; /* Bright gold */
+    --text-muted: 0 0% 60%; /* Medium gray */
+    
+    /* Button colors - Dark Mode - Bright Gold */
+    --button-primary-bg: 48 89% 60%; /* Bright gold (#F4D03F) */
+    --button-primary-text: 0 0% 10%; /* Dark text (#1A1A1A) */
+    --button-primary-hover: 48 89% 51%; /* Darker gold hover (#E8B923) */
+    
+    --button-secondary-bg: 351 73% 45%; /* Burgundy (#C41E3A) */
+    --button-secondary-text: 0 0% 100%; /* White text */
+    --button-secondary-hover: 351 73% 40%; /* Darker burgundy hover */
     
     /* Brand Color System - Dark Mode */
     --brand-primary: 45 67% 75%; /* lighter golden-olive */
@@ -481,7 +553,7 @@
     overflow-wrap: break-word;
   }
   
-  /* Typography hierarchy */
+  /* Premium Typography hierarchy - Optimized for Readability */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', system-ui, sans-serif;
     font-weight: 600;
@@ -490,7 +562,7 @@
     letter-spacing: -0.025em;
   }
   
-  /* Enhanced heading contrast */
+  /* Enhanced heading contrast - Deep Charcoal for Light, Almost White for Dark */
   h1 {
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
@@ -509,21 +581,21 @@
     font-size: clamp(1.25rem, 3vw, 2rem);
     font-weight: 600;
     line-height: 1.3;
-    color: hsl(var(--premium-text-primary));
+    color: hsl(var(--premium-text-secondary));
   }
   
   h4 {
     font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     font-weight: 600;
     line-height: 1.4;
-    color: hsl(var(--premium-text-primary));
+    color: hsl(var(--premium-text-secondary));
   }
   
   h5, h6 {
     font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 600;
     line-height: 1.5;
-    color: hsl(var(--premium-text-primary));
+    color: hsl(var(--premium-text-secondary));
   }
   
   /* Enhanced typography for better readability */
@@ -545,14 +617,14 @@
     color: hsl(var(--text-on-bg));
   }
   
-  /* Paragraph text with enhanced contrast */
+  /* Paragraph text with enhanced contrast - Medium Dark Gray for Light, Medium Light Gray for Dark */
   p {
-    color: hsl(var(--premium-text-secondary));
+    color: hsl(var(--premium-text-tertiary));
     line-height: 1.6;
     letter-spacing: 0.01em;
   }
   
-  /* Link text with proper contrast */
+  /* Link text with proper contrast - Premium Gold */
   a {
     color: hsl(var(--premium-accent-primary));
     text-decoration: none;
@@ -566,7 +638,7 @@
   
   /* Small text with enhanced readability */
   small, .text-sm {
-    color: hsl(var(--text-secondary));
+    color: hsl(var(--premium-text-tertiary));
     line-height: 1.5;
     letter-spacing: 0.02em;
   }
@@ -669,30 +741,89 @@
 }
 
 @layer components {
-  /* Button System */
+  /* Premium Button System - Gold and Burgundy with Shimmer */
   .btn-primary {
-    @apply bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-saffron-600 focus:ring-offset-2;
+    @apply font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background: linear-gradient(135deg, hsl(var(--button-primary-bg)), hsl(var(--button-primary-hover)));
+    color: hsl(var(--button-primary-text));
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+    --tw-ring-color: hsl(var(--button-primary-bg));
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, hsl(var(--button-primary-hover)), hsl(var(--button-primary-bg)));
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+  }
+  
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-primary:hover::before {
+    left: 100%;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-deep-teal-600 to-deep-teal-700 hover:from-deep-teal-700 hover:to-deep-teal-800 text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-deep-teal-600 focus:ring-offset-2;
+    @apply font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background: hsl(var(--button-secondary-bg));
+    color: hsl(var(--button-secondary-text));
+    box-shadow: 0 4px 12px rgba(139, 26, 26, 0.3);
+    --tw-ring-color: hsl(var(--button-secondary-bg));
+  }
+  
+  .btn-secondary:hover {
+    background: hsl(var(--button-secondary-hover));
+    box-shadow: 0 8px 20px rgba(139, 26, 26, 0.4);
   }
   
   .btn-outline {
-    @apply border-2 border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-saffron-600 focus:ring-offset-2;
+    @apply font-semibold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    border: 2px solid hsl(var(--button-primary-bg));
+    color: hsl(var(--button-primary-bg));
+    background: transparent;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    --tw-ring-color: hsl(var(--button-primary-bg));
   }
   
-  /* Enhanced Card System with responsive design */
+  .btn-outline:hover {
+    background: hsl(var(--button-primary-bg));
+    color: hsl(var(--button-primary-text));
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
+  }
+  
+  /* Enhanced Card System with premium styling */
   .card-hover {
-    @apply transition-all duration-300 transform hover:scale-103 hover:shadow-2xl;
+    @apply transition-all duration-300 transform hover:scale-103;
+    box-shadow: 0 4px 6px -1px rgba(45, 35, 25, 0.1), 0 2px 4px -1px rgba(45, 35, 25, 0.06);
+  }
+  
+  .card-hover:hover {
+    box-shadow: 0 20px 25px -5px rgba(45, 35, 25, 0.15), 0 10px 10px -5px rgba(45, 35, 25, 0.08);
+    border-color: hsl(45, 75%, 55%);
   }
   
   .card-premium {
-    @apply bg-gradient-to-br from-off-white-500 to-sand-500 dark:from-wisdom-800 dark:to-wisdom-700 border border-saffron-200/30 dark:border-saffron-400/20 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-gradient-to-br from-off-white-500 to-sand-500 dark:from-wisdom-800 dark:to-wisdom-700 border border-saffron-200/30 dark:border-saffron-400/20 rounded-3xl transition-all duration-300;
+    box-shadow: 0 4px 6px -1px rgba(45, 35, 25, 0.12), 0 2px 4px -1px rgba(45, 35, 25, 0.08);
+  }
+  
+  .card-premium:hover {
+    box-shadow: 0 20px 25px -5px rgba(45, 35, 25, 0.18), 0 10px 10px -5px rgba(45, 35, 25, 0.10);
+    border-color: hsl(45, 85%, 48%);
   }
   
   .card-glass {
-    @apply bg-white/80 dark:bg-wisdom-800/80 backdrop-blur-md border border-white/20 dark:border-wisdom-700/30 rounded-2xl shadow-lg;
+    @apply bg-white/80 dark:bg-wisdom-800/80 backdrop-blur-md border border-white/20 dark:border-wisdom-700/30 rounded-2xl;
+    box-shadow: 0 4px 6px -1px rgba(45, 35, 25, 0.1), 0 2px 4px -1px rgba(45, 35, 25, 0.06);
   }
   
   /* Responsive card utilities */
@@ -1165,11 +1296,11 @@
     box-shadow: var(--premium-shadow-xl);
   }
   
-  /* Premium Design System Component Styles */
+  /* Premium Design System Component Styles - Pure White Cards */
   .premium-card {
     background-color: hsl(var(--premium-bg-secondary));
-    color: hsl(var(--premium-text-primary));
-    border: 1px solid hsl(var(--premium-border));
+    color: hsl(var(--premium-text-tertiary));
+    border: 1px solid hsl(var(--premium-border-primary));
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
@@ -1178,6 +1309,7 @@
   .premium-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
+    border-color: hsl(var(--premium-border-accent));
   }
 
   .premium-card-interactive {
@@ -1185,8 +1317,9 @@
   }
 
   .premium-card-interactive:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
     transform: translateY(-4px);
+    border-color: hsl(var(--premium-accent-primary));
   }
 
   /* Premium Headers & Navigation */
@@ -1207,31 +1340,36 @@
   }
   
   .premium-button-primary {
-    @apply premium-bg-primary premium-text-inverse premium-border-accent;
-    background: linear-gradient(135deg, hsl(var(--premium-accent-primary)), hsl(var(--premium-accent-secondary)));
     border-radius: 0.75rem;
     padding: 0.75rem 1.5rem;
     font-weight: 600;
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
-    box-shadow: var(--premium-shadow-sm);
+    background: linear-gradient(135deg, hsl(var(--button-primary-bg)), hsl(var(--button-primary-hover)));
+    color: hsl(var(--button-primary-text));
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+    border: none;
   }
   
   .premium-button-primary:hover {
-    @apply premium-shadow-md;
+    background: linear-gradient(135deg, hsl(var(--button-primary-hover)), hsl(var(--button-primary-bg)));
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     transform: translateY(-1px);
   }
   
   .premium-button-secondary {
-    @apply premium-bg-secondary premium-text-primary premium-border-primary;
     border-radius: 0.75rem;
     padding: 0.75rem 1.5rem;
     font-weight: 600;
-    border-width: 1px;
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+    background: hsl(var(--button-secondary-bg));
+    color: hsl(var(--button-secondary-text));
+    box-shadow: 0 2px 8px rgba(139, 26, 26, 0.3);
+    border: none;
   }
   
   .premium-button-secondary:hover {
-    @apply premium-bg-tertiary premium-shadow-sm;
+    background: hsl(var(--button-secondary-hover));
+    box-shadow: 0 4px 12px rgba(139, 26, 26, 0.4);
     transform: translateY(-1px);
   }
   

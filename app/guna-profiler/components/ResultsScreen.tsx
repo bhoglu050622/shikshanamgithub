@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { GunaResult } from '../types/guna-profiler'
+import { saveQuizResult, getCompletedQuizzes, areAllQuizzesCompleted, getRemainingQuizzes, getQuizDisplayName, getQuizUrl } from '@/lib/quiz-tracking'
 import OverviewTab from './tabs/OverviewTab'
 import AnalysisTab from './tabs/AnalysisTab'
 import RecommendationsTab from './tabs/RecommendationsTab'
@@ -14,6 +16,7 @@ import FeedbackSection from './FeedbackSection'
 interface ResultsScreenProps {
   result: GunaResult
   userName: string
+  userEmail: string
   onResetQuiz: () => void
   feedbackRating: number
   setFeedbackRating: (rating: number) => void
@@ -22,6 +25,7 @@ interface ResultsScreenProps {
 export default function ResultsScreen({
   result,
   userName,
+  userEmail,
   onResetQuiz,
   feedbackRating,
   setFeedbackRating
@@ -29,22 +33,48 @@ export default function ResultsScreen({
   const [activeTab, setActiveTab] = useState('overview')
   const [showShareModal, setShowShareModal] = useState(false)
   const [showUpsellModal, setShowUpsellModal] = useState(false)
-
+  const [navigationState, setNavigationState] = useState<{
+    allCompleted: boolean
+    remainingQuizzes: string[]
+    nextQuizName: string
+    nextQuizUrl: string
+  } | null>(null)
+  
+  const router = useRouter()
   const { scores, percentages, archetype, description, dominantGuna } = result
+
+  // Save quiz result and check navigation state
+  useEffect(() => {
+    if (!userEmail) return
+    
+    // Save the quiz result with user email
+    saveQuizResult('guna-profiler', result, userName, userEmail)
+    
+    // Check navigation state for this user
+    const allCompleted = areAllQuizzesCompleted(userEmail)
+    const remainingQuizzes = getRemainingQuizzes(userEmail)
+    
+    setNavigationState({
+      allCompleted,
+      remainingQuizzes,
+      nextQuizName: remainingQuizzes.length > 0 ? getQuizDisplayName(remainingQuizzes[0]) : '',
+      nextQuizUrl: remainingQuizzes.length > 0 ? getQuizUrl(remainingQuizzes[0]) : ''
+    })
+  }, [result, userName, userEmail])
 
   const handleExploreCourses = () => {
     // Track CTA click and redirect to course
     window.open('https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/', '_blank')
   }
 
-  const handleContinueDharmaPath = () => {
-    const referrer = document.referrer
-    if (referrer.includes('/dharma-path')) {
-      window.history.back()
-    } else {
-      window.location.href = '/dharma-path'
+  const handleNavigation = () => {
+    if (navigationState?.allCompleted) {
+      router.push('/my-journey')
+    } else if (navigationState?.nextQuizUrl) {
+      router.push(navigationState.nextQuizUrl)
     }
   }
+
 
   return (
     <div style={{ backgroundColor: '#fffbeb' }} className="min-h-screen">
@@ -213,6 +243,26 @@ export default function ResultsScreen({
 
           {/* Secondary Actions */}
           <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-center items-center gap-4">
+            {/* Smart Navigation Button */}
+            {navigationState && (
+              <button
+                onClick={handleNavigation}
+                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              >
+                {navigationState.allCompleted ? (
+                  <>
+                    <i className="fas fa-arrow-right mr-2"></i>
+                    Continue to My Journey
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-play mr-2"></i>
+                    Take {navigationState.nextQuizName}
+                  </>
+                )}
+              </button>
+            )}
+            
             <button
               onClick={onResetQuiz}
               className="bg-white border-2 border-gray-300 text-gray-700 w-full sm:w-auto text-base font-medium rounded-lg px-6 py-3 text-center flex items-center justify-center gap-2 hover:bg-gray-100 hover:border-gray-400 transition-colors"
@@ -226,13 +276,6 @@ export default function ResultsScreen({
             >
               <i className="fas fa-share-alt"></i>
               <span>Share Results</span>
-            </button>
-            <button
-              onClick={handleContinueDharmaPath}
-              className="bg-orange-500 hover:bg-orange-600 text-white w-full sm:w-auto text-base font-medium rounded-lg px-6 py-3 text-center flex items-center justify-center gap-2 transition-colors"
-            >
-              <i className="fas fa-path"></i>
-              <span>Continue Dharma Path</span>
             </button>
           </div>
 

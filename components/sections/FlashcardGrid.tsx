@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Star, Trophy, Sparkles, CheckCircle, RotateCcw } from 'lucide-react'
 
@@ -133,6 +133,11 @@ interface FlashcardProps {
 
 function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: FlashcardProps) {
   const [showCelebration, setShowCelebration] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleFlip = () => {
     onFlip()
@@ -141,8 +146,8 @@ function Flashcard({ card, index, isFlipped, isCompleted, onFlip, onComplete }: 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, rotateY: -15 }}
-      whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+      initial={mounted ? { opacity: 0, y: 30, rotateY: -15 } : false}
+      whileInView={mounted ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 1, y: 0, rotateY: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
       className="relative group"
@@ -312,6 +317,11 @@ export default function FlashcardGrid() {
   const [usedCardIds, setUsedCardIds] = useState<Set<number>>(new Set([0, 1, 2])) // Track which cards have been used
   const [totalXP, setTotalXP] = useState(0)
   const [showLevelUp, setShowLevelUp] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Function to get a random unused card
   const getRandomUnusedCard = () => {
@@ -414,8 +424,8 @@ export default function FlashcardGrid() {
       <div className="container-custom">
         {/* Progress Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          whileInView={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-8"
@@ -468,17 +478,31 @@ export default function FlashcardGrid() {
 
         {/* Dynamic Learning Message */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={mounted ? { opacity: 0, y: 30 } : false}
+          animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center mt-12"
         >
           <div className="bg-white/80 backdrop-blur-md rounded-2xl px-8 py-6 shadow-lg border border-golden-olive/20 max-w-2xl mx-auto">
             <Sparkles className="w-12 h-12 text-golden-olive mx-auto mb-4" />
             <h3 className="text-xl font-bold text-dark-text mb-2">Keep Learning!</h3>
-            <p className="text-muted-gray">
+            <p className="text-muted-gray mb-6">
               Click any card to reveal the answer. When you click another card, the previous one will reshuffle with a new question!
             </p>
+            
+            {/* Explore More AI Tools Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                // Show coming soon alert
+                alert('Coming Soon! More AI tools are being developed to enhance your Sanskrit learning experience.')
+              }}
+              className="bg-gradient-to-r from-golden-olive to-deep-maroon text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 mx-auto"
+            >
+              <Sparkles className="w-5 h-5" />
+              <span>Explore more AI tools!</span>
+            </motion.button>
           </div>
         </motion.div>
       </div>

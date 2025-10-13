@@ -99,7 +99,7 @@ export default function HeroSection() {
   return (
     <section 
       id="sankhya-hero-component"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-parchment-ivory"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-8 bg-[#fdfaf6]"
     >
       {/* Background Canvas */}
       <canvas
@@ -109,21 +109,24 @@ export default function HeroSection() {
         style={{ zIndex: 1 }}
       />
 
-      <div className="container-custom text-center relative z-10">
+      <div className="max-w-4xl w-full text-center relative z-10">
         {/* Stats Pills */}
         <div 
-          className="flex flex-wrap justify-center gap-4 mb-8 animate-fade-in-up"
-          style={{ animationDelay: '0s' }}
+          className="flex flex-nowrap overflow-x-auto gap-4 mb-8 pb-2.5 scrollbar-hide animate-fade-in-up justify-center"
+          style={{ 
+            animationDelay: '0s',
+            WebkitOverflowScrolling: 'touch'
+          }}
         >
-          <div className="bg-white border border-temple-gold/20 rounded-full px-5 py-3 flex items-center gap-2 shadow-lg text-sm font-medium text-text-secondary whitespace-nowrap">
+          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-normal text-center flex-shrink-0" style={{ lineHeight: '1.3' }}>
             <span className="text-lg">🔱</span> 
             <span>World's 1st<br/>Vedic EI course</span>
           </div>
-          <div className="bg-white border border-temple-gold/20 rounded-full px-5 py-3 flex items-center gap-2 shadow-lg text-sm font-medium text-text-secondary whitespace-nowrap">
+          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-nowrap flex-shrink-0">
             <span className="text-lg">📊</span> 
             <span>100+ Global Models Researched</span>
           </div>
-          <div className="bg-white border border-temple-gold/20 rounded-full px-5 py-3 flex items-center gap-2 shadow-lg text-sm font-medium text-text-secondary whitespace-nowrap">
+          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-nowrap flex-shrink-0">
             <span className="text-lg">🎯</span> 
             <span>30+ Tools for Emotional Mastery</span>
           </div>
@@ -131,11 +134,11 @@ export default function HeroSection() {
 
         {/* Center Icon */}
         <div 
-          className="w-20 h-20 mx-auto mb-8 animate-fade-in-up"
+          className="w-20 h-20 mx-auto mb-8 flex items-center justify-center animate-fade-in-up"
           style={{ animationDelay: '0.2s' }}
         >
           <div 
-            className="w-9 h-9 bg-gradient-to-br from-temple-gold to-copper-orange rounded-full mx-auto animate-pulse"
+            className="w-9 h-9 bg-gradient-to-br from-[#f07218] to-[#f89b29] rounded-full"
             style={{
               animation: 'softGlowPulse 0.3s ease-in-out infinite'
             }}
@@ -144,14 +147,19 @@ export default function HeroSection() {
 
         {/* Main Heading */}
         <h1 
-          className="text-hero text-text-primary mb-8 animate-fade-in-up"
-          style={{ animationDelay: '0.4s' }}
+          className="text-6xl font-bold text-[#2c2620] mb-8 leading-tight animate-fade-in-up"
+          style={{ 
+            fontFamily: "'Playfair Display', serif",
+            animationDelay: '0.4s' 
+          }}
         >
           Reset Your<br/>
           Emotions Through<br/>
           <span 
-            className="text-temple-gold cursor-pointer hover:bg-gradient-to-r hover:from-temple-gold hover:to-copper-orange hover:bg-clip-text hover:text-transparent hover:animate-shimmer"
-            style={{ backgroundSize: '200% auto' }}
+            className="text-[#c55a11] cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#b92b27] hover:to-[#f07218] hover:bg-clip-text hover:text-transparent"
+            style={{ 
+              backgroundSize: '200% auto'
+            }}
           >
             Ancient Sāṅkhya<br/>
             Wisdom
@@ -160,28 +168,45 @@ export default function HeroSection() {
 
         {/* Subheading */}
         <p 
-          className="text-body text-text-secondary max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in-up"
-          style={{ animationDelay: '0.5s' }}
+          className="text-lg text-[#575049] max-w-2xl mx-auto mb-8 leading-relaxed animate-fade-in-up"
+          style={{ 
+            fontFamily: "'Poppins', sans-serif",
+            animationDelay: '0.5s' 
+          }}
         >
           Trapped in emotional confusion? Discover inner clarity through India's most profound philosophical system. 
-          Join <strong className="text-temple-gold font-semibold">Acharya Jamwant</strong> and <strong className="text-temple-gold font-semibold">Vishal Chaurasia</strong> on a life-changing journey within.
+          Join <strong className="text-[#f07218] font-semibold">Acharya Jamwant</strong> and <strong className="text-[#f07218] font-semibold">Vishal Chaurasia</strong> on a life-changing journey within.
         </p>
 
         {/* CTA Buttons */}
         <div 
-          className="animate-fade-in-up"
+          className="flex flex-col items-center gap-3 animate-fade-in-up"
           style={{ animationDelay: '0.6s' }}
         >
-          <div className="flex justify-center gap-4 flex-wrap mb-4">
+          <div className="flex justify-center gap-4 flex-wrap">
             <a 
-              href="https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/#:~:text=Limited%20Time%20Offer,-Transform%20Your%20Emotional"
-              className="btn-shikshanam-primary text-lg px-8 py-4 flex items-center gap-2"
+              href="#enroll-core-program"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('enroll-core-program');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }}
+              className="px-8 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#f89b29] to-[#f07218] shadow-lg transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-xl inline-flex items-center gap-2"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                animation: 'hero-buttonBob 0.3s ease-in-out infinite'
+              }}
             >
               🚀 Start Your Transformation -₹2,499
             </a>
             <button 
               onClick={() => setIsVideoModalOpen(true)}
-              className="btn-shikshanam-outline text-lg px-8 py-4 flex items-center gap-2"
+              className="px-8 py-3.5 rounded-full text-base font-semibold text-[#2c2620] bg-white border-2 border-[#e0d9d0] transition-all duration-300 hover:transform hover:-translate-y-1 hover:border-[#2c2620] hover:shadow-lg inline-flex items-center gap-2"
+              style={{
+                fontFamily: "'Poppins', sans-serif"
+              }}
             >
               <svg fill="currentColor" viewBox="0 0 20 20" width="20" height="20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
@@ -191,7 +216,10 @@ export default function HeroSection() {
           </div>
           <a 
             href="https://shikshanam.in/sankhya-philosophy/"
-            className="text-text-tertiary font-medium hover:text-temple-gold transition-colors duration-300"
+            className="text-[#575049] font-medium hover:text-[#f07218] hover:underline transition-colors duration-300 py-3.5"
+            style={{
+              fontFamily: "'Poppins', sans-serif"
+            }}
           >
             What is Sāṅkhya?
           </a>
@@ -212,11 +240,6 @@ export default function HeroSection() {
           to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes textShine {
-          from { background-position: -200% center; }
-          to { background-position: 200% center; }
-        }
-        
         @keyframes hero-buttonBob {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-5px); }
@@ -227,46 +250,35 @@ export default function HeroSection() {
           50% { box-shadow: 0 0 35px 15px rgba(248, 155, 41, 0.5); }
         }
         
-        @keyframes modal-fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes modal-zoomIn {
-          from { opacity: 0; transform: scale(0.9); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        
         .animate-fade-in-up {
           opacity: 0;
           animation: hero-fadeInUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
         
-        .animate-shimmer {
-          animation: textShine 2s linear infinite;
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         
-        .hero-button:hover {
-          animation-play-state: paused !important;
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
         
         @media (max-width: 768px) {
-          .hero-heading {
+          h1 {
             font-size: 3rem !important;
           }
-          .hero-subheading {
+          p {
             font-size: 1rem !important;
           }
         }
         
         @media (max-width: 480px) {
-          .hero-heading {
+          h1 {
             font-size: 2.5rem !important;
           }
-          .main-buttons {
-            flex-direction: column;
+          .flex-wrap > * {
             width: 100%;
-            align-items: stretch;
           }
         }
       `}</style>

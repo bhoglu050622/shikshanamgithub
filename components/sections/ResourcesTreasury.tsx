@@ -32,24 +32,6 @@ const treasuryResources = [
     lastUpdated: "3 days ago"
   },
   {
-    title: "Sanskrit Keyboard Helper",
-    description: "Devanagari typing assistance",
-    icon: Keyboard,
-    route: "/tools/keyboard",
-    color: "from-teal-primary to-teal-primary/80",
-    meta: "Interactive tool",
-    lastUpdated: "1 day ago"
-  },
-  {
-    title: "Audio Sandhi Table",
-    description: "Pronunciation and sound combinations",
-    icon: Headphones,
-    route: "/tools/sandhi",
-    color: "from-purple-primary to-purple-primary/80",
-    meta: "Audio guide",
-    lastUpdated: "4 days ago"
-  },
-  {
     title: "Study Groups",
     description: "Join fellow learners",
     icon: Users,

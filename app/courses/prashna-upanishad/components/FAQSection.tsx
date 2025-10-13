@@ -3,48 +3,40 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, HelpCircle, Mail, Phone } from 'lucide-react';
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import MotionWrapper, { StaggerContainer, StaggerItem, MotionInView } from '@/components/motion/MotionWrapper';
 
 const faqs = [
   {
-    question: 'How do I enroll in the course?',
-    answer: 'Simply click the "Enroll Now" button on this page. You\'ll be redirected to our secure payment gateway where you can complete your purchase and get immediate access to the course.'
+    question: 'How do I sign up?',
+    answer: 'Click login → signup; or use Google.'
   },
   {
-    question: 'What is the course validity?',
-    answer: 'You get lifetime access to the course materials. Once enrolled, you can access all videos, notes, and resources forever, and learn at your own pace.'
+    question: 'What is course validity?',
+    answer: 'Lifetime (or long access)'
   },
   {
-    question: 'Are there any prerequisites for this course?',
-    answer: 'No prerequisites required! This course is designed for both beginners and intermediate learners. We start from the basics and gradually build up to advanced concepts.'
+    question: 'Any prerequisites?',
+    answer: 'None'
   },
   {
-    question: 'Can I download the course material?',
-    answer: 'Yes! You can download the comprehensive notes, quizzes, and supplementary materials. However, the video content is streamed online for the best learning experience.'
+    question: 'How to access after purchase?',
+    answer: 'Via Dashboard, website / mobile app'
   },
   {
-    question: 'What is the refund policy?',
-    answer: 'We offer a 7-day money-back guarantee. If you\'re not satisfied with the course content within the first 7 days, you can request a full refund.'
+    question: 'Can I download lectures?',
+    answer: 'Yes, via mobile app'
   },
   {
-    question: 'Is the course available in other languages?',
-    answer: 'Currently, the course is available in Hindi. We\'re working on English subtitles and other language versions for future releases.'
+    question: 'How to contact support?',
+    answer: 'support@shikshanam.in'
   },
   {
-    question: 'How long does it take to complete the course?',
-    answer: 'The course contains comprehensive content covering all six questions. Most students complete it within 2-3 weeks, but you can take as much time as you need with lifetime access.'
+    question: 'Issue accessing course?',
+    answer: 'Check email used, check Dashboard, contact support'
   },
   {
-    question: 'Will I get a certificate after completion?',
-    answer: 'Yes! Upon successful completion of all six question modules and assessments, you\'ll receive a downloadable certificate that you can share on LinkedIn and other professional platforms.'
-  },
-  {
-    question: 'Is there any community support?',
-    answer: 'Absolutely! You\'ll have access to our student community where you can ask questions, share insights, and connect with fellow spiritual seekers on the path of inquiry.'
-  },
-  {
-    question: 'Can I access the course on mobile devices?',
-    answer: 'Yes! The course is fully responsive and can be accessed on any device - desktop, tablet, or mobile. Learn anywhere, anytime at your convenience.'
+    question: 'Refunds?',
+    answer: 'No refunds currently'
   }
 ];
 
@@ -64,7 +56,7 @@ export default function FAQSection() {
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
-              Find answers to common questions about the Prashna Upanishad course. Still have questions? We're here to help!
+              Get answers to common questions about the course
             </p>
           </div>
         </StaggerItem>
@@ -73,7 +65,7 @@ export default function FAQSection() {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <motion.div
+                <MotionInView
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -90,19 +82,18 @@ export default function FAQSection() {
                     </h3>
                     <div className="flex-shrink-0">
                       {openIndex === index ? (
-                        <ChevronUp className="w-5 h-5 text-muted-saffron-600" />
+                        <ChevronUp className="w-5 h-5 text-gold-600" />
                       ) : (
-                        <ChevronDown className="w-5 h-5 text-muted-saffron-600" />
+                        <ChevronDown className="w-5 h-5 text-gold-600" />
                       )}
                     </div>
                   </button>
                   
                   <AnimatePresence>
                     {openIndex === index && (
-                      <motion.div
+                      <MotionInView
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        whileInView={{ height: 'auto', opacity: 1 }}
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
@@ -111,28 +102,28 @@ export default function FAQSection() {
                             {faq.answer}
                           </p>
                         </div>
-                      </motion.div>
+                      </MotionInView>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </MotionInView>
               ))}
             </div>
           </div>
         </StaggerItem>
 
         <StaggerItem>
-          <div className="mt-16 bg-gradient-to-r from-muted-saffron-50 to-teal-50 p-8 rounded-3xl">
+          <div className="mt-16 bg-gradient-to-r from-gold-50 to-teal-50 p-8 rounded-3xl border border-gold-200/30 shadow-sm">
             <div className="text-center">
               <h3 className="text-2xl font-display text-high-contrast mb-6">
                 Still Have Questions?
               </h3>
               <p className="text-wisdom-600 mb-8 max-w-2xl mx-auto">
-                Our support team is here to help you with any questions about the course, enrollment, or technical issues.
+                Give us a call +91-9910032165 (Monday to Saturday 11 AM – 6 PM)
               </p>
               
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div className="flex items-center justify-center space-x-4 p-6 bg-white rounded-2xl">
-                  <div className="w-12 h-12 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center shadow-md">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-left">
@@ -154,7 +145,7 @@ export default function FAQSection() {
               
               <div className="mt-8">
                 <div className="inline-flex items-center space-x-2 bg-white px-6 py-3 rounded-full">
-                  <HelpCircle className="w-5 h-5 text-muted-saffron-600" />
+                  <HelpCircle className="w-5 h-5 text-gold-600" />
                   <span className="text-wisdom-600 font-medium">Average response time: 2-4 hours</span>
                 </div>
               </div>

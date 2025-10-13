@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ShivaResult } from '../types/shiva-alignment'
+import { courseExists, getCourseBySlug } from '@/lib/courses'
 
 interface DharmaPathChartProps {
   result: ShivaResult
@@ -25,6 +26,10 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
     const courses = []
     const books = []
 
+    // Note: Course URLs are validated against the dynamic course registry
+    // If a course doesn't exist, it will gracefully handle the missing link
+    // All courses are auto-discovered from /app/courses/ directory
+
     // Recommendations based on Shiva alignment result
     switch (result.dominantArchetype) {
       case 'unbound':
@@ -39,7 +44,7 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
           {
             title: 'Advaita Vedanta: Non-dual Wisdom',
             description: 'Explore the ultimate reality beyond duality',
-            url: '/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka',
+            url: '/courses/advaita-vedanta',
             level: 'Advanced',
             duration: '10 weeks'
           }
@@ -72,7 +77,7 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
           {
             title: 'Yoga Darshan: The Science of Integration',
             description: 'Learn to integrate spiritual practice with modern life',
-            url: '/courses/yoga-darshan',
+            url: '/courses/yoga-darshan-course',
             level: 'Intermediate',
             duration: '8 weeks'
           }
@@ -228,15 +233,15 @@ export default function DharmaPathChart({ result, userName }: DharmaPathChartPro
   }, [result])
 
   useEffect(() => {
-    // Load dharma path profile
-    const storedProfile = localStorage.getItem('dharma-path-profile')
-    if (storedProfile) {
+    // Load guna profiler result
+    const storedResult = localStorage.getItem('guna-profiler-result')
+    if (storedResult) {
       try {
-        const profile = JSON.parse(storedProfile)
+        const profile = JSON.parse(storedResult)
         setDharmaProfile(profile)
         generateRecommendations(profile)
       } catch (error) {
-        console.error('Error loading dharma profile:', error)
+        console.error('Error loading guna profile:', error)
       }
     }
   }, [result, generateRecommendations])

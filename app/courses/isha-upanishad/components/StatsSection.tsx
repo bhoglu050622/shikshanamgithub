@@ -77,7 +77,7 @@ export default function StatsSection() {
   const features = [
     '3+ Hrs. of Content',
     '18 Shlokas Covered',
-    'Lifetime Access',
+    '1-Year Access',
     'Whatsapp Community',
     'Certificate of Completion'
   ];

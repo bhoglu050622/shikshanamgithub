@@ -18,6 +18,8 @@ import {
   CheckCircle
 } from 'lucide-react';
 import Image from 'next/image';
+import { useAuth } from '@/lib/auth/AuthContext';
+import { SSOLoginModal } from '@/components/auth/SSOLoginModal';
 
 export function PackageDetail({ 
   package: pkg, 
@@ -27,6 +29,9 @@ export function PackageDetail({
 }: PackageDetailProps) {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [expandedTestimonials, setExpandedTestimonials] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  
+  const { isLoggedIn } = useAuth();
 
   const savings = pkg.originalPriceInr ? pkg.originalPriceInr - pkg.priceInr : 0;
   const savingsPercent = pkg.originalPriceInr ? Math.round((savings / pkg.originalPriceInr) * 100) : 0;
@@ -37,6 +42,19 @@ export function PackageDetail({
 
   const toggleTestimonials = () => {
     setExpandedTestimonials(!expandedTestimonials);
+  };
+
+  const handleBuyClick = () => {
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
+    onBuy(pkg.sku);
+  };
+
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
+    onBuy(pkg.sku);
   };
 
   return (
@@ -74,7 +92,7 @@ export function PackageDetail({
               <Button
                 size="lg"
                 className="bg-saffron-600 hover:bg-saffron-700 text-white px-8 py-3 text-lg"
-                onClick={() => onBuy(pkg.sku)}
+                onClick={handleBuyClick}
                 aria-label={`Buy ${pkg.name} for ₹${pkg.priceInr.toLocaleString()}`}
               >
                 Buy Now
@@ -83,12 +101,12 @@ export function PackageDetail({
 
             {pkg.thumbnailUrl && (
               <div className="relative">
-                <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-saffron-50 to-amber-50">
                   <Image
                     src={pkg.thumbnailUrl}
                     alt={pkg.name}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
@@ -389,7 +407,7 @@ export function PackageDetail({
                   <Button
                     size="lg"
                     className="w-full bg-saffron-600 hover:bg-saffron-700 text-white"
-                    onClick={() => onBuy(pkg.sku)}
+                    onClick={handleBuyClick}
                   >
                     Buy Now
                   </Button>
@@ -402,6 +420,13 @@ export function PackageDetail({
           </div>
         </div>
       </div>
+
+      {/* Login Modal */}
+      <SSOLoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
     </div>
   );
 }

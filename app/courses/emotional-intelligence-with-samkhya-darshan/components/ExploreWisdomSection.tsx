@@ -40,8 +40,8 @@ const VideoCard = ({ video }: VideoCardProps) => {
           src={video.thumbnailUrl}
           alt={video.title}
           layout="fill"
-          objectFit="cover"
-          className={`w-full h-full object-cover transition-transform duration-400 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          objectFit="contain"
+          className={`w-full h-full object-contain transition-transform duration-400 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           onError={(e) => {
             const target = e.target as HTMLImageElement
             target.src = 'https://placehold.co/600x400/2c2620/fdfaf6?text=Video+Not+Found'

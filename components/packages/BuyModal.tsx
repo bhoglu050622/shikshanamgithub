@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -126,12 +126,14 @@ export function BuyModal({
       <DialogContent 
         ref={dialogRef}
         className="max-w-2xl max-h-[90vh] overflow-y-auto"
-        aria-labelledby="buy-modal-title"
       >
         <DialogHeader>
-          <DialogTitle id="buy-modal-title" className="text-2xl font-bold text-slate-800">
+          <DialogTitle className="text-2xl font-bold text-slate-800">
             Complete Your Purchase
           </DialogTitle>
+          <DialogDescription className="text-slate-600">
+            Review your package details and complete your enrollment
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">

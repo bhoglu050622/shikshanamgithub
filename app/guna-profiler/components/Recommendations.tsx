@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { DharmaPathData } from '../../dharma-path/types/dharma-path'
+import Link from 'next/link'
 import { GunaAnalysis, CourseRecommendation, BookRecommendation } from '../types/guna-profiler'
 
 interface RecommendationsProps {
   analysis: GunaAnalysis
-  userProfile: DharmaPathData
+  userProfile?: any // Optional user profile data
 }
 
 export default function Recommendations({ analysis, userProfile }: RecommendationsProps) {
@@ -16,7 +16,7 @@ export default function Recommendations({ analysis, userProfile }: Recommendatio
         id: 'sanskrit-basics',
         title: 'Sanskrit for Beginners',
         description: 'Learn the fundamentals of Sanskrit language and script',
-        href: '/courses/sanskrit-course',
+        href: '/courses/sanskrit-bhasha-pragya',
         image: '/images/sanskrit-course.jpg',
         level: 'beginner',
         duration: '8 weeks',
@@ -36,7 +36,7 @@ export default function Recommendations({ analysis, userProfile }: Recommendatio
         id: 'yoga-philosophy',
         title: 'Yoga Darshan',
         description: 'Explore the philosophical foundations of yoga',
-        href: '/courses/yoga-darshan',
+        href: '/courses/yoga-darshan-course',
         image: '/images/yoga-philosophy.jpg',
         level: 'intermediate',
         duration: '10 weeks',
@@ -286,26 +286,12 @@ export default function Recommendations({ analysis, userProfile }: Recommendatio
           Your Guṇa profile is just the beginning. Choose a course or book that resonates with you and start your transformation today.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
+          <Link
             href="/courses"
             className="px-8 py-3 bg-saffron-primary hover:bg-saffron-primary/80 text-deep-indigo rounded-lg font-medium transition-all duration-300"
           >
             Browse All Courses
-          </a>
-          <button
-            onClick={() => {
-              // Check if user came from Dharma Path
-              const referrer = document.referrer
-              if (referrer.includes('/dharma-path')) {
-                window.history.back()
-              } else {
-                window.location.href = '/dharma-path'
-              }
-            }}
-            className="px-8 py-3 bg-lotus-white/10 hover:bg-lotus-white/20 text-lotus-white rounded-lg font-medium transition-all duration-300 border border-lotus-white/20"
-          >
-            Continue Dharma Path
-          </button>
+          </Link>
         </div>
       </motion.div>
     </div>

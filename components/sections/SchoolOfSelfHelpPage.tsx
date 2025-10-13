@@ -33,13 +33,11 @@ import {
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper'
 import SelfHelpHero from './SelfHelpHero'
 import SkillTracks from './SkillTracks'
-import CourseJourneyCarousel from './CourseJourneyCarousel'
-import MeetGurus from './MeetGurus'
-import FeaturedCoursesSlider from './FeaturedCoursesSlider'
-import ActivityShowcase from './ActivityShowcase'
-import FoundersMission from './FoundersMission'
-import CommunityCTA from './CommunityCTA'
-import EnhancedFooter from './EnhancedFooter'
+import CourseJourneyImage from './CourseJourneyImage'
+import PurusharhasAnimation from './PurusharhasAnimation'
+import DownloadAppNew from './DownloadAppNew'
+import JoinCommunity from './JoinCommunity'
+import FAQ from './FAQ'
 
 // Data for the page
 const sanskritQuotes = [
@@ -246,235 +244,28 @@ export default function SchoolOfSelfHelpPage() {
 
   return (
     <>
-      
       {/* Enhanced Hero Section */}
       <SelfHelpHero 
         onExploreTracks={handleExploreTracks}
         onTakeTest={handleTakeTest}
       />
 
+      {/* Purusharthas Animation Section */}
+      <PurusharhasAnimation />
+
       {/* Enhanced Skill Tracks Section */}
       <SkillTracks 
         onCourseClick={handleCourseClick}
       />
 
-      {/* Enhanced Course Journey Section */}
-      <CourseJourneyCarousel 
-        onStepChange={handleStepChange}
-        onComplete={handleJourneyComplete}
-        initialUnlockedSteps={1}
-      />
+      {/* Course Journey Instructional Image */}
+      <CourseJourneyImage />
 
-      {/* Enhanced Meet Gurus Section */}
-      <MeetGurus 
-        onGuruClick={(guru) => {
-          // analytics.track('guru_view', {
-          //   id: guru.name.toLowerCase().replace(/\s+/g, '-'),
-          //   name: guru.name,
-          //   specialty: guru.specialty
-          // });
-        }}
-        onViewProfile={(guru) => {
-          // analytics.track('guru_view', {
-          //   id: guru.name.toLowerCase().replace(/\s+/g, '-'),
-          //   name: guru.name,
-          //   specialty: guru.specialty
-          // });
-        }}
-      />
 
-      {/* Enhanced Featured Courses Section */}
-      <FeaturedCoursesSlider 
-        onCourseClick={(course) => {
-          // analytics.track('course_click', {
-          //   id: course.id,
-          //   title: course.title,
-          //   category: course.category,
-          //   level: course.level,
-          //   price: course.price,
-          //   duration: course.duration
-          // });
-        }}
-        onEnrollClick={(course) => {
-          // analytics.track('course_enrollment', {
-          //   id: course.id,
-          //   title: course.title,
-          //   category: course.category,
-          //   level: course.level,
-          //   price: course.price
-          // });
-        }}
-      />
-
-      {/* Enhanced Activity Showcase Section */}
-      <ActivityShowcase 
-        onTestimonialClick={(testimonial) => {
-          // analytics.track('testimonial_click', {
-          //   id: testimonial.id,
-          //   author: testimonial.name
-          // });
-        }}
-        onVideoPlay={(testimonial) => {
-          // analytics.track('video_play', {
-          //   id: testimonial.id,
-          //   author: testimonial.name,
-          //   duration: parseInt(testimonial.duration.replace(':', '')) * 1000 // Convert to milliseconds
-          // });
-        }}
-      />
-
-      {/* Enhanced Founders Mission Section */}
-      <FoundersMission />
-
-      {/* Enhanced Community CTA Section */}
-      <CommunityCTA 
-        onJoinCommunity={(platform) => {
-          // analytics.track('community_join', { platform });
-        }}
-        onSubscribeNewsletter={() => {
-          // analytics.track('newsletter_subscription', { email: 'user@example.com' });
-        }}
-        onViewEvents={() => {
-          // analytics.track('event_view', {
-          //   title: 'All Events',
-          //   date: new Date().toISOString(),
-          //   type: 'view_all'
-          // });
-        }}
-      />
-
-      {/* FAQs Section */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-display text-indigo-700 dark:text-soft-gold-500 mb-12 text-center">
-              FAQs
-            </h2>
-            
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="card-premium overflow-hidden"
-                >
-                  <button
-                    onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        setExpandedFaq(expandedFaq === index ? null : index)
-                      }
-                    }}
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-saffron-50 dark:hover:bg-wisdom-700 transition-colors focus-ring"
-                    aria-expanded={expandedFaq === index}
-                    aria-controls={`faq-answer-${index}`}
-                    aria-label={`${expandedFaq === index ? 'Collapse' : 'Expand'} FAQ: ${faq.question}`}
-                  >
-                    <h3 className="text-lg font-display text-indigo-700 dark:text-soft-gold-500 pr-4">
-                      {faq.question}
-                    </h3>
-                    {expandedFaq === index ? (
-                      <ChevronUp className="w-5 h-5 text-saffron-600 dark:text-saffron-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-saffron-600 dark:text-saffron-400 flex-shrink-0" />
-                    )}
-                  </button>
-                  
-                  <AnimatePresence>
-                    {expandedFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6" id={`faq-answer-${index}`}>
-                          <p className="text-wisdom-600 dark:text-wisdom-400 leading-relaxed">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Sanskrit Quote Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="card-premium p-12">
-              <div className="text-3xl md:text-4xl font-devanagari text-indigo-700 dark:text-soft-gold-500 mb-4">
-                {sanskritQuotes[currentQuote].text}
-              </div>
-              <div className="text-lg text-saffron-600 dark:text-saffron-400 mb-2">
-                {sanskritQuotes[currentQuote].transliteration}
-              </div>
-              <div className="text-wisdom-600 dark:text-wisdom-400 leading-relaxed">
-                {sanskritQuotes[currentQuote].translation}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="section-padding bg-white/50 dark:bg-deep-indigo-500/50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary flex items-center space-x-3 px-8 py-4 text-lg mx-auto mb-4 focus-ring"
-              aria-label="Contact us for questions or support - we respond within 24-48 hours"
-            >
-              <Mail className="w-6 h-6" />
-              <span>Contact Us</span>
-            </motion.button>
-            
-            <p className="text-wisdom-600 dark:text-wisdom-400">
-              We'll get back within 24–48 hrs.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Enhanced Footer */}
-      <EnhancedFooter 
-        onNewsletterSubscribe={(email) => {
-          // analytics.track('newsletter_subscription', { email });
-        }}
-        onSocialClick={(platform) => {
-          // analytics.track('social_click', { platform });
-        }}
-      />
+      {/* Homepage-Style Sections */}
+      <DownloadAppNew />
+      <JoinCommunity />
+      <FAQ />
     </>
   )
 }

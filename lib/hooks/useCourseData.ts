@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 // Type definition for course data
 export interface CourseData {
@@ -48,36 +48,28 @@ export interface UseCourseDataReturn {
 }
 
 export function useCourseData(courseId: string, fallbackData: CourseData): UseCourseDataReturn {
+  const fallbackDataRef = useRef(fallbackData);
+  fallbackDataRef.current = fallbackData;
+  
   const [courseData, setCourseData] = useState<CourseData>(fallbackData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchCourseData = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`/api/cms/course/${courseId}`);
-      
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success && data.data) {
-          setCourseData(data.data);
-        }
-      } else {
-        console.warn(`Failed to fetch course data for ${courseId}, using fallback data`);
-      }
-    } catch (err) {
-      console.error(`Error fetching course data for ${courseId}:`, err);
-      setError(err instanceof Error ? err.message : 'Unknown error');
-    } finally {
-      setLoading(false);
-    }
+    // CMS API removed - using static fallback data only
+    setLoading(true);
+    setError(null);
+    
+    // Simulate async behavior for consistency
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    setCourseData(fallbackDataRef.current);
+    setLoading(false);
   }, [courseId]);
 
   useEffect(() => {
     fetchCourseData();
-  }, [courseId, fetchCourseData]);
+  }, [fetchCourseData]);
 
   return {
     courseData,

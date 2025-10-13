@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { X, ShoppingCart } from 'lucide-react'
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink'
 
 export default function StickyEnrollBar() {
   const [isVisible, setIsVisible] = useState(false)
@@ -50,15 +51,15 @@ export default function StickyEnrollBar() {
                 </div>
                 
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-indigo-900 dark:text-wisdom-50 text-sm md:text-base truncate">
-                    Sanskrit Course - From the Beginning
+                  <h3 className="font-semibold text-indigo-900 dark:text-wisdom-50 text-sm md:text-base truncate font-devanagari">
+                    संस्कृत भाषा प्रज्ञा - Sanskrit Course in Hindi
                   </h3>
                   <div className="flex items-center gap-2 mt-1">
                     <Badge variant="secondary" className="text-xs bg-saffron-100 dark:bg-saffron-900/30 text-saffron-700 dark:text-saffron-300">
-                      Live Classes
+                      Live QnA Weekly
                     </Badge>
                     <span className="text-xs text-indigo-600 dark:text-wisdom-400">
-                      • 3 Months • Certificate
+                      • 30 Sessions • Certificate
                     </span>
                   </div>
                 </div>
@@ -67,30 +68,25 @@ export default function StickyEnrollBar() {
               {/* Center - Price */}
               <div className="flex items-center gap-2">
                 <div className="text-right">
-                  <div className="text-lg font-bold text-indigo-900 dark:text-wisdom-50">
-                    ₹2,999
+                  <div className="text-sm font-bold text-indigo-900 dark:text-wisdom-50">
+                    Contact for Price
                   </div>
-                  <div className="text-xs text-indigo-600 dark:text-wisdom-400 line-through">
-                    ₹4,999
+                  <div className="text-xs text-indigo-600 dark:text-wisdom-400">
+                    Limited Time Offer
                   </div>
                 </div>
-                <Badge className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs">
-                  40% OFF
-                </Badge>
               </div>
 
               {/* Right - CTA */}
               <div className="flex items-center gap-2">
-                <Button 
-                  size="sm" 
-                  className="btn-primary whitespace-nowrap"
-                  href="#pricing"
-                  icon={<ShoppingCart className="w-4 h-4" />}
-                  iconPosition="left"
+                <ProtectedExternalLink 
+                  href="https://courses.shikshanam.in/single-checkout/655b340de4b0b31c6db6cb3c?pid=p2"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold text-sm rounded-xl transition-all duration-300 whitespace-nowrap gap-2"
                 >
+                  <ShoppingCart className="w-4 h-4" />
                   <span className="hidden sm:inline">Enroll Now</span>
                   <span className="sm:hidden">Join</span>
-                </Button>
+                </ProtectedExternalLink>
                 
                 <Button
                   variant="ghost"

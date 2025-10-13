@@ -1,48 +1,53 @@
 'use client';
 import { motion } from 'framer-motion';
-import { CheckCircle, Clock, Download, Award, Users, MessageCircle, BookOpen, Globe, Calendar } from 'lucide-react';
+import { CheckCircle, Clock, Download, Award, Users, MessageCircle, BookOpen, FileText, Gift } from 'lucide-react';
 
 export default function CourseHighlights() {
   const highlights = [
     {
       icon: <BookOpen className="w-6 h-6" />,
-      title: "46 Verses Explained",
-      description: "Comprehensive coverage of all verses in Drig-Drishya Viveka"
+      title: "All 46 Shlokas Covered",
+      description: "Complete verse-by-verse study of Drig Drishya Viveka"
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Lifetime Access",
-      description: "One-time payment, learn at your own pace"
+      title: "7+ Hrs. of Content",
+      description: "Comprehensive video lectures and explanations"
     },
     {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Hindi Language",
-      description: "Native language explanations for better understanding"
-    },
-    {
-      icon: <Calendar className="w-6 h-6" />,
-      title: "Structured Release",
-      description: "New content on Mondays, Wednesdays & Fridays"
+      icon: <FileText className="w-6 h-6" />,
+      title: "Quizzes & Notes",
+      description: "Test your knowledge and access study materials"
     },
     {
       icon: <Award className="w-6 h-6" />,
-      title: "Certificate Provided",
-      description: "Earn a completion certificate for your journey"
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: "Community Q&A",
-      description: "Support from fellow learners and instructors"
-    },
-    {
-      icon: <Download className="w-6 h-6" />,
-      title: "Downloadable Resources",
-      description: "Access notes and materials offline"
+      title: "Certification",
+      description: "Earn a verified certificate upon completion"
     },
     {
       icon: <CheckCircle className="w-6 h-6" />,
-      title: "November 15 Launch",
-      description: "Be among the first to experience this wisdom"
+      title: "1 Yr Access",
+      description: "Learn at your own pace for one full year"
+    },
+    {
+      icon: <MessageCircle className="w-6 h-6" />,
+      title: "WhatsApp Group",
+      description: "Connect with fellow learners and instructors"
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "Community Access",
+      description: "Join a community of spiritual seekers"
+    },
+    {
+      icon: <MessageCircle className="w-6 h-6" />,
+      title: "Live QnA",
+      description: "Get your questions answered by experts"
+    },
+    {
+      icon: <Gift className="w-6 h-6" />,
+      title: "Free Future Updates",
+      description: "Access all new content added to the course"
     }
   ];
 

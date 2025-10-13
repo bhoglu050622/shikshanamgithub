@@ -11,10 +11,10 @@ export default function CertificateShowcase() {
         <StaggerItem>
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display text-high-contrast mb-6">
-              Earn Your Certificate of Completion
+              Certification
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
-              Showcase your journey through the six questions of Prashna Upanishad with a professional certificate.
+              Earn your credential of expertise
             </p>
           </div>
         </StaggerItem>
@@ -24,18 +24,18 @@ export default function CertificateShowcase() {
             {/* Certificate Mockup */}
             <div className="relative">
               <div className="card-premium p-8">
-                <div className="bg-gradient-to-br from-muted-saffron-50 to-teal-50 p-8 rounded-2xl border-2 border-muted-saffron-200 relative overflow-hidden">
+                <div className="bg-gradient-to-br from-gold-50 to-teal-50 p-8 rounded-2xl border-2 border-gold-200 relative overflow-hidden shadow-sm">
                   {/* Certificate Design */}
                   <div className="text-center">
                     {/* Header */}
                     <div className="mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <div className="w-16 h-16 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                         <Award className="w-8 h-8 text-white" />
                       </div>
                       <h3 className="text-2xl font-display text-high-contrast mb-2">
                         Certificate of Completion
                       </h3>
-                      <p className="text-wisdom-600">Prashna Upanishad - Six Questions Course</p>
+                      <p className="text-wisdom-600">Isha Upanishad Course</p>
                     </div>
 
                     {/* Content */}
@@ -43,9 +43,8 @@ export default function CertificateShowcase() {
                       <p className="text-wisdom-600 mb-2">This is to certify that</p>
                       <h4 className="text-xl font-semibold text-high-contrast mb-4">[Your Name]</h4>
                       <p className="text-wisdom-600 mb-4">
-                        has successfully completed the comprehensive course on Prashna Upanishad, 
-                        demonstrating understanding of the six profound questions and their answers 
-                        as taught by Pippalada Rishi.
+                        has successfully completed the comprehensive course on Isha Upanishad, 
+                        demonstrating understanding of all 18 Shlokas and their profound wisdom.
                       </p>
                     </div>
 
@@ -58,7 +57,7 @@ export default function CertificateShowcase() {
                       </div>
                       <div>
                         <p>Date: [Completion Date]</p>
-                        <p>Course ID: PU-6Q-2024</p>
+                        <p>Course ID: IU-18S-2024</p>
                       </div>
                     </div>
                   </div>
@@ -80,7 +79,7 @@ export default function CertificateShowcase() {
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
                       <CheckCircle className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -100,7 +99,7 @@ export default function CertificateShowcase() {
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-8 h-8 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-sm">
                       <CheckCircle className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -121,23 +120,23 @@ export default function CertificateShowcase() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-muted-saffron-50 to-teal-50 p-6 rounded-2xl">
+              <div className="bg-gradient-to-r from-gold-50 to-teal-50 p-6 rounded-2xl border border-gold-200/30">
                 <h4 className="font-semibold text-high-contrast mb-4">Certificate Features:</h4>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center space-x-2">
-                    <Download className="w-4 h-4 text-muted-saffron-600" />
+                    <Download className="w-4 h-4 text-gold-600" />
                     <span className="text-wisdom-600">Digital Download</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Share2 className="w-4 h-4 text-muted-saffron-600" />
+                    <Share2 className="w-4 h-4 text-gold-600" />
                     <span className="text-wisdom-600">Social Media Ready</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Award className="w-4 h-4 text-muted-saffron-600" />
+                    <Award className="w-4 h-4 text-gold-600" />
                     <span className="text-wisdom-600">Professional Design</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-muted-saffron-600" />
+                    <CheckCircle className="w-4 h-4 text-gold-600" />
                     <span className="text-wisdom-600">Verification Code</span>
                   </div>
                 </div>
@@ -153,9 +152,8 @@ export default function CertificateShowcase() {
                 Earn Your Certificate Today
               </h3>
               <p className="text-wisdom-600 mb-6 max-w-2xl mx-auto">
-                Complete all six question modules and assessments to receive your certificate of completion. 
-                This credential demonstrates your understanding of Prashna Upanishad's profound wisdom 
-                and your commitment to spiritual growth.
+                Complete all modules and assessments to receive your certificate of completion. 
+                Share your Verified Certificate and Add certificate to LinkedIn.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <motion.button

@@ -13,12 +13,15 @@ export const ROUTES = {
   WISDOM: '/wisdom',
   TOOLS: '/tools',
   PACKAGES: '/packages',
+  BOOKS: '/books',
   BLOGS: '/blogs',
   BLOGS_SANSKRIT: '/blogs/sanskrit',
   GLOSSARIES: '/glossaries',
   PRACTICE: '/practice',
   ACCOUNT: '/account',
   ME: '/me',
+  MARKETING: '/marketing',
+  MY_JOURNEY: '/my-journey',
   
   // School routes
   SCHOOL_SANSKRIT: '/schools/sanskrit',
@@ -31,15 +34,6 @@ export const ROUTES = {
   SCHOOL_VAISHESHIKA: '/schools/vaisheshika',
   SCHOOL_NYAYA: '/schools/nyaya',
   
-  // Practice routes
-  PRACTICE_SANSKRIT: '/practice/sanskrit',
-  
-  // Tool routes
-  TOOLS_SANDHI: '/tools/sandhi',
-  TOOLS_KEYBOARD: '/tools/keyboard',
-  
-  // Glossary routes
-  GLOSSARIES_SANSKRIT: '/glossaries/sanskrit',
   
   // Blog routes
   BLOG: '/blog',
@@ -89,23 +83,7 @@ export const NAVIGATION_GROUPS = {
     id: 'practice',
     title: 'Practice Tools',
     description: 'Interactive learning resources',
-    items: [
-      {
-        name: 'Sanskrit Practice',
-        href: ROUTES.PRACTICE_SANSKRIT,
-        description: 'Hands-on Sanskrit exercises'
-      },
-      {
-        name: 'Sandhi Tool',
-        href: ROUTES.TOOLS_SANDHI,
-        description: 'Learn Sanskrit sound combinations'
-      },
-      {
-        name: 'Keyboard Helper',
-        href: ROUTES.TOOLS_KEYBOARD,
-        description: 'Type in Devanagari script'
-      }
-    ]
+    items: []
   }
 } as const
 
@@ -118,4 +96,43 @@ export const generateRoutes = () => {
     tools: ROUTES.TOOLS,
     practice: ROUTES.PRACTICE
   }
+}
+
+/**
+ * Dynamic course routes
+ * These are generated at build time from the /app/courses/ directory
+ */
+
+// Note: Import course utilities only when needed to avoid circular dependencies
+let courseRoutesCache: string[] | null = null
+
+export const getAllCourseRoutes = (): string[] => {
+  if (courseRoutesCache) {
+    return courseRoutesCache
+  }
+  
+  try {
+    // Dynamically import to avoid issues during module initialization
+    const { getAllCourseSlugs } = require('./courses')
+    const slugs = getAllCourseSlugs()
+    const routes = slugs.map((slug: string) => `/courses/${slug}`)
+    courseRoutesCache = routes
+    return routes
+  } catch (error) {
+    console.warn('Failed to load dynamic course routes:', error)
+    return []
+  }
+}
+
+export const getCourseRoute = (slug: string): string => {
+  return `/courses/${slug}`
+}
+
+export const isCourseRoute = (path: string): boolean => {
+  return path.startsWith('/courses/') && path !== '/courses/'
+}
+
+export const getCourseSlugFromRoute = (path: string): string | null => {
+  if (!isCourseRoute(path)) return null
+  return path.replace('/courses/', '')
 }

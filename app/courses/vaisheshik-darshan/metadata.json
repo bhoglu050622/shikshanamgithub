@@ -1,0 +1,23 @@
+{
+  "title": "वैशेषिक दर्शन: Online Course on Vaisheshik Sutras of Rishi Kanada",
+  "subtitle": "Atomic theory and categorical analysis",
+  "description": "Explore ancient Indian atomic theory and the six categories of reality through Vaisheshik Sutras.",
+  "type": "Premium Course",
+  "price": "₹3,499",
+  "originalPrice": "₹5,199",
+  "savings": "33%",
+  "duration": "15-18 Classes",
+  "level": "Intermediate",
+  "status": "available",
+  "features": [
+    "Vaisheshik Sutras",
+    "Atomic Theory",
+    "Six Categories (Padarthas)",
+    "Metaphysics",
+    "Philosophy of Science",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/vaisheshik-darshan-course.png",
+  "category": "darshan",
+  "priority": 0.85
+}

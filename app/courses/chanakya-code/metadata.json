@@ -1,0 +1,23 @@
+{
+  "title": "Chanakya's Code: Dominate Negotiation & Business Tactics!",
+  "subtitle": "Ancient wisdom for modern business success",
+  "description": "Master negotiation, strategy, and business tactics using timeless principles from Chanakya Niti.",
+  "type": "Premium Course",
+  "price": "₹2,999",
+  "originalPrice": "₹4,999",
+  "savings": "40%",
+  "duration": "12-15 Classes",
+  "level": "Intermediate",
+  "status": "available",
+  "features": [
+    "Business Strategy & Negotiation",
+    "Leadership Principles",
+    "Conflict Resolution",
+    "Real-world Case Studies",
+    "Actionable Techniques",
+    "Certificate of Completion"
+  ],
+  "thumbnail": "/assets/chanakya-code-course.png",
+  "category": "life-skills",
+  "priority": 0.88
+}

@@ -1,65 +1,64 @@
 'use client';
 
-import { motion } from 'framer-motion';
+
 import { Star, Quote, CheckCircle } from 'lucide-react';
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import MotionWrapper, { StaggerContainer, StaggerItem, MotionInView } from '@/components/motion/MotionWrapper';
 
 const testimonials = [
   {
-    name: 'Priya Sharma',
-    location: 'Mumbai, India',
+    name: 'Student 1',
+    location: 'India',
     rating: 5,
-    comment: 'This course opened my mind to the profound questions of life. Vishal sir\'s explanations made the ancient wisdom so accessible. Highly recommended for spiritual seekers.',
+    comment: 'Excellent course on Isha Upanishad! The explanations are clear and easy to understand.',
     verified: true,
-    course: 'Prashna Upanishad'
+    course: 'Isha Upanishad'
   },
   {
-    name: 'Rajesh Kumar',
-    location: 'Delhi, India',
+    name: 'Student 2',
+    location: 'India',
     rating: 5,
-    comment: 'बहुत ही गहरा और सार्थक कोर्स है। छह प्रश्नों की व्याख्या बहुत स्पष्ट है। आध्यात्मिक ज्ञान की खोज करने वालों के लिए उत्तम।',
+    comment: 'बहुत ही अच्छा कोर्स है। सभी श्लोकों की गहन व्याख्या की गई है।',
     verified: true,
-    course: 'Prashna Upanishad'
+    course: 'Isha Upanishad'
   },
   {
-    name: 'Anita Patel',
-    location: 'Ahmedabad, India',
+    name: 'Student 3',
+    location: 'India',
     rating: 5,
-    comment: 'The way complex Upanishadic concepts are explained is exceptional. This course has transformed my understanding of life\'s fundamental questions.',
+    comment: 'This course transformed my understanding of the self and the universe.',
     verified: true,
-    course: 'Prashna Upanishad'
+    course: 'Isha Upanishad'
   },
   {
-    name: 'Suresh Mehta',
-    location: 'Bangalore, India',
+    name: 'Student 4',
+    location: 'India',
     rating: 5,
-    comment: 'Excellent course! The six questions approach makes ancient wisdom so practical. I feel more centered and aware after completing this course.',
+    comment: 'Great insights into ancient wisdom. Highly recommended!',
     verified: true,
-    course: 'Prashna Upanishad'
+    course: 'Isha Upanishad'
   },
   {
-    name: 'Meera Singh',
-    location: 'Pune, India',
+    name: 'Student 5',
+    location: 'India',
     rating: 5,
-    comment: 'This course is a gem for anyone seeking deeper meaning in life. The instructor\'s knowledge and teaching style are outstanding.',
+    comment: 'The teachings have brought peace and clarity to my life.',
     verified: true,
-    course: 'Prashna Upanishad'
+    course: 'Isha Upanishad'
   },
   {
-    name: 'Vikram Joshi',
-    location: 'Kolkata, India',
+    name: 'Student 6',
+    location: 'India',
     rating: 5,
-    comment: 'The contemplative approach to the six questions is brilliant. This course has given me tools for lifelong spiritual inquiry.',
+    comment: 'Outstanding course with practical spiritual guidance.',
     verified: true,
-    course: 'Prashna Upanishad'
+    course: 'Isha Upanishad'
   }
 ];
 
 const stats = [
   { number: '50+', label: 'Students Enrolled' },
-  { number: '4.9/5', label: 'Average Rating' },
-  { number: '100%', label: 'Completion Rate' },
-  { number: '100%', label: 'Satisfaction Rate' }
+  { number: '4.9', label: 'Average Rating', showStar: true },
+  { number: '45+', label: 'Positive Reviews' }
 ];
 
 export default function TestimonialsSection() {
@@ -69,10 +68,10 @@ export default function TestimonialsSection() {
         <StaggerItem>
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display text-high-contrast mb-6">
-              What Students Say
+              Testimonials / Student feedback
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
-              Join satisfied students who have discovered profound insights through the six questions of Prashna Upanishad.
+              Here's what our students are saying about the course!
             </p>
           </div>
         </StaggerItem>
@@ -80,7 +79,7 @@ export default function TestimonialsSection() {
         <StaggerItem>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {testimonials.map((testimonial, index) => (
-              <motion.div
+              <MotionInView
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +94,7 @@ export default function TestimonialsSection() {
                 </div>
                 
                 <div className="relative mb-4">
-                  <Quote className="w-8 h-8 text-muted-saffron-300 absolute -top-2 -left-2" />
+                  <Quote className="w-8 h-8 text-gold-300 absolute -top-2 -left-2" />
                   <p className="text-wisdom-600 leading-relaxed pl-6">
                     "{testimonial.comment}"
                   </p>
@@ -112,13 +111,13 @@ export default function TestimonialsSection() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </MotionInView>
             ))}
           </div>
         </StaggerItem>
 
         <StaggerItem>
-          <div className="bg-gradient-to-r from-muted-saffron-50 to-teal-50 p-8 rounded-3xl mb-16">
+          <div className="bg-gradient-to-r from-gold-50 to-teal-50 p-8 rounded-3xl mb-16 border border-gold-200/30 shadow-sm">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-display text-high-contrast mb-4">
                 Course Statistics
@@ -128,9 +127,9 @@ export default function TestimonialsSection() {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-3 gap-8">
               {stats.map((stat, index) => (
-                <motion.div
+                <MotionInView
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -138,11 +137,16 @@ export default function TestimonialsSection() {
                   viewport={{ once: true }}
                   className="text-center"
                 >
-                  <div className="text-3xl lg:text-4xl font-bold text-muted-saffron-600 mb-2">
-                    {stat.number}
+                  <div className="flex items-center justify-center mb-2">
+                    <div className="text-3xl lg:text-4xl font-bold text-gold-600">
+                      {stat.number}
+                    </div>
+                    {stat.showStar && (
+                      <Star className="w-6 h-6 fill-current text-yellow-400 ml-2" />
+                    )}
                   </div>
                   <p className="text-wisdom-600 font-medium">{stat.label}</p>
-                </motion.div>
+                </MotionInView>
               ))}
             </div>
           </div>
@@ -156,21 +160,21 @@ export default function TestimonialsSection() {
               </h3>
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <span className="text-3xl">🤔</span>
                   </div>
                   <h4 className="text-lg font-semibold text-high-contrast mb-2">Deep Inquiry</h4>
                   <p className="text-wisdom-600 text-sm">Explore the six fundamental questions that lead to spiritual awakening</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <span className="text-3xl">👥</span>
                   </div>
                   <h4 className="text-lg font-semibold text-high-contrast mb-2">Community Support</h4>
                   <p className="text-wisdom-600 text-sm">Connect with like-minded seekers on the spiritual path</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-r from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <span className="text-3xl">🎯</span>
                   </div>
                   <h4 className="text-lg font-semibold text-high-contrast mb-2">Proven Results</h4>

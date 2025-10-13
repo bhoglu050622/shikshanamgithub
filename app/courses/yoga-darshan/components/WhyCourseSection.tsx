@@ -7,26 +7,30 @@ import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motio
 const whyCourseData = [
   {
     icon: BookOpen,
-    title: 'Decode all 195 Sutras',
-    description: 'Complete understanding of Maharshi Patanjali\'s Yoga Sutras with practical explanations',
+    title: 'दैनिक-तनाव को दूर कर पाएंगे',
+    titleEn: 'Relief from Daily Stress',
+    description: 'Learn to manage and eliminate daily stress through ancient Yoga philosophy principles',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: Brain,
-    title: 'Practical Application',
-    description: 'Learn how to apply ancient wisdom in modern daily life situations',
+    title: 'कठिन निर्णयों को आसानी से ले पाएंगे',
+    titleEn: 'Make Difficult Decisions Easily',
+    description: 'Develop clarity of mind to make better decisions using Yoga wisdom',
     color: 'from-teal-500 to-teal-600'
   },
   {
     icon: Users,
-    title: 'Clear Hindi Language',
-    description: 'Presented in simple, understandable Hindi for better comprehension',
+    title: 'सभी प्रकार के भय से मुक्त होंगे',
+    titleEn: 'Freedom from All Types of Fears',
+    description: 'Overcome various fears and anxieties through spiritual understanding',
     color: 'from-saffron-500 to-saffron-600'
   },
   {
     icon: Sunrise,
-    title: 'Beginner Friendly',
-    description: 'Perfect for both beginners and intermediate spiritual seekers',
+    title: 'गीता के गूढ़ रहस्यों को समझ पाएंगे',
+    titleEn: 'Understand Deep Secrets of Gita',
+    description: 'Gain profound insights into ancient scriptures and spiritual teachings',
     color: 'from-teal-500 to-teal-600'
   }
 ];
@@ -60,9 +64,12 @@ export default function WhyCourseSection() {
                 <div className={`w-16 h-16 bg-gradient-to-r ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <item.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-high-contrast mb-3">
+                <h3 className="text-xl font-semibold text-high-contrast mb-2">
                   {item.title}
                 </h3>
+                <p className="text-sm text-saffron-600 mb-3">
+                  {item.titleEn}
+                </p>
                 <p className="text-wisdom-600 leading-relaxed">
                   {item.description}
                 </p>

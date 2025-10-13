@@ -26,13 +26,30 @@ export default function FeedbackSection({
   }
 
   const handleSubmit = () => {
-    // Here you would typically send the feedback to your backend
-    console.log('Feedback submitted:', { 
-      rating: feedbackRating, 
-      comments, 
-      userName, 
-      archetype 
-    })
+    // Store feedback in localStorage
+    const feedbackData = {
+      rating: feedbackRating,
+      comments,
+      userName,
+      archetype,
+      timestamp: new Date().toISOString()
+    }
+    
+    try {
+      // Get existing feedback or create new array
+      const existingFeedback = localStorage.getItem('shiva-alignment-feedback')
+      const feedbackArray = existingFeedback ? JSON.parse(existingFeedback) : []
+      
+      // Add new feedback
+      feedbackArray.push(feedbackData)
+      
+      // Save back to localStorage
+      localStorage.setItem('shiva-alignment-feedback', JSON.stringify(feedbackArray))
+      
+      console.log('Feedback stored in localStorage:', feedbackData)
+    } catch (error) {
+      console.error('Error storing feedback in localStorage:', error)
+    }
     
     setIsSubmitted(true)
     setTimeout(() => {

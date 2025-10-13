@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink'
 
 export default function EmotionalMasteryPricing() {
   useEffect(() => {
@@ -176,7 +177,7 @@ export default function EmotionalMasteryPricing() {
                 1 year access
               </li>
             </ul>
-            <a href="https://courses.shikshanam.in/single-checkout/6856625dbe54004a30f453c8?pid=p1" target="_blank" className="emp-cta-button emp-cta-button-primary">Enroll & Begin Inner Work</a>
+            <ProtectedExternalLink href="https://courses.shikshanam.in/single-checkout/6856625dbe54004a30f453c8?pid=p1" className="emp-cta-button emp-cta-button-primary">Enroll & Begin Inner Work</ProtectedExternalLink>
           </div>
 
           <div className="emp-pricing-card">
@@ -204,7 +205,7 @@ export default function EmotionalMasteryPricing() {
                 <span>Includes 2 companion books by Sadhak Jamwant Ji (Digital): <span className="emp-hindi-text">धैर्य</span> & <span className="emp-hindi-text">विज्ञान तथा अध्यात्म</span>.</span>
               </li>
             </ul>
-            <a href="https://courses.shikshanam.in/single-checkout/687b56fc55ab5b6dc3bb51de?pid=p1" target="_blank" className="emp-cta-button emp-cta-button-ultimate">Choose Ultimate Bundle</a>
+            <ProtectedExternalLink href="https://courses.shikshanam.in/single-checkout/687b56fc55ab5b6dc3bb51de?pid=p1" className="emp-cta-button emp-cta-button-ultimate">Choose Ultimate Bundle</ProtectedExternalLink>
           </div>
 
         </div>

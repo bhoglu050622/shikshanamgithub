@@ -56,10 +56,10 @@ const testimonials = [
 ];
 
 const stats = [
-  { number: '150+', label: 'Students Enrolled' },
-  { number: '4.8/5', label: 'Average Rating' },
-  { number: '95%', label: 'Completion Rate' },
-  { number: '100%', label: 'Satisfaction Rate' }
+  { number: '2.9K+', label: 'Students Enrolled' },
+  { number: '4.9/5', label: 'Average Rating' },
+  { number: '180+', label: 'Positive Reviews' },
+  { number: '95%', label: 'Completion Rate' }
 ];
 
 export default function TestimonialsSection() {
@@ -69,7 +69,7 @@ export default function TestimonialsSection() {
         <StaggerItem>
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display text-high-contrast mb-6">
-              What Students Say
+              Trusted by Thousands: Enroll Today!
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
               Join hundreds of satisfied students who have transformed their understanding of Yoga philosophy through this comprehensive course.
@@ -174,7 +174,7 @@ export default function TestimonialsSection() {
                     <span className="text-3xl">🎯</span>
                   </div>
                   <h4 className="text-lg font-semibold text-high-contrast mb-2">Proven Results</h4>
-                  <p className="text-wisdom-600 text-sm">95% completion rate with 4.8/5 average rating from students</p>
+                  <p className="text-wisdom-600 text-sm">95% completion rate with 4.9/5 average rating from 2.9K+ students</p>
                 </div>
               </div>
             </div>

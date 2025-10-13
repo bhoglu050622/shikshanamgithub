@@ -112,42 +112,46 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm"
+          className="fixed inset-0 z-50 bg-black/30 backdrop-blur-md"
+          onClick={onClose}
         >
-          {/* Clamped shell container */}
-          <div className="fixed top-16 left-0 right-0 bottom-0 pointer-events-none">
-            {/* Centered inner container */}
-            <div className="max-w-screen-2xl mx-auto px-4 h-full flex items-start justify-center pointer-events-auto">
+          {/* Main container with proper alignment */}
+          <div className="fixed top-20 left-0 right-0 bottom-0 pointer-events-none">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-start justify-center pointer-events-auto">
               <motion.div
                 ref={menuRef}
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
+                initial={{ y: -20, opacity: 0, scale: 0.95 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: -20, opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="w-full max-w-6xl bg-white dark:bg-wisdom-900 rounded-2xl shadow-2xl border border-saffron-200/30 dark:border-saffron-400/20 max-h-[calc(100vh-5rem)] overflow-y-auto"
+                className="w-full max-w-7xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 max-h-[calc(100vh-6rem)] overflow-hidden"
                 role="dialog"
                 aria-label="Navigation menu"
                 aria-modal="true"
+                onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex min-h-[400px] max-h-[calc(100vh-6rem)]">
+                <div className="flex min-h-[500px] max-h-[calc(100vh-6rem)]">
                   {/* Left Navigation */}
-                  <div className="w-64 bg-gradient-to-b from-saffron-50 to-saffron-100 dark:from-wisdom-800 dark:to-wisdom-900 rounded-l-2xl p-6">
-                    <div className="space-y-2">
+                  <div className="w-72 bg-gradient-to-b from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-900 rounded-l-3xl p-6 flex flex-col">
+                    <div className="flex-1 space-y-2">
                       {navigationGroups.map((group) => (
                         <motion.button
                           key={group.id}
                           onClick={() => setActiveGroup(group.id)}
-                          whileHover={{ x: 4 }}
+                          whileHover={{ x: 4, scale: 1.02 }}
                           aria-pressed={activeGroup === group.id}
                           aria-label={`Navigate to ${group.title} section`}
                           className={cn(
-                            "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200",
+                            "w-full flex items-center space-x-3 px-4 py-4 rounded-xl text-left transition-all duration-200 group",
                             activeGroup === group.id
-                              ? "bg-saffron-500 text-white shadow-lg"
-                              : "text-indigo-700 dark:text-wisdom-200 hover:bg-saffron-200 dark:hover:bg-wisdom-700"
+                              ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg"
+                              : "text-gray-700 dark:text-gray-200 hover:bg-orange-100 dark:hover:bg-gray-700"
                           )}
                         >
-                          <group.icon className="w-5 h-5" />
+                          <group.icon className={cn(
+                            "w-5 h-5 transition-colors",
+                            activeGroup === group.id ? "text-white" : "text-orange-500 group-hover:text-orange-600"
+                          )} />
                           <span className="font-medium">{group.title}</span>
                           <ChevronDown className={cn(
                             "w-4 h-4 ml-auto transition-transform duration-200",
@@ -158,25 +162,32 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                     </div>
 
                     {/* Utilities at bottom */}
-                    <div className="absolute bottom-6 left-6 right-6 space-y-3">
-                      <div className="flex items-center space-x-2">
-                        <Search className="w-4 h-4 text-wisdom-500" />
+                    <div className="mt-6 pt-4 border-t border-orange-200 dark:border-gray-600 space-y-4">
+                      <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-orange-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                        <Search className="w-4 h-4 text-orange-500" />
                         <button
                           onClick={() => setIsSearchOpen(!isSearchOpen)}
-                          className="text-sm text-wisdom-600 dark:text-wisdom-400 hover:text-saffron-600 dark:hover:text-saffron-400 transition-colors"
+                          className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                         >
                           Search
                         </button>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <ThemeToggle />
-                        <span className="text-sm text-wisdom-600 dark:text-wisdom-400">Theme</span>
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-4 h-4 flex items-center justify-center">
+                            <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                          </div>
+                          <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Theme</span>
+                        </div>
+                        <div className="pl-7">
+                          <ThemeToggle />
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Main Content Area */}
-                  <div className="flex-1 p-8">
+                  <div className="flex-1 p-8 overflow-y-auto">
                     {currentGroup ? (
                       <motion.div
                         key={currentGroup.id}
@@ -187,29 +198,30 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                       >
                         {/* Featured Item */}
                         <div className="mb-8">
-                          <div className="flex items-start space-x-6 p-6 bg-gradient-to-r from-saffron-50 to-saffron-100 dark:from-wisdom-800 dark:to-wisdom-700 rounded-2xl">
-                            <div className="w-24 h-24 bg-gradient-to-br from-saffron-400 to-saffron-600 rounded-xl flex items-center justify-center">
-                              <currentGroup.icon className="w-12 h-12 text-white" />
+                          <div className="flex items-start space-x-6 p-6 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl border border-orange-200 dark:border-gray-600">
+                            <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-lg">
+                              <currentGroup.icon className="w-10 h-10 text-white" />
                             </div>
                             <div className="flex-1">
-                              <div className="flex items-center space-x-2 mb-2">
-                                <span className="text-sm font-medium text-saffron-600 dark:text-saffron-400 bg-saffron-200 dark:bg-saffron-800 px-2 py-1 rounded-full">
+                              <div className="flex items-center space-x-2 mb-3">
+                                <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900 px-3 py-1 rounded-full">
                                   {currentGroup.featured.badge}
                                 </span>
                               </div>
-                              <h3 className="text-xl font-bold text-indigo-700 dark:text-wisdom-200 mb-2">
+                              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                                 {currentGroup.featured.title}
                               </h3>
-                              <p className="text-wisdom-600 dark:text-wisdom-400 mb-4">
+                              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                                 {currentGroup.featured.description}
                               </p>
                               <motion.a
                                 href={currentGroup.featured.href}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="inline-flex items-center space-x-2 bg-saffron-500 hover:bg-saffron-600 text-white px-4 py-2 rounded-xl font-medium transition-colors duration-200"
+                                onClick={onClose}
+                                className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
                               >
-                                <span>Explore</span>
+                                <span>Explore Now</span>
                                 <ArrowRight className="w-4 h-4" />
                               </motion.a>
                             </div>
@@ -217,28 +229,31 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                         </div>
 
                         {/* Navigation Columns */}
-                        <div className="grid grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                           {currentGroup.columns.map((column, index) => (
                             <div key={index}>
-                              <h4 className="text-lg font-semibold text-indigo-700 dark:text-wisdom-200 mb-4">
+                              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                                <div className="w-2 h-2 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full mr-3"></div>
                                 {column.title}
                               </h4>
-                              <div className="space-y-3">
+                              <div className="space-y-4">
                                 {column.links.map((link, linkIndex) => (
                                   <motion.a
                                     key={linkIndex}
                                     href={link.href}
                                     onClick={onClose}
-                                    whileHover={{ x: 4 }}
-                                    className="block p-3 rounded-xl hover:bg-saffron-50 dark:hover:bg-wisdom-800 transition-all duration-200 group"
+                                    whileHover={{ x: 6, scale: 1.02 }}
+                                    className="block p-4 rounded-xl hover:bg-orange-50 dark:hover:bg-gray-800 transition-all duration-200 group border border-transparent hover:border-orange-200 dark:hover:border-gray-600"
                                   >
-                                    <div className="flex items-start space-x-3">
-                                      <link.icon className="w-5 h-5 text-saffron-500 mt-0.5 group-hover:text-saffron-600 transition-colors" />
-                                      <div>
-                                        <div className="font-medium text-indigo-700 dark:text-wisdom-200 group-hover:text-saffron-600 dark:group-hover:text-saffron-400 transition-colors">
+                                    <div className="flex items-start space-x-4">
+                                      <div className="w-10 h-10 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900 dark:to-amber-900 rounded-lg flex items-center justify-center group-hover:from-orange-200 group-hover:to-amber-200 dark:group-hover:from-orange-800 dark:group-hover:to-amber-800 transition-all duration-200">
+                                        <link.icon className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors mb-1">
                                           {link.name}
                                         </div>
-                                        <div className="text-sm text-wisdom-500 dark:text-wisdom-400">
+                                        <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                                           {link.description}
                                         </div>
                                       </div>
@@ -251,27 +266,30 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                         </div>
 
                         {/* Bottom CTA */}
-                        <div className="mt-8 pt-6 border-t border-saffron-200/30 dark:border-saffron-400/20">
+                        <div className="mt-10 pt-6 border-t border-orange-200 dark:border-gray-600">
                           <motion.a
-                            href="/schools"
+                            href="/courses"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-flex items-center space-x-2 text-saffron-600 dark:text-saffron-400 hover:text-saffron-700 dark:hover:text-saffron-300 font-medium transition-colors"
+                            onClick={onClose}
+                            className="inline-flex items-center space-x-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-semibold transition-colors group"
                           >
                             <span>Browse All Courses</span>
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </motion.a>
                         </div>
                       </motion.div>
                     ) : (
                       <div className="flex items-center justify-center h-full">
                         <div className="text-center">
-                          <BookOpen className="w-16 h-16 text-saffron-400 mx-auto mb-4" />
-                          <h3 className="text-xl font-semibold text-indigo-700 dark:text-wisdom-200 mb-2">
+                          <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900 dark:to-amber-900 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <BookOpen className="w-10 h-10 text-orange-600 dark:text-orange-400" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                             Choose a category
                           </h3>
-                          <p className="text-wisdom-500 dark:text-wisdom-400">
-                            Select a category from the left to explore our content
+                          <p className="text-gray-600 dark:text-gray-400 max-w-md">
+                            Select a category from the left to explore our comprehensive learning content
                           </p>
                         </div>
                       </div>

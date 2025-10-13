@@ -1,3 +1,12 @@
+/**
+ * Navigation Data for Shikshanam
+ * 
+ * Note: Course links in this file are manually curated for the navigation menu.
+ * All courses are dynamically discovered from /app/courses/ - see lib/courses
+ * To add a new course to navigation, add it here after creating the course directory.
+ * The /courses page will automatically show all courses.
+ */
+
 import { 
   BookOpen, 
   GraduationCap, 
@@ -72,7 +81,6 @@ export const navigationGroups: NavigationGroup[] = [
         title: 'Philosophy Courses',
         links: [
           { name: 'Advaita Vedanta', href: '/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka', icon: Lightbulb, description: 'Non-dual philosophy' },
-          { name: 'Samkhya Darshan', href: '/courses/samkhya-darshan', icon: BookOpen, description: 'Ancient analytical philosophy' },
           { name: 'Nyaya Darshan', href: '/courses/nyaya-darshan', icon: FileText, description: 'Logic and reasoning' },
           { name: 'Vaisheshik Darshan', href: '/courses/vaisheshik-darshan', icon: Star, description: 'Atomistic philosophy' },
           { name: 'Kashmir Shaivism', href: '/courses/kashmir-shaivism', icon: Sparkles, description: 'Tantric philosophy' },
@@ -95,25 +103,23 @@ export const navigationGroups: NavigationGroup[] = [
     title: 'Practice',
     icon: Play,
     featured: {
-      title: 'Sanskrit Practice Hub',
-      description: 'Interactive exercises and tools for mastery',
-      href: '/practice/sanskrit',
-      thumbnail: '/images/practice-hub-thumb.jpg',
+      title: 'Learning Resources',
+      description: 'Educational materials and study guides',
+      href: '/help',
+      thumbnail: '/images/learning-hub-thumb.jpg',
       badge: 'New'
     },
     columns: [
       {
-        title: 'Practice Areas',
+        title: 'Study Resources',
         links: [
-          { name: 'Sanskrit Practice', href: '/practice/sanskrit', icon: BookOpen, description: 'Grammar & conversation exercises' },
-          { name: 'Sandhi Tool', href: '/tools/sandhi', icon: FileText, description: 'Master Sanskrit sound combinations' },
-          { name: 'Keyboard Helper', href: '/tools/keyboard', icon: Keyboard, description: 'Type in Devanagari script' },
+          { name: 'Study Materials', href: '/help', icon: BookOpen, description: 'Educational resources and guides' },
+          { name: 'Learning Support', href: '/help', icon: FileText, description: 'Get help with your studies' },
         ]
       },
       {
         title: 'Reference',
         links: [
-          { name: 'Sanskrit Glossary', href: '/glossaries/sanskrit', icon: BookMarked, description: 'Comprehensive word dictionary' },
           { name: 'Grammar Guide', href: '/help', icon: FileText, description: 'Sanskrit grammar reference' },
           { name: 'Pronunciation Guide', href: '/help', icon: Play, description: 'Audio pronunciation help' },
         ]
@@ -160,8 +166,7 @@ export const navigationGroups: NavigationGroup[] = [
         title: 'Learning Resources',
         links: [
           { name: 'Study Materials', href: '/help', icon: FileText, description: 'Educational resources' },
-          { name: 'Reference Guides', href: '/glossaries/sanskrit', icon: BookMarked, description: 'Sanskrit glossary' },
-          { name: 'Practice Tools', href: '/tools', icon: Keyboard, description: 'Learning tools' },
+          { name: 'Support Center', href: '/help', icon: BookMarked, description: 'Get help and support' },
         ]
       }
     ]
@@ -211,8 +216,9 @@ export const navigationGroups: NavigationGroup[] = [
 // Top-level navigation items for header - Based on crawled website navigation
 export const topLevelNavItems = [
   { name: 'Home', href: '/', icon: BookOpen, hasDropdown: false },
-  { name: 'Personality Test', href: '/guna-profiler', icon: UserCheck, hasDropdown: false },
+  { name: 'Personality Test', href: '/personality-test', icon: UserCheck, hasDropdown: false },
   { name: 'Courses', href: '/courses', icon: GraduationCap, hasDropdown: true, groupId: 'courses' },
+  { name: 'Packages', href: '/packages', icon: Package, hasDropdown: false },
   { name: 'Wisdom', href: '/wisdom', icon: Lightbulb, hasDropdown: true, groupId: 'wisdom' },
   { name: 'About Us', href: '/about', icon: Info, hasDropdown: false },
   { name: 'Contact', href: '/contact', icon: MessageSquare, hasDropdown: false },

@@ -8,36 +8,36 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      question: "What is Vaisheshika Darshan about?",
-      answer: "Vaisheshika is one of the six classical schools of Indian philosophy that focuses on atomic realism, logical analysis, and the systematic study of reality through six fundamental categories (padārthas)."
+      question: "How to sign up for the course?",
+      answer: "Click on the 'Enroll Now' button, then click 'Login' to create an account or use Google login for quick signup. Follow the checkout process to complete your enrollment."
     },
     {
-      question: "How long do I have access to the course?",
-      answer: "You get lifetime access to all course materials. There's no expiration date - you can revisit the content anytime, anywhere, as many times as you want."
+      question: "What is the validity of this course?",
+      answer: "You get 1 year of access to all course materials. During this period, you can access all lectures, quizzes, notes, and community forums anytime."
     },
     {
-      question: "Do I need prior knowledge of philosophy?",
-      answer: "No prior knowledge required! This course is designed for beginners and intermediate learners. Basic understanding of Hindi is helpful but not mandatory."
+      question: "Are there any prerequisites for this course?",
+      answer: "None! This course is designed for beginners. No prior knowledge of philosophy is required. Basic understanding of Hindi is helpful as the course is taught in हिन्दी."
     },
     {
-      question: "What language is the course taught in?",
-      answer: "The course is taught in Hindi with English explanations for technical terms, making it accessible to a wide range of learners."
+      question: "How do I access the course after purchase?",
+      answer: "After purchase, you can access the course from your Dashboard on the website or through our mobile app. All lectures and materials will be available instantly."
     },
     {
-      question: "Can I download the course materials?",
-      answer: "Yes! You can download notes, summaries, and exercises for offline study. Video content is available for streaming with lifetime access."
+      question: "Can I download the lectures for offline viewing?",
+      answer: "Yes! You can download lectures via our mobile app for offline viewing on a single device. Notes and quizzes are also downloadable."
+    },
+    {
+      question: "What if I need support or have questions?",
+      answer: "You can reach our support team at support@shikshanam.in for any queries or assistance. We're here to help!"
+    },
+    {
+      question: "I'm having issues accessing my course. What should I do?",
+      answer: "First, check if you're logged in with the correct email ID used during purchase. Check your Dashboard on the website. If issues persist, contact our support team at support@shikshanam.in."
     },
     {
       question: "What is the refund policy?",
-      answer: "We offer a 7-day money-back guarantee. If you're not satisfied with the course content, you can request a full refund within 7 days of enrollment."
-    },
-    {
-      question: "Is there community support available?",
-      answer: "Yes! You'll have access to our community forum where you can ask questions, discuss concepts, and connect with fellow learners and instructors."
-    },
-    {
-      question: "Will I receive a certificate?",
-      answer: "Yes! Upon completion, you'll receive a downloadable certificate that you can share on LinkedIn and other professional platforms."
+      answer: "Currently, we do not offer refunds. However, you can watch the free demo video before enrolling to ensure the course meets your expectations."
     }
   ];
 
@@ -100,7 +100,7 @@ export default function FAQSection() {
       >
         <h3 className="vaisheshik-heading text-2xl mb-6">Still Have Questions?</h3>
         <p className="vaisheshik-subheading text-gray-700 mb-6">
-          Our support team is here to help you with any questions or concerns.
+          Call +91-9910032165, Monday–Saturday 11AM–6PM
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a

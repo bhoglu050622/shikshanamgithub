@@ -1,37 +1,54 @@
 'use client'
 
+import { useState } from 'react'
 import SanskritHero from './SanskritHero'
 import FlashcardGrid from './FlashcardGrid'
 import SequentialPath from './SequentialPath'
+import SanskritQuizModal from './SanskritQuizModal'
 import MeetGurus from './MeetGurus'
-import AIClockWidget from './AIClockWidget'
-import ResourcesTreasury from './ResourcesTreasury'
-
+import DownloadAppNew from './DownloadAppNew'
+import JoinCommunity from './JoinCommunity'
+import FAQ from './FAQ'
 
 export default function SchoolOfSanskritPage() {
+  const [selectedLevel, setSelectedLevel] = useState<'beginner' | 'intermediate' | null>(null)
+  const [isQuizOpen, setIsQuizOpen] = useState(false)
+
+  const handlePathSelection = (path: 'beginner' | 'intermediate') => {
+    setSelectedLevel(path)
+  }
+
   return (
     <>
-      
       {/* Hero Section */}
-      <SanskritHero />
+      <SanskritHero 
+        onQuizClick={() => setIsQuizOpen(true)}
+        onPathSelection={handlePathSelection}
+      />
+      
+      {/* Quiz Modal */}
+      <SanskritQuizModal 
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
+      />
       
       {/* Play & Learn Section */}
       <div id="play-learn">
         <FlashcardGrid />
       </div>
       
-      {/* Sequential Path Section */}
-      <SequentialPath />
+      {/* Recommended Courses - Sequential Path */}
+      <div id="recommended-courses">
+        <SequentialPath selectedLevel={selectedLevel} />
+      </div>
       
       {/* Meet Your Gurus Section */}
       <MeetGurus />
       
-      {/* AI Clock Widget Section */}
-      <AIClockWidget />
-      
-      {/* Resources & Treasury Section */}
-      <ResourcesTreasury />
-      
+      {/* Homepage-Style Sections */}
+      <DownloadAppNew />
+      <JoinCommunity />
+      <FAQ />
     </>
   )
 }

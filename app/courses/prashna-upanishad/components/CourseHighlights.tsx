@@ -1,54 +1,78 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { 
-  BookOpen, 
+  Video, 
   Clock, 
+  BookOpen, 
+  RefreshCw, 
+  FileText, 
+  Calendar, 
   Award, 
-  Languages, 
-  GraduationCap, 
-  Users, 
   MessageCircle,
-  CheckCircle,
-  HelpCircle
+  HelpCircle,
+  Users
 } from 'lucide-react';
-import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import MotionWrapper, { StaggerContainer, StaggerItem, MotionInView } from '@/components/motion/MotionWrapper';
 
 const courseHighlights = [
   {
-    icon: HelpCircle,
-    title: '6 Shlokas / Questions Explained',
-    description: 'Complete coverage of all six profound questions from Prashna Upanishad',
-    color: 'from-muted-saffron-500 to-muted-saffron-600'
+    icon: Video,
+    title: 'Recorded Sessions',
+    description: 'Access all video lectures at your convenience',
+    color: 'from-gold-500 to-gold-600'
   },
   {
-    icon: Award,
-    title: 'Lifetime Access',
-    description: 'Learn at your own pace with unlimited access to all materials',
+    icon: Clock,
+    title: '3+ Hrs. of Content',
+    description: 'Comprehensive coverage of all topics',
     color: 'from-teal-500 to-teal-600'
-  },
-  {
-    icon: Languages,
-    title: 'Hindi Language Delivery',
-    description: 'Clear explanations in Hindi for better understanding and retention',
-    color: 'from-muted-saffron-500 to-muted-saffron-600'
-  },
-  {
-    icon: GraduationCap,
-    title: 'Certificate Provided',
-    description: 'Receive a certificate of completion upon finishing the course',
-    color: 'from-teal-500 to-teal-600'
-  },
-  {
-    icon: Users,
-    title: 'Community & Q&A Support',
-    description: 'Join a community of spiritual seekers and get your questions answered',
-    color: 'from-muted-saffron-500 to-muted-saffron-600'
   },
   {
     icon: BookOpen,
-    title: 'Quiz & Reflective Exercises',
-    description: 'Interactive exercises to deepen your understanding and reflection',
+    title: 'All Shlokas Covered',
+    description: 'Complete analysis of all 18 Shlokas',
+    color: 'from-gold-500 to-gold-600'
+  },
+  {
+    icon: RefreshCw,
+    title: 'Free Future Updates',
+    description: 'Get all future content updates at no extra cost',
+    color: 'from-teal-500 to-teal-600'
+  },
+  {
+    icon: FileText,
+    title: 'Quizzes & Notes',
+    description: 'Interactive quizzes and study notes included',
+    color: 'from-gold-500 to-gold-600'
+  },
+  {
+    icon: Calendar,
+    title: '1 yr Access',
+    description: 'Learn at your own pace with year-long access',
+    color: 'from-teal-500 to-teal-600'
+  },
+  {
+    icon: Award,
+    title: 'Certification',
+    description: 'Receive a certificate upon course completion',
+    color: 'from-gold-500 to-gold-600'
+  },
+  {
+    icon: MessageCircle,
+    title: 'WhatsApp Group',
+    description: 'Join exclusive WhatsApp community',
+    color: 'from-teal-500 to-teal-600'
+  },
+  {
+    icon: HelpCircle,
+    title: 'Live QnA',
+    description: 'Get your questions answered in live sessions',
+    color: 'from-gold-500 to-gold-600'
+  },
+  {
+    icon: Users,
+    title: 'Community Access',
+    description: 'Connect with fellow spiritual seekers',
     color: 'from-teal-500 to-teal-600'
   }
 ];
@@ -60,78 +84,36 @@ export default function CourseHighlights() {
         <StaggerItem>
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display text-high-contrast mb-6">
-              Course Highlights
+              Features / Highlights
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
-              Everything you need to master the profound wisdom of Prashna Upanishad's six questions
+              Everything you need for a complete learning experience
             </p>
           </div>
         </StaggerItem>
 
         <StaggerItem>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {courseHighlights.map((highlight, index) => (
-              <motion.div
+              <MotionInView
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 className="card-premium p-6 text-center group hover:scale-105 transition-all duration-300 hover:shadow-lg"
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${highlight.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <highlight.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-high-contrast mb-3">
+                <h3 className="text-sm font-semibold text-high-contrast mb-2">
                   {highlight.title}
                 </h3>
-                <p className="text-wisdom-600 leading-relaxed text-sm">
+                <p className="text-wisdom-600 leading-relaxed text-xs">
                   {highlight.description}
                 </p>
-              </motion.div>
+              </MotionInView>
             ))}
-          </div>
-        </StaggerItem>
-
-        <StaggerItem>
-          <div className="mt-16 bg-gradient-to-r from-muted-saffron-50 to-teal-50 p-8 rounded-3xl">
-            <div className="text-center">
-              <h3 className="text-2xl font-display text-high-contrast mb-6">
-                What Makes This Course Special?
-              </h3>
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <HelpCircle className="w-10 h-10 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Six Questions</h4>
-                  <p className="text-wisdom-600 text-sm">Complete exploration of all six profound questions from Prashna Upanishad</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Languages className="w-10 h-10 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Hindi Medium</h4>
-                  <p className="text-wisdom-600 text-sm">Clear explanations in Hindi for better understanding and spiritual connection</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-muted-saffron-500 to-muted-saffron-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-10 h-10 text-white" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-high-contrast mb-2">Lifetime Access</h4>
-                  <p className="text-wisdom-600 text-sm">Learn at your own pace with unlimited access to all course materials</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </StaggerItem>
-
-        <StaggerItem>
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-6 py-3 rounded-full">
-              <CheckCircle className="w-5 h-5" />
-              <span className="font-medium">All features included in the course price</span>
-            </div>
           </div>
         </StaggerItem>
       </StaggerContainer>

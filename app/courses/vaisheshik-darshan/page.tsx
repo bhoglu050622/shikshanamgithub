@@ -1,99 +1,124 @@
 'use client';
-import './vaisheshik-darshan-landing.css';
-import { useCourseData } from '@/lib/hooks/useCourseData';
-import HeroSection from './components/HeroSection';
-import WhyCourseSection from './components/WhyCourseSection';
-import CourseHighlights from './components/CourseHighlights';
-import SyllabusSection from './components/SyllabusSection';
-import GuruSection from './components/GuruSection';
-import OutcomesSection from './components/OutcomesSection';
-import CertificateShowcase from './components/CertificateShowcase';
-import TestimonialsSection from './components/TestimonialsSection';
-import FAQSection from './components/FAQSection';
-import FinalCTA from './components/FinalCTA';
 
-// Default course data (fallback)
-const defaultCourseData = {
-  id: 'vaisheshik-darshan',
-  title: 'वैशेषिक दर्शन',
-  subtitle: 'The Philosophy of Particularity and Atomic Theory',
-  instructor: 'Dr. Suresh Sharma',
-  language: 'Hindi',
-  price: '₹2,299',
-  originalPrice: '₹3,999',
-  duration: '4 months',
-  level: 'Intermediate',
-  rating: 4.5,
-  reviewCount: 76,
-  type: 'Premium Course',
-  status: 'available',
-  checkoutLink: 'https://courses.shikshanam.in/checkout/vaisheshik-darshan',
-  contactNumber: '9910032165'
-};
+import '../_shared/course-landing.css';
+import './vaisheshik-darshan-landing.css';
+import CourseLayout from '../_shared/layouts/CourseLayout';
+import { vaisheshikDarshanCourseData } from './courseData';
+import {
+  HeroTemplate,
+  HighlightsTemplate,
+  SyllabusTemplate,
+  InstructorTemplate,
+  OutcomesTemplate,
+  TestimonialsTemplate,
+  FAQTemplate,
+} from '../_shared/sections';
+import { CourseCTA, CourseSectionHeader, CourseFeatureGrid } from '../_shared/components';
+import { Atom, Layers, Zap, Microscope } from 'lucide-react';
 
 export default function VaisheshikDarshanCoursePage() {
-  // Use the custom hook for dynamic course data
-  const { courseData, loading, error } = useCourseData('vaisheshik-darshan', defaultCourseData);
+  const courseData = vaisheshikDarshanCourseData;
 
-  // Show loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-saffron-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading course data...</p>
-        </div>
-      </div>
-    );
-  }
+  const whyFeatures = [
+    {
+      icon: Atom,
+      title: 'Ancient Atomic Theory',
+      description: 'Discover the sophisticated Indian atomic theory that predates modern physics'
+    },
+    {
+      icon: Layers,
+      title: 'Six Categories',
+      description: 'Master the systematic categorization of all reality'
+    },
+    {
+      icon: Zap,
+      title: 'Metaphysics & Physics',
+      description: 'Explore the nature of substance, quality, and action'
+    },
+    {
+      icon: Microscope,
+      title: 'Ancient Science',
+      description: 'Bridge ancient wisdom with modern scientific understanding'
+    }
+  ];
+
   return (
-    <>
-      <HeroSection />
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
-        <div className="container-custom">
-          <WhyCourseSection />
+    <CourseLayout theme="philosophy">
+      <HeroTemplate
+        metadata={courseData.metadata}
+        stats={courseData.stats}
+        enrollmentLink={courseData.enrollment.checkoutLink}
+        backgroundImage={courseData.metadata.thumbnail}
+      />
+
+      <section className="course-section bg-gradient-to-b from-white to-gray-50">
+        <div className="course-container">
+          <CourseSectionHeader
+            subtitle="Indian Physics & Metaphysics"
+            title="Why Study Vaisheshika Darshan?"
+            description={courseData.whyCourse?.description}
+            centered={true}
+          />
+          <CourseFeatureGrid features={whyFeatures} columns={4} />
         </div>
       </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/30 to-parchment">
-        <div className="container-custom">
-          <CourseHighlights />
+
+      <HighlightsTemplate
+        highlights={courseData.highlights}
+        title="Course Features"
+        subtitle="What You'll Master"
+        description="Comprehensive training in ancient atomic theory and category system"
+        columns={3}
+        className="bg-white"
+      />
+
+      <SyllabusTemplate
+        syllabus={courseData.syllabus}
+        title="Complete Curriculum"
+        subtitle="Systematic Learning Path"
+        description="Master Vaisheshika philosophy from fundamentals to atomic theory"
+        defaultOpen={[0]}
+      />
+
+      {courseData.instructor && (
+        <InstructorTemplate
+          instructor={courseData.instructor}
+          className="bg-white"
+        />
+      )}
+
+      <OutcomesTemplate
+        outcomes={courseData.outcomes}
+        title="Knowledge You'll Gain"
+        subtitle="Learning Outcomes"
+        description="Develop systematic understanding of reality through ancient wisdom"
+      />
+
+      <TestimonialsTemplate
+        testimonials={courseData.testimonials}
+        title="Student Success"
+        subtitle="What Our Students Say"
+        description="Hear from learners amazed by ancient Indian atomic theory"
+        maxDisplay={6}
+      />
+
+      <FAQTemplate
+        faqs={courseData.faqs}
+        className="bg-white"
+      />
+
+      <section className="course-section bg-gradient-to-br from-[var(--theme-primary-50)] via-white to-[var(--theme-secondary-50)]">
+        <div className="course-container">
+          <CourseCTA
+            title="Master Ancient Indian Physics & Metaphysics"
+            description="Discover the sophisticated category system and atomic theory that predates modern science. Transform your understanding of reality through Vaisheshika philosophy."
+            primaryButtonText="Enroll Now"
+            primaryButtonHref={courseData.enrollment.checkoutLink}
+            badges={['1 Year Access', 'Certificate Included', 'Ancient Atomic Theory', 'Six Categories']}
+            backgroundGradient={false}
+          />
         </div>
       </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/20">
-        <div className="container-custom">
-          <SyllabusSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/20 to-parchment">
-        <div className="container-custom">
-          <GuruSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
-        <div className="container-custom">
-          <OutcomesSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/30 to-parchment">
-        <div className="container-custom">
-          <CertificateShowcase />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/20">
-        <div className="container-custom">
-          <TestimonialsSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment-light/20 to-parchment">
-        <div className="container-custom">
-          <FAQSection />
-        </div>
-      </section>
-      <section className="section-padding bg-gradient-to-b from-parchment to-parchment-light/30">
-        <div className="container-custom">
-          <FinalCTA />
-        </div>
-      </section>
-    </>
+    </CourseLayout>
   );
 }

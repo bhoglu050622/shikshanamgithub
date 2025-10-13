@@ -3,7 +3,6 @@
 import { useReducedMotion, useInView } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 import { MotionDiv, MotionH2, MotionP, MotionSpan, MotionButton } from '@/components/motion/MotionWrapper'
-import { API_CONFIG } from '@/lib/config/api'
 import { 
   User, 
   ExternalLink, 
@@ -53,82 +52,52 @@ interface MeetGurusData {
 
 const gurus: Guru[] = [
   {
-    name: "Dr. Priya Sharma",
-    specialty: "Chanakya Leadership & Business Strategy",
-    credibility: "15+ years in corporate leadership, PhD in Indian Philosophy",
-    image: "/images/gurus/priya-sharma.jpg",
-    profile: "/gurus/priya-sharma",
-    experience: "15+ years",
-    education: "PhD in Indian Philosophy, MBA from IIM",
-    achievements: [
-      "Former VP at Fortune 500 company",
-      "Published 3 books on leadership",
-      "Trained 5000+ executives",
-      "Awarded 'Best Leadership Coach 2023'"
-    ],
-    teachingStyle: "Practical, case-study driven approach with real-world applications",
-    philosophy: "Leadership is not about power, but about serving others and creating lasting impact",
-    courses: [
-      "Entrepreneurship & Leadership through Chanakya's Principles",
-      "Strategic Decision Making in Business",
-      "Building High-Performance Teams"
-    ],
+    name: "आचार्य विश्रीनिधिः",
+    specialty: "Navya Nyaya Scholar",
+    credibility: "पूर्णप्रज्ञविद्यापीठम्, बेङ्गलूरु",
+    image: "/images/gurus/vishrinidhi.jpg",
+    profile: "/gurus/vishrinidhi",
+    experience: "14+ years Gurukul Experience",
+    education: "PhD in Navya Nyaya",
+    teachingStyle: "Traditional Gurukul method with deep logical analysis",
+    philosophy: "Logic and reasoning are the foundation of true knowledge",
+    courses: ["Advanced Nyaya", "Navya Nyaya Fundamentals", "Sanskrit Logic"],
     rating: 4.9,
-    studentsCount: 2500,
+    studentsCount: 850,
     color: "from-primary to-primary/90",
-    icon: TrendingUp
+    icon: Brain
   },
   {
-    name: "Meera Patel",
-    specialty: "Emotional Intelligence & Samkhya Philosophy",
-    credibility: "Certified therapist, 12+ years in emotional wellness",
-    image: "/images/gurus/meera-patel.jpg",
-    profile: "/gurus/meera-patel",
-    experience: "12+ years",
-    education: "Masters in Psychology, Certified in Samkhya Philosophy",
-    achievements: [
-      "Licensed Clinical Psychologist",
-      "Certified Samkhya Philosophy Practitioner",
-      "Helped 3000+ individuals with emotional wellness",
-      "Featured in 'Psychology Today'"
-    ],
-    teachingStyle: "Compassionate, mindfulness-based approach with scientific backing",
-    philosophy: "True emotional intelligence comes from understanding the nature of consciousness itself",
-    courses: [
-      "Emotional Intelligence through Sāṅkhya Darśana",
-      "Mindfulness and Self-Awareness",
-      "Building Healthy Relationships"
-    ],
+    name: "साधक जामवंत",
+    specialty: "Ayurveda, Samkhya & Yoga",
+    credibility: "युवा गुरुकुलम्, पणजी, गोवा",
+    image: "/images/gurus/jamavant.jpg",
+    profile: "/gurus/jamavant",
+    experience: "10+ Years",
+    education: "आयुर्वेद, सांख्य एवं योग प्रशिक्षक",
+    teachingStyle: "Holistic approach integrating body, mind, and philosophy",
+    philosophy: "True wellness comes from understanding the harmony of consciousness and matter",
+    courses: ["Samkhya Philosophy", "Yoga Fundamentals", "Ayurvedic Lifestyle"],
     rating: 4.8,
-    studentsCount: 1800,
+    studentsCount: 1200,
     color: "from-accent to-accent/90",
     icon: Heart
   },
   {
-    name: "Rajesh Kumar",
-    specialty: "Kashmir Shaiva & Advanced Consciousness",
-    credibility: "Spiritual teacher, 20+ years in Shaiva traditions",
-    image: "/images/gurus/rajesh-kumar.jpg",
-    profile: "/gurus/rajesh-kumar",
+    name: "आचार्य शेखर चंद्र भट्ट",
+    specialty: "Nyaya Darshana",
+    credibility: "श्री शृङ्गेरी शारदा पीठम् पाठशाला, कर्नाटक",
+    image: "/images/gurus/shekhar-bhatt.jpg",
+    profile: "/gurus/shekhar-bhatt",
     experience: "20+ years",
-    education: "Traditional Shaiva Studies, Advanced Sanskrit Scholar",
-    achievements: [
-      "Initiated into Kashmir Shaiva tradition",
-      "Translated 5 ancient texts",
-      "Conducted 100+ meditation retreats",
-      "Recognized by Indian Council for Cultural Relations"
-    ],
-    teachingStyle: "Deep, contemplative approach with traditional wisdom and modern applications",
-    philosophy: "Consciousness is the fundamental reality, and self-realization is the highest goal",
-    courses: [
-      "Emotional Intelligence through Kashmir Shaiva Darśana",
-      "Advanced Consciousness Practices",
-      "Meditation and Spiritual Growth"
-    ],
+    education: "कृष्ण यजुर्वेद मूल, आचार्य - न्याय दर्शन",
+    teachingStyle: "Deep scriptural study with practical philosophical applications",
+    philosophy: "The path to truth lies in systematic inquiry and valid reasoning",
+    courses: ["Nyaya Darshana", "Krishna Yajurveda", "Vedic Philosophy"],
     rating: 4.9,
-    studentsCount: 1200,
+    studentsCount: 950,
     color: "from-secondary to-secondary/90",
-    icon: Brain
+    icon: BookOpen
   }
 ]
 
@@ -219,21 +188,6 @@ const GuruCard = ({
               {guru.studentsCount ? guru.studentsCount.toLocaleString() : '0'}+ students
             </span>
           </div>
-        </div>
-        
-        {/* Key Achievements */}
-        <div className="mb-6">
-          <h4 className="text-sm font-medium text-foreground mb-2">
-            Key Achievements
-          </h4>
-          <ul className="space-y-1">
-            {(guru.achievements || []).slice(0, 2).map((achievement, idx) => (
-              <li key={idx} className="flex items-start space-x-2 text-xs text-muted-foreground">
-                <Award className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
-                <span>{achievement}</span>
-              </li>
-            ))}
-          </ul>
         </div>
         
         {/* CTA Button */}
@@ -372,22 +326,6 @@ const GuruModal = ({
           
           {/* Right Column */}
           <div className="space-y-6">
-            {/* Achievements */}
-            <div>
-              <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
-                <Award className="w-5 h-5 mr-2 text-primary" />
-                Key Achievements
-              </h3>
-              <ul className="space-y-1">
-                {(guru.achievements || []).map((achievement, index) => (
-                  <li key={index} className="flex items-start space-x-2 text-xs text-muted-foreground">
-                    <Award className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
             {/* Courses */}
             <div>
               <h3 className="text-lg font-display text-foreground mb-3 flex items-center">
@@ -425,43 +363,30 @@ const GuruModal = ({
   )
 }
 
+// Hardcoded gurus data
+const gurusData = {
+  title: "Meet Our Gurus",
+  subtitle: "Learn from renowned spiritual teachers and scholars",
+  description: "Our gurus bring decades of experience in ancient Indian wisdom.",
+  gurus: gurus
+}
+
 export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps) {
   const [selectedGuru, setSelectedGuru] = useState<Guru | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [gurusData, setGurusData] = useState<MeetGurusData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
   const shouldReduceMotion = useReducedMotion()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
-  // Fetch CMS data
   useEffect(() => {
-    const fetchGurusData = async () => {
-      try {
-        const apiUrl = API_CONFIG.getCmsApiUrl('content')
-        console.log('Fetching gurus data from:', apiUrl)
-        
-        const response = await fetch(apiUrl)
-        const result = await response.json()
-        
-        if (result.success && result.data.meetGurus) {
-          setGurusData(result.data.meetGurus)
-        }
-      } catch (error) {
-        console.error('Failed to fetch gurus data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchGurusData()
+    setMounted(true)
   }, [])
 
-  // Use CMS data or fallback to default
-  const sectionTitle = gurusData?.title || "Meet Our Gurus"
-  const sectionSubtitle = gurusData?.subtitle || "Learn from authentic teachers of ancient wisdom"
-  const sectionDescription = gurusData?.description || "Our experienced teachers guide you through the ancient wisdom traditions."
-  const gurusList = gurusData?.gurus || gurus
+  const sectionTitle = gurusData.title
+  const sectionSubtitle = gurusData.subtitle
+  const sectionDescription = gurusData.description
+  const gurusList = gurusData.gurus
 
   const handleGuruClick = (guru: Guru) => {
     setSelectedGuru(guru)
@@ -475,7 +400,7 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
   }
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 relative overflow-hidden" aria-labelledby="gurus-title">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-[hsl(45,40%,98%)] to-[hsl(45,30%,97%)] dark:from-[hsl(240,8%,9%)] dark:to-[hsl(240,6%,11%)] relative overflow-hidden" aria-labelledby="gurus-title">
       {/* Background Animation */}
       <div className="absolute inset-0 -z-10">
         <MotionDiv
@@ -505,36 +430,15 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
       </div>
 
       <div className="container-custom">
-        <MotionDiv
-          ref={ref}
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center mb-16"
-        >
-          <MotionH2 
-            id="gurus-title" 
-            className="text-display text-foreground mb-4"
-            animate={isInView ? {
-              textShadow: [
-                '0 0 0px rgba(218, 165, 32, 0)',
-                '0 0 20px rgba(218, 165, 32, 0.3)',
-                '0 0 0px rgba(218, 165, 32, 0)'
-              ]
-            } : {}}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            {sectionTitle}
-          </MotionH2>
-          <MotionP 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {sectionSubtitle}
-          </MotionP>
-        </MotionDiv>
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Meet Your Gurus
+          </h2>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Learn from renowned spiritual teachers and scholars with decades of experience in ancient Indian wisdom.
+          </p>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {gurusList.map((guru: Guru, index: number) => (
@@ -547,45 +451,6 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
             />
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <MotionDiv
-          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <MotionP 
-            className="text-muted-foreground mb-6"
-            animate={isInView ? { opacity: [0.7, 1, 0.7] } : {}}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            Ready to learn from these exceptional teachers?
-          </MotionP>
-          <MotionButton
-            whileHover={shouldReduceMotion ? {} : { 
-              scale: 1.05, 
-              y: -2,
-              boxShadow: "0 10px 30px rgba(218, 165, 32, 0.3)"
-            }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-            className="btn-outline flex items-center space-x-3 px-8 py-4 text-lg mx-auto no-underline"
-          >
-            <MotionSpan
-              animate={{ textShadow: ['0 0 0px rgba(218, 165, 32, 0)', '0 0 10px rgba(218, 165, 32, 0.5)', '0 0 0px rgba(218, 165, 32, 0)'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              View All Gurus
-            </MotionSpan>
-            <MotionDiv
-              whileHover={{ rotate: 45, scale: 1.2 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ExternalLink className="w-5 h-5" />
-            </MotionDiv>
-          </MotionButton>
-        </MotionDiv>
       </div>
 
       {/* Guru Modal */}

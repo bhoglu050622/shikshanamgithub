@@ -1,0 +1,167 @@
+{
+  "courses": {
+    "durgasaptashi": {
+      "title": "Durgāsaptashatī Recitation - Live Class!",
+      "image": "/assets/durgasaptashi-course.jpeg",
+      "url": "https://shikshanam.in/durgasaptashati/"
+    },
+    "emotional-intelligence-with-samkhya-darshan": {
+      "title": "Emotional Intelligence with Sāṅkhya Darśana",
+      "image": "/assets/emotional-intelligence-course.png",
+      "url": "https://shikshanam.in/emotional-intelligence-with-samkhya-darshan/"
+    },
+    "chanakya-code": {
+      "title": "Chanakya's Code: Dominate Negotiation & Business Tactics!",
+      "image": "/assets/chanakya-code-course.png",
+      "url": "https://shikshanam.in/chanakya-code/"
+    },
+    "sanskrit-course": {
+      "title": "संस्कृत भाषा प्रज्ञा: Online Sanskrit Course in Hindi for Beginners",
+      "image": "/assets/sanskrit-bhasha-pragya.png",
+      "url": "https://shikshanam.in/online-sanskrit-course/"
+    },
+    "yoga-darshan": {
+      "title": "योग दर्शन: Yoga Philosophy through Patanjali Yoga Sutras",
+      "image": "/assets/yoga-darshan-course.png",
+      "url": "https://shikshanam.in/yoga-darshan-course/"
+    },
+    "isha-upanishad": {
+      "title": "ईशावास्य उपनिषद्: Online Course on the Isha Upanishad",
+      "image": "/assets/isha-upanishad-course.png",
+      "url": "https://shikshanam.in/isha-upanishad-course/"
+    },
+    "prashna-upanishad": {
+      "title": "प्रश्न उपनिषद्: Online Course on the Prashna Upanishad",
+      "image": "/assets/prashna-upanishad-course.jpg",
+      "url": "https://shikshanam.in/prashna-upanishad-course/"
+    },
+    "kashmir-shaivism": {
+      "title": "कश्मीर शैव दर्शन: Online Course on Kashmir Shaiva Darshan",
+      "image": "/assets/kashmir-shaivism-course.png",
+      "url": "https://shikshanam.in/kashmir-shaivism/"
+    },
+    "advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka": {
+      "title": "Advaita Vedanta Darshan: दृग दृश्य विवेक द्वारा अद्वैत की व्याख्या",
+      "image": "/assets/advaita-vedanta-course.png",
+      "url": "https://shikshanam.in/advaita-vedanta/"
+    },
+    "nyaya-darshan": {
+      "title": "न्याय दर्शन: Online Course on Nyaya Philosophy of Maharshi Gautama",
+      "image": "/assets/nyaya-darshan-course.png",
+      "url": "https://shikshanam.in/nyaya-darshan-course/"
+    },
+    "vaisheshik-darshan": {
+      "title": "वैशेषिक दर्शन: Online Course on Vaisheshik Sutras of Rishi Kanada",
+      "image": "/assets/vaisheshik-darshan-course.png",
+      "url": "https://shikshanam.in/vaisheshik-darshan-course/"
+    },
+    "tantra-darshan": {
+      "title": "प्राचीन तंत्र दर्शन: Decoding the principles of Tantra",
+      "image": "/assets/tantra-darshan-course.png",
+      "url": "https://shikshanam.in/tantra-darshan/"
+    }
+  },
+  "packages": {
+    "ultimate-sankhya-bundle": {
+      "title": "Ultimate Bundle of Sāṅkhya Philosophy",
+      "image": "/assets/ultimate-samkhya-bundle.png"
+    },
+    "vedanta-shaivism-bundle": {
+      "title": "Vedanta aur Shaivism: Adhyayan aur Anubhuti",
+      "image": "/assets/vedanta-shaivism-bundle.png"
+    },
+    "para-apara-all-courses": {
+      "title": "Parā + Aparā (All Shikshanam Courses)",
+      "image": "/assets/para-apara-all-courses.jpg"
+    },
+    "samkhya-emotional-intelligence": {
+      "title": "Samkhya Darshan + Emotional Intelligence Combo Course",
+      "image": "/assets/samkhya-eq-combo.png"
+    },
+    "all-para-courses": {
+      "title": "All Parā Courses Combo Package",
+      "image": "/assets/para-courses-package.png"
+    },
+    "eradication-suffering-samkhya-yoga": {
+      "title": "Eradication of Suffering Package: Samkhya + Yog",
+      "image": "/assets/eradication-suffering-package.png"
+    },
+    "isha-prashna-upanishad-bundle": {
+      "title": "The Essence of Enlightenment: Isha and Prashna Upanishad Package",
+      "image": "/assets/essence-enlightenment-package.png"
+    },
+    "hindu-philosophies-upanishads": {
+      "title": "Hindu Philosophies + Upanishads: Wisdom Package",
+      "image": "/assets/hindu-philosophies-upanishads-package.png"
+    },
+    "nyaya-vaisheshik-enlightenment": {
+      "title": "Dual Path of Enlightenment Package: Nyaya + Vaisheshik",
+      "image": "/assets/nyaya-vaisheshik-package.png"
+    },
+    "sanskrit-darshan-upanishad-bundle": {
+      "title": "Sanskrit + Darshan + Upanishad",
+      "image": "/assets/sanskrit-darshan-upanishad-package.png"
+    },
+    "sanskrit-philosophies-bundle": {
+      "title": "Sanskrit Language + Hindu Philosophies",
+      "image": "/assets/sanskrit-hindu-philosophies-package.png"
+    },
+    "sanatan-chatushtay": {
+      "title": "सनातन चतुष्टय: Exploring Eternal Philosophies of Hinduism",
+      "image": "/assets/sanatan-chatushtay-package.png"
+    },
+    "sanskrit-basics-to-conversation": {
+      "title": "Sanskrit Package: संस्कृत सीखें- प्रारंभ से संभाषण तक!",
+      "image": "/assets/sanskrit-package.png"
+    }
+  },
+  "books": {
+    "dhairya-english": {
+      "title": "धैर्य by Sādhaka Jāmvant (English)",
+      "image": "/assets/dhairya-book-english.png"
+    },
+    "dhairya-hindi": {
+      "title": "धैर्य by Sādhaka Jāmvant (Hindi)",
+      "image": "/assets/dhairya-book-hindi.png"
+    },
+    "vigyan-adhyatma-english": {
+      "title": "विज्ञान तथा अध्यात्म by Sādhaka Jāmvant (English)",
+      "image": "/assets/vigyan-adhyatma-book-english.png"
+    },
+    "vigyan-adhyatma-hindi": {
+      "title": "विज्ञान तथा अध्यात्म by Sādhaka Jāmvant (Hindi)",
+      "image": "/assets/vigyan-adhyatma-book-hindi.png"
+    }
+  },
+  "free_courses": {
+    "free-samkhya-emotions": {
+      "title": "Free Class: Reset Your Emotions Through Ancient Sāṅkhya Wisdom",
+      "image": "/assets/free-samkhya-emotions.png"
+    },
+    "tatvabodha-1": {
+      "title": "Tatvabodha 1: Prakriti and Purusha in Samkhya Darshan",
+      "image": "/assets/tatvabodha-1-samkhya.png"
+    },
+    "tatvabodha-2": {
+      "title": "Tatvabodha 2: Samadhi and Sadhana Pada in Yoga Darshan",
+      "image": "/assets/tatvabodha-2-yoga.png"
+    },
+    "tatvabodha-3": {
+      "title": "Tatvabodha 3: Yoga Darshan- Vibhuti and Kaivalya Pada",
+      "image": "/assets/tatvabodha-3-yoga-advanced.png"
+    }
+  },
+    "_metadata": {
+    "totalImages": 42,
+    "totalSize": "~10MB",
+    "lastUpdated": "2025-10-12T00:00:00.000Z",
+    "downloadedFrom": "shikshanam.in",
+    "categories": {
+      "courses": 13,
+      "packages": 13,
+      "books": 4,
+      "free_courses": 4
+    }
+  }
+}
+

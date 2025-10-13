@@ -1,0 +1,863 @@
+/* ============================================
+   SHIKSHANAM COURSE LANDING - SHARED DESIGN SYSTEM
+   Unified styles for all course landing pages
+   ============================================ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES - DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* ---- Typography Scale (1.125 ratio) ---- */
+  --font-size-xs: 0.875rem;      /* 14px */
+  --font-size-sm: 1rem;          /* 16px */
+  --font-size-base: 1.125rem;    /* 18px */
+  --font-size-lg: 1.25rem;       /* 20px */
+  --font-size-xl: 1.5rem;        /* 24px */
+  --font-size-2xl: 1.75rem;      /* 28px */
+  --font-size-3xl: 2rem;         /* 32px */
+  --font-size-4xl: 3rem;         /* 48px */
+  --font-size-5xl: 4rem;         /* 64px */
+
+  /* ---- Line Heights ---- */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* ---- Letter Spacing ---- */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+
+  /* ---- Spacing Scale ---- */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  --space-4xl: 5rem;     /* 80px */
+  --space-5xl: 6rem;     /* 96px */
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.5rem;   /* 24px */
+  --radius-2xl: 2rem;    /* 32px */
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-premium: 0 10px 40px rgba(0, 0, 0, 0.1), 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 20px rgba(251, 146, 60, 0.3);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- Z-Index Layers ---- */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+
+  /* ---- Common Colors ---- */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  
+  /* Neutral Colors */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Background Colors */
+  --bg-parchment: #faf8f3;
+  --bg-ivory: #fbf7f0;
+  --bg-cream: #fffbf5;
+  --bg-sand: #d2b48c;
+
+  /* Text Colors */
+  --text-primary: #111319;
+  --text-secondary: #404040;
+  --text-tertiary: #737373;
+  --text-muted: #999999;
+
+  /* Success/Error Colors */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+}
+
+/* ============================================
+   THEME-SPECIFIC COLOR PALETTES
+   ============================================ */
+
+/* Philosophy Theme - Burgundy & Gold */
+.theme-philosophy {
+  --theme-primary-50: #fef2f2;
+  --theme-primary-100: #fee2e2;
+  --theme-primary-200: #fecaca;
+  --theme-primary-300: #fca5a5;
+  --theme-primary-400: #f87171;
+  --theme-primary-500: #ef4444;
+  --theme-primary-600: #dc2626;
+  --theme-primary-700: #b91c1c;
+  --theme-primary-800: #991b1b;
+  --theme-primary-900: #7f1d1d;
+  
+  --theme-secondary-50: #fefce8;
+  --theme-secondary-100: #fef9c3;
+  --theme-secondary-200: #fef08a;
+  --theme-secondary-300: #fde047;
+  --theme-secondary-400: #facc15;
+  --theme-secondary-500: #eab308;
+  --theme-secondary-600: #ca8a04;
+  --theme-secondary-700: #a16207;
+  --theme-secondary-800: #854d0e;
+  --theme-secondary-900: #713f12;
+}
+
+/* Upanishad Theme - Warm Gold & Amber (Ancient Wisdom) */
+.theme-upanishad {
+  --theme-primary-50: #fffbeb;
+  --theme-primary-100: #fef3c7;
+  --theme-primary-200: #fde68a;
+  --theme-primary-300: #fcd34d;
+  --theme-primary-400: #fbbf24;
+  --theme-primary-500: #f59e0b;
+  --theme-primary-600: #d97706;
+  --theme-primary-700: #b45309;
+  --theme-primary-800: #92400e;
+  --theme-primary-900: #78350f;
+  
+  --theme-secondary-50: #fff7ed;
+  --theme-secondary-100: #ffedd5;
+  --theme-secondary-200: #fed7aa;
+  --theme-secondary-300: #fdba74;
+  --theme-secondary-400: #fb923c;
+  --theme-secondary-500: #f97316;
+  --theme-secondary-600: #ea580c;
+  --theme-secondary-700: #c2410c;
+  --theme-secondary-800: #9a3412;
+  --theme-secondary-900: #7c2d12;
+}
+
+/* Sanskrit Theme - Vibrant Teal & Saffron (Language & Culture) */
+.theme-sanskrit {
+  --theme-primary-50: #ecfeff;
+  --theme-primary-100: #cffafe;
+  --theme-primary-200: #a5f3fc;
+  --theme-primary-300: #67e8f9;
+  --theme-primary-400: #22d3ee;
+  --theme-primary-500: #06b6d4;
+  --theme-primary-600: #0891b2;
+  --theme-primary-700: #0e7490;
+  --theme-primary-800: #155e75;
+  --theme-primary-900: #164e63;
+  
+  --theme-secondary-50: #fff7ed;
+  --theme-secondary-100: #ffedd5;
+  --theme-secondary-200: #fed7aa;
+  --theme-secondary-300: #fdba74;
+  --theme-secondary-400: #fb923c;
+  --theme-secondary-500: #f97316;
+  --theme-secondary-600: #ea580c;
+  --theme-secondary-700: #c2410c;
+  --theme-secondary-800: #9a3412;
+  --theme-secondary-900: #7c2d12;
+}
+
+/* Practical Wisdom Theme - Deep Blue & Emerald (Transformation) */
+.theme-practical {
+  --theme-primary-50: #eff6ff;
+  --theme-primary-100: #dbeafe;
+  --theme-primary-200: #bfdbfe;
+  --theme-primary-300: #93c5fd;
+  --theme-primary-400: #60a5fa;
+  --theme-primary-500: #3b82f6;
+  --theme-primary-600: #2563eb;
+  --theme-primary-700: #1d4ed8;
+  --theme-primary-800: #1e40af;
+  --theme-primary-900: #1e3a8a;
+  
+  --theme-secondary-50: #ecfdf5;
+  --theme-secondary-100: #d1fae5;
+  --theme-secondary-200: #a7f3d0;
+  --theme-secondary-300: #6ee7b7;
+  --theme-secondary-400: #34d399;
+  --theme-secondary-500: #10b981;
+  --theme-secondary-600: #059669;
+  --theme-secondary-700: #047857;
+  --theme-secondary-800: #065f46;
+  --theme-secondary-900: #064e3b;
+}
+
+/* Advanced Theme - Deep Indigo & Royal Purple (Mastery) */
+.theme-advanced {
+  --theme-primary-50: #eef2ff;
+  --theme-primary-100: #e0e7ff;
+  --theme-primary-200: #c7d2fe;
+  --theme-primary-300: #a5b4fc;
+  --theme-primary-400: #818cf8;
+  --theme-primary-500: #6366f1;
+  --theme-primary-600: #4f46e5;
+  --theme-primary-700: #4338ca;
+  --theme-primary-800: #3730a3;
+  --theme-primary-900: #312e81;
+  
+  --theme-secondary-50: #faf5ff;
+  --theme-secondary-100: #f3e8ff;
+  --theme-secondary-200: #e9d5ff;
+  --theme-secondary-300: #d8b4fe;
+  --theme-secondary-400: #c084fc;
+  --theme-secondary-500: #a855f7;
+  --theme-secondary-600: #9333ea;
+  --theme-secondary-700: #7e22ce;
+  --theme-secondary-800: #6b21a8;
+  --theme-secondary-900: #581c87;
+}
+
+/* ============================================
+   LAYOUT & CONTAINERS
+   ============================================ */
+
+.course-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.course-container-narrow {
+  max-width: 1024px;
+}
+
+.course-container-wide {
+  max-width: 1536px;
+}
+
+.course-section {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+@media (max-width: 768px) {
+  .course-section {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+.course-heading-hero {
+  font-size: var(--font-size-5xl);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-tight);
+  font-family: 'Noto Serif', serif;
+}
+
+.course-heading-1 {
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  font-family: 'Noto Serif', serif;
+}
+
+.course-heading-2 {
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-tight);
+  font-weight: 600;
+  font-family: 'Noto Serif', serif;
+}
+
+.course-heading-3 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
+  font-weight: 600;
+}
+
+.course-heading-4 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-normal);
+  font-weight: 600;
+}
+
+.course-body-lg {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+}
+
+.course-body {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.course-body-sm {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+
+@media (max-width: 768px) {
+  .course-heading-hero {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .course-heading-1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .course-heading-2 {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* ============================================
+   BUTTON COMPONENTS
+   ============================================ */
+
+.course-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  min-height: 44px; /* Touch-friendly */
+  white-space: nowrap;
+}
+
+.course-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Primary Button */
+.course-btn-primary {
+  background: linear-gradient(135deg, var(--theme-primary-500) 0%, var(--theme-primary-600) 100%);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.course-btn-primary:hover {
+  background: linear-gradient(135deg, var(--theme-primary-600) 0%, var(--theme-primary-700) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.course-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.course-btn-secondary {
+  background: transparent;
+  color: var(--theme-primary-600);
+  border: 2px solid var(--theme-primary-600);
+}
+
+.course-btn-secondary:hover {
+  background: var(--theme-primary-600);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tertiary Button */
+.course-btn-tertiary {
+  background: var(--theme-primary-50);
+  color: var(--theme-primary-700);
+}
+
+.course-btn-tertiary:hover {
+  background: var(--theme-primary-100);
+}
+
+/* Button Sizes */
+.course-btn-sm {
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--font-size-xs);
+  min-height: 36px;
+}
+
+.course-btn-lg {
+  padding: var(--space-lg) var(--space-2xl);
+  font-size: var(--font-size-base);
+  min-height: 52px;
+}
+
+/* ============================================
+   CARD COMPONENTS
+   ============================================ */
+
+.course-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  border: 1px solid var(--gray-200);
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Premium Card with Glass Effect */
+.course-card-premium {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-premium);
+  transition: all var(--transition-base);
+}
+
+.course-card-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Card */
+.course-card-feature {
+  background: var(--theme-primary-50);
+  border: 1px solid var(--theme-primary-100);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
+}
+
+.course-card-feature:hover {
+  background: var(--theme-primary-100);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   BADGE COMPONENTS
+   ============================================ */
+
+.course-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.course-badge-primary {
+  background: var(--theme-primary-100);
+  color: var(--theme-primary-700);
+}
+
+.course-badge-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.course-badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.course-badge-info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* ============================================
+   ICON COMPONENTS
+   ============================================ */
+
+.course-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  background: var(--theme-primary-100);
+  color: var(--theme-primary-600);
+  flex-shrink: 0;
+}
+
+.course-icon-wrapper-sm {
+  width: 2rem;
+  height: 2rem;
+  padding: var(--space-xs);
+}
+
+.course-icon-wrapper-md {
+  width: 3rem;
+  height: 3rem;
+  padding: var(--space-sm);
+}
+
+.course-icon-wrapper-lg {
+  width: 4rem;
+  height: 4rem;
+  padding: var(--space-md);
+}
+
+/* ============================================
+   GRID LAYOUTS
+   ============================================ */
+
+.course-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.course-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.course-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+}
+
+@media (max-width: 1024px) {
+  .course-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .course-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .course-grid-2,
+  .course-grid-3,
+  .course-grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animation Classes */
+.course-animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.course-animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.course-animate-scaleIn {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.course-animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.course-animate-slideInRight {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.course-animate-pulse {
+  animation: pulse-gentle 4s ease-in-out infinite;
+}
+
+.course-animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Stagger Delay Classes */
+.course-animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.course-animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.course-animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.course-animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.course-animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* ============================================
+   SACRED GEOMETRY & DECORATIVE ELEMENTS
+   ============================================ */
+
+.course-mandala-overlay {
+  position: absolute;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.course-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    var(--theme-primary-50) 0%, 
+    transparent 50%, 
+    var(--theme-secondary-50) 100%);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.course-blob-decoration {
+  position: absolute;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  filter: blur(40px);
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .course-card:hover,
+  .course-card-premium:hover,
+  .course-btn:hover {
+    transform: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .course-card,
+  .course-card-premium {
+    border: 2px solid var(--text-primary);
+  }
+  
+  .course-btn-secondary {
+    border-width: 3px;
+  }
+}
+
+/* Screen Reader Only */
+.course-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus Visible */
+.course-focus-ring:focus-visible {
+  outline: 2px solid var(--theme-primary-500);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Spacing Utilities */
+.course-mt-xs { margin-top: var(--space-xs); }
+.course-mt-sm { margin-top: var(--space-sm); }
+.course-mt-md { margin-top: var(--space-md); }
+.course-mt-lg { margin-top: var(--space-lg); }
+.course-mt-xl { margin-top: var(--space-xl); }
+.course-mt-2xl { margin-top: var(--space-2xl); }
+.course-mt-3xl { margin-top: var(--space-3xl); }
+
+.course-mb-xs { margin-bottom: var(--space-xs); }
+.course-mb-sm { margin-bottom: var(--space-sm); }
+.course-mb-md { margin-bottom: var(--space-md); }
+.course-mb-lg { margin-bottom: var(--space-lg); }
+.course-mb-xl { margin-bottom: var(--space-xl); }
+.course-mb-2xl { margin-bottom: var(--space-2xl); }
+.course-mb-3xl { margin-bottom: var(--space-3xl); }
+
+/* Text Alignment */
+.course-text-center { text-align: center; }
+.course-text-left { text-align: left; }
+.course-text-right { text-align: right; }
+
+/* Display Utilities */
+.course-flex { display: flex; }
+.course-inline-flex { display: inline-flex; }
+.course-grid { display: grid; }
+.course-block { display: block; }
+.course-inline-block { display: inline-block; }
+.course-hidden { display: none; }
+
+/* Flexbox Utilities */
+.course-flex-col { flex-direction: column; }
+.course-flex-row { flex-direction: row; }
+.course-items-center { align-items: center; }
+.course-items-start { align-items: flex-start; }
+.course-items-end { align-items: flex-end; }
+.course-justify-center { justify-content: center; }
+.course-justify-between { justify-content: space-between; }
+.course-justify-around { justify-content: space-around; }
+.course-gap-xs { gap: var(--space-xs); }
+.course-gap-sm { gap: var(--space-sm); }
+.course-gap-md { gap: var(--space-md); }
+.course-gap-lg { gap: var(--space-lg); }
+.course-gap-xl { gap: var(--space-xl); }
+
+/* Width Utilities */
+.course-w-full { width: 100%; }
+.course-max-w-sm { max-width: 640px; }
+.course-max-w-md { max-width: 768px; }
+.course-max-w-lg { max-width: 1024px; }
+.course-max-w-xl { max-width: 1280px; }
+.course-mx-auto { margin-left: auto; margin-right: auto; }
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .course-btn,
+  .course-animate-fadeIn,
+  .course-animate-fadeInUp {
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  
+  .course-card,
+  .course-card-premium {
+    box-shadow: none !important;
+    border: 1px solid var(--text-primary) !important;
+  }
+}
+

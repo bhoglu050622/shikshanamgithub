@@ -15,7 +15,7 @@ export default function CourseInfoSection() {
     {
       icon: "🔄",
       title: "Free Future Updates",
-      description: "Lifetime Access"
+      description: "1-Year Access"
     },
     {
       icon: "📝",

@@ -50,13 +50,22 @@ export default function WhyCourseSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="nyaya-card text-center"
+            whileHover={{ 
+              scale: 1.03,
+              rotateY: 5,
+              transition: { duration: 0.3 }
+            }}
+            className="nyaya-card text-center group cursor-pointer"
+            style={{ transformStyle: 'preserve-3d' }}
           >
-            <div className="nyaya-icon mx-auto">
+            <div className="nyaya-icon mx-auto group-hover:scale-110 transition-all duration-300">
               {reason.icon}
             </div>
-            <h3 className="nyaya-heading text-xl mb-3">{reason.title}</h3>
-            <p className="nyaya-subheading text-gray-600">{reason.description}</p>
+            <h3 className="nyaya-heading text-xl mb-3 font-bold group-hover:text-blue-700 transition-colors">{reason.title}</h3>
+            <p className="nyaya-subheading text-gray-600 leading-relaxed">{reason.description}</p>
+            
+            {/* Accent line */}
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-2xl"></div>
           </motion.div>
         ))}
       </div>
