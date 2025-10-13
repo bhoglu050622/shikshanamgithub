@@ -39,7 +39,6 @@ export function PremiumCTA({
   secondaryCTA,
   trustBadges = [
     'Lifetime Access',
-    '30-Day Money-Back Guarantee',
     'Expert Support'
   ],
   urgency

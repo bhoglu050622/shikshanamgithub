@@ -194,10 +194,6 @@ export default function HeroSection() {
               className="flex flex-wrap items-center gap-6 pt-4"
             >
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-green-600" />
-                <span className="text-sm text-gray-600">Money-back Guarantee</span>
-              </div>
-              <div className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-[#D98E3A]" />
                 <span className="text-sm text-gray-600">Certificate Included</span>
               </div>

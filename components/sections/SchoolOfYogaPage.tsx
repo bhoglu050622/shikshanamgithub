@@ -285,7 +285,7 @@ export default function SchoolOfYogaPage() {
             </motion.button>
 
             <p className="text-sm text-wisdom-500 dark:text-wisdom-400 mt-4">
-              Secure payment • 30-day money-back guarantee
+              Secure payment
             </p>
           </motion.div>
         </div>

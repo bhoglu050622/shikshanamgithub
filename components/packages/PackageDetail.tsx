@@ -412,7 +412,7 @@ export function PackageDetail({
                     Buy Now
                   </Button>
                   <p className="text-xs text-slate-500 mt-2">
-                    Lifetime access • 30-day money-back guarantee
+                    Lifetime access
                   </p>
                 </div>
               </CardContent>

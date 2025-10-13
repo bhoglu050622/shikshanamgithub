@@ -285,7 +285,7 @@ export default function SchoolOfSamkhyaPage() {
             </motion.button>
 
             <p className="text-sm text-wisdom-500 dark:text-wisdom-400 mt-4">
-              Secure payment • 30-day money-back guarantee
+              Secure payment
             </p>
           </motion.div>
         </div>
@@ -599,7 +599,7 @@ export default function SchoolOfSamkhyaPage() {
               },
               {
                 question: "What if I'm not satisfied with the course?",
-                answer: "We offer a 30-day money-back guarantee. If you're not satisfied, we'll refund your payment."
+                answer: "Please review our demo content and course details before enrolling to ensure it meets your expectations."
               },
               {
                 question: "Can I access the course materials offline?",

@@ -73,7 +73,6 @@ export default function FinalCTA() {
 
             <div className="border-t-2 border-blue-200 pt-8">
               <p className="nyaya-subheading text-gray-700 text-lg">
-                <strong className="text-green-600">7-day money-back guarantee</strong> • No questions asked • 
                 Start learning immediately after enrollment
               </p>
             </div>
