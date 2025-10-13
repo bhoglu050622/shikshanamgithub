@@ -13,6 +13,72 @@
   background: linear-gradient(135deg, #FDF6E3 0%, #F5E6D3 100%);
 }
 
+/* Language of Gods Theme - Manuscript & Devanagari */
+.manuscript-texture {
+  background: linear-gradient(135deg, #FEF3C7 0%, #F5E6D3 50%, #FDF6E3 100%);
+  position: relative;
+}
+
+.manuscript-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 92, 33, 0.03) 2px, rgba(139, 92, 33, 0.03) 3px);
+  pointer-events: none;
+}
+
+.devanagari-flow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  overflow: hidden;
+}
+
+.sanskrit-border {
+  border: 3px double #D97706;
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.sanskrit-border::before,
+.sanskrit-border::after {
+  content: 'ॐ';
+  position: absolute;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.5rem;
+  color: #D97706;
+  opacity: 0.6;
+}
+
+.sanskrit-border::before {
+  top: -0.75rem;
+  left: 1rem;
+  background: #FEF3C7;
+  padding: 0 0.5rem;
+}
+
+.sanskrit-border::after {
+  bottom: -0.75rem;
+  right: 1rem;
+  background: #FEF3C7;
+  padding: 0 0.5rem;
+}
+
+.palm-leaf-scroll {
+  background: 
+    linear-gradient(90deg, #F5E6D3 0%, #FEF3C7 50%, #F5E6D3 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(139, 92, 33, 0.05) 20px, rgba(139, 92, 33, 0.05) 21px);
+}
+
+.manuscript-glow {
+  box-shadow: 
+    0 0 40px rgba(217, 119, 6, 0.3),
+    0 10px 60px rgba(234, 88, 12, 0.2),
+    0 20px 80px rgba(251, 146, 60, 0.1);
+}
+
 /* Flashcards Section */
 .flashcards-section {
   padding: 80px 20px;

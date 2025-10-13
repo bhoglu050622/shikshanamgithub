@@ -3,15 +3,26 @@
 import { motion } from 'framer-motion';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 import AnimatedBackground from './AnimatedBackground';
+import ManuscriptScroll from './ManuscriptScroll';
+import { ParticleField } from '../../_shared/components';
 
 export default function HeroSection() {
   return (
-    <section className="sanskrit-hero-section"
+    <section className="sanskrit-hero-section manuscript-texture palm-leaf-scroll"
             suppressHydrationWarning
           >
+      {/* Manuscript Scroll Effect */}
+      <ManuscriptScroll />
+      
+      {/* Devanagari Character Rain */}
+      <div className="devanagari-flow">
+        <ParticleField particleType="devanagari" density={40} color="#D97706" opacity={0.4} />
+      </div>
+      
+      {/* Original Background for additional effects */}
       <AnimatedBackground />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-[#FDF6E3]/95 via-[#FDF6E3]/90 to-[#FF6B35]/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FEF3C7]/80 via-[#F5E6D3]/70 to-[#EA580C]/20" />
       
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32"
             suppressHydrationWarning
