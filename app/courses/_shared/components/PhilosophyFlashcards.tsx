@@ -49,26 +49,30 @@ export default function PhilosophyFlashcards({ flashcards, title, subtitle, clas
   const displayCards = flashcards.slice(0, 4);
 
   return (
-    <section className={`philosophy-flashcards-section ${className}`}>
-      <div className="flashcards-header">
-        <h2>{title}</h2>
+    <section className={`philosophy-flashcards-section ${className} relative overflow-hidden`}>
+      {/* Premium Background Enhancement */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white opacity-50 pointer-events-none" />
+      
+      <div className="flashcards-header relative z-10">
+        <h2 className="devanagari-text">{title}</h2>
         <p>{subtitle}</p>
       </div>
-      <div className="flashcards-container">
+      <div className="flashcards-container relative z-10">
         {displayCards.map((card, index) => (
           <div
             key={index}
-            className="flashcard"
+            className="flashcard glass-card"
             data-card-id={index.toString()}
             ref={(el) => { cardRefs.current[index.toString()] = el; }}
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="flashcard-inner">
               <div className="flashcard-front">
-                <div className="flashcard-icon-container">
+                <div className="flashcard-icon-container animate-pulse-divine">
                   <span>?</span>
                 </div>
                 <div className="flashcard-text-content">
-                  <p className="flashcard-sanskrit-text">{card.sanskrit}</p>
+                  <p className="flashcard-sanskrit-text devanagari-text">{card.sanskrit}</p>
                   <p className="flip-indicator-text">Tap for meaning</p>
                 </div>
               </div>
@@ -78,7 +82,7 @@ export default function PhilosophyFlashcards({ flashcards, title, subtitle, clas
                 </div>
                 <div className="translation-group">
                   <p className="lang-label">हिन्दी</p>
-                  <p className="translation-text hindi-text">{card.hindi}</p>
+                  <p className="translation-text hindi-text devanagari-text">{card.hindi}</p>
                 </div>
                 <div className="translation-group">
                   <p className="lang-label">English</p>
