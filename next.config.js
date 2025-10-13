@@ -139,8 +139,10 @@ const nextConfig = {
     }
     
     // Optimize resolve configuration
+    const path = require('path');
     config.resolve.alias = {
       ...config.resolve.alias,
+      '@': path.resolve(__dirname),
     };
     
     // Temporarily disabled complex code splitting to troubleshoot
