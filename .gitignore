@@ -90,3 +90,4 @@ coverage/
 
 /lib/generated/prisma
 .env
+.env.local
