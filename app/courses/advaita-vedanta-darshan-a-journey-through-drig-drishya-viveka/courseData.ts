@@ -210,15 +210,15 @@ export const advaitaVedantaCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Acharya Vivek Sharma',
-    title: 'Advaita Vedanta Scholar',
-    bio: 'Acharya Vivek Sharma is a renowned scholar of Advaita Vedanta philosophy with extensive training in traditional Sanskrit texts. His teaching style combines classical wisdom with modern context, making profound philosophical concepts accessible to contemporary seekers. With years of teaching experience, he has guided numerous students on their journey to self-realization.',
-    experience: '12+ years teaching Advaita Vedanta and Sanskrit texts',
+    name: 'Vishal Chaurasia',
+    title: 'Philosophy Scholar & IIT Graduate',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Advaita Vedanta, he guides students through the profound teachings of Drig Drishya Viveka with clarity and precision.',
+    experience: '10+ years teaching Advaita Vedanta and Indian Philosophy',
     specialization: [
       'Advaita Vedanta',
       'Drig Drishya Viveka',
       'Upanishads',
-      'Brahma Sutras'
+      'Indian Darshanas'
     ]
   },
 

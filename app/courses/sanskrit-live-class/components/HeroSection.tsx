@@ -123,7 +123,7 @@ export default function HeroSection() {
   }, [hindiAlphabets]);
 
   const handleVideoClick = () => {
-    setVideoId('e4xRSjCn1pU');
+    setVideoId('g0U_VrX4EP0');
     setIsVideoModalOpen(true);
   };
 
@@ -146,7 +146,7 @@ export default function HeroSection() {
               <span className="pill-icon">💬</span> Speak From Day One
             </div>
             <div className="stat-pill">
-              <span className="pill-icon">📝</span> Selection-Based Entry
+              <span className="pill-icon">📝</span> Curated Cohort
             </div>
           </div>
 
@@ -157,39 +157,66 @@ export default function HeroSection() {
 
           {/* Hero Heading */}
           <h1 className="hero-heading animate-item" style={{ animationDelay: '0.4s' }}>
-            Need a Sanskrit Environment?<br />
+            Basic Sanskrit Live Class<br />
             <span className="light-text">Learn & Speak with a<br />Sanskrit Teacher – Live!</span>
           </h1>
 
           {/* Hero Subheading */}
           <p className="hero-subheading animate-item" style={{ animationDelay: '0.5s' }}>
-            Practice Sanskrit in a private circle of handpicked learners & Dharmic creators — alongside <strong>Vishal Chaurasia</strong>, live every weekend!
+            Practice Sanskrit in a private circle.
           </p>
 
           {/* Button Wrapper */}
           <div className="button-wrapper animate-item" style={{ animationDelay: '0.6s' }}>
             <div className="main-buttons">
               <a 
-                href="https://shikshanam.in/sanskrit-live-class/#:~:text=Instructions%20/%20%E0%A4%A8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%A6%E0%A5%87%E0%A4%B6-,%3A,-20%20Questions%20/%2020" 
+                href="#one-time-payment-card" 
                 className="hero-button btn-primary"
               >
-                🚀 Start Your Transformation
+                🚀 Start Your Journey
               </a>
             </div>
-            <p className="text-xs text-gray-500 mt-2 font-medium tracking-wide">
-              First Batch Starts August 23rd, 2025. Class Timings 07:30- 08:30 PM IST
-            </p>
+            
+            {/* Batch Information Card */}
+            <div className="mt-4 p-4 bg-white/50 border border-amber-200/80 rounded-2xl shadow-md w-full max-w-lg mx-auto">
+              <div className="flex flex-col sm:flex-row justify-around items-center gap-4 text-amber-900">
+                {/* Start Date */}
+                <div className="flex items-center gap-2">
+                  <i className="fas fa-calendar-alt text-lg"></i>
+                  <div className="text-left">
+                    <p className="text-xs font-medium opacity-80">Starts On</p>
+                    <p className="font-bold text-sm">October 25th, 2025</p>
+                  </div>
+                </div>
+                {/* Schedule */}
+                <div className="flex items-center gap-2">
+                  <i className="fas fa-users text-lg"></i>
+                  <div className="text-left">
+                    <p className="text-xs font-medium opacity-80">Schedule</p>
+                    <p className="font-bold text-sm">Weekends</p>
+                  </div>
+                </div>
+                {/* Timings */}
+                <div className="flex items-center gap-2">
+                  <i className="fas fa-clock text-lg"></i>
+                  <div className="text-left">
+                    <p className="text-xs font-medium opacity-80">Timings</p>
+                    <p className="font-bold text-sm">07:30 - 08:30 PM IST</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Video Preview Section */}
           <div className="video-preview-wrapper animate-item">
             <div 
               className="video-preview-container" 
-              data-video-id="e4xRSjCn1pU"
+              data-video-id="g0U_VrX4EP0"
               onClick={handleVideoClick}
             >
               <Image 
-                src="https://img.youtube.com/vi/e4xRSjCn1pU/maxresdefault.jpg" 
+                src="https://img.youtube.com/vi/g0U_VrX4EP0/maxresdefault.jpg" 
                 alt="Sanskrit Bhasha Pragya Program Preview" 
                 width={1280}
                 height={720}

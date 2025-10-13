@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import CountdownHeader from './components/CountdownHeader';
 import HeroSection from './components/HeroSection';
 import PopupWidget from './components/PopupWidget';
@@ -14,18 +15,27 @@ import './additional-sections.css';
 
 export default function SanskritLiveClassPage() {
   return (
-    <div className="min-h-screen bg-[#fcf8f3]">
-      <CountdownHeader />
-      <HeroSection />
-      <InteractiveFlashcards />
-      <CourseInfoSection />
-      <MasterTeachersSection />
-      <BonusFeaturesSection />
-      <CourseCurriculumSection />
-      <FoundersMissionSection />
-      <PricingSection />
-      <ShlokaSection />
-      <PopupWidget />
-    </div>
+    <>
+      {/* Font Awesome for Icons */}
+      <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossOrigin="anonymous"
+      />
+      
+      <div className="min-h-screen bg-[#fcf8f3]">
+        <CountdownHeader />
+        <HeroSection />
+        <InteractiveFlashcards />
+        <CourseInfoSection />
+        <MasterTeachersSection />
+        <BonusFeaturesSection />
+        <CourseCurriculumSection />
+        <PricingSection />
+        <FoundersMissionSection />
+        <ShlokaSection />
+        <PopupWidget />
+      </div>
+    </>
   );
 }

@@ -14,12 +14,12 @@ export default function InteractiveFlashcards() {
   // Data for the flashcards with multiple variations - memoized to prevent re-creation
   const cardDataSets = useMemo(() => ({
     '1': [
-      { sanskrit: 'कथम् अस्ति?', hindi: 'आप कैसी हैं?', english: 'How are you?' },
+      { sanskrit: 'कथम् अस्ति?', hindi: 'आप कैसे हो?', english: 'How are you?' },
       { sanskrit: 'शुभ प्रभातम्।', hindi: 'सुप्रभात।', english: 'Good morning.' }
     ],
     '2': [
       { sanskrit: 'तव नाम किम्?', hindi: 'आपका नाम क्या है?', english: 'What is your name?' },
-      { sanskrit: 'मम नामः आर्यः।', hindi: 'मेरा नाम आर्य है।', english: 'My name is Arya.' }
+      { sanskrit: 'मम नाम आर्यः।', hindi: 'मेरा नाम आर्य है।', english: 'My name is Arya.' }
     ],
     '3': [
       { sanskrit: 'अहं कुशली अस्मि।', hindi: 'मैं ठीक हूँ।', english: 'I am fine.' },
@@ -143,7 +143,7 @@ export default function InteractiveFlashcards() {
               </div>
               <div className="translation-group">
                 <p className="lang-label">Hindi</p>
-                <p className="translation-text hindi-text">आप कैसी हैं?</p>
+                <p className="translation-text hindi-text">आप कैसे हो?</p>
               </div>
               <div className="translation-group">
                 <p className="lang-label">English</p>

@@ -1,11 +1,44 @@
-/* Yoga Advanced Course Landing Page Styles */
+/* Yoga Advanced Course Landing Page - Energetic Practice Theme */
 
-/* Most styling comes from the shared design system */
-/* Only course-specific overrides go here */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
 
-.yoga-advanced-page {
-  /* Course-specific styles if needed */
+/* Hero Section */
+.yoga-advanced-hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F97316 0%, #FBBF24 100%);
 }
 
-/* Custom enhancements for this course (optional) */
+/* Flashcards */
+.yoga-advanced-flashcards {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #fff, rgb(255 247 237 / 0.3));
+}
 
+.yoga-advanced-flashcards .flashcard-front {
+  background: linear-gradient(135deg, rgb(249 115 22 / 0.05) 0%, rgb(251 191 36 / 0.1) 100%);
+  border: 2px solid rgb(249 115 22 / 0.3);
+}
+
+.yoga-advanced-flashcards .flashcard-icon-container {
+  background: linear-gradient(135deg, #F97316, #FBBF24);
+}
+
+.yoga-advanced-flashcards .flashcard-back {
+  background: linear-gradient(135deg, #F97316 0%, #FBBF24 100%);
+}
+
+/* Sections */
+.shloka-section-yoga-advanced {
+  background: linear-gradient(to bottom, rgb(255 247 237 / 0.3), white);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .yoga-advanced-hero-section {
+    min-height: 80vh;
+  }
+}

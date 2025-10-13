@@ -6,9 +6,9 @@ export const ishaUpanishadCourseData: CourseContent = {
     subtitle: 'Isha Upanishad - The Divine Union',
     description: 'Journey through the profound 18 mantras of Isha Upanishad, one of the most concise yet complete spiritual texts. Discover the perfect balance between action and renunciation, worldly life and spiritual pursuit.',
     type: 'Premium Course',
-    price: '₹1,999',
-    originalPrice: '₹2,999',
-    savings: '33%',
+    price: '₹999',
+    originalPrice: '₹1,999',
+    savings: '50%',
     duration: '5+ Hours',
     level: 'Beginner',
     status: 'available',
@@ -190,14 +190,14 @@ export const ishaUpanishadCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Acharya Ramesh Bhatt',
-    title: 'Vedanta Scholar & Sanskrit Expert',
-    bio: 'Acharya Ramesh Bhatt is a renowned scholar of Upanishads and Vedanta philosophy. With traditional training in Sanskrit and years of teaching experience, he brings ancient wisdom to life for modern seekers. His teaching style combines deep scholarship with practical applications, making profound philosophical concepts accessible and relevant.',
-    experience: '18+ years teaching Upanishads and Vedanta',
+    name: 'Vishal Chaurasia',
+    title: 'Philosophy Scholar & IIT Graduate',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Upanishadic wisdom, he guides students to discover the timeless truths of Vedanta.',
+    experience: '10+ years teaching Upanishads and Indian Philosophy',
     specialization: [
       'Upanishads',
       'Vedanta Philosophy',
-      'Sanskrit Texts',
+      'Indian Darshanas',
       'Bhagavad Gita'
     ]
   },

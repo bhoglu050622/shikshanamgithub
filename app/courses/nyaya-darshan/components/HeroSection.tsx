@@ -1,226 +1,119 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import { BookOpen, Brain, Network, Sparkles } from 'lucide-react';
-import { useEffect, useRef } from 'react';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
+import AnimatedBackground from './AnimatedBackground';
 
 export default function HeroSection() {
-  const enrollmentLink = "https://courses.shikshanam.in/single-checkout/64bf7b3fe4b04cc6d3b00311?pid=p2";
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const nodes: Array<{ x: number; y: number; vx: number; vy: number }> = [];
-    const nodeCount = 30;
-
-    for (let i = 0; i < nodeCount; i++) {
-      nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-      });
-    }
-
-    function animate() {
-      if (!canvas || !ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      nodes.forEach((node, i) => {
-        node.x += node.vx;
-        node.y += node.vy;
-
-        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(245, 158, 11, 0.6)';
-        ctx.fill();
-
-        nodes.forEach((otherNode, j) => {
-          if (i === j) return;
-          const dx = node.x - otherNode.x;
-          const dy = node.y - otherNode.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(node.x, node.y);
-            ctx.lineTo(otherNode.x, otherNode.y);
-            ctx.strokeStyle = `rgba(96, 165, 250, ${0.15 * (1 - distance / 150)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        });
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <section className="nyaya-hero min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Logic Network */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 1 }}
-      />
-
-      {/* Decorative Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-slate-900/30" style={{ zIndex: 2 }}></div>
+    <section className="nyaya-hero-section">
+      <AnimatedBackground />
       
-      <div className="nyaya-hero-content container-custom text-center relative px-4 py-12" style={{ zIndex: 10 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-6xl mx-auto"
-        >
-          {/* Floating Badge */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/95 via-[#6B7280]/80 to-blue-900/10" />
+      
+      <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-blue-200/50 mb-8"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-6"
           >
-            <Brain className="w-5 h-5 text-blue-600" />
-            <span className="text-sm font-semibold text-slate-900">Master the Art of Logic & Reasoning</span>
-            <Sparkles className="w-4 h-4 text-amber-500" />
+            <svg className="w-16 h-16 mx-auto mb-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-semibold text-sm md:text-base">
+              न्याय दर्शन • Science of Logic
+            </span>
           </motion.div>
 
-          {/* Main Title */}
-          <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
+            style={{ 
+              fontFamily: '"Noto Sans Devanagari", sans-serif',
+              textShadow: '2px 4px 12px rgba(0,0,0,0.3)'
+            }}
           >
-            <span className="block bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 bg-clip-text text-transparent mb-3">
-              Nyaya Philosophy
-            </span>
-            <span className="block text-2xl md:text-3xl lg:text-4xl font-medium text-white/95">
-              through Rishi Gautama&apos;s Nyaya Sutras
-            </span>
+            न्याय दर्शन
           </motion.h1>
-          
-          {/* Hindi Tagline */}
-          <motion.p 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 mt-6 mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-white/90 mb-4 font-medium"
           >
-            ईश्वर को तर्क और प्रमाणों से समझें!
+            Online Course on Nyaya Philosophy of Maharshi Gautama
           </motion.p>
 
-          {/* Feature Stats */}
-          <motion.div 
-            className="flex flex-wrap gap-6 justify-center items-center mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-base md:text-lg text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed"
           >
-            <div className="flex items-center gap-3 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-lg border border-blue-200/50">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <Brain className="w-5 h-5 text-white" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-medium text-slate-600">Skill Level</p>
-                <p className="text-sm font-bold text-slate-900">Beginner</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-lg border border-blue-200/50">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">हिं</span>
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-medium text-slate-600">Language</p>
-                <p className="text-sm font-bold text-slate-900">हिन्दी</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-lg border border-blue-200/50">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                <Network className="w-5 h-5 text-white" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-medium text-slate-600">Duration</p>
-                <p className="text-sm font-bold text-slate-900">4-5 Hours</p>
-              </div>
-            </div>
+            Master the sophisticated Indian logical framework including the five-membered syllogism. Explore the four means of valid knowledge and develop sharp critical thinking skills through ancient wisdom.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <ProtectedExternalLink
+              href="https://courses.shikshanam.in/single-checkout/nyaya-darshan-course?pid=p1"
+              className="group px-8 py-4 bg-white text-[#2563EB] font-bold text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center gap-2"
+            >
+              <span>Master Logic & Reasoning</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </ProtectedExternalLink>
+
+            <a
+              href="#course-details"
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-lg border-2 border-white/30 hover:border-white/60 hover:bg-white/20 transition-all duration-300"
+            >
+              Explore Course
+            </a>
           </motion.div>
 
-          {/* Pricing Card */}
-          <motion.div 
-            className="max-w-lg mx-auto mb-10"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-blue-200/50">
-              <div className="flex items-baseline justify-center gap-4 mb-6">
-                <span className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">₹3,499</span>
-                <span className="text-2xl md:text-3xl text-slate-400 line-through">₹5,199</span>
-                <span className="text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full">33% OFF</span>
-              </div>
-
-              <ProtectedExternalLink 
-                href={enrollmentLink}
-                className="w-full group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-600 hover:via-orange-600 hover:to-amber-700 text-white font-bold px-10 py-5 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <BookOpen className="w-6 h-6 relative z-10" />
-                <span className="relative z-10">Enroll Now • ₹3,499</span>
-                <Sparkles className="w-5 h-5 relative z-10 animate-pulse" />
-              </ProtectedExternalLink>
-              
-              <p className="text-sm text-slate-600 mt-4">
-                🔒 Secure Payment • Lifetime Access • Certificate Included
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Trust Badge */}
-          <motion.div 
-            className="mt-12 pt-8 border-t border-white/20"
+          <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1 }}
+            className="mt-12 flex flex-wrap justify-center gap-8 text-sm md:text-base text-white/80"
           >
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex items-center gap-2 text-white/90">
-                <div className="flex -space-x-2">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white"></div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 border-2 border-white"></div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white"></div>
-                </div>
-                <span className="text-lg font-semibold ml-2">1000+ Students</span>
-              </div>
-              <p className="text-base md:text-lg text-white/80 font-medium">
-                हजारों छात्रों, गृहणियों, जिज्ञासुओं ने अपनाया न्याय दर्शन को
-              </p>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+              </svg>
+              <span><strong>4 Pramanas</strong> Mastery</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span><strong>4.8/5</strong> Rating</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </svg>
+              <span><strong>Logic</strong> Systems</span>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

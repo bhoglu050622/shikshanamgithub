@@ -1,11 +1,44 @@
-/* Chanakya Code Course Landing Page Styles */
+/* Chanakya Code Course Landing Page - Ancient Wisdom Theme */
 
-/* Most styling comes from the shared design system */
-/* Only course-specific overrides go here */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
 
-.chanakya-code-page {
-  /* Course-specific styles if needed */
+/* Hero Section */
+.chanakya-hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #991B1B 0%, #D97706 100%);
 }
 
-/* Custom enhancements for this course (optional) */
+/* Flashcards */
+.chanakya-flashcards {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #fff, rgb(254 242 242 / 0.3));
+}
 
+.chanakya-flashcards .flashcard-front {
+  background: linear-gradient(135deg, rgb(153 27 27 / 0.05) 0%, rgb(217 119 6 / 0.1) 100%);
+  border: 2px solid rgb(153 27 27 / 0.3);
+}
+
+.chanakya-flashcards .flashcard-icon-container {
+  background: linear-gradient(135deg, #991B1B, #D97706);
+}
+
+.chanakya-flashcards .flashcard-back {
+  background: linear-gradient(135deg, #991B1B 0%, #D97706 100%);
+}
+
+/* Sections */
+.shloka-section-chanakya {
+  background: linear-gradient(to bottom, rgb(254 242 242 / 0.3), white);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chanakya-hero-section {
+    min-height: 80vh;
+  }
+}

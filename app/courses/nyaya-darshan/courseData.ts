@@ -193,10 +193,10 @@ export const nyayaDarshanCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Dr. Rajesh Sharma',
-    title: 'Nyaya Philosophy Expert',
-    bio: 'Dr. Rajesh Sharma is a distinguished scholar of Nyaya philosophy with a PhD in Indian Philosophy. His expertise lies in making complex logical concepts accessible and relevant to modern learners. With extensive teaching experience, he has trained numerous students in the art of logical reasoning and critical thinking through Nyaya Darshan.',
-    experience: '15+ years teaching Nyaya and Indian Logic',
+    name: 'Vishal Chaurasia',
+    title: 'Philosophy Scholar & IIT Graduate',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Nyaya philosophy, he expertly guides students through the intricate world of Indian logic and epistemology.',
+    experience: '10+ years teaching Nyaya and Indian Philosophy',
     specialization: [
       'Nyaya Sutras',
       'Indian Logic',

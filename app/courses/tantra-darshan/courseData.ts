@@ -200,15 +200,15 @@ export const tantraDarshanCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Acharya Manoj Tripathi',
-    title: 'Tantric Philosophy Scholar',
-    bio: 'Acharya Manoj Tripathi is a respected scholar of tantric philosophy with traditional training in classical tantric texts. His mission is to present authentic tantra, clarifying misconceptions and revealing its profound spiritual depth. With years of study and practice, he guides students into the true essence of this transformative philosophy.',
-    experience: '15+ years studying and teaching Tantra',
+    name: 'Vishal Chaurasia',
+    title: 'Philosophy Scholar & IIT Graduate',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Tantra philosophy, he presents authentic tantric wisdom while clarifying misconceptions and revealing its profound spiritual depth.',
+    experience: '10+ years teaching Tantra and Indian Philosophy',
     specialization: [
       'Classical Tantra Philosophy',
       'Shakti-Shiva Tattva',
       'Kundalini Science',
-      'Tantric Texts'
+      'Indian Darshanas'
     ]
   },
 

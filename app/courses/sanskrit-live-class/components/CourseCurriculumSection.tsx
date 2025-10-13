@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 interface Lesson {
   title: string;
@@ -17,123 +17,91 @@ interface Module {
 }
 
 export default function CourseCurriculumSection() {
-  const componentRef = useRef<HTMLDivElement>(null);
+  const [expandedModule, setExpandedModule] = useState<number | null>(1);
+  const [showAll, setShowAll] = useState(false);
 
   // All curriculum data for the Sanskrit course
   const curriculumData: Module[] = [
-    { moduleNumber: 1, title: 'Meet & Greet in Sanskrit', description: 'Say hello, wish good morning, and start conversations politely.', tag: 'Conversation', lessons: [ { title: 'Polite Expressions', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 2, title: 'Introduce Yourself!', description: 'Ask and tell names naturally, for him, her, and yourself.', tag: 'Conversation', lessons: [ { title: 'Pronouns: He, She, I', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 3, title: 'Here, There & Everywhere!', description: 'Use location words to point and talk about places.', tag: 'Vocabulary', lessons: [ { title: 'Pointing at Objects', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 4, title: 'Who Owns This?', description: 'Talk about possession: his, hers, whose.', tag: 'Grammar', lessons: [ { title: 'Forming Whose Questions', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 5, title: 'Say What You\'re Doing!', description: 'Describe actions like eating, going, writing, or reading.', tag: 'Verbs', lessons: [ { title: 'Simple Sentence Building', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 6, title: 'Count Like a Pro!', description: 'Numbers for shopping, games, and everyday talk.', tag: 'Vocabulary', lessons: [ { title: 'Counting Objects', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 7, title: 'Tell the Time!', description: 'Ask and answer about hours and minutes in Sanskrit.', tag: 'Conversation', lessons: [ { title: 'Telling Time (Hours)', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 8, title: 'Where Is It?', description: 'Talk about positions: on the desk, in your hand, inside the book.', tag: 'Vocabulary', lessons: [ { title: 'Describing Object Locations', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 9, title: 'Talking About Days!', description: 'Today, tomorrow, yesterday — and beyond.', tag: 'Vocabulary', lessons: [ { title: 'Using Today, Yesterday, Tomorrow', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 10, title: 'When We Do It Together!', description: 'Plural verb forms for we and they in action.', tag: 'Grammar', lessons: [ { title: 'Group Action Sentences', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 11, title: 'Left, Right & All Around!', description: 'Use spatial words and key question words.', tag: 'Vocabulary', lessons: [ { title: 'Asking for Directions', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 12, title: 'Narrate Past and Future Events!', description: 'Speak about Yesterday and tomorrows.', tag: 'Grammar', lessons: [ { title: 'Recounting Your Day', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 13, title: 'After Doing This…', description: 'Join sentences with after, if, although, and more.', tag: 'Grammar', lessons: [ { title: 'Combining Simple Sentences', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 14, title: 'Add Color to Your Words!', description: 'Colors, tastes, clothes, opposites, animals, body parts, health & food.', tag: 'Vocabulary', lessons: [ { title: 'Describing People and Things', type: 'Practice Exercise', duration: '✍️' } ] },
-    { moduleNumber: 15, title: 'Sanskrit for Fun Chats!', description: 'Gender in numbers, phone calls, and playful roleplays.', tag: 'Conversation', lessons: [ { title: 'Understanding Gender in Nouns', type: 'Practice Exercise', duration: '✍️' } ] }
+    { moduleNumber: 1, title: 'Meet & Greet in Sanskrit', description: 'Learn basic greetings and polite expressions.', tag: 'Conversation', lessons: [ { title: 'Polite Expressions', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 2, title: 'Introduce Yourself!', description: 'Ask for and give names for yourself and others.', tag: 'Conversation', lessons: [ { title: 'Pronouns: He, She, I', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 3, title: 'Here, There & Everywhere!', description: 'Use location words to talk about places.', tag: 'Vocabulary', lessons: [ { title: 'Pointing at Objects', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 4, title: 'Who Owns This?', description: 'Learn to talk about possession and ownership.', tag: 'Grammar', lessons: [ { title: 'Forming "Whose" Questions', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 5, title: 'Say What You\'re Doing!', description: 'Describe simple actions like eating or reading.', tag: 'Verbs', lessons: [ { title: 'Simple Sentence Building', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 6, title: 'Count Like a Pro!', description: 'Master numbers for everyday situations.', tag: 'Vocabulary', lessons: [ { title: 'Counting Objects', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 7, title: 'Tell the Time!', description: 'Learn how to ask for and tell the time.', tag: 'Conversation', lessons: [ { title: 'Telling Time (Hours)', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 8, title: 'Where Is It?', description: 'Describe object locations and positions.', tag: 'Vocabulary', lessons: [ { title: 'Describing Object Locations', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 9, title: 'Talking About Days!', description: 'Discuss days like today, yesterday, and tomorrow.', tag: 'Vocabulary', lessons: [ { title: 'Using Today, Yesterday, Tomorrow', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 10, title: 'When We Do It Together!', description: 'Use plural verbs for group actions.', tag: 'Grammar', lessons: [ { title: 'Group Action Sentences', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 11, title: 'Left, Right & All Around!', description: 'Learn directions and key question words.', tag: 'Vocabulary', lessons: [ { title: 'Asking for Directions', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 12, title: 'Narrate Past and Future Events!', description: 'Talk about past and future events.', tag: 'Grammar', lessons: [ { title: 'Recounting Your Day', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 13, title: 'After Doing This…', description: 'Connect sentences using conjunctions.', tag: 'Grammar', lessons: [ { title: 'Combining Simple Sentences', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 14, title: 'Add Color to Your Words!', description: 'Expand your vocabulary with descriptive words.', tag: 'Vocabulary', lessons: [ { title: 'Describing People and Things', type: 'Practice Exercise', duration: '✍️' } ] },
+    { moduleNumber: 15, title: 'Sanskrit for Fun Chats!', description: 'Practice fun, conversational scenarios.', tag: 'Conversation', lessons: [ { title: 'Understanding Gender in Nouns', type: 'Practice Exercise', duration: '✍️' } ] }
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (componentRef.current) {
-        const rect = componentRef.current.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (isVisible) {
-          componentRef.current.classList.add('animate-fade-in');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const getTagColor = (tag: string) => {
-    switch (tag) {
-      case 'Conversation':
-        return 'bg-blue-100 text-blue-800';
-      case 'Vocabulary':
-        return 'bg-green-100 text-green-800';
-      case 'Grammar':
-        return 'bg-purple-100 text-purple-800';
-      case 'Verbs':
-        return 'bg-orange-100 text-orange-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
+  const toggleModule = (moduleNumber: number) => {
+    setExpandedModule(expandedModule === moduleNumber ? null : moduleNumber);
   };
 
   return (
-    <section 
-      ref={componentRef}
-      className="py-16 bg-gradient-to-br from-saffron-50 via-white to-peacock-green-50"
-      id="curriculum"
-    >
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Complete Course Curriculum
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Master Sanskrit conversation through 15 comprehensive modules designed to take you from beginner to confident speaker.
-          </p>
+    <div id="curriculum-component">
+      <div className={`curriculum-wrapper ${showAll ? 'show-all' : ''}`}>
+        <div className="curriculum-pill">
+          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+          Sanskrit Course
         </div>
-
-        <div className="grid gap-6 max-w-4xl mx-auto">
-          {curriculumData.map((module, index) => (
-            <div
+        <h2 className="curriculum-main-heading">Your Journey into Conversational Sanskrit</h2>
+        <p className="curriculum-sub-heading">Our 15-module course for everyday conversational Sanskrit.</p>
+        
+        <div className="accordion-container">
+          {curriculumData.map((module) => (
+            <div 
               key={module.moduleNumber}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-saffron-500"
-              style={{
-                animationDelay: `${index * 0.1}s`
-              }}
+              className={`module-item ${expandedModule === module.moduleNumber ? 'expanded' : ''} ${module.moduleNumber > 2 ? 'initially-hidden' : ''}`}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-saffron-500 to-peacock-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {module.moduleNumber}
+              <div className="module-header" onClick={() => toggleModule(module.moduleNumber)}>
+                <div className="module-icon">
+                  <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
+                  </svg>
+                </div>
+                <div className="module-info">
+                  <div className="module-title-wrapper">
+                    <h3 className="module-title">{module.title}</h3>
+                    <span className="module-tag">{module.tag}</span>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">
-                      {module.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {module.description}
-                    </p>
+                  <p className="module-desc">{module.description}</p>
+                  <div className="module-meta">
+                    <div className="meta-item">
+                      <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                      </svg>
+                      <span>{module.lessons.length} Lesson{module.lessons.length > 1 ? 's' : ''}</span>
+                    </div>
                   </div>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getTagColor(module.tag)}`}>
-                  {module.tag}
-                </span>
+                <div className="expand-collapse-trigger">
+                  <span className="module-label">Module {module.moduleNumber}</span>
+                  <div className="expand-text">
+                    <span>{expandedModule === module.moduleNumber ? 'Collapse' : 'Expand'}</span>
+                    <svg fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-
-              <div className="ml-16">
-                <div className="space-y-3">
-                  {module.lessons.map((lesson, lessonIndex) => (
-                    <div key={lessonIndex} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                      <div className="w-8 h-8 bg-saffron-100 rounded-full flex items-center justify-center">
-                        <span className="text-saffron-600 font-medium text-sm">
-                          {lessonIndex + 1}
-                        </span>
+              <div className="module-content">
+                <div className="lessons-list">
+                  {module.lessons.map((lesson, index) => (
+                    <div key={index} className="lesson-item">
+                      <div className="lesson-icon">
+                        <span>{lesson.duration}</span>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900">
-                          {lesson.title}
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          {lesson.type}
-                        </p>
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {lesson.duration}
+                      <div className="lesson-info">
+                        <h4 className="lesson-title">{lesson.title}</h4>
+                        <p className="lesson-type">{lesson.type}</p>
                       </div>
                     </div>
                   ))}
@@ -142,21 +110,10 @@ export default function CourseCurriculumSection() {
             </div>
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Ready to Start Your Sanskrit Journey?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Join thousands of students who have transformed their Sanskrit skills with our comprehensive curriculum.
-            </p>
-            <button className="bg-gradient-to-r from-saffron-600 to-saffron-700 hover:from-saffron-700 hover:to-saffron-800 text-white font-semibold py-3 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Enroll Now
-            </button>
-          </div>
-        </div>
+        <button className="show-all-button" onClick={() => setShowAll(!showAll)}>
+          {showAll ? 'Show Less' : 'Show Entire Curriculum'}
+        </button>
       </div>
-    </section>
+    </div>
   );
 }

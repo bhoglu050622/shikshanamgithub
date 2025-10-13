@@ -26,7 +26,7 @@ export default function QuizPopup({ isOpen, onClose }: QuizPopupProps) {
           Discover how closely your life aligns with Shiva's cosmic rhythm. Answer simple questions to find your flow.
         </p>
         <a 
-          href="https://shikshanam.in/kashmir-shaivism/#:~:text=only%205%20minutes%20%E2%80%A2-,Completely%20free,-%E2%80%A2%20Instant%20results"
+          href="/how-aligned-are-you"
           onClick={onClose}
         >
           <button className="bg-gradient-to-b from-[#f0b94b] to-[#e59f28] hover:from-[#e59f28] hover:to-[#d18e22] text-black font-bold py-3 px-8 rounded-lg transition-shadow duration-300 shadow-[0_4px_15px_0px_rgba(229,159,40,0.4)] hover:shadow-[0_4px_20px_0px_rgba(229,159,40,0.6)] w-full">

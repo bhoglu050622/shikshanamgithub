@@ -119,7 +119,7 @@ export default function TeacherSection() {
         </div>
         
         <a 
-          href="https://shikshanam.in/kashmir-shaivism/#:~:text=Invest%20in%20your%20spiritual%20transformation%20with%20confidence" 
+          href="#kashmir-pricing-section" 
           className="start-journey-btn"
         >
           Start Your Journey

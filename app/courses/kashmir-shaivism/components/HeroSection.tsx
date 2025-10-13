@@ -87,20 +87,19 @@ export default function HeroSection({ onShowPopup }: HeroSectionProps) {
             {/* CTA Buttons */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full content-item animate-fade-in-up delay-800">
               <a 
-                href="https://shikshanam.in/kashmir-shaivism/#:~:text=Invest%20in%20your%20spiritual%20transformation%20with%20confidence" 
-                rel="noopener noreferrer" 
+                href="#kashmir-pricing-section" 
                 className="w-full sm:w-auto"
               >
                 <button className="bg-gradient-to-b from-[#f0b94b] to-[#e59f28] hover:from-[#e59f28] hover:to-[#d18e22] text-black font-bold py-3 px-8 rounded-lg transition-shadow duration-300 shadow-[0_4px_15px_0px_rgba(229,159,40,0.4)] hover:shadow-[0_4px_20px_0px_rgba(229,159,40,0.6)] w-full sm:w-auto animate-button-bob">
                   Start Your Journey
                 </button>
               </a>
-              <button 
-                onClick={onShowPopup}
+              <a 
+                href="/how-aligned-are-you"
                 className="bg-gray-500 bg-opacity-20 border border-gray-500 hover:border-gray-400 text-gray-300 hover:text-white font-semibold py-3 px-8 rounded-lg transition-colors w-full sm:w-auto"
               >
                 Take Free Quiz – Find Your Current Rhythm
-              </button>
+              </a>
             </div>
 
             {/* Footer Text */}

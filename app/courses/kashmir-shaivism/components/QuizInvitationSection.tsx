@@ -58,9 +58,7 @@ export default function QuizInvitationSection() {
           </ul>
           
           <a 
-            href="https://shikshanam.in/how-aligned-are-you-with-shiva/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+            href="/how-aligned-are-you" 
             className="quiz-button inline-block font-semibold py-3 px-8 rounded-full text-lg animate-button-bob no-underline"
           >
             Take the Quiz Now →

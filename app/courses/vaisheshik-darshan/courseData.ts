@@ -211,10 +211,10 @@ export const vaisheshikDarshanCourseData: CourseContent = {
   ],
 
   instructor: {
-    name: 'Dr. Arvind Joshi',
-    title: 'Vaisheshika Philosophy Expert',
-    bio: 'Dr. Arvind Joshi is a distinguished scholar specializing in Vaisheshika philosophy with a PhD in Indian Philosophy. His expertise lies in making the complex category system accessible to modern learners while maintaining philosophical rigor. He has taught thousands of students the fascinating connections between ancient atomic theory and modern physics.',
-    experience: '20+ years teaching Indian philosophy',
+    name: 'Vishal Chaurasia',
+    title: 'Philosophy Scholar & IIT Graduate',
+    bio: 'Vishal Chaurasia is a distinguished scholar of Indian philosophy with an engineering background from IIT. His unique ability to bridge ancient wisdom with modern scientific thinking makes complex philosophical concepts accessible and practical for contemporary seekers. With deep expertise in Vaisheshika philosophy, he brilliantly connects ancient atomic theory with modern physics.',
+    experience: '10+ years teaching Vaisheshika and Indian Philosophy',
     specialization: [
       'Vaisheshika Darshan',
       'Ancient Atomic Theory',

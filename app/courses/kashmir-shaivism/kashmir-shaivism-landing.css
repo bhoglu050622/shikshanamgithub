@@ -482,7 +482,7 @@
 /* --- Shloka Section Styles --- */
 #shloka-section-container {
     font-family: 'Inter', sans-serif !important;
-    padding: 4rem 1rem !important;
+    padding: 4rem 1rem 2rem 1rem !important;
     margin: 0 !important;
     background-color: #211f25 !important;
     background-image: radial-gradient(ellipse at center, #45403d 0%, #211f25 80%) !important;

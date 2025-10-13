@@ -1,226 +1,120 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { Crown, Users, Clock, Star, Award, TrendingUp, Target } from 'lucide-react'
-import { EnrollNowButton } from '@/components/auth/ProtectedEnrollButton'
-import { ClientMotion, ClientMotionDiv, ClientMotionH1, ClientMotionP } from '@/components/motion/ClientMotion'
+import { motion } from 'framer-motion';
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
+import AnimatedBackground from './AnimatedBackground';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-saffron-50/30 via-transparent to-peacock-green-50/30 -z-10" />
+    <section className="chanakya-hero-section">
+      <AnimatedBackground />
       
-      {/* Course Icon Overlay */}
-      <div className="absolute inset-0 opacity-10 -z-10">
-        <Image 
-          src="/assets/courses/chanakya-code.png"
-          alt="Chanakya Code"
-          fill
-          className="object-contain"
-        />
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#991B1B]/95 via-[#D97706]/85 to-red-900/20" />
       
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-80 h-80 bg-gradient-to-br from-saffron-200/20 via-peacock-green-200/15 to-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle" />
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-br from-peacock-green-200/20 via-indigo-200/15 to-saffron-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-gentle animation-delay-2000" />
+      <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-6"
+          >
+            <svg className="w-16 h-16 mx-auto mb-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-semibold text-sm md:text-base">
+              चाणक्य नीति • Ancient Wisdom
+            </span>
+          </motion.div>
 
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="space-y-6">
-            <ClientMotionDiv
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
+            style={{ 
+              fontFamily: '"Noto Sans Devanagari", sans-serif',
+              textShadow: '2px 4px 12px rgba(0,0,0,0.3)'
+            }}
+          >
+            The Chanakya Code
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-white/90 mb-4 font-medium"
+          >
+            Timeless Wisdom from Acharya Chanakya
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-base md:text-lg text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed"
+          >
+            Master the profound teachings of statecraft, ethics, and life strategy from one of India's greatest thinkers. Learn principles that transform personal and professional success.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <ProtectedExternalLink
+              href="https://courses.shikshanam.in/single-checkout/chanakya-code-course?pid=p1"
+              className="group px-8 py-4 bg-white text-[#991B1B] font-bold text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center gap-2"
             >
-              {/* Badge */}
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-saffron-100 to-peacock-green-100 text-saffron-700 px-4 py-2 rounded-full text-sm font-medium">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <Crown className="w-4 h-4" />
-                  <span>Premium Business Course</span>
-                </ClientMotionDiv>
-              </div>
+              <span>Learn Ancient Strategy</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </ProtectedExternalLink>
 
-              {/* Main Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-indigo-900 leading-tight">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  Chanakya's Code
-                  <span className="block text-saffron-600 mt-2">
-                    Dominate Negotiation & Business Tactics
-                  </span>
-                </ClientMotionDiv>
-              </h1>
-
-              {/* Subheadline */}
-              <p className="text-xl text-indigo-700 leading-relaxed">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  Master 2000-year-old strategic wisdom for modern business success. 
-                  Learn negotiation, leadership, and decision-making from India's greatest strategist.
-                </ClientMotionDiv>
-              </p>
-
-              {/* Stats */}
-              <div className="flex flex-wrap gap-6">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <div className="flex items-center space-x-2 text-wisdom-600">
-                    <Users className="w-5 h-5 text-saffron-600" />
-                    <span>10,000+ Professionals</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-wisdom-600">
-                    <Clock className="w-5 h-5 text-saffron-600" />
-                    <span>16-20 Classes</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-wisdom-600">
-                    <Star className="w-5 h-5 fill-saffron-500 text-saffron-500" />
-                    <span>4.8/5 Rating</span>
-                  </div>
-                </ClientMotionDiv>
-              </div>
-
-              {/* Pricing */}
-              <div className="bg-gradient-to-br from-saffron-50 to-amber-50 rounded-2xl p-6">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <div className="text-3xl font-bold text-indigo-700">₹3,999</div>
-                      <div className="text-sm text-wisdom-400 line-through">₹6,999</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-semibold text-green-600">Save ₹3,000</div>
-                      <div className="text-xs text-wisdom-500">43% off</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm text-indigo-600 mb-4">
-                    <Award className="w-4 h-4" />
-                    <span>1-Year Access • Certificate Included</span>
-                  </div>
-                </ClientMotionDiv>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                >
-                  <EnrollNowButton
-                    courseId="chanakya-code"
-                    courseName="Chanakya's Code"
-                    size="lg"
-                    className="flex-1"
-                  />
-                  <a 
-                    href="#curriculum" 
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-saffron-600 text-saffron-700 hover:bg-saffron-600 hover:text-white font-semibold text-lg rounded-2xl transition-all duration-300"
-                  >
-                    View Curriculum
-                  </a>
-                </ClientMotionDiv>
-              </div>
-
-              {/* Trust Line */}
-              <div className="flex items-center space-x-4 text-sm text-wisdom-600">
-                <ClientMotionDiv
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  <div className="flex items-center space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-saffron-500 text-saffron-500" />
-                    ))}
-                  </div>
-                  <span>Trusted by CEOs, Entrepreneurs & Business Leaders</span>
-                </ClientMotionDiv>
-              </div>
-            </ClientMotionDiv>
-          </div>
-
-          {/* Right Column - Visual */}
-          <div className="relative">
-            <ClientMotionDiv
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <a
+              href="#course-details"
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-lg border-2 border-white/30 hover:border-white/60 hover:bg-white/20 transition-all duration-300"
             >
-              <div className="relative bg-gradient-to-br from-saffron-100 to-peacock-green-100 rounded-3xl p-8 shadow-2xl">
-                {/* Icon Grid */}
-                <div className="grid grid-cols-3 gap-6 mb-6">
-                  <div className="bg-white rounded-2xl p-6 shadow-lg">
-                    <TrendingUp className="w-8 h-8 text-saffron-600 mb-2" />
-                    <p className="text-xs font-semibold text-indigo-700">Strategic Growth</p>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg">
-                    <Target className="w-8 h-8 text-peacock-green-600 mb-2" />
-                    <p className="text-xs font-semibold text-indigo-700">Goal Achievement</p>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg">
-                    <Crown className="w-8 h-8 text-indigo-600 mb-2" />
-                    <p className="text-xs font-semibold text-indigo-700">Leadership</p>
-                  </div>
-                </div>
+              Explore Course
+            </a>
+          </motion.div>
 
-                {/* Center Visual */}
-                <div className="aspect-video bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Crown className="w-24 h-24 text-indigo-300 animate-pulse-gentle" />
-                  </div>
-                  
-                  {/* Floating Elements */}
-                  {['Strategy', 'Leadership', 'Wisdom', 'Power'].map((text, index) => (
-                    <motion.div
-                      key={text}
-                      className="absolute text-sm font-bold text-saffron-500/60"
-                      style={{
-                        left: `${20 + (index * 20)}%`,
-                        top: `${30 + (index % 2) * 40}%`,
-                      }}
-                      animate={{
-                        y: [-10, 10, -10],
-                        opacity: [0.3, 0.7, 0.3],
-                      }}
-                      transition={{
-                        duration: 3 + index * 0.5,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                      }}
-                    >
-                      {text}
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-saffron-500 rounded-full animate-pulse-gentle" />
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-peacock-green-500 rounded-full animate-pulse-gentle animation-delay-2000" />
-              </div>
-            </ClientMotionDiv>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1 }}
+            className="mt-12 flex flex-wrap justify-center gap-8 text-sm md:text-base text-white/80"
+          >
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
+              </svg>
+              <span><strong>Niti</strong> Shastra</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span><strong>Arthshastra</strong> Principles</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clipRule="evenodd" />
+              </svg>
+              <span><strong>Life</strong> Strategy</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,310 +1,120 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { BookOpen, Clock, Download, Award, Users, MessageCircle, Star, Sparkles, Target, TrendingUp, Shield, Video, FileText } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
-
-// Floating particles component for atomic visualization
-const FloatingParticles = () => {
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 8 + 4,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5,
-  }));
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-vaisheshik-secondary/20"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, Math.random() * 20 - 10, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+import AnimatedBackground from './AnimatedBackground';
 
 export default function HeroSection() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#FBF7F0] via-[#F5F1E8] to-[#E8DFD0]">
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #0E4C6B 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }} />
-      </div>
-
-      {/* Floating Particles */}
-      <FloatingParticles />
-
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#0E4C6B]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#D98E3A]/10 rounded-full blur-3xl" />
-
-      {/* Main Content */}
-      <div className="container-custom relative z-10 min-h-screen flex items-center py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-          
-          {/* Left Column - Text Content */}
+    <section className="vaisheshik-hero-section">
+      <AnimatedBackground />
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-[#10B981]/95 via-[#06B6D4]/85 to-emerald-900/10" />
+      
+      <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="mb-6"
           >
-            {/* Course Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#0E4C6B] to-[#1A6B8A] text-white rounded-full text-sm font-semibold shadow-lg"
-            >
-              <Sparkles className="w-4 h-4" />
-              Premium Philosophy Course
-            </motion.div>
-
-            {/* Main Heading */}
-            <div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0E4C6B] leading-tight mb-4"
-              >
-                Philosophy of Maharshi Kanada's
-                <span className="block mt-2 bg-gradient-to-r from-[#0E4C6B] to-[#D98E3A] bg-clip-text text-transparent">
-                  Vaisheshik Sutras
-                </span>
-              </motion.h1>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-xl md:text-2xl text-[#D98E3A] font-semibold italic"
-              >
-                अनंत ब्रह्मांड की सूक्ष्मता में प्रवेश!
-              </motion.p>
-            </div>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-lg text-gray-700 leading-relaxed"
-            >
-              Explore the atomic philosophy of ancient India. Understand the fundamental building blocks of the universe through Maharshi Kanada's profound teachings.
-            </motion.p>
-
-            {/* Course Meta Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4"
-            >
-              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-md border border-[#0E4C6B]/10">
-                <Target className="w-5 h-5 text-[#0E4C6B]" />
-                <span className="font-medium text-gray-800">Intermediate Level</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-md border border-[#0E4C6B]/10">
-                <MessageCircle className="w-5 h-5 text-[#0E4C6B]" />
-                <span className="font-medium text-gray-800">हिन्दी</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-md border border-[#0E4C6B]/10">
-                <Users className="w-5 h-5 text-[#0E4C6B]" />
-                <span className="font-medium text-gray-800">Live Sessions</span>
-              </div>
-            </motion.div>
-
-            {/* Price and CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="space-y-6"
-            >
-              <div className="flex items-baseline gap-3">
-                <span className="text-5xl font-bold text-[#D98E3A]">₹3,499</span>
-                <span className="text-2xl text-gray-400 line-through">₹5,199</span>
-                <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
-                  33% OFF
-                </span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <ProtectedExternalLink 
-                  href="https://courses.shikshanam.in/single-checkout/643aa48ee4b0bc2eac815e74?pid=p3" 
-                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#D98E3A] to-[#E6A85C] text-white rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <BookOpen className="w-6 h-6" />
-                  Enroll Now
-                  <motion.span
-                    className="absolute inset-0 rounded-xl bg-white/20"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileHover={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </ProtectedExternalLink>
-                
-                <button className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-[#0E4C6B] rounded-xl font-semibold text-lg border-2 border-[#0E4C6B] hover:bg-[#0E4C6B] hover:text-white transition-all duration-300">
-                  <Video className="w-6 h-6" />
-                  Watch Preview
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex flex-wrap items-center gap-6 pt-4"
-            >
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-[#D98E3A]" />
-                <span className="text-sm text-gray-600">Certificate Included</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
-                <span className="text-sm text-gray-600">Lifetime Access</span>
-              </div>
-            </motion.div>
+            <svg className="w-16 h-16 mx-auto mb-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-semibold text-sm md:text-base">
+              वैशेषिक दर्शन • Atomic Philosophy
+            </span>
           </motion.div>
 
-          {/* Right Column - Visual Elements */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
+            style={{ 
+              fontFamily: '"Noto Sans Devanagari", sans-serif',
+              textShadow: '2px 4px 12px rgba(0,0,0,0.3)'
+            }}
           >
-            {/* Main Image Card */}
-            <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden p-8">
-              <div className="relative h-64 md:h-80 mb-6 rounded-2xl overflow-hidden">
-                <Image 
-                  src="/assets/courses/vaisheshik-darshan.webp"
-                  alt="Vaisheshik Darshan"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0E4C6B]/60 to-transparent" />
-              </div>
+            वैशेषिक दर्शन
+          </motion.h1>
 
-              {/* Course Features Grid */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="text-center p-4 bg-gradient-to-br from-[#0E4C6B]/5 to-[#0E4C6B]/10 rounded-xl">
-                  <Video className="w-8 h-8 mx-auto mb-2 text-[#0E4C6B]" />
-                  <div className="text-2xl font-bold text-[#0E4C6B]">15-18</div>
-                  <div className="text-xs text-gray-600 mt-1">Classes</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-[#D98E3A]/5 to-[#D98E3A]/10 rounded-xl">
-                  <Clock className="w-8 h-8 mx-auto mb-2 text-[#D98E3A]" />
-                  <div className="text-2xl font-bold text-[#D98E3A]">1 Yr</div>
-                  <div className="text-xs text-gray-600 mt-1">Access</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-[#0E4C6B]/5 to-[#0E4C6B]/10 rounded-xl">
-                  <FileText className="w-8 h-8 mx-auto mb-2 text-[#0E4C6B]" />
-                  <div className="text-2xl font-bold text-[#0E4C6B]">Notes</div>
-                  <div className="text-xs text-gray-600 mt-1">Included</div>
-                </div>
-              </div>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-white/90 mb-4 font-medium"
+          >
+            Online Course on Vaisheshik Sutras of Rishi Kanada
+          </motion.p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 py-4 border-t border-gray-100">
-                <div className="text-center">
-                  <div className="flex items-center justify-center mb-1">
-                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    <span className="text-xl font-bold text-gray-800 ml-1">4.8</span>
-                  </div>
-                  <div className="text-xs text-gray-600">Rating</div>
-                </div>
-                <div className="text-center border-x border-gray-100">
-                  <div className="text-xl font-bold text-gray-800">500+</div>
-                  <div className="text-xs text-gray-600">Students</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-gray-800">98%</div>
-                  <div className="text-xs text-gray-600">Satisfaction</div>
-                </div>
-              </div>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-base md:text-lg text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed"
+          >
+            Explore the ancient Indian atomic theory and the six categories that explain all reality. Discover the profound metaphysical system that connects with modern physics.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <ProtectedExternalLink
+              href="https://courses.shikshanam.in/single-checkout/vaisheshik-darshan-course?pid=p1"
+              className="group px-8 py-4 bg-white text-[#10B981] font-bold text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center gap-2"
+            >
+              <span>Explore Atomic Philosophy</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </ProtectedExternalLink>
+
+            <a
+              href="#course-details"
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-lg border-2 border-white/30 hover:border-white/60 hover:bg-white/20 transition-all duration-300"
+            >
+              Explore Course
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1 }}
+            className="mt-12 flex flex-wrap justify-center gap-8 text-sm md:text-base text-white/80"
+          >
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
+              </svg>
+              <span><strong>6 Categories</strong> System</span>
             </div>
-
-            {/* Floating Feature Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-[#D98E3A]/20"
-            >
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-gradient-to-br from-[#D98E3A] to-[#E6A85C] rounded-xl">
-                  <Award className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-bold text-gray-800">Certificate</div>
-                  <div className="text-sm text-gray-600">Upon Completion</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-[#0E4C6B]/20"
-            >
-              <div className="flex items-center gap-3">
-                <div className="p-3 bg-gradient-to-br from-[#0E4C6B] to-[#1A6B8A] rounded-xl">
-                  <Users className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-bold text-gray-800">Community</div>
-                  <div className="text-sm text-gray-600">Active Forum</div>
-                </div>
-              </div>
-            </motion.div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span><strong>Paramanu</strong> Theory</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
+                <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+              </svg>
+              <span><strong>Ancient</strong> Metaphysics</span>
+            </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" fillOpacity="0.1"/>
-        </svg>
       </div>
     </section>
   );

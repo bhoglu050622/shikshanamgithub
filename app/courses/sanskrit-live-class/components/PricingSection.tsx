@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function PricingSection() {
   const [timeLeft, setTimeLeft] = useState({
+    days: '00',
     hours: '00',
     minutes: '00',
     seconds: '00'
@@ -12,20 +13,13 @@ export default function PricingSection() {
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date();
-      let targetDate = new Date();
+      const targetDate = new Date("2025-10-25T00:00:00");
       
-      // Set target to 8 PM today
-      targetDate.setHours(20, 0, 0, 0);
-
-      // If it's already past 8 PM today, set the target to 8 PM tomorrow
-      if (now.getTime() > targetDate.getTime()) {
-        targetDate.setDate(targetDate.getDate() + 1);
-      }
-
       const distance = targetDate.getTime() - now.getTime();
 
       if (distance < 0) {
         setTimeLeft({
+          days: '00',
           hours: '00',
           minutes: '00',
           seconds: '00'
@@ -33,11 +27,13 @@ export default function PricingSection() {
         return;
       }
 
-      const hours = Math.floor(distance / (1000 * 60 * 60));
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       setTimeLeft({
+        days: String(days).padStart(2, '0'),
         hours: String(hours).padStart(2, '0'),
         minutes: String(minutes).padStart(2, '0'),
         seconds: String(seconds).padStart(2, '0')
@@ -79,6 +75,10 @@ export default function PricingSection() {
           <h3>Offer Ends In:</h3>
           <div className="emp-countdown">
             <div className="emp-countdown-item">
+              <div id="days" className="emp-countdown-number">{timeLeft.days}</div>
+              <div className="emp-countdown-label">Days</div>
+            </div>
+            <div className="emp-countdown-item">
               <div id="hours" className="emp-countdown-number">{timeLeft.hours}</div>
               <div className="emp-countdown-label">Hours</div>
             </div>
@@ -103,8 +103,8 @@ export default function PricingSection() {
             </div>
             <div className="emp-price">
               <span className="emp-current-price">₹4,499</span>
-              <span className="emp-original-price">₹5,999</span>
-              <div className="emp-save-badge emp-save-badge-installment">Save 25%</div>
+              <span className="emp-original-price">₹8,499</span>
+              <div className="emp-save-badge emp-save-badge-installment">Save 47%</div>
             </div>
             <div className="emp-monthly-price">Only ₹1,499 per month</div>
             <ul className="emp-features">
@@ -134,7 +134,7 @@ export default function PricingSection() {
               </li>
             </ul>
             <a 
-              href="https://shikshanam.in/sanskrit-live-class/#:~:text=Instructions%20/%20%E0%A4%A8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%A6%E0%A5%87%E0%A4%B6-,%3A,-20%20Questions%20/%2020" 
+              href="https://courses.shikshanam.in/single-checkout/68e60a1bc79998642e10ed0d?pid=p3" 
               target="_blank" 
               className="emp-cta-button emp-cta-button-installment"
             >
@@ -143,16 +143,16 @@ export default function PricingSection() {
           </div>
 
           {/* One-Time Payment Card */}
-          <div className="emp-pricing-card emp-best-value">
-            <div className="emp-best-value-badge">BEST VALUE</div>
+          <div id="one-time-payment-card" className="emp-pricing-card emp-best-value">
+            <div className="emp-best-value-badge">PRE-BOOKING OFFER</div>
             <div className="emp-card-header">
               <h2>One-Time Payment</h2>
-              <p>Pay once and get full access to the core program.</p>
+              <p>Pre-book now for an exclusive 40% discount!</p>
             </div>
             <div className="emp-price">
-              <span className="emp-current-price">₹3,999</span>
-              <span className="emp-original-price">₹5,999</span>
-              <div className="emp-save-badge emp-save-badge-otp">Save 33%</div>
+              <span className="emp-current-price">₹2,399</span>
+              <span className="emp-original-price">₹3,999</span>
+              <div className="emp-save-badge emp-save-badge-otp">Save 40%</div>
             </div>
             <ul className="emp-features">
               <li>
@@ -193,7 +193,7 @@ export default function PricingSection() {
               </li>
             </ul>
             <a 
-              href="https://shikshanam.in/sanskrit-live-class/#:~:text=Instructions%20/%20%E0%A4%A8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%A6%E0%A5%87%E0%A4%B6-,%3A,-20%20Questions%20/%2020" 
+              href="https://courses.shikshanam.in/single-checkout/68e60a1bc79998642e10ed0d?pid=p1" 
               target="_blank" 
               className="emp-cta-button emp-cta-button-primary"
             >

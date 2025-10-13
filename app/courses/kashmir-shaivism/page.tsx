@@ -81,11 +81,11 @@ export default function KashmirShaivismPage() {
       
       <QuizInvitationSection />
       
+      <PricingSection />
+      
       <FoundersMissionSection />
       
       <ShlokaSection />
-      
-      <PricingSection />
       
       <QuizPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
     </div>

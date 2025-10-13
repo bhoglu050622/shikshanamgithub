@@ -21,7 +21,7 @@ function isCourseDirectory(entry: fs.Dirent): boolean {
   if (!entry.isDirectory()) return false
   
   // Exclude common non-course directories
-  const excludedDirs = ['components', 'utils', 'hooks', 'styles', 'assets']
+  const excludedDirs = ['components', 'utils', 'hooks', 'styles', 'assets', '_shared']
   return !excludedDirs.includes(entry.name)
 }
 

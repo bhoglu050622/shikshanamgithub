@@ -1,11 +1,48 @@
-/* Tantra Darshan Course Landing Page Styles */
+/* Tantra Darshan Course Landing Page - Mystical Energy Theme */
 
-/* Most styling comes from the shared design system */
-/* Only course-specific overrides go here */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
 
-.tantra-darshan-page {
-  /* Course-specific styles if needed */
+/* Hero Section */
+.tantra-hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #DC2626 0%, #7C3AED 100%);
 }
 
-/* Custom enhancements for this course (optional) */
+/* Flashcards */
+.tantra-flashcards {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #fff, rgb(254 242 242 / 0.3));
+}
 
+.tantra-flashcards .flashcard-front {
+  background: linear-gradient(135deg, rgb(220 38 38 / 0.05) 0%, rgb(124 58 237 / 0.1) 100%);
+  border: 2px solid rgb(220 38 38 / 0.3);
+}
+
+.tantra-flashcards .flashcard-icon-container {
+  background: linear-gradient(135deg, #DC2626, #7C3AED);
+}
+
+.tantra-flashcards .flashcard-back {
+  background: linear-gradient(135deg, #DC2626 0%, #7C3AED 100%);
+}
+
+/* Sections */
+.instructor-section-tantra {
+  background: linear-gradient(to bottom, white, rgb(254 242 242 / 0.5));
+}
+
+.shloka-section-tantra {
+  background: linear-gradient(to bottom, rgb(254 242 242 / 0.3), white);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tantra-hero-section {
+    min-height: 80vh;
+  }
+}

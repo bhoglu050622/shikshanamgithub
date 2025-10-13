@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function CountdownHeader() {
   const [timeLeft, setTimeLeft] = useState({
+    days: '00',
     hours: '00',
     minutes: '00',
     seconds: '00'
@@ -12,27 +13,25 @@ export default function CountdownHeader() {
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date();
-      // 8 PM IST is 14:30 UTC
-      const targetTime = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 14, 30, 0));
-
-      if (now.getTime() > targetTime.getTime()) {
-        targetTime.setUTCDate(targetTime.getUTCDate() + 1);
-      }
-
-      const timeRemaining = targetTime.getTime() - now.getTime();
+      const targetDate = new Date(Date.UTC(2025, 9, 25, 0, 0, 0)); // October 25, 2025 midnight UTC (month is 0-indexed)
+      
+      const timeRemaining = targetDate.getTime() - now.getTime();
 
       if (timeRemaining > 0) {
-        const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
         setTimeLeft({
+          days: String(days).padStart(2, '0'),
           hours: String(hours).padStart(2, '0'),
           minutes: String(minutes).padStart(2, '0'),
           seconds: String(seconds).padStart(2, '0')
         });
       } else {
         setTimeLeft({
+          days: '00',
           hours: '00',
           minutes: '00',
           seconds: '00'
@@ -49,7 +48,7 @@ export default function CountdownHeader() {
   return (
     <header 
       id="countdown-header" 
-      className="fixed top-0 left-0 w-full bg-[#fcf8f3] flex items-center justify-center p-3 z-[9998] border-b border-amber-200/60 shadow-sm"
+      className="fixed top-0 left-0 w-full bg-[#fcf8f3] flex items-center justify-center p-3 z-[40] border-b border-amber-200/60 shadow-sm"
     >
       <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2">
         <span className="text-sm font-medium tracking-wide text-[#4A4A4A]">
@@ -57,6 +56,20 @@ export default function CountdownHeader() {
         </span>
         
         <div id="timer" className="flex items-baseline gap-x-2 sm:gap-x-3 text-center">
+          {/* Days */}
+          <div className="flex items-baseline gap-x-1">
+            <span 
+              id="days" 
+              className="font-mono-timer text-2xl font-bold" 
+              style={{ color: '#c55a11' }}
+            >
+              {timeLeft.days}
+            </span>
+            <span className="text-xs text-gray-500 tracking-wider font-medium">DAYS</span>
+          </div>
+          
+          <span className="text-xl font-light text-gray-300">:</span>
+
           {/* Hours */}
           <div className="flex items-baseline gap-x-1">
             <span 
