@@ -43,16 +43,30 @@ export default function HeroSection({ onShowPopup }: HeroSectionProps) {
       <div id="kashmir-shaivism-hero-scoped">
         <div className="background-layer"></div>
         <div className="particles-layer"></div>
-        <div className="content-layer w-full flex items-center justify-center p-4">
-          <div className="text-center flex flex-col items-center p-8 sm:p-12 rounded-2xl max-w-5xl w-full">
+        <div className="content-layer w-full flex items-center justify-center p-4"
+            suppressHydrationWarning
+          >
+          <div className="text-center flex flex-col items-center p-8 sm:p-12 rounded-2xl max-w-5xl w-full"
+            suppressHydrationWarning
+          >
             {/* Symbol */}
-            <div className="mb-8 flex justify-center content-item animate-fade-in-up">
-              <div className="relative w-20 h-20">
-                <div className="w-full h-full border-2 border-cosmic-gold/60 rounded-full flex items-center justify-center animate-glow-pulse">
+            <div className="mb-8 flex justify-center content-item animate-fade-in-up"
+            suppressHydrationWarning
+          >
+              <div className="relative w-20 h-20"
+            suppressHydrationWarning
+          >
+                <div className="w-full h-full border-2 border-cosmic-gold/60 rounded-full flex items-center justify-center animate-glow-pulse"
+            suppressHydrationWarning
+          >
                   <div className="w-8 h-8 bg-cosmic-gold/80 rounded-full spanda-pulse"></div>
                 </div>
-                <div className="absolute inset-0 animate-revolve">
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2">
+                <div className="absolute inset-0 animate-revolve"
+            suppressHydrationWarning
+          >
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2"
+            suppressHydrationWarning
+          >
                     <div className="w-6 h-6 border-2 border-cosmic-rose/60 rounded-full spanda-pulse"></div>
                   </div>
                 </div>
@@ -60,8 +74,12 @@ export default function HeroSection({ onShowPopup }: HeroSectionProps) {
             </div>
 
             {/* Title */}
-            <div className="inline-block">
-              <h1 className="font-playfair text-4xl lg:text-5xl tracking-tight content-item animate-fade-in-up delay-200 whitespace-nowrap">
+            <div className="inline-block"
+            suppressHydrationWarning
+          >
+              <h1 className="font-playfair text-4xl lg:text-5xl tracking-tight content-item animate-fade-in-up delay-200 whitespace-nowrap"
+            suppressHydrationWarning
+          >
                 Kashmir Shaiva Darshan
               </h1>
               <h2 
@@ -80,17 +98,23 @@ export default function HeroSection({ onShowPopup }: HeroSectionProps) {
             </div>
 
             {/* Description */}
-            <p className="mt-6 max-w-2xl text-lg md:text-xl text-gray-400 leading-relaxed content-item animate-fade-in-up delay-600">
+            <p className="mt-6 max-w-2xl text-lg md:text-xl text-gray-400 leading-relaxed content-item animate-fade-in-up delay-600"
+            suppressHydrationWarning
+          >
               And since the universe is Shiva's dance, you face problems when you fall out of rhythm. Find that rhythm and bring your life back into flow.
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full content-item animate-fade-in-up delay-800">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full content-item animate-fade-in-up delay-800"
+            suppressHydrationWarning
+          >
               <a 
                 href="#kashmir-pricing-section" 
                 className="w-full sm:w-auto"
               >
-                <button className="bg-gradient-to-b from-[#f0b94b] to-[#e59f28] hover:from-[#e59f28] hover:to-[#d18e22] text-black font-bold py-3 px-8 rounded-lg transition-shadow duration-300 shadow-[0_4px_15px_0px_rgba(229,159,40,0.4)] hover:shadow-[0_4px_20px_0px_rgba(229,159,40,0.6)] w-full sm:w-auto animate-button-bob">
+                <button className="bg-gradient-to-b from-[#f0b94b] to-[#e59f28] hover:from-[#e59f28] hover:to-[#d18e22] text-black font-bold py-3 px-8 rounded-lg transition-shadow duration-300 shadow-[0_4px_15px_0px_rgba(229,159,40,0.4)] hover:shadow-[0_4px_20px_0px_rgba(229,159,40,0.6)] w-full sm:w-auto animate-button-bob"
+            suppressHydrationWarning
+          >
                   Start Your Journey
                 </button>
               </a>
@@ -103,7 +127,9 @@ export default function HeroSection({ onShowPopup }: HeroSectionProps) {
             </div>
 
             {/* Footer Text */}
-            <p className="mt-8 text-gray-500 tracking-widest text-sm content-item animate-fade-in-up delay-1000">
+            <p className="mt-8 text-gray-500 tracking-widest text-sm content-item animate-fade-in-up delay-1000"
+            suppressHydrationWarning
+          >
               + To know yourself, know the universe! +
             </p>
           </div>

@@ -37,6 +37,7 @@ export default function CourseFeatureGrid({
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
           className="course-card-feature"
+          suppressHydrationWarning
         >
           <CourseIconWrapper icon={feature.icon} size="md" className="course-mb-md" />
           <h3 className="course-heading-4 text-gray-900 course-mb-sm">

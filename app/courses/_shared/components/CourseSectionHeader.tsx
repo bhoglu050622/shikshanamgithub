@@ -33,6 +33,7 @@ export default function CourseSectionHeader({
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className={`course-mb-3xl ${alignmentClass} ${className}`}
+      suppressHydrationWarning
     >
       {badge && (
         <div className={`course-mb-md ${centered ? 'course-flex course-justify-center' : ''}`}>

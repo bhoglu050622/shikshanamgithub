@@ -34,6 +34,7 @@ export default function CourseTimeline({ items, className = '' }: CourseTimeline
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative flex gap-6"
+              suppressHydrationWarning
             >
               {/* Timeline Dot */}
               <div className="relative flex-shrink-0 hidden md:block">

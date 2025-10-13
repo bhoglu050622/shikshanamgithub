@@ -109,7 +109,9 @@ export default function HeroSection() {
         style={{ zIndex: 1 }}
       />
 
-      <div className="max-w-4xl w-full text-center relative z-10">
+      <div className="max-w-4xl w-full text-center relative z-10"
+            suppressHydrationWarning
+          >
         {/* Stats Pills */}
         <div 
           className="flex flex-nowrap overflow-x-auto gap-4 mb-8 pb-2.5 scrollbar-hide animate-fade-in-up justify-center"
@@ -122,11 +124,15 @@ export default function HeroSection() {
             <span className="text-lg">🔱</span> 
             <span>World's 1st<br/>Vedic EI course</span>
           </div>
-          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-nowrap flex-shrink-0">
+          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-nowrap flex-shrink-0"
+            suppressHydrationWarning
+          >
             <span className="text-lg">📊</span> 
             <span>100+ Global Models Researched</span>
           </div>
-          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-nowrap flex-shrink-0">
+          <div className="bg-white border border-[#f0eade] rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm text-sm font-medium text-[#575049] whitespace-nowrap flex-shrink-0"
+            suppressHydrationWarning
+          >
             <span className="text-lg">🎯</span> 
             <span>30+ Tools for Emotional Mastery</span>
           </div>
@@ -183,7 +189,9 @@ export default function HeroSection() {
           className="flex flex-col items-center gap-3 animate-fade-in-up"
           style={{ animationDelay: '0.6s' }}
         >
-          <div className="flex justify-center gap-4 flex-wrap">
+          <div className="flex justify-center gap-4 flex-wrap"
+            suppressHydrationWarning
+          >
             <a 
               href="#enroll-core-program"
               onClick={(e) => {

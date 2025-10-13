@@ -6,13 +6,19 @@ import AnimatedBackground from './AnimatedBackground';
 
 export default function HeroSection() {
   return (
-    <section className="isha-hero-section">
+    <section className="isha-hero-section"
+            suppressHydrationWarning
+          >
       <AnimatedBackground />
       
       <div className="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/95 via-[#FB923C]/90 to-amber-900/20" />
       
-      <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="relative z-10 container mx-auto px-6 py-20 md:py-32"
+            suppressHydrationWarning
+          >
+        <div className="max-w-4xl mx-auto text-center"
+            suppressHydrationWarning
+          >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -23,7 +29,9 @@ export default function HeroSection() {
             <svg className="w-16 h-16 mx-auto mb-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
-            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-semibold text-sm md:text-base">
+            <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-full text-white font-semibold text-sm md:text-base"
+            suppressHydrationWarning
+          >
               उपनिषद् • Path to Divine Unity
             </span>
           </motion.div>
@@ -94,19 +102,25 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 1 }}
             className="mt-12 flex flex-wrap justify-center gap-8 text-sm md:text-base text-white/80"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2"
+            suppressHydrationWarning
+          >
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
               </svg>
               <span><strong>18 Mantras</strong> Complete</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2"
+            suppressHydrationWarning
+          >
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
               </svg>
               <span><strong>50% Off</strong> Limited Time</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2"
+            suppressHydrationWarning
+          >
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"></path>
               </svg>

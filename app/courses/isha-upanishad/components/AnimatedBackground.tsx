@@ -122,6 +122,7 @@ export default function AnimatedBackground() {
       ref={canvasRef}
       className="absolute top-0 left-0 w-full h-full pointer-events-none"
       style={{ opacity: 0.5 }}
+      suppressHydrationWarning
     />
   );
 }

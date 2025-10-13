@@ -136,16 +136,24 @@ export default function HeroSection() {
     <>
       <div id="sankhya-hero-component">
         <canvas ref={canvasRef} id="sankhya-canvas" />
-        <div className="hero-wrapper">
+        <div className="hero-wrapper"
+            suppressHydrationWarning
+          >
           {/* Stats Pills */}
           <div className="stats-pills animate-item" style={{ animationDelay: '0s' }}>
-            <div className="stat-pill">
+            <div className="stat-pill"
+            suppressHydrationWarning
+          >
               <span className="pill-icon">📖</span> Learn in Sanskrit Medium
             </div>
-            <div className="stat-pill">
+            <div className="stat-pill"
+            suppressHydrationWarning
+          >
               <span className="pill-icon">💬</span> Speak From Day One
             </div>
-            <div className="stat-pill">
+            <div className="stat-pill"
+            suppressHydrationWarning
+          >
               <span className="pill-icon">📝</span> Curated Cohort
             </div>
           </div>
@@ -168,7 +176,9 @@ export default function HeroSection() {
 
           {/* Button Wrapper */}
           <div className="button-wrapper animate-item" style={{ animationDelay: '0.6s' }}>
-            <div className="main-buttons">
+            <div className="main-buttons"
+            suppressHydrationWarning
+          >
               <a 
                 href="#one-time-payment-card" 
                 className="hero-button btn-primary"
@@ -178,28 +188,44 @@ export default function HeroSection() {
             </div>
             
             {/* Batch Information Card */}
-            <div className="mt-4 p-4 bg-white/50 border border-amber-200/80 rounded-2xl shadow-md w-full max-w-lg mx-auto">
-              <div className="flex flex-col sm:flex-row justify-around items-center gap-4 text-amber-900">
+            <div className="mt-4 p-4 bg-white/50 border border-amber-200/80 rounded-2xl shadow-md w-full max-w-lg mx-auto"
+            suppressHydrationWarning
+          >
+              <div className="flex flex-col sm:flex-row justify-around items-center gap-4 text-amber-900"
+            suppressHydrationWarning
+          >
                 {/* Start Date */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2"
+            suppressHydrationWarning
+          >
                   <i className="fas fa-calendar-alt text-lg"></i>
-                  <div className="text-left">
+                  <div className="text-left"
+            suppressHydrationWarning
+          >
                     <p className="text-xs font-medium opacity-80">Starts On</p>
                     <p className="font-bold text-sm">October 25th, 2025</p>
                   </div>
                 </div>
                 {/* Schedule */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2"
+            suppressHydrationWarning
+          >
                   <i className="fas fa-users text-lg"></i>
-                  <div className="text-left">
+                  <div className="text-left"
+            suppressHydrationWarning
+          >
                     <p className="text-xs font-medium opacity-80">Schedule</p>
                     <p className="font-bold text-sm">Weekends</p>
                   </div>
                 </div>
                 {/* Timings */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2"
+            suppressHydrationWarning
+          >
                   <i className="fas fa-clock text-lg"></i>
-                  <div className="text-left">
+                  <div className="text-left"
+            suppressHydrationWarning
+          >
                     <p className="text-xs font-medium opacity-80">Timings</p>
                     <p className="font-bold text-sm">07:30 - 08:30 PM IST</p>
                   </div>
@@ -209,7 +235,9 @@ export default function HeroSection() {
           </div>
 
           {/* Video Preview Section */}
-          <div className="video-preview-wrapper animate-item">
+          <div className="video-preview-wrapper animate-item"
+            suppressHydrationWarning
+          >
             <div 
               className="video-preview-container" 
               data-video-id="g0U_VrX4EP0"
@@ -227,15 +255,23 @@ export default function HeroSection() {
                   target.src = 'https://placehold.co/1280x720/2c2620/fcf8f3?text=Video+Preview';
                 }}
               />
-              <div className="video-preview-overlay">
-                <div className="video-preview-text-top">
+              <div className="video-preview-overlay"
+            suppressHydrationWarning
+          >
+                <div className="video-preview-text-top"
+            suppressHydrationWarning
+          >
                   <h4>Language of Wisdom</h4>
                   <h3>Mastering Sanskrit</h3>
                 </div>
-                <div className="video-play-button">
+                <div className="video-play-button"
+            suppressHydrationWarning
+          >
                   <i className="fas fa-play"></i>
                 </div>
-                <div className="video-preview-text-bottom">
+                <div className="video-preview-text-bottom"
+            suppressHydrationWarning
+          >
                   <p>Start Today</p>
                   <span>Tap to Preview</span>
                 </div>

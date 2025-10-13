@@ -32,6 +32,7 @@ export default function CourseTestimonial({
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay }}
       className={`course-card-premium ${className}`}
+      suppressHydrationWarning
     >
       {/* Quote Icon */}
       <div className="course-mb-md">

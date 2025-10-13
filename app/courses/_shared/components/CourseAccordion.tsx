@@ -50,6 +50,7 @@ export default function CourseAccordion({
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
             className="course-card border border-gray-200 overflow-hidden"
+            suppressHydrationWarning
           >
             <button
               onClick={() => toggleItem(index)}
