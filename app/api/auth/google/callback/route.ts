@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Exchange authorization code for access token
-    const tokenResponse = await exchangeCodeForToken(code)
+    const tokenResponse = await exchangeCodeForToken(code, baseUrl)
     
     // Fetch user information from Google
     const userInfo = await fetchUserInfo(tokenResponse.access_token)
@@ -101,7 +101,7 @@ export async function GET(request: NextRequest) {
 /**
  * Exchange authorization code for access token
  */
-async function exchangeCodeForToken(code: string): Promise<GoogleTokenResponse> {
+async function exchangeCodeForToken(code: string, baseUrl: string): Promise<GoogleTokenResponse> {
   const tokenUrl = 'https://oauth2.googleapis.com/token'
   
   // Validate required configuration
@@ -109,7 +109,7 @@ async function exchangeCodeForToken(code: string): Promise<GoogleTokenResponse> 
     throw new Error('Google OAuth configuration is missing')
   }
 
-  const redirectUri = `${request.nextUrl.protocol}//${request.nextUrl.host}${AUTH_CONFIG.GOOGLE.REDIRECT_URI}`
+  const redirectUri = `${baseUrl}${AUTH_CONFIG.GOOGLE.REDIRECT_URI}`
   
   const tokenData = new URLSearchParams({
     code,
