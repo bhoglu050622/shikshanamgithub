@@ -3,13 +3,30 @@
 import { motion } from 'framer-motion';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 import AnimatedBackground from './AnimatedBackground';
+import CosmicQuestionIcon from './CosmicQuestionIcon';
+import { ParticleField } from '../../_shared/components';
 
 export default function HeroSection() {
   return (
-    <section className="prashna-hero-section">
+    <section className="prashna-hero-section cosmic-gradient">
+      {/* Star Field Background */}
+      <div className="star-field" />
+      
+      {/* Question Mandala Overlay */}
+      <div className="question-mandala" />
+      
+      {/* Cosmic Question Icons */}
+      <div className="constellation-lines">
+        <CosmicQuestionIcon />
+      </div>
+      
+      {/* Star Particles */}
+      <ParticleField particleType="stars" density={60} color="#FFFFFF" opacity={0.6} />
+      
+      {/* Original Animated Background (for star particles) */}
       <AnimatedBackground />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E40AF]/95 via-[#1E3A8A]/90 to-indigo-900/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1E40AF]/80 via-[#1E3A8A]/70 to-indigo-900/30" />
       
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center">

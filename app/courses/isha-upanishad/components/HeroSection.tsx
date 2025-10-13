@@ -3,15 +3,27 @@
 import { motion } from 'framer-motion';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 import AnimatedBackground from './AnimatedBackground';
+import DivineLightEffect from './DivineLightEffect';
+import { ParticleField, SacredGeometryOverlay } from '../../_shared/components';
 
 export default function HeroSection() {
   return (
-    <section className="isha-hero-section"
+    <section className="isha-hero-section unity-gradient"
             suppressHydrationWarning
           >
-      <AnimatedBackground />
+      {/* Sacred Geometry Overlay */}
+      <SacredGeometryOverlay pattern="sri-yantra" color="#FFFFFF" opacity={0.06} />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/95 via-[#FB923C]/90 to-amber-900/20" />
+      {/* Om Particle Field */}
+      <div className="om-particles">
+        <ParticleField particleType="om" density={30} color="#FFFFFF" opacity={0.4} />
+      </div>
+      
+      {/* Divine Light Rays */}
+      <DivineLightEffect />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/80 via-[#FB923C]/70 to-amber-900/30" />
       
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32"
             suppressHydrationWarning

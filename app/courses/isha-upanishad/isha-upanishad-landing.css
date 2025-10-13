@@ -12,6 +12,50 @@
   background: linear-gradient(135deg, #F59E0B 0%, #FB923C 100%);
 }
 
+/* Divine Unity Theme - Premium Enhancements */
+.unity-gradient {
+  background: radial-gradient(circle at center, #FBBF24 0%, #F59E0B 50%, #FB923C 100%);
+}
+
+.divine-glow {
+  box-shadow: 
+    0 0 40px rgba(251, 191, 36, 0.4),
+    0 10px 60px rgba(251, 146, 60, 0.3),
+    0 20px 80px rgba(245, 158, 11, 0.2);
+}
+
+.om-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sri-yantra-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23FFFFFF' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23FFFFFF' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23FFFFFF' stroke-width='1'/%3E%3Cpolygon points='100,20 160,180 40,180' fill='none' stroke='%23FFFFFF' stroke-width='1'/%3E%3Cpolygon points='100,180 160,20 40,20' fill='none' stroke='%23FFFFFF' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: rotate-sacred 60s linear infinite;
+}
+
+.radiating-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(251, 191, 36, 0.3) 0%,
+    rgba(251, 146, 60, 0.2) 30%,
+    transparent 70%
+  );
+  animation: pulse-divine 4s ease-in-out infinite;
+}
+
 /* Flashcards */
 .isha-flashcards {
   padding: 80px 20px;
