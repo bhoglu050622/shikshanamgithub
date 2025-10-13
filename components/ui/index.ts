@@ -3,9 +3,13 @@
  * Centralized exports for all UI components
  */
 
-// Base UI Components (only export what exists)
+// Base UI Components
 export { default as Button } from './button';
+export { Input } from './input';
+export { Badge, badgeVariants } from './badge';
 export { ErrorBoundary } from './ErrorBoundary';
 
-// Re-export types (only export what exists)
+// Re-export types
 export type { ButtonProps } from './button';
+export type { InputProps } from './input';
+export type { BadgeProps } from './badge';
