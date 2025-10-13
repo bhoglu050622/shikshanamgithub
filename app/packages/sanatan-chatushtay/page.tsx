@@ -123,7 +123,7 @@ export default function SanatanChatushtayPage() {
       <div className="py-20 bg-gradient-to-br from-slate-50 to-slate-100"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><PremiumFeatures features={premiumFeatures} layout="grid" /></div></div>
       <div className="py-24 bg-white"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><PremiumTestimonials testimonials={relevantTestimonials} /></div></div>
       <div className="py-24 bg-gradient-to-br from-slate-50 to-slate-100"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><PremiumFAQ faqs={faq} /></div></div>
-      <PremiumCTA title="Master Sanatan Wisdom" price="₹3,999" primaryCTA={{ text: 'Get Package', action: () => window.open('https://courses.shikshanam.in', '_blank') }} trustBadges={['3 years Access']} />
+      <PremiumCTA title="Master Sanatan Wisdom" subtitle="Complete understanding of eternal dharmic principles" price="₹3,999" primaryCTA={{ text: 'Get Package', action: () => window.open('https://courses.shikshanam.in', '_blank') }} trustBadges={['3 years Access']} />
     </div>
   );
 }

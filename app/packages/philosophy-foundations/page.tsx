@@ -15,6 +15,22 @@ import { PremiumFAQ } from '@/components/packages/PremiumFAQ';
 import { PremiumCTA } from '@/components/packages/PremiumCTA';
 import testimonialsData from '@/data/testimonials.json';
 
+interface Lesson {
+  title: string;
+  duration: string;
+  type?: 'video' | 'reading' | 'quiz' | 'assignment';
+  preview?: boolean;
+}
+
+interface CourseModule {
+  title: string;
+  description: string;
+  duration: string;
+  level?: string;
+  lessons?: Lesson[];
+  learningOutcomes?: string[];
+}
+
 export default function PhilosophyFoundationsPackagePage() {
   const router = useRouter();
 
@@ -57,7 +73,7 @@ export default function PhilosophyFoundationsPackagePage() {
     }
   ];
 
-  const courseModules = [
+  const courseModules: CourseModule[] = [
     {
       title: 'Introduction to Indian Philosophy',
       description: 'Overview of the six Darshanas and their place in the Indian philosophical tradition',

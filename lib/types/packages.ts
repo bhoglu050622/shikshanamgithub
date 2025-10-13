@@ -9,13 +9,23 @@ export interface Course {
 }
 
 export interface Package {
+  id?: string;
   sku: string;
   name: string;
   shortDescription: string;
   longDescription: string;
+  price?: number;
   priceInr: number;
   originalPriceInr?: number;
+  currency?: string;
+  checkoutUrl?: string;
   thumbnailUrl?: string;
+  features?: string[];
+  category?: string;
+  level?: string;
+  duration?: string;
+  instructor?: string;
+  hasStaticPage?: boolean;
   includedCourses: Course[];
   livePassCount?: number;
   mentorHours?: number;

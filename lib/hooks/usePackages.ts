@@ -11,12 +11,14 @@ export interface Package {
   name: string
   shortDescription: string
   longDescription: string
-  description: string
+  description?: string
   price: number
   priceInr: number
+  originalPriceInr?: number
   currency: string
+  checkoutUrl?: string
   features: string[]
-  image: string
+  image?: string
   thumbnailUrl?: string
   category: string
   level: string
@@ -25,6 +27,7 @@ export interface Package {
   livePassCount?: number
   mentorHours?: number
   certificateIncluded: boolean
+  hasStaticPage?: boolean
   includedCourses: Array<{
     id: string
     title: string

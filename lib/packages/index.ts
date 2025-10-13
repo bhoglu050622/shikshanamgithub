@@ -181,12 +181,12 @@ export function getPackageBreadcrumbs(sku: string) {
   const pkg = getPackageBySku(sku);
   if (!pkg) return [];
   
-  const category = getCategoryById(pkg.category);
+  const category = pkg.category ? getCategoryById(pkg.category) : null;
   
   return [
     { label: 'Home', href: '/' },
     { label: 'Packages', href: '/packages' },
-    { label: category?.name || 'Category', href: `/packages?category=${pkg.category}` },
+    { label: category?.name || 'Category', href: `/packages?category=${pkg.category || ''}` },
     { label: pkg.name, href: getPackageRoute(sku) }
   ];
 }
@@ -208,7 +208,7 @@ export function sortPackages(
     case 'name':
       return sorted.sort((a, b) => a.name.localeCompare(b.name));
     case 'duration':
-      return sorted.sort((a, b) => a.duration.localeCompare(b.duration));
+      return sorted.sort((a, b) => (a.duration || '').localeCompare(b.duration || ''));
     case 'popular':
       return sorted.sort((a, b) => b.priceInr - a.priceInr);
     default:
@@ -233,7 +233,7 @@ export function filterPackages(filters: {
   }
   
   if (filters.level) {
-    filtered = filtered.filter(pkg => pkg.level.includes(filters.level));
+    filtered = filtered.filter(pkg => pkg.level?.includes(filters.level!));
   }
   
   if (filters.minPrice !== undefined) {
@@ -273,9 +273,9 @@ export function getRecommendations(
     let score = 0;
     userInterests.forEach(interest => {
       const lowerInterest = interest.toLowerCase();
-      if (pkg.category.toLowerCase().includes(lowerInterest)) score += 3;
+      if (pkg.category?.toLowerCase().includes(lowerInterest)) score += 3;
       if (pkg.name.toLowerCase().includes(lowerInterest)) score += 2;
-      if (pkg.features.some(f => f.toLowerCase().includes(lowerInterest))) score += 1;
+      if (pkg.features?.some(f => f.toLowerCase().includes(lowerInterest))) score += 1;
     });
     return { pkg, score };
   });

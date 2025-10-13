@@ -310,7 +310,7 @@ export default function AllParaCoursesPage() {
       <div className="py-20 bg-gradient-to-br from-slate-50 to-slate-100"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><PremiumFeatures title="Complete Parā Education" features={premiumFeatures} layout="grid" /></div></div>
       <div className="py-24 bg-white"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><PremiumTestimonials testimonials={relevantTestimonials} title="Spiritual Mastery" /></div></div>
       <div className="py-24 bg-gradient-to-br from-slate-50 to-slate-100"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><PremiumFAQ faqs={faq} /></div></div>
-      <PremiumCTA title="Complete Spiritual Education" price="₹12,999" primaryCTA={{ text: 'Enroll Now', action: () => window.open('https://courses.shikshanam.in/single-checkout/678e3649f4f9ad20d3001578?pid=p1', '_blank') }} trustBadges={['3 years Access', 'Certification', 'Expert Support']} />
+      <PremiumCTA title="Complete Spiritual Education" subtitle="Master all Parā courses and transform your spiritual journey" price="₹12,999" primaryCTA={{ text: 'Enroll Now', action: () => window.open('https://courses.shikshanam.in/single-checkout/678e3649f4f9ad20d3001578?pid=p1', '_blank') }} trustBadges={['3 years Access', 'Certification', 'Expert Support']} />
     </div>
   );
 }

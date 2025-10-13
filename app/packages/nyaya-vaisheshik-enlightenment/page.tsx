@@ -15,6 +15,22 @@ import { PremiumFAQ } from '@/components/packages/PremiumFAQ';
 import { PremiumCTA } from '@/components/packages/PremiumCTA';
 import testimonialsData from '@/data/testimonials.json';
 
+interface Lesson {
+  title: string;
+  duration: string;
+  type?: 'video' | 'reading' | 'quiz' | 'assignment';
+  preview?: boolean;
+}
+
+interface CourseModule {
+  title: string;
+  description: string;
+  duration: string;
+  level?: string;
+  lessons?: Lesson[];
+  learningOutcomes?: string[];
+}
+
 export default function NyayaVaisheshikEnlightenmentPage() {
   const router = useRouter();
 
@@ -57,7 +73,7 @@ export default function NyayaVaisheshikEnlightenmentPage() {
     }
   ];
 
-  const courseModules = [
+  const courseModules: CourseModule[] = [
     {
       title: 'Introduction to Nyāya & Vaisheshika',
       description: 'Overview of both realist philosophies and their complementary nature',

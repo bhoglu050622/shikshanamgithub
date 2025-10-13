@@ -16,6 +16,22 @@ import { PremiumFAQ } from '@/components/packages/PremiumFAQ';
 import { PremiumCTA } from '@/components/packages/PremiumCTA';
 import testimonialsData from '@/data/testimonials.json';
 
+interface Lesson {
+  title: string;
+  duration: string;
+  type?: 'video' | 'reading' | 'quiz' | 'assignment';
+  preview?: boolean;
+}
+
+interface CourseModule {
+  title: string;
+  description: string;
+  duration: string;
+  level?: string;
+  lessons?: Lesson[];
+  learningOutcomes?: string[];
+}
+
 export default function VedantaShaivismBundlePage() {
   const router = useRouter();
 
@@ -58,7 +74,7 @@ export default function VedantaShaivismBundlePage() {
     }
   ];
 
-  const courseModules = [
+  const courseModules: CourseModule[] = [
     {
       title: 'Introduction to Non-Dual Philosophy',
       description: 'Overview of non-dualism in Indian philosophy and the unique approaches of Vedānta and Shaivism',
