@@ -3,15 +3,31 @@
 import { motion } from 'framer-motion';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 import AnimatedBackground from './AnimatedBackground';
+import ChakraWheel from './ChakraWheel';
+import { SacredGeometryOverlay } from '../../_shared/components';
 
 export default function HeroSection() {
   return (
-    <section className="yoga-hero-section"
+    <section className="yoga-hero-section chakra-gradient"
             suppressHydrationWarning
           >
-      <AnimatedBackground />
+      {/* Lotus Pattern Overlay */}
+      <div className="lotus-pattern" />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/95 via-[#3B82F6]/90 to-purple-900/20" />
+      {/* Chakra Wheel Visualization */}
+      <div className="kundalini-spiral">
+        <ChakraWheel />
+      </div>
+      
+      {/* Sacred Geometry */}
+      <SacredGeometryOverlay pattern="lotus" color="#FFFFFF" opacity={0.06} />
+      
+      {/* Energy Flow Background */}
+      <div className="energy-flow">
+        <AnimatedBackground />
+      </div>
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/70 via-[#3B82F6]/60 to-purple-900/40" />
       
       <div className="relative z-10 container mx-auto px-6 py-20 md:py-32"
             suppressHydrationWarning

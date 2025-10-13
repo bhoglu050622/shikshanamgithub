@@ -371,6 +371,55 @@
   background: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
 }
 
+/* Inner Journey Theme - Chakra Wheel & Kundalini */
+.chakra-gradient {
+  background: conic-gradient(
+    from 0deg,
+    #F43F5E 0deg,     /* Root - Red */
+    #FB923C 51deg,    /* Sacral - Orange */
+    #FBBF24 102deg,   /* Solar Plexus - Yellow */
+    #10B981 153deg,   /* Heart - Green */
+    #06B6D4 204deg,   /* Throat - Blue */
+    #6366F1 255deg,   /* Third Eye - Indigo */
+    #A855F7 306deg,   /* Crown - Violet */
+    #F43F5E 360deg    /* Back to Root */
+  );
+}
+
+.lotus-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cellipse cx='60' cy='60' rx='15' ry='40' fill='none' stroke='white' stroke-width='1' transform='rotate(0 60 60)'/%3E%3Cellipse cx='60' cy='60' rx='15' ry='40' fill='none' stroke='white' stroke-width='1' transform='rotate(45 60 60)'/%3E%3Cellipse cx='60' cy='60' rx='15' ry='40' fill='none' stroke='white' stroke-width='1' transform='rotate(90 60 60)'/%3E%3Cellipse cx='60' cy='60' rx='15' ry='40' fill='none' stroke='white' stroke-width='1' transform='rotate(135 60 60)'/%3E%3Ccircle cx='60' cy='60' r='12' fill='none' stroke='white' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+}
+
+.energy-flow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.kundalini-spiral {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  animation: rotate-sacred 30s linear infinite;
+}
+
+.chakra-glow {
+  box-shadow: 
+    0 0 40px rgba(168, 85, 247, 0.4),
+    0 10px 60px rgba(139, 92, 246, 0.3),
+    0 20px 80px rgba(124, 58, 237, 0.2);
+}
+
 /* Flashcards Section */
 .yoga-flashcards-section {
   padding: 80px 20px;
