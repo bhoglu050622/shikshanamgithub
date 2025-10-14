@@ -7,117 +7,45 @@ import MotionWrapper, { StaggerContainer, StaggerItem, MotionInView } from '@/co
 const chapters = [
   {
     number: 1,
-    title: "Why Isha Upanishad ?",
+    title: "Introduction to Prashna Upanishad",
     hasDemo: true,
-    duration: "00:05:39"
+    duration: "00:04:57"
   },
   {
     number: 2,
-    title: "सर्वत्र भगवद् दृष्टि",
+    title: "प्रश्न 1: Origin of Creation and Beings",
     hasDemo: true,
-    duration: "00:08:28"
+    duration: "2:40:00"
   },
   {
     number: 3,
-    title: "पथ-भ्रष्ट कौन? [What not to do?]",
+    title: "प्रश्न 2: The Five Life Forces",
     hasDemo: false,
-    duration: "00:05:48"
+    duration: "1:30:00"
   },
   {
     number: 4,
-    title: "ईश्वर की हत्या न करें",
+    title: "प्रश्न 3: Distribution and Origin of Prana",
     hasDemo: false,
-    duration: "00:07:58"
+    duration: "1:00:00"
   },
   {
     number: 5,
-    title: "आत्मतत्व कैसा है?",
+    title: "प्रश्न 4: States of Consciousness",
     hasDemo: false,
-    duration: "00:14:54"
+    duration: "1:30:00"
   },
   {
     number: 6,
-    title: "आत्मा कहाँ रहती है ?",
+    title: "प्रश्न 5: Meditation on Om",
     hasDemo: false,
-    duration: "00:07:30"
+    duration: "1:00:00"
   },
   {
     number: 7,
-    title: "सार्वात्म्यदर्शन",
+    title: "प्रश्न 6: The Person of Sixteen Parts",
     hasDemo: false,
-    duration: "00:07:45"
-  },
-  {
-    number: 8,
-    title: "शोक-मोह का नाश",
-    hasDemo: false,
-    duration: "00:04:35"
-  },
-  {
-    number: 9,
-    title: "आत्मा के लक्षण",
-    hasDemo: false,
-    duration: "00:10:19"
-  },
-  {
-    number: 10,
-    title: "कर्म या ज्ञान ?",
-    hasDemo: false,
-    duration: "00:12:23"
-  },
-  {
-    number: 11,
-    title: "विद्या और अविद्या के फल",
-    hasDemo: false,
-    duration: "00:08:43"
-  },
-  {
-    number: 12,
-    title: "ज्ञानयुक्त कर्म",
-    hasDemo: false,
-    duration: "00:09:31"
-  },
-  {
-    number: 13,
-    title: "सगुण/निर्गुण उपासना के फल",
-    hasDemo: false,
-    duration: "00:11:13"
-  },
-  {
-    number: 14,
-    title: "व्यक्त/अव्यक्त उपासना फल में भेद",
-    hasDemo: false,
-    duration: "00:03:11"
-  },
-  {
-    number: 15,
-    title: "व्यक्त-अव्यक्त का एकत्व",
-    hasDemo: false,
-    duration: "00:07:56"
-  },
-  {
-    number: 16,
-    title: "अमृतत्व का मार्ग",
-    hasDemo: false,
-    duration: "00:08:30"
-  },
-  {
-    number: 17,
-    title: "परमात्मा में एकत्व",
-    hasDemo: false,
-    duration: "00:10:19"
-  },
-  {
-    number: 18,
-    title: "मैं पुरुष हूँ",
-    hasDemo: false,
-    duration: "00:12:11"
-  },
-  {
-    number: 19,
-    title: "मरणोन्मुख उपासना",
-    hasDemo: false,
-    duration: "00:15:59"
+    duration: "1:00:00"
   }
 ];
 
@@ -131,7 +59,7 @@ export default function SyllabusSection() {
               Syllabus
             </h2>
             <p className="text-xl text-wisdom-600 max-w-3xl mx-auto leading-relaxed">
-              Complete coverage of all 18 Shlokas through 19 comprehensive chapters
+              Complete coverage of all 6 profound questions through 7 comprehensive chapters
             </p>
           </div>
         </StaggerItem>
@@ -194,8 +122,8 @@ export default function SyllabusSection() {
               Complete Learning Journey
             </h3>
             <p className="text-wisdom-600">
-              <span className="font-semibold text-high-contrast">Total Duration:</span> 3+ Hours • 
-              <span className="font-semibold text-high-contrast"> 19 Comprehensive Chapters</span> • 
+              <span className="font-semibold text-high-contrast">Total Duration:</span> 7+ Hours • 
+              <span className="font-semibold text-high-contrast"> 7 Comprehensive Chapters</span> • 
               <span className="font-semibold text-high-contrast"> 1-Year Access</span>
             </p>
           </div>

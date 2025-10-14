@@ -25,7 +25,7 @@ export default function WhyCourseSection() {
               className="card-premium p-8 text-center group hover:scale-105 transition-transform duration-300"
             >
               <h3 className="text-2xl font-semibold text-high-contrast mb-3">
-                कर्म, ज्ञान और भक्ति में कौन सर्वोत्तम?
+                प्राण क्या है और कैसे कार्य करता है?
               </h3>
             </MotionInView>
             <MotionInView
@@ -36,7 +36,7 @@ export default function WhyCourseSection() {
               className="card-premium p-8 text-center group hover:scale-105 transition-transform duration-300"
             >
               <h3 className="text-2xl font-semibold text-high-contrast mb-3">
-                सगुण भक्ति करें या निर्गुण?
+                चेतना की अवस्थाएं कैसी हैं?
               </h3>
             </MotionInView>
             <MotionInView
@@ -47,7 +47,7 @@ export default function WhyCourseSection() {
               className="card-premium p-8 text-center group hover:scale-105 transition-transform duration-300"
             >
               <h3 className="text-2xl font-semibold text-high-contrast mb-3">
-                आत्मा कैसी है और कहाँ रहती है?
+                ओम के मंत्र से क्या होता है?
               </h3>
             </MotionInView>
             <MotionInView
@@ -58,7 +58,7 @@ export default function WhyCourseSection() {
               className="card-premium p-8 text-center group hover:scale-105 transition-transform duration-300"
             >
               <h3 className="text-2xl font-semibold text-high-contrast mb-3">
-                मृत्यु के उपरांत क्या होगा?
+                मोक्ष का मार्ग क्या है?
               </h3>
             </MotionInView>
           </div>
@@ -67,10 +67,10 @@ export default function WhyCourseSection() {
         <StaggerItem>
           <div className="mt-12 bg-gradient-to-r from-gold-50 to-teal-50 p-8 rounded-3xl text-center border border-gold-200/30 shadow-sm">
             <h3 className="text-3xl font-display text-high-contrast mb-4">
-              तो आज ही जुड़ें ईशावास्य उपनिषद् से!
+              तो आज ही जुड़ें प्रश्नोपनिषद् से!
             </h3>
             <p className="text-xl text-wisdom-600">
-              Transform your life through the wisdom of all 18 Shlokas
+              Transform your life through the wisdom of all 6 profound questions
             </p>
           </div>
         </StaggerItem>

@@ -6,52 +6,52 @@ import MotionWrapper, { StaggerContainer, StaggerItem, MotionInView } from '@/co
 
 const testimonials = [
   {
-    name: 'Student 1',
+    name: 'Ramesh Kumar',
     location: 'India',
     rating: 5,
-    comment: 'Excellent course on Isha Upanishad! The explanations are clear and easy to understand.',
+    comment: 'The explanation of prana and consciousness is brilliant. This course deepened my meditation practice significantly.',
     verified: true,
-    course: 'Isha Upanishad'
+    course: 'Prashna Upanishad'
   },
   {
-    name: 'Student 2',
+    name: 'Anjali Sharma',
     location: 'India',
     rating: 5,
-    comment: 'बहुत ही अच्छा कोर्स है। सभी श्लोकों की गहन व्याख्या की गई है।',
+    comment: 'Perfect complement to my yoga practice. Understanding the five pranas has transformed my teaching.',
     verified: true,
-    course: 'Isha Upanishad'
+    course: 'Prashna Upanishad'
   },
   {
-    name: 'Student 3',
+    name: 'Vikram Reddy',
     location: 'India',
     rating: 5,
-    comment: 'This course transformed my understanding of the self and the universe.',
+    comment: 'Clear, systematic, and profound. The six questions cover everything essential for spiritual growth.',
     verified: true,
-    course: 'Isha Upanishad'
+    course: 'Prashna Upanishad'
   },
   {
-    name: 'Student 4',
+    name: 'Priya Menon',
     location: 'India',
     rating: 5,
-    comment: 'Great insights into ancient wisdom. Highly recommended!',
+    comment: 'Helped me understand the deeper dimensions of meditation and consciousness. Highly recommended!',
     verified: true,
-    course: 'Isha Upanishad'
+    course: 'Prashna Upanishad'
   },
   {
-    name: 'Student 5',
+    name: 'Karthik Iyer',
     location: 'India',
     rating: 5,
-    comment: 'The teachings have brought peace and clarity to my life.',
+    comment: 'Excellent course structure. The Om meditation teaching is particularly valuable.',
     verified: true,
-    course: 'Isha Upanishad'
+    course: 'Prashna Upanishad'
   },
   {
-    name: 'Student 6',
+    name: 'Lakshmi Devi',
     location: 'India',
     rating: 5,
-    comment: 'Outstanding course with practical spiritual guidance.',
+    comment: 'Acharyaji\'s explanations make complex concepts easy to grasp. Life-changing course!',
     verified: true,
-    course: 'Isha Upanishad'
+    course: 'Prashna Upanishad'
   }
 ];
 
