@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function GuruSection() {
   return (
     <section className="py-16 bg-white">
@@ -15,12 +17,14 @@ export default function GuruSection() {
           {/* Guru Image and Basic Info */}
           <div className="text-center lg:text-left">
             <div className="relative inline-block mb-6">
-              <div className="w-64 h-64 mx-auto lg:mx-0 bg-gradient-to-br from-saffron-200 to-saffron-300 rounded-full flex items-center justify-center shadow-lg">
-                <div className="w-60 h-60 bg-saffron-100 rounded-full flex items-center justify-center">
-                  <svg className="w-24 h-24 text-saffron-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"/>
-                  </svg>
-                </div>
+              <div className="w-64 h-64 mx-auto lg:mx-0 bg-gradient-to-br from-saffron-200 to-saffron-300 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                <Image
+                  src="https://shikshanam.in/wp-content/uploads/2024/05/1.png"
+                  alt="Vishal Chaurasia"
+                  width={256}
+                  height={256}
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-2 -right-2 w-8 h-8 bg-saffron-400 rounded-full flex items-center justify-center">

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Users, BookOpen, Star, CheckCircle } from 'lucide-react';
 import MotionWrapper, { StaggerContainer, StaggerItem } from '@/components/motion/MotionWrapper';
+import Image from 'next/image';
 
 const instructorStats = [
   {
@@ -48,12 +49,13 @@ export default function GuruSection() {
             <div className="text-center lg:text-left">
               <div className="relative inline-block mb-8">
                 <div className="w-64 h-64 bg-gradient-to-br from-saffron-100 to-teal-100 rounded-full flex items-center justify-center mx-auto lg:mx-0 relative overflow-hidden">
-                  {/* Placeholder for instructor photo */}
-                  <div className="w-56 h-56 bg-gradient-to-br from-saffron-200 to-teal-200 rounded-full flex items-center justify-center">
-                    <div className="w-48 h-48 bg-gradient-to-br from-saffron-300 to-teal-300 rounded-full flex items-center justify-center">
-                      <span className="text-6xl">👨‍🏫</span>
-                    </div>
-                  </div>
+                  <Image
+                    src="https://shikshanam.in/wp-content/uploads/2024/05/1.png"
+                    alt="Vishal Chaurasia"
+                    width={256}
+                    height={256}
+                    className="w-full h-full object-cover rounded-full"
+                  />
                   
                   {/* Saffron halo/mandala frame */}
                   <div className="absolute inset-0 border-4 border-saffron-300 rounded-full opacity-30"></div>

@@ -28,7 +28,7 @@ export default function GuruSection() {
                 <div className="relative inline-block">
                   <div className="w-64 h-64 mx-auto md:mx-0 mb-6 rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-100 to-blue-200 border-4 border-white relative">
                     <Image
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                      src="https://shikshanam.in/wp-content/uploads/2024/05/1.png"
                       alt="Vishal Chaurasia"
                       width={256}
                       height={256}
