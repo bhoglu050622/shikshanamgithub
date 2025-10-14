@@ -122,80 +122,80 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 min-h-screen">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 bg-black/60 backdrop-blur-md"
             onClick={onClose}
           />
           
           {/* Modal Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-md mx-auto"
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ type: "spring", damping: 30, stiffness: 400, duration: 0.3 }}
+            className="relative z-10 w-full max-w-[420px]"
           >
-
-          {/* Close Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-all duration-200 hover:scale-110"
-          >
-            <X className="w-4 h-4 text-gray-600" />
-          </button>
-
-          <div className="relative z-10 w-full max-w-md mx-auto flex items-center justify-center">
             {/* Centered Login Form */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ delay: 0.3 }}
-              className="w-full bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20"
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ delay: 0.05 }}
+              className="w-full bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-6 sm:p-8 border border-gray-200/50 dark:border-gray-800/50 max-h-[85vh] overflow-y-auto"
             >
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 flex items-center justify-center transition-all duration-200 hover:scale-110 touch-manipulation"
+                aria-label="Close modal"
+              >
+                <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              </button>
+
               <div className="w-full flex flex-col items-center">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="text-center mb-8"
+                  transition={{ delay: 0.1 }}
+                  className="text-center mb-6"
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl mb-4 shadow-lg">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl mb-4 shadow-xl">
                     <BookOpen className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Shikshanam</h2>
-                  <p className="text-gray-600">Sign in to continue your learning journey</p>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1.5">Welcome Back</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Sign in to continue learning</p>
                 </motion.div>
 
-                <div ref={dialogRef} className="space-y-6 w-full max-w-sm">
+                <div ref={dialogRef} className="space-y-4 w-full">
                   {/* Google OAuth Button */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.15 }}
                   >
                     <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
                     >
                       <Button
                         onClick={handleGoogleLogin}
                         variant="secondary"
-                        className="w-full h-12 font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl"
+                        className="w-full h-11 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border-2 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm hover:shadow transition-all duration-200 rounded-xl touch-manipulation"
                         disabled={isLoading}
                       >
                       {isLoading ? (
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 border-2 border-gray-400/30 border-t-gray-600 rounded-full animate-spin" />
-                          <span>Connecting to Google...</span>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-4 h-4 border-2 border-gray-400/30 border-t-gray-600 rounded-full animate-spin" />
+                          <span className="text-sm">Connecting...</span>
                         </div>
                       ) : (
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-2.5">
                           <GoogleLogo />
                           <span>Continue with Google</span>
                         </div>
@@ -208,39 +208,39 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="relative"
+                    transition={{ delay: 0.2 }}
+                    className="relative py-2"
                   >
                     <div className="absolute inset-0 flex items-center">
-                      <span className="w-full border-t border-gray-200" />
+                      <span className="w-full border-t border-gray-200 dark:border-gray-700" />
                     </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="bg-white px-4 text-gray-700 font-medium">or</span>
+                    <div className="relative flex justify-center text-xs">
+                      <span className="bg-white dark:bg-gray-900 px-3 text-gray-500 dark:text-gray-400 font-medium">or</span>
                     </div>
                   </motion.div>
 
                   {/* Email Authentication */}
                   <motion.form
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
+                    transition={{ delay: 0.25 }}
                     onSubmit={(e) => { e.preventDefault(); handleEmailLogin(); }}
-                    className="space-y-4"
+                    className="space-y-3"
                   >
                     {/* Email Field */}
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Email Address
                       </Label>
                       <div className="relative group">
-                        <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" />
+                        <Mail className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500 group-focus-within:text-orange-500 transition-colors" />
                         <Input
                           id="email"
                           type="email"
-                          placeholder="Enter your email"
+                          placeholder="name@example.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="pl-12 h-12 bg-white border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 transition-all duration-300 rounded-xl"
+                          className="pl-10 h-11 text-sm bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 focus:border-orange-500 dark:focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all duration-200 rounded-xl text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 touch-manipulation"
                           required
                           disabled={isLoading}
                         />
@@ -251,24 +251,24 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
                     <AnimatePresence>
                       {error && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
+                          initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          className="p-4 bg-red-50 border border-red-200 rounded-xl"
+                          exit={{ opacity: 0, y: -5 }}
+                          className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl"
                         >
                           <div className="flex items-start space-x-2">
-                            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                            <AlertCircle className="w-4 h-4 text-red-500 dark:text-red-400 flex-shrink-0 mt-0.5" />
                             <div className="flex-1">
-                              <p className="text-sm text-red-700">{error}</p>
+                              <p className="text-xs text-red-700 dark:text-red-300">{error}</p>
                               {error.includes('Google authentication is not configured') && (
-                                <div className="mt-2">
+                                <div className="mt-1.5">
                                   <a 
                                     href="/test-google-oauth" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="text-sm text-blue-600 hover:text-blue-800 underline"
+                                    className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
                                   >
-                                    Check Google OAuth Configuration →
+                                    Check OAuth Configuration →
                                   </a>
                                 </div>
                               )}
@@ -280,24 +280,24 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
 
                     {/* Email Login Button */}
                     <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
                     >
                       <Button
                         type="submit"
-                        className="w-full h-12 font-medium bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                        className="w-full h-11 text-sm font-semibold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl touch-manipulation"
                         disabled={isLoading}
                       >
                         {isLoading ? (
-                          <div className="flex items-center space-x-3">
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <div className="flex items-center space-x-2">
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             <span>Redirecting...</span>
                           </div>
                         ) : (
-                          <div className="flex items-center space-x-3">
-                            <Mail className="w-5 h-5" />
+                          <div className="flex items-center space-x-2">
+                            <Mail className="w-4 h-4" />
                             <span>Continue with Email</span>
-                            <ExternalLink className="w-4 h-4" />
+                            <ExternalLink className="w-3.5 h-3.5" />
                           </div>
                         )}
                       </Button>
@@ -306,17 +306,17 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
 
                   {/* Sign Up Link */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    className="text-center pt-4 border-t border-gray-200"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-center pt-3 border-t border-gray-200 dark:border-gray-700"
                   >
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
                       Don't have an account?{' '}
                       <button
                         type="button"
                         onClick={handleSignupClick}
-                        className="text-orange-600 hover:text-orange-700 font-medium transition-colors"
+                        className="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-semibold transition-colors touch-manipulation"
                         disabled={isLoading}
                       >
                         Sign up
@@ -326,7 +326,6 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
                 </div>
               </div>
             </motion.div>
-          </div>
           </motion.div>
         </div>
       )}
