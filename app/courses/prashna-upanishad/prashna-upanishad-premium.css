@@ -436,9 +436,10 @@
 
 .prashna-purchase-price {
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  text-align: center;
 }
 
 .prashna-price-current {
@@ -448,7 +449,7 @@
 }
 
 .prashna-price-original {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--prashna-muted);
   text-decoration: line-through;
 }
@@ -647,13 +648,14 @@
 }
 
 .prashna-savings-badge {
-  background: var(--prashna-accent);
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.875rem;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 700;
   white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
 }
 
 @media (min-width: 640px) {
@@ -669,6 +671,14 @@
   
   .prashna-price-original {
     font-size: 1.5rem;
+  }
+}
+
+/* Desktop pricing improvements */
+@media (min-width: 1024px) {
+  .prashna-purchase-price {
+    text-align: left;
+    align-items: flex-start;
   }
 }
 

@@ -28,9 +28,9 @@ export default function PurchaseCard({ variant = 'sticky' }: PurchaseCardProps) 
       {/* Price */}
       <div className="prashna-purchase-price">
         <span className="prashna-price-current">{metadata.price}</span>
-        <div className="flex flex-col">
-          <span className="prashna-price-original text-lg">{metadata.originalPrice}</span>
-          <span className="text-sm text-[#10B981] font-bold">Save {metadata.savings}!</span>
+        <div className="flex items-center gap-3">
+          <span className="prashna-price-original">{metadata.originalPrice}</span>
+          <span className="prashna-savings-badge">Save {metadata.savings}!</span>
         </div>
       </div>
 
@@ -110,9 +110,10 @@ export default function PurchaseCard({ variant = 'sticky' }: PurchaseCardProps) 
         animate="visible"
       >
         <div className="flex items-center justify-between mb-4">
-          <div className="prashna-purchase-price mb-0">
+          <div className="flex items-center gap-3">
             <span className="text-2xl font-bold text-[#0D3B4A]">{metadata.price}</span>
-            <span className="text-lg text-gray-400 line-through ml-2">{metadata.originalPrice}</span>
+            <span className="text-lg text-gray-400 line-through">{metadata.originalPrice}</span>
+            <span className="bg-[#10B981] text-white px-2 py-1 rounded text-sm font-semibold">Save {metadata.savings}!</span>
           </div>
           <a
             href={enrollment.checkoutLink}
