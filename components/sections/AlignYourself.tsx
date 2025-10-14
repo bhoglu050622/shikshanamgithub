@@ -28,6 +28,7 @@ interface LiveClass {
   students: number;
   link: string;
   description: string;
+  comingSoon?: boolean;
 }
 
 interface SelfPacedCourse {
@@ -58,45 +59,46 @@ interface AlignYourselfData {
 const defaultLiveClasses: LiveClass[] = [
   {
     id: '1',
-    title: 'Vedic Mathematics Masterclass',
-    instructor: 'Guru Rajesh Kumar',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
-    duration: '2 hours',
-    date: '2024-01-15',
+    title: 'Sanskrit Live Class',
+    instructor: 'Vishal Chaurasia',
+    thumbnail: '/assets/course-sanskrit-live.png',
+    duration: '12 weeks',
+    date: 'Every Tuesday & Thursday',
     time: '7:00 PM IST',
-    price: '₹299',
+    price: '₹2,999',
     rating: 4.9,
-    students: 120,
-    link: 'https://example.com/vedic-math-live',
-    description: 'Learn ancient mathematical techniques for faster calculations'
+    students: 450,
+    link: '/courses/sanskrit-live-class',
+    description: 'Practice Sanskrit LIVE in a Private Circle with interactive learning and personalized guidance'
   },
   {
     id: '2',
-    title: 'Sanskrit Grammar Fundamentals',
-    instructor: 'Dr. Priya Sharma',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
-    duration: '1.5 hours',
-    date: '2024-01-18',
-    time: '6:30 PM IST',
-    price: '₹199',
-    rating: 4.8,
-    students: 85,
-    link: 'https://example.com/sanskrit-grammar-live',
-    description: 'Master the basics of Sanskrit grammar and sentence structure'
+    title: 'Upcoming Sanskrit Live Class',
+    instructor: 'Expert Scholars',
+    thumbnail: '/assets/course-sanskrit-live.png',
+    duration: 'Coming Soon',
+    date: 'TBA',
+    time: 'TBA',
+    price: 'TBA',
+    rating: 5.0,
+    students: 0,
+    link: '#',
+    description: 'Next batch of Sanskrit Live Classes starting soon. Join the waitlist!',
+    comingSoon: true
   },
   {
     id: '3',
-    title: 'Yoga Philosophy & Practice',
-    instructor: 'Swami Ananda',
-    thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center',
-    duration: '2.5 hours',
-    date: '2024-01-20',
-    time: '8:00 PM IST',
-    price: '₹399',
-    rating: 4.9,
-    students: 200,
-    link: 'https://example.com/yoga-philosophy-live',
-    description: 'Deep dive into Patanjali\'s Yoga Sutras and practical applications'
+    title: 'Durgāsaptashatī Recitation',
+    instructor: 'Expert Scholars',
+    thumbnail: '/assets/durgasaptashi-course.jpeg',
+    duration: '8-10 Classes',
+    date: 'Flexible Schedule',
+    time: 'Self-Paced',
+    price: '₹1,999',
+    rating: 4.8,
+    students: 800,
+    link: '/courses/durgasaptashi',
+    description: 'Master the sacred Durgā Saptashatī chanting with proper pronunciation and meaning'
   }
 ]
 
@@ -169,20 +171,63 @@ const defaultCourses: Course[] = [
   }
 ]
 
+// Coming Soon Modal Component
+function ComingSoonModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  if (!isOpen) return null
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        className="bg-card rounded-2xl shadow-2xl p-8 max-w-md mx-4 border border-border"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="text-center">
+          <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
+            <Calendar className="w-8 h-8 text-primary" />
+          </div>
+          <h3 className="text-2xl font-bold text-foreground mb-3">Coming Soon!</h3>
+          <p className="text-muted-foreground mb-6">
+            This live class will be available soon. Stay tuned for updates!
+          </p>
+          <button
+            onClick={onClose}
+            className="w-full py-3 px-6 rounded-xl font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            Got it!
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
 // Course Card Component
 function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced' }) {
   const mounted = useHydrationSafeAnimation()
+  const [showComingSoon, setShowComingSoon] = useState(false)
   
   const handleClick = () => {
-    window.open(course.link, '_blank', 'noopener,noreferrer')
+    if (course.comingSoon) {
+      setShowComingSoon(true)
+    } else {
+      window.open(course.link, '_blank', 'noopener,noreferrer')
+    }
   }
 
   return (
-    <motion.div
-      whileHover={mounted ? { scale: 1.02, y: -5 } : {}}
-      className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0 flex flex-col h-[520px]"
-      onClick={handleClick}
-    >
+    <>
+      <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} />
+      <motion.div
+        whileHover={mounted ? { scale: 1.02, y: -5 } : {}}
+        className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0 flex flex-col h-[520px]"
+        onClick={handleClick}
+      >
       {/* Thumbnail */}
       <div className="relative h-48 bg-gradient-to-br from-primary/10 to-accent/10">
         <Image
@@ -207,6 +252,11 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
             </div>
           )}
         </div>
+        {course.comingSoon && (
+          <div className="absolute top-3 left-3 bg-gradient-to-r from-primary to-accent rounded-full px-4 py-1.5">
+            <span className="text-xs font-bold text-primary-foreground">COMING SOON</span>
+          </div>
+        )}
         <div className="absolute top-3 right-3 bg-card rounded-full px-3 py-1">
           <span className="text-sm font-semibold text-foreground">{course.price}</span>
         </div>
@@ -253,16 +303,19 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className={`w-full py-3 px-4 rounded-xl font-semibold text-primary-foreground transition-all duration-300 flex items-center justify-center space-x-2 mt-auto ${
-            type === 'live' 
-              ? 'bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80' 
-              : 'bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80'
+            course.comingSoon
+              ? 'bg-gradient-to-r from-muted-foreground to-muted-foreground/80 hover:from-muted-foreground/90 hover:to-muted-foreground/70'
+              : type === 'live' 
+                ? 'bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80' 
+                : 'bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent/80'
           }`}
         >
-          <span>{type === 'live' ? 'Join Live Class' : 'Start Course'}</span>
+          <span>{course.comingSoon ? 'Notify Me' : type === 'live' ? 'Join Live Class' : 'Start Course'}</span>
           <ArrowRight className="w-4 h-4" />
         </motion.button>
       </div>
-    </motion.div>
+      </motion.div>
+    </>
   )
 }
 
