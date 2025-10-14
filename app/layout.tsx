@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Nunito_Sans, DM_Serif_Display, Tiro_Devanagari_Hindi, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import './mobile.css'
+import './alignment-fixes.css'
 // Temporarily disabled heavy components to troubleshoot
 // import PerformanceMonitor from '@/components/optimization/PerformanceMonitor'
 import ErrorBoundary from '@/components/ErrorBoundary'

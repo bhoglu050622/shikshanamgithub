@@ -126,9 +126,9 @@ export default function Footer() {
       
       <div className="container-custom py-16 relative z-10 mb-0">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-6 mb-12">
           {/* Brand Section */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 sm:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg">
                 <BookOpen className="w-6 h-6 text-slate-900" />
@@ -193,15 +193,15 @@ export default function Footer() {
             <p className="text-slate-700 dark:text-slate-300 mb-6 text-base leading-relaxed">
               Get weekly insights, course updates, and spiritual wisdom delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <div className="flex flex-col gap-3 max-w-md mx-auto w-full">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-2xl border-2 border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition-all duration-200 tap-target"
+                className="w-full px-4 py-3 rounded-2xl border-2 border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition-all duration-200 tap-target"
                 aria-label="Email address for newsletter"
               />
               <button
-                className="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:from-amber-400 hover:to-amber-500 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target"
+                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:from-amber-400 hover:to-amber-500 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target"
                 aria-label="Subscribe to newsletter"
               >
                 <span>Subscribe</span>
@@ -213,7 +213,7 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t-2 border-slate-300 dark:border-slate-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
             {/* Copyright */}
             <div
               className="text-slate-700 dark:text-slate-300 text-sm flex items-center gap-1"
@@ -224,7 +224,7 @@ export default function Footer() {
 
             {/* Social Links */}
             <div
-              className="flex items-center space-x-4"
+              className="flex items-center flex-wrap gap-3 justify-center"
               role="navigation"
               aria-label="Social media links"
             >
@@ -232,7 +232,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`w-11 h-11 bg-slate-300/80 dark:bg-slate-700/80 rounded-2xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-slate-400/80 dark:hover:bg-slate-600 transition-all duration-200 hover:scale-110 border-2 border-slate-400 dark:border-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target`}
+                  className={`w-11 h-11 bg-slate-300/80 dark:bg-slate-700/80 rounded-2xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-slate-400/80 dark:hover:bg-slate-600 transition-all duration-200 hover:scale-110 border-2 border-slate-400 dark:border-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target flex-shrink-0`}
                   aria-label={`Visit our ${social.name} page`}
                   title={social.name}
                 >
@@ -244,30 +244,30 @@ export default function Footer() {
 
           {/* Additional Links */}
           <nav
-            className="flex flex-wrap justify-center gap-6 mt-6 text-slate-700 dark:text-slate-300 text-sm"
+            className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 text-slate-700 dark:text-slate-300 text-sm"
             aria-label="Legal and policy links"
           >
             <a 
               href={ROUTES.PRIVACY} 
-              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded px-2 py-1 whitespace-nowrap"
             >
               Privacy Policy
             </a>
             <a 
               href={ROUTES.TERMS} 
-              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded px-2 py-1 whitespace-nowrap"
             >
               Terms of Service
             </a>
             <a 
               href="#cookies" 
-              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded px-2 py-1 whitespace-nowrap"
             >
               Cookie Policy
             </a>
             <a 
               href={ROUTES.ACCESSIBILITY} 
-              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded px-2 py-1 whitespace-nowrap"
             >
               Accessibility
             </a>

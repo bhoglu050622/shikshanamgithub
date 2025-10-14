@@ -203,7 +203,7 @@ export default function TestimonialsSection({
         )}
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-full">
           {testimonials.map((testimonial, index) => (
             <MotionDiv
               key={testimonial.id}
@@ -213,8 +213,9 @@ export default function TestimonialsSection({
               viewport={{ once: true }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
+              className="max-w-full"
             >
-              <Card className={`h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden group relative ${
+              <Card className={`h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden group relative max-w-full ${
                 hoveredCard === index ? 'scale-105' : ''
               }`}>
                 {/* Gradient Overlay on Hover */}
@@ -222,21 +223,21 @@ export default function TestimonialsSection({
                   className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
                 
-                <CardContent className="p-8 relative z-10">
+                <CardContent className="p-6 sm:p-8 relative z-10 max-w-full">
                   {/* Quote Icon */}
-                  <div className="mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-xl flex items-center justify-center">
-                      <Quote className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                  <div className="mb-4 sm:mb-6">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-xl flex items-center justify-center">
+                      <Quote className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 dark:text-orange-400" />
                     </div>
                   </div>
 
                   {/* Rating */}
-                  <div className="flex gap-1 mb-4">
+                  <div className="flex gap-1 mb-4 flex-wrap">
                     {renderStars(testimonial.rating)}
                   </div>
 
                   {/* Testimonial Text */}
-                  <blockquote className="font-sans text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-base text-justify">
+                  <blockquote className="font-sans text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-sm sm:text-base break-words overflow-wrap-anywhere hyphens-auto">
                     "{testimonial.text}"
                   </blockquote>
 
@@ -244,25 +245,25 @@ export default function TestimonialsSection({
                   <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent mb-6" />
 
                   {/* User Info */}
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                  <div className="flex items-start gap-3 sm:gap-4 max-w-full">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
                       {testimonial.name.charAt(0)}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <div className="flex-1 min-w-0 overflow-hidden">
+                      <div className="font-semibold text-gray-900 dark:text-white mb-1 truncate">
                         {testimonial.name}
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                      <div className="text-sm text-gray-600 dark:text-gray-400 mb-1 truncate">
                         {testimonial.role}
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-500 mb-2">
+                      <div className="text-xs text-gray-500 dark:text-gray-500 mb-2 truncate">
                         {testimonial.location}
                       </div>
-                      <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                      <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-200 dark:border-gray-700">
                         <div className="text-xs font-medium text-orange-600 dark:text-orange-400 mb-1">
                           Course Taken
                         </div>
-                        <div className="text-sm text-gray-700 dark:text-gray-300 line-clamp-1">
+                        <div className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2 break-words">
                           {testimonial.course}
                         </div>
                       </div>

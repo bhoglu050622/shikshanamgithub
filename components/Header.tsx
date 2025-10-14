@@ -42,26 +42,26 @@ export default function Header() {
       role="banner"
     >
       <div className="container-custom">
-        <div className="flex items-center h-16">
+        <div className="flex items-center justify-between h-16 lg:h-auto">
           {/* Logo */}
-          <Link href={ROUTES.HOME} passHref legacyBehavior>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-3 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl"
-              aria-label="Shikshanam Home"
-            >
-              <div className="w-12 h-12 bg-gradient-to-br from-button-primary-bg to-button-primary-hover rounded-2xl flex items-center justify-center shadow-md">
-                <BookOpen className="w-7 h-7 text-white" />
+          <Link 
+            href={ROUTES.HOME}
+            className="flex items-center space-x-2 lg:space-x-3 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl"
+            aria-label="Shikshanam Home"
+          >
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-2 lg:space-x-3">
+              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-button-primary-bg to-button-primary-hover rounded-2xl flex items-center justify-center shadow-md flex-shrink-0">
+                <BookOpen className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
               </div>
-              <div className="flex flex-col">
-                <span className="font-display text-2xl font-bold text-premium-text-primary tracking-wide">
+              <div className="flex flex-col min-w-0">
+                <span className="font-display text-lg lg:text-2xl font-bold text-premium-text-primary tracking-wide truncate">
                   शिक्षणम्
                 </span>
-                <span className="font-display text-sm font-medium text-premium-text-secondary tracking-wider">
+                <span className="font-display text-xs lg:text-sm font-medium text-premium-text-secondary tracking-wider hidden sm:block">
                   Shikshanam
                 </span>
               </div>
-            </motion.a>
+            </motion.div>
           </Link>
 
           {/* Desktop Navigation - Centered with proper spacing */}
@@ -91,22 +91,21 @@ export default function Header() {
                     )} />
                   </motion.button>
                 ) : (
-                  <Link href={item.href} passHref legacyBehavior>
-                    <motion.a
-                      onClick={() => {
-                        // Close any open menus
-                        setIsMegaMenuOpen(false)
-                        setActiveDropdown(null)
-                        setActiveGroupId(null)
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="font-semibold flex items-center space-x-1 text-premium-text-primary hover:text-button-primary-bg hover:bg-button-primary-bg/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-4 py-2.5 transition-all duration-200"
-                      aria-label={`Navigate to ${item.name}`}
-                    >
+                  <Link 
+                    href={item.href}
+                    onClick={() => {
+                      // Close any open menus
+                      setIsMegaMenuOpen(false)
+                      setActiveDropdown(null)
+                      setActiveGroupId(null)
+                    }}
+                    className="font-semibold flex items-center space-x-1 text-premium-text-primary hover:text-button-primary-bg hover:bg-button-primary-bg/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-4 py-2.5 transition-all duration-200"
+                    aria-label={`Navigate to ${item.name}`}
+                  >
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center space-x-1">
                       <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
-                    </motion.a>
+                    </motion.div>
                   </Link>
                 )}
               </div>
@@ -147,31 +146,31 @@ export default function Header() {
           </div>
 
           {/* Mobile Controls */}
-          <div className="lg:hidden flex items-center gap-3 ml-auto flex-shrink-0">
+          <div className="lg:hidden flex items-center gap-2 ml-auto flex-shrink-0">
             {/* Mobile Menu Button - Enhanced */}
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative p-3 rounded-xl bg-button-primary-bg/15 hover:bg-button-primary-bg/25 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target border-2 border-button-primary-bg/30"
+              className="relative p-2.5 lg:p-3 rounded-xl bg-button-primary-bg/15 hover:bg-button-primary-bg/25 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target border-2 border-button-primary-bg/30"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
             >
-              <div className="relative w-6 h-6">
+              <div className="relative w-5 h-5 lg:w-6 lg:h-6">
                 <motion.div
-                  animate={isMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -6 }}
+                  animate={isMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -5 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-4 h-0.5 lg:w-5 lg:h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
                 />
                 <motion.div
                   animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-4 h-0.5 lg:w-5 lg:h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
                 />
                 <motion.div
-                  animate={isMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 6 }}
+                  animate={isMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 5 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-5 h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2 w-4 h-0.5 lg:w-5 lg:h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
                 />
               </div>
             </motion.button>

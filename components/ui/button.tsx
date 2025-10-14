@@ -56,10 +56,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       'relative', // For better positioning of child elements
       
       // Size variants with premium rounded corners (0.75rem-1rem)
+      // Minimum 44px height for mobile accessibility
       {
-        'h-9 px-3 text-sm rounded-xl': size === 'sm',  // 12px border radius
-        'h-11 px-4 text-base rounded-xl': size === 'md', // 12px border radius
-        'h-12 px-6 text-lg rounded-2xl': size === 'lg',  // 16px border radius
+        'min-h-[44px] h-auto py-2.5 px-4 text-sm rounded-xl': size === 'sm',  // 12px border radius
+        'min-h-[44px] h-auto py-3 px-5 text-base rounded-xl': size === 'md', // 12px border radius
+        'min-h-[48px] h-auto py-3.5 px-6 text-lg rounded-2xl': size === 'lg',  // 16px border radius
       },
       
       // Width

@@ -108,7 +108,7 @@ export default function SanskritCourseCards({ selectedLevel }: SanskritCourseCar
         </motion.div>
 
         {/* Course Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto w-full">
           {filteredCourses.map((course, index) => (
             <motion.div
               key={course.id}
@@ -117,10 +117,10 @@ export default function SanskritCourseCards({ selectedLevel }: SanskritCourseCar
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
-              className="group"
+              className="group max-w-full"
             >
               <Link href={course.url}>
-                <div className="card-premium h-full flex flex-col overflow-hidden cursor-pointer">
+                <div className="card-premium h-full flex flex-col overflow-hidden cursor-pointer max-w-full">
                   {/* Image Placeholder */}
                   <div className="w-full h-48 bg-gradient-to-br from-golden-olive to-deep-maroon flex items-center justify-center relative overflow-hidden">
                     <BookOpen className="w-20 h-20 text-white/30" />
@@ -141,17 +141,17 @@ export default function SanskritCourseCards({ selectedLevel }: SanskritCourseCar
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-dark-text mb-3 group-hover:text-golden-olive transition-colors">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col max-w-full">
+                    <h3 className="text-lg sm:text-xl font-bold text-dark-text mb-3 group-hover:text-golden-olive transition-colors line-clamp-2 break-words">
                       {course.title}
                     </h3>
                     
-                    <p className="text-muted-gray mb-4 leading-relaxed flex-1">
+                    <p className="text-sm sm:text-base text-muted-gray mb-4 leading-relaxed flex-1 line-clamp-3 break-words">
                       {course.description}
                     </p>
 
                     {/* Stats */}
-                    <div className="flex items-center justify-between text-sm text-muted-gray mb-4">
+                    <div className="flex items-center justify-between text-xs sm:text-sm text-muted-gray mb-4 flex-wrap gap-2">
                       <div className="flex items-center space-x-1">
                         <Clock className="w-4 h-4" />
                         <span>{course.duration}</span>

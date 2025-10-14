@@ -31,7 +31,7 @@ export function PackageCard({ package: pkg, onViewDetails, onBuy }: PackageCardP
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-saffron-400 bg-white">
+    <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-saffron-400 bg-white h-full flex flex-col">
       <CardHeader className="p-0">
         {pkg.thumbnailUrl && (
           <div className="relative w-full h-48 overflow-hidden rounded-t-xl bg-gradient-to-br from-saffron-50 to-amber-50">
@@ -44,31 +44,31 @@ export function PackageCard({ package: pkg, onViewDetails, onBuy }: PackageCardP
             />
             {savings > 0 && (
               <Badge 
-                className="absolute top-3 right-3 bg-emerald-600 text-white font-semibold"
+                className="absolute top-3 right-3 bg-emerald-600 text-white font-semibold text-xs whitespace-nowrap max-w-[calc(100%-24px)] overflow-hidden text-ellipsis"
                 variant="default"
               >
-                You save ₹{savings.toLocaleString()}
+                Save ₹{savings.toLocaleString()}
               </Badge>
             )}
           </div>
         )}
       </CardHeader>
       
-      <CardContent className="p-6">
-        <CardTitle className="text-xl font-bold text-slate-800 mb-2 line-clamp-2">
+      <CardContent className="p-4 sm:p-6 flex-1 flex flex-col">
+        <CardTitle className="text-lg sm:text-xl font-bold text-slate-800 mb-2 line-clamp-2 overflow-wrap-anywhere">
           {pkg.name}
         </CardTitle>
         
-        <p className="text-slate-600 text-sm mb-4 line-clamp-3">
+        <p className="text-slate-600 text-sm mb-4 line-clamp-3 overflow-wrap-anywhere flex-1">
           {pkg.shortDescription}
         </p>
         
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-2xl font-bold text-saffron-600">
+        <div className="flex items-center flex-wrap gap-2 mb-4">
+          <span className="text-xl sm:text-2xl font-bold text-saffron-600 whitespace-nowrap">
             ₹{pkg.priceInr.toLocaleString()}
           </span>
           {pkg.originalPriceInr && pkg.originalPriceInr > pkg.priceInr && (
-            <span className="text-lg text-slate-400 line-through">
+            <span className="text-base sm:text-lg text-slate-400 line-through whitespace-nowrap">
               ₹{pkg.originalPriceInr.toLocaleString()}
             </span>
           )}
@@ -77,34 +77,34 @@ export function PackageCard({ package: pkg, onViewDetails, onBuy }: PackageCardP
         {/* Package features */}
         <div className="flex flex-wrap gap-2 mb-4">
           {pkg.livePassCount && pkg.livePassCount > 0 && (
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-xs whitespace-nowrap">
               {pkg.livePassCount} Live Sessions
             </Badge>
           )}
           {pkg.mentorHours && pkg.mentorHours > 0 && (
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-xs whitespace-nowrap">
               {pkg.mentorHours}h Mentoring
             </Badge>
           )}
           {pkg.certificateIncluded && (
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-xs whitespace-nowrap">
               Certificate
             </Badge>
           )}
         </div>
       </CardContent>
       
-      <CardFooter className="p-6 pt-0 flex gap-3">
+      <CardFooter className="p-4 sm:p-6 pt-0 flex flex-col sm:flex-row gap-3 mt-auto">
         <Button
           variant="outline"
-          className="flex-1 border-saffron-400 text-saffron-600 hover:bg-saffron-50"
+          className="w-full sm:flex-1 border-saffron-400 text-saffron-600 hover:bg-saffron-50 min-h-[44px]"
           onClick={() => onViewDetails(pkg.sku)}
           aria-label={`View details for ${pkg.name}`}
         >
           View details
         </Button>
         <Button
-          className="flex-1 bg-saffron-600 hover:bg-saffron-700 text-white"
+          className="w-full sm:flex-1 bg-saffron-600 hover:bg-saffron-700 text-white min-h-[44px]"
           onClick={handleBuyClick}
           aria-label={`Buy ${pkg.name} for ₹${pkg.priceInr.toLocaleString()}`}
         >
