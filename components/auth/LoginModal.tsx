@@ -75,7 +75,7 @@ export function LoginModal({ isOpen, onClose, onLogin, onSignup }: LoginModalPro
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
         ref={dialogRef}
-        className="max-w-[420px] w-[calc(100%-2rem)] mx-auto p-6 sm:p-8 max-h-[85vh] overflow-y-auto rounded-3xl"
+        className="max-w-[420px] w-[calc(100%-2rem)] mx-auto p-6 sm:p-8 max-h-[90vh] overflow-y-auto rounded-3xl"
       >
         <DialogHeader className="text-center space-y-4">
           {/* Logo */}

@@ -122,7 +122,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 min-h-screen overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -139,7 +139,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: "spring", damping: 30, stiffness: 400, duration: 0.3 }}
-            className="relative z-10 w-full max-w-[420px]"
+            className="relative z-10 w-full max-w-[420px] my-8"
           >
             {/* Centered Login Form */}
             <motion.div
@@ -147,7 +147,7 @@ export function SSOLoginModal({ isOpen, onClose, onSignup, onLoginSuccess }: SSO
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ delay: 0.05 }}
-              className="w-full bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-6 sm:p-8 border border-gray-200/50 dark:border-gray-800/50 max-h-[85vh] overflow-y-auto"
+              className="w-full bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-6 sm:p-8 border border-gray-200/50 dark:border-gray-800/50"
             >
               {/* Close Button */}
               <button
