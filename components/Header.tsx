@@ -53,7 +53,7 @@ export default function Header() {
       role="banner"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.a 
             href={ROUTES.HOME}
@@ -88,14 +88,14 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "flex items-center space-x-2 px-4 py-2 rounded-xl font-medium text-base transition-all duration-200",
+                  "flex items-center space-x-2 px-3 py-2 rounded-xl font-medium text-sm whitespace-nowrap transition-all duration-200",
                   pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
                     ? "bg-gradient-to-r from-orange-100 to-rose-100 dark:from-orange-950/30 dark:to-rose-950/30 text-orange-700 dark:text-orange-400"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-orange-600 dark:hover:text-orange-400"
                 )}
               >
-                <item.icon className="w-5 h-5" aria-hidden="true" />
-                <span>{item.name}</span>
+                <item.icon className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                <span className="truncate">{item.name}</span>
               </Link>
             ))}
           </nav>
