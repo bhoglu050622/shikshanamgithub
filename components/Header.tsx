@@ -128,6 +128,9 @@ export default function Header() {
               <Search className="w-5 h-5 text-premium-text-primary" />
             </motion.button>
 
+            {/* Theme Toggle */}
+            {!hideThemeToggle && <ThemeToggle />}
+
             {/* Authentication Section */}
             {isLoggedIn ? (
               <UserDropdown />
@@ -147,6 +150,9 @@ export default function Header() {
 
           {/* Mobile Controls */}
           <div className="lg:hidden flex items-center gap-2 ml-auto flex-shrink-0">
+            {/* Theme Toggle for Mobile */}
+            {!hideThemeToggle && <ThemeToggle />}
+            
             {/* Mobile Menu Button - Enhanced */}
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

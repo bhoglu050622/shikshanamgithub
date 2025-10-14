@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { BookOpen, Clock, Users, ChevronLeft, ChevronRight, Play, Calendar, Star, ArrowRight } from 'lucide-react'
-import { useState, useRef, useEffect } from 'react'
+import { BookOpen, Clock, Users, Play, Calendar, Star, ArrowRight } from 'lucide-react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { useHydrationSafeAnimation } from '@/lib/hooks/useHydrationSafeAnimation'
 
@@ -225,7 +225,7 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
       <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} />
       <motion.div
         whileHover={mounted ? { scale: 1.02, y: -5 } : {}}
-        className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full max-w-sm flex-shrink-0 flex flex-col h-[520px]"
+        className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden cursor-pointer w-full flex flex-col h-[520px]"
         onClick={handleClick}
       >
       {/* Thumbnail */}
@@ -321,58 +321,15 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
 
 // Carousel Component
 function CourseCarousel({ courses, type, title }: { courses: any[], type: 'live' | 'self-paced', title: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const maxVisible = 3 // Show latest 2-3 courses
-
-  const scrollToIndex = (index: number) => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 320 + 16 // card width + gap
-      scrollContainerRef.current.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth'
-      })
-    }
-    setCurrentIndex(index)
-  }
-
-  const nextSlide = () => {
-    const nextIndex = Math.min(currentIndex + 1, courses.length - maxVisible)
-    scrollToIndex(nextIndex)
-  }
-
-  const prevSlide = () => {
-    const prevIndex = Math.max(currentIndex - 1, 0)
-    scrollToIndex(prevIndex)
-  }
+  const maxVisible = 3 // Show 3 courses in a row
 
   return (
-    <div className="mb-12">
-      <div className="flex items-center justify-between mb-6">
+    <div className="mb-12 w-full">
+      <div className="flex items-center justify-center mb-6">
         <h3 className="text-2xl font-bold text-wisdom-900">{title}</h3>
-        <div className="flex space-x-2">
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="p-2 rounded-full bg-muted hover:bg-muted-foreground/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-foreground"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= courses.length - maxVisible}
-            className="p-2 rounded-full bg-muted hover:bg-muted-foreground/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-foreground"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
       </div>
       
-      <div 
-        ref={scrollContainerRef}
-        className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4 max-w-full"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
         {courses.slice(0, maxVisible).map((course) => (
           <CourseCard key={course.id} course={course} type={type} />
         ))}

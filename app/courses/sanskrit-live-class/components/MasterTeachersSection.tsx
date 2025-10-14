@@ -1,5 +1,7 @@
 'use client';
 
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
+
 export default function MasterTeachersSection() {
   return (
     <div id="master-teachers-component">
@@ -46,12 +48,12 @@ export default function MasterTeachersSection() {
         </div>
         
         {/* "Start Your Journey" Button */}
-        <a 
+        <ProtectedExternalLink 
           href="https://courses.shikshanam.in/single-checkout/68e60a1bc79998642e10ed0d?pid=p1" 
           className="start-journey-btn"
         >
           Start Your Journey
-        </a>
+        </ProtectedExternalLink>
       </div>
     </div>
   );

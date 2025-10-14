@@ -81,10 +81,7 @@ export default function HowItWorksTimeline() {
               const IconComponent = step.icon;
               return (
                 <div key={index} className="chanakya-timeline-step relative">
-                  {/* Connector Line (Desktop) */}
-                  {index < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-10 left-[50%] w-full h-0.5 bg-gradient-to-r from-[#D87A2B] to-[#0B2B3A] opacity-20" />
-                  )}
+                  {/* Connector Line - REMOVED for cleaner mobile UI */}
 
                   {/* Step Content */}
                   <div className="text-center">
@@ -143,7 +140,7 @@ export default function HowItWorksTimeline() {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl bg-white rounded-2xl shadow-2xl z-50 overflow-hidden"
+                className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-2xl bg-white rounded-2xl shadow-2xl z-50 overflow-hidden"
               >
                 <div className="relative p-8 md:p-10 max-h-[90vh] overflow-y-auto">
                   {/* Close Button */}

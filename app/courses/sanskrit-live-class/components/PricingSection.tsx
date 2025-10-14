@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 
 export default function PricingSection() {
   const [timeLeft, setTimeLeft] = useState({
@@ -133,13 +134,13 @@ export default function PricingSection() {
                 Private community access
               </li>
             </ul>
-            <a 
+            <ProtectedExternalLink 
               href="https://courses.shikshanam.in/single-checkout/68e60a1bc79998642e10ed0d?pid=p3" 
               target="_blank" 
               className="emp-cta-button emp-cta-button-installment"
             >
               Choose Installment Plan
-            </a>
+            </ProtectedExternalLink>
           </div>
 
           {/* One-Time Payment Card */}
@@ -192,13 +193,13 @@ export default function PricingSection() {
                 1 year access
               </li>
             </ul>
-            <a 
+            <ProtectedExternalLink 
               href="https://courses.shikshanam.in/single-checkout/68e60a1bc79998642e10ed0d?pid=p1" 
               target="_blank" 
               className="emp-cta-button emp-cta-button-primary"
             >
               Enroll Now
-            </a>
+            </ProtectedExternalLink>
           </div>
         </div>
 

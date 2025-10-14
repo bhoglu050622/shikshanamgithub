@@ -198,8 +198,8 @@ export default function NyayaDarshanCoursePage() {
         <PurchaseCard />
       </div>
 
-      {/* Mobile Purchase Card - Bottom Sheet */}
-      <div className="lg:hidden">
+      {/* Mobile Purchase Card - Bottom Sheet - DISABLED */}
+      <div className="hidden lg:hidden">
         <PurchaseCard />
       </div>
     </div>

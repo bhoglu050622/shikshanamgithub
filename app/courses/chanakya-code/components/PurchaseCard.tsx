@@ -113,8 +113,8 @@ export default function PurchaseCard() {
         </div>
       </div>
 
-      {/* Mobile Version - Sticky Bottom */}
-      <div className={`lg:hidden chanakya-purchase-card-mobile ${!isVisible ? 'hidden' : ''}`}>
+      {/* Mobile Version - Sticky Bottom - DISABLED */}
+      <div className={`hidden lg:hidden chanakya-purchase-card-mobile ${!isVisible ? 'hidden' : ''}`}>
         {/* Collapsed State */}
         {!isMobileExpanded && (
           <div className="flex items-center justify-between gap-4">

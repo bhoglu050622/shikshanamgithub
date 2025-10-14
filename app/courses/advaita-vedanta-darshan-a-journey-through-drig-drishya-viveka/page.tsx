@@ -270,11 +270,11 @@ export default function AdvaitaVedantaDarshanCoursePage() {
         </div>
       </section>
 
-      {/* Sticky Purchase Card (Desktop) / Bottom Sheet (Mobile) */}
+      {/* Sticky Purchase Card (Desktop) - Mobile Bottom Sheet DISABLED */}
       <div className="hidden lg:block fixed top-20 right-8 z-50 w-96">
         <PurchaseCard />
       </div>
-      <div className="lg:hidden">
+      <div className="hidden lg:hidden">
         <PurchaseCard />
       </div>
     </div>

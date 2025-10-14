@@ -129,7 +129,7 @@ export default function EmotionalMasteryPricing() {
                 Combined Community Access
               </li>
             </ul>
-            <a href="https://courses.shikshanam.in/courses/Samkhya-Darshan--Emotional-Intelligence-Combo-Course-6868be22998a012a18cc0360?redirectToMicroFE=true" target="_blank" className="emp-cta-button emp-cta-button-combo">Choose Combo Program</a>
+            <ProtectedExternalLink href="https://courses.shikshanam.in/courses/Samkhya-Darshan--Emotional-Intelligence-Combo-Course-6868be22998a012a18cc0360?redirectToMicroFE=true" target="_blank" className="emp-cta-button emp-cta-button-combo">Choose Combo Program</ProtectedExternalLink>
           </div>
 
           <div className="emp-pricing-card emp-best-value">

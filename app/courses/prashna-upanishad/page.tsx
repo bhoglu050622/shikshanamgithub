@@ -131,8 +131,8 @@ export default function PrashnaUpanishadPage() {
         <PurchaseCard variant="sticky" />
       </div>
 
-      {/* Mobile Purchase Card - Bottom Sheet */}
-      <div className="lg:hidden">
+      {/* Mobile Purchase Card - Bottom Sheet - DISABLED */}
+      <div className="hidden lg:hidden">
         <PurchaseCard variant="bottom-sheet" />
       </div>
     </div>
