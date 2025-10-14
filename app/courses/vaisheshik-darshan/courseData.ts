@@ -276,7 +276,8 @@ export const vaisheshikDarshanCourseData: CourseContent = {
       'Nyaya Philosophy',
       'Ancient Atomic Theory',
       'Indian Metaphysics'
-    ]
+    ],
+    image: 'https://shikshanam.in/wp-content/uploads/2024/05/1.png'
   },
 
   testimonials: [
