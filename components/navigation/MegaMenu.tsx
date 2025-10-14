@@ -218,16 +218,11 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
                               <Link 
                                 href={currentGroup.featured.href}
                                 onClick={onClose}
-                                className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+                                className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl whitespace-normal flex-nowrap"
+                                style={{ maxWidth: 'fit-content' }}
                               >
-                                <motion.div 
-                                  whileHover={{ scale: 1.05 }}
-                                  whileTap={{ scale: 0.95 }}
-                                  className="inline-flex items-center space-x-2"
-                                >
-                                  <span>Explore Now</span>
-                                  <ArrowRight className="w-4 h-4" />
-                                </motion.div>
+                                <span className="whitespace-nowrap">Explore Now</span>
+                                <ArrowRight className="w-4 h-4 flex-shrink-0" />
                               </Link>
                             </div>
                           </div>

@@ -316,12 +316,12 @@ footer .flex.items-center.space-x-4 {
    CTA BUTTON FIXES
    ============================================================================ */
 
-/* Consistent button styling */
-.btn,
-.button,
-[class*="btn-"],
-[class*="cta-"],
-button:not(.icon-only) {
+/* Consistent button styling - Exclude mega menu and navigation elements */
+.btn:not([role="dialog"] *):not(nav *),
+.button:not([role="dialog"] *):not(nav *),
+[class*="btn-"]:not([role="dialog"] *):not(nav *),
+[class*="cta-"]:not([role="dialog"] *):not(nav *),
+button:not(.icon-only):not([role="dialog"] *):not(nav *) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -337,13 +337,13 @@ button:not(.icon-only) {
   text-overflow: ellipsis;
 }
 
-/* Mobile button sizing */
+/* Mobile button sizing - Exclude mega menu and navigation elements */
 @media (max-width: 767px) {
-  .btn,
-  .button,
-  [class*="btn-"],
-  [class*="cta-"],
-  button:not(.icon-only) {
+  .btn:not([role="dialog"] *):not(nav *),
+  .button:not([role="dialog"] *):not(nav *),
+  [class*="btn-"]:not([role="dialog"] *):not(nav *),
+  [class*="cta-"]:not([role="dialog"] *):not(nav *),
+  button:not(.icon-only):not([role="dialog"] *):not(nav *) {
     width: 100%;
     max-width: 100%;
     padding: 1rem 1.5rem;
@@ -497,9 +497,17 @@ main {
   }
 }
 
-/* Prevent elements from breaking layout */
-* {
+/* Prevent elements from breaking layout - Exclude dialog and navigation */
+*:not([role="dialog"]):not([role="dialog"] *):not(nav):not(nav *) {
   max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Apply box-sizing to dialog and navigation elements */
+[role="dialog"],
+[role="dialog"] *,
+nav,
+nav * {
   box-sizing: border-box;
 }
 
