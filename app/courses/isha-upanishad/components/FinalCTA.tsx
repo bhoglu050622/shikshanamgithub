@@ -53,8 +53,8 @@ export default function FinalCTA() {
         </div>
       </section>
 
-      {/* Sticky Bottom CTA */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-saffron-200 shadow-lg z-50 p-4">
+      {/* Sticky Bottom CTA - DISABLED to fix mobile layout */}
+      <div className="hidden fixed bottom-0 left-0 right-0 bg-white border-t border-saffron-200 shadow-lg z-50 p-4">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <h3 className="font-semibold text-saffron-800">Ready to Start Your Spiritual Journey?</h3>

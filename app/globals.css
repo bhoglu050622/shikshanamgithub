@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Z-index layering system - consistent across the app */
+:root {
+  --z-header: 60;
+  --z-megamenu-backdrop: 100;
+  --z-megamenu: 100;
+  --z-mobile-drawer: 150;
+  --z-modal-backdrop: 200;
+  --z-modal: 200;
+  --z-toast: 300;
+}
+
 /* Custom utility classes for the dashboard */
 @layer utilities {
   .line-clamp-1 {

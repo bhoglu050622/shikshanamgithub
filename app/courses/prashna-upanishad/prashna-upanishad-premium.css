@@ -385,8 +385,14 @@
   border-radius: var(--radius-2xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-xl);
-  position: sticky;
-  top: 2rem;
+}
+
+/* Only sticky on desktop, not mobile */
+@media (min-width: 1024px) {
+  .prashna-purchase-card {
+    position: sticky;
+    top: 2rem;
+  }
 }
 
 .prashna-purchase-price {
@@ -428,17 +434,19 @@
   flex-shrink: 0;
 }
 
-/* Mobile Bottom Sheet */
+/* Mobile Bottom Sheet - DISABLED to fix mobile layout */
 .prashna-bottom-sheet {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 2px solid var(--prashna-border);
-  padding: var(--space-4);
-  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
-  z-index: 50;
+  /* Removed fixed positioning that was disrupting mobile layout */
+  display: none;
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* right: 0; */
+  /* background: white; */
+  /* border-top: 2px solid var(--prashna-border); */
+  /* padding: var(--space-4); */
+  /* box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1); */
+  /* z-index: 50; */
 }
 
 /* FAQ Accordion */

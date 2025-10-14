@@ -94,12 +94,12 @@ export default function PurchaseCard({
         </motion.div>
       </div>
 
-      {/* Mobile: Bottom Sheet */}
-      {isMobileBottomSheet && (
+      {/* Mobile: Bottom Sheet - DISABLED to fix mobile layout */}
+      {false && isMobileBottomSheet && (
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[var(--yoga-primary)]/20 shadow-2xl"
+          className="hidden lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[var(--yoga-primary)]/20 shadow-2xl"
         >
           {/* Collapsed View */}
           {isCollapsed ? (

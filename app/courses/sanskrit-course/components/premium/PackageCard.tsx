@@ -128,8 +128,8 @@ export default function PackageCard({
         </motion.div>
       </div>
 
-      {/* Mobile Fixed Bottom Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[var(--gold-sanskrit)]/20 p-4 shadow-2xl">
+      {/* Mobile Fixed Bottom Bar - DISABLED to fix mobile layout */}
+      <div className="hidden lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[var(--gold-sanskrit)]/20 p-4 shadow-2xl">
         <div className="flex items-center gap-4">
           <div className="flex-1">
             <div className="flex items-baseline gap-2">

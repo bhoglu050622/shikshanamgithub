@@ -135,6 +135,11 @@
   padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
 
+/* IMPORTANT: Disable bottom tab navigation on course pages to prevent conflicts */
+.course-page .bottom-tab-navigation {
+  @apply hidden;
+}
+
 .bottom-tab-item {
   @apply flex flex-col items-center justify-center p-2;
   @apply text-gray-500 dark:text-gray-400;
@@ -391,6 +396,23 @@
 /* ============================================================================
    MOBILE UTILITIES
    ============================================================================ */
+
+/* Prevent sticky/fixed bottom elements on mobile to avoid layout issues */
+@media (max-width: 1023px) {
+  .mobile-hide-sticky-footer {
+    display: none !important;
+  }
+  
+  /* Remove fixed positioning from purchase cards on mobile */
+  [class*="purchase-card"][class*="mobile"],
+  [class*="bottom-sheet"] {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+  }
+}
 
 .safe-area-pt {
   padding-top: max(16px, env(safe-area-inset-top));

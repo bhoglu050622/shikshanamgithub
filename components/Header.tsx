@@ -38,7 +38,7 @@ export default function Header() {
       initial={isClient ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-0 z-50 bg-background/98 backdrop-blur-md border-b border-border shadow-sm"
+      className="sticky top-0 z-[60] bg-background/98 backdrop-blur-md border-b border-border shadow-sm"
       role="banner"
     >
       <div className="container-custom">

@@ -113,27 +113,27 @@ export default function MegaMenu({ isOpen, activeGroupId, onClose }: MegaMenuPro
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-black/30 backdrop-blur-md"
+          className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-sm"
           onClick={onClose}
         >
           {/* Main container with proper alignment */}
-          <div className="fixed top-20 left-0 right-0 bottom-0 pointer-events-none">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-start justify-center pointer-events-auto">
+          <div className="fixed top-16 left-0 right-0 bottom-0 overflow-y-auto pointer-events-none">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-full flex items-start justify-center py-4 pointer-events-auto">
               <motion.div
                 ref={menuRef}
                 initial={{ y: -20, opacity: 0, scale: 0.95 }}
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 exit={{ y: -20, opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="w-full max-w-7xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 max-h-[calc(100vh-6rem)] overflow-hidden"
+                className="w-full max-w-7xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 max-h-[calc(100vh-8rem)] overflow-hidden"
                 role="dialog"
                 aria-label="Navigation menu"
                 aria-modal="true"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex min-h-[500px] max-h-[calc(100vh-6rem)]">
+                <div className="flex min-h-[400px] max-h-[calc(100vh-8rem)]">
                   {/* Left Navigation */}
-                  <div className="w-72 bg-gradient-to-b from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-900 rounded-l-3xl p-6 flex flex-col">
+                  <div className="w-72 bg-gradient-to-b from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-900 rounded-l-3xl p-6 flex flex-col overflow-y-auto">
                     <div className="flex-1 space-y-2">
                       {navigationGroups.map((group) => (
                         <motion.button
