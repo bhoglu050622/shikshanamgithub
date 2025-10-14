@@ -48,44 +48,44 @@ export default async function AboutPage() {
   return (
     <>
       <main className="main-container py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 mb-6">
+            <h1 className="font-serif text-4xl font-bold text-gray-900 mb-6 text-center mx-auto">
               {content.hero.title}
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto text-center">
               {content.hero.subtitle}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">{content.mission.title}</h2>
-              <p className="text-gray-600 mb-6">
+              <h2 className="font-serif text-3xl font-bold text-gray-900 mb-6 text-center">{content.mission.title}</h2>
+              <p className="font-sans text-gray-600 mb-6 text-justify">
                 {content.mission.paragraph1}
               </p>
-              <p className="text-gray-600 mb-6">
+              <p className="font-sans text-gray-600 mb-6 text-justify">
                 {content.mission.paragraph2}
               </p>
               <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{content.mission.visionTitle}</h3>
-                <p className="text-gray-600">
+                <h3 className="font-sans text-lg font-bold text-gray-900 mb-3 text-center">{content.mission.visionTitle}</h3>
+                <p className="font-sans text-gray-600 text-justify">
                   {content.mission.visionText}
                 </p>
               </div>
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{content.offerings.title}</h2>
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-6 text-center">{content.offerings.title}</h2>
               <div className="space-y-4">
                 {content.offerings.items.map((item: any, index: number) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-saffron-100 rounded-full flex items-center justify-center mt-1">
+                    <div className="w-6 h-6 bg-saffron-100 rounded-full flex items-center justify-center mt-1 flex-shrink-0">
                       <div className="w-2 h-2 bg-saffron-600 rounded-full"></div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                      <p className="text-gray-600 text-sm">{item.description}</p>
+                      <h3 className="font-sans font-semibold text-gray-900">{item.title}</h3>
+                      <p className="font-sans text-gray-600 text-sm text-justify">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -94,7 +94,7 @@ export default async function AboutPage() {
           </div>
 
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">{content.values.title}</h2>
+            <h2 className="font-serif text-3xl font-bold text-gray-900 text-center mb-12 mx-auto">{content.values.title}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {content.values.items.map((item: any, index: number) => (
                 <div key={index} className="text-center">
@@ -104,16 +104,16 @@ export default async function AboutPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
+                  <h3 className="font-sans text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="font-sans text-gray-600 text-justify">{item.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{content.cta.title}</h2>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center mx-auto">{content.cta.title}</h2>
+            <p className="font-sans text-gray-600 mb-6 max-w-2xl mx-auto text-center">
               {content.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -162,15 +162,15 @@ const GuruCard = ({
         </div>
         
         {/* Guru Info */}
-        <h3 className="text-xl font-display text-foreground mb-2">
+        <h3 className="font-sans text-xl text-foreground mb-2 text-center">
           {guru.name}
         </h3>
         
-        <p className="text-primary text-sm mb-3 font-medium">
+        <p className="font-sans text-primary text-sm mb-3 font-medium text-center">
           {guru.specialty}
         </p>
         
-        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+        <p className="font-sans text-muted-foreground text-sm leading-relaxed mb-4 text-justify">
           {guru.credibility}
         </p>
         
@@ -432,10 +432,10 @@ export default function MeetGurus({ onGuruClick, onViewProfile }: MeetGurusProps
       <div className="container-custom">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-center mx-auto">
             Meet Your Gurus
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="font-sans text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed text-center">
             Learn from renowned spiritual teachers and scholars with decades of experience in ancient Indian wisdom.
           </p>
         </div>

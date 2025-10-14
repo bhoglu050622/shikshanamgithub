@@ -69,12 +69,12 @@ export default function FoundersMission() {
           </div>
           
           {/* Main Heading */}
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4 text-center mx-auto">
             <span className="text-white">Founder's</span> <span className="text-purple-400">Mission</span>
           </h2>
           
           {/* Subheading */}
-          <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
+          <p className="font-sans text-lg text-gray-400 mt-4 max-w-3xl mx-auto text-center">
             To Transform Modern lives with Eternal Wisdom
           </p>
         </div>

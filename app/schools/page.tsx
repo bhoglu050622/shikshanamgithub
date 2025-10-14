@@ -41,10 +41,10 @@ export default function SchoolsPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-hero bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+          <h1 className="font-serif text-hero bg-gradient-to-r from-saffron-600 via-deep-teal-600 to-indigo-600 bg-clip-text text-transparent mb-6 text-center mx-auto">
             Our Schools
           </h1>
-          <p className="text-subheading text-indigo-700 dark:text-wisdom-200 max-w-3xl mx-auto">
+          <p className="font-sans text-subheading text-indigo-700 dark:text-wisdom-200 max-w-3xl mx-auto text-center">
             Choose your path of learning. Each school offers structured courses, 
             expert guidance, and a community of fellow seekers.
           </p>
@@ -65,11 +65,11 @@ export default function SchoolsPage() {
                     <school.icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h2 className="text-xl font-display text-indigo-700 dark:text-wisdom-100 mb-4 text-center">
+                  <h2 className="font-serif text-xl text-indigo-700 dark:text-wisdom-100 mb-4 text-center">
                     {school.title}
                   </h2>
                   
-                  <p className="text-wisdom-600 dark:text-wisdom-400 mb-6 text-center leading-relaxed">
+                  <p className="font-sans text-wisdom-600 dark:text-wisdom-400 mb-6 text-justify leading-relaxed">
                     {school.description}
                   </p>
                   

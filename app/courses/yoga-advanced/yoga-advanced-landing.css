@@ -36,9 +36,141 @@
   background: linear-gradient(to bottom, rgb(255 247 237 / 0.3), white);
 }
 
-/* Responsive */
+/* Responsive - Comprehensive Mobile Support */
+
+/* Tablet landscape and below */
+@media (max-width: 1024px) {
+  .yoga-advanced-hero-section {
+    min-height: 85vh;
+    padding: 60px 20px;
+  }
+  
+  .yoga-advanced-flashcards {
+    padding: 60px 16px;
+  }
+}
+
+/* Tablet portrait and mobile */
 @media (max-width: 768px) {
   .yoga-advanced-hero-section {
-    min-height: 80vh;
+    min-height: auto;
+    padding: 40px 16px;
+  }
+  
+  .yoga-advanced-hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  .yoga-advanced-hero-section h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .yoga-advanced-hero-section p {
+    font-size: 1rem !important;
+  }
+  
+  .yoga-advanced-flashcards {
+    padding: 50px 16px;
+  }
+  
+  .yoga-advanced-flashcards .flashcards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .yoga-advanced-flashcards .flashcard {
+    max-width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+  
+  /* Section adjustments */
+  .shloka-section-yoga-advanced {
+    padding: 40px 16px;
+  }
+  
+  /* Button adjustments */
+  .yoga-advanced-hero-section button,
+  .yoga-advanced-hero-section a.button {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+  
+  /* Grid layouts */
+  .yoga-advanced-benefit-grid,
+  .yoga-advanced-feature-grid,
+  .yoga-advanced-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Card adjustments */
+  .yoga-advanced-card {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .yoga-advanced-hero-section {
+    min-height: auto;
+    padding: 30px 12px;
+  }
+  
+  .yoga-advanced-hero-section h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  
+  .yoga-advanced-hero-section h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .yoga-advanced-hero-section p {
+    font-size: 0.875rem !important;
+  }
+  
+  .yoga-advanced-flashcards {
+    padding: 40px 12px;
+  }
+  
+  .yoga-advanced-flashcards .flashcard {
+    padding: 20px;
+    min-height: 220px;
+  }
+  
+  .yoga-advanced-flashcards .flashcard-sanskrit-text {
+    font-size: 1.25rem !important;
+  }
+  
+  .yoga-advanced-flashcards .translation-text {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Section padding */
+  .shloka-section-yoga-advanced {
+    padding: 30px 12px;
+  }
+  
+  /* Image adjustments */
+  .yoga-advanced-hero-section img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Stack elements vertically */
+  .yoga-advanced-flex-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Touch-friendly targets */
+  .yoga-advanced-hero-section button,
+  .yoga-advanced-hero-section a {
+    min-height: 44px;
+    touch-action: manipulation;
   }
 }

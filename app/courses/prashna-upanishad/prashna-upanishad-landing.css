@@ -79,9 +79,159 @@
   background: linear-gradient(to bottom, rgb(239 246 255 / 0.3), white);
 }
 
-/* Responsive */
+/* Responsive - Comprehensive Mobile Support */
+
+/* Tablet landscape and below */
+@media (max-width: 1024px) {
+  .prashna-hero-section {
+    min-height: 85vh;
+    padding: 60px 20px;
+  }
+  
+  .prashna-flashcards {
+    padding: 60px 16px;
+  }
+}
+
+/* Tablet portrait and mobile */
 @media (max-width: 768px) {
   .prashna-hero-section {
-    min-height: 80vh;
+    min-height: auto;
+    padding: 40px 16px;
+  }
+  
+  .prashna-hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  .prashna-hero-section h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .prashna-hero-section p {
+    font-size: 1rem !important;
+  }
+  
+  .prashna-flashcards {
+    padding: 50px 16px;
+  }
+  
+  .prashna-flashcards .flashcards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .prashna-flashcards .flashcard {
+    max-width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+  
+  /* Section adjustments */
+  .shloka-section-prashna {
+    padding: 40px 16px;
+  }
+  
+  /* Button adjustments */
+  .prashna-hero-section button,
+  .prashna-hero-section a.button {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+  
+  /* Grid layouts */
+  .prashna-benefit-grid,
+  .prashna-feature-grid,
+  .prashna-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Card adjustments */
+  .prashna-card {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  
+  /* Star field - reduce density on mobile */
+  .star-field {
+    opacity: 0.5;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .prashna-hero-section {
+    min-height: auto;
+    padding: 30px 12px;
+  }
+  
+  .prashna-hero-section h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  
+  .prashna-hero-section h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .prashna-hero-section p {
+    font-size: 0.875rem !important;
+  }
+  
+  .prashna-flashcards {
+    padding: 40px 12px;
+  }
+  
+  .prashna-flashcards .flashcard {
+    padding: 20px;
+    min-height: 220px;
+  }
+  
+  .prashna-flashcards .flashcard-sanskrit-text {
+    font-size: 1.25rem !important;
+  }
+  
+  .prashna-flashcards .translation-text {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Section padding */
+  .shloka-section-prashna {
+    padding: 30px 12px;
+  }
+  
+  /* Image adjustments */
+  .prashna-hero-section img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Stack elements vertically */
+  .prashna-flex-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Touch-friendly targets */
+  .prashna-hero-section button,
+  .prashna-hero-section a {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Reduce decorative elements on small screens */
+  .star-field {
+    opacity: 0.3;
+  }
+  
+  .question-mandala {
+    opacity: 0.03;
+  }
+  
+  .constellation-lines {
+    opacity: 0.2;
   }
 }

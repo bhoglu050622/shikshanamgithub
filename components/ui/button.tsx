@@ -49,7 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // Base classes for all buttons with premium design system and accessibility
     const baseClasses = cn(
       // Base styles with enhanced accessibility and visual quality
-      'inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out',
+      'font-sans inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed',
       'tap-target antialiased', // Ensures minimum 44px touch target and smooth text

@@ -588,18 +588,90 @@
   background: linear-gradient(to bottom, rgb(245 243 255 / 0.3), white);
 }
 
-/* Responsive */
+/* Responsive - Comprehensive Mobile Support */
+
+/* Tablet landscape and below */
+@media (max-width: 1024px) {
+  .yoga-hero-section {
+    min-height: 85vh;
+    padding: 60px 20px;
+  }
+  
+  #yoga-darshan-hero-scoped {
+    min-height: 85vh;
+    padding: 60px 20px;
+  }
+  
+  .yoga-flashcards-section {
+    padding: 60px 16px;
+  }
+  
+  .flashcards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Tablet portrait and mobile */
 @media (max-width: 768px) {
   .yoga-hero-section {
-    min-height: 80vh;
+    min-height: auto;
+    padding: 40px 16px;
+  }
+  
+  #yoga-darshan-hero-scoped {
+    min-height: auto;
+    padding: 40px 16px;
+  }
+  
+  .yoga-hero-section h1,
+  #yoga-darshan-hero-scoped h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  .yoga-hero-section h2,
+  #yoga-darshan-hero-scoped h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .yoga-hero-section p,
+  #yoga-darshan-hero-scoped p {
+    font-size: 1rem !important;
+  }
+  
+  .text-hero {
+    font-size: 2rem;
+  }
+  
+  .text-display {
+    font-size: 1.75rem;
+  }
+  
+  .text-body {
+    font-size: 1rem;
+  }
+  
+  .yoga-flashcards-section {
+    padding: 50px 16px;
   }
   
   .flashcards-header h2 {
     font-size: 2rem;
   }
   
+  .flashcards-header p {
+    font-size: 1rem;
+  }
+  
+  .flashcards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
   .flashcard {
-    height: 280px;
+    height: auto;
+    min-height: 280px;
   }
   
   .flashcard-sanskrit-text {
@@ -612,5 +684,218 @@
   
   .hindi-text {
     font-size: 1.2rem;
+  }
+  
+  .flashcard-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .flashcard-icon-container span {
+    font-size: 28px;
+  }
+  
+  /* Section adjustments */
+  .instructor-section-yoga {
+    padding: 40px 16px;
+  }
+  
+  .shloka-section-yoga {
+    padding: 40px 16px;
+  }
+  
+  /* Button adjustments */
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Grid layouts */
+  .yoga-benefit-grid,
+  .yoga-feature-grid,
+  .yoga-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Card adjustments */
+  .yoga-card,
+  .card-premium {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  
+  /* Container adjustments */
+  .container-custom {
+    padding: 0 16px;
+  }
+  
+  .section-padding {
+    padding: 1.5rem 0;
+  }
+  
+  /* Reduce decorative elements on mobile */
+  .lotus-pattern {
+    opacity: 0.05;
+  }
+  
+  .kundalini-spiral {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .yoga-hero-section {
+    min-height: auto;
+    padding: 30px 12px;
+  }
+  
+  #yoga-darshan-hero-scoped {
+    min-height: auto;
+    padding: 30px 12px;
+  }
+  
+  .yoga-hero-section h1,
+  #yoga-darshan-hero-scoped h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  
+  .yoga-hero-section h2,
+  #yoga-darshan-hero-scoped h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .yoga-hero-section p,
+  #yoga-darshan-hero-scoped p {
+    font-size: 0.875rem !important;
+  }
+  
+  .text-hero {
+    font-size: 1.75rem;
+  }
+  
+  .text-display {
+    font-size: 1.5rem;
+  }
+  
+  .text-body {
+    font-size: 0.875rem;
+  }
+  
+  .yoga-flashcards-section {
+    padding: 40px 12px;
+  }
+  
+  .flashcards-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .flashcards-header p {
+    font-size: 0.875rem;
+  }
+  
+  .flashcard {
+    height: auto;
+    min-height: 240px;
+    padding: 24px;
+  }
+  
+  .flashcard-front,
+  .flashcard-back {
+    padding: 24px;
+  }
+  
+  .flashcard-sanskrit-text {
+    font-size: 1.25rem;
+  }
+  
+  .translation-text {
+    font-size: 1rem;
+  }
+  
+  .hindi-text {
+    font-size: 1.1rem;
+  }
+  
+  .flashcard-icon-container {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .flashcard-icon-container span {
+    font-size: 24px;
+  }
+  
+  .lang-label {
+    font-size: 0.7rem;
+  }
+  
+  /* Section padding */
+  .instructor-section-yoga,
+  .shloka-section-yoga {
+    padding: 30px 12px;
+  }
+  
+  /* Image adjustments */
+  .yoga-hero-section img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Stack elements vertically */
+  .yoga-flex-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Button adjustments */
+  .btn-primary,
+  .btn-outline {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Card adjustments */
+  .card-premium {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+  
+  /* Container adjustments */
+  .container-custom {
+    padding: 0 12px;
+  }
+  
+  .section-padding {
+    padding: 1rem 0;
+  }
+  
+  /* Touch-friendly targets */
+  .yoga-hero-section button,
+  .yoga-hero-section a,
+  .flashcard,
+  .btn-primary,
+  .btn-outline {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Reduce decorative elements on small screens */
+  .lotus-pattern {
+    opacity: 0.03;
+  }
+  
+  .energy-flow {
+    opacity: 0.1;
+  }
+  
+  .kundalini-spiral {
+    width: 150px;
+    height: 150px;
   }
 }

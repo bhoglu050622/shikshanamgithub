@@ -48,9 +48,9 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white transition-colors duration-300 relative overflow-hidden border-t-2 border-slate-700" role="contentinfo">
+    <footer id="footer" className="bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 relative overflow-hidden border-t-2 border-slate-300 dark:border-slate-700" role="contentinfo">
       {/* Animated Mandala Border Pattern - Contained within viewport */}
-      <div className="absolute inset-0 -z-10 overflow-hidden opacity-15" aria-hidden="true">
+      <div className="absolute inset-0 -z-10 overflow-hidden opacity-10 dark:opacity-15" aria-hidden="true">
         {/* Top Mandala Border */}
         <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
           <div
@@ -133,24 +133,24 @@ export default function Footer() {
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg">
                 <BookOpen className="w-6 h-6 text-slate-900" />
               </div>
-              <span className="font-serif text-2xl font-bold text-amber-400">
+              <span className="font-serif text-2xl font-bold text-amber-600 dark:text-amber-400">
                 Shikshanam
               </span>
             </div>
-            <p className="text-slate-100 mb-6 leading-relaxed text-base">
+            <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed text-base">
               Preserving and sharing ancient Indian wisdom with the modern world. Join us in this noble mission of cultural preservation and spiritual growth.
             </p>
             
             {/* Contact Info */}
-            <div className="space-y-3 p-5 bg-slate-800/70 rounded-2xl border-2 border-slate-600 backdrop-blur-sm">
+            <div className="space-y-3 p-5 bg-slate-200/70 dark:bg-slate-800/70 rounded-2xl border-2 border-slate-300 dark:border-slate-600 backdrop-blur-sm">
               {contactInfo.map((contact, index) => (
                 <a
                   key={index}
                   href={contact.href}
-                  className="flex items-center space-x-3 text-slate-100 hover:text-amber-400 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-lg"
+                  className="flex items-center space-x-3 text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded-lg"
                   aria-label={`Contact: ${contact.text}`}
                 >
-                  <contact.icon className="w-5 h-5 text-amber-400" />
+                  <contact.icon className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                   <span className="text-sm font-medium">{contact.text}</span>
                 </a>
               ))}
@@ -162,7 +162,7 @@ export default function Footer() {
             <div
               key={category}
             >
-              <h3 className="font-semibold text-amber-400 mb-4 text-base">{category}</h3>
+              <h3 className="font-semibold text-amber-600 dark:text-amber-400 mb-4 text-base">{category}</h3>
               <ul className="space-y-2.5">
                 {links.map((link, linkIndex) => (
                   <li
@@ -170,7 +170,7 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      className="text-slate-100 hover:text-amber-300 transition-all duration-200 text-sm hover:translate-x-1 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
+                      className="text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-300 transition-all duration-200 text-sm hover:translate-x-1 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
                       aria-label={`Go to ${link.name}`}
                     >
                       {link.name}
@@ -184,24 +184,24 @@ export default function Footer() {
 
         {/* Newsletter Section */}
         <div
-          className="bg-slate-800/80 rounded-3xl p-8 mb-12 backdrop-blur-sm border-2 border-slate-600 shadow-xl"
+          className="bg-slate-200/80 dark:bg-slate-800/80 rounded-3xl p-8 mb-12 backdrop-blur-sm border-2 border-slate-300 dark:border-slate-600 shadow-xl"
         >
           <div className="text-center max-w-2xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold text-amber-400 mb-4">
+            <h3 className="font-serif text-2xl font-bold text-amber-600 dark:text-amber-400 mb-4">
               Stay Updated with Ancient Wisdom
             </h3>
-            <p className="text-slate-100 mb-6 text-base leading-relaxed">
+            <p className="text-slate-700 dark:text-slate-300 mb-6 text-base leading-relaxed">
               Get weekly insights, course updates, and spiritual wisdom delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-2xl border-2 border-slate-500 bg-slate-700 text-white placeholder:text-slate-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-400 focus:outline-none transition-all duration-200 tap-target"
+                className="flex-1 px-4 py-3 rounded-2xl border-2 border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition-all duration-200 tap-target"
                 aria-label="Email address for newsletter"
               />
               <button
-                className="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:from-amber-400 hover:to-amber-500 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 tap-target"
+                className="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:from-amber-400 hover:to-amber-500 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target"
                 aria-label="Subscribe to newsletter"
               >
                 <span>Subscribe</span>
@@ -212,14 +212,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t-2 border-slate-700 pt-8">
+        <div className="border-t-2 border-slate-300 dark:border-slate-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <div
-              className="text-slate-100 text-sm flex items-center gap-1"
+              className="text-slate-700 dark:text-slate-300 text-sm flex items-center gap-1"
             >
               © 2024 Shikshanam. All rights reserved. Made with{' '}
-              <Heart className="w-4 h-4 text-amber-400 inline fill-amber-400" aria-label="love" /> in India.
+              <Heart className="w-4 h-4 text-amber-600 dark:text-amber-400 inline fill-amber-600 dark:fill-amber-400" aria-label="love" /> in India.
             </div>
 
             {/* Social Links */}
@@ -232,7 +232,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`w-11 h-11 bg-slate-700/80 rounded-2xl flex items-center justify-center text-slate-100 hover:text-amber-400 hover:bg-slate-600 transition-all duration-200 hover:scale-110 border-2 border-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 tap-target`}
+                  className={`w-11 h-11 bg-slate-300/80 dark:bg-slate-700/80 rounded-2xl flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-slate-400/80 dark:hover:bg-slate-600 transition-all duration-200 hover:scale-110 border-2 border-slate-400 dark:border-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target`}
                   aria-label={`Visit our ${social.name} page`}
                   title={social.name}
                 >
@@ -244,30 +244,30 @@ export default function Footer() {
 
           {/* Additional Links */}
           <nav
-            className="flex flex-wrap justify-center gap-6 mt-6 text-slate-100 text-sm"
+            className="flex flex-wrap justify-center gap-6 mt-6 text-slate-700 dark:text-slate-300 text-sm"
             aria-label="Legal and policy links"
           >
             <a 
               href={ROUTES.PRIVACY} 
-              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
             >
               Privacy Policy
             </a>
             <a 
               href={ROUTES.TERMS} 
-              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
             >
               Terms of Service
             </a>
             <a 
               href="#cookies" 
-              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
             >
               Cookie Policy
             </a>
             <a 
               href={ROUTES.ACCESSIBILITY} 
-              className="hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded"
+              className="hover:text-amber-600 dark:hover:text-amber-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 rounded"
             >
               Accessibility
             </a>

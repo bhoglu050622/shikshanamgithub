@@ -135,10 +135,10 @@ export default function TestimonialsSection({
             </span>
           </motion.div>
           
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-serif">
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center mx-auto">
             {sectionTitle}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="font-sans text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-center">
             {sectionSubtitle}
           </p>
         </MotionDiv>
@@ -236,7 +236,7 @@ export default function TestimonialsSection({
                   </div>
 
                   {/* Testimonial Text */}
-                  <blockquote className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-base">
+                  <blockquote className="font-sans text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-base text-justify">
                     "{testimonial.text}"
                   </blockquote>
 

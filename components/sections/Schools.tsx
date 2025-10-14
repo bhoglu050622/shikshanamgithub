@@ -123,7 +123,7 @@ export default function Schools() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
+            className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-center mx-auto"
             animate={mounted && isInView ? {
               textShadow: [
                 '0 0 0px rgba(218, 165, 32, 0)',
@@ -136,7 +136,7 @@ export default function Schools() {
             {schoolsData.title}
           </motion.h2>
           <motion.p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto text-center"
             initial={mounted ? { opacity: 0, y: 20 } : false}
             animate={mounted && isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             transition={mounted ? { duration: 0.6, delay: 0.4 } : { duration: 0 }}
@@ -234,14 +234,14 @@ export default function Schools() {
                       </motion.div>
                       <div>
                         <motion.h3 
-                          className="text-2xl font-bold mb-2 text-white"
+                          className="font-sans text-2xl font-bold mb-2 text-white"
                           whileHover={mounted ? { scale: 1.05 } : {}}
                           transition={mounted ? { duration: 0.2 } : { duration: 0 }}
                         >
                           {school.title}
                         </motion.h3>
                         <motion.span 
-                          className="text-primary-foreground/80 text-sm font-medium bg-primary/20 px-3 py-1 rounded-full"
+                          className="font-sans text-primary-foreground/80 text-sm font-medium bg-primary/20 px-3 py-1 rounded-full"
                           whileHover={mounted ? { scale: 1.1 } : {}}
                           transition={mounted ? { duration: 0.2 } : { duration: 0 }}
                         >
@@ -252,13 +252,13 @@ export default function Schools() {
                     
                     {/* Right side - Content */}
                     <div className="flex-1">
-                      <p className="text-primary-foreground/90 mb-4 group-hover:text-primary-foreground transition-colors duration-300 leading-relaxed">
+                      <p className="font-sans text-primary-foreground/90 mb-4 group-hover:text-primary-foreground transition-colors duration-300 leading-relaxed text-justify">
                         {school.description}
                       </p>
                       
                       <div className="mb-4">
-                        <h4 className="text-primary-foreground font-semibold mb-2">What You'll Learn:</h4>
-                        <p className="text-primary-foreground/90 text-sm leading-relaxed">
+                        <h4 className="font-sans text-primary-foreground font-semibold mb-2">What You'll Learn:</h4>
+                        <p className="font-sans text-primary-foreground/90 text-sm leading-relaxed text-justify">
                           {school.whatYoullLearn}
                         </p>
                       </div>

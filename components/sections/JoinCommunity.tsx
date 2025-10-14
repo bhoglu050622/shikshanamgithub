@@ -85,11 +85,11 @@ export default function JoinCommunity() {
             } : {}}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-center mx-auto">
               Join Our Community
             </h2>
           </motion.div>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+          <p className="font-sans text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8 text-center">
             Connect with fellow learners, share your journey, and stay updated with the latest from Shikshanam
           </p>
           
@@ -160,10 +160,10 @@ export default function JoinCommunity() {
                   
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="font-sans text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                       {social.name}
                     </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="font-sans text-muted-foreground mb-4 leading-relaxed text-justify">
                       {social.description}
                     </p>
                     <div className="flex items-center gap-2 mb-6">

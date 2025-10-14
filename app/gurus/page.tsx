@@ -24,12 +24,12 @@ export default function GurusPage() {
   return (
     <>
       <main className="main-container py-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="font-serif text-4xl font-bold text-gray-900 mb-4 text-center mx-auto">
               Meet Our Gurus
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto text-center">
               Learn from experienced scholars and spiritual teachers who are passionate about sharing the wisdom of ancient India
             </p>
           </div>
@@ -40,7 +40,7 @@ export default function GurusPage() {
                 <div className="aspect-w-4 aspect-h-3">
                   <div className="w-full h-64 bg-gradient-to-br from-saffron-100 to-peacock-green-100 flex items-center justify-center">
                     <div className="w-24 h-24 bg-gradient-to-br from-saffron-500 to-peacock-green-500 rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-bold text-white">
+                      <span className="font-sans text-2xl font-bold text-white">
                         {guru.name.split(' ').map(n => n[0]).join('')}
                       </span>
                     </div>
@@ -48,9 +48,9 @@ export default function GurusPage() {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{guru.name}</h3>
-                  <p className="text-saffron-600 font-medium mb-3">{guru.title}</p>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{guru.description}</p>
+                  <h3 className="font-sans text-xl font-bold text-gray-900 mb-2 text-center">{guru.name}</h3>
+                  <p className="font-sans text-saffron-600 font-medium mb-3 text-center">{guru.title}</p>
+                  <p className="font-sans text-gray-600 mb-4 text-sm leading-relaxed text-justify">{guru.description}</p>
                   
                   <div className="mb-4">
                     <p className="text-sm font-medium text-gray-700 mb-2">Specialties:</p>
@@ -105,8 +105,8 @@ export default function GurusPage() {
           </div>
 
           <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Learning Community</h2>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center mx-auto">Join Our Learning Community</h2>
+            <p className="font-sans text-gray-600 mb-6 max-w-2xl mx-auto text-justify">
               Our gurus are not just teachers, but guides who walk alongside you on your journey of discovery. They bring years of experience, deep knowledge, and genuine care for your growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

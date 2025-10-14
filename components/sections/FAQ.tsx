@@ -110,10 +110,10 @@ export default function FAQ() {
               <HelpCircle className="w-8 h-8 text-primary-foreground" />
             </div>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-center mx-auto">
             {sectionTitle}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto text-center">
             {sectionSubtitle}
           </p>
         </MotionDiv>
@@ -136,7 +136,7 @@ export default function FAQ() {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
-                  <h3 className="font-semibold text-foreground text-lg pr-4">
+                  <h3 className="font-sans font-semibold text-foreground text-lg pr-4">
                     {faq.question}
                   </h3>
                   <MotionDiv
@@ -163,7 +163,7 @@ export default function FAQ() {
                     >
                       <div className="px-8 pb-6">
                         <div className="border-t border-border pt-4">
-                          <p className="text-muted-foreground leading-relaxed">
+                          <p className="font-sans text-muted-foreground leading-relaxed text-justify">
                             {faq.answer}
                           </p>
                         </div>

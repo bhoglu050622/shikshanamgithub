@@ -47,10 +47,10 @@ export default async function BlogPage() {
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-premium-text-primary mb-4">
+            <h1 className="font-serif text-4xl font-bold text-premium-text-primary mb-4 text-center mx-auto">
               Blog
             </h1>
-            <p className="text-xl text-premium-text-secondary max-w-2xl mx-auto">
+            <p className="font-sans text-xl text-premium-text-secondary max-w-2xl mx-auto text-center">
               Insights, teachings, and wisdom from our spiritual journey
             </p>
           </div>

@@ -9,20 +9,20 @@ export default function HelpPage() {
   return (
     <>
       <main className="main-container py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="font-serif text-4xl font-bold text-gray-900 mb-4 text-center mx-auto">
               Help Center
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="font-sans text-xl text-gray-600 text-center">
               Find answers to your questions and get the support you need
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Getting Started</h2>
-              <ul className="space-y-3 text-gray-600">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center">Getting Started</h2>
+              <ul className="font-sans space-y-3 text-gray-600">
                 <li>• How to create an account</li>
                 <li>• Choosing your learning path</li>
                 <li>• Understanding course structure</li>
@@ -31,8 +31,8 @@ export default function HelpPage() {
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Learning Support</h2>
-              <ul className="space-y-3 text-gray-600">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center">Learning Support</h2>
+              <ul className="font-sans space-y-3 text-gray-600">
                 <li>• Accessing course materials</li>
                 <li>• Understanding Sanskrit grammar</li>
                 <li>• Using practice tools</li>
@@ -41,8 +41,8 @@ export default function HelpPage() {
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Technical Issues</h2>
-              <ul className="space-y-3 text-gray-600">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center">Technical Issues</h2>
+              <ul className="font-sans space-y-3 text-gray-600">
                 <li>• Video playback problems</li>
                 <li>• Audio quality issues</li>
                 <li>• Browser compatibility</li>
@@ -51,8 +51,8 @@ export default function HelpPage() {
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Account & Billing</h2>
-              <ul className="space-y-3 text-gray-600">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center">Account & Billing</h2>
+              <ul className="font-sans space-y-3 text-gray-600">
                 <li>• Managing subscriptions</li>
                 <li>• Payment methods</li>
                 <li>• Refund policies</li>
@@ -62,8 +62,8 @@ export default function HelpPage() {
           </div>
 
           <div className="bg-gradient-to-r from-saffron-50 to-peacock-green-50 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Still Need Help?</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center mx-auto">Still Need Help?</h2>
+            <p className="font-sans text-gray-600 mb-6 text-center">
               Can't find what you're looking for? Our support team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

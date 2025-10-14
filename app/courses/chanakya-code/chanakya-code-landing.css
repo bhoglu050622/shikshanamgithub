@@ -388,27 +388,281 @@
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE - COMPREHENSIVE MOBILE SUPPORT
    ======================================== */
+
+/* Tablet landscape and below */
+@media (max-width: 1024px) {
+  .chanakya-hero-section {
+    min-height: 85vh;
+    padding: 60px 20px;
+  }
+  
+  .chanakya-benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .chanakya-purchase-card {
+    position: static;
+    margin-top: 40px;
+  }
+  
+  .chanakya-flashcards {
+    padding: 60px 16px;
+  }
+}
+
+/* Tablet portrait and mobile */
 @media (max-width: 768px) {
   .chanakya-hero-section {
-    min-height: 80vh;
+    min-height: auto;
+    padding: 40px 16px;
+  }
+  
+  .chanakya-hero-content h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  .chanakya-hero-content h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .chanakya-hero-content p {
+    font-size: 1rem !important;
   }
   
   .chanakya-timeline::before {
     left: 30px;
   }
   
+  .chanakya-timeline-step {
+    padding-left: 60px;
+  }
+  
+  .chanakya-timeline-icon {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 0;
+  }
+  
   .chanakya-purchase-card {
     position: static;
+    margin-top: 30px;
+    padding: var(--spacing-md);
+  }
+  
+  .chanakya-purchase-card-mobile {
+    display: block;
   }
   
   .chanakya-benefit-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .chanakya-benefit-card {
+    padding: 20px;
+  }
+  
+  .chanakya-benefit-icon {
+    width: 48px;
+    height: 48px;
   }
   
   .chanakya-price-badge {
     font-size: 2rem;
+  }
+  
+  .chanakya-module-card {
+    padding: 20px;
+  }
+  
+  .chanakya-instructor-photo {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .chanakya-instructor-card {
+    padding: var(--spacing-md);
+  }
+  
+  .chanakya-testimonial-card {
+    padding: 20px;
+  }
+  
+  .chanakya-stats-strip {
+    padding: var(--spacing-md);
+  }
+  
+  .chanakya-stat-number {
+    font-size: 2rem;
+  }
+  
+  .chanakya-stat-item {
+    padding: var(--spacing-xs);
+  }
+  
+  /* Flashcards */
+  .chanakya-flashcards {
+    padding: 50px 16px;
+  }
+  
+  .chanakya-flashcards .flashcards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .chanakya-flashcards .flashcard {
+    max-width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+  
+  /* Section adjustments */
+  .shloka-section-chanakya {
+    padding: 40px 16px;
+  }
+  
+  /* Button adjustments */
+  .chanakya-cta-primary,
+  .chanakya-cta-secondary {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .chanakya-hero-section {
+    min-height: auto;
+    padding: 30px 12px;
+  }
+  
+  .chanakya-hero-content h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  
+  .chanakya-hero-content h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .chanakya-hero-content p {
+    font-size: 0.875rem !important;
+  }
+  
+  .chanakya-hero-emblem {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .chanakya-timeline-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .chanakya-timeline-step {
+    padding-left: 70px;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .chanakya-benefit-card {
+    padding: 16px;
+  }
+  
+  .chanakya-benefit-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .chanakya-price-badge {
+    font-size: 1.75rem;
+  }
+  
+  .chanakya-purchase-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  
+  .chanakya-purchase-card-mobile {
+    padding: 12px;
+  }
+  
+  .chanakya-module-card {
+    padding: 16px;
+  }
+  
+  .chanakya-instructor-photo {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .chanakya-instructor-card {
+    padding: 16px;
+  }
+  
+  .chanakya-testimonial-card {
+    padding: 16px;
+  }
+  
+  .chanakya-stats-strip {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  
+  .chanakya-stat-number {
+    font-size: 1.75rem;
+  }
+  
+  .chanakya-stat-item {
+    padding: 8px;
+  }
+  
+  /* Flashcards */
+  .chanakya-flashcards {
+    padding: 40px 12px;
+  }
+  
+  .chanakya-flashcards .flashcard {
+    padding: 20px;
+    min-height: 220px;
+  }
+  
+  .chanakya-flashcards .flashcard-sanskrit-text {
+    font-size: 1.25rem !important;
+  }
+  
+  .chanakya-flashcards .translation-text {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Section padding */
+  .shloka-section-chanakya {
+    padding: 30px 12px;
+  }
+  
+  /* Touch-friendly targets */
+  .chanakya-cta-primary,
+  .chanakya-cta-secondary,
+  .chanakya-module-card {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Image adjustments */
+  .chanakya-hero-section img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Stack elements vertically */
+  .chanakya-flex-row {
+    flex-direction: column;
+    gap: 16px;
   }
 }
 

@@ -9,27 +9,27 @@ export default function TermsPage() {
   return (
     <>
       <main className="main-container py-16">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="font-serif text-4xl font-bold text-gray-900 mb-4 text-center mx-auto">
               Terms of Service
             </h1>
-            <p className="text-gray-600">
+            <p className="font-sans text-gray-600 text-center">
               Last updated: {new Date().toLocaleDateString()}
             </p>
           </div>
 
           <div className="prose prose-lg max-w-none">
             <div className="bg-white rounded-2xl p-8 shadow-lg mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
-              <p className="text-gray-600">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center">1. Acceptance of Terms</h2>
+              <p className="font-sans text-gray-600 text-justify">
                 By accessing and using Shikshanam's website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </div>
 
             <div className="bg-white rounded-2xl p-8 shadow-lg mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Use License</h2>
-              <p className="text-gray-600 mb-4">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4 text-center">2. Use License</h2>
+              <p className="font-sans text-gray-600 mb-4 text-justify">
                 Permission is granted to temporarily download one copy of the materials on Shikshanam's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">

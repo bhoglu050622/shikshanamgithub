@@ -264,9 +264,9 @@ function CourseCard({ course, type }: { course: any, type: 'live' | 'self-paced'
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
-        <h3 className="font-bold text-lg text-foreground mb-2 line-clamp-2">{course.title}</h3>
-        <p className="text-sm text-muted-foreground mb-3">{course.instructor}</p>
-        <p className="text-sm text-foreground/80 mb-4 line-clamp-3 flex-1">{course.description}</p>
+          <h3 className="font-sans font-bold text-lg text-foreground mb-2 line-clamp-2 text-center">{course.title}</h3>
+        <p className="font-sans text-sm text-muted-foreground mb-3 text-center">{course.instructor}</p>
+        <p className="font-sans text-sm text-foreground/80 mb-4 line-clamp-3 flex-1 text-justify">{course.description}</p>
 
         {/* Course Details */}
         <div className="space-y-2 mb-4">
@@ -422,10 +422,10 @@ export default function AlignYourself() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-center mx-auto">
             {alignData.title}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto text-center">
             {alignData.subtitle}
           </p>
         </motion.div>

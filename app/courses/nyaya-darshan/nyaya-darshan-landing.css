@@ -50,3 +50,203 @@
     0 10px 60px rgba(146, 64, 14, 0.3),
     0 20px 80px rgba(120, 53, 15, 0.2);
 }
+
+/* Flashcards */
+.nyaya-flashcards {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #fff, rgb(254 243 199 / 0.3));
+}
+
+.nyaya-flashcards .flashcard-front {
+  background: linear-gradient(135deg, rgb(217 119 6 / 0.05) 0%, rgb(146 64 14 / 0.1) 100%);
+  border: 2px solid rgb(217 119 6 / 0.3);
+}
+
+.nyaya-flashcards .flashcard-icon-container {
+  background: linear-gradient(135deg, #D97706, #92400E);
+}
+
+.nyaya-flashcards .flashcard-back {
+  background: linear-gradient(135deg, #D97706 0%, #92400E 100%);
+}
+
+/* Sections */
+.instructor-section-nyaya {
+  background: linear-gradient(to bottom, white, rgb(254 243 199 / 0.5));
+}
+
+.shloka-section-nyaya {
+  background: linear-gradient(to bottom, rgb(254 243 199 / 0.3), white);
+}
+
+/* Responsive - Comprehensive Mobile Support */
+
+/* Tablet landscape and below */
+@media (max-width: 1024px) {
+  .nyaya-hero-section {
+    min-height: 85vh;
+    padding: 60px 20px;
+  }
+  
+  .nyaya-flashcards {
+    padding: 60px 16px;
+  }
+  
+  .syllogism-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Tablet portrait and mobile */
+@media (max-width: 768px) {
+  .nyaya-hero-section {
+    min-height: auto;
+    padding: 40px 16px;
+  }
+  
+  .nyaya-hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  .nyaya-hero-section h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .nyaya-hero-section p {
+    font-size: 1rem !important;
+  }
+  
+  .nyaya-flashcards {
+    padding: 50px 16px;
+  }
+  
+  .nyaya-flashcards .flashcards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .nyaya-flashcards .flashcard {
+    max-width: 100%;
+    height: auto;
+    min-height: 250px;
+  }
+  
+  .syllogism-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  /* Section adjustments */
+  .instructor-section-nyaya {
+    padding: 40px 16px;
+  }
+  
+  .shloka-section-nyaya {
+    padding: 40px 16px;
+  }
+  
+  /* Button adjustments */
+  .nyaya-hero-section button,
+  .nyaya-hero-section a.button {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+  
+  /* Grid layouts */
+  .nyaya-benefit-grid,
+  .nyaya-feature-grid,
+  .nyaya-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  /* Card adjustments */
+  .nyaya-card {
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  
+  /* Logic pattern - reduce density on mobile */
+  .logic-pattern {
+    opacity: 0.05;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .nyaya-hero-section {
+    min-height: auto;
+    padding: 30px 12px;
+  }
+  
+  .nyaya-hero-section h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.3;
+  }
+  
+  .nyaya-hero-section h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .nyaya-hero-section p {
+    font-size: 0.875rem !important;
+  }
+  
+  .nyaya-flashcards {
+    padding: 40px 12px;
+  }
+  
+  .nyaya-flashcards .flashcard {
+    padding: 20px;
+    min-height: 220px;
+  }
+  
+  .nyaya-flashcards .flashcard-sanskrit-text {
+    font-size: 1.25rem !important;
+  }
+  
+  .nyaya-flashcards .translation-text {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Section padding */
+  .instructor-section-nyaya,
+  .shloka-section-nyaya {
+    padding: 30px 12px;
+  }
+  
+  /* Image adjustments */
+  .nyaya-hero-section img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Stack elements vertically */
+  .nyaya-flex-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Touch-friendly targets */
+  .nyaya-hero-section button,
+  .nyaya-hero-section a {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Reduce decorative elements on small screens */
+  .debate-symbols {
+    opacity: 0.05;
+  }
+  
+  .inference-lines {
+    opacity: 0.1;
+  }
+  
+  .logic-pattern {
+    opacity: 0.03;
+  }
+}
