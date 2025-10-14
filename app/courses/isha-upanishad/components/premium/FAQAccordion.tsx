@@ -28,14 +28,15 @@ export default function FAQAccordion() {
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div 
-          className="isha-section-header"
+          className="isha-section-header text-center"
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
-          <p className="isha-section-subtitle">Got Questions?</p>
-          <h2 className="isha-section-title">Frequently Asked Questions</h2>
-          <p className="isha-section-description">
+          <p className="isha-section-subtitle text-center">Got Questions?</p>
+          <h2 className="isha-section-title text-center">Frequently Asked Questions</h2>
+          <p className="isha-section-description text-center">
             Find answers to common questions about the Isha Upanishad course
           </p>
         </motion.div>
@@ -47,6 +48,7 @@ export default function FAQAccordion() {
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -102,42 +104,43 @@ export default function FAQAccordion() {
         {/* Support Section */}
         {support && (
           <motion.div
-            className="mt-12 p-8 bg-gradient-to-br from-[#0D3B4A] to-[#1A5568] rounded-2xl text-white"
+            className="mt-12 p-8 bg-gradient-to-br from-[#0D3B4A] to-[#1A5568] rounded-2xl text-white text-center"
             variants={safeVariants(fadeInUpVariants)}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
+            suppressHydrationWarning
           >
-            <h3 className="text-2xl font-bold mb-2">Still have questions?</h3>
-            <p className="text-white/80 mb-6">Our support team is here to help</p>
+            <h3 className="text-2xl font-bold mb-2 text-center text-white">Still have questions?</h3>
+            <p className="text-white/90 mb-6 text-center">Our support team is here to help</p>
             
             <div className="grid md:grid-cols-2 gap-4">
               <a
                 href={`mailto:${support.email}`}
-                className="flex items-center gap-3 p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                className="flex items-center gap-3 p-4 bg-white/15 rounded-lg hover:bg-white/25 transition-colors border border-white/20"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5 text-white" />
                 <div>
-                  <p className="text-sm text-white/70">Email us</p>
-                  <p className="font-medium">{support.email}</p>
+                  <p className="text-sm text-white/80">Email us</p>
+                  <p className="font-medium text-white">{support.email}</p>
                 </div>
               </a>
               
               <a
                 href={`tel:${support.phone}`}
-                className="flex items-center gap-3 p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                className="flex items-center gap-3 p-4 bg-white/15 rounded-lg hover:bg-white/25 transition-colors border border-white/20"
               >
-                <Phone className="w-5 h-5" />
+                <Phone className="w-5 h-5 text-white" />
                 <div>
-                  <p className="text-sm text-white/70">Call us</p>
-                  <p className="font-medium">{support.phone}</p>
+                  <p className="text-sm text-white/80">Call us</p>
+                  <p className="font-medium text-white">{support.phone}</p>
                 </div>
               </a>
             </div>
 
             {/* Refund Policy Note */}
-            <div className="mt-6 p-4 bg-white/10 rounded-lg">
-              <p className="text-sm text-white/90">
-                <strong>Refund Policy:</strong> We have a no refunds policy. Please watch our free demo videos before enrolling to ensure the course is right for you.
+            <div className="mt-6 p-4 bg-white/10 rounded-lg border border-white/20">
+              <p className="text-sm text-white/95">
+                <strong className="text-white">Refund Policy:</strong> We have a no refunds policy. Please watch our free demo videos before enrolling to ensure the course is right for you.
               </p>
             </div>
           </motion.div>

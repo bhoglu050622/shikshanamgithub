@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Clock, Award, BookOpen, MessageCircle, Users, Video, FileCheck, Gift } from 'lucide-react';
 import { prashnaUpanishadCourseData } from '../../courseData';
 import { chipVariants, staggerContainer, safeVariants } from '../../motion.config';
@@ -23,7 +23,7 @@ export default function FeatureChips() {
 
   return (
     <section className="prashna-feature-chips bg-white border-y border-gray-100">
-      <motion.div
+      <MotionDiv
         className="prashna-chips-container"
         variants={safeVariants(staggerContainer)}
         initial="hidden"
@@ -33,17 +33,17 @@ export default function FeatureChips() {
         {metadata.features.map((feature, index) => {
           const IconComponent = featureIcons[feature] || BookOpen;
           return (
-            <motion.div
+            <MotionDiv
               key={index}
               className="prashna-chip"
               variants={chipVariants}
             >
               <IconComponent className="w-5 h-5 text-[#D97B2A]" />
               <span>{feature}</span>
-            </motion.div>
+            </MotionDiv>
           );
         })}
-      </motion.div>
+      </MotionDiv>
     </section>
   );
 }

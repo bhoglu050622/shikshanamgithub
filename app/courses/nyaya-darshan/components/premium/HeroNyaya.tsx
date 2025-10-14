@@ -67,7 +67,7 @@ export default function HeroNyaya({ onDemoClick }: HeroNyayaProps) {
           <div className="nyaya-cta-group">
             <a
               href={nyayaDarshanCourseData.enrollment.checkoutLink}
-              className="nyaya-btn-primary"
+              className="nyaya-btn-primary bg-black text-white hover:bg-gray-800"
             >
               <span>Enroll now — {metadata.price}</span>
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

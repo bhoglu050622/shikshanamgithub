@@ -11,7 +11,7 @@ export default function InstructorSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#8B5CF6] mb-4" style={{ fontFamily: '"Noto Sans Devanagari", sans-serif' }}>
             आचार्य से मिलें
           </h2>
-          <p className="text-xl text-[#6B7280]">Learn from a Master of Yoga Philosophy</p>
+          <p className="text-xl text-[#6B7280] text-center">Learn from a Master of Yoga Philosophy</p>
         </div>
 
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#8B5CF6]/5 to-[#3B82F6]/5 rounded-3xl shadow-2xl overflow-hidden border-2 border-[#8B5CF6]/20">

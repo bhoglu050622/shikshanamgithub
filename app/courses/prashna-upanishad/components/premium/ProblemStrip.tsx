@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { HelpCircle, Zap, Brain, Moon, Sparkles, Crown } from 'lucide-react';
 import { staggerContainer, questionCardVariants, safeVariants } from '../../motion.config';
 
@@ -68,7 +68,7 @@ export default function ProblemStrip() {
           </p>
         </div>
 
-        <motion.div
+        <MotionDiv
           className="prashna-question-grid"
           variants={safeVariants(staggerContainer)}
           initial="hidden"
@@ -78,7 +78,7 @@ export default function ProblemStrip() {
           {sixQuestions.map((question) => {
             const IconComponent = question.icon;
             return (
-              <motion.div
+              <MotionDiv
                 key={question.id}
                 className="prashna-question-card"
                 variants={questionCardVariants}
@@ -93,10 +93,10 @@ export default function ProblemStrip() {
                   "{question.question}"
                 </p>
                 <p className="text-xs text-gray-500">{question.description}</p>
-              </motion.div>
+              </MotionDiv>
             );
           })}
-        </motion.div>
+        </MotionDiv>
 
         <div className="mt-12 text-center">
           <p className="text-sm text-gray-500 italic">

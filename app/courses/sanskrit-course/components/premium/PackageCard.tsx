@@ -29,7 +29,7 @@ export default function PackageCard({
   return (
     <>
       {/* Desktop Sticky Card */}
-      <div className="hidden lg:block package-card-sticky">
+      <div className="package-card-sticky">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -128,24 +128,6 @@ export default function PackageCard({
         </motion.div>
       </div>
 
-      {/* Mobile Fixed Bottom Bar - DISABLED to fix mobile layout */}
-      <div className="hidden lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[var(--gold-sanskrit)]/20 p-4 shadow-2xl">
-        <div className="flex items-center gap-4">
-          <div className="flex-1">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-[var(--accent-sanskrit)]">{price}</span>
-              <span className="text-sm text-[var(--text-muted-sanskrit)] line-through">{originalPrice}</span>
-            </div>
-            <p className="text-xs text-green-600 font-semibold">Save {savings}</p>
-          </div>
-          <ProtectedExternalLink
-            href={buyCtaUrl}
-            className="btn-package-primary whitespace-nowrap focus-sanskrit"
-          >
-            Enroll Now
-          </ProtectedExternalLink>
-        </div>
-      </div>
     </>
   );
 }

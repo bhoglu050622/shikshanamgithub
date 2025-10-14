@@ -310,16 +310,16 @@ export const prashnaUpanishadCourseData: CourseContent = {
     {
       title: 'Introduction (Free Demo)',
       description: 'Discover the profound wisdom of the six questions',
-      url: 'https://www.youtube.com/embed/placeholder-intro',
+      url: 'https://www.youtube.com/embed/tsMquy2nzc0',
       duration: '00:04:57',
       isFree: true
     },
     {
-      title: 'प्रश्न 1 (Free Demo)',
+      title: 'प्रश्न 1 (Locked Content)',
       description: 'The first fundamental question about creation',
       url: 'https://www.youtube.com/embed/placeholder-q1',
       duration: '2:40:00',
-      isFree: true
+      isFree: false
     }
   ]
 };

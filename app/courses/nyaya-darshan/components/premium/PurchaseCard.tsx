@@ -34,7 +34,7 @@ export default function PurchaseCard() {
       {/* CTA Button */}
       <a
         href={enrollment.checkoutLink}
-        className="block w-full py-4 bg-gradient-to-r from-[#0D3B4A] to-[#1A5568] text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-center mb-6"
+        className="block w-full py-4 bg-black text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-center mb-6"
       >
         Enroll Now
       </a>

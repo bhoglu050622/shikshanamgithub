@@ -1,7 +1,12 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { AUTH_CONFIG } from '@/lib/config/auth'
+import { addCorsHeaders, handleCorsPreflightRequest } from '@/lib/utils/cors'
 
-export async function POST() {
+export async function OPTIONS(request: NextRequest) {
+  return handleCorsPreflightRequest(request)
+}
+
+export async function POST(request: NextRequest) {
   const response = NextResponse.json({ success: true, message: 'Logged out successfully' })
 
   // Clear the httpOnly auth cookie
@@ -22,10 +27,10 @@ export async function POST() {
     path: '/'
   })
 
-  return response
+  return addCorsHeaders(response, request)
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   // Allow GET requests for logout as well
-  return POST()
+  return POST(request)
 }

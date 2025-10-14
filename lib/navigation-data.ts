@@ -1,12 +1,3 @@
-/**
- * Navigation Data for Shikshanam
- * 
- * Note: Course links in this file are manually curated for the navigation menu.
- * All courses are dynamically discovered from /app/courses/ - see lib/courses
- * To add a new course to navigation, add it here after creating the course directory.
- * The /courses page will automatically show all courses.
- */
-
 import { 
   BookOpen, 
   GraduationCap, 
@@ -16,9 +7,7 @@ import {
   UserCheck, 
   Info, 
   HelpCircle,
-  Play,
   FileText,
-  Keyboard,
   BookMarked,
   MessageSquare,
   Star,
@@ -61,7 +50,7 @@ export const navigationGroups: NavigationGroup[] = [
     featured: {
       title: 'Sanskrit Bhasha Pragya',
       description: 'Master the ancient language of Sanskrit',
-      href: '/courses/sanskrit-course',
+      href: '/courses/sanskrit-bhasha-pragya',
       thumbnail: '/images/sanskrit-course-thumb.jpg',
       badge: 'Popular'
     },
@@ -70,65 +59,27 @@ export const navigationGroups: NavigationGroup[] = [
         title: 'All Courses',
         links: [
           { name: 'All Courses', href: '/courses', icon: BookOpen, description: 'Browse complete course catalog' },
-          { name: 'Free Courses', href: '/courses', icon: Star, description: 'Access free learning content' },
-          { name: 'Sanskrit Bhasha Pragya', href: '/courses/sanskrit-course', icon: BookOpen, description: 'Comprehensive Sanskrit course' },
-          { name: 'Yoga Darshan', href: '/courses/yoga-darshan', icon: Play, description: 'Philosophy of Yoga' },
-          { name: 'Isha Upanishad', href: '/courses/isha-upanishad', icon: Lightbulb, description: 'Ancient wisdom teachings' },
+          { name: 'Sanskrit Bhasha Pragya', href: '/courses/sanskrit-bhasha-pragya', icon: BookOpen, description: 'Comprehensive Sanskrit course' },
+          { name: 'Yoga Darshan', href: '/courses/yoga-darshan-course', icon: BookOpen, description: 'Philosophy of Yoga' },
+          { name: 'Isha Upanishad', href: '/courses/isha-upanishad-course', icon: Lightbulb, description: 'Ancient wisdom teachings' },
           { name: 'Prashna Upanishad', href: '/courses/prashna-upanishad', icon: FileText, description: 'Question-based learning' },
+          { name: 'Chanakya Code', href: '/courses/chanakya-code', icon: Star, description: 'Ancient business wisdom' },
         ]
       },
       {
         title: 'Philosophy Courses',
         links: [
-          { name: 'Advaita Vedanta', href: '/courses/advaita-vedanta-darshan-a-journey-through-drig-drishya-viveka', icon: Lightbulb, description: 'Non-dual philosophy' },
-          { name: 'Nyaya Darshan', href: '/courses/nyaya-darshan', icon: FileText, description: 'Logic and reasoning' },
-          { name: 'Vaisheshik Darshan', href: '/courses/vaisheshik-darshan', icon: Star, description: 'Atomistic philosophy' },
+          { name: 'Advaita Vedanta', href: '/courses/advaita-vedanta', icon: Lightbulb, description: 'Non-dual philosophy' },
           { name: 'Kashmir Shaivism', href: '/courses/kashmir-shaivism', icon: Sparkles, description: 'Tantric philosophy' },
-          { name: 'Tantra Darshan', href: '/courses/tantra-darshan', icon: Play, description: 'Esoteric teachings' },
+          { name: 'Durgasaptashi', href: '/courses/durgasaptashi', icon: BookOpen, description: 'Sacred recitation course' },
+          { name: 'Emotional Intelligence', href: '/courses/emotional-intelligence-with-samkhya-darshan', icon: UserCheck, description: 'Transform with Samkhya wisdom' },
         ]
       },
       {
-        title: 'Specialized Learning',
+        title: 'Learning Paths',
         links: [
-          { name: 'Sanskrit Live Class', href: '/courses/sanskrit-live-class', icon: Video, description: 'Interactive live sessions' },
-          { name: 'Emotional Intelligence', href: '/courses/emotional-intelligence-with-samkhya-darshan', icon: UserCheck, description: 'Wisdom for modern life' },
-          { name: 'Yoga Advanced', href: '/courses/yoga-advanced', icon: GraduationCap, description: 'Advanced yoga studies' },
-          { name: 'Learning Packages', href: '/packages', icon: Package, description: 'Comprehensive bundles' },
-        ]
-      }
-    ]
-  },
-  {
-    id: 'practice',
-    title: 'Practice',
-    icon: Play,
-    featured: {
-      title: 'Learning Resources',
-      description: 'Educational materials and study guides',
-      href: '/help',
-      thumbnail: '/images/learning-hub-thumb.jpg',
-      badge: 'New'
-    },
-    columns: [
-      {
-        title: 'Study Resources',
-        links: [
-          { name: 'Study Materials', href: '/help', icon: BookOpen, description: 'Educational resources and guides' },
-          { name: 'Learning Support', href: '/help', icon: FileText, description: 'Get help with your studies' },
-        ]
-      },
-      {
-        title: 'Reference',
-        links: [
-          { name: 'Grammar Guide', href: '/help', icon: FileText, description: 'Sanskrit grammar reference' },
-          { name: 'Pronunciation Guide', href: '/help', icon: Play, description: 'Audio pronunciation help' },
-        ]
-      },
-      {
-        title: 'Tools',
-        links: [
-          { name: 'All Tools', href: '/tools', icon: Keyboard, description: 'Complete toolkit for Sanskrit' },
-          { name: 'Practice Tests', href: '/practice/sanskrit', icon: FileText, description: 'Test your knowledge' },
+          { name: 'View All Courses', href: '/courses', icon: BookOpen, description: 'Explore all learning paths' },
+          { name: 'Course Packages', href: '/packages', icon: Package, description: 'Special course bundles' },
         ]
       }
     ]
@@ -157,7 +108,7 @@ export const navigationGroups: NavigationGroup[] = [
       {
         title: 'Knowledge Sources',
         links: [
-          { name: 'Sanskrit Blog', href: '/blogs/sanskrit', icon: BookOpen, description: 'Sanskrit language insights' },
+          { name: 'Sanskrit Blog', href: '/wisdom', icon: BookOpen, description: 'Sanskrit language insights' },
           { name: 'Philosophy Articles', href: '/wisdom', icon: Lightbulb, description: 'Deep philosophical discussions' },
           { name: 'Spiritual Guidance', href: '/wisdom', icon: Star, description: 'Spiritual teachings' },
         ]
@@ -166,7 +117,7 @@ export const navigationGroups: NavigationGroup[] = [
         title: 'Learning Resources',
         links: [
           { name: 'Study Materials', href: '/help', icon: FileText, description: 'Educational resources' },
-          { name: 'Support Center', href: '/help', icon: BookMarked, description: 'Get help and support' },
+          { name: 'Reference Guides', href: '/glossaries/sanskrit', icon: BookMarked, description: 'Sanskrit glossary' },
         ]
       }
     ]

@@ -120,12 +120,14 @@
   left: 0;
   right: 0;
   background: white;
-  padding: var(--spacing-sm);
+  padding: 16px;
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
   z-index: 50;
   border-top: 3px solid var(--chanakya-accent);
   transform: translateY(0);
   transition: transform 0.3s ease;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 .chanakya-purchase-card-mobile.hidden {
@@ -151,14 +153,7 @@
 }
 
 .chanakya-timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, var(--chanakya-accent), var(--chanakya-primary));
-  transform: translateX(-50%);
+  display: none;
 }
 
 .chanakya-timeline-step {
@@ -332,19 +327,19 @@
    CTA BUTTON STYLES
    ======================================== */
 .chanakya-cta-primary {
-  background: linear-gradient(135deg, var(--chanakya-primary), #1a3a4a);
+  background: black;
   color: white;
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(11, 43, 58, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .chanakya-cta-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(11, 43, 58, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .chanakya-cta-secondary {
@@ -385,6 +380,165 @@
   border-radius: 50%;
   opacity: 0.2;
   animation: particle-float 8s ease-in-out infinite;
+}
+
+/* ========================================
+   CASE STUDY MODAL - RESPONSIVE DESIGN
+   ======================================== */
+.chanakya-case-study-modal {
+  /* Ensure proper scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(216, 122, 43, 0.3) transparent;
+}
+
+.chanakya-case-study-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chanakya-case-study-modal::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.chanakya-case-study-modal::-webkit-scrollbar-thumb {
+  background: rgba(216, 122, 43, 0.3);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.chanakya-case-study-modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(216, 122, 43, 0.5);
+}
+
+/* Modal backdrop improvements */
+.chanakya-modal-backdrop {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Enhanced modal positioning and sizing */
+@media (max-width: 640px) {
+  .chanakya-case-study-modal {
+    /* Better mobile spacing */
+    padding: 16px !important;
+  }
+  
+  /* Ensure modal doesn't exceed viewport on mobile */
+  .chanakya-case-study-modal .fixed {
+    max-height: calc(100vh - 2rem) !important;
+    margin: 0 !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    bottom: 1rem !important;
+    transform: none !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .chanakya-case-study-modal button {
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+  
+  .chanakya-case-study-modal .absolute {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Modal content improvements for better mobile experience */
+@media (max-width: 768px) {
+  .chanakya-case-study-modal {
+    /* Better text sizing on mobile */
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .chanakya-case-study-modal h3 {
+    font-size: 18px !important;
+    line-height: 1.3;
+  }
+  
+  .chanakya-case-study-modal h4 {
+    font-size: 12px !important;
+  }
+  
+  .chanakya-case-study-modal p {
+    font-size: 14px !important;
+    line-height: 1.5;
+  }
+}
+
+/* Mobile purchase card improvements */
+.chanakya-purchase-card-mobile::-webkit-scrollbar {
+  width: 2px;
+}
+
+.chanakya-purchase-card-mobile::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chanakya-purchase-card-mobile::-webkit-scrollbar-thumb {
+  background: rgba(216, 122, 43, 0.3);
+  border-radius: 1px;
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 768px) {
+  .chanakya-purchase-card-mobile {
+    padding: 12px 16px;
+    max-height: 45vh;
+  }
+  
+  .chanakya-purchase-card-mobile .grid {
+    gap: 8px;
+  }
+  
+  .chanakya-purchase-card-mobile .text-xs {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+}
+
+/* Testimonials carousel mobile improvements */
+@media (max-width: 768px) {
+  .chanakya-testimonial-card {
+    padding: 16px;
+    margin: 0 8px;
+  }
+  
+  .chanakya-testimonial-card p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  /* Ensure proper spacing for testimonials container on mobile */
+  .chanakya-testimonials-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Ensure proper grid spacing */
+  .chanakya-testimonials-container .grid {
+    gap: 16px;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .chanakya-testimonials-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .chanakya-testimonial-card {
+    margin: 0 4px;
+    padding: 12px;
+  }
 }
 
 /* ========================================
@@ -663,6 +817,30 @@
   .chanakya-flex-row {
     flex-direction: column;
     gap: 16px;
+  }
+  
+  /* Enhanced modal improvements for small screens */
+  .chanakya-case-study-modal {
+    padding: 12px !important;
+  }
+  
+  .chanakya-case-study-modal .fixed {
+    width: 98vw !important;
+    max-height: 98vh !important;
+    margin: 1vh auto !important;
+    border-radius: 16px !important;
+  }
+  
+  .chanakya-case-study-modal button {
+    min-height: 48px;
+    font-size: 16px;
+  }
+  
+  .chanakya-case-study-modal .absolute {
+    top: 8px !important;
+    right: 8px !important;
+    min-height: 48px;
+    min-width: 48px;
   }
 }
 

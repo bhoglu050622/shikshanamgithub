@@ -20,7 +20,6 @@ export { default as ErrorBoundary } from './ErrorBoundary';
 // Auth Components - Removed for frontend-only version
 
 // Navigation Components
-export { default as MegaMenu } from './navigation/MegaMenu';
 export { default as MobileDrawer } from './navigation/MobileDrawer';
 
 // 3D Components

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Check, Award, MessageCircle, Phone, Mail } from 'lucide-react';
 import { prashnaUpanishadCourseData, prashnaSupport } from '../../courseData';
 import { purchaseCardVariants, bottomSheetVariants, safeVariants } from '../../motion.config';
@@ -103,7 +103,7 @@ export default function PurchaseCard({ variant = 'sticky' }: PurchaseCardProps) 
 
   if (variant === 'bottom-sheet') {
     return (
-      <motion.div
+      <MotionDiv
         className="prashna-bottom-sheet prashna-hide-desktop"
         variants={safeVariants(bottomSheetVariants)}
         initial="hidden"
@@ -121,20 +121,20 @@ export default function PurchaseCard({ variant = 'sticky' }: PurchaseCardProps) 
             <span>Enroll Now</span>
           </a>
         </div>
-      </motion.div>
+      </MotionDiv>
     );
   }
 
   // Sticky desktop variant
   return (
-    <motion.div
+    <MotionDiv
       className="prashna-purchase-card prashna-hide-mobile"
       variants={safeVariants(purchaseCardVariants)}
       initial="hidden"
       animate="visible"
     >
       <CardContent />
-    </motion.div>
+    </MotionDiv>
   );
 }
 

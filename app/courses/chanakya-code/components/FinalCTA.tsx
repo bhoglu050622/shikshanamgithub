@@ -28,7 +28,7 @@ export default function FinalCTA() {
               transition={{ duration: 0.6 }}
               className="text-white"
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#C49B0B]" style={{ fontFamily: 'var(--font-display)' }}>
                 Ready to Master Chanakya's Strategic Wisdom?
               </h2>
               
@@ -76,7 +76,7 @@ export default function FinalCTA() {
 
                 <ProtectedExternalLink
                   href={courseData.enrollment.checkoutLink}
-                  className="block w-full py-4 bg-white text-[#0B2B3A] font-bold text-lg rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-center mb-3"
+                  className="block w-full py-4 bg-black text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-center mb-3"
                 >
                   Enroll Now & Start Learning
                 </ProtectedExternalLink>
@@ -175,13 +175,13 @@ export default function FinalCTA() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-12 text-center text-white/70 text-sm"
           >
-            <p>
+            <p className="text-white">
               Questions? Contact us at{' '}
-              <a href={`mailto:${courseData.enrollment.supportEmail}`} className="text-[#D87A2B] hover:underline">
+              <a href={`mailto:${courseData.enrollment.supportEmail}`} className="text-white hover:underline">
                 {courseData.enrollment.supportEmail}
               </a>
               {' '}or call{' '}
-              <a href={`tel:${courseData.enrollment.supportPhone}`} className="text-[#D87A2B] hover:underline">
+              <a href={`tel:${courseData.enrollment.supportPhone}`} className="text-white hover:underline">
                 {courseData.enrollment.supportPhone}
               </a>
             </p>

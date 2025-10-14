@@ -214,12 +214,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-2xl md:text-3xl text-premium-text-secondary font-medium mb-4"
+            className="text-lg sm:text-2xl md:text-3xl text-premium-text-secondary font-medium mb-4 text-center"
           >
             Ancient Indian Knowledge Platform
           </motion.p>
           ) : (
-            <p className="text-lg sm:text-2xl md:text-3xl text-premium-text-secondary font-medium mb-4">
+            <p className="text-lg sm:text-2xl md:text-3xl text-premium-text-secondary font-medium mb-4 text-center">
               Ancient Indian Knowledge Platform
             </p>
           )}
@@ -230,12 +230,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base sm:text-lg md:text-xl text-premium-text-tertiary mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-premium-text-tertiary mb-12 max-w-3xl mx-auto leading-relaxed text-center"
             >
               Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
             </motion.p>
           ) : (
-            <p className="text-base sm:text-lg md:text-xl text-premium-text-tertiary mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-premium-text-tertiary mb-12 max-w-3xl mx-auto leading-relaxed text-center">
               Explore the timeless wisdom of Sanskrit, Darshanas, and Self-development through our comprehensive learning platform
             </p>
           )}
@@ -245,72 +245,72 @@ export default function Hero() {
             initial={mounted ? { opacity: 0, y: 40 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12"
           >
             {/* Sanskrit Card - High Contrast */}
             <button
               onClick={() => scrollToSection('schools')}
-              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-left w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-center w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               aria-label="Learn Sanskrit - Master the divine language"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <BookOpen className="w-7 h-7 text-white" aria-hidden="true" />
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <BookOpen className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-premium-text-primary mb-2">
+                <h3 className="text-xl font-bold text-premium-text-primary mb-3">
                   Learn Sanskrit
                 </h3>
-                <p className="text-base text-premium-text-tertiary mb-4 leading-relaxed">
+                <p className="text-base text-premium-text-tertiary mb-6 leading-relaxed">
                   Master the divine language
                 </p>
-                <div className="flex items-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
+                <div className="flex items-center justify-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
                   Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-          </div>
+                </div>
               </div>
             </button>
 
             {/* Darshanas Card - High Contrast */}
             <button
               onClick={() => scrollToSection('schools')}
-              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-left w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-center w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               aria-label="Explore Darshanas - Study six classical schools"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <GraduationCap className="w-7 h-7 text-white" aria-hidden="true" />
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <GraduationCap className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-premium-text-primary mb-2">
+                <h3 className="text-xl font-bold text-premium-text-primary mb-3">
                   Explore Darshanas
                 </h3>
-                <p className="text-base text-premium-text-tertiary mb-4 leading-relaxed">
+                <p className="text-base text-premium-text-tertiary mb-6 leading-relaxed">
                   Study six classical schools
                 </p>
-                <div className="flex items-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
+                <div className="flex items-center justify-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
                   Discover <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-          </div>
-          </div>
+                </div>
+              </div>
             </button>
 
             {/* Self Development Card - High Contrast */}
             <button
               onClick={() => scrollToSection('schools')}
-              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-left w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-lg border-2 border-amber-400/50 dark:border-amber-500/50 p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 cursor-pointer text-center w-full tap-target focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               aria-label="Self Development - Transform your life"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  <Users className="w-7 h-7 text-white" aria-hidden="true" />
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  <Users className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-premium-text-primary mb-2">
+                <h3 className="text-xl font-bold text-premium-text-primary mb-3">
                   Self Development
                 </h3>
-                <p className="text-base text-premium-text-tertiary mb-4 leading-relaxed">
+                <p className="text-base text-premium-text-tertiary mb-6 leading-relaxed">
                   Transform your life
                 </p>
-                <div className="flex items-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
+                <div className="flex items-center justify-center text-amber-700 dark:text-amber-400 font-semibold text-sm">
                   Begin <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </div>
               </div>

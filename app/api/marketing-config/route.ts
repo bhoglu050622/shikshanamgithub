@@ -1,20 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MarketingConfig } from '@/lib/marketing/tracking-config';
+import { corsResponse, handleCorsPreflightRequest } from '@/lib/utils/cors';
 import fs from 'fs/promises';
 import path from 'path';
 
 const CONFIG_FILE_PATH = path.join(process.cwd(), 'data', 'marketing-config.json');
 
 /**
+ * OPTIONS - Handle CORS preflight
+ */
+export async function OPTIONS(request: NextRequest) {
+  return handleCorsPreflightRequest(request);
+}
+
+/**
  * GET - Retrieve current marketing configuration
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     // Try to read from file
     try {
       const fileContent = await fs.readFile(CONFIG_FILE_PATH, 'utf-8');
       const config: MarketingConfig = JSON.parse(fileContent);
-      return NextResponse.json({ success: true, config });
+      return corsResponse({ success: true, config }, request);
     } catch (error) {
       // File doesn't exist or can't be read, return default config
       const defaultConfig: MarketingConfig = {
@@ -51,12 +59,13 @@ export async function GET() {
         lastUpdated: Date.now(),
       };
 
-      return NextResponse.json({ success: true, config: defaultConfig });
+      return corsResponse({ success: true, config: defaultConfig }, request);
     }
   } catch (error) {
     console.error('Error retrieving marketing config:', error);
-    return NextResponse.json(
+    return corsResponse(
       { success: false, error: 'Failed to retrieve configuration' },
+      request,
       { status: 500 }
     );
   }
@@ -81,8 +90,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (errors.length > 0) {
-      return NextResponse.json(
+      return corsResponse(
         { success: false, errors },
+        request,
         { status: 400 }
       );
     }
@@ -115,17 +125,18 @@ export async function POST(request: NextRequest) {
       envVars.push(`NEXT_PUBLIC_META_PIXEL_TEST=${!!config.metaPixel.testEventCode}`);
     }
 
-    return NextResponse.json({
+    return corsResponse({
       success: true,
       message: 'Configuration saved successfully',
       config,
       envVars,
       instructions: 'Add these environment variables to your .env file and rebuild the application for changes to take effect.',
-    });
+    }, request);
   } catch (error) {
     console.error('Error saving marketing config:', error);
-    return NextResponse.json(
+    return corsResponse(
       { success: false, error: 'Failed to save configuration' },
+      request,
       { status: 500 }
     );
   }
@@ -134,7 +145,7 @@ export async function POST(request: NextRequest) {
 /**
  * DELETE - Reset marketing configuration
  */
-export async function DELETE() {
+export async function DELETE(request: NextRequest) {
   try {
     // Try to delete the config file
     try {
@@ -143,14 +154,15 @@ export async function DELETE() {
       // File might not exist, which is fine
     }
 
-    return NextResponse.json({
+    return corsResponse({
       success: true,
       message: 'Configuration reset successfully',
-    });
+    }, request);
   } catch (error) {
     console.error('Error resetting marketing config:', error);
-    return NextResponse.json(
+    return corsResponse(
       { success: false, error: 'Failed to reset configuration' },
+      request,
       { status: 500 }
     );
   }

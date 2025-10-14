@@ -20,14 +20,15 @@ export default function SyllabusGrid() {
       <div className="isha-demo-container">
         {/* Section Header */}
         <motion.div 
-          className="isha-section-header"
+          className="isha-section-header text-center"
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
-          <p className="isha-section-subtitle">Complete Curriculum</p>
-          <h2 className="isha-section-title">Journey Through 18 Mantras</h2>
-          <p className="isha-section-description">
+          <p className="isha-section-subtitle text-center">Complete Curriculum</p>
+          <h2 className="isha-section-title text-center">Journey Through 18 Mantras</h2>
+          <p className="isha-section-description text-center">
             Systematic exploration of Isha Upanishad from introduction to final wisdom
           </p>
         </motion.div>
@@ -39,12 +40,14 @@ export default function SyllabusGrid() {
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
           {syllabus.map((module, index) => (
             <motion.div
               key={index}
               className="isha-module-card"
               variants={cardRevealVariants}
+              suppressHydrationWarning
             >
               <div className="isha-module-header">
                 <div>

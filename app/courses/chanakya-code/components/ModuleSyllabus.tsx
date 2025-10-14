@@ -27,7 +27,7 @@ export default function ModuleSyllabus() {
           <h2 className="text-3xl md:text-5xl font-bold text-[#0B2B3A] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             10 Secret Chanakya Codes
           </h2>
-          <p className="text-lg text-[#6C6C6C]">
+          <p className="text-lg text-[#6C6C6C] text-center">
             Ancient strategies for modern success - Each code unlocks powerful skills
           </p>
         </motion.div>
@@ -173,7 +173,7 @@ export default function ModuleSyllabus() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
             <span>Start Learning Now</span>
             <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">

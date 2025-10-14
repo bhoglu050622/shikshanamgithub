@@ -29,7 +29,7 @@ export default function BenefitGrid() {
           <h2 className="text-3xl md:text-5xl font-bold text-[#0B2B3A] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Master These Critical Skills
           </h2>
-          <p className="text-lg text-[#6C6C6C]">
+          <p className="text-lg text-[#6C6C6C] text-center">
             Transform your career and life with Chanakya's proven strategic frameworks
           </p>
         </motion.div>
@@ -66,7 +66,7 @@ export default function BenefitGrid() {
                 <div className="mt-4">
                   <a
                     href="#syllabus"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 font-semibold text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 font-semibold text-sm"
                   >
                     <span>Learn This Skill</span>
                     <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">

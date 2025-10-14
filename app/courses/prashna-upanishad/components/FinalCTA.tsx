@@ -27,13 +27,13 @@ export default function FinalCTA() {
               <div className="mb-8">
                 <div className="flex items-center justify-center space-x-4 mb-4">
                   <div className="text-5xl font-bold bg-gradient-to-r from-gold-600 to-gold-700 bg-clip-text text-transparent">
-                    ₹999
+                    ₹1,499
                   </div>
                   <div className="text-2xl text-wisdom-400 line-through">
-                    ₹1,799
+                    ₹2,999
                   </div>
                   <div className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-lg font-semibold shadow-sm">
-                    44% OFF
+                    50% OFF
                   </div>
                 </div>
                 <p className="text-wisdom-600">
@@ -49,7 +49,7 @@ export default function FinalCTA() {
                   className="inline-flex items-center space-x-3 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white font-semibold py-6 px-12 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl text-xl mb-8"
                   style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)' }}
                 >
-                  <span>Enroll Now · ₹999</span>
+                  <span>Enroll Now · ₹1,499</span>
                   <ArrowRight className="w-6 h-6" />
                 </motion.button>
               </ProtectedExternalLink>

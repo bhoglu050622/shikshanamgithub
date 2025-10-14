@@ -11,7 +11,7 @@ export default function InstructorAdvaita() {
 
   return (
     <section className="advaita-instructor-section">
-      <div className="advaita-section-header">
+      <div className="advaita-section-header text-center">
         <h2 style={{ fontFamily: 'var(--font-devanagari)' }}>आचार्य परिचय</h2>
         <p>Learn from a Master of Advaita Vedanta</p>
       </div>
@@ -25,22 +25,16 @@ export default function InstructorAdvaita() {
       >
         {/* Portrait */}
         <div className="advaita-instructor-portrait">
-          {instructor?.image ? (
-            <Image
-              src={instructor.image}
-              alt={instructor.name || 'Instructor'}
-              fill
-              className="object-cover"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = 'https://placehold.co/600x600/0D3B4A/FFFFFF?text=Vishal+Chaurasia';
-              }}
-            />
-          ) : (
-            <div className="w-full h-full bg-[#0D3B4A] flex items-center justify-center text-white text-6xl font-bold">
-              VC
-            </div>
-          )}
+          <Image
+            src="https://shikshanam.in/wp-content/uploads/2024/05/1.png"
+            alt={instructor?.name || 'Vishal Chaurasia'}
+            fill
+            className="object-cover"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://placehold.co/600x600/0D3B4A/FFFFFF?text=Vishal+Chaurasia';
+            }}
+          />
         </div>
 
         {/* Info */}
@@ -91,21 +85,21 @@ export default function InstructorAdvaita() {
           <div className="mt-6 flex gap-4">
             <a
               href="#"
-              className="w-10 h-10 rounded-full bg-[#0D3B4A] text-white flex items-center justify-center hover:bg-[#1A5568] transition-colors"
+              className="w-10 h-10 rounded-full bg-[#D97B2A] text-white flex items-center justify-center hover:bg-[#E89B5A] transition-colors"
               aria-label="YouTube"
             >
               <Youtube className="w-5 h-5" />
             </a>
             <a
               href="#"
-              className="w-10 h-10 rounded-full bg-[#0D3B4A] text-white flex items-center justify-center hover:bg-[#1A5568] transition-colors"
+              className="w-10 h-10 rounded-full bg-[#D97B2A] text-white flex items-center justify-center hover:bg-[#E89B5A] transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="#"
-              className="w-10 h-10 rounded-full bg-[#0D3B4A] text-white flex items-center justify-center hover:bg-[#1A5568] transition-colors"
+              className="w-10 h-10 rounded-full bg-[#D97B2A] text-white flex items-center justify-center hover:bg-[#E89B5A] transition-colors"
               aria-label="Twitter"
             >
               <Twitter className="w-5 h-5" />

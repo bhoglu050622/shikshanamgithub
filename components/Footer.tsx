@@ -1,7 +1,7 @@
 'use client'
 
-import { BookOpen, Mail, Phone, MapPin, MessageCircle, Instagram, Twitter, Youtube, Heart, ArrowRight } from 'lucide-react'
-import { ROUTES, NAVIGATION_GROUPS } from '@/lib/routes'
+import { BookOpen, Mail, Phone, MapPin, MessageCircle, Instagram, Twitter, Youtube, Heart } from 'lucide-react'
+import { ROUTES } from '@/lib/routes'
 
 const footerLinks = {
   'Learning': [
@@ -180,35 +180,6 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
-
-        {/* Newsletter Section */}
-        <div
-          className="bg-slate-200/80 dark:bg-slate-800/80 rounded-3xl p-8 mb-12 backdrop-blur-sm border-2 border-slate-300 dark:border-slate-600 shadow-xl"
-        >
-          <div className="text-center max-w-2xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold text-amber-600 dark:text-amber-400 mb-4">
-              Stay Updated with Ancient Wisdom
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 mb-6 text-base leading-relaxed">
-              Get weekly insights, course updates, and spiritual wisdom delivered to your inbox.
-            </p>
-            <div className="flex flex-col gap-3 max-w-md mx-auto w-full">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="w-full px-4 py-3 rounded-2xl border-2 border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition-all duration-200 tap-target"
-                aria-label="Email address for newsletter"
-              />
-              <button
-                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:from-amber-400 hover:to-amber-500 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-100 dark:focus-visible:ring-offset-slate-900 tap-target"
-                aria-label="Subscribe to newsletter"
-              >
-                <span>Subscribe</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Section */}

@@ -19,7 +19,7 @@ export default function TestimonialsAdvaita() {
 
   return (
     <section className="advaita-testimonials-section">
-      <div className="advaita-section-header">
+      <div className="advaita-section-header text-center">
         <h2>Student Experiences</h2>
         <p>Hear from seekers who have deepened their spiritual understanding through this course</p>
       </div>

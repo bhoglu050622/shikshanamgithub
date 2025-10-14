@@ -66,7 +66,7 @@ export default function ToolkitStats() {
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Your Complete Toolkit
           </h2>
-          <p className="text-lg text-white/80">
+          <p className="text-lg text-white/80 text-center">
             Everything you need to master Chanakya's strategic wisdom
           </p>
         </motion.div>

@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Award, MessageCircle, Clock, Shield, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, Award, MessageCircle, Clock, Shield } from 'lucide-react';
 import { ProtectedExternalLink } from '@/components/auth/ProtectedExternalLink';
 import { chanakyaCodeCourseData } from '../courseData';
 
 export default function PurchaseCard() {
-  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const courseData = chanakyaCodeCourseData;
 
@@ -18,7 +17,6 @@ export default function PurchaseCard() {
       // Hide mobile card when scrolling down, show when scrolling up
       if (currentScroll > lastScroll && currentScroll > 100) {
         setIsVisible(false);
-        setIsMobileExpanded(false);
       } else {
         setIsVisible(true);
       }
@@ -36,13 +34,14 @@ export default function PurchaseCard() {
         <div className="chanakya-purchase-card">
           {/* Price Section */}
           <div className="text-center mb-6">
-            <div className="flex items-baseline justify-center gap-3 mb-2">
+            <div className="flex items-baseline justify-center gap-3 mb-3">
               <span className="chanakya-price-badge">{courseData.metadata.price}</span>
               <span className="text-lg text-gray-400 line-through">{courseData.metadata.originalPrice}</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-2">
               <span>Save {courseData.metadata.savings}</span>
             </div>
+            <p className="text-sm text-gray-600">1 Year Full Access</p>
           </div>
 
           {/* Features List */}
@@ -102,7 +101,7 @@ export default function PurchaseCard() {
           {/* CTA Button */}
           <ProtectedExternalLink
             href={courseData.enrollment.checkoutLink}
-            className="block w-full py-4 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
+            className="block w-full py-4 bg-black text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
           >
             Enroll Now
           </ProtectedExternalLink>
@@ -113,13 +112,17 @@ export default function PurchaseCard() {
         </div>
       </div>
 
-      {/* Mobile Version - Sticky Bottom - DISABLED */}
-      <div className={`hidden lg:hidden chanakya-purchase-card-mobile ${!isVisible ? 'hidden' : ''}`}>
-        {/* Collapsed State */}
-        {!isMobileExpanded && (
-          <div className="flex items-center justify-between gap-4">
+      {/* Mobile Version - Fixed Bottom */}
+      <div className="lg:hidden">
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="chanakya-purchase-card-mobile"
+        >
+          <div className="flex items-center justify-between gap-3 mb-4">
             <div className="flex-1">
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-2xl font-bold text-[#0B2B3A]">{courseData.metadata.price}</span>
                 <span className="text-sm text-gray-400 line-through">{courseData.metadata.originalPrice}</span>
               </div>
@@ -128,73 +131,40 @@ export default function PurchaseCard() {
             <div className="flex items-center gap-2">
               <ProtectedExternalLink
                 href={courseData.enrollment.checkoutLink}
-                className="px-6 py-3 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                className="px-4 py-2.5 bg-black text-white font-bold text-sm rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
-                Enroll
+                Enroll Now
               </ProtectedExternalLink>
-              <button
-                onClick={() => setIsMobileExpanded(true)}
-                className="p-3 bg-gray-100 rounded-lg"
-                aria-label="Expand details"
-              >
-                <ChevronUp className="w-5 h-5 text-gray-600" />
-              </button>
             </div>
           </div>
-        )}
 
-        {/* Expanded State */}
-        {isMobileExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="space-y-4"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold text-[#0B2B3A]">{courseData.metadata.price}</span>
-                  <span className="text-sm text-gray-400 line-through">{courseData.metadata.originalPrice}</span>
-                </div>
-                <p className="text-sm text-green-600 font-semibold">Save {courseData.metadata.savings}</p>
-              </div>
-              <button
-                onClick={() => setIsMobileExpanded(false)}
-                className="p-2 bg-gray-100 rounded-lg"
-                aria-label="Collapse details"
-              >
-                <ChevronDown className="w-5 h-5 text-gray-600" />
-              </button>
+          {/* Features Grid */}
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="flex items-center gap-1.5">
+              <Clock className="w-3 h-3 text-[#D87A2B] flex-shrink-0" />
+              <span className="text-gray-700">Learn at your own pace</span>
             </div>
-
-            <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#D87A2B]" />
-                <span>1 Year Access</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MessageCircle className="w-4 h-4 text-[#D87A2B]" />
-                <span>WhatsApp Group</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#D87A2B]" />
-                <span>Certificate</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#D87A2B]" />
-                <span>Secure Payment</span>
-              </div>
+            <div className="flex items-center gap-1.5">
+              <MessageCircle className="w-3 h-3 text-[#D87A2B] flex-shrink-0" />
+              <span className="text-gray-700">WhatsApp Community</span>
             </div>
+            <div className="flex items-center gap-1.5">
+              <Award className="w-3 h-3 text-[#D87A2B] flex-shrink-0" />
+              <span className="text-gray-700">Certificate of Completion</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Shield className="w-3 h-3 text-[#D87A2B] flex-shrink-0" />
+              <span className="text-gray-700">Secure Payment</span>
+            </div>
+          </div>
 
-            <ProtectedExternalLink
-              href={courseData.enrollment.checkoutLink}
-              className="block w-full py-3 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white font-bold text-center rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Enroll Now
-            </ProtectedExternalLink>
-          </motion.div>
-        )}
+          {/* Trust Badge */}
+          <div className="text-center mt-3 pt-3 border-t border-gray-200">
+            <p className="text-xs text-gray-600">
+              <span className="font-semibold text-[#0B2B3A]">{courseData.stats?.students || '3.2K+'}</span> Enrolled
+            </p>
+          </div>
+        </motion.div>
       </div>
     </>
   );

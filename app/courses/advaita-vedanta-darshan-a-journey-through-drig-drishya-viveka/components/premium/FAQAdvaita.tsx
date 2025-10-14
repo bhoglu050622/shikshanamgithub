@@ -17,7 +17,7 @@ export default function FAQAdvaita() {
 
   return (
     <section className="advaita-faq-section">
-      <div className="advaita-section-header">
+      <div className="advaita-section-header text-center">
         <h2>Frequently Asked Questions</h2>
         <p>Find answers to common questions about the course</p>
       </div>
@@ -73,8 +73,8 @@ export default function FAQAdvaita() {
 
         {/* Support Section */}
         <div className="mt-12 bg-gradient-to-br from-[#0D3B4A] to-[#1A5568] rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-3">Still have questions?</h3>
-          <p className="mb-6 text-white/90">
+          <h3 className="text-2xl font-bold mb-3 text-white">Still have questions?</h3>
+          <p className="mb-6 text-white text-center">
             Our support team is here to help you with any queries
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -95,7 +95,7 @@ export default function FAQAdvaita() {
           </div>
           
           {/* Refund Policy Highlight */}
-          <div className="mt-6 pt-6 border-t border-white/20">
+          <div className="mt-6 pt-6 border-t border-white/20 text-center">
             <p className="text-sm text-white/80">
               <strong className="text-white">Refund Policy:</strong> {support.refundPolicy}
             </p>

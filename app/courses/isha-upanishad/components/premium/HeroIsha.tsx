@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Play, Clock, BookOpen, Award } from 'lucide-react';
 import { ishaUpanishadCourseData } from '../../courseData';
 import { heroVariants, heroChildVariants, safeVariants } from '../../motion.config';
@@ -21,14 +21,14 @@ export default function HeroIsha({ onDemoClick }: HeroIshaProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-[#0D3B4A]/10 via-transparent to-[#D97B2A]/10" />
       </div>
 
-      <motion.div
+      <MotionDiv
         className="isha-hero-grid relative z-10"
         variants={safeVariants(heroVariants)}
         initial="hidden"
         animate="visible"
       >
         {/* Left: Content */}
-        <motion.div className="isha-hero-content" variants={heroChildVariants}>
+        <MotionDiv className="isha-hero-content" variants={heroChildVariants}>
           <h1>{metadata.title}</h1>
           <p className="isha-hero-subtitle">{metadata.subtitle}</p>
 
@@ -65,7 +65,7 @@ export default function HeroIsha({ onDemoClick }: HeroIshaProps) {
               href={ishaUpanishadCourseData.enrollment.checkoutLink}
               className="isha-btn-primary"
             >
-              <span>Enroll now — {metadata.price}</span>
+              <span className="text-white">Enroll now — {metadata.price}</span>
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
@@ -98,28 +98,28 @@ export default function HeroIsha({ onDemoClick }: HeroIshaProps) {
               <span>{stats?.satisfaction} Satisfaction</span>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
-        {/* Right: Demo Thumbnail */}
-        {featuredDemo && (
-          <motion.div variants={heroChildVariants}>
-            <div 
-              className="isha-demo-card featured cursor-pointer"
-              onClick={onDemoClick}
-            >
-              <div className="isha-demo-thumbnail">
-                <img 
-                  src={featuredDemo.url?.replace('/embed/', '/vi/').split('?')[0] + '/maxresdefault.jpg'} 
-                  alt={featuredDemo.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://via.placeholder.com/640x360/0D3B4A/FFFFFF?text=Demo+Video';
-                  }}
-                />
-                <div className="isha-demo-play-button">
-                  <Play className="w-8 h-8" />
-                </div>
+        {/* Right: Course Thumbnail */}
+        <MotionDiv variants={heroChildVariants}>
+          <div 
+            className="isha-demo-card featured cursor-pointer"
+            onClick={onDemoClick}
+          >
+            <div className="isha-demo-thumbnail">
+              <img 
+                src={metadata.thumbnail} 
+                alt={metadata.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://via.placeholder.com/640x360/0D3B4A/FFFFFF?text=Course+Thumbnail';
+                }}
+              />
+              <div className="isha-demo-play-button">
+                <Play className="w-8 h-8" />
               </div>
+            </div>
+            {featuredDemo && (
               <div className="isha-demo-info">
                 <h3 className="text-lg font-semibold">{featuredDemo.title}</h3>
                 {featuredDemo.description && (
@@ -129,11 +129,16 @@ export default function HeroIsha({ onDemoClick }: HeroIshaProps) {
                   <Clock className="w-4 h-4" />
                   <span>{featuredDemo.duration}</span>
                 </div>
+                {featuredDemo.isFree && (
+                  <div className="mt-2 text-xs text-green-600 font-medium">
+                    ✓ Free Preview Available
+                  </div>
+                )}
               </div>
-            </div>
-          </motion.div>
-        )}
-      </motion.div>
+            )}
+          </div>
+        </MotionDiv>
+      </MotionDiv>
     </section>
   );
 }

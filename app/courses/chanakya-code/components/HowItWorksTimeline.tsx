@@ -69,7 +69,7 @@ export default function HowItWorksTimeline() {
           <h2 className="text-3xl md:text-5xl font-bold text-[#0B2B3A] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             How It Works
           </h2>
-          <p className="text-lg text-[#6C6C6C]">
+          <p className="text-lg text-[#6C6C6C] text-center">
             A proven 3-step system to master Chanakya's strategic wisdom
           </p>
         </motion.div>
@@ -108,7 +108,7 @@ export default function HowItWorksTimeline() {
                     {/* CTA to expand */}
                     <button
                       onClick={() => setSelectedStep(index)}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 font-semibold"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 font-semibold"
                     >
                       <span>View Case Study</span>
                       <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -132,7 +132,7 @@ export default function HowItWorksTimeline() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedStep(null)}
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+                className="fixed inset-0 bg-black/50 chanakya-modal-backdrop z-50"
               />
 
               {/* Modal */}
@@ -140,58 +140,58 @@ export default function HowItWorksTimeline() {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-2xl bg-white rounded-2xl shadow-2xl z-50 overflow-hidden"
+                className="fixed inset-4 sm:inset-8 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:inset-auto w-auto h-auto max-w-none md:max-w-2xl max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] md:max-h-[90vh] bg-white rounded-2xl shadow-2xl z-50 overflow-hidden"
               >
-                <div className="relative p-8 md:p-10 max-h-[90vh] overflow-y-auto">
+                <div className="relative p-4 sm:p-6 md:p-8 lg:p-10 h-full overflow-y-auto chanakya-case-study-modal">
                   {/* Close Button */}
                   <button
                     onClick={() => setSelectedStep(null)}
-                    className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 sm:p-2.5 hover:bg-gray-100 rounded-full transition-colors z-10 touch-manipulation"
                     aria-label="Close modal"
                   >
-                    <X className="w-6 h-6 text-gray-600" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
                   </button>
 
                   {/* Content */}
-                  <div className="mb-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#0B2B3A] to-[#D87A2B] rounded-full flex items-center justify-center">
+                  <div className="mb-6 pr-8 sm:pr-10">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#0B2B3A] to-[#D87A2B] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                         {steps[selectedStep] && (() => {
                           const IconComponent = steps[selectedStep].icon;
-                          return <IconComponent className="w-6 h-6 text-white" />;
+                          return <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />;
                         })()}
                       </div>
-                      <div>
-                        <p className="text-sm text-[#D87A2B] font-semibold">Step {steps[selectedStep]?.number}</p>
-                        <h3 className="text-2xl font-bold text-[#0B2B3A]">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm text-[#D87A2B] font-semibold mb-1">Step {steps[selectedStep]?.number}</p>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0B2B3A] leading-tight">
                           {steps[selectedStep]?.caseExample.title}
                         </h3>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6 pb-4">
                     <div>
-                      <h4 className="text-sm font-semibold text-[#0B2B3A] uppercase tracking-wide mb-2">
+                      <h4 className="text-xs sm:text-sm font-semibold text-[#0B2B3A] uppercase tracking-wide mb-3">
                         Case Study
                       </h4>
-                      <p className="text-[#6C6C6C] leading-relaxed">
+                      <p className="text-sm sm:text-base text-[#6C6C6C] leading-relaxed">
                         {steps[selectedStep]?.caseExample.description}
                       </p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-[#D87A2B]/10 to-[#0B2B3A]/10 rounded-xl p-6">
-                      <h4 className="text-sm font-semibold text-[#0B2B3A] uppercase tracking-wide mb-2">
+                    <div className="bg-gradient-to-br from-[#D87A2B]/10 to-[#0B2B3A]/10 rounded-xl p-4 sm:p-6">
+                      <h4 className="text-xs sm:text-sm font-semibold text-[#0B2B3A] uppercase tracking-wide mb-3">
                         Your Outcome
                       </h4>
-                      <p className="text-[#0B2B3A] leading-relaxed font-medium">
+                      <p className="text-sm sm:text-base text-[#0B2B3A] leading-relaxed font-medium">
                         {steps[selectedStep]?.caseExample.outcome}
                       </p>
                     </div>
 
                     <button
                       onClick={() => setSelectedStep(null)}
-                      className="w-full py-3 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white font-bold rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                      className="w-full py-3 sm:py-4 bg-black text-white font-bold rounded-lg hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[44px]"
                     >
                       Got It!
                     </button>

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Play, Clock, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { prashnaDemoVideos } from '../../courseData';
 import { demoCardVariants, modalBackdropVariants, modalContentVariants, safeVariants } from '../../motion.config';
@@ -42,7 +43,7 @@ export default function DemoCarousel() {
           {/* Desktop: Grid */}
           <div className="hidden md:grid md:grid-cols-2 gap-6">
             {prashnaDemoVideos?.map((demo, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 variants={safeVariants(demoCardVariants)}
                 initial="hidden"
@@ -63,9 +64,13 @@ export default function DemoCarousel() {
                   <div className="prashna-demo-play-button">
                     <Play className="w-8 h-8" />
                   </div>
-                  {demo.isFree && (
+                  {demo.isFree ? (
                     <div className="absolute top-4 left-4 bg-[#10B981] text-white px-3 py-1 rounded-full text-sm font-bold">
                       Free Demo
+                    </div>
+                  ) : (
+                    <div className="absolute top-4 left-4 bg-[#DC2626] text-white px-3 py-1 rounded-full text-sm font-bold">
+                      Locked
                     </div>
                   )}
                 </div>
@@ -79,14 +84,14 @@ export default function DemoCarousel() {
                     <span>{demo.duration}</span>
                   </div>
                 </div>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
 
           {/* Mobile: Carousel */}
           <div className="md:hidden">
             <div className="relative">
-              <motion.div
+              <MotionDiv
                 key={currentIndex}
                 variants={safeVariants(demoCardVariants)}
                 initial="hidden"
@@ -106,6 +111,15 @@ export default function DemoCarousel() {
                   <div className="prashna-demo-play-button">
                     <Play className="w-8 h-8" />
                   </div>
+                  {prashnaDemoVideos?.[currentIndex]?.isFree ? (
+                    <div className="absolute top-4 left-4 bg-[#10B981] text-white px-3 py-1 rounded-full text-sm font-bold">
+                      Free Demo
+                    </div>
+                  ) : (
+                    <div className="absolute top-4 left-4 bg-[#DC2626] text-white px-3 py-1 rounded-full text-sm font-bold">
+                      Locked
+                    </div>
+                  )}
                 </div>
                 <div className="prashna-demo-info">
                   <h3 className="text-lg font-semibold text-[#0D3B4A] mb-2">
@@ -121,27 +135,9 @@ export default function DemoCarousel() {
                     <span>{prashnaDemoVideos?.[currentIndex]?.duration}</span>
                   </div>
                 </div>
-              </motion.div>
+              </MotionDiv>
 
-              {/* Carousel Controls */}
-              {(prashnaDemoVideos?.length || 0) > 1 && (
-                <>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); prevDemo(); }}
-                    className="absolute left-2 top-1/3 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow-lg"
-                    aria-label="Previous demo"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-[#0D3B4A]" />
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); nextDemo(); }}
-                    className="absolute right-2 top-1/3 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow-lg"
-                    aria-label="Next demo"
-                  >
-                    <ChevronRight className="w-6 h-6 text-[#0D3B4A]" />
-                  </button>
-                </>
-              )}
+              {/* Carousel Controls - Removed navigation arrows */}
             </div>
 
             {/* Dots */}
@@ -164,7 +160,7 @@ export default function DemoCarousel() {
       {/* Video Modal */}
       <AnimatePresence>
         {selectedDemo !== null && (
-          <motion.div
+          <MotionDiv
             className="prashna-modal-backdrop"
             variants={safeVariants(modalBackdropVariants)}
             initial="hidden"
@@ -172,10 +168,10 @@ export default function DemoCarousel() {
             exit="hidden"
             onClick={closeDemo}
           >
-            <motion.div
+            <MotionDiv
               className="prashna-modal-content"
               variants={safeVariants(modalContentVariants)}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
             >
               <button
                 onClick={closeDemo}
@@ -209,8 +205,8 @@ export default function DemoCarousel() {
                   <span className="font-semibold">{prashnaDemoVideos?.[selectedDemo]?.duration}</span>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         )}
       </AnimatePresence>
     </>

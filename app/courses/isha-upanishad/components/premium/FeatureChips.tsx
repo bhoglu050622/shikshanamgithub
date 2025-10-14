@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Video, Clock, BookOpen, RefreshCw, FileText, Calendar, Award, MessageCircle, Users, Zap } from 'lucide-react';
 import { ishaUpanishadCourseData } from '../../courseData';
 import { featureChipsVariants, featureChipVariants, safeVariants } from '../../motion.config';
@@ -42,7 +42,7 @@ export default function FeatureChips() {
   return (
     <section className="isha-features">
       <div className="isha-features-container">
-        <motion.div
+        <MotionDiv
           ref={ref}
           className="isha-features-scroll"
           variants={safeVariants(featureChipsVariants)}
@@ -50,7 +50,7 @@ export default function FeatureChips() {
           animate={inView ? "visible" : "hidden"}
         >
           {metadata.features.map((feature, index) => (
-            <motion.div
+            <MotionDiv
               key={index}
               className="isha-feature-chip"
               variants={featureChipVariants}
@@ -62,9 +62,9 @@ export default function FeatureChips() {
                 <h4>{feature}</h4>
                 <p>{featureMicrocopy[feature] || 'Included in course'}</p>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { ChevronDown, Clock, List, Play, Bell } from 'lucide-react';
 import { prashnaUpanishadCourseData } from '../../courseData';
 import { moduleVariants, accordionVariants, safeVariants } from '../../motion.config';
@@ -37,7 +38,7 @@ export default function SyllabusGrid() {
             const isFree = module.isFree;
 
             return (
-              <motion.div
+              <MotionDiv
                 key={index}
                 className="prashna-module-card"
                 variants={safeVariants(moduleVariants)}
@@ -86,11 +87,11 @@ export default function SyllabusGrid() {
 
                 {isFree && (
                   <div className="mt-4 flex items-center gap-2 text-sm text-[#10B981] font-semibold">
-                    <Play className="w-4 h-4" />
-                    <span>Watch this demo for free!</span>
-                  </div>
-                )}
-              </motion.div>
+                  <Play className="w-4 h-4" />
+                  <span>Watch this demo for free!</span>
+                </div>
+              )}
+            </MotionDiv>
             );
           })}
         </div>
@@ -137,7 +138,7 @@ export default function SyllabusGrid() {
 
                 <AnimatePresence>
                   {isExpanded && (
-                    <motion.div
+                    <MotionDiv
                       variants={safeVariants(accordionVariants)}
                       initial="collapsed"
                       animate="expanded"
@@ -166,7 +167,7 @@ export default function SyllabusGrid() {
                           </div>
                         )}
                       </div>
-                    </motion.div>
+                    </MotionDiv>
                   )}
                 </AnimatePresence>
               </div>

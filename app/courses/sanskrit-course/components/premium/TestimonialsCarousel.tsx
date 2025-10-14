@@ -205,7 +205,7 @@ export default function TestimonialsCarousel({
           <button
             onClick={goToPrev}
             aria-label="Previous testimonial"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 btn-testimonial-nav focus-sanskrit"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 md:-translate-x-16 btn-testimonial-nav focus-sanskrit"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -215,7 +215,7 @@ export default function TestimonialsCarousel({
           <button
             onClick={goToNext}
             aria-label="Next testimonial"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 btn-testimonial-nav focus-sanskrit"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 md:translate-x-16 btn-testimonial-nav focus-sanskrit"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

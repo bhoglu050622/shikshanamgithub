@@ -589,8 +589,9 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: var(--isha-primary);
-  color: white;
+  background: #ffffff;
+  color: var(--isha-primary);
+  border: 2px solid var(--isha-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -598,8 +599,10 @@
 }
 
 .isha-social-link:hover {
-  background: var(--isha-accent);
+  background: var(--isha-primary);
+  color: white;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 59, 74, 0.3);
 }
 
 /* Responsive utilities */

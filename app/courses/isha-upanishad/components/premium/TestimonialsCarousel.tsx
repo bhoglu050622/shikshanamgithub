@@ -29,14 +29,15 @@ export default function TestimonialsCarousel() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div 
-          className="isha-section-header"
+          className="isha-section-header text-center"
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
-          <p className="isha-section-subtitle">Student Success</p>
-          <h2 className="isha-section-title">What Our Students Say</h2>
-          <p className="isha-section-description">
+          <p className="isha-section-subtitle text-center">Student Success</p>
+          <h2 className="isha-section-title text-center">What Our Students Say</h2>
+          <p className="isha-section-description text-center">
             Hear from learners who have integrated Isha Upanishad wisdom into their lives
           </p>
         </motion.div>

@@ -297,23 +297,23 @@ export const ishaUpanishadCourseData: CourseContent = {
     {
       title: 'Why Isha Upanishad? (Free Demo)',
       description: 'Discover why this ancient text is perfect for modern living',
-      url: 'https://www.youtube.com/embed/placeholder-demo-1',
+      url: 'https://www.youtube.com/embed/8jkKQWLbD6c?rel=0&modestbranding=1&autoplay=0&controls=1',
       duration: '8:30',
       isFree: true
     },
     {
       title: 'Chapter 1: सर्वत्र भगवद् दृष्टि (Demo)',
-      description: 'Sample lesson from Chapter 1',
-      url: 'https://www.youtube.com/embed/placeholder-chapter-1',
+      description: 'Sample lesson from Chapter 1 - Contact us for access',
+      url: 'https://www.youtube.com/embed/8jkKQWLbD6c?rel=0&modestbranding=1&autoplay=0&controls=1',
       duration: '8:28',
-      isFree: true
+      isFree: false
     },
     {
       title: 'Chapter 2: Divine Presence Demo',
-      description: 'Sample lesson from Chapter 2',
-      url: 'https://www.youtube.com/embed/placeholder-chapter-2',
+      description: 'Sample lesson from Chapter 2 - Contact us for access',
+      url: 'https://www.youtube.com/embed/8jkKQWLbD6c?rel=0&modestbranding=1&autoplay=0&controls=1',
       duration: '10:15',
-      isFree: true
+      isFree: false
     }
   ]
 };

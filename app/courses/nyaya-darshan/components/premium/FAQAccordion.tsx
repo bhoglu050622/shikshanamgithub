@@ -22,7 +22,7 @@ export default function FAQAccordion() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#0D3B4A] mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 text-center">
             Everything you need to know about the course
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function FAQAccordion() {
         {/* Still have questions CTA */}
         <div className="mt-12 p-6 bg-gradient-to-r from-[#0D3B4A] to-[#1A5568] rounded-2xl text-center">
           <h3 className="text-2xl font-bold text-white mb-2">Still have questions?</h3>
-          <p className="text-white/90 mb-4">
+          <p className="text-white/90 mb-4 text-center">
             Contact our support team at support@shikshanam.in or call +91-9910032165
           </p>
           <a

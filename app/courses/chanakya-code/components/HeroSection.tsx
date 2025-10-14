@@ -53,10 +53,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#C49B0B] backdrop-blur-sm border border-[#C49B0B]/30 rounded-full mb-6"
             >
-              <Shield className="w-4 h-4" />
-              <span className="text-sm font-semibold">Premium Strategic Course</span>
+              <Shield className="w-4 h-4 text-white" />
+              <span className="text-sm font-semibold text-white">Premium Strategic Course</span>
             </MotionWrapper>
 
             {/* Main Headline */}
@@ -65,7 +65,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-[#C49B0B]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Dominate Negotiation & Business Tactics!
@@ -128,7 +128,7 @@ export default function HeroSection() {
             >
               <ProtectedExternalLink
                 href={courseData.enrollment.checkoutLink}
-                className="group px-8 py-4 bg-white text-[#0B2B3A] font-bold text-lg rounded-xl shadow-2xl hover:shadow-[0_0_30px_rgba(216,122,43,0.5)] hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center gap-2"
+                className="group px-8 py-4 bg-black text-white font-bold text-lg rounded-xl shadow-2xl hover:shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center gap-2"
               >
                 <span>Enroll Now</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">

@@ -41,7 +41,7 @@ export default function ModuleCard({ modules, syllabusVideoUrl }: ModuleCardProp
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary-sanskrit)] mb-4">
             Complete Curriculum
           </h2>
-          <p className="text-lg md:text-xl text-[var(--text-secondary-sanskrit)] max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-[var(--text-secondary-sanskrit)] max-w-3xl mx-auto text-center">
             Systematic Learning Path — Master Sanskrit from Devanagari script to reading Bhagavad Gita
           </p>
           
@@ -52,7 +52,7 @@ export default function ModuleCard({ modules, syllabusVideoUrl }: ModuleCardProp
                 href={syllabusVideoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-sanskrit)] text-white rounded-lg font-semibold hover:bg-[var(--accent-sanskrit)]/90 transition-colors focus-sanskrit"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors focus-sanskrit [&_svg]:text-white"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />

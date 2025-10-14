@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import { chanakyaCodeCourseData } from '../courseData';
 
 const categories = ['All', 'Business', 'Leadership', 'Professional'];
@@ -21,13 +21,6 @@ export default function TestimonialsCarousel() {
   const itemsPerPage = 3;
   const totalPages = Math.ceil(filteredTestimonials.length / itemsPerPage);
   
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  };
 
   const visibleTestimonials = filteredTestimonials.slice(
     currentIndex * itemsPerPage,
@@ -48,7 +41,7 @@ export default function TestimonialsCarousel() {
           <h2 className="text-3xl md:text-5xl font-bold text-[#0B2B3A] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Success Stories
           </h2>
-          <p className="text-lg text-[#6C6C6C]">
+          <p className="text-lg text-[#6C6C6C] text-center">
             See how Chanakya's wisdom transformed careers and businesses
           </p>
         </motion.div>
@@ -70,7 +63,7 @@ export default function TestimonialsCarousel() {
               }}
               className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] text-white shadow-lg hover:shadow-xl'
+                  ? 'bg-black text-white shadow-lg hover:shadow-xl'
                   : 'bg-white text-[#6C6C6C] border-2 border-gray-200 hover:border-[#D87A2B] hover:text-[#0B2B3A]'
               }`}
             >
@@ -81,94 +74,77 @@ export default function TestimonialsCarousel() {
 
         {/* Testimonials Carousel */}
         <div className="relative max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${selectedCategory}-${currentIndex}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {visibleTestimonials.map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="chanakya-testimonial-card group"
-                >
-                  {/* Quote Icon */}
-                  <div className="mb-4">
-                    <Quote className="w-10 h-10 text-[#D87A2B]/20" />
-                  </div>
-
-                  {/* Rating */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating || 5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#D87A2B] text-[#D87A2B]" />
-                    ))}
-                  </div>
-
-                  {/* Content */}
-                  <p className="text-[#0B2B3A] leading-relaxed mb-6 line-clamp-4 group-hover:line-clamp-none transition-all">
-                    "{testimonial.content}"
-                  </p>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#0B2B3A] to-[#D87A2B] rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold text-lg">
-                        {testimonial.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-[#0B2B3A]">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-sm text-[#6C6C6C]">
-                        {testimonial.role}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Arrows */}
-          {totalPages > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-12 h-12 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group"
-                aria-label="Previous testimonials"
+          {/* Add padding to prevent button overlap */}
+          <div className="chanakya-testimonials-container px-4 sm:px-8 md:px-16 lg:px-20 relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${selectedCategory}-${currentIndex}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
+                {visibleTestimonials.map((testimonial, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="chanakya-testimonial-card group"
+                  >
+                    {/* Quote Icon */}
+                    <div className="mb-4">
+                      <Quote className="w-10 h-10 text-[#D87A2B]/20" />
+                    </div>
 
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-12 h-12 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a] rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group"
-                aria-label="Next testimonials"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </>
-          )}
+                    {/* Rating */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating || 5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#D87A2B] text-[#D87A2B]" />
+                      ))}
+                    </div>
+
+                    {/* Content */}
+                    <p className="text-[#0B2B3A] leading-relaxed mb-6 line-clamp-4 group-hover:line-clamp-none transition-all">
+                      "{testimonial.content}"
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#0B2B3A] to-[#D87A2B] rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-bold text-lg">
+                          {testimonial.name.charAt(0)}
+                        </span>
+                      </div>
+                      <div>
+                        <div className="font-semibold text-[#0B2B3A]">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-sm text-[#6C6C6C]">
+                          {testimonial.role}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
 
-        {/* Pagination Dots */}
+        {/* Enhanced Pagination Dots */}
         {totalPages > 1 && (
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center items-center gap-3 mt-8">
             {[...Array(totalPages)].map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`rounded-full transition-all duration-300 ${
                   currentIndex === index
-                    ? 'w-8 bg-gradient-to-r from-[#0B2B3A] to-[#1a3a4a]'
-                    : 'bg-gray-300 hover:bg-[#D87A2B]'
+                    ? 'w-10 h-3 bg-black shadow-lg'
+                    : 'w-3 h-3 bg-gray-300 hover:bg-[#D87A2B] hover:scale-110'
                 }`}
                 aria-label={`Go to page ${index + 1}`}
               />

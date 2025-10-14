@@ -34,7 +34,7 @@ export default function SanskritCoursePage() {
       text: 'Preview Course',
       href: '#course-details'
     },
-    thumbnailUrl: '/images/sanskrit-course/course-thumbnail.svg',
+    thumbnailUrl: '/images/sanskrit-course-thumb.jpg',
     stats: [
       {
         label: 'Students',
@@ -146,7 +146,7 @@ export default function SanskritCoursePage() {
       'Flashcards for vocabulary building',
       'Access to exclusive Sanskrit resources'
     ],
-    packageImageUrl: '/images/sanskrit-course/package-image.svg',
+    packageImageUrl: '/assets/sanskrit-package.png',
     buyCtaUrl: 'https://courses.shikshanam.in/single-checkout/655b340de4b0b31c6db6cb3c?pid=p2',
     packageUrl: '/packages/sanskrit-basics-to-conversation',
     features: ['1 Year Full Access', 'Certificate of Completion', '30 Video Sessions', '17+ Hours Content']
@@ -209,11 +209,8 @@ export default function SanskritCoursePage() {
       {/* Feature Badges */}
       <FeatureBadgeList features={features} />
 
-      {/* Main Content with Sticky Package Card */}
+      {/* Main Content */}
       <div className="relative" id="course-details">
-        {/* Sticky Package Card (Desktop) / Fixed Bottom (Mobile) */}
-        <PackageCard {...packageData} />
-
         {/* Instructor Section */}
         <InstructorCard {...instructorData} />
 
@@ -231,6 +228,11 @@ export default function SanskritCoursePage() {
           testimonials={courseData.testimonials}
           videoTestimonials={videoTestimonials}
         />
+
+        {/* Package Card Section */}
+        <div className="hidden lg:block">
+          <PackageCard {...packageData} />
+        </div>
 
         {/* FAQ Section */}
         <FAQAccordion faqs={courseData.faqs} />

@@ -1,213 +1,177 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, LogIn, Search, ChevronDown, BookOpen } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Menu, X, LogIn, Search, BookOpen } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import ThemeToggle from './ThemeToggle'
-import MegaMenu from './navigation/MegaMenu'
-import MobileDrawer from './navigation/MobileDrawer'
 import { topLevelNavItems } from '@/lib/navigation-data'
-import Button, { CTAButton } from './ui/button'
+import Button from './ui/button'
 import { ROUTES } from '@/lib/routes'
 import { shouldHideThemeToggle } from '@/lib/config/theme-exclusions'
 import { usePathname } from 'next/navigation'
-import { useAuth } from '@/lib/auth/AuthContext'
 import { SSOLoginModal } from './auth/SSOLoginModal'
 import { UserDropdown } from './auth/UserDropdown'
+import { useAuth } from '@/lib/auth/AuthContext'
+import MobileDrawer from './navigation/MobileDrawer'
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const [activeGroupId, setActiveGroupId] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
   const hideThemeToggle = shouldHideThemeToggle(pathname)
-  const { isLoggedIn } = useAuth()
+  const { user, isLoading } = useAuth()
 
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  const handleNavigation = (href: string) => {
+    try {
+      if (href.startsWith('http')) {
+        window.location.href = href
+      } else {
+        router.push(href)
+      }
+    } catch (error) {
+      console.error('Navigation error:', error)
+      window.location.href = href
+    }
+  }
 
   return (
     <motion.header 
       initial={isClient ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="sticky top-0 z-[60] bg-background/98 backdrop-blur-md border-b border-border shadow-sm"
+      className="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-800/50"
       role="banner"
     >
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 lg:h-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link 
+          <motion.a 
             href={ROUTES.HOME}
-            className="flex items-center space-x-2 lg:space-x-3 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl"
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center space-x-3 flex-shrink-0 group"
             aria-label="Shikshanam Home"
+            onClick={(e: React.MouseEvent) => {
+              e.preventDefault()
+              handleNavigation(ROUTES.HOME)
+            }}
           >
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-2 lg:space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-button-primary-bg to-button-primary-hover rounded-2xl flex items-center justify-center shadow-md flex-shrink-0">
-                <BookOpen className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
+            <div className="relative">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 via-rose-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg transform transition-transform group-hover:rotate-6">
+                <BookOpen className="w-7 h-7 text-white" aria-hidden="true" />
               </div>
-              <div className="flex flex-col min-w-0">
-                <span className="font-display text-lg lg:text-2xl font-bold text-premium-text-primary tracking-wide truncate">
-                  शिक्षणम्
-                </span>
-                <span className="font-display text-xs lg:text-sm font-medium text-premium-text-secondary tracking-wider hidden sm:block">
-                  Shikshanam
-                </span>
-              </div>
-            </motion.div>
-          </Link>
+              <div className="absolute -inset-1 bg-gradient-to-br from-orange-500/20 via-rose-600/20 to-purple-700/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display text-2xl font-bold bg-gradient-to-r from-orange-600 via-rose-600 to-purple-700 bg-clip-text text-transparent tracking-tight">
+                शिक्षणम्
+              </span>
+              <span className="font-display text-sm font-medium text-gray-600 dark:text-gray-400 tracking-wide">
+                Shikshanam
+              </span>
+            </div>
+          </motion.a>
 
-          {/* Desktop Navigation - Centered with proper spacing */}
-          <nav id="navigation" className="hidden lg:flex items-center gap-8 mx-auto" role="navigation" aria-label="Main navigation">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
             {topLevelNavItems.map((item) => (
-              <div key={item.name} className="relative">
-                {item.hasDropdown ? (
-                  <motion.button
-                    onClick={(e) => {
-                      e.preventDefault()
-                      const newActiveDropdown = activeDropdown === item.name ? null : item.name
-                      setActiveDropdown(newActiveDropdown)
-                      setActiveGroupId(newActiveDropdown && item.groupId ? item.groupId : null)
-                      setIsMegaMenuOpen(newActiveDropdown !== null)
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="font-semibold flex items-center space-x-1 text-premium-text-primary hover:text-button-primary-bg hover:bg-button-primary-bg/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-4 py-2.5 transition-all duration-200"
-                    aria-label={`Navigate to ${item.name}`}
-                    aria-expanded={activeDropdown === item.name}
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.name}</span>
-                    <ChevronDown className={cn(
-                      "w-3 h-3 transition-transform duration-200",
-                      activeDropdown === item.name ? "rotate-180" : ""
-                    )} />
-                  </motion.button>
-                ) : (
-                  <Link 
-                    href={item.href}
-                    onClick={() => {
-                      // Close any open menus
-                      setIsMegaMenuOpen(false)
-                      setActiveDropdown(null)
-                      setActiveGroupId(null)
-                    }}
-                    className="font-semibold flex items-center space-x-1 text-premium-text-primary hover:text-button-primary-bg hover:bg-button-primary-bg/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target whitespace-nowrap rounded-xl px-4 py-2.5 transition-all duration-200"
-                    aria-label={`Navigate to ${item.name}`}
-                  >
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center space-x-1">
-                      <item.icon className="w-4 h-4" />
-                      <span>{item.name}</span>
-                    </motion.div>
-                  </Link>
+              <Link 
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  "flex items-center space-x-2 px-4 py-2 rounded-xl font-medium text-base transition-all duration-200",
+                  pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                    ? "bg-gradient-to-r from-orange-100 to-rose-100 dark:from-orange-950/30 dark:to-rose-950/30 text-orange-700 dark:text-orange-400"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-orange-600 dark:hover:text-orange-400"
                 )}
-              </div>
+              >
+                <item.icon className="w-5 h-5" aria-hidden="true" />
+                <span>{item.name}</span>
+              </Link>
             ))}
           </nav>
 
-          {/* Right side controls */}
-          <div className="hidden lg:flex items-center gap-4 ml-auto flex-shrink-0">
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-2 lg:hidden">
+            {isClient && !hideThemeToggle && <ThemeToggle />}
+            {isClient && !isLoading && user && <UserDropdown />}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              )}
+            </motion.button>
+          </div>
+
+          {/* Desktop Right Controls */}
+          <div className="hidden lg:flex items-center gap-3">
             {/* Search Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setIsSearchOpen(!isSearchOpen)
-              }}
-              className="p-2.5 rounded-xl hover:bg-button-primary-bg/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Search"
-              aria-expanded={isSearchOpen}
             >
-              <Search className="w-5 h-5 text-premium-text-primary" />
+              <Search className="w-5 h-5 text-gray-700 dark:text-gray-300" aria-hidden="true" />
             </motion.button>
 
             {/* Theme Toggle */}
             {!hideThemeToggle && <ThemeToggle />}
 
-            {/* Authentication Section */}
-            {isLoggedIn ? (
-              <UserDropdown />
-            ) : (
-              <Button
-                variant="primary"
-                size="md"
-                onClick={() => setIsLoginModalOpen(true)}
-                className="flex items-center space-x-2"
-                aria-label="Login to your account"
-              >
-                <LogIn className="w-4 h-4" />
-                <span>Login</span>
-              </Button>
+            {/* Authentication */}
+            {!isLoading && (
+              <>
+                {user ? (
+                  <UserDropdown />
+                ) : (
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="flex items-center space-x-2 bg-gradient-to-r from-orange-600 to-rose-600 hover:from-orange-700 hover:to-rose-700 text-white shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all"
+                    onClick={() => setIsLoginModalOpen(true)}
+                  >
+                    <LogIn className="w-4 h-4" />
+                    <span>Login</span>
+                  </Button>
+                )}
+              </>
             )}
           </div>
-
-          {/* Mobile Controls */}
-          <div className="lg:hidden flex items-center gap-2 ml-auto flex-shrink-0">
-            {/* Theme Toggle for Mobile */}
-            {!hideThemeToggle && <ThemeToggle />}
-            
-            {/* Mobile Menu Button - Enhanced */}
-            <motion.button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative p-2.5 lg:p-3 rounded-xl bg-button-primary-bg/15 hover:bg-button-primary-bg/25 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 tap-target border-2 border-button-primary-bg/30"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMenuOpen}
-            >
-              <div className="relative w-5 h-5 lg:w-6 lg:h-6">
-                <motion.div
-                  animate={isMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -5 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-4 h-0.5 lg:w-5 lg:h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
-                />
-                <motion.div
-                  animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-4 h-0.5 lg:w-5 lg:h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
-                />
-                <motion.div
-                  animate={isMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 5 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-1/2 left-1/2 w-4 h-0.5 lg:w-5 lg:h-0.5 bg-button-primary-bg rounded-full transform -translate-x-1/2 -translate-y-1/2"
-                />
-              </div>
-            </motion.button>
-          </div>
         </div>
-
-
-        {/* MegaMenu */}
-        <MegaMenu 
-          isOpen={isMegaMenuOpen} 
-          activeGroupId={activeGroupId}
-          onClose={() => {
-            setIsMegaMenuOpen(false)
-            setActiveDropdown(null)
-            setActiveGroupId(null)
-          }} 
-        />
-
-        {/* Mobile Drawer */}
-        <MobileDrawer 
-          isOpen={isMenuOpen} 
-          onClose={() => setIsMenuOpen(false)} 
-        />
-
-        {/* Login Modal */}
-        <SSOLoginModal
-          isOpen={isLoginModalOpen}
-          onClose={() => setIsLoginModalOpen(false)}
-        />
-
       </div>
+      
+      {/* Mobile Navigation Drawer */}
+      <MobileDrawer 
+        isOpen={isMobileMenuOpen} 
+        onClose={() => setIsMobileMenuOpen(false)} 
+      />
+
+      {/* SSO Login Modal */}
+      <SSOLoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSignup={() => {
+          console.log('Navigate to signup')
+        }}
+      />
     </motion.header>
   )
 }

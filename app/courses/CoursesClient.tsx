@@ -56,7 +56,7 @@ export default function CoursesClient({ categories, courseCount }: CoursesClient
               <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
                 Explore Our Courses
               </h1>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8 text-center">
                 Master Sanskrit, Philosophy, and Ancient Wisdom with expert-led courses designed for modern seekers
               </p>
             </div>

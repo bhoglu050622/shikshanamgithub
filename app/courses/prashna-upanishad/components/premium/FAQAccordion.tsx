@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { ChevronDown, Search } from 'lucide-react';
 import { prashnaUpanishadCourseData } from '../../courseData';
 import { accordionVariants, safeVariants } from '../../motion.config';
@@ -71,7 +72,7 @@ export default function FAQAccordion() {
 
                   <AnimatePresence>
                     {isExpanded && (
-                      <motion.div
+                      <MotionDiv
                         id={`faq-answer-${index}`}
                         variants={safeVariants(accordionVariants)}
                         initial="collapsed"
@@ -82,7 +83,7 @@ export default function FAQAccordion() {
                         <div className="prashna-faq-content">
                           {faq.answer}
                         </div>
-                      </motion.div>
+                      </MotionDiv>
                     )}
                   </AnimatePresence>
                 </div>

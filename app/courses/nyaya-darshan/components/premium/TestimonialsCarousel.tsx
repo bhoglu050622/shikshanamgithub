@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import { nyayaDarshanCourseData } from '../../courseData';
 import { testimonialVariants } from '../../motion.config';
 
@@ -41,7 +41,7 @@ export default function TestimonialsCarousel() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#0D3B4A] mb-4">
             Student Success Stories
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 text-center">
             Hear from students who have mastered logical reasoning
           </p>
         </div>
@@ -96,41 +96,8 @@ export default function TestimonialsCarousel() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
-          <button
-            onClick={() => paginate(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-12 h-12 bg-white border-2 border-[#D97B2A] rounded-full flex items-center justify-center text-[#D97B2A] hover:bg-[#D97B2A] hover:text-white transition-colors shadow-lg"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={() => paginate(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-12 h-12 bg-white border-2 border-[#D97B2A] rounded-full flex items-center justify-center text-[#D97B2A] hover:bg-[#D97B2A] hover:text-white transition-colors shadow-lg"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center gap-2 mt-8">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                const newDirection = index > currentIndex ? 1 : -1;
-                setPage([index, newDirection]);
-              }}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex
-                  ? 'bg-[#D97B2A] w-8'
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

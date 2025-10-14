@@ -155,10 +155,10 @@ export default function NyayaDarshanCoursePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-relaxed" style={{ fontFamily: '"Noto Sans Devanagari", sans-serif' }}>
                 प्रमाणैरर्थपरीक्षणं न्यायः।
               </h2>
-              <p className="text-white/90 text-lg md:text-xl leading-relaxed">
+              <p className="text-white/90 text-lg md:text-xl leading-relaxed text-center">
                 Nyaya is the examination of objects through valid means of knowledge.
               </p>
-              <p className="text-white/70 text-sm md:text-base mt-4">— Nyaya Sutras</p>
+              <p className="text-white/70 text-sm md:text-base mt-4 text-center">— Nyaya Sutras</p>
             </div>
           </div>
         </div>
@@ -176,12 +176,12 @@ export default function NyayaDarshanCoursePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#0D3B4A] mb-4">
                 Master the Art of Logic and Reasoning
               </h2>
-              <p className="text-xl text-gray-700 mb-8">
+              <p className="text-xl text-gray-700 mb-8 text-center">
                 Join thousands of students who have developed sharp critical thinking skills through Nyaya philosophy
               </p>
               <a
                 href={courseData.enrollment.checkoutLink}
-                className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-[#0D3B4A] to-[#1A5568] text-white font-bold text-xl rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                className="inline-flex items-center gap-3 px-10 py-4 bg-black text-white font-bold text-xl rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
               >
                 <span>Enroll Now — {courseData.metadata.price}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">

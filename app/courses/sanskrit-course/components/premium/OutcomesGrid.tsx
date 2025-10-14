@@ -79,7 +79,7 @@ export default function OutcomesGrid({ outcomes }: OutcomesGridProps) {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary-sanskrit)] mb-4">
             What You'll Achieve
           </h2>
-          <p className="text-lg md:text-xl text-[var(--text-secondary-sanskrit)] max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-[var(--text-secondary-sanskrit)] max-w-3xl mx-auto text-center">
             Transform your knowledge and skills with these concrete learning outcomes
           </p>
         </motion.div>
@@ -138,7 +138,7 @@ export default function OutcomesGrid({ outcomes }: OutcomesGridProps) {
           </p>
           <a
             href="#course-details"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent-sanskrit)] text-white rounded-lg font-semibold hover:bg-[var(--accent-sanskrit)]/90 transition-colors shadow-lg hover:shadow-xl focus-sanskrit"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl focus-sanskrit [&_svg]:text-white"
           >
             <span>View Complete Curriculum</span>
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

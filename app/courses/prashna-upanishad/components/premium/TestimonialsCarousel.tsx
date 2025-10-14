@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { prashnaUpanishadCourseData } from '../../courseData';
 import { fadeInUpVariants, safeVariants } from '../../motion.config';
@@ -35,7 +36,7 @@ export default function TestimonialsCarousel() {
         <div className="relative">
           {/* Main Testimonial Card */}
           <AnimatePresence mode="wait">
-            <motion.div
+            <MotionDiv
               key={currentIndex}
               variants={safeVariants(fadeInUpVariants)}
               initial="hidden"
@@ -68,28 +69,10 @@ export default function TestimonialsCarousel() {
                   <p className="text-sm text-gray-600">{currentTestimonial.role}</p>
                 </div>
               </div>
-            </motion.div>
+            </MotionDiv>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
-          {testimonials.length > 1 && (
-            <>
-              <button
-                onClick={prevTestimonial}
-                className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-12 w-10 h-10 md:w-12 md:h-12 bg-white border-2 border-[#D97B2A] text-[#D97B2A] rounded-full flex items-center justify-center hover:bg-[#D97B2A] hover:text-white transition-colors shadow-lg"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-              <button
-                onClick={nextTestimonial}
-                className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-12 w-10 h-10 md:w-12 md:h-12 bg-white border-2 border-[#D97B2A] text-[#D97B2A] rounded-full flex items-center justify-center hover:bg-[#D97B2A] hover:text-white transition-colors shadow-lg"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-            </>
-          )}
+          {/* Navigation Buttons - Removed */}
         </div>
 
         {/* Dots Indicator */}

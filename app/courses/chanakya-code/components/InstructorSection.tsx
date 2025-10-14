@@ -28,7 +28,7 @@ export default function InstructorSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-[#0B2B3A] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Learn from the Masters
           </h2>
-          <p className="text-lg text-[#6C6C6C]">
+          <p className="text-lg text-[#6C6C6C] text-center">
             Expert instructors with decades of experience in strategy, leadership, and ancient wisdom
           </p>
         </motion.div>

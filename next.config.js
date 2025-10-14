@@ -301,20 +301,20 @@ const nextConfig = {
         source: '/api/(.*)',
         headers: [
           {
-            key: 'Access-Control-Allow-Origin',
-            value: process.env.NODE_ENV === 'production' ? 'https://shikshanam.com' : '*',
-          },
-          {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE, OPTIONS',
+            value: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
           },
           {
             key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type, Authorization, X-Requested-With',
+            value: 'Content-Type, Authorization, X-Requested-With, Accept, Origin, Cache-Control, X-File-Name',
           },
           {
             key: 'Access-Control-Max-Age',
             value: '86400',
+          },
+          {
+            key: 'Access-Control-Allow-Credentials',
+            value: 'true',
           },
           {
             key: 'X-Content-Type-Options',

@@ -52,17 +52,17 @@ export default function CourseSectionHeader({
       )}
 
       {subtitle && (
-        <p className="course-body-sm text-gray-600 course-mb-sm font-semibold tracking-wider uppercase">
+        <p className={`course-body-sm text-gray-600 course-mb-sm font-semibold tracking-wider uppercase ${centered ? 'text-center' : ''}`}>
           {subtitle}
         </p>
       )}
 
-      <h2 className={`course-heading-1 text-gray-900 course-mb-lg ${maxWidthClass}`}>
+      <h2 className={`course-heading-1 text-gray-900 course-mb-lg ${maxWidthClass} ${centered ? 'text-center' : ''}`}>
         {title}
       </h2>
 
       {description && (
-        <div className={`course-body-lg text-gray-600 ${maxWidthClass}`}>
+        <div className={`course-body-lg text-gray-600 ${maxWidthClass} ${centered ? 'text-center' : ''}`}>
           {description}
         </div>
       )}

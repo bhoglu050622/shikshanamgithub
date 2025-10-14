@@ -27,7 +27,7 @@ export default function SyllabusExplorer() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#0D3B4A] mb-4">
             Complete Course Curriculum
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 text-center">
             Systematic learning path through Nyaya Sutras
           </p>
         </div>

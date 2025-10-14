@@ -222,7 +222,7 @@ export const advaitaVedantaCourseData: CourseContent = {
       'Upanishads',
       'Indian Darshanas'
     ],
-    image: 'https://placehold.co/600x600/0D3B4A/FFFFFF?text=Vishal+Chaurasia'
+    image: 'https://shikshanam.in/wp-content/uploads/2024/05/1.png'
   },
 
   testimonials: [

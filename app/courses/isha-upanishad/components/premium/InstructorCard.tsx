@@ -20,14 +20,15 @@ export default function InstructorCard() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div 
-          className="isha-section-header"
+          className="isha-section-header text-center"
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
-          <p className="isha-section-subtitle">Learn from the Best</p>
-          <h2 className="isha-section-title">आचार्य परिचय</h2>
-          <p className="isha-section-description">
+          <p className="isha-section-subtitle text-center">Learn from the Best</p>
+          <h2 className="isha-section-title text-center">आचार्य परिचय</h2>
+          <p className="isha-section-description text-center">
             Master of Indian Philosophy with Modern Perspective
           </p>
         </motion.div>
@@ -39,6 +40,7 @@ export default function InstructorCard() {
           variants={safeVariants(fadeInUpVariants)}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          suppressHydrationWarning
         >
           <div className="isha-instructor-grid">
             {/* Portrait */}

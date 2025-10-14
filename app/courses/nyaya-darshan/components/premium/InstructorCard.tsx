@@ -27,7 +27,7 @@ export default function InstructorCard() {
           >
             आचार्य परिचय
           </h2>
-          <p className="text-xl text-gray-600">Learn from a Master of Logic</p>
+          <p className="text-xl text-gray-600 text-center">Learn from a Master of Logic</p>
         </div>
 
         {/* Instructor Card */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Play, Clock, BookOpen, Award } from 'lucide-react';
 import { prashnaUpanishadCourseData, prashnaDemoVideos } from '../../courseData';
 import { heroVariants, heroChildVariants, safeVariants } from '../../motion.config';
@@ -20,14 +20,14 @@ export default function HeroPrashna({ onDemoClick }: HeroPrashnaProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-[#0D3B4A]/10 via-transparent to-[#D97B2A]/10" />
       </div>
 
-      <motion.div
+      <MotionDiv
         className="prashna-hero-grid relative z-10"
         variants={safeVariants(heroVariants)}
         initial="hidden"
         animate="visible"
       >
         {/* Left: Content */}
-        <motion.div className="prashna-hero-content" variants={heroChildVariants}>
+        <MotionDiv className="prashna-hero-content" variants={heroChildVariants}>
           <h1>{metadata.title}</h1>
           <p className="prashna-hero-subtitle">{metadata.subtitle}</p>
 
@@ -50,12 +50,14 @@ export default function HeroPrashna({ onDemoClick }: HeroPrashnaProps) {
           </div>
 
           {/* Price */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-4xl font-bold text-[#0D3B4A]">{metadata.price}</span>
-            <span className="text-xl text-gray-400 line-through">{metadata.originalPrice}</span>
-            <span className="px-3 py-1 bg-[#D97B2A] text-white text-sm font-semibold rounded-full">
-              Save {metadata.savings}
-            </span>
+          <div className="prashna-pricing-mobile">
+            <div className="prashna-price-row">
+              <span className="prashna-price-current">{metadata.price}</span>
+              <span className="prashna-price-original">{metadata.originalPrice}</span>
+              <span className="prashna-savings-badge">
+                Save {metadata.savings}
+              </span>
+            </div>
           </div>
 
           {/* CTAs */}
@@ -97,11 +99,11 @@ export default function HeroPrashna({ onDemoClick }: HeroPrashnaProps) {
               <span>{stats?.satisfaction} Satisfaction</span>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* Right: Demo Thumbnail */}
         {featuredDemo && (
-          <motion.div variants={heroChildVariants}>
+          <MotionDiv variants={heroChildVariants}>
             <div 
               className="prashna-demo-card featured cursor-pointer"
               onClick={onDemoClick}
@@ -130,9 +132,9 @@ export default function HeroPrashna({ onDemoClick }: HeroPrashnaProps) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         )}
-      </motion.div>
+      </MotionDiv>
     </section>
   );
 }

@@ -448,9 +448,10 @@
 }
 
 .flashcards-header p {
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   color: #6B7280;
   line-height: 1.6;
+  text-align: center;
 }
 
 .flashcards-container {
@@ -661,7 +662,8 @@
   }
   
   .flashcards-header p {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
   }
   
   .flashcards-container {
@@ -796,7 +798,8 @@
   }
   
   .flashcards-header p {
-    font-size: 0.875rem;
+    font-size: 1.125rem;
+    text-align: center;
   }
   
   .flashcard {

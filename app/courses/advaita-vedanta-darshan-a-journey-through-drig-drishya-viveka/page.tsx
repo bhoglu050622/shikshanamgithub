@@ -97,7 +97,7 @@ export default function AdvaitaVedantaDarshanCoursePage() {
       {/* Why This Course Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-white to-[#FFF9F2]">
         <div className="max-w-7xl mx-auto">
-          <div className="advaita-section-header">
+          <div className="advaita-section-header text-center">
             <h2>What Questions You Might Be Seeking to Answer</h2>
             <p>तो आज ही जुड़ें वेदान्त [उपनिषदों] के अद्वैत दर्शन से! Join thousands of seekers who have discovered profound answers.</p>
           </div>
@@ -152,7 +152,7 @@ export default function AdvaitaVedantaDarshanCoursePage() {
       {/* Learning Outcomes Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="advaita-section-header">
+          <div className="advaita-section-header text-center">
             <h2>Transform Your Understanding</h2>
             <p>Master the profound teachings of Advaita Vedanta and realize your true nature</p>
           </div>
@@ -191,19 +191,19 @@ export default function AdvaitaVedantaDarshanCoursePage() {
       {/* Sacred Shloka Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-[#0D3B4A] to-[#1A5568]">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border-2 border-white/20">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border-2 border-white/20 text-center">
             <h2 
-              className="text-3xl md:text-4xl font-bold text-white mb-6 leading-relaxed" 
+              className="text-3xl md:text-4xl font-bold text-white mb-6 leading-relaxed text-center" 
               style={{ fontFamily: 'var(--font-devanagari)' }}
             >
               द्रश्यं दृश्यत्वात् जडम् प्रतीयते।<br />
               दृक् तु चैतन्यरूपः सदा॥
             </h2>
-            <p className="text-white/90 text-lg md:text-xl leading-relaxed mb-4">
+            <p className="text-white/90 text-lg md:text-xl leading-relaxed mb-4 text-center">
               The seen is inert because it is an object of perception.<br />
               But the Seer is always of the nature of consciousness.
             </p>
-            <p className="text-white/70 text-sm md:text-base">— Drig Drishya Viveka</p>
+            <p className="text-white/70 text-sm md:text-base text-center">— Drig Drishya Viveka</p>
           </div>
         </div>
       </section>
@@ -225,7 +225,7 @@ export default function AdvaitaVedantaDarshanCoursePage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
               <a
                 href={courseData.enrollment.checkoutLink}
-                className="group px-10 py-4 bg-gradient-to-r from-[#0D3B4A] to-[#1A5568] text-white font-bold text-xl rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"
+                className="group px-10 py-4 bg-black text-white font-bold text-xl rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2 hover:bg-gray-900"
               >
                 <span>Enroll Now — ₹1,999</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">

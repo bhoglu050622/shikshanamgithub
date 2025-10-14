@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/motion/MotionWrapper';
 import { Award, BookOpen, Users } from 'lucide-react';
 import { prashnaUpanishadCourseData } from '../../courseData';
 import { instructorVariants, safeVariants } from '../../motion.config';
@@ -22,7 +22,7 @@ export default function InstructorCard() {
           </p>
         </div>
 
-        <motion.div
+        <MotionDiv
           className="prashna-instructor-card"
           variants={safeVariants(instructorVariants)}
           initial="hidden"
@@ -33,7 +33,7 @@ export default function InstructorCard() {
             {/* Instructor Image */}
             <div className="flex justify-center lg:justify-start">
               <img
-                src="https://placehold.co/200x200/0D3B4A/FFF9F2?text=Vishal+Chaurasia"
+                src="https://shikshanam.in/wp-content/uploads/2024/05/1.png"
                 alt={instructor.name}
                 className="prashna-instructor-image"
                 onError={(e) => {
@@ -100,7 +100,7 @@ export default function InstructorCard() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   );
